@@ -1,10 +1,13 @@
 import React from "react";
 import Head from "next/head";
 
-import { Nav } from "../components/Nav";
-import { Page } from "../components/Page";
+import { Nav, Page } from "../src/components";
+import { meetingsApi } from "../src/api";
+import { Meeting } from "../src/types";
 
-const Home = () => (
+type InitialProps = { meetings: Meeting[] };
+
+const Home = ({ meetings }: InitialProps) => (
   <Page>
     <Head>
       <title>zagraj.my</title>
@@ -20,12 +23,23 @@ const Home = () => (
       </p>
     </div>
 
+    <ul>
+      {meetings.map(m => {
+        return (
+          <li key={m.id}>
+            <h3>{m.title}</h3>
+            <p>{m.description}</p>
+          </li>
+        );
+      })}
+    </ul>
+
     <style jsx>{`
       .hero {
         width: 100%;
-        color: #333;
-        background: var(--beige);
-        padding: 72px 0 64px 0;
+        color: var(--jet);
+        background: var(--oldLace);
+        padding: 80px 0 64px 0;
       }
       .title {
         margin-top: 0;
@@ -67,10 +81,15 @@ const Home = () => (
         margin: 0;
         padding: 12px 0 0;
         font-size: 13px;
-        color: #333;
+        color: var(--jet);
       }
     `}</style>
   </Page>
 );
+
+Home.getInitialProps = async (): Promise<InitialProps> => {
+  const meetings = await meetingsApi.getAll();
+  return { meetings };
+};
 
 export default Home;

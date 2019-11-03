@@ -12,7 +12,11 @@ export const Page: React.FC = ({ children }) => (
   <Fragment>
     <style jsx>{`
       :global(body) {
-        --beige: #fbf6e5;
+        --oldLace: #fbf6e5;
+        --purpleNavy: #564d80;
+        --cyberGrape: #4f4675;
+        --inchworm: #c2f970;
+        --jet: #333333;
 
         margin: 0;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, Avenir Next,
