@@ -17,11 +17,20 @@ function MeetingDetails({ meeting }: InitialProps) {
   return (
     <article>
       <h1>{meeting.title}</h1>
+      {meeting.image ? (
+        <img src={meeting.image} className="image" />
+      ) : (
+        <button className="image add-image">Add picture</button>
+      )}
       <dl>
         <dt>Author</dt>
         <dd>{meeting.author.name}</dd>
         <dt>Date</dt>
         <dd>{meeting.date ? meeting.date.toLocaleString() : "No date"}</dd>
+        <dt>Publish Date</dt>
+        <dd>{meeting.published_at}</dd>
+        <dt>Creation Date</dt>
+        <dd>{meeting.created_at}</dd>
       </dl>
       <p>{meeting.description}</p>
     </article>

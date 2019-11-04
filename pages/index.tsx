@@ -1,14 +1,20 @@
 import React from "react";
 import Head from "next/head";
 
-import { Nav, Page } from "../src/components";
+import { Nav, Page, MeetingCard } from "../src/components";
 import { meetingsApi } from "../src/api";
 import { Meeting } from "../src/types";
+import { isAfter } from "date-fns";
+import Link from "next/link";
 
 type InitialProps = { meetings: Meeting[] };
 
-const Home = ({ meetings }: InitialProps) => (
-  <Page>
+const IndexPage = ({ meetings }: InitialProps) => (
+  <Page
+    css={{
+      background: "var(--oldLace)",
+    }}
+  >
     <Head>
       <title>zagraj.my</title>
       <link rel="icon" href="/favicon.ico" />
@@ -16,30 +22,70 @@ const Home = ({ meetings }: InitialProps) => (
 
     <Nav />
 
-    <div className="hero">
+    <header className="hero">
       <h1 className="title">zagraj.my</h1>
       <p className="description">
         Smoki się same nie ubiją. Zapisz się na sesję.
       </p>
-    </div>
+    </header>
 
     <ul>
       {meetings.map(m => {
         return (
           <li key={m.id}>
-            <h3>{m.title}</h3>
-            <p>{m.description}</p>
+            <MeetingCard meeting={m} />
           </li>
         );
       })}
     </ul>
 
+    <section className="see-more">
+      <Link href="/meetings">
+        <a
+          css={{
+            display: "block",
+            background: "var(--red)",
+            color: "white",
+            padding: "0.8em 1.2em",
+            borderRadius: "6px",
+            textDecoration: "none",
+            cursor: "pointer",
+            ":hover": {
+              boxShadow: "var(--shadow)",
+              background: "var(--redLight)",
+            },
+          }}
+        >
+          Zobacz więcej
+        </a>
+      </Link>
+    </section>
+
     <style jsx>{`
+      .index-page {
+        display: none;
+        background: var(--oldLace);
+      }
+      .see-more {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding-bottom: 2em;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
       .hero {
         width: 100%;
         color: var(--jet);
-        background: var(--oldLace);
-        padding: 80px 0 64px 0;
+        padding: 80px 0 4px 0;
       }
       .title {
         margin-top: 0;
@@ -87,9 +133,12 @@ const Home = ({ meetings }: InitialProps) => (
   </Page>
 );
 
-Home.getInitialProps = async (): Promise<InitialProps> => {
-  const meetings = await meetingsApi.getAll();
+IndexPage.getInitialProps = async (): Promise<InitialProps> => {
+  const today = new Date();
+  const meetings = await meetingsApi
+    .getAll()
+    .then(xs => xs.filter(x => !x.date || isAfter(x.date, today)).slice(0, 3));
   return { meetings };
 };
 
-export default Home;
+export default IndexPage;

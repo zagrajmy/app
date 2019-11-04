@@ -4,31 +4,45 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentInitialProps,
   DocumentContext,
 } from "next/document";
-// import { InitializeColorMode } from 'theme-ui'
+import { ServerStyleSheet } from "styled-components";
 
-function MyDocument(_: DocumentInitialProps) {
-  return (
-    <Html>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
-        />
-      </Head>
-      <body>
-        {/* <InitializeColorMode /> */}
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
-
-MyDocument.getInitialProps = (ctx: DocumentContext) => {
-  return Document.getInitialProps(ctx);
-};
-
-export default MyDocument;

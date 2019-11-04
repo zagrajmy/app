@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { ComponentProps } from "react";
 
 // TODO: Discuss fonts other than system-ui
 // import "typeface-poppins";
@@ -8,15 +8,26 @@ import React, { Fragment } from "react";
 
 // TODO: Consider theme-ui
 
-export const Page: React.FC = ({ children }) => (
-  <Fragment>
+interface PageProps extends ComponentProps<"div"> {}
+export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
+  <div {...rest}>
     <style jsx>{`
       :global(body) {
         --oldLace: #fbf6e5;
-        --purpleNavy: #564d80;
-        --cyberGrape: #4f4675;
-        --inchworm: #c2f970;
-        --jet: #333333;
+        --jet: #343333;
+        --redLight: #ea6463;
+        --red: #e85554;
+        --redDark: #d34e4d;
+
+        --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        --shadowMd: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadowLg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadowXl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --shadow2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
         margin: 0;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, Avenir Next,
@@ -33,5 +44,5 @@ export const Page: React.FC = ({ children }) => (
       }
     `}</style>
     {children}
-  </Fragment>
+  </div>
 );
