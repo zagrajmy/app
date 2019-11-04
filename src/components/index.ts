@@ -1,3 +1,3 @@
-export * from "./Nav";
+export * from "./NavHeader";
 export * from "./Page";
 export * from "./MeetingCard";

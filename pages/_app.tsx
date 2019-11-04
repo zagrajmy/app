@@ -1,10 +1,14 @@
 import App from "next/app";
 import React from "react";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, Styled, ColorMode } from "theme-ui";
+import { Global, InterpolationWithTheme } from "@emotion/core";
 
-const theme = {
-  colors: {
-    primary: "#0070f3",
+import { theme } from "../src/theme";
+import { NavHeader } from "../src/components";
+
+const globalStyles: InterpolationWithTheme<any> = {
+  body: {
+    margin: 0,
   },
 };
 
@@ -13,7 +17,12 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Global styles={globalStyles} />
+        <ColorMode />
+        <Styled.root>
+          <NavHeader />
+          <Component {...pageProps} />
+        </Styled.root>
       </ThemeProvider>
     );
   }

@@ -1,0 +1,6 @@
+{
+  "import theme-ui and add pragma": {
+    "prefix": "sxsx",
+    "body": ["/** @jsx jsx */", "import { jsx } from 'theme-ui';"]
+  }
+}

@@ -8,8 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "@types/styled-components": "^4.1.20",
+    "@emotion/babel-plugin-jsx-pragmatic": "^0.1.4",
+    "@emotion/core": "^10.0.22",
+    "@mdx-js/react": "^1.5.1",
+    "@next/mdx": "^9.1.2",
+    "@types/theme-ui": "^0.2.3",
     "@zeit/next-css": "^1.0.1",
+    "babel-plugin-emotion": "^10.0.23",
     "babel-plugin-styled-components": "^1.10.6",
     "date-fns": "^2.6.0",
     "isomorphic-unfetch": "^3.0.0",

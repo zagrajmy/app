@@ -2,11 +2,14 @@ import React from "react";
 import { formatRelative } from "date-fns";
 
 import { Meeting } from "../types";
+import Link, { LinkProps } from "next/link";
 
 const MeetingCreationInfo: React.FC<{ meeting: Meeting }> = ({ meeting }) => {
   return (
     <span>
-      {meeting.author.name}
+      <Link href="/u/[username_slug]" as={`/u/${meeting.author.slug}`}>
+        <a>{meeting.author.name}</a>
+      </Link>
       {meeting.date
         ? ` • ${formatRelative(new Date(meeting.date), new Date())}`
         : ""}
@@ -14,20 +17,41 @@ const MeetingCreationInfo: React.FC<{ meeting: Meeting }> = ({ meeting }) => {
   );
 };
 
+// onClicks on divs are evil and require javascript
+const CardBackgroundLink = (props: LinkProps) => (
+  <Link {...props}>
+    <a
+      sx={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
+    />
+  </Link>
+);
+
 interface MeetingCardProps {
   meeting: Meeting;
 }
 export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
   return (
     <article className="container">
+      <CardBackgroundLink
+        href="/meetings/[id]"
+        as={`/meetings/${meeting.id}`}
+      />
       {meeting.image && <img src={meeting.image} className="image" />}
-      <div className="right">
+      <div sx={{ pl: "1em" }}>
         <h3>{meeting.title}</h3>
         <MeetingCreationInfo meeting={meeting} />
         <p>{meeting.description}</p>
       </div>
       <style jsx>{`
         .container {
+          position: relative;
+
           box-shadow: var(--shadowMd);
           border: 1px solid rgba(0, 0, 0, 0.3);
           border-radius: 6px;
@@ -39,6 +63,8 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
           width: 800px;
           max-width: 80vw;
           margin: 1em;
+
+          cursor: pointer;
 
           transition: box-shadow 150ms linear;
         }

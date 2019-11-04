@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 
 // TODO: Discuss fonts other than system-ui
 // import "typeface-poppins";
@@ -6,19 +6,11 @@ import React, { ComponentProps } from "react";
 //   font-family: Poppins, sans-serif;
 //  */}
 
-// TODO: Consider theme-ui
-
-interface PageProps extends ComponentProps<"div"> {}
+interface PageProps extends ComponentPropsWithoutRef<"div"> {}
 export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
   <div {...rest}>
     <style jsx>{`
       :global(body) {
-        --oldLace: #fbf6e5;
-        --jet: #343333;
-        --redLight: #ea6463;
-        --red: #e85554;
-        --redDark: #d34e4d;
-
         --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
           0 1px 2px 0 rgba(0, 0, 0, 0.06);
         --shadowMd: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -28,10 +20,6 @@ export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
         --shadowXl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
           0 10px 10px -5px rgba(0, 0, 0, 0.04);
         --shadow2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-
-        margin: 0;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, Avenir Next,
-          Avenir, Helvetica, sans-serif;
       }
       :global(h1) {
         font-weight: 800;

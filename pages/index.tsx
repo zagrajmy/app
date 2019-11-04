@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import { Nav, Page, MeetingCard } from "../src/components";
+import { NavHeader, Page, MeetingCard } from "../src/components";
 import { meetingsApi } from "../src/api";
 import { Meeting } from "../src/types";
 import { isAfter } from "date-fns";
@@ -10,17 +10,11 @@ import Link from "next/link";
 type InitialProps = { meetings: Meeting[] };
 
 const IndexPage = ({ meetings }: InitialProps) => (
-  <Page
-    css={{
-      background: "var(--oldLace)",
-    }}
-  >
+  <Page>
     <Head>
       <title>zagraj.my</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-
-    <Nav />
 
     <header className="hero">
       <h1 className="title">zagraj.my</h1>
@@ -42,17 +36,19 @@ const IndexPage = ({ meetings }: InitialProps) => (
     <section className="see-more">
       <Link href="/meetings">
         <a
-          css={{
+          sx={{
             display: "block",
-            background: "var(--red)",
+            bg: "primary",
             color: "white",
             padding: "0.8em 1.2em",
             borderRadius: "6px",
             textDecoration: "none",
             cursor: "pointer",
+            boxShadow: "var(--shadow)",
+            transition: "box-shadow 150ms linear",
             ":hover": {
-              boxShadow: "var(--shadow)",
-              background: "var(--redLight)",
+              boxShadow: "var(--shadowMd)",
+              bg: "primaryLight",
             },
           }}
         >
