@@ -5,13 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "now"
   },
   "dependencies": {
     "@emotion/babel-plugin-jsx-pragmatic": "^0.1.4",
     "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
     "@next/mdx": "^9.1.2",
+    "@types/node-fetch": "^2.5.3",
     "@types/theme-ui": "^0.2.3",
     "@zeit/next-css": "^1.0.1",
     "babel-plugin-emotion": "^10.0.23",
