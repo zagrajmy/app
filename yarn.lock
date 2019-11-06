@@ -5509,10 +5509,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-swr@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-0.1.5.tgz#1e71d5d60b8b5605f5ea51f1b9380db2e84e86a6"
-  integrity sha512-mA9raXEOGJuXWFDYtxHkY2/16UVMXV5z4LBFiYW6x5iD6a4N8qLV2d7yczoij3mtHFN0UfxEzHS28p0EWXLYeA==
+swr@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-0.1.7.tgz#f1d185cecb278581d9fecceb649a23a8681142bf"
+  integrity sha512-CwJnvyJBqlS5oOV7Exv4YMJtObul+KEtscwNRkYKoPKD8Am3+Q9kMfZwEm86Y1DjD6tcpDYbxQvbGQYwXWPQeg==
   dependencies:
     fast-deep-equal "2.0.1"
     lodash.throttle "4.1.1"
