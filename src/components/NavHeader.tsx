@@ -11,6 +11,11 @@ export const NavHeader = () => (
           </Link>
         </li>
         <li>
+          <Link href="/meetings">
+            <a>Spotkania</a>
+          </Link>
+        </li>
+        <li>
           <a href="https://github.com/zagrajmy/">GitHub</a>
         </li>
         <li>

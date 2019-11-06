@@ -1,18 +1,28 @@
 import { Fragment } from "react";
 
 import { Meeting } from "../../src/types";
-import { MeetingCard } from "../../src/components";
+import { MeetingCard, MeetingCardsList } from "../../src/components";
+import { meetingsApi } from "../../src/api";
 
 interface MeetingsPageProps {
   meetings: Meeting[];
 }
 
 const MeetingsPage = ({ meetings }: MeetingsPageProps) => (
-  <Fragment>{meetings.map(m => JSON.stringify(m))}</Fragment>
+  <Fragment>
+    <MeetingCardsList>
+      {meetings.map(m => (
+        <li key={m.id}>
+          <MeetingCard meeting={m} />
+        </li>
+      ))}
+    </MeetingCardsList>
+  </Fragment>
 );
 
 MeetingsPage.getInitialProps = async () => {
-  return { meetings: [] };
+  const meetings = await meetingsApi.getAll();
+  return { meetings };
 };
 
 export default MeetingsPage;

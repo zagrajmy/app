@@ -9,7 +9,7 @@ declare module "theme-ui" {
 export const theme: Theme = {
   useCustomProperties: true,
   colors: {
-    text: "#000",
+    text: "rgba(0, 0, 0, 0.9)",
     background: "#fbf6e5",
     gray: "#343333",
     primary: "#e85554",

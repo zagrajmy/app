@@ -25,6 +25,7 @@
     "nom-ts": "^0.1.0",
     "react": "16.11.0",
     "react-dom": "16.11.0",
+    "react-window-infinite-loader": "^1.0.5",
     "styled-components": "^4.4.1",
     "swr": "^0.1.5",
     "theme-ui": "^0.2.46",

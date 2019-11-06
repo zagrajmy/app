@@ -6,6 +6,7 @@ import { meetingsApi } from "../src/api";
 import { Meeting } from "../src/types";
 import { isAfter } from "date-fns";
 import Link from "next/link";
+import { MeetingCardsList } from "../src/components/MeetingCardsList";
 
 type InitialProps = { meetings: Meeting[] };
 
@@ -18,20 +19,18 @@ const IndexPage = ({ meetings }: InitialProps) => (
 
     <header className="hero">
       <h1 className="title">zagraj.my</h1>
-      <p className="description">
+      <p className="description"> 
         Smoki się same nie ubiją. Zapisz się na sesję.
       </p>
     </header>
 
-    <ul>
-      {meetings.map(m => {
-        return (
-          <li key={m.id}>
-            <MeetingCard meeting={m} />
-          </li>
-        );
-      })}
-    </ul>
+    <MeetingCardsList>
+      {meetings.map(m => (
+        <li key={m.id}>
+          <MeetingCard meeting={m} />
+        </li>
+      ))}
+    </MeetingCardsList>
 
     <section className="see-more">
       <Link href="/meetings">
@@ -68,15 +67,6 @@ const IndexPage = ({ meetings }: InitialProps) => (
         align-items: center;
 
         padding-bottom: 2em;
-      }
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 1em;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
       }
       .hero {
         width: 100%;
