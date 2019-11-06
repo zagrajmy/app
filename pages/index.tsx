@@ -19,7 +19,7 @@ const IndexPage = ({ meetings }: InitialProps) => (
 
     <header className="hero">
       <h1 className="title">zagraj.my</h1>
-      <p className="description"> 
+      <p className="description">
         Smoki się same nie ubiją. Zapisz się na sesję.
       </p>
     </header>
@@ -32,27 +32,29 @@ const IndexPage = ({ meetings }: InitialProps) => (
       ))}
     </MeetingCardsList>
 
-    <section className="see-more">
+    <section
+      className="see-more"
+      sx={{
+        // styling anchors breaks Next Link behavior
+        a: {
+          display: "block",
+          bg: "primary",
+          color: "white",
+          padding: "0.8em 1.2em",
+          borderRadius: "6px",
+          textDecoration: "none",
+          cursor: "pointer",
+          boxShadow: "var(--shadow)",
+          transition: "box-shadow 150ms linear",
+          ":hover": {
+            boxShadow: "var(--shadowMd)",
+            bg: "primaryLight",
+          },
+        },
+      }}
+    >
       <Link href="/meetings">
-        <a
-          sx={{
-            display: "block",
-            bg: "primary",
-            color: "white",
-            padding: "0.8em 1.2em",
-            borderRadius: "6px",
-            textDecoration: "none",
-            cursor: "pointer",
-            boxShadow: "var(--shadow)",
-            transition: "box-shadow 150ms linear",
-            ":hover": {
-              boxShadow: "var(--shadowMd)",
-              bg: "primaryLight",
-            },
-          }}
-        >
-          Zobacz więcej
-        </a>
+        <a>Zobacz więcej</a>
       </Link>
     </section>
 
