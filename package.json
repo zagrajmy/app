@@ -32,7 +32,7 @@
     "typeface-poppins": "^0.0.72"
   },
   "devDependencies": {
-    "@types/node": "^12.12.5",
+    "@types/node": "^12.12.6",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
     "now": "^16.4.4",
