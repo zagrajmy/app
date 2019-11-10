@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "now"
+    "deploy": "now",
+    "lint": "eslint {src,pages}/**/*.{ts,tsx}"
   },
   "dependencies": {
     "@emotion/babel-plugin-jsx-pragmatic": "^0.1.4",
@@ -35,6 +36,8 @@
     "@types/node": "^12.12.6",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
+    "eslint": "^6.6.0",
+    "eslint-config-chop-chop": "^1.2.2",
     "now": "^16.4.4",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"

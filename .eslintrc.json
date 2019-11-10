@@ -1,0 +1,12 @@
+{
+  "extends": "chop-chop/prettier",
+  "rules": {
+    "sonarjs/no-duplicate-string": "off"
+  },
+  "overrides": [
+    {
+      "files": ["pages/**/*.tsx"],
+      "rules": { "import/no-default-export": "off" }
+    }
+  ]
+}
