@@ -75,4 +75,18 @@ export const meetingsApi = {
   getAll: () => Promise.resolve(meetings),
   get: (meetingId: Id) =>
     Promise.resolve(meetings.find(m => String(m.id) === String(meetingId))),
+  add: (meeting: Omit<Meeting, "id">) => {
+    const m: Meeting = { ...meeting, id: Math.floor(Math.random() * 1000) };
+    if (Math.random() > 0.1) {
+      meetings.push(m);
+      return Promise.resolve(m);
+    }
+    // fake error
+    return Promise.reject(new Error("fake cant add meeting"));
+  },
+  update: (data: Partial<Meeting> & { id: Meeting["id"] }) => {
+    const meeting = meetings.find(m => m.id === data.id);
+    Object.assign(meeting, data);
+    return meeting;
+  },
 };

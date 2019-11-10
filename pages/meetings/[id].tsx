@@ -9,7 +9,7 @@ interface InitialProps {
   meeting?: Meeting;
 }
 
-function MeetingDetails({ meeting }: InitialProps) {
+export function MeetingDetailsPage({ meeting }: InitialProps) {
   if (!meeting) {
     return "404: Couldn't find meeting.";
   }
@@ -18,9 +18,11 @@ function MeetingDetails({ meeting }: InitialProps) {
     <article>
       <h1>{meeting.title}</h1>
       {meeting.image ? (
-        <img src={meeting.image} className="image" />
+        <img src={meeting.image} className="image" alt="" />
       ) : (
-        <button className="image add-image">Add picture</button>
+        <button type="button" className="image add-image">
+          Add picture
+        </button>
       )}
       <dl>
         <dt>Author</dt>
@@ -37,7 +39,7 @@ function MeetingDetails({ meeting }: InitialProps) {
   );
 }
 
-MeetingDetails.getInitialProps = async ({
+MeetingDetailsPage.getInitialProps = async ({
   res,
   query,
 }: {
@@ -51,4 +53,4 @@ MeetingDetails.getInitialProps = async ({
   return { meeting };
 };
 
-export default MeetingDetails;
+export default MeetingDetailsPage;

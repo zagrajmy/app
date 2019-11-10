@@ -1,14 +1,15 @@
 import React from "react";
 import { formatRelative } from "date-fns";
 
+import { Link, LinkProps } from "../components/Link";
+
 import { Meeting } from "../types";
-import Link, { LinkProps } from "next/link";
 
 const MeetingCreationInfo: React.FC<{ meeting: Meeting }> = ({ meeting }) => {
   return (
     <span>
       <Link href="/u/[username_slug]" as={`/u/${meeting.author.slug}`}>
-        <a>{meeting.author.name}</a>
+        {meeting.author.name}
       </Link>
       {meeting.date
         ? ` • ${formatRelative(new Date(meeting.date), new Date())}`
@@ -19,17 +20,16 @@ const MeetingCreationInfo: React.FC<{ meeting: Meeting }> = ({ meeting }) => {
 
 // onClicks on divs are evil and require javascript
 const CardBackgroundLink = (props: LinkProps) => (
-  <Link {...props}>
-    <a
-      sx={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-      }}
-    />
-  </Link>
+  <Link
+    sx={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    }}
+    {...props}
+  />
 );
 
 interface MeetingCardProps {
@@ -42,7 +42,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         href="/meetings/[id]"
         as={`/meetings/${meeting.id}`}
       />
-      {meeting.image && <img src={meeting.image} className="image" />}
+      {meeting.image && <img src={meeting.image} className="image" alt="" />}
       <div sx={{ pl: "1em" }}>
         <h3>{meeting.title}</h3>
         <MeetingCreationInfo meeting={meeting} />

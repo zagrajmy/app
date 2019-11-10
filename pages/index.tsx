@@ -1,12 +1,11 @@
 import React from "react";
 import Head from "next/head";
+import { isAfter } from "date-fns";
 
-import { NavHeader, Page, MeetingCard } from "../src/components";
+import { MeetingCardsList } from "../src/components/MeetingCardsList";
+import { Page, MeetingCard, Link } from "../src/components";
 import { meetingsApi } from "../src/api";
 import { Meeting } from "../src/types";
-import { isAfter } from "date-fns";
-import Link from "next/link";
-import { MeetingCardsList } from "../src/components/MeetingCardsList";
 
 type InitialProps = { meetings: Meeting[] };
 
@@ -53,9 +52,7 @@ const IndexPage = ({ meetings }: InitialProps) => (
         },
       }}
     >
-      <Link href="/meetings">
-        <a>Zobacz więcej</a>
-      </Link>
+      <Link href="/meetings">Zobacz więcej</Link>
     </section>
 
     <style jsx>{`

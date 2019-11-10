@@ -1,68 +1,67 @@
 import React from "react";
-import Link from "next/link";
+
+import { Link } from "../components/Link";
 
 export const NavHeader = () => (
-  <header>
+  <header
+    sx={{
+      a: {
+        color: "rgba(255, 255, 255, 0.9)",
+        textDecoration: "none",
+        padding: "0.75em",
+        ":hover": {
+          color: "rgba(255, 255, 255, 1)",
+        },
+      },
+    }}
+  >
     <nav sx={{ bg: "gray" }}>
-      <ul sx={{ p: "4px 12px" }}>
+      <ul
+        sx={{
+          p: "4px 12px",
+          margin: 0,
+          display: "flex",
+          alignItems: "center",
+          listStyle: "none",
+          li: {
+            ":not(:first-of-type)": {
+              display: "inline-block",
+              marginLeft: "1em",
+            },
+          },
+        }}
+      >
         <li sx={{ flex: 1, textAlign: "left" }}>
-          <Link href="/">
-            <a>zagraj.my</a>
-          </Link>
+          <Link href="/">zagraj.my</Link>
         </li>
         <li>
-          <Link href="/meetings">
-            <a>Spotkania</a>
-          </Link>
+          <Link href="/meetings">Spotkania</Link>
         </li>
         <li>
           <a href="https://github.com/zagrajmy/">GitHub</a>
         </li>
         <li>
-          <Link href="/login">
-            <a
-              sx={{
-                display: "block",
-                p: "0.35em 0.15em",
-                cursor: "pointer",
-                "& > div": {
-                  border: "1px solid rgba(255, 255, 255, 0.9)",
-                  borderRadius: "5px",
-                  padding: "0.4em 0.6em",
-                },
-                "&:hover > div": {
-                  bg: "accent",
-                  color: "gray",
-                },
-              }}
-            >
-              <div>Login</div>
-            </a>
+          <Link
+            href="/login"
+            sx={{
+              display: "block",
+              p: "0.35em 0.15em",
+              cursor: "pointer",
+              "& > div": {
+                border: "1px solid rgba(255, 255, 255, 0.9)",
+                borderRadius: "5px",
+                padding: "0.4em 0.6em",
+              },
+              "&:hover > div": {
+                bg: "accent",
+                color: "gray",
+              },
+            }}
+          >
+            <div>Login</div>
           </Link>
         </li>
       </ul>
-
-      <style jsx>{`
-        ul {
-          margin: 0;
-          display: flex;
-          align-items: center;
-
-          list-style: none;
-        }
-        li:not(:first-of-type) {
-          display: inline-block;
-          margin-left: 1em;
-        }
-        a {
-          color: rgba(255, 255, 255, 0.9);
-          text-decoration: none;
-          padding: 0.75em;
-        }
-        a:hover {
-          color: rgba(255, 255, 255, 1);
-        }
-      `}</style>
     </nav>
   </header>
 );
