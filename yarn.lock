@@ -1146,10 +1146,10 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.5.1.tgz#e0a9dbdc03826198abd82b29dcee91d661faf8a5"
   integrity sha512-eF05YysHqtyXerLId0kPKtxmJ3PE60GJJvx1gOguEQndbs94fUeYTVSfBlnXPPAAzvOmVKrZmktIYsBQlVjpOw==
 
-"@next/mdx@^9.1.3":
-  version "9.1.3"
-  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-9.1.3.tgz#fb4a541662ce3af400447ce94fb88dcfc928a8eb"
-  integrity sha512-MKIDVxn0Kktg7ux1XrsXMM1UGIhhGBhtNj/t/jdPPi46jxAL7HOREH7xlDV5PY/JeJwIilCs0VN6JUxEDYWl/A==
+"@next/mdx@^9.1.4":
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-9.1.4.tgz#010fb2f404d7db9b41a7e6551b1b2a9753379f5d"
+  integrity sha512-93IgdXirGUOKPyeXjMBboyohwfrYQFmDwWe628rJu4t6zf05K6WNOJsOivRzMLvuqwBujAc+uAmYd891/ZAaLA==
 
 "@styled-system/css@^5.0.16":
   version "5.0.23"
