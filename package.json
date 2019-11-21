@@ -41,7 +41,7 @@
     "@types/react-dom": "^16.9.4",
     "eslint": "^6.6.0",
     "eslint-config-chop-chop": "^1.2.2",
-    "now": "^16.4.4",
+    "now": "^16.5.2",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
   }
