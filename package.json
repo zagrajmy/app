@@ -15,7 +15,7 @@
     "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
     "@next/mdx": "^9.1.4",
-    "@types/node-fetch": "^2.5.3",
+    "@types/node-fetch": "^2.5.4",
     "@types/theme-ui": "^0.2.5",
     "@zeit/next-css": "^1.0.1",
     "babel-plugin-emotion": "^10.0.23",
