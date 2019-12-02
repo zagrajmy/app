@@ -5,13 +5,13 @@ import { Meeting, User, Id } from "../types";
 const piotr: User = {
   name: "Piotr Monwid-Olechnowicz",
   slug: "piotr-monwid-olechnowicz",
-  email: "piotr@zagraj.my",
+  email: "piotr@zagraj.my"
 };
 
 const tony: User = {
   name: "Ironman",
   slug: "ironman",
-  email: "boss@stark.com",
+  email: "boss@stark.com"
 };
 
 export const meetings: Meeting[] = [
@@ -24,7 +24,7 @@ export const meetings: Meeting[] = [
     published_at: new Date(1000),
     created_at: new Date(900),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400",
+    image: "https://source.unsplash.com/random/400x400"
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ export const meetings: Meeting[] = [
     published_at: new Date(1400),
     created_at: new Date(1100),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400",
+    image: "https://source.unsplash.com/random/400x400"
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ export const meetings: Meeting[] = [
     published_at: new Date(2000),
     created_at: new Date(1800),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400",
+    image: "https://source.unsplash.com/random/400x400"
   },
   {
     id: 4,
@@ -54,7 +54,7 @@ export const meetings: Meeting[] = [
     published_at: new Date(2200),
     created_at: new Date(2000),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400",
+    image: "https://source.unsplash.com/random/400x400"
   },
   // future meetings
   ...new Array(100).fill(0).map(
@@ -66,9 +66,9 @@ export const meetings: Meeting[] = [
       date: i % 2 === 0 ? new Date(Date.now() + i * 100000) : undefined,
       title: `Dungeon World One-Shot ${i}`,
       description: "This is a test meeting. We have no backend yet",
-      image: i % 5 !== 0 ? "https://source.unsplash.com/random/400x400" : "",
+      image: i % 5 !== 0 ? "https://source.unsplash.com/random/2200x400" : ""
     })
-  ),
+  )
 ];
 
 export const meetingsApi = {
@@ -88,5 +88,5 @@ export const meetingsApi = {
     const meeting = meetings.find(m => m.id === data.id);
     Object.assign(meeting, data);
     return meeting;
-  },
+  }
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { formatRelative } from "date-fns";
+import { Image } from "@chakra-ui/core";
 
 import { Link, LinkProps } from "../components/Link";
 
@@ -26,7 +27,7 @@ const CardBackgroundLink = (props: LinkProps) => (
       top: 0,
       left: 0,
       width: "100%",
-      height: "100%",
+      height: "100%"
     }}
     {...props}
   />
@@ -42,7 +43,16 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         href="/meetings/[id]"
         as={`/meetings/${meeting.id}`}
       />
-      {meeting.image && <img src={meeting.image} className="image" alt="" />}
+      {meeting.image && (
+        <Image
+          src={meeting.image}
+          className="image"
+          alt=""
+          width={220}
+          objectFit="cover"
+          bg="accent"
+        />
+      )}
       <div sx={{ pl: "1em" }}>
         <h3>{meeting.title}</h3>
         <MeetingCreationInfo meeting={meeting} />

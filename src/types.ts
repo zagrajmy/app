@@ -12,6 +12,7 @@ export interface User {
   name: Username;
   slug: UsernameSlug;
   email: Email;
+  avatar?: string;
 }
 
 export type Id = Flavor<string | number, "Id">;
