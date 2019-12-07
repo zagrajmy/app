@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "./Link";
+import { Link } from "../../lib/Link";
 
 export const NavHeader = () => (
   <header
@@ -10,12 +10,12 @@ export const NavHeader = () => (
         textDecoration: "none",
         padding: "0.75em",
         ":hover": {
-          color: "rgba(255, 255, 255, 1)",
-        },
-      },
+          color: "rgba(255, 255, 255, 1)"
+        }
+      }
     }}
   >
-    <nav sx={{ bg: "gray" }}>
+    <nav sx={{ bg: "gray.900" }}>
       <ul
         sx={{
           p: "4px 12px",
@@ -26,9 +26,9 @@ export const NavHeader = () => (
           li: {
             ":not(:first-of-type)": {
               display: "inline-block",
-              marginLeft: "1em",
-            },
-          },
+              marginLeft: "1em"
+            }
+          }
         }}
       >
         <li sx={{ flex: 1, textAlign: "left" }}>
@@ -50,12 +50,12 @@ export const NavHeader = () => (
               "& > div": {
                 border: "1px solid rgba(255, 255, 255, 0.9)",
                 borderRadius: "5px",
-                padding: "0.4em 0.6em",
+                padding: "0.4em 0.6em"
               },
               "&:hover > div": {
                 bg: "accent",
-                color: "gray",
-              },
+                color: "gray.900"
+              }
             }}
           >
             <div>Login</div>

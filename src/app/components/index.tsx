@@ -2,4 +2,5 @@ export * from "./NavHeader";
 export * from "./Page";
 export * from "./MeetingCard";
 export * from "./MeetingCardsList";
-export * from "./Link";
+export * from "./MeetingDetailsImage";
+export * from "./MeetingAuthorLink";

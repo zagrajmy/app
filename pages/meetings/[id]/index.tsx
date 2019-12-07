@@ -3,51 +3,26 @@ import {
   Heading,
   Text,
   Button,
-  Image,
   Avatar,
-  Flex
+  Flex,
+  IconButton
 } from "@chakra-ui/core";
 
-import { Id, Meeting } from "../../src/app/types";
-import { meetingsApi } from "../../src/app/api";
-import { Link, Page } from "../../src/app/components";
-import { matchKind } from "../../src/lib/match";
+import { Id, Meeting } from "../../../src/app/types";
+import { meetingsApi } from "../../../src/app/api";
+import { MeetingDetailsImage, Page } from "../../../src/app/components";
+import { Link } from "../../../src/lib";
+import { styles } from "../../../src/ui/styles";
 
 type Query = { id: Id };
+
+type A = {
+  a: 2;
+};
 
 interface InitialProps {
   meeting?: Meeting;
 }
-
-export const MeetingDetailsImage = ({
-  image
-}: Required<Pick<Meeting, "image">>) =>
-  matchKind(image, {
-    background: ({ src }) => (
-      <Image
-        alt=""
-        bg="whites.2"
-        width="100%"
-        height="100%"
-        position="absolute"
-        objectFit="cover"
-        src={src}
-        zIndex={0}
-      />
-    ),
-    banner: ({ src }) => (
-      <Image
-        alt=""
-        bg="whites.2"
-        width="100%"
-        height="200px"
-        objectFit="cover"
-        src={src}
-        zIndex={2}
-      />
-    ),
-    small: () => null
-  });
 
 export function MeetingDetailsPage({ meeting }: InitialProps) {
   if (!meeting) {
@@ -84,15 +59,22 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       >
         <header>
           <Flex>
-            <Text as="span">
-              {meeting.date && new Date(meeting.date).toLocaleString()}
-            </Text>
+            <div>
+              <Text as="span" sx={{ padding: 1 }}>
+                {meeting.date && new Date(meeting.date).toLocaleString()}
+              </Text>
+              <IconButton
+                aria-label="Edit meeting date"
+                icon="edit"
+                onClick={() => console.log("start editing meeting date")}
+              />
+            </div>
             <div role="group" sx={{ marginLeft: "auto" }}>
               <Link
-                href="/meetings/[id]/edit"
-                as={`/meetings/${meeting.id}/edit`}
+                href="/meetings/[id]/something"
+                // as={`/meetings/${meeting.id}/edit`}
               >
-                Edytuj
+                Do Something
               </Link>
             </div>
           </Flex>

@@ -2,7 +2,7 @@ import React from "react";
 import { formatRelative } from "date-fns";
 import { Image } from "@chakra-ui/core";
 
-import { Link, LinkProps } from "./Link";
+import { Link, LinkProps } from "../../lib/Link";
 
 import { Meeting } from "../types";
 

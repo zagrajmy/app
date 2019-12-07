@@ -8,7 +8,8 @@
     "start": "next start",
     "deploy": "now",
     "lint": "eslint {src,pages}/**/*.{ts,tsx}",
-    "fix": "wotan --fix && yarn lint --fix"
+    "fix": "wotan --fix && yarn lint --fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@chakra-ui/core": "^0.4.1",
@@ -17,8 +18,10 @@
     "@emotion/styled": "^10.0.23",
     "@mdx-js/react": "^1.5.1",
     "@next/mdx": "^9.1.4",
+    "@styled-system/css": "^5.1.4",
     "@types/node-fetch": "^2.5.4",
-    "@types/theme-ui": "^0.2.5",
+    "@types/styled-system": "^5.1.4",
+    "@types/styled-system__css": "^5.0.4",
     "@zeit/next-css": "^1.0.1",
     "babel-plugin-emotion": "^10.0.23",
     "babel-plugin-styled-components": "^1.10.6",
@@ -32,6 +35,7 @@
     "react-dom": "16.12.0",
     "react-window-infinite-loader": "^1.0.5",
     "styled-components": "^4.4.1",
+    "styled-system": "^5.1.4",
     "swr": "^0.1.12",
     "theme-ui": "^0.2.49",
     "typeface-poppins": "^0.0.72"

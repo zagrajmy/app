@@ -4,7 +4,7 @@ import { ThemeProvider as ThemeUiProvider, Styled, ColorMode } from "theme-ui";
 import { ThemeProvider as ChakraProvider } from "@chakra-ui/core";
 import { Global, InterpolationWithTheme } from "@emotion/core";
 
-import { theme } from "../src/theme";
+import { theme } from "../src/ui/theme";
 import { NavHeader } from "../src/app/components";
 
 const globalStyles: InterpolationWithTheme<any> = {

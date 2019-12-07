@@ -42,6 +42,9 @@ const fontSizes = fontSizesArray.reduce((acc, [k, v], i) => {
 }, {} as FontSizes);
 
 export const theme: themeUi.Theme & chakra.ITheme = {
+  ...chakra.theme,
+
+  // theme-ui
   useCustomProperties: true,
   breakpoints: [40, 52, 64],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -51,7 +54,10 @@ export const theme: themeUi.Theme & chakra.ITheme = {
     text: "rgba(0, 0, 0, 0.9)",
     background: "#fbf6e5",
     whites: ["#fefefe", "#fffefc", "#f8f7f7"],
-    gray: "#343333",
+    gray: {
+      100: "#EDF2F7",
+      900: "#353433"
+    },
     primary: "#e85554",
     primaryLight: "#ea6463",
     primaryDark: "#d34e4d",
@@ -78,6 +84,7 @@ export const theme: themeUi.Theme & chakra.ITheme = {
       display: "flex",
       flexDirection: "column"
     }
-  },
-  icons: chakra.theme.icons
+  }
 };
+
+// console.log(Object.keys(chakra.theme.icons))

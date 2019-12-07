@@ -78,13 +78,21 @@ export const meetings: Meeting[] = [
       date: i % 2 === 0 ? new Date(Date.now() + i * 100000) : undefined,
       title: `Dungeon World One-Shot ${i}`,
       description: "This is a test meeting. We have no backend yet",
-      image:
-        i % 5 !== 0
-          ? {
-              src: "https://source.unsplash.com/random/2200x400",
-              kind: (["background", "banner", "small"] as const)[i % 3]
-            }
-          : undefined
+      image: ([
+        {
+          src: "https://source.unsplash.com/random/2000x2000",
+          kind: "background"
+        },
+        {
+          src: "https://source.unsplash.com/random/2000x400",
+          kind: "banner"
+        },
+        {
+          src: "https://source.unsplash.com/random/400x400",
+          kind: "small"
+        },
+        undefined
+      ] as const)[i % 4]
     })
   )
 ];

@@ -3,9 +3,10 @@ import Head from "next/head";
 import { isAfter } from "date-fns";
 
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
-import { Page, MeetingCard, Link } from "../src/app/components";
+import { Page, MeetingCard } from "../src/app/components";
 import { meetingsApi } from "../src/app/api";
 import { Meeting } from "../src/app/types";
+import { Link } from "../src/lib";
 
 type InitialProps = { meetings: Meeting[] };
 
@@ -47,9 +48,9 @@ const IndexPage = ({ meetings }: InitialProps) => (
           transition: "box-shadow 150ms linear",
           ":hover": {
             boxShadow: "var(--shadowMd)",
-            bg: "primaryLight",
-          },
-        },
+            bg: "primaryLight"
+          }
+        }
       }}
     >
       <Link href="/meetings">Zobacz więcej</Link>
