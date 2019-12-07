@@ -2,10 +2,10 @@ import React from "react";
 import Head from "next/head";
 import { isAfter } from "date-fns";
 
-import { MeetingCardsList } from "../src/components/MeetingCardsList";
-import { Page, MeetingCard, Link } from "../src/components";
-import { meetingsApi } from "../src/api";
-import { Meeting } from "../src/types";
+import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
+import { Page, MeetingCard, Link } from "../src/app/components";
+import { meetingsApi } from "../src/app/api";
+import { Meeting } from "../src/app/types";
 
 type InitialProps = { meetings: Meeting[] };
 

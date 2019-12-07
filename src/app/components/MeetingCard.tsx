@@ -2,7 +2,7 @@ import React from "react";
 import { formatRelative } from "date-fns";
 import { Image } from "@chakra-ui/core";
 
-import { Link, LinkProps } from "../components/Link";
+import { Link, LinkProps } from "./Link";
 
 import { Meeting } from "../types";
 
@@ -42,10 +42,17 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
       <CardBackgroundLink
         href="/meetings/[id]"
         as={`/meetings/${meeting.id}`}
+        sx={
+          meeting.image?.kind === "background"
+            ? {
+                backgroundImage: meeting.image.src
+              }
+            : {}
+        }
       />
-      {meeting.image && (
+      {meeting.image?.kind !== "background" && (
         <Image
-          src={meeting.image}
+          src={meeting.image?.src}
           className="image"
           alt=""
           width={220}

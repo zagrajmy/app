@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 
-import { Meeting } from "../../src/types";
-import { MeetingCard, MeetingCardsList } from "../../src/components";
-import { meetingsApi } from "../../src/api";
+import { Meeting } from "../../src/app/types";
+import { MeetingCard, MeetingCardsList } from "../../src/app/components";
+import { meetingsApi } from "../../src/app/api";
 
 interface MeetingsPageProps {
   meetings: Meeting[];

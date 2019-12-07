@@ -17,11 +17,18 @@ export interface User {
 
 export type Id = Flavor<string | number, "Id">;
 
+type MeetingImageKind = "background" | "banner" | "small";
+
+export interface MeetingImage {
+  src: string;
+  kind: MeetingImageKind;
+}
+
 export interface Meeting {
   id: Id;
   author: User;
   title: string;
-  image?: string;
+  image?: MeetingImage;
   description?: string;
   published_at?: Date;
   date?: Date;

@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 const CreateMeetingPage: NextPage = () => {
-  return null;
+  return <div>CreateMeetingPage</div>;
 };
 
 export default CreateMeetingPage;

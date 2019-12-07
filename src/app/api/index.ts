@@ -24,7 +24,10 @@ export const meetings: Meeting[] = [
     published_at: new Date(1000),
     created_at: new Date(900),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400"
+    image: {
+      src: "https://source.unsplash.com/random/2200x400",
+      kind: "background"
+    }
   },
   {
     id: 2,
@@ -34,7 +37,10 @@ export const meetings: Meeting[] = [
     published_at: new Date(1400),
     created_at: new Date(1100),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400"
+    image: {
+      src: "https://source.unsplash.com/random/2200x400",
+      kind: "banner"
+    }
   },
   {
     id: 3,
@@ -44,7 +50,10 @@ export const meetings: Meeting[] = [
     published_at: new Date(2000),
     created_at: new Date(1800),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400"
+    image: {
+      src: "https://source.unsplash.com/random/2200x400",
+      kind: "small"
+    }
   },
   {
     id: 4,
@@ -54,7 +63,10 @@ export const meetings: Meeting[] = [
     published_at: new Date(2200),
     created_at: new Date(2000),
     date: new Date(5000),
-    image: "https://source.unsplash.com/random/400x400"
+    image: {
+      src: "https://source.unsplash.com/random/2200x400",
+      kind: "background"
+    }
   },
   // future meetings
   ...new Array(100).fill(0).map(
@@ -66,7 +78,13 @@ export const meetings: Meeting[] = [
       date: i % 2 === 0 ? new Date(Date.now() + i * 100000) : undefined,
       title: `Dungeon World One-Shot ${i}`,
       description: "This is a test meeting. We have no backend yet",
-      image: i % 5 !== 0 ? "https://source.unsplash.com/random/2200x400" : ""
+      image:
+        i % 5 !== 0
+          ? {
+              src: "https://source.unsplash.com/random/2200x400",
+              kind: (["background", "banner", "small"] as const)[i % 3]
+            }
+          : undefined
     })
   )
 ];

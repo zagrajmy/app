@@ -50,7 +50,7 @@ export const theme: themeUi.Theme & chakra.ITheme = {
   colors: {
     text: "rgba(0, 0, 0, 0.9)",
     background: "#fbf6e5",
-    whites: ["#fff", "#FFFEFC"],
+    whites: ["#fefefe", "#fffefc", "#f8f7f7"],
     gray: "#343333",
     primary: "#e85554",
     primaryLight: "#ea6463",
@@ -74,7 +74,9 @@ export const theme: themeUi.Theme & chakra.ITheme = {
       height: "100vh",
       fontFamily: "body",
       color: "text",
-      bg: "background"
+      bg: "background",
+      display: "flex",
+      flexDirection: "column"
     }
   },
   icons: chakra.theme.icons

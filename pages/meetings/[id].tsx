@@ -8,15 +8,46 @@ import {
   Flex
 } from "@chakra-ui/core";
 
-import { Id, Meeting } from "../../src/types";
-import { meetingsApi } from "../../src/api";
-import { Link, Page } from "../../src/components";
+import { Id, Meeting } from "../../src/app/types";
+import { meetingsApi } from "../../src/app/api";
+import { Link, Page } from "../../src/app/components";
+import { matchKind } from "../../src/lib/match";
 
 type Query = { id: Id };
 
 interface InitialProps {
   meeting?: Meeting;
 }
+
+export const MeetingDetailsImage = ({
+  image
+}: Required<Pick<Meeting, "image">>) =>
+  matchKind(image, {
+    background: ({ src }) => (
+      <Image
+        alt=""
+        bg="whites.2"
+        width="100%"
+        height="100%"
+        position="absolute"
+        objectFit="cover"
+        src={src}
+        zIndex={0}
+      />
+    ),
+    banner: ({ src }) => (
+      <Image
+        alt=""
+        bg="whites.2"
+        width="100%"
+        height="200px"
+        objectFit="cover"
+        src={src}
+        zIndex={2}
+      />
+    ),
+    small: () => null
+  });
 
 export function MeetingDetailsPage({ meeting }: InitialProps) {
   if (!meeting) {
@@ -36,15 +67,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
   return (
     <Page>
       {meeting.image ? (
-        <Image
-          alt=""
-          bg="whites.1"
-          width="100%"
-          height="200px"
-          objectFit="cover"
-          src={meeting.image}
-          zIndex={1}
-        />
+        <MeetingDetailsImage image={meeting.image} />
       ) : (
         <Box width="100%" height="200px" bg="accent">
           <Button type="button">Add picture</Button>
@@ -57,11 +80,22 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
         width="1100px"
         maxWidth="100%"
         p={3}
+        zIndex={1}
       >
         <header>
-          <Text as="span">
-            {meeting.date && new Date(meeting.date).toLocaleString()}
-          </Text>
+          <Flex>
+            <Text as="span">
+              {meeting.date && new Date(meeting.date).toLocaleString()}
+            </Text>
+            <div role="group" sx={{ marginLeft: "auto" }}>
+              <Link
+                href="/meetings/[id]/edit"
+                as={`/meetings/${meeting.id}/edit`}
+              >
+                Edytuj
+              </Link>
+            </div>
+          </Flex>
           <Heading mt={0} mb={3}>
             {meeting.title}
           </Heading>
@@ -91,7 +125,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
             my: 2,
             p: 2,
             borderRadius: 5,
-            bg: "#faf9f9"
+            bg: "whites.2"
           }}
         >
           <dt>Data wydarzenia</dt>
