@@ -36,7 +36,7 @@
     "react-window-infinite-loader": "^1.0.5",
     "styled-components": "^4.4.1",
     "styled-system": "^5.1.4",
-    "swr": "^0.1.12",
+    "swr": "^0.1.13",
     "theme-ui": "^0.2.49",
     "typeface-poppins": "^0.0.72"
   },
