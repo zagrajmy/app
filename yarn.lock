@@ -1069,10 +1069,10 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.5.1.tgz#e0a9dbdc03826198abd82b29dcee91d661faf8a5"
   integrity sha512-eF05YysHqtyXerLId0kPKtxmJ3PE60GJJvx1gOguEQndbs94fUeYTVSfBlnXPPAAzvOmVKrZmktIYsBQlVjpOw==
 
-"@next/mdx@^9.1.4":
-  version "9.1.4"
-  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-9.1.4.tgz#010fb2f404d7db9b41a7e6551b1b2a9753379f5d"
-  integrity sha512-93IgdXirGUOKPyeXjMBboyohwfrYQFmDwWe628rJu4t6zf05K6WNOJsOivRzMLvuqwBujAc+uAmYd891/ZAaLA==
+"@next/mdx@^9.1.6":
+  version "9.1.6"
+  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-9.1.6.tgz#34c40a60811b6ec5f13613e31e8fd5622d82b938"
+  integrity sha512-0wsmd1JOri51uZwpKDC0m7i4w/4DHlMveyxCJUBaP3dV3Qc3/FIHbfcOwFXTIy58rLzD1gI8PmYMZaefr7+O2Q==
 
 "@reach/alert@^0.1.2":
   version "0.1.5"
