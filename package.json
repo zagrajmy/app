@@ -45,7 +45,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.7.4",
     "@fimbul/heimdall": "^0.21.0",
     "@fimbul/wotan": "^0.21.1",
-    "@types/node": "^12.12.14",
+    "@types/node": "^12.12.21",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
     "eslint": "^6.7.2",
