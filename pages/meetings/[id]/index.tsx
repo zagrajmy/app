@@ -9,12 +9,12 @@ import {
 } from "@theme-ui/components";
 import { Edit } from "react-feather";
 
+import { Theme } from "theme-ui";
 import { Id, Meeting } from "../../../src/app/types";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Link } from "../../../src/lib";
 import { Dl } from "../../../src/ui";
-import { Theme } from "theme-ui";
 import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer";
 
 type Query = { id: Id };
@@ -138,7 +138,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           </Heading>
           <p>{meeting.description}</p>
         </section>
-      </Box>
+      </MaxWidthContainer>
     </Page>
   );
 }
