@@ -15,6 +15,7 @@ import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Link } from "../../../src/lib";
 import { Dl } from "../../../src/ui";
 import { Theme } from "theme-ui";
+import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer";
 
 type Query = { id: Id };
 
@@ -46,16 +47,13 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           <Button type="button">Add picture</Button>
         </Box>
       )}
-      <Box
+      <MaxWidthContainer
         bg="white"
         as="article"
-        mx="auto"
         mt="-2rem"
         p={3}
         sx={{
           borderRadius: "rounded-lg",
-          width: "1100px",
-          maxWidth: "100%",
           zIndex: 1
         }}
       >

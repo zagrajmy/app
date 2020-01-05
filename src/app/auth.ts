@@ -39,4 +39,10 @@ export const auth = {
   getUserOrLogIn: getUserOrLogin
 };
 
-export type Claims = IClaims;
+export interface Claims extends IClaims {
+  given_name?: string;
+  nickname?: string;
+  name?: string;
+  picture?: string;
+  locale?: string; // 'en'
+}

@@ -5,7 +5,7 @@
   },
   "overrides": [
     {
-      "files": ["pages/**/*.tsx"],
+      "files": ["pages/**/*.ts", "pages/**/*.tsx"],
       "rules": { "import/no-default-export": "off" }
     }
   ]

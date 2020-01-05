@@ -1,5 +1,6 @@
-import { auth } from '../../src/app/auth';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from "next";
+
+import { auth } from "../../src/app/auth";
 
 export default async function me(req: NextApiRequest, res: NextApiResponse) {
   try {

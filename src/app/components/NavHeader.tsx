@@ -1,12 +1,41 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { Link, LinkProps } from "../../lib/Link";
 
-import { Link } from "../../lib/Link";
+const NavLink = (props: LinkProps) => {
+  const { pathname } = useRouter();
+
+  return (
+    <Link
+      {...props}
+      sx={
+        props.href === pathname
+          ? {
+              "&&": {
+                color: "rgba(255, 255, 255, 0.95)"
+              },
+              position: "relative",
+              "&:before": {
+                content: '""',
+                position: "absolute",
+                top: "2.25em",
+                left: "50%",
+                width: "80%",
+                transform: "translate3d(-50%, 2px, 0px)",
+                borderBottom: "2px solid currentColor"
+              }
+            }
+          : {}
+      }
+    />
+  );
+};
 
 export const NavHeader = () => (
   <header
     sx={{
       a: {
-        color: "rgba(255, 255, 255, 0.9)",
+        color: "rgba(255, 255, 255, 0.85)",
         textDecoration: "none",
         padding: "0.75em",
         ":hover": {
@@ -22,20 +51,14 @@ export const NavHeader = () => (
           margin: 0,
           display: "flex",
           alignItems: "center",
-          listStyle: "none",
-          li: {
-            ":not(:first-of-type)": {
-              display: "inline-block",
-              marginLeft: "1em"
-            }
-          }
+          listStyle: "none"
         }}
       >
         <li sx={{ flex: 1, textAlign: "left" }}>
           <Link href="/">zagraj.my</Link>
         </li>
         <li>
-          <Link href="/meetings">Spotkania</Link>
+          <NavLink href="/meetings">Spotkania</NavLink>
         </li>
         <li>
           <a href="https://github.com/zagrajmy/">GitHub</a>
