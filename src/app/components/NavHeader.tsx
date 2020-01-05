@@ -10,12 +10,13 @@ export const NavHeader = () => (
         textDecoration: "none",
         padding: "0.75em",
         ":hover": {
+          textDecoration: "underline",
           color: "rgba(255, 255, 255, 1)"
         }
       }
     }}
   >
-    <nav sx={{ bg: "gray.900" }}>
+    <nav sx={{ bg: "gray.9" }}>
       <ul
         sx={{
           p: "4px 12px",
@@ -49,12 +50,12 @@ export const NavHeader = () => (
               cursor: "pointer",
               "& > div": {
                 border: "1px solid rgba(255, 255, 255, 0.9)",
-                borderRadius: "5px",
+                borderRadius: "rounded",
                 padding: "0.4em 0.6em"
               },
               "&:hover > div": {
-                bg: "accent",
-                color: "gray.900"
+                bg: "white",
+                color: "gray.9"
               }
             }}
           >

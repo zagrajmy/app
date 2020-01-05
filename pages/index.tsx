@@ -41,7 +41,7 @@ const IndexPage = ({ meetings }: InitialProps) => (
           bg: "primary",
           color: "white",
           padding: "0.8em 1.2em",
-          borderRadius: "6px",
+          borderRadius: "rounded-lg",
           textDecoration: "none",
           cursor: "pointer",
           boxShadow: "var(--shadow)",
@@ -59,7 +59,6 @@ const IndexPage = ({ meetings }: InitialProps) => (
     <style jsx>{`
       .index-page {
         display: none;
-        background: var(--oldLace);
       }
       .see-more {
         display: flex;

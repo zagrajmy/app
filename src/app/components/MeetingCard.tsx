@@ -56,7 +56,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
           className="image"
           alt=""
           width={220}
-          bg="accent"
+          bg="white"
           sx={{
             objectFit: "cover"
           }}

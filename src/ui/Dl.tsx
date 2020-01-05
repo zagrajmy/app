@@ -10,8 +10,8 @@ export const Dl = (props: ComponentProps<"dl">) => (
       maxWidth: "100%",
       my: 2,
       p: 2,
-      borderRadius: 5,
-      bg: "whites.2",
+      borderRadius: "rounded",
+      bg: "gray.2",
 
       "dt, dd": { flex: "0 0 50%" },
       dd: { marginLeft: 0 }
