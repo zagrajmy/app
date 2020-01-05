@@ -13,6 +13,8 @@ import { Id, Meeting } from "../../../src/app/types";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Link } from "../../../src/lib";
+import { Dl } from "../../../src/ui";
+import { Theme } from "theme-ui";
 
 type Query = { id: Id };
 
@@ -40,16 +42,18 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       {meeting.image ? (
         <MeetingDetailsImage image={meeting.image} />
       ) : (
-        <Box sx={{ width: "100%", height: "200px" }} bg="accent">
+        <Box sx={{ width: "100%", height: "200px" }} bg="white">
           <Button type="button">Add picture</Button>
         </Box>
       )}
       <Box
-        bg="whites.1"
+        bg="white"
         as="article"
         mx="auto"
+        mt="-2rem"
         p={3}
         sx={{
+          borderRadius: "rounded-lg",
           width: "1100px",
           maxWidth: "100%",
           zIndex: 1
@@ -57,17 +61,32 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       >
         <header>
           <Flex>
-            <div>
-              <Text as="span" sx={{ padding: 1 }}>
-                {meeting.date && new Date(meeting.date).toLocaleString()}
-              </Text>
-              <IconButton
-                aria-label="Edit meeting date"
-                onClick={() => console.log("start editing meeting date")}
+            {meeting.date && (
+              <Flex
+                sx={{
+                  alignItems: "center",
+                  color: "gray.9",
+                  "@media (hover: hover)": {
+                    "> button": {
+                      opacity: 0.2
+                    },
+                    ":hover > button": {
+                      opacity: 1
+                    }
+                  }
+                }}
               >
-                <Edit />
-              </IconButton>
-            </div>
+                <Text as="span" sx={{ padding: 1, fontWeight: 500 }}>
+                  {new Date(meeting.date).toLocaleString()}
+                </Text>
+                <IconButton
+                  aria-label="Edit meeting date"
+                  onClick={() => console.log("start editing meeting date")}
+                >
+                  <Edit size={18} />
+                </IconButton>
+              </Flex>
+            )}
             <div role="group" sx={{ marginLeft: "auto" }}>
               <Link
                 href="/meetings/[id]/something"
@@ -90,27 +109,13 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
                 }}
               />
             )}
-            <div sx={{ ml: 3, fontSize: 4 }}>
+            <div sx={{ ml: 2, fontSize: 3 }}>
               <Text as="span">Hosted by </Text>
               {linkToAuthor(meeting.author.name)}
             </div>
           </Flex>
         </header>
-        <dl
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            width: "500px",
-            maxWidth: "100%",
-            "dt, dd": { flex: "0 0 50%" },
-            dd: { marginLeft: 0 },
-            my: 2,
-            p: 2,
-            borderRadius: 5,
-            bg: "whites.2"
-          }}
-        >
+        <Dl sx={{ mt: 2 }}>
           <dt>Data wydarzenia</dt>
           <dd>
             {meeting.date
@@ -128,8 +133,8 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
             {meeting.created_at &&
               new Date(meeting.created_at).toLocaleString()}
           </dd>
-        </dl>
-        <section>
+        </Dl>
+        <section sx={{ mt: 3 }}>
           <Heading as="h3" sx={{ fontSize: 3 }}>
             Opis spotkania
           </Heading>

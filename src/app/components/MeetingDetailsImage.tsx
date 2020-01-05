@@ -10,7 +10,7 @@ export const MeetingDetailsImage = ({
     background: ({ src }) => (
       <Image
         alt=""
-        bg="whites.2"
+        bg="gray.2"
         width="100%"
         height="100%"
         src={src}
@@ -22,17 +22,19 @@ export const MeetingDetailsImage = ({
       />
     ),
     banner: ({ src }) => (
-      <Image
-        alt=""
-        bg="whites.2"
-        width="100%"
-        height="200px"
-        src={src}
-        sx={{
-          objectFit: "cover",
-          zIndex: 2
-        }}
-      />
+      <div sx={{ height: 240 }}>
+        <Image
+          alt=""
+          bg="gray.2"
+          width="100%"
+          src={src}
+          sx={{
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 2
+          }}
+        />
+      </div>
     ),
     small: () => null
   });
