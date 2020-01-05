@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 import { Meeting } from "../../src/app/types";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { meetingsApi } from "../../src/app/api";

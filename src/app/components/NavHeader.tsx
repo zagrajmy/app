@@ -58,7 +58,7 @@ export const NavHeader = () => (
               }
             }}
           >
-            <div>Login</div>
+            <div>Log in</div>
           </Link>
         </li>
       </ul>
