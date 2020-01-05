@@ -1,15 +1,16 @@
-import App from "next/app";
-import React from "react";
-import { ThemeProvider as ThemeUiProvider, Styled, ColorMode } from "theme-ui";
-import { Global, InterpolationWithTheme } from "@emotion/core";
+import App from 'next/app';
+import React from 'react';
+import { ThemeProvider as ThemeUiProvider, Styled, ColorMode } from 'theme-ui';
+import { Global, InterpolationWithTheme } from '@emotion/core';
 
-import { theme } from "../src/ui/theme";
-import { NavHeader } from "../src/app/components";
+import { theme } from '../src/ui/theme';
+import { NavHeader } from '../src/app/components';
+import { auth } from '../src/app/auth';
 
 const globalStyles: InterpolationWithTheme<any> = {
   body: {
-    margin: 0
-  }
+    margin: 0,
+  },
 };
 
 export default class MyApp extends App {
