@@ -10,7 +10,6 @@ export const NavHeader = () => (
         textDecoration: "none",
         padding: "0.75em",
         ":hover": {
-          textDecoration: "underline",
           color: "rgba(255, 255, 255, 1)"
         }
       }

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
 import { Meeting } from "../../src/app/types";
-import { MeetingCard, MeetingCardsList } from "../../src/app/components";
+import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { meetingsApi } from "../../src/app/api";
 
 interface MeetingsPageProps {
@@ -9,7 +9,7 @@ interface MeetingsPageProps {
 }
 
 const MeetingsPage = ({ meetings }: MeetingsPageProps) => (
-  <Fragment>
+  <Page>
     <MeetingCardsList>
       {meetings.map(m => (
         <li key={m.id}>
@@ -17,7 +17,7 @@ const MeetingsPage = ({ meetings }: MeetingsPageProps) => (
         </li>
       ))}
     </MeetingCardsList>
-  </Fragment>
+  </Page>
 );
 
 MeetingsPage.getInitialProps = async () => {

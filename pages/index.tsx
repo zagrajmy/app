@@ -17,11 +17,24 @@ const IndexPage = ({ meetings }: InitialProps) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <header className="hero">
-      <h1 className="title">zagraj.my</h1>
-      <p className="description">
-        Smoki się same nie ubiją. Zapisz się na sesję.
-      </p>
+    <header
+      sx={{
+        width: "100%",
+        padding: "80px 0 4px 0",
+        textAlign: "center"
+      }}
+    >
+      <h1
+        sx={{
+          marginTop: 0,
+          marginBottom: "0.4em",
+          width: "100%",
+          lineHeight: 1.15
+        }}
+      >
+        zagraj.my
+      </h1>
+      <p sx={{ fontSize: 4 }}>Smoki się same nie ubiją. Zapisz się na sesję.</p>
     </header>
 
     <MeetingCardsList>
@@ -33,10 +46,16 @@ const IndexPage = ({ meetings }: InitialProps) => (
     </MeetingCardsList>
 
     <section
-      className="see-more"
       sx={{
-        // styling anchors breaks Next Link behavior
-        a: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingBottom: "2em"
+      }}
+    >
+      <Link
+        href="/meetings"
+        sx={{
           display: "block",
           bg: "primary",
           color: "white",
@@ -50,71 +69,11 @@ const IndexPage = ({ meetings }: InitialProps) => (
             boxShadow: "var(--shadowMd)",
             bg: "primaryLight"
           }
-        }
-      }}
-    >
-      <Link href="/meetings">Zobacz więcej</Link>
+        }}
+      >
+        Zobacz więcej
+      </Link>
     </section>
-
-    <style jsx>{`
-      .index-page {
-        display: none;
-      }
-      .see-more {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        padding-bottom: 2em;
-      }
-      .hero {
-        width: 100%;
-        color: var(--jet);
-        padding: 80px 0 4px 0;
-      }
-      .title {
-        margin-top: 0;
-        margin-bottom: 0.4em;
-        width: 100%;
-        line-height: 1.15;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .description {
-        font-size: 24px;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: var(--jet);
-      }
-    `}</style>
   </Page>
 );
 

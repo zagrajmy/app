@@ -19,3 +19,14 @@ export const Dl = (props: ComponentProps<"dl">) => (
     {...props}
   />
 );
+
+Dl.fromObject = (obj: object) => {
+  return (
+    <Dl>
+      {Object.entries(obj).flatMap(([k, v]) => [
+        <dt key={`${k}-k`}>{k}</dt>,
+        <dd key={`${k}-v`}>{v}</dd>
+      ])}
+    </Dl>
+  );
+};

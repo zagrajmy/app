@@ -38,27 +38,47 @@ interface MeetingCardProps {
 }
 export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
   return (
-    <article className="container">
+    <article
+      sx={{
+        position: "relative",
+        boxShadow: "var(--shadowMd)",
+        border: "1px solid rgba(0, 0, 0, 0.3)",
+        borderRadius: "6px",
+        background: "rgba(255, 255, 255, 0.9)",
+        minHeight: " 200px",
+        display: "flex",
+        width: "800px",
+        maxWidth: "80vw",
+        margin: "1em",
+        cursor: "pointer",
+        transition: "box-shadow 150ms linear",
+        ":hover": {
+          boxShadow: "var(--shadowLg)"
+        }
+      }}
+    >
       <CardBackgroundLink
         href="/meetings/[id]"
         as={`/meetings/${meeting.id}`}
-        sx={
-          meeting.image?.kind === "background"
-            ? {
-                backgroundImage: meeting.image.src
-              }
-            : {}
-        }
+        sx={{
+          borderTopLeftRadius: "5px",
+          borderBottomLeftRadius: "5px",
+          backgroundImage:
+            meeting.image?.kind === "background" ? meeting.image.src : "none"
+        }}
       />
-      {meeting.image?.kind !== "background" && (
+      {meeting.image && meeting.image.kind !== "background" && (
         <Image
           src={meeting.image?.src}
-          className="image"
           alt=""
           width={220}
           bg="white"
           sx={{
-            objectFit: "cover"
+            width: 200,
+            height: 200,
+            objectFit: "cover",
+            borderTopLeftRadius: "5px",
+            borderBottomLeftRadius: "5px"
           }}
         />
       )}
@@ -67,38 +87,6 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         <MeetingCreationInfo meeting={meeting} />
         <p>{meeting.description}</p>
       </div>
-      <style jsx>{`
-        .container {
-          position: relative;
-
-          box-shadow: var(--shadowMd);
-          border: 1px solid rgba(0, 0, 0, 0.3);
-          border-radius: 6px;
-          background: rgba(255, 255, 255, 0.9);
-
-          min-height: 200px;
-          display: flex;
-
-          width: 800px;
-          max-width: 80vw;
-          margin: 1em;
-
-          cursor: pointer;
-
-          transition: box-shadow 150ms linear;
-        }
-        .container:hover {
-          box-shadow: var(--shadowLg);
-        }
-        .right {
-          padding-left: 1em;
-        }
-        .image {
-          border-radius: 5px 0 0 5px;
-          width: 200px;
-          height: 200px;
-        }
-      `}</style>
     </article>
   );
 };
