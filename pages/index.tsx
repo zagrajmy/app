@@ -7,6 +7,7 @@ import { Page, MeetingCard } from "../src/app/components";
 import { meetingsApi } from "../src/app/api";
 import { Meeting } from "../src/app/types";
 import { Link } from "../src/lib";
+import '../src/i18n';
 
 type InitialProps = { meetings: Meeting[] };
 

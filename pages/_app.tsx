@@ -5,7 +5,6 @@ import { Global, InterpolationWithTheme } from '@emotion/core';
 
 import { theme } from '../src/ui/theme';
 import { NavHeader } from '../src/app/components';
-import { auth } from '../src/app/auth';
 
 const globalStyles: InterpolationWithTheme<any> = {
   body: {
