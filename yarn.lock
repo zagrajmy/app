@@ -1047,10 +1047,10 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.5.1.tgz#e0a9dbdc03826198abd82b29dcee91d661faf8a5"
   integrity sha512-eF05YysHqtyXerLId0kPKtxmJ3PE60GJJvx1gOguEQndbs94fUeYTVSfBlnXPPAAzvOmVKrZmktIYsBQlVjpOw==
 
-"@next/mdx@^9.1.4":
-  version "9.1.4"
-  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-9.1.4.tgz#010fb2f404d7db9b41a7e6551b1b2a9753379f5d"
-  integrity sha512-93IgdXirGUOKPyeXjMBboyohwfrYQFmDwWe628rJu4t6zf05K6WNOJsOivRzMLvuqwBujAc+uAmYd891/ZAaLA==
+"@next/mdx@^9.1.7":
+  version "9.1.7"
+  resolved "https://registry.yarnpkg.com/@next/mdx/-/mdx-9.1.7.tgz#bd5299af13815a2f9e3ec669137ed0526c045593"
+  integrity sha512-xVEoN9czh9MYO9qT7a5u9+iZnrwmeiJ5hMPY4/+02h5UaeIsJriFHMDiIXtzeZLVPBS61PVZaiyVdR01r8QBPw==
 
 "@styled-system/background@^5.1.2":
   version "5.1.2"
