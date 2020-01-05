@@ -1,6 +1,6 @@
 import React from "react";
 import { formatRelative } from "date-fns";
-import { Image } from "@chakra-ui/core";
+import { Image } from "@theme-ui/components";
 
 import { Link, LinkProps } from "../../lib/Link";
 
@@ -56,8 +56,10 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
           className="image"
           alt=""
           width={220}
-          objectFit="cover"
           bg="accent"
+          sx={{
+            objectFit: "cover"
+          }}
         />
       )}
       <div sx={{ pl: "1em" }}>

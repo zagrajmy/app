@@ -1,5 +1,4 @@
 import * as themeUi from "theme-ui";
-import * as chakra from "@chakra-ui/core";
 
 declare module "theme-ui" {
   export interface Theme {
@@ -7,49 +6,11 @@ declare module "theme-ui" {
   }
 }
 
-type FontSizes = {
-  [P in
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl"
-    | number]: string;
-};
-
-const fontSizesArray = [
-  ["xs", 0.75],
-  ["sm", 0.875],
-  ["md", 1],
-  ["lg", 1.25],
-  ["xl", 1.5],
-  ["2xl", 2],
-  ["3xl", 3],
-  ["4xl", 4],
-  ["5xl", 4.5],
-  ["6xl", 5.25]
-] as const;
-
-const fontSizes = fontSizesArray.reduce((acc, [k, v], i) => {
-  acc[k] = `${v}em`;
-  acc[i] = `${v}em`;
-  return acc;
-}, {} as FontSizes);
-
-export const theme: themeUi.Theme & chakra.ITheme = {
-  ...chakra.theme,
-
-  // theme-ui
+export const theme: themeUi.Theme = {
   useCustomProperties: true,
   breakpoints: [40, 52, 64],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fontSizes,
-  sizes: chakra.theme.sizes,
+  fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25],
   colors: {
     text: "rgba(0, 0, 0, 0.9)",
     background: "#fbf6e5",
@@ -86,5 +47,3 @@ export const theme: themeUi.Theme & chakra.ITheme = {
     }
   }
 };
-
-// console.log(Object.keys(chakra.theme.icons))

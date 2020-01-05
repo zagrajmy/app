@@ -1,4 +1,4 @@
-import { Image } from "@chakra-ui/core";
+import { Image } from "@theme-ui/components";
 
 import { Meeting } from "../types";
 import { matchKind } from "../../lib/match";
@@ -13,10 +13,12 @@ export const MeetingDetailsImage = ({
         bg="whites.2"
         width="100%"
         height="100%"
-        position="absolute"
-        objectFit="cover"
         src={src}
-        zIndex={0}
+        sx={{
+          position: "absolute",
+          objectFit: "cover",
+          zIndex: 0
+        }}
       />
     ),
     banner: ({ src }) => (
@@ -25,9 +27,11 @@ export const MeetingDetailsImage = ({
         bg="whites.2"
         width="100%"
         height="200px"
-        objectFit="cover"
         src={src}
-        zIndex={2}
+        sx={{
+          objectFit: "cover",
+          zIndex: 2
+        }}
       />
     ),
     small: () => null

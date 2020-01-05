@@ -1,15 +1,16 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import { Flex } from "@chakra-ui/core";
-
-// TODO: Discuss fonts other than system-ui
-// import "typeface-poppins";
-// :global(h1, h2, h3) {
-//   font-family: Poppins, sans-serif;
-//  */}
+import { Flex } from "@theme-ui/components";
 
 interface PageProps extends ComponentPropsWithoutRef<"div"> {}
 export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
-  <Flex direction="column" position="relative" flex={1} {...rest}>
+  <Flex
+    sx={{
+      flexDirection: "column",
+      position: "relative",
+      flex: 1
+    }}
+    {...rest}
+  >
     <style jsx>{`
       :global(body) {
         --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),

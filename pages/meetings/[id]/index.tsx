@@ -6,19 +6,15 @@ import {
   Avatar,
   Flex,
   IconButton
-} from "@chakra-ui/core";
+} from "@theme-ui/components";
+import { Edit } from "react-feather";
 
 import { Id, Meeting } from "../../../src/app/types";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Link } from "../../../src/lib";
-import { styles } from "../../../src/ui/styles";
 
 type Query = { id: Id };
-
-type A = {
-  a: 2;
-};
 
 interface InitialProps {
   meeting?: Meeting;
@@ -44,7 +40,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       {meeting.image ? (
         <MeetingDetailsImage image={meeting.image} />
       ) : (
-        <Box width="100%" height="200px" bg="accent">
+        <Box sx={{ width: "100%", height: "200px" }} bg="accent">
           <Button type="button">Add picture</Button>
         </Box>
       )}
@@ -52,10 +48,12 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
         bg="whites.1"
         as="article"
         mx="auto"
-        width="1100px"
-        maxWidth="100%"
         p={3}
-        zIndex={1}
+        sx={{
+          width: "1100px",
+          maxWidth: "100%",
+          zIndex: 1
+        }}
       >
         <header>
           <Flex>
@@ -65,9 +63,10 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
               </Text>
               <IconButton
                 aria-label="Edit meeting date"
-                icon="edit"
                 onClick={() => console.log("start editing meeting date")}
-              />
+              >
+                <Edit />
+              </IconButton>
             </div>
             <div role="group" sx={{ marginLeft: "auto" }}>
               <Link
@@ -81,15 +80,17 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           <Heading mt={0} mb={3}>
             {meeting.title}
           </Heading>
-          <Flex direction="row" alignItems="center" mb={3}>
+          <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
             {linkToAuthor(
               <Avatar
                 src={meeting.author?.avatar || ""}
                 bg="primaryDark"
-                borderRadius="50%"
+                sx={{
+                  borderRadius: "50%"
+                }}
               />
             )}
-            <div sx={{ ml: 3, fontSize: "lg" }}>
+            <div sx={{ ml: 3, fontSize: 4 }}>
               <Text as="span">Hosted by </Text>
               {linkToAuthor(meeting.author.name)}
             </div>
@@ -129,7 +130,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           </dd>
         </dl>
         <section>
-          <Heading as="h3" size="md">
+          <Heading as="h3" sx={{ fontSize: 3 }}>
             Opis spotkania
           </Heading>
           <p>{meeting.description}</p>
@@ -140,7 +141,6 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
 }
 
 MeetingDetailsPage.getInitialProps = async ({
-  res,
   query
 }: {
   res: Response;

@@ -1,8 +1,5 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
 
-  "editor.fontSize": 20,
-  "editor.lineHeight": 30,
-
   "typescript.referencesCodeLens.enabled": false
 }

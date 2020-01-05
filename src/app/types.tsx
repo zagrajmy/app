@@ -12,6 +12,9 @@ export interface User {
   name: Username;
   slug: UsernameSlug;
   email: Email;
+  /**
+   * default to https://unavatar.now.sh/:email
+   */
   avatar?: string;
 }
 
