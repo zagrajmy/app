@@ -13,8 +13,8 @@ const auth0 = initAuth0({
   postLogoutRedirectUri: "http://localhost:3000/",
   session: {
     cookieSecret: process.env.AUTH0_COOKIE_SECRET,
-    cookieLifetime: 60 * 60 * 8
-  }
+    cookieLifetime: 60 * 60 * 8,
+  },
 });
 
 const getUserOrLogin = async (req?: IncomingMessage, res?: ServerResponse) => {
@@ -22,7 +22,7 @@ const getUserOrLogin = async (req?: IncomingMessage, res?: ServerResponse) => {
     const session = await auth0.getSession(req);
     if (!session?.user) {
       res.writeHead(302, {
-        Location: "/api/login"
+        Location: "/api/login",
       });
       res.end();
 
@@ -36,9 +36,12 @@ const getUserOrLogin = async (req?: IncomingMessage, res?: ServerResponse) => {
 
 export const auth = {
   ...auth0,
-  getUserOrLogIn: getUserOrLogin
+  getUserOrLogIn: getUserOrLogin,
 };
 
+/**
+ * Key-value store for the user's claims.
+ */
 export interface Claims extends IClaims {
   given_name?: string;
   nickname?: string;

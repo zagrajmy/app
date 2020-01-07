@@ -11,10 +11,10 @@ export const MeetingDetailsImage = ({
       <Image
         alt=""
         bg="gray.2"
-        width="100%"
-        height="100%"
         src={src}
         sx={{
+          height: "100%",
+          width: "100%",
           position: "absolute",
           objectFit: "cover",
           zIndex: 0
@@ -22,14 +22,14 @@ export const MeetingDetailsImage = ({
       />
     ),
     banner: ({ src }) => (
-      <div sx={{ height: 240 }}>
+      <div sx={{ height: 240, overflowY: "visible" }}>
         <Image
           alt=""
           bg="gray.2"
-          width="100%"
           src={src}
           sx={{
-            height: "100%",
+            width: "100%",
+            height: `calc(240px + 2em)`,
             objectFit: "cover",
             zIndex: 2
           }}

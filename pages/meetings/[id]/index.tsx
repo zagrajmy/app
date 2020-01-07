@@ -5,7 +5,7 @@ import {
   Button,
   Avatar,
   Flex,
-  IconButton
+  IconButton,
 } from "@theme-ui/components";
 import { Edit } from "react-feather";
 
@@ -43,22 +43,22 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       {meeting.image ? (
         <MeetingDetailsImage image={meeting.image} />
       ) : (
-        <Box sx={{ width: "100%", height: "200px" }} bg="white">
+        <Box sx={{ width: "100%", height: "240px" }} bg="white">
           <Button type="button">Add picture</Button>
         </Box>
       )}
       <MaxWidthContainer
         bg="white"
         as="article"
-        mt="-2rem"
         p={3}
         sx={{
           borderRadius: "rounded-lg",
-          zIndex: 1
+          boxShadow: "var(--shadow)",
+          zIndex: 1,
         }}
       >
         <header>
-          <Flex>
+          <Flex sx={{ alignItems: "center" }}>
             {meeting.date && (
               <Flex
                 sx={{
@@ -66,19 +66,19 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
                   color: "gray.9",
                   "@media (hover: hover)": {
                     "> button": {
-                      opacity: 0.2
+                      opacity: 0.2,
                     },
                     ":hover > button": {
-                      opacity: 1
-                    }
-                  }
+                      opacity: 1,
+                    },
+                  },
                 }}
               >
                 <Text as="span" sx={{ padding: 1, fontWeight: 500 }}>
                   {new Date(meeting.date).toLocaleString()}
                 </Text>
                 <IconButton
-                  aria-label="Edit meeting date"
+                  title="Edit meeting date"
                   onClick={() => console.log("start editing meeting date")}
                 >
                   <Edit size={18} />
@@ -94,7 +94,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
               </Link>
             </div>
           </Flex>
-          <Heading mt={0} mb={3}>
+          <Heading mt={1} mb={3}>
             {meeting.title}
           </Heading>
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
@@ -103,7 +103,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
                 src={meeting.author?.avatar || ""}
                 bg="primaryDark"
                 sx={{
-                  borderRadius: "50%"
+                  borderRadius: "50%",
                 }}
               />
             )}
@@ -144,7 +144,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
 }
 
 MeetingDetailsPage.getInitialProps = async ({
-  query
+  query,
 }: {
   res: Response;
   req: Request;

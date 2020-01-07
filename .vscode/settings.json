@@ -1,5 +1,6 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
 
-  "typescript.referencesCodeLens.enabled": false
+  "typescript.referencesCodeLens.enabled": false,
+  "overmind.port": 3301
 }
