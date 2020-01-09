@@ -30,7 +30,7 @@
     "@zeit/next-css": "^1.0.1",
     "babel-plugin-emotion": "^10.0.23",
     "babel-plugin-styled-components": "^1.10.6",
-    "date-fns": "^2.8.1",
+    "date-fns": "^2.9.0",
     "dotenv": "^8.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.1.7",
