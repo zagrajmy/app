@@ -45,10 +45,10 @@
     promise-polyfill "^8.1.3"
     unfetch "^4.1.0"
 
-"@auth0/nextjs-auth0@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@auth0/nextjs-auth0/-/nextjs-auth0-0.7.0.tgz#a495984ff38f1483fcf5a7a0ee2339503f0b4702"
-  integrity sha512-sTgaOKilBwf91Q9BRYljgjRKsffD3w9D9PcQaA0S30sFcqQBf1iToUc1tCmk0hIEDIwpAQYAU21nEaFBgwNlYA==
+"@auth0/nextjs-auth0@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@auth0/nextjs-auth0/-/nextjs-auth0-0.9.0.tgz#4bf7357dc6174e892121fdf33daf697b8bc3a20c"
+  integrity sha512-VqJZ1PTmXfo9HINe/DHxAOzlWumM+VF/e7qIutEHUCQwm/AOWUTzKkzROB5xPSTDmpjneYd3gIUcDiwlEZ+5WA==
   dependencies:
     "@hapi/iron" "^5.1.4"
     base64url "^3.0.1"
