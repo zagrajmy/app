@@ -3,7 +3,6 @@ import { NextApiResponse, NextApiRequest } from "next";
 import { auth } from "../../src/app/auth";
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
-  console.log("LOGIn");
   try {
     await auth.handleLogin(req, res, {});
   } catch (error) {

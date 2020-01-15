@@ -1,6 +1,7 @@
 import { Avatar } from "@theme-ui/components";
 import { ComponentProps } from "react";
 import { Claims } from "../auth";
+import { Link } from "../../lib";
 
 interface MenuProps extends ComponentProps<"details"> {
   user: Claims;
@@ -41,13 +42,26 @@ export const Menu = ({ user, ...rest }: MenuProps) => (
       />
     </summary>
     <div
-      role="menu"
       sx={{
         position: "absolute",
         transform: "translate(-100%, 0px)",
+        bg: "background",
+        borderRadius: 2,
+        zIndex: 2,
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: "lg",
+        "> *": {
+          p: 2,
+        },
       }}
     >
-      menu
+      <Link href="/settings" sx={{ color: "text", whiteSpace: "pre" }}>
+        Settings
+      </Link>
+      <Link href="/api/logout" sx={{ color: "text", whiteSpace: "pre" }}>
+        Log Out
+      </Link>
     </div>
   </details>
 );

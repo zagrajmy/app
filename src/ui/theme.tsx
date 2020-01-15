@@ -3,6 +3,9 @@ import * as themeUi from "theme-ui";
 declare module "theme-ui" {
   export interface Theme {
     useCustomProperties?: boolean;
+    forms: {
+      textarea: themeUi.SxStyleProp;
+    };
   }
 }
 
@@ -17,7 +20,16 @@ export const theme: themeUi.Theme = {
     none: 0,
     "rounded-sm": ".125rem",
     rounded: ".25rem",
-    "rounded-lg": ".5rem"
+    "rounded-lg": ".5rem",
+  },
+  shadows: {
+    sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    lg:
+      "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+    xl:
+      "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    xxl: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
   },
   // https://palx.jxnblk.com/ > #e85554
   colors: {
@@ -34,7 +46,7 @@ export const theme: themeUi.Theme = {
       "#b19b9b",
       "#9a8484",
       "#796868",
-      "#473d3d"
+      "#473d3d",
     ],
     primary: "#e85554",
     primaryLight: "#ea6463",
@@ -43,32 +55,43 @@ export const theme: themeUi.Theme = {
     modes: {
       dark: {
         text: "#fff",
-        background: "#222"
-      }
-    }
+        background: "#222",
+      },
+    },
   },
   fonts: {
     body:
       "system-ui, -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif",
-    heading: "inherit"
+    heading: "inherit",
     // mono
   },
   styles: {
     root: {
+      fontSize: "16px",
       height: "100vh",
       fontFamily: "body",
       color: "text",
       bg: "background",
       display: "flex",
-      flexDirection: "column"
-    }
+      flexDirection: "column",
+    },
   },
   buttons: {
     primary: {
-      cursor: "pointer"
+      cursor: "pointer",
     },
     icon: {
-      cursor: "pointer"
-    }
-  }
+      cursor: "pointer",
+      ":hover": {
+        bg: "gray.0",
+        border: "1px solid",
+        borderColor: "gray.1",
+      },
+    },
+  },
+  forms: {
+    textarea: {
+      fontSize: 3,
+    },
+  },
 };

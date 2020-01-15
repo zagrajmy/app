@@ -1,7 +1,7 @@
 import { IConfig, createOvermind } from "overmind";
 import { createHook, Provider } from "overmind-react";
+import { useLayoutEffect } from "react-layout-effect";
 
-import { useLayoutEffect } from "react";
 import { Claims } from "../auth";
 
 import * as actions from "./actions";
@@ -24,6 +24,12 @@ declare module "overmind" {
 export const overmind = createOvermind(config, {
   devtools: "localhost:3301",
 });
+
+/**
+ * useAppState uses useLayoutEffect
+ * @see https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
+ */
+require("react").useLayoutEffect = require("react").useEffect;
 
 export const useAppState = createHook<typeof overmind>();
 

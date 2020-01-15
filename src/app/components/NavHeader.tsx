@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { useRouter } from "next/router";
 
 import { Link, LinkProps } from "../../lib/Link";
@@ -34,6 +34,22 @@ const NavLink = (props: LinkProps) => {
   );
 };
 
+const ListItem = (props: ComponentProps<"li">) => (
+  <li
+    sx={{
+      "> a": {
+        color: "rgba(255, 255, 255, 0.85)",
+        textDecoration: "none",
+        padding: "0.75em",
+        ":hover": {
+          color: "rgba(255, 255, 255, 1)",
+        },
+      },
+    }}
+    {...props}
+  />
+);
+
 export interface NavHeaderProps
   extends Pick<StateFromAppInitialProps, "user"> {}
 
@@ -43,18 +59,7 @@ export const NavHeader = (props: NavHeaderProps) => {
   const user = state.user || props.user;
 
   return (
-    <header
-      sx={{
-        a: {
-          color: "rgba(255, 255, 255, 0.85)",
-          textDecoration: "none",
-          padding: "0.75em",
-          ":hover": {
-            color: "rgba(255, 255, 255, 1)",
-          },
-        },
-      }}
-    >
+    <header>
       <nav sx={{ bg: "gray.9" }}>
         <ul
           sx={{
@@ -66,16 +71,16 @@ export const NavHeader = (props: NavHeaderProps) => {
             listStyle: "none",
           }}
         >
-          <li sx={{ flex: 1, textAlign: "left" }}>
+          <ListItem sx={{ flex: 1, textAlign: "left" }}>
             <Link href="/">zagraj.my</Link>
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             <NavLink href="/meetings">Spotkania</NavLink>
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             <a href="https://github.com/zagrajmy/">GitHub</a>
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             {user ? (
               <Menu user={user} />
             ) : (
@@ -99,7 +104,7 @@ export const NavHeader = (props: NavHeaderProps) => {
                 <div>Log in</div>
               </Link>
             )}
-          </li>
+          </ListItem>
         </ul>
       </nav>
     </header>

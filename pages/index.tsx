@@ -21,7 +21,7 @@ const IndexPage = ({ meetings }: InitialProps) => (
       sx={{
         width: "100%",
         padding: "80px 0 4px 0",
-        textAlign: "center"
+        textAlign: "center",
       }}
     >
       <h1
@@ -29,7 +29,7 @@ const IndexPage = ({ meetings }: InitialProps) => (
           marginTop: 0,
           marginBottom: "0.4em",
           width: "100%",
-          lineHeight: 1.15
+          lineHeight: 1.15,
         }}
       >
         zagraj.my
@@ -50,7 +50,7 @@ const IndexPage = ({ meetings }: InitialProps) => (
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        paddingBottom: "2em"
+        paddingBottom: "2em",
       }}
     >
       <Link
@@ -63,12 +63,12 @@ const IndexPage = ({ meetings }: InitialProps) => (
           borderRadius: "rounded-lg",
           textDecoration: "none",
           cursor: "pointer",
-          boxShadow: "var(--shadow)",
+          boxShadow: "sm",
           transition: "box-shadow 150ms linear",
           ":hover": {
-            boxShadow: "var(--shadowMd)",
-            bg: "primaryLight"
-          }
+            boxShadow: "md",
+            bg: "primaryLight",
+          },
         }}
       >
         Zobacz więcej
@@ -81,7 +81,7 @@ IndexPage.getInitialProps = async (): Promise<InitialProps> => {
   const today = new Date();
   const meetings = await meetingsApi
     .getAll()
-    .then(xs => xs.filter(x => !x.date || isAfter(x.date, today)).slice(0, 3));
+    .then(xs => xs.filter(x => !x.start_time || isAfter(x.start_time, today)).slice(0, 3));
   return { meetings };
 };
 

@@ -12,8 +12,8 @@ const MeetingCreationInfo: React.FC<{ meeting: Meeting }> = ({ meeting }) => {
       <Link href="/u/[username_slug]" as={`/u/${meeting.author.slug}`}>
         {meeting.author.name}
       </Link>
-      {meeting.date
-        ? ` • ${formatRelative(new Date(meeting.date), new Date())}`
+      {meeting.start_time
+        ? ` • ${formatRelative(new Date(meeting.start_time), new Date())}`
         : ""}
     </span>
   );
@@ -27,7 +27,7 @@ const CardBackgroundLink = (props: LinkProps) => (
       top: 0,
       left: 0,
       width: "100%",
-      height: "100%"
+      height: "100%",
     }}
     {...props}
   />
@@ -41,7 +41,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
     <article
       sx={{
         position: "relative",
-        boxShadow: "var(--shadowMd)",
+        boxShadow: "md",
         border: "1px solid rgba(0, 0, 0, 0.3)",
         borderRadius: "6px",
         background: "rgba(255, 255, 255, 0.9)",
@@ -53,8 +53,8 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         cursor: "pointer",
         transition: "box-shadow 150ms linear",
         ":hover": {
-          boxShadow: "var(--shadowLg)"
-        }
+          boxShadow: "lg",
+        },
       }}
     >
       <CardBackgroundLink
@@ -64,7 +64,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
           borderTopLeftRadius: "5px",
           borderBottomLeftRadius: "5px",
           backgroundImage:
-            meeting.image?.kind === "background" ? meeting.image.src : "none"
+            meeting.image?.kind === "background" ? meeting.image.src : "none",
         }}
       />
       {meeting.image && meeting.image.kind !== "background" && (
@@ -78,7 +78,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
             height: 200,
             objectFit: "cover",
             borderTopLeftRadius: "5px",
-            borderBottomLeftRadius: "5px"
+            borderBottomLeftRadius: "5px",
           }}
         />
       )}

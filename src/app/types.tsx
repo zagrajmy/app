@@ -8,14 +8,19 @@ export type UsernameSlug = Flavor<string, "UsernameSlug">;
 
 export type Email = Flavor<string, "Email">;
 
+export const User = {
+  avatar(u: User) {
+    return `${
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://zagrajmy.now.sh"
+    }/api/u/avatar/${u.slug}`;
+  },
+};
 export interface User {
   name: Username;
   slug: UsernameSlug;
   email: Email;
-  /**
-   * default to https://unavatar.now.sh/:email
-   */
-  avatar?: string;
 }
 
 export type Id = Flavor<string | number, "Id">;
@@ -34,6 +39,7 @@ export interface Meeting {
   image?: MeetingImage;
   description?: string;
   published_at?: Date;
-  date?: Date;
+  start_time?: Date;
+  end_time?: Date;
   created_at: Date;
 }

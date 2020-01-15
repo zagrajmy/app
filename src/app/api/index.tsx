@@ -4,7 +4,7 @@ import { Meeting, User, Id } from "../types";
 
 const piotr: User = {
   name: "Piotr Monwid-Olechnowicz",
-  slug: "piotr-monwid-olechnowicz",
+  slug: "hasparus",
   email: "piotr@zagraj.my",
 };
 
@@ -23,7 +23,7 @@ export const meetings: Meeting[] = [
     description: "Lorem ipsum dolor sit amet",
     published_at: new Date(1000),
     created_at: new Date(900),
-    date: new Date(5000),
+    start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "background",
@@ -36,7 +36,7 @@ export const meetings: Meeting[] = [
     description: "",
     published_at: new Date(1400),
     created_at: new Date(1100),
-    date: new Date(5000),
+    start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "banner",
@@ -49,7 +49,7 @@ export const meetings: Meeting[] = [
     description: "",
     published_at: new Date(2000),
     created_at: new Date(1800),
-    date: new Date(5000),
+    start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "small",
@@ -62,7 +62,7 @@ export const meetings: Meeting[] = [
     description: "Lorem ipsum dolor sit amet",
     published_at: new Date(2200),
     created_at: new Date(2000),
-    date: new Date(5000),
+    start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "background",
@@ -75,7 +75,7 @@ export const meetings: Meeting[] = [
       author: piotr,
       created_at: new Date(Date.now() - i * 1000),
       published_at: new Date(Date.now() - i * 1000),
-      date: i % 2 === 0 ? new Date(Date.now() + i * 100000) : undefined,
+      start_time: i % 2 === 0 ? new Date(Date.now() + i * 100000) : undefined,
       title: `Dungeon World One-Shot ${i}`,
       description: "This is a test meeting. We have no backend yet",
       image: ([
