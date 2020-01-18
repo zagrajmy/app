@@ -1,7 +1,7 @@
-import { Avatar } from "@theme-ui/components";
 import { ComponentProps } from "react";
 import { Claims } from "../auth";
 import { Link } from "../../lib";
+import { UserAvatar } from "./UserAvatar";
 
 interface MenuProps extends ComponentProps<"details"> {
   user: Claims;
@@ -29,17 +29,7 @@ export const Menu = ({ user, ...rest }: MenuProps) => (
         my: "8px",
       }}
     >
-      <Avatar
-        async
-        decoding="async"
-        loading="lazy"
-        importance="low"
-        alt="hasparus"
-        title="hasparus"
-        width="32"
-        height="32"
-        src={user.picture}
-      />
+      <UserAvatar user={user} />
     </summary>
     <div
       sx={{
