@@ -1,37 +1,15 @@
-import { IConfig, createOvermind } from "overmind";
-import { createHook, Provider } from "overmind-react";
-import { useLayoutEffect } from "react-layout-effect";
-
+import { createContext, useContext, useRef } from "react";
 import { Claims } from "../auth";
 
-import * as actions from "./actions";
-
 export type ApplicationState = {
-  user: Claims | null;
+  user?: Claims | null | undefined;
 };
 
 export const initialState: ApplicationState = { user: null };
 
-const config = {
-  state: initialState,
-  actions,
-};
+const ctx = createContext(initialState);
 
-declare module "overmind" {
-  interface Config extends IConfig<typeof config> {}
-}
-
-export const overmind = createOvermind(config, {
-  devtools: "localhost:3301",
-});
-
-/**
- * useAppState uses useLayoutEffect
- * @see https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
- */
-require("react").useLayoutEffect = require("react").useEffect;
-
-export const useAppState = createHook<typeof overmind>();
+export const useAppState = () => useContext(ctx);
 
 export type StateFromAppInitialProps = Partial<Pick<ApplicationState, "user">>;
 
@@ -39,15 +17,17 @@ interface AppStateProviderProps {
   stateFromInitialProps: StateFromAppInitialProps;
 }
 
+const { Provider } = ctx;
+
 export const AppStateProvider: React.FC<AppStateProviderProps> = ({
   children,
   stateFromInitialProps,
 }) => {
-  useLayoutEffect(() => {
-    if (!overmind.state.user && stateFromInitialProps.user) {
-      overmind.actions.setUser(stateFromInitialProps.user);
-    }
-  }, [stateFromInitialProps.user]);
+  const cached = useRef<ApplicationState>(initialState);
 
-  return <Provider value={overmind}>{children}</Provider>;
+  if (stateFromInitialProps.user) {
+    cached.current.user = stateFromInitialProps.user;
+  }
+
+  return <Provider value={cached.current}>{children}</Provider>;
 };

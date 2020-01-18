@@ -1,4 +1,6 @@
 import { Avatar, AvatarProps } from "@theme-ui/components";
+import { Box } from "theme-ui";
+
 import { Claims } from "../auth";
 
 export interface UserAvatarProps extends Omit<AvatarProps, "ref"> {
@@ -7,17 +9,19 @@ export interface UserAvatarProps extends Omit<AvatarProps, "ref"> {
 
 export function UserAvatar({ user, ...rest }: UserAvatarProps) {
   return (
-    <Avatar
-      async
-      decoding="async"
-      loading="lazy"
-      importance="low"
-      alt={user.name || user.nickname}
-      title={user.name || user.nickname}
-      width="32"
-      height="32"
-      src={user.picture}
-      {...rest}
-    />
+    <Box sx={{ width: 32, height: 32, bg: "gray.3", borderRadius: "50%" }}>
+      <Avatar
+        async
+        decoding="async"
+        loading="lazy"
+        importance="low"
+        alt={user.name || user.nickname}
+        title={user.name || user.nickname}
+        src={user.picture}
+        width={32}
+        height={32}
+        {...rest}
+      />
+    </Box>
   );
 }

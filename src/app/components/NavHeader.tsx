@@ -54,7 +54,7 @@ export interface NavHeaderProps
   extends Pick<StateFromAppInitialProps, "user"> {}
 
 export const NavHeader = (props: NavHeaderProps) => {
-  const { state } = useAppState();
+  const state = useAppState();
 
   const user = state.user || props.user;
 
