@@ -10,6 +10,7 @@
     ]
   ],
   "plugins": [
+    "relay",
     "emotion",
     [
       "@emotion/babel-plugin-jsx-pragmatic",
