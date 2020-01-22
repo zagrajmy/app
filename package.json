@@ -10,8 +10,8 @@
     "lint": "eslint {src,pages}/**/*.{ts,tsx}",
     "fix": "wotan --fix && yarn lint --fix",
     "typecheck": "tsc --noEmit",
-    "get-schema": "gq http://35.204.238.77:8080/v1/graphql --introspect",
-    "relay": "relay-compiler --src ./src --schema data/schema.graphql --language typescript --artifactDirectory ./src/__generated__"
+    "get-schema": "ts-node -P scripts/tsconfig.json scripts/getSchema",
+    "zeus": "zeus data/schema.graphql ./  --ts ./__generated__"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.10.0",
@@ -39,14 +39,12 @@
     "next-fonts": "^0.19.0",
     "nom-ts": "^0.1.0",
     "prettier": "^1.19.1",
-    "react": "^16.12.0",
+    "react": "^0.0.0-experimental-f42431abe",
     "react-datepicker": "^2.11.0",
-    "react-dom": "^16.12.0",
+    "react-dom": "^0.0.0-experimental-f42431abe",
     "react-feather": "^2.0.3",
     "react-hook-form": "^4.5.3",
     "react-layout-effect": "^1.0.3",
-    "react-relay": "^8.0.0",
-    "react-relay-offline": "^1.1.0",
     "react-window-infinite-loader": "^1.0.5",
     "styled-system": "^5.1.4",
     "swr": "^0.1.16",
@@ -59,16 +57,17 @@
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@fimbul/heimdall": "^0.21.0",
     "@fimbul/wotan": "^0.21.1",
-    "babel-plugin-relay": "^8.0.0",
+    "egzek": "^0.1.0",
     "eslint": "^6.8.0",
     "eslint-config-chop-chop": "^1.2.6",
+    "execa": "^4.0.0",
     "graphql": "^14.5.8",
     "graphql-compiler": "^1.7.0",
+    "graphql-zeus": "^2.5.2",
     "graphqurl": "^0.3.3",
     "now": "^16.7.3",
-    "relay-compiler": "^8.0.0",
-    "relay-compiler-language-typescript": "^10.1.4",
     "ts-jest": "^24.3.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "typescript-deno-plugin": "^1.2.7"
   }
 }
