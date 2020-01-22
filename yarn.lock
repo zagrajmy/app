@@ -8418,10 +8418,10 @@ react-feather@^2.0.3:
   dependencies:
     prop-types "^15.7.2"
 
-react-hook-form@^4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-4.5.3.tgz#3f9abac7bd78eedf0624d02aa9e1f8487d729e18"
-  integrity sha512-oQB6s3zzXbFwM8xaWEkZJZR+5KD2LwUUYTexQbpdUuFzrfs41Qg0UE3kzfzxG8shvVlzADdkYKLMXqOLWQSS/Q==
+react-hook-form@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-4.6.2.tgz#e7ed94b14c4e542ceb9cf7a579147c01dc0fb3c9"
+  integrity sha512-o2ykewu1Snf5z85w80XUFx8kC7wuqlaOZCvqWVTGIahhgHb+fOYiTi0I2hgEtw3avsxIsKtJZWSis2grM8RVHg==
 
 react-is@16.8.6:
   version "16.8.6"
