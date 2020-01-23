@@ -48,7 +48,7 @@
     "react-window-infinite-loader": "^1.0.5",
     "styled-system": "^5.1.4",
     "swr": "^0.1.16",
-    "theme-ui": "^0.2.52",
+    "theme-ui": "^0.3.0",
     "ts-essentials": "^4.0.0",
     "use-auth0-hooks": "^0.7.0"
   },
