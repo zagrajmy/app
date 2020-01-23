@@ -1740,11 +1740,12 @@
   dependencies:
     csstype "^2.6.6"
 
-"@types/theme-ui@*", "@types/theme-ui@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@types/theme-ui/-/theme-ui-0.2.6.tgz#d8e14f6a05ceab0c23c822cf5893a51377f2091c"
-  integrity sha512-QnyTHTIJxCIVOs2g7IAdE20CpwNoaiCXFSJidy09RDq4MUjCH+kjvLbmMigUnq/E9UnjETAoUarqMJe0LAtzlg==
+"@types/theme-ui@*", "@types/theme-ui@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@types/theme-ui/-/theme-ui-0.2.7.tgz#803f5538b6800305bb643f5021a2bc6f23ac355e"
+  integrity sha512-9/WZahs/mpkGCChHQUth911w3blLe5DTxKwOLTa8ff/SLcq7Rr/Wsg8sKwMM7N+u1mYXpKbjr0yEVNDtoJHn7A==
   dependencies:
+    "@emotion/serialize" "^0.11.15"
     "@types/react" "*"
     "@types/styled-system" "*"
     "@types/styled-system__css" "*"
