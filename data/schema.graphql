@@ -4,6 +4,531 @@ schema {
   subscription: subscription_root
 }
 
+# columns and relationships of "auth_user"
+type auth_user {
+  date_joined: timestamptz!
+  email: String!
+  first_name: String!
+  id: Int!
+  is_active: Boolean!
+  is_staff: Boolean!
+  is_superuser: Boolean!
+  last_login: timestamptz
+  last_name: String!
+
+  # An array relationship
+  meetings_guildusers(
+    # distinct select on columns
+    distinct_on: [meetings_guilduser_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_guilduser_order_by!]
+
+    # filter the rows returned
+    where: meetings_guilduser_bool_exp
+  ): [meetings_guilduser!]!
+
+  # An aggregated array relationship
+  meetings_guildusers_aggregate(
+    # distinct select on columns
+    distinct_on: [meetings_guilduser_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_guilduser_order_by!]
+
+    # filter the rows returned
+    where: meetings_guilduser_bool_exp
+  ): meetings_guilduser_aggregate!
+
+  # An array relationship
+  meetings_meetings(
+    # distinct select on columns
+    distinct_on: [meetings_meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_meeting_order_by!]
+
+    # filter the rows returned
+    where: meetings_meeting_bool_exp
+  ): [meetings_meeting!]!
+
+  # An aggregated array relationship
+  meetings_meetings_aggregate(
+    # distinct select on columns
+    distinct_on: [meetings_meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_meeting_order_by!]
+
+    # filter the rows returned
+    where: meetings_meeting_bool_exp
+  ): meetings_meeting_aggregate!
+
+  # An array relationship
+  meetings_meetingusers(
+    # distinct select on columns
+    distinct_on: [meetings_meetinguser_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_meetinguser_order_by!]
+
+    # filter the rows returned
+    where: meetings_meetinguser_bool_exp
+  ): [meetings_meetinguser!]!
+
+  # An aggregated array relationship
+  meetings_meetingusers_aggregate(
+    # distinct select on columns
+    distinct_on: [meetings_meetinguser_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_meetinguser_order_by!]
+
+    # filter the rows returned
+    where: meetings_meetinguser_bool_exp
+  ): meetings_meetinguser_aggregate!
+
+  # An array relationship
+  meetings_sphere_users(
+    # distinct select on columns
+    distinct_on: [meetings_sphere_users_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_sphere_users_order_by!]
+
+    # filter the rows returned
+    where: meetings_sphere_users_bool_exp
+  ): [meetings_sphere_users!]!
+
+  # An aggregated array relationship
+  meetings_sphere_users_aggregate(
+    # distinct select on columns
+    distinct_on: [meetings_sphere_users_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meetings_sphere_users_order_by!]
+
+    # filter the rows returned
+    where: meetings_sphere_users_bool_exp
+  ): meetings_sphere_users_aggregate!
+  password: String!
+  username: String!
+}
+
+# aggregated selection of "auth_user"
+type auth_user_aggregate {
+  aggregate: auth_user_aggregate_fields
+  nodes: [auth_user!]!
+}
+
+# aggregate fields of "auth_user"
+type auth_user_aggregate_fields {
+  avg: auth_user_avg_fields
+  count(columns: [auth_user_select_column!], distinct: Boolean): Int
+  max: auth_user_max_fields
+  min: auth_user_min_fields
+  stddev: auth_user_stddev_fields
+  stddev_pop: auth_user_stddev_pop_fields
+  stddev_samp: auth_user_stddev_samp_fields
+  sum: auth_user_sum_fields
+  var_pop: auth_user_var_pop_fields
+  var_samp: auth_user_var_samp_fields
+  variance: auth_user_variance_fields
+}
+
+# order by aggregate values of table "auth_user"
+input auth_user_aggregate_order_by {
+  avg: auth_user_avg_order_by
+  count: order_by
+  max: auth_user_max_order_by
+  min: auth_user_min_order_by
+  stddev: auth_user_stddev_order_by
+  stddev_pop: auth_user_stddev_pop_order_by
+  stddev_samp: auth_user_stddev_samp_order_by
+  sum: auth_user_sum_order_by
+  var_pop: auth_user_var_pop_order_by
+  var_samp: auth_user_var_samp_order_by
+  variance: auth_user_variance_order_by
+}
+
+# input type for inserting array relation for remote table "auth_user"
+input auth_user_arr_rel_insert_input {
+  data: [auth_user_insert_input!]!
+  on_conflict: auth_user_on_conflict
+}
+
+# aggregate avg on columns
+type auth_user_avg_fields {
+  id: Float
+}
+
+# order by avg() on columns of table "auth_user"
+input auth_user_avg_order_by {
+  id: order_by
+}
+
+# Boolean expression to filter rows from the table "auth_user". All fields are combined with a logical 'AND'.
+input auth_user_bool_exp {
+  _and: [auth_user_bool_exp]
+  _not: auth_user_bool_exp
+  _or: [auth_user_bool_exp]
+  date_joined: timestamptz_comparison_exp
+  email: String_comparison_exp
+  first_name: String_comparison_exp
+  id: Int_comparison_exp
+  is_active: Boolean_comparison_exp
+  is_staff: Boolean_comparison_exp
+  is_superuser: Boolean_comparison_exp
+  last_login: timestamptz_comparison_exp
+  last_name: String_comparison_exp
+  meetings_guildusers: meetings_guilduser_bool_exp
+  meetings_meetings: meetings_meeting_bool_exp
+  meetings_meetingusers: meetings_meetinguser_bool_exp
+  meetings_sphere_users: meetings_sphere_users_bool_exp
+  password: String_comparison_exp
+  username: String_comparison_exp
+}
+
+# unique or primary key constraints on table "auth_user"
+enum auth_user_constraint {
+  # unique or primary key constraint
+  auth_user_pkey
+
+  # unique or primary key constraint
+  auth_user_username_key
+}
+
+# input type for incrementing integer columne in table "auth_user"
+input auth_user_inc_input {
+  id: Int
+}
+
+# input type for inserting data into table "auth_user"
+input auth_user_insert_input {
+  date_joined: timestamptz
+  email: String
+  first_name: String
+  id: Int
+  is_active: Boolean
+  is_staff: Boolean
+  is_superuser: Boolean
+  last_login: timestamptz
+  last_name: String
+  meetings_guildusers: meetings_guilduser_arr_rel_insert_input
+  meetings_meetings: meetings_meeting_arr_rel_insert_input
+  meetings_meetingusers: meetings_meetinguser_arr_rel_insert_input
+  meetings_sphere_users: meetings_sphere_users_arr_rel_insert_input
+  password: String
+  username: String
+}
+
+# aggregate max on columns
+type auth_user_max_fields {
+  date_joined: timestamptz
+  email: String
+  first_name: String
+  id: Int
+  last_login: timestamptz
+  last_name: String
+  password: String
+  username: String
+}
+
+# order by max() on columns of table "auth_user"
+input auth_user_max_order_by {
+  date_joined: order_by
+  email: order_by
+  first_name: order_by
+  id: order_by
+  last_login: order_by
+  last_name: order_by
+  password: order_by
+  username: order_by
+}
+
+# aggregate min on columns
+type auth_user_min_fields {
+  date_joined: timestamptz
+  email: String
+  first_name: String
+  id: Int
+  last_login: timestamptz
+  last_name: String
+  password: String
+  username: String
+}
+
+# order by min() on columns of table "auth_user"
+input auth_user_min_order_by {
+  date_joined: order_by
+  email: order_by
+  first_name: order_by
+  id: order_by
+  last_login: order_by
+  last_name: order_by
+  password: order_by
+  username: order_by
+}
+
+# response of any mutation on the table "auth_user"
+type auth_user_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [auth_user!]!
+}
+
+# input type for inserting object relation for remote table "auth_user"
+input auth_user_obj_rel_insert_input {
+  data: auth_user_insert_input!
+  on_conflict: auth_user_on_conflict
+}
+
+# on conflict condition type for table "auth_user"
+input auth_user_on_conflict {
+  constraint: auth_user_constraint!
+  update_columns: [auth_user_update_column!]!
+  where: auth_user_bool_exp
+}
+
+# ordering options when selecting data from "auth_user"
+input auth_user_order_by {
+  date_joined: order_by
+  email: order_by
+  first_name: order_by
+  id: order_by
+  is_active: order_by
+  is_staff: order_by
+  is_superuser: order_by
+  last_login: order_by
+  last_name: order_by
+  meetings_guildusers_aggregate: meetings_guilduser_aggregate_order_by
+  meetings_meetings_aggregate: meetings_meeting_aggregate_order_by
+  meetings_meetingusers_aggregate: meetings_meetinguser_aggregate_order_by
+  meetings_sphere_users_aggregate: meetings_sphere_users_aggregate_order_by
+  password: order_by
+  username: order_by
+}
+
+# select columns of table "auth_user"
+enum auth_user_select_column {
+  # column name
+  date_joined
+
+  # column name
+  email
+
+  # column name
+  first_name
+
+  # column name
+  id
+
+  # column name
+  is_active
+
+  # column name
+  is_staff
+
+  # column name
+  is_superuser
+
+  # column name
+  last_login
+
+  # column name
+  last_name
+
+  # column name
+  password
+
+  # column name
+  username
+}
+
+# input type for updating data in table "auth_user"
+input auth_user_set_input {
+  date_joined: timestamptz
+  email: String
+  first_name: String
+  id: Int
+  is_active: Boolean
+  is_staff: Boolean
+  is_superuser: Boolean
+  last_login: timestamptz
+  last_name: String
+  password: String
+  username: String
+}
+
+# aggregate stddev on columns
+type auth_user_stddev_fields {
+  id: Float
+}
+
+# order by stddev() on columns of table "auth_user"
+input auth_user_stddev_order_by {
+  id: order_by
+}
+
+# aggregate stddev_pop on columns
+type auth_user_stddev_pop_fields {
+  id: Float
+}
+
+# order by stddev_pop() on columns of table "auth_user"
+input auth_user_stddev_pop_order_by {
+  id: order_by
+}
+
+# aggregate stddev_samp on columns
+type auth_user_stddev_samp_fields {
+  id: Float
+}
+
+# order by stddev_samp() on columns of table "auth_user"
+input auth_user_stddev_samp_order_by {
+  id: order_by
+}
+
+# aggregate sum on columns
+type auth_user_sum_fields {
+  id: Int
+}
+
+# order by sum() on columns of table "auth_user"
+input auth_user_sum_order_by {
+  id: order_by
+}
+
+# update columns of table "auth_user"
+enum auth_user_update_column {
+  # column name
+  date_joined
+
+  # column name
+  email
+
+  # column name
+  first_name
+
+  # column name
+  id
+
+  # column name
+  is_active
+
+  # column name
+  is_staff
+
+  # column name
+  is_superuser
+
+  # column name
+  last_login
+
+  # column name
+  last_name
+
+  # column name
+  password
+
+  # column name
+  username
+}
+
+# aggregate var_pop on columns
+type auth_user_var_pop_fields {
+  id: Float
+}
+
+# order by var_pop() on columns of table "auth_user"
+input auth_user_var_pop_order_by {
+  id: order_by
+}
+
+# aggregate var_samp on columns
+type auth_user_var_samp_fields {
+  id: Float
+}
+
+# order by var_samp() on columns of table "auth_user"
+input auth_user_var_samp_order_by {
+  id: order_by
+}
+
+# aggregate variance on columns
+type auth_user_variance_fields {
+  id: Float
+}
+
+# order by variance() on columns of table "auth_user"
+input auth_user_variance_order_by {
+  id: order_by
+}
+
+# expression to compare columns of type Boolean. All fields are combined with logical 'AND'.
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+
 # expression to compare columns of type Int. All fields are combined with logical 'AND'.
 input Int_comparison_exp {
   _eq: Int
@@ -357,6 +882,8 @@ input meetings_guild_variance_order_by {
 
 # columns and relationships of "meetings_guilduser"
 type meetings_guilduser {
+  # An object relationship
+  auth_user: auth_user!
   guild_id: Int!
   id: Int!
 
@@ -427,6 +954,7 @@ input meetings_guilduser_bool_exp {
   _and: [meetings_guilduser_bool_exp]
   _not: meetings_guilduser_bool_exp
   _or: [meetings_guilduser_bool_exp]
+  auth_user: auth_user_bool_exp
   guild_id: Int_comparison_exp
   id: Int_comparison_exp
   meetings_guild: meetings_guild_bool_exp
@@ -449,6 +977,7 @@ input meetings_guilduser_inc_input {
 
 # input type for inserting data into table "meetings_guilduser"
 input meetings_guilduser_insert_input {
+  auth_user: auth_user_obj_rel_insert_input
   guild_id: Int
   id: Int
   meetings_guild: meetings_guild_obj_rel_insert_input
@@ -512,6 +1041,7 @@ input meetings_guilduser_on_conflict {
 
 # ordering options when selecting data from "meetings_guilduser"
 input meetings_guilduser_order_by {
+  auth_user: auth_user_order_by
   guild_id: order_by
   id: order_by
   meetings_guild: meetings_guild_order_by
@@ -657,6 +1187,8 @@ input meetings_guilduser_variance_order_by {
 
 # columns and relationships of "meetings_meeting"
 type meetings_meeting {
+  # An object relationship
+  auth_user: auth_user!
   created_at: timestamptz!
   description: String!
   end_time: timestamptz
@@ -776,6 +1308,7 @@ input meetings_meeting_bool_exp {
   _and: [meetings_meeting_bool_exp]
   _not: meetings_meeting_bool_exp
   _or: [meetings_meeting_bool_exp]
+  auth_user: auth_user_bool_exp
   created_at: timestamptz_comparison_exp
   description: String_comparison_exp
   end_time: timestamptz_comparison_exp
@@ -809,6 +1342,7 @@ input meetings_meeting_inc_input {
 
 # input type for inserting data into table "meetings_meeting"
 input meetings_meeting_insert_input {
+  auth_user: auth_user_obj_rel_insert_input
   created_at: timestamptz
   description: String
   end_time: timestamptz
@@ -914,6 +1448,7 @@ input meetings_meeting_on_conflict {
 
 # ordering options when selecting data from "meetings_meeting"
 input meetings_meeting_order_by {
+  auth_user: auth_user_order_by
   created_at: order_by
   description: order_by
   end_time: order_by
@@ -1139,6 +1674,8 @@ input meetings_meeting_variance_order_by {
 
 # columns and relationships of "meetings_meetinguser"
 type meetings_meetinguser {
+  # An object relationship
+  auth_user: auth_user!
   id: Int!
   meeting_id: Int!
 
@@ -1209,6 +1746,7 @@ input meetings_meetinguser_bool_exp {
   _and: [meetings_meetinguser_bool_exp]
   _not: meetings_meetinguser_bool_exp
   _or: [meetings_meetinguser_bool_exp]
+  auth_user: auth_user_bool_exp
   id: Int_comparison_exp
   meeting_id: Int_comparison_exp
   meetings_meeting: meetings_meeting_bool_exp
@@ -1231,6 +1769,7 @@ input meetings_meetinguser_inc_input {
 
 # input type for inserting data into table "meetings_meetinguser"
 input meetings_meetinguser_insert_input {
+  auth_user: auth_user_obj_rel_insert_input
   id: Int
   meeting_id: Int
   meetings_meeting: meetings_meeting_obj_rel_insert_input
@@ -1294,6 +1833,7 @@ input meetings_meetinguser_on_conflict {
 
 # ordering options when selecting data from "meetings_meetinguser"
 input meetings_meetinguser_order_by {
+  auth_user: auth_user_order_by
   id: order_by
   meeting_id: order_by
   meetings_meeting: meetings_meeting_order_by
@@ -1717,6 +2257,8 @@ enum meetings_sphere_update_column {
 
 # columns and relationships of "meetings_sphere_users"
 type meetings_sphere_users {
+  # An object relationship
+  auth_user: auth_user!
   id: Int!
 
   # An object relationship
@@ -1786,6 +2328,7 @@ input meetings_sphere_users_bool_exp {
   _and: [meetings_sphere_users_bool_exp]
   _not: meetings_sphere_users_bool_exp
   _or: [meetings_sphere_users_bool_exp]
+  auth_user: auth_user_bool_exp
   id: Int_comparison_exp
   meetings_sphere: meetings_sphere_bool_exp
   sphere_id: Int_comparison_exp
@@ -1810,6 +2353,7 @@ input meetings_sphere_users_inc_input {
 
 # input type for inserting data into table "meetings_sphere_users"
 input meetings_sphere_users_insert_input {
+  auth_user: auth_user_obj_rel_insert_input
   id: Int
   meetings_sphere: meetings_sphere_obj_rel_insert_input
   sphere_id: Int
@@ -1868,6 +2412,7 @@ input meetings_sphere_users_on_conflict {
 
 # ordering options when selecting data from "meetings_sphere_users"
 input meetings_sphere_users_order_by {
+  auth_user: auth_user_order_by
   id: order_by
   meetings_sphere: meetings_sphere_order_by
   sphere_id: order_by
@@ -2035,6 +2580,12 @@ input meetings_sphere_variance_order_by {
 
 # mutation root
 type mutation_root {
+  # delete data from the table: "auth_user"
+  delete_auth_user(
+    # filter the rows which have to be deleted
+    where: auth_user_bool_exp!
+  ): auth_user_mutation_response
+
   # delete data from the table: "meetings_guild"
   delete_meetings_guild(
     # filter the rows which have to be deleted
@@ -2070,6 +2621,15 @@ type mutation_root {
     # filter the rows which have to be deleted
     where: meetings_sphere_users_bool_exp!
   ): meetings_sphere_users_mutation_response
+
+  # insert data into the table: "auth_user"
+  insert_auth_user(
+    # the rows to be inserted
+    objects: [auth_user_insert_input!]!
+
+    # on conflict condition
+    on_conflict: auth_user_on_conflict
+  ): auth_user_mutation_response
 
   # insert data into the table: "meetings_guild"
   insert_meetings_guild(
@@ -2124,6 +2684,18 @@ type mutation_root {
     # on conflict condition
     on_conflict: meetings_sphere_users_on_conflict
   ): meetings_sphere_users_mutation_response
+
+  # update data of the table: "auth_user"
+  update_auth_user(
+    # increments the integer columns with given value of the filtered values
+    _inc: auth_user_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: auth_user_set_input
+
+    # filter the rows which have to be updated
+    where: auth_user_bool_exp!
+  ): auth_user_mutation_response
 
   # update data of the table: "meetings_guild"
   update_meetings_guild(
@@ -2221,6 +2793,45 @@ enum order_by {
 
 # query root
 type query_root {
+  # fetch data from the table: "auth_user"
+  auth_user(
+    # distinct select on columns
+    distinct_on: [auth_user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [auth_user_order_by!]
+
+    # filter the rows returned
+    where: auth_user_bool_exp
+  ): [auth_user!]!
+
+  # fetch aggregated fields from the table: "auth_user"
+  auth_user_aggregate(
+    # distinct select on columns
+    distinct_on: [auth_user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [auth_user_order_by!]
+
+    # filter the rows returned
+    where: auth_user_bool_exp
+  ): auth_user_aggregate!
+
+  # fetch data from the table: "auth_user" using primary key columns
+  auth_user_by_pk(id: Int!): auth_user
+
   # fetch data from the table: "meetings_guild"
   meetings_guild(
     # distinct select on columns
@@ -2477,6 +3088,45 @@ input String_comparison_exp {
 
 # subscription root
 type subscription_root {
+  # fetch data from the table: "auth_user"
+  auth_user(
+    # distinct select on columns
+    distinct_on: [auth_user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [auth_user_order_by!]
+
+    # filter the rows returned
+    where: auth_user_bool_exp
+  ): [auth_user!]!
+
+  # fetch aggregated fields from the table: "auth_user"
+  auth_user_aggregate(
+    # distinct select on columns
+    distinct_on: [auth_user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [auth_user_order_by!]
+
+    # filter the rows returned
+    where: auth_user_bool_exp
+  ): auth_user_aggregate!
+
+  # fetch data from the table: "auth_user" using primary key columns
+  auth_user_by_pk(id: Int!): auth_user
+
   # fetch data from the table: "meetings_guild"
   meetings_guild(
     # distinct select on columns

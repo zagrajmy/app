@@ -11,7 +11,7 @@
     "fix": "wotan --fix && yarn lint --fix",
     "typecheck": "tsc --noEmit",
     "get-schema": "ts-node -P scripts/tsconfig.json scripts/getSchema",
-    "zeus": "zeus data/schema.graphql ./  --ts ./__generated__"
+    "zeus": "zeus data/schema.graphql --ts ./data"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.10.0",
