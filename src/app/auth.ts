@@ -39,11 +39,19 @@ export const auth = {
 
 /**
  * Key-value store for the user's claims.
+ * @see https://auth0.com/docs/scopes/current/oidc-scopes#standard-claims
  */
 export interface Claims extends IClaims {
-  given_name?: string;
-  nickname?: string;
-  name?: string;
+  given_name: string;
+  family_name: string;
+  nickname: string;
+  name: string;
   picture?: string;
   locale?: string; // 'en'
+  email: string;
+  /**
+   * @example
+   * google-oauth2|117333436324283117304
+   */
+  sub: string;
 }

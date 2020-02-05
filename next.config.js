@@ -1,7 +1,7 @@
 const withFonts = require("next-fonts");
 const withCSS = require("@zeit/next-css");
 const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/
+  extension: /\.mdx?$/,
 });
 
 module.exports = withMDX(
@@ -14,12 +14,18 @@ module.exports = withMDX(
         if (!isServer) {
           // eslint-disable-next-line no-param-reassign
           config.node = {
-            fs: "empty"
+            fs: "empty",
           };
         }
 
+        // eslint-disable-next-line no-param-reassign
+        config.plugins = config.plugins.filter(
+          // We'll typecheck in CI and locally. Workaround for GC issue.
+          plugin => plugin.constructor.name !== "ForkTsCheckerWebpackPlugin"
+        );
+
         return config;
-      }
+      },
     })
   )
 );

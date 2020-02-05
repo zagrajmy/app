@@ -10,17 +10,21 @@ export type Email = Flavor<string, "Email">;
 
 export const User = {
   avatar(u: User) {
-    return `${
-      typeof window !== "undefined"
-        ? window.location.origin
-        : "https://zagrajmy.now.sh"
-    }/api/u/avatar/${u.slug}`;
+    return (
+      u.avatar ||
+      `${
+        typeof window !== "undefined"
+          ? window.location.origin
+          : "https://zagrajmy.now.sh"
+      }/api/u/avatar/${u.slug}`
+    );
   },
 };
 export interface User {
   name: Username;
   slug: UsernameSlug;
   email: Email;
+  avatar?: string;
 }
 
 export type Id = Flavor<string | number, "Id">;

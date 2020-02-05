@@ -1,4 +1,9 @@
+import fetch from "isomorphic-unfetch";
+
 import { Chain } from "./graphql-zeus";
+
+const _global = typeof window !== "undefined" ? window : globalThis;
+Object.assign(_global, { fetch: _global.fetch || fetch });
 
 const { HASURA_URL } = process.env;
 

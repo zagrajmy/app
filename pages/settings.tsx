@@ -2,15 +2,15 @@ import { NextPage } from "next";
 
 import { Fragment } from "react";
 import { Page } from "../src/app/components";
-import { auth, Claims } from "../src/app/auth";
+import { auth } from "../src/app/auth";
 import { Dl } from "../src/ui";
 import { MaxWidthContainer } from "../src/app/components/MaxWidthContainer";
+import { useAppState } from "../src/app/store";
 
-type ProfileProps = {
-  user?: Claims;
-};
+type SettingsProps = {};
 
-const Settings: NextPage<ProfileProps> = ({ user }) => {
+const Settings: NextPage<SettingsProps> = () => {
+  const { user } = useAppState();
   return (
     <Page>
       <MaxWidthContainer>

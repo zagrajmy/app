@@ -13,7 +13,7 @@ exec(`
 
 declare global {
   interface ProcessEnv {
-    HASURA_ACCESS_KEY: string;
+    HASURA_ADMIN_SECRET: string;
     HASURA_URL: string;
   }
 }
