@@ -7,9 +7,14 @@ declare module "theme-ui" {
       textarea: themeUi.SxStyleProp;
     };
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  export function useThemeUI(): { theme: typeof theme };
 }
 
-export const theme: themeUi.Theme = {
+const makeTheme = <T extends themeUi.Theme>(t: T): T => t;
+
+export const theme = makeTheme({
   useCustomProperties: true,
   breakpoints: [40, 52, 64],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -79,7 +84,19 @@ export const theme: themeUi.Theme = {
   },
   buttons: {
     primary: {
+      display: "block",
+      bg: "primary",
+      color: "white",
+      padding: "0.8em 1.2em",
+      borderRadius: "rounded-lg",
+      textDecoration: "none",
       cursor: "pointer",
+      boxShadow: "sm",
+      transition: "box-shadow 150ms linear",
+      ":hover": {
+        boxShadow: "md",
+        bg: "primaryLight",
+      },
     },
     icon: {
       cursor: "pointer",
@@ -95,4 +112,4 @@ export const theme: themeUi.Theme = {
       fontSize: 3,
     },
   },
-};
+});

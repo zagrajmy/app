@@ -2,16 +2,19 @@ import React from "react";
 import Head from "next/head";
 import { isAfter } from "date-fns";
 
+import { useTranslation } from "react-i18next";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
 import { Page, MeetingCard } from "../src/app/components";
 import { meetingsApi } from "../src/app/api";
 import { Meeting } from "../src/app/types";
-import { Link } from "../src/lib";
+import { Link } from "../src/ui";
 import { hasura } from "../data/hasura";
 
 type InitialProps = { meetings: Meeting[] };
 
 const IndexPage = ({ meetings }: InitialProps) => {
+  const { t } = useTranslation();
+
   return (
     <Page>
       <Head>
@@ -57,25 +60,8 @@ const IndexPage = ({ meetings }: InitialProps) => {
           paddingBottom: "2em",
         }}
       >
-        <Link
-          href="/meetings"
-          sx={{
-            display: "block",
-            bg: "primary",
-            color: "white",
-            padding: "0.8em 1.2em",
-            borderRadius: "rounded-lg",
-            textDecoration: "none",
-            cursor: "pointer",
-            boxShadow: "sm",
-            transition: "box-shadow 150ms linear",
-            ":hover": {
-              boxShadow: "md",
-              bg: "primaryLight",
-            },
-          }}
-        >
-          Zobacz więcej
+        <Link variant="button" href="/meetings">
+          {t("see-more")}
         </Link>
       </section>
     </Page>
