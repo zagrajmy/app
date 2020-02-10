@@ -9,7 +9,7 @@ export interface UserAvatarProps extends Omit<AvatarProps, "ref"> {
 
 export function UserAvatar({ user, ...rest }: UserAvatarProps) {
   return (
-    <Box sx={{ width: 32, height: 32, bg: "gray.3", borderRadius: "50%" }}>
+    <Box sx={{ width: 32, height: 32, bg: "gray.3", borderRadius: "round" }}>
       <Avatar
         async
         decoding="async"

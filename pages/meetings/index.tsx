@@ -1,3 +1,4 @@
+import { Button } from "@theme-ui/components";
 import { Meeting } from "../../src/app/types";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { meetingsApi } from "../../src/app/api";
@@ -8,6 +9,7 @@ interface MeetingsPageProps {
 
 const MeetingsPage = ({ meetings }: MeetingsPageProps) => (
   <Page>
+    <Button>Nowe spotkanie</Button>
     <MeetingCardsList>
       {meetings.map(m => (
         <li key={m.id}>
