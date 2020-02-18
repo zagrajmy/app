@@ -168,7 +168,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
         </Dl>
         <section sx={{ mt: 3 }}>
           <Heading as="h3" sx={{ fontSize: 3, mb: 2 }}>
-            Opis spotkania
+            {t('meeting-description')}
           </Heading>
           {isEditing ? (
             <Textarea

@@ -9,6 +9,7 @@ import { meetingsApi } from "../src/app/api";
 import { Meeting } from "../src/app/types";
 import { Link } from "../src/ui";
 import { hasura } from "../data/hasura";
+import { order_by } from "../data/graphql-zeus";
 
 type InitialProps = { meetings: Meeting[] };
 
@@ -69,8 +70,6 @@ const IndexPage = ({ meetings }: InitialProps) => {
 };
 
 IndexPage.getInitialProps = async (): Promise<InitialProps> => {
-  // hasura.query({ meetings_meeting: [{ limit: 3 }, {  }] })
-
   const today = new Date();
   const meetings = await meetingsApi
     .getAll()

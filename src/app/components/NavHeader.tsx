@@ -1,6 +1,7 @@
 import React, { ComponentProps } from "react";
 import { useRouter } from "next/router";
 
+import { useTranslation } from "react-i18next";
 import { Link, LinkProps } from "../../lib/Link";
 import { useAppState, StateFromAppInitialProps } from "../store";
 import { Menu } from "./Menu";
@@ -54,6 +55,7 @@ export interface NavHeaderProps
   extends Pick<StateFromAppInitialProps, "user"> {}
 
 export const NavHeader = (props: NavHeaderProps) => {
+  const { t } = useTranslation();
   const state = useAppState();
 
   const user = state.user || props.user;
@@ -75,7 +77,7 @@ export const NavHeader = (props: NavHeaderProps) => {
             <Link href="/">zagraj.my</Link>
           </ListItem>
           <ListItem>
-            <NavLink href="/meetings">Spotkania</NavLink>
+            <NavLink href="/meetings">{t("meetings")}</NavLink>
           </ListItem>
           <ListItem>
             <a href="https://github.com/zagrajmy/">GitHub</a>

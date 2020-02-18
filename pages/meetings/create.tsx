@@ -9,9 +9,9 @@ import {
 } from "@theme-ui/components";
 import { OmitByValue } from "utility-types";
 
+import { useTranslation } from "react-i18next";
 import { meetings_meeting as Meeting } from "../../data/graphql-zeus";
 import { Page } from "../../src/app/components";
-import { hasura } from "../../data/hasura";
 import { auth } from "../../src/app/auth";
 
 const GUILD_ID = 1; // TODO
@@ -23,6 +23,7 @@ interface InputProps extends Omit<ThInputProps, "name"> {
 const Input = ThInput as (props: InputProps) => JSX.Element;
 
 const CreateMeetingPage: NextPage = () => {
+  const { t } = useTranslation();
   const { register, handleSubmit, errors, getValues } = useForm<Meeting>({
     defaultValues: {
       guild_id: GUILD_ID,
@@ -36,13 +37,13 @@ const CreateMeetingPage: NextPage = () => {
     <Page>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <Label>
-          Title
-          <Input name="title" ref={register} />
+          {t('title')}
+          <Input name={t('title')} ref={register} />
         </Label>
         <Label>
-          Description
+          {t("description")}
           <Textarea
-            name="description"
+            name={t("description")}
             rows={5}
             ref={register}
             sx={{ resize: "none" }}

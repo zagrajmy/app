@@ -1,4 +1,8 @@
 {
   "meetings": "Spotkania",
-  "see-more": "Zobacz więcej"
+  "see-more": "Zobacz więcej",
+  "title": "Tytuł",
+  "description": "Opis",
+  "meeting-description": "Opis spotkania",
+  "new-meeting": "Zorganizuj spotkanie"
 }

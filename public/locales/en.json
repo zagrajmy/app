@@ -1,4 +1,8 @@
 {
   "meetings": "Meetings",
-  "see-more": "See more"
+  "see-more": "See more",
+  "title": "Title",
+  "description": "Description",
+  "meeting-description": "Meeting Description",
+  "new-meeting": "Organize Meeting"
 }
