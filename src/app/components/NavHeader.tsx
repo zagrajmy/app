@@ -71,6 +71,9 @@ export const NavHeader = (props: NavHeaderProps) => {
             display: "flex",
             alignItems: "center",
             listStyle: "none",
+
+            maxWidth: 1120,
+            mx: "auto",
           }}
         >
           <ListItem sx={{ flex: 1, textAlign: "left" }}>

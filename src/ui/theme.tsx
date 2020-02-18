@@ -80,6 +80,8 @@ export const theme = makeTheme({
       bg: "background",
       display: "flex",
       flexDirection: "column",
+      textRendering: "optimizeLegibility",
+
     },
   },
   buttons: {
