@@ -71,7 +71,7 @@
     "graphql-zeus": "^2.5.2",
     "graphqurl": "^0.3.3",
     "now": "^16.7.3",
-    "ts-jest": "^24.3.0",
+    "ts-jest": "^25.2.1",
     "typescript": "^3.7.5",
     "typescript-deno-plugin": "^1.2.7"
   }
