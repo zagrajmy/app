@@ -81,7 +81,6 @@ export const theme = makeTheme({
       display: "flex",
       flexDirection: "column",
       textRendering: "optimizeLegibility",
-
     },
   },
   buttons: {
@@ -110,8 +109,13 @@ export const theme = makeTheme({
     },
   },
   forms: {
-    textarea: {
-      fontSize: 3,
+    fontSize: 3,
+    textarea: {},
+  },
+  heading: {
+    '&[contenteditable="true"]': {
+      backgroundColor: "background",
+      borderRadius: "rounded",
     },
   },
 });

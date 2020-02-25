@@ -4,5 +4,7 @@
   "title": "Tytuł",
   "description": "Opis",
   "meeting-description": "Opis spotkania",
-  "new-meeting": "Zorganizuj spotkanie"
+  "meeting-date": "Data spotkania",
+  "new-meeting": "Zorganizuj spotkanie",
+  "not-published": "Nie opublikowano"
 }

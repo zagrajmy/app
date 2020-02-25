@@ -1,4 +1,4 @@
-import { Flex, Button, Heading } from "@theme-ui/components";
+import { Heading } from "@theme-ui/components";
 import { useTranslation } from "react-i18next";
 
 import { Fragment } from "react";
@@ -6,6 +6,7 @@ import { Meeting } from "../../src/app/types";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { meetingsApi } from "../../src/app/api";
 import { useAppState } from "../../src/app/store";
+import { Link } from "../../src/ui";
 
 interface MeetingsPageProps {
   meetings: Meeting[];
@@ -20,7 +21,9 @@ const MeetingsPage = ({ meetings }: MeetingsPageProps) => {
       {user && (
         <Fragment>
           <header sx={{ py: 3, display: "flex", justifyContent: "flex-end" }}>
-            <Button>{t("new-meeting")}</Button>
+            <Link variant="button" href="/meetings/create">
+              {t("new-meeting")}
+            </Link>
           </header>
           <section
             sx={{ my: 3, p: 3, bg: "gray.3", borderRadius: "rounded-lg" }}

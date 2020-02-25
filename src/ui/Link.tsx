@@ -8,7 +8,5 @@ export const Link = ({ variant, ...rest }: LinkProps) => {
   const { theme } = useThemeUI();
   const variantStyles = variant === "button" ? theme.buttons.primary : {};
 
-  console.log({ variantStyles });
-
   return <BaseLink sx={variantStyles} {...rest} />;
 };

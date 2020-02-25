@@ -3,15 +3,19 @@ import {
   Heading,
   Text,
   Button,
+  ButtonProps,
   Avatar,
   Flex,
   IconButton,
   Textarea,
 } from "@theme-ui/components";
+import { get } from "@theme-ui/css";
+import { Theme } from "theme-ui";
 import { Edit, CheckSquare } from "react-feather";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Datepicker from "react-datepicker";
+import { useTranslation } from "react-i18next";
 
 import { Id, Meeting, User } from "../../../src/app/types";
 import { meetingsApi } from "../../../src/app/api";
@@ -19,6 +23,41 @@ import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Link } from "../../../src/lib";
 import { Dl } from "../../../src/ui";
 import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer";
+
+interface EditMeetingButtonProps {
+  isEditing: boolean;
+  onFinishEdit: React.ReactEventHandler;
+  onStartEdit: React.ReactEventHandler;
+}
+const EditMeetingButton = ({
+  isEditing,
+  onStartEdit,
+  onFinishEdit,
+  ...rest
+}: EditMeetingButtonProps) => {
+  const props: ButtonProps = {
+    title: "Edit meeting",
+    ...rest,
+  };
+
+  return isEditing ? (
+    <Button onClick={onFinishEdit} {...props}>
+      Confirm
+      <CheckSquare
+        size={18}
+        sx={{
+          ml: 2,
+          verticalAlign: "text-bottom",
+        }}
+      />
+    </Button>
+  ) : (
+    <Button onClick={onStartEdit} {...props}>
+      Edit
+      <Edit size={18} sx={{ ml: 2, verticalAlign: "text-bottom" }} />
+    </Button>
+  );
+};
 
 type Query = { id: Id };
 
@@ -28,6 +67,7 @@ interface InitialProps {
 
 export function MeetingDetailsPage({ meeting }: InitialProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const { t } = useTranslation();
 
   const form = useForm<Meeting>({
     defaultValues: {
@@ -56,7 +96,10 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
   return (
     <Page>
       {meeting.image ? (
-        <MeetingDetailsImage image={meeting.image} />
+        <>
+          <MeetingDetailsImage image={meeting.image} />
+          <Box pt={4} />
+        </>
       ) : (
         <Box sx={{ width: "100%", height: "240px" }} bg="white">
           <Button type="button">Add picture</Button>
@@ -70,6 +113,10 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           borderRadius: "rounded-lg",
           boxShadow: "sm",
           zIndex: 1,
+          mt:
+            meeting.image?.kind === "banner"
+              ? (th: Theme) => `-${get(th, "space.3")}px`
+              : 0,
         }}
       >
         <header>
@@ -108,27 +155,17 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
               </Flex>
             )}
             <div role="group" sx={{ marginLeft: "auto" }}>
-              {isEditing ? (
-                <IconButton
-                  title="Edit meeting"
-                  onClick={e => {
-                    setIsEditing(false);
-                    onSubmit(e);
-                  }}
-                >
-                  <CheckSquare size={18} />
-                </IconButton>
-              ) : (
-                <IconButton
-                  title="Edit meeting"
-                  onClick={() => setIsEditing(true)}
-                >
-                  <Edit size={18} />
-                </IconButton>
-              )}
+              <EditMeetingButton
+                isEditing={isEditing}
+                onStartEdit={() => setIsEditing(true)}
+                onFinishEdit={e => {
+                  setIsEditing(false);
+                  onSubmit(e);
+                }}
+              />
             </div>
           </Flex>
-          <Heading mt={1} mb={3}>
+          <Heading mt={1} mb={3} contentEditable={isEditing}>
             {meeting.title}
           </Heading>
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
@@ -148,17 +185,11 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           </Flex>
         </header>
         <Dl sx={{ mt: 2 }}>
-          <dt>Data wydarzenia</dt>
-          <dd>
-            {meeting.start_time
-              ? new Date(meeting.start_time).toLocaleString("pl-PL")
-              : "Wybierz datę"}
-          </dd>
           <dt>Opublikowano</dt>
           <dd>
             {meeting.published_at
               ? new Date(meeting.published_at).toLocaleString("pl-PL")
-              : "Nie opublikowano"}
+              : t("not-published")}
           </dd>
           <dt>Utworzono</dt>
           <dd>
@@ -168,7 +199,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
         </Dl>
         <section sx={{ mt: 3 }}>
           <Heading as="h3" sx={{ fontSize: 3, mb: 2 }}>
-            {t('meeting-description')}
+            {t("meeting-description")}
           </Heading>
           {isEditing ? (
             <Textarea
