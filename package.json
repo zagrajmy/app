@@ -22,7 +22,7 @@
     "@styled-system/css": "^5.1.4",
     "@theme-ui/components": "^0.2.50",
     "@theme-ui/css": "^0.3.1",
-    "@types/node": "^13.1.7",
+    "@types/node": "^13.7.6",
     "@types/node-fetch": "^2.5.4",
     "@types/react-datepicker": "^2.10.0",
     "@types/react-dom": "^16.9.4",
