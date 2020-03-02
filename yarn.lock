@@ -10006,10 +10006,10 @@ treeify@^1.1.0:
   resolved "https://registry.yarnpkg.com/treeify/-/treeify-1.1.0.tgz#4e31c6a463accd0943879f30667c4fdaff411bb8"
   integrity sha512-1m4RA7xVAJrSGrrXGs0L3YTwyvBs2S8PbRHaLZAkFw7JR8oIFwYtysxlBZhYIa7xSyiYJKZ3iGrrk55cGA3i9A==
 
-ts-essentials@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-4.0.0.tgz#506c42b270bbd0465574b90416533175b09205ab"
-  integrity sha512-uQJX+SRY9mtbKU+g9kl5Fi7AEMofPCvHfJkQlaygpPmHPZrtgaBqbWFOYyiA47RhnSwwnXdepUJrgqUYxoUyhQ==
+ts-essentials@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-6.0.2.tgz#5c20814c272f4cf13c5f27e9b99dced39b2f99af"
+  integrity sha512-C7Ujc1nSGURahqEy00vvJogkxJoxGLp80tbzI/vTmMn1k8jUYNPVlzvs9APqwr7GWJG1ORwsi1xmtRWEIK6m6w==
 
 ts-invariant@^0.4.0:
   version "0.4.4"
