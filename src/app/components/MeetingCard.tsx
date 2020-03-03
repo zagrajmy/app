@@ -72,9 +72,8 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         <Image
           src={meeting.image?.src}
           alt=""
+          bg="gray.2"
           sx={{
-            color: "text",
-            bg: "gray.2",
             width: ["100%", 200],
             height: [200, "100%"],
             minHeight: 200,

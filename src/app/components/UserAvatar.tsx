@@ -1,5 +1,4 @@
-import { Avatar, AvatarProps , Box } from "theme-ui";
-
+import { Avatar, AvatarProps, Box } from "theme-ui";
 
 import { Claims } from "../auth";
 
