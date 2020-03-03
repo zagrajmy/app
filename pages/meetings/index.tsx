@@ -1,4 +1,4 @@
-import { Heading } from "@theme-ui/components";
+import { Heading } from "theme-ui";
 import { useTranslation } from "react-i18next";
 
 import { Fragment } from "react";

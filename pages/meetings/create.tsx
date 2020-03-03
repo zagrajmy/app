@@ -6,7 +6,7 @@ import {
   Box,
   Label,
   Textarea,
-} from "@theme-ui/components";
+} from "theme-ui";
 import { OmitByValue } from "utility-types";
 
 import { useTranslation } from "react-i18next";
@@ -37,8 +37,8 @@ const CreateMeetingPage: NextPage = () => {
     <Page>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <Label>
-          {t('title')}
-          <Input name={t('title')} ref={register} />
+          {t("title")}
+          <Input name={t("title")} ref={register} />
         </Label>
         <Label>
           {t("description")}

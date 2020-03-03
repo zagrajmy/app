@@ -1,4 +1,4 @@
-import { Box, BoxProps } from "@theme-ui/components";
+import { Box, BoxProps } from "theme-ui";
 
 export const MaxWidthContainer = (props: BoxProps) => (
   <Box

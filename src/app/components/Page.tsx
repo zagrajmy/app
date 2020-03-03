@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import { Flex } from "@theme-ui/components";
+import { Flex } from "theme-ui";
 
 interface PageProps extends ComponentPropsWithoutRef<"div"> {}
 export const Page: React.FC<PageProps> = ({ children, ...rest }) => (

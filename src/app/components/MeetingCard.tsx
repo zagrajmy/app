@@ -1,6 +1,6 @@
 import React from "react";
 import { formatRelative } from "date-fns";
-import { Image } from "@theme-ui/components";
+import { Image } from "theme-ui";
 
 import { Link, LinkProps } from "../../lib/Link";
 
@@ -72,8 +72,9 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         <Image
           src={meeting.image?.src}
           alt=""
-          bg="white"
           sx={{
+            color: "text",
+            bg: "gray.2",
             width: ["100%", 200],
             height: [200, "100%"],
             minHeight: 200,

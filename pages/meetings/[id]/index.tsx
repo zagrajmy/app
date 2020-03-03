@@ -6,11 +6,10 @@ import {
   ButtonProps,
   Avatar,
   Flex,
-  IconButton,
   Textarea,
-} from "@theme-ui/components";
+  Theme,
+} from "theme-ui";
 import { get } from "@theme-ui/css";
-import { Theme } from "theme-ui";
 import { Edit, CheckSquare } from "react-feather";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

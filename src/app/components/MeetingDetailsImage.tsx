@@ -1,10 +1,10 @@
-import { Image } from "@theme-ui/components";
+import { Image } from "theme-ui";
 
 import { Meeting } from "../types";
 import { matchKind } from "../../lib/match";
 
 export const MeetingDetailsImage = ({
-  image
+  image,
 }: Required<Pick<Meeting, "image">>) =>
   matchKind(image, {
     background: ({ src }) => (
@@ -17,7 +17,7 @@ export const MeetingDetailsImage = ({
           width: "100%",
           position: "absolute",
           objectFit: "cover",
-          zIndex: 0
+          zIndex: 0,
         }}
       />
     ),
@@ -31,10 +31,10 @@ export const MeetingDetailsImage = ({
             width: "100%",
             height: `calc(240px + 2em)`,
             objectFit: "cover",
-            zIndex: 2
+            zIndex: 2,
           }}
         />
       </div>
     ),
-    small: () => null
+    small: () => null,
   });
