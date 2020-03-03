@@ -57,7 +57,7 @@ export default class MyApp extends App<{
       <ThemeUiProvider theme={theme}>
         <Global styles={globalStyles} />
         <AppStateProvider stateFromInitialProps={appState}>
-          <Styled.root>
+          <Styled.root sx={theme.styles.root}>
             <NavHeader user={appState.user} />
             <Component {...pageProps} />
           </Styled.root>
