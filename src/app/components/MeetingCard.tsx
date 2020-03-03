@@ -45,8 +45,9 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         border: "1px solid rgba(0, 0, 0, 0.3)",
         borderRadius: "6px",
         background: "rgba(255, 255, 255, 0.9)",
-        minHeight: " 200px",
+        minHeight: "200px",
         display: "flex",
+        flexDirection: ["column", "row"],
         width: "800px",
         maxWidth: "80vw",
         margin: "1em",
@@ -74,11 +75,12 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
           width={220}
           bg="white"
           sx={{
-            width: 200,
-            height: 200,
+            width: ["100%", 200],
+            height: [200],
             objectFit: "cover",
             borderTopLeftRadius: "5px",
-            borderBottomLeftRadius: "5px",
+            borderBottomLeftRadius: [0, "5px"],
+            borderBottomRightRadius: ["5px", 0],
           }}
         />
       )}
