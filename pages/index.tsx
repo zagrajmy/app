@@ -28,6 +28,7 @@ const IndexPage = ({ meetings }: InitialProps) => {
           width: "100%",
           padding: "80px 0 4px 0",
           textAlign: "center",
+          px: 2,
         }}
       >
         <h1

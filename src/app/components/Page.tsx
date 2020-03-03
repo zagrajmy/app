@@ -8,8 +8,6 @@ export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
       flexDirection: "column",
       position: "relative",
       flex: 1,
-      p: 2,
-      pt: 0,
     }}
     {...rest}
   >

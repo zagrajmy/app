@@ -11,6 +11,7 @@ import { NavHeader } from "../src/app/components";
 import { auth } from "../src/app/auth";
 import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
 import { SUPPORTED_LANGUAGES, FALLBACK_LANG } from "../src/i18n";
+import { AppFooter } from "../src/app/components/AppFooter";
 
 const globalStyles: InterpolationWithTheme<any> = {
   body: {
@@ -60,6 +61,7 @@ export default class MyApp extends App<{
           <Styled.root sx={theme.styles.root}>
             <NavHeader user={appState.user} />
             <Component {...pageProps} />
+            <AppFooter />
           </Styled.root>
         </AppStateProvider>
       </ThemeUiProvider>

@@ -1,55 +1,11 @@
-import React, { ComponentProps } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 
 import { useTranslation } from "react-i18next";
-import { Link, LinkProps } from "../../lib/Link";
+import { Link } from "../../lib/Link";
 import { useAppState, StateFromAppInitialProps } from "../store";
 import { Menu } from "./Menu";
-
-const NavLink = (props: LinkProps) => {
-  const { pathname } = useRouter();
-
-  return (
-    <Link
-      {...props}
-      sx={
-        props.href === pathname
-          ? {
-              "&&": {
-                color: "rgba(255, 255, 255, 0.95)",
-              },
-              position: "relative",
-              "&:before": {
-                content: '""',
-                position: "absolute",
-                top: "2.25em",
-                left: "50%",
-                width: "80%",
-                transform: "translate3d(-50%, 2px, 0px)",
-                borderBottom: "2px solid currentColor",
-              },
-            }
-          : {}
-      }
-    />
-  );
-};
-
-const ListItem = (props: ComponentProps<"li">) => (
-  <li
-    sx={{
-      "> a": {
-        color: "rgba(255, 255, 255, 0.85)",
-        textDecoration: "none",
-        padding: "0.75em",
-        ":hover": {
-          color: "rgba(255, 255, 255, 1)",
-        },
-      },
-    }}
-    {...props}
-  />
-);
+import { NavLink } from "./NavLink";
+import { HeaderFooterListItem } from "./HeaderFooterListItem";
 
 export interface NavHeaderProps
   extends Pick<StateFromAppInitialProps, "user"> {}
@@ -76,16 +32,16 @@ export const NavHeader = (props: NavHeaderProps) => {
             mx: "auto",
           }}
         >
-          <ListItem sx={{ flex: 1, textAlign: "left" }}>
+          <HeaderFooterListItem sx={{ flex: 1, textAlign: "left" }}>
             <Link href="/">zagraj.my</Link>
-          </ListItem>
-          <ListItem>
+          </HeaderFooterListItem>
+          <HeaderFooterListItem>
             <NavLink href="/meetings">{t("meetings")}</NavLink>
-          </ListItem>
-          <ListItem>
+          </HeaderFooterListItem>
+          <HeaderFooterListItem>
             <a href="https://github.com/zagrajmy/">GitHub</a>
-          </ListItem>
-          <ListItem>
+          </HeaderFooterListItem>
+          <HeaderFooterListItem>
             {user ? (
               <Menu user={user} />
             ) : (
@@ -109,7 +65,7 @@ export const NavHeader = (props: NavHeaderProps) => {
                 <div>Log in</div>
               </Link>
             )}
-          </ListItem>
+          </HeaderFooterListItem>
         </ul>
       </nav>
     </header>
