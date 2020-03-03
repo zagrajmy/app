@@ -76,7 +76,7 @@ export const theme = makeTheme({
   styles: {
     root: {
       fontSize: "16px",
-      height: "100vh",
+      minHeight: "100vh",
       fontFamily: "body",
       color: "text",
       bg: "background",
