@@ -16,7 +16,6 @@ const makeTheme = <T extends themeUi.Theme>(t: T): T => t;
 
 export const theme = makeTheme({
   useCustomProperties: true,
-  breakpoints: [40, 52, 64],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
     x => `${x}rem`
@@ -65,6 +64,9 @@ export const theme = makeTheme({
       },
     },
   },
+  initialColorModeName: "light",
+  useColorSchemeMediaQuery: false, // TODO
+  useBodyStyles: false,
   fonts: {
     body:
       "system-ui, -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif",

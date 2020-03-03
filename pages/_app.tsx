@@ -2,7 +2,7 @@ import { universalLanguageDetect } from "@unly/universal-language-detector";
 import App, { AppContext } from "next/app";
 import nextCookies from "next-cookies";
 import React from "react";
-import { ThemeProvider as ThemeUiProvider, Styled, ColorMode } from "theme-ui";
+import { ThemeProvider as ThemeUiProvider, Styled } from "theme-ui";
 import { Global, InterpolationWithTheme } from "@emotion/core";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 
@@ -57,7 +57,6 @@ export default class MyApp extends App<{
       <ThemeUiProvider theme={theme}>
         <Global styles={globalStyles} />
         <AppStateProvider stateFromInitialProps={appState}>
-          <ColorMode />
           <Styled.root>
             <NavHeader user={appState.user} />
             <Component {...pageProps} />
