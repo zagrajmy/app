@@ -28,6 +28,11 @@ const globalStyles: InterpolationWithTheme<any> = {
 export default class MyApp extends App<{
   appState: StateFromAppInitialProps;
 }> {
+  /**
+   * We might this logic outside some day when we want to
+   * optimize landing/non-app pages.
+   * https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
+   */
   static async getInitialProps({ Component, ctx }: AppContext) {
     const pageProps = await loadGetInitialProps(Component, ctx);
 

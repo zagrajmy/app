@@ -99,6 +99,7 @@ export const theme = makeTheme({
       ":hover": {
         boxShadow: "md",
         bg: "primaryLight",
+        borderColor: "primaryLight",
       },
     },
     icon: {
@@ -107,6 +108,20 @@ export const theme = makeTheme({
         bg: "gray.0",
         border: "1px solid",
         borderColor: "gray.1",
+      },
+    },
+    secondary: {
+      display: "block",
+      color: "text",
+      bg: "gray.2",
+      padding: "0.8em 1.2em",
+      borderRadius: "rounded-lg",
+      textDecoration: "none",
+      cursor: "pointer",
+      boxShadow: "sm",
+      transition: "box-shadow 150ms linear",
+      ":hover": {
+        boxShadow: "md",
       },
     },
   },

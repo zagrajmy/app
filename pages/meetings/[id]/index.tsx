@@ -100,8 +100,17 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           <Box pt={4} />
         </>
       ) : (
-        <Box sx={{ width: "100%", height: "240px" }} bg="white">
-          <Button type="button">Add picture</Button>
+        <Box
+          sx={{
+            width: "100%",
+            height: "calc(240px + 2em)",
+            p: 2,
+          }}
+          bg="gray.3"
+        >
+          <Button type="button" variant="secondary">
+            Add featured picture
+          </Button>
         </Box>
       )}
       <MaxWidthContainer
@@ -113,7 +122,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           boxShadow: "sm",
           zIndex: 1,
           mt:
-            meeting.image?.kind === "banner"
+            meeting.image?.kind !== "background"
               ? (th: Theme) => `-${get(th, "space.3")}px`
               : 0,
         }}

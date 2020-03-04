@@ -68,7 +68,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
             meeting.image?.kind === "background" ? meeting.image.src : "none",
         }}
       />
-      {meeting.image && meeting.image.kind !== "background" && (
+      {meeting.image && (
         <Image
           src={meeting.image?.src}
           alt=""
