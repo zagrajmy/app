@@ -68,7 +68,7 @@
     "graphql-compiler": "^1.7.0",
     "graphql-zeus": "^2.5.7",
     "graphqurl": "^0.3.3",
-    "now": "^16.7.3",
+    "now": "^17.0.4",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3",
     "typescript-deno-plugin": "^1.2.7"
