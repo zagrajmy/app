@@ -39,9 +39,6 @@ export const NavHeader = (props: NavHeaderProps) => {
             <NavLink href="/meetings">{t("meetings")}</NavLink>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
-            <a href="https://github.com/zagrajmy/">GitHub</a>
-          </HeaderFooterListItem>
-          <HeaderFooterListItem>
             {user ? (
               <Menu user={user} />
             ) : (
