@@ -8,10 +8,11 @@ import {
   Flex,
   Textarea,
   Theme,
+  Input,
 } from "theme-ui";
 import { get } from "@theme-ui/css";
 import { Edit, CheckSquare } from "react-feather";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import Datepicker from "react-datepicker";
 import { useTranslation } from "react-i18next";
@@ -25,8 +26,8 @@ import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer
 
 interface EditMeetingButtonProps {
   isEditing: boolean;
-  onFinishEdit: React.ReactEventHandler;
   onStartEdit: React.ReactEventHandler;
+  onFinishEdit: React.ReactEventHandler;
 }
 const EditMeetingButton = ({
   isEditing,
@@ -40,7 +41,7 @@ const EditMeetingButton = ({
   };
 
   return isEditing ? (
-    <Button onClick={onFinishEdit} {...props}>
+    <Button type="button" onClick={onFinishEdit} {...props}>
       Confirm
       <CheckSquare
         size={18}
@@ -51,7 +52,7 @@ const EditMeetingButton = ({
       />
     </Button>
   ) : (
-    <Button onClick={onStartEdit} {...props}>
+    <Button type="button" onClick={onStartEdit} {...props}>
       Edit
       <Edit size={18} sx={{ ml: 2, verticalAlign: "text-bottom" }} />
     </Button>
@@ -68,6 +69,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
   const [isEditing, setIsEditing] = useState(false);
   const { t } = useTranslation();
 
+  const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<Meeting>({
     defaultValues: {
       ...meeting,
@@ -76,6 +78,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
 
   const onSubmit = form.handleSubmit(value => {
     console.log("Meeting edited", { value, errors: form.errors });
+    setIsEditing(false);
   });
 
   if (!meeting) {
@@ -115,7 +118,9 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       )}
       <MaxWidthContainer
         bg="white"
-        as="article"
+        as={isEditing ? "form" : "article"}
+        ref={formRef as any /* as React.Ref<HTMLFormElement> */}
+        onSubmit={onSubmit}
         p={3}
         sx={{
           borderRadius: "rounded-lg",
@@ -166,16 +171,44 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
               <EditMeetingButton
                 isEditing={isEditing}
                 onStartEdit={() => setIsEditing(true)}
-                onFinishEdit={e => {
-                  setIsEditing(false);
-                  onSubmit(e);
+                onFinishEdit={() => {
+                  if (formRef.current) {
+                    formRef.current.dispatchEvent(new Event("submit"));
+                  }
                 }}
               />
             </div>
           </Flex>
-          <Heading mt={1} mb={3} contentEditable={isEditing}>
-            {meeting.title}
-          </Heading>
+          {isEditing ? (
+            <Input
+              mt={1}
+              mb={3}
+              sx={{
+                boxSizing: "border-box",
+                margin: 0,
+                padding: 0,
+                minWidth: 0,
+                // TODO: this shouldn't be copied
+                fontSize: 7,
+                letterSpacing: "-0.049375rem",
+                border: "none",
+                fontFamily: "inherit",
+                fontWeight: "heading",
+                lineHeight: "heading",
+                marginTop: "4px",
+                marginBottom: "16px",
+                backgroundColor: "background",
+                borderRadius: "rounded",
+              }}
+              name="title"
+              ref={form.register({ minLength: 4 })}
+            />
+          ) : (
+            <Heading mt={1} mb={3}>
+              {meeting.title}
+            </Heading>
+          )}
+
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
             {linkToAuthor(
               <Avatar
@@ -214,7 +247,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
               rows={5}
               sx={{ resize: "none" }}
               name="description"
-              ref={form.register}
+              ref={form.register()}
             />
           ) : (
             <p sx={{ mt: 0 }}>{meeting.description}</p>

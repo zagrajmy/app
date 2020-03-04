@@ -69,8 +69,8 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         as={`/meetings/${meeting.id}`}
         sx={{
           ...borderRadii,
-          backgroundImage:
-            meeting.image?.kind === "background" ? meeting.image.src : "none",
+          // backgroundImage: Do we need it?
+          //   meeting.image?.kind === "background" ? meeting.image.src : "none",
         }}
       />
       {meeting.image && (

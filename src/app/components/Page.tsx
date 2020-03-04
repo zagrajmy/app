@@ -14,11 +14,9 @@ export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
     <style jsx>{`
       :global(h1) {
         font-weight: 800;
-        font-size: 72px;
       }
       :global(h2) {
         font-weight: 700;
-        font-size: 56px;
         letter-spacing: -0.049375rem;
       }
     `}</style>

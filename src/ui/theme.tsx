@@ -73,6 +73,9 @@ export const theme = makeTheme({
     heading: "inherit",
     // mono
   },
+  fontWeights: {
+    heading: "bold",
+  },
   styles: {
     root: {
       fontSize: "16px",
@@ -83,6 +86,16 @@ export const theme = makeTheme({
       display: "flex",
       flexDirection: "column",
       textRendering: "optimizeLegibility",
+      // TODO:
+      h1: {
+        fontWeight: 800,
+        fontSize: 8,
+      },
+      h2: {
+        fontWeight: 700,
+        fontSize: 7,
+        letterSpacing: "-0.049375rem",
+      },
     },
   },
   buttons: {
@@ -128,11 +141,5 @@ export const theme = makeTheme({
   forms: {
     fontSize: 3,
     textarea: {},
-  },
-  heading: {
-    '&[contenteditable="true"]': {
-      backgroundColor: "background",
-      borderRadius: "rounded",
-    },
   },
 });
