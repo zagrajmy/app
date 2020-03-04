@@ -7,7 +7,7 @@ export default async function callback(
   res: NextApiResponse
 ) {
   try {
-    await auth.handleCallback(req, res, { redirectTo: "/" });
+    await auth.handleCallback(req, res, { redirectTo: req.headers.referer });
   } catch (error) {
     console.error(error);
     res.status(error.status || 400).end(error.message);
