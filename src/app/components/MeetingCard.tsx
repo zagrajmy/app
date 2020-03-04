@@ -33,6 +33,12 @@ const CardBackgroundLink = (props: LinkProps) => (
   />
 );
 
+const borderRadii = {
+  borderTopLeftRadius: "5px",
+  borderBottomLeftRadius: [0, "5px"],
+  borderTopRightRadius: ["5px", 0],
+};
+
 interface MeetingCardProps {
   meeting: Meeting;
 }
@@ -43,7 +49,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         position: "relative",
         boxShadow: "md",
         border: "1px solid rgba(0, 0, 0, 0.3)",
-        borderRadius: "6px",
+        borderRadius: "rounded-lg",
         background: "rgba(255, 255, 255, 0.9)",
         minHeight: "200px",
         display: "flex",
@@ -62,8 +68,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         href="/meetings/[id]"
         as={`/meetings/${meeting.id}`}
         sx={{
-          borderTopLeftRadius: "5px",
-          borderBottomLeftRadius: "5px",
+          ...borderRadii,
           backgroundImage:
             meeting.image?.kind === "background" ? meeting.image.src : "none",
         }}
@@ -74,14 +79,12 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
           alt=""
           bg="gray.2"
           sx={{
+            ...borderRadii,
             width: ["100%", 200],
             height: [200, "100%"],
             minHeight: 200,
             minWidth: 200,
             objectFit: "cover",
-            borderTopLeftRadius: "5px",
-            borderBottomLeftRadius: [0, "5px"],
-            borderBottomRightRadius: ["5px", 0],
           }}
         />
       )}
