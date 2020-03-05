@@ -3,6 +3,9 @@ import App, { AppContext } from "next/app";
 import nextCookies from "next-cookies";
 import React from "react";
 import { ThemeProvider as ThemeUiProvider, Styled } from "theme-ui";
+// It's a dependency of theme-ui
+// Should theme-ui reexport Global?
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Global, InterpolationWithTheme } from "@emotion/core";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 
@@ -12,6 +15,8 @@ import { auth } from "../src/app/auth";
 import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
 import { SUPPORTED_LANGUAGES, FALLBACK_LANG } from "../src/i18n";
 import { AppFooter } from "../src/app/components/AppFooter";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const globalStyles: InterpolationWithTheme<any> = {
   body: {

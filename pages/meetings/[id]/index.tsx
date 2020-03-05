@@ -13,16 +13,19 @@ import {
 import { get } from "@theme-ui/css";
 import { Edit, CheckSquare } from "react-feather";
 import { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
-import Datepicker from "react-datepicker";
+import { useForm, Controller } from "react-hook-form";
+import Datepicker, { registerLocale } from "react-datepicker";
 import { useTranslation } from "react-i18next";
 
+import pl from "date-fns/locale/pl";
 import { Id, Meeting, User } from "../../../src/app/types";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Link } from "../../../src/lib";
 import { Dl } from "../../../src/ui";
 import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer";
+
+registerLocale("pl-PL", pl);
 
 interface EditMeetingButtonProps {
   isEditing: boolean;
@@ -78,6 +81,9 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
 
   const onSubmit = form.handleSubmit(value => {
     console.log("Meeting edited", { value, errors: form.errors });
+
+    // AWAIT DB CHANGE HERE
+
     setIsEditing(false);
   });
 
@@ -94,6 +100,8 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       {children}
     </Link>
   );
+
+  const { start_time, description, title } = form.watch({ nest: true });
 
   return (
     <Page>
@@ -119,6 +127,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       <MaxWidthContainer
         bg="white"
         as={isEditing ? "form" : "article"}
+        // as="form"
         ref={formRef as any /* as React.Ref<HTMLFormElement> */}
         onSubmit={onSubmit}
         p={3}
@@ -134,39 +143,39 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
       >
         <header>
           <Flex sx={{ alignItems: "center" }}>
-            {meeting.start_time && (
-              <Flex
-                sx={{
-                  alignItems: "center",
-                  color: "gray.9",
-                  "@media (hover: hover)": {
-                    "> button": {
-                      opacity: 0.2,
-                    },
-                    ":hover > button": {
-                      opacity: 1,
-                    },
+            <Flex
+              sx={{
+                alignItems: "center",
+                color: "gray.9",
+                "@media (hover: hover)": {
+                  "> button": {
+                    opacity: 0.2,
                   },
-                }}
-              >
-                {isEditing ? (
-                  <Datepicker
-                    selected={
-                      form.getValues().start_time
-                        ? new Date(form.getValues().start_time!)
-                        : null
-                    }
-                    onChange={date => {
-                      form.setValue("date", date || undefined);
-                    }}
-                  />
-                ) : (
-                  <Text as="span" sx={{ padding: 1, fontWeight: 500 }}>
-                    {new Date(meeting.start_time).toLocaleString("pl-PL")}
-                  </Text>
-                )}
-              </Flex>
-            )}
+                  ":hover > button": {
+                    opacity: 1,
+                  },
+                },
+              }}
+            >
+              {isEditing ? (
+                <Controller
+                  name="start_time"
+                  as={Datepicker}
+                  control={form.control}
+                  showTimeSelect
+                  customInput={<Input sx={{ bg: "gray.1", border: 0 }} />}
+                  valueName="selected"
+                  defaultValue={start_time || new Date()}
+                  dateFormat="Pp"
+                  timeFormat="p"
+                  // locale="pl-PL" // TODO: Check if it's detected and respects preference
+                />
+              ) : (
+                <Text as="span" sx={{ padding: 1, fontWeight: 500 }}>
+                  {start_time && new Date(start_time).toLocaleString("pl-PL")}
+                </Text>
+              )}
+            </Flex>
             <div role="group" sx={{ marginLeft: "auto" }}>
               <EditMeetingButton
                 isEditing={isEditing}
@@ -205,7 +214,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
             />
           ) : (
             <Heading mt={1} mb={3}>
-              {meeting.title}
+              {title}
             </Heading>
           )}
 
@@ -250,7 +259,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
               ref={form.register()}
             />
           ) : (
-            <p sx={{ mt: 0 }}>{meeting.description}</p>
+            <p sx={{ mt: 0 }}>{description}</p>
           )}
         </section>
       </MaxWidthContainer>
