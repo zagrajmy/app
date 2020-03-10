@@ -19,7 +19,7 @@ const IndexPage = ({ meetings }: InitialProps) => {
   return (
     <Page>
       <Head>
-        <title>zagraj.my</title>
+        <title>{zagraj.my}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
