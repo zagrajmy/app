@@ -1,0 +1,8 @@
+schema: ./data/schema.graphql
+include: ["./data/*.gql", "./pages/*.gql", "./src/*.gql"]
+extensions:
+  endpoints:
+    dev:
+      url: ${env:HASURA_URL}/v1/graphql
+      headers:
+        "X-Hasura-Admin-Secret": ${env:HASURA_ADMIN_SECRET}

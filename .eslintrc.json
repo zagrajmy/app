@@ -1,5 +1,5 @@
 {
-  "extends": "chop-chop/prettier",
+  "extends": "chop-chop",
   "rules": {
     "sonarjs/no-duplicate-string": "off",
     "jsx-a11y/anchor-has-content": "off",
