@@ -66,7 +66,7 @@
     "execa": "^4.0.0",
     "graphql": "^14.6.0",
     "graphql-compiler": "^1.7.0",
-    "graphql-zeus": "^2.5.7",
+    "graphql-zeus": "^2.5.9",
     "graphqurl": "^0.3.3",
     "now": "^16.7.3",
     "ts-jest": "^25.2.1",
