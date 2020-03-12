@@ -1,4 +1,4 @@
-mutation CreateTestData {
+mutation CreateSpheresAndGuilds {
   firstProductionSphere: insert_nb_sphere(
     objects: { name: "zagrajmy.net", id: 1 }
     on_conflict: { constraint: nb_sphere_pkey, update_columns: name }
@@ -23,12 +23,14 @@ mutation CreateTestData {
     objects: [
       {
         id: 1
+        sphere_id: 1
         name: "RPG we Wrocławiu"
         description: "Lorem ipsum dolor sit amet"
         created_at: "now"
       }
       {
         id: 2
+        sphere_id: 1
         name: "Klub Niszowych Gier RPG"
         description: "Celem działalności klubu jest dobra zabawa grając w dobre gry RPG. Naszym preferowanym stylem są gry ze spektrum bardziej narracyjnego niż symulacyjnego lub gamistycznego.\n\nCzłonkostwo w klubie na chwile obecną jest na zaproszenie, staramy się dobierać osoby z którymi mieliśmy okazję zagrać i dobrze się grało.\nCzłonkowie klubu mogą wystąpić w dowolnym momencie.\n\nKażdy może zaproponować co ma ochotę poprowadzić oraz kiedy (dobrą praktyką jest ustalenie terminu za pomocą ankiety).\n\nW przypadku większej liczby zgłoszeń niż liczba dostępnych miejsc na sesję, organizator dobiera graczy według własnego uznania.\n\nCzłonkowie klubu są proszeni o przestrzeganie zasad fair play oraz dobrej współpracy w grupie.\n\nPodczas gier staramy się promować dobre i nowoczesne podejście do gier na przykład z sesją 0, wybranym narzędziem bezpieczeństwa, ustaleniem zasad stołu itp"
         created_at: "now"
@@ -48,12 +50,14 @@ mutation CreateTestData {
     objects: [
       {
         id: 3
+        sphere_id: 2
         name: "RPGi we Wrocku"
         description: "Test guild"
         created_at: "now"
       }
       {
         id: 4
+        sphere_id: 2
         name: "Star Wars Admirals Play Battleship"
         description: "A bunch of test accounts with names from Star Wars"
         created_at: "now"
