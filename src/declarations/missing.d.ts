@@ -701,3 +701,5 @@ declare module "@theme-ui/css" {
     args?: SystemStyleObject
   ) => (props?: CssPropsArgument) => CSS.Properties<string | 0>;
 }
+
+declare module "graphqurl";

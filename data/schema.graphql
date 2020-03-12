@@ -21,12 +21,12 @@ input Boolean_comparison_exp {
 type cr_user {
   date_joined: timestamptz!
   email: String!
-  first_name: String!
+  first_name: String
   is_active: Boolean!
   is_staff: Boolean!
   is_superuser: Boolean!
   last_login: timestamptz
-  last_name: String!
+  last_name: String
 
   # An array relationship
   nb_guild_users(
@@ -228,6 +228,9 @@ input cr_user_bool_exp {
 enum cr_user_constraint {
   # unique or primary key constraint
   cr_user_pkey
+
+  # unique or primary key constraint
+  cr_user_uuid_key
 }
 
 # input type for inserting data into table "cr_user"
@@ -701,6 +704,7 @@ type nb_guild {
     # filter the rows returned
     where: nb_meeting_bool_exp
   ): nb_meeting_aggregate!
+  sphere_id: Int!
 }
 
 # aggregated selection of "nb_guild"
@@ -748,11 +752,13 @@ input nb_guild_arr_rel_insert_input {
 # aggregate avg on columns
 type nb_guild_avg_fields {
   id: Float
+  sphere_id: Float
 }
 
 # order by avg() on columns of table "nb_guild"
 input nb_guild_avg_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # Boolean expression to filter rows from the table "nb_guild". All fields are combined with a logical 'AND'.
@@ -766,6 +772,7 @@ input nb_guild_bool_exp {
   name: String_comparison_exp
   nb_guild_users: nb_guild_user_bool_exp
   nb_meetings: nb_meeting_bool_exp
+  sphere_id: Int_comparison_exp
 }
 
 # unique or primary key constraints on table "nb_guild"
@@ -777,6 +784,7 @@ enum nb_guild_constraint {
 # input type for incrementing integer columne in table "nb_guild"
 input nb_guild_inc_input {
   id: Int
+  sphere_id: Int
 }
 
 # input type for inserting data into table "nb_guild"
@@ -787,6 +795,7 @@ input nb_guild_insert_input {
   name: String
   nb_guild_users: nb_guild_user_arr_rel_insert_input
   nb_meetings: nb_meeting_arr_rel_insert_input
+  sphere_id: Int
 }
 
 # aggregate max on columns
@@ -795,6 +804,7 @@ type nb_guild_max_fields {
   description: String
   id: Int
   name: String
+  sphere_id: Int
 }
 
 # order by max() on columns of table "nb_guild"
@@ -803,6 +813,7 @@ input nb_guild_max_order_by {
   description: order_by
   id: order_by
   name: order_by
+  sphere_id: order_by
 }
 
 # aggregate min on columns
@@ -811,6 +822,7 @@ type nb_guild_min_fields {
   description: String
   id: Int
   name: String
+  sphere_id: Int
 }
 
 # order by min() on columns of table "nb_guild"
@@ -819,6 +831,7 @@ input nb_guild_min_order_by {
   description: order_by
   id: order_by
   name: order_by
+  sphere_id: order_by
 }
 
 # response of any mutation on the table "nb_guild"
@@ -851,6 +864,7 @@ input nb_guild_order_by {
   name: order_by
   nb_guild_users_aggregate: nb_guild_user_aggregate_order_by
   nb_meetings_aggregate: nb_meeting_aggregate_order_by
+  sphere_id: order_by
 }
 
 # select columns of table "nb_guild"
@@ -866,6 +880,9 @@ enum nb_guild_select_column {
 
   # column name
   name
+
+  # column name
+  sphere_id
 }
 
 # input type for updating data in table "nb_guild"
@@ -874,46 +891,55 @@ input nb_guild_set_input {
   description: String
   id: Int
   name: String
+  sphere_id: Int
 }
 
 # aggregate stddev on columns
 type nb_guild_stddev_fields {
   id: Float
+  sphere_id: Float
 }
 
 # order by stddev() on columns of table "nb_guild"
 input nb_guild_stddev_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # aggregate stddev_pop on columns
 type nb_guild_stddev_pop_fields {
   id: Float
+  sphere_id: Float
 }
 
 # order by stddev_pop() on columns of table "nb_guild"
 input nb_guild_stddev_pop_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # aggregate stddev_samp on columns
 type nb_guild_stddev_samp_fields {
   id: Float
+  sphere_id: Float
 }
 
 # order by stddev_samp() on columns of table "nb_guild"
 input nb_guild_stddev_samp_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # aggregate sum on columns
 type nb_guild_sum_fields {
   id: Int
+  sphere_id: Int
 }
 
 # order by sum() on columns of table "nb_guild"
 input nb_guild_sum_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # update columns of table "nb_guild"
@@ -929,6 +955,9 @@ enum nb_guild_update_column {
 
   # column name
   name
+
+  # column name
+  sphere_id
 }
 
 # columns and relationships of "nb_guild_user"
@@ -1218,37 +1247,41 @@ input nb_guild_user_variance_order_by {
 # aggregate var_pop on columns
 type nb_guild_var_pop_fields {
   id: Float
+  sphere_id: Float
 }
 
 # order by var_pop() on columns of table "nb_guild"
 input nb_guild_var_pop_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # aggregate var_samp on columns
 type nb_guild_var_samp_fields {
   id: Float
+  sphere_id: Float
 }
 
 # order by var_samp() on columns of table "nb_guild"
 input nb_guild_var_samp_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # aggregate variance on columns
 type nb_guild_variance_fields {
   id: Float
+  sphere_id: Float
 }
 
 # order by variance() on columns of table "nb_guild"
 input nb_guild_variance_order_by {
   id: order_by
+  sphere_id: order_by
 }
 
 # columns and relationships of "nb_meeting"
 type nb_meeting {
-  # An object relationship
-  cr_user: cr_user!
   created_at: timestamptz!
   description: String!
   end_time: timestamptz
@@ -1296,10 +1329,9 @@ type nb_meeting {
   ): nb_meeting_user_aggregate!
 
   # An object relationship
-  nb_sphere: nb_sphere!
+  organizer: cr_user!
   organizer_id: uuid!
   publication_time: timestamptz
-  sphere_id: Int!
   start_time: timestamptz
   title: String!
   updated_at: timestamptz!
@@ -1351,14 +1383,12 @@ input nb_meeting_arr_rel_insert_input {
 type nb_meeting_avg_fields {
   guild_id: Float
   id: Float
-  sphere_id: Float
 }
 
 # order by avg() on columns of table "nb_meeting"
 input nb_meeting_avg_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # Boolean expression to filter rows from the table "nb_meeting". All fields are combined with a logical 'AND'.
@@ -1366,7 +1396,6 @@ input nb_meeting_bool_exp {
   _and: [nb_meeting_bool_exp]
   _not: nb_meeting_bool_exp
   _or: [nb_meeting_bool_exp]
-  cr_user: cr_user_bool_exp
   created_at: timestamptz_comparison_exp
   description: String_comparison_exp
   end_time: timestamptz_comparison_exp
@@ -1375,10 +1404,9 @@ input nb_meeting_bool_exp {
   location: String_comparison_exp
   nb_guild: nb_guild_bool_exp
   nb_meeting_users: nb_meeting_user_bool_exp
-  nb_sphere: nb_sphere_bool_exp
+  organizer: cr_user_bool_exp
   organizer_id: uuid_comparison_exp
   publication_time: timestamptz_comparison_exp
-  sphere_id: Int_comparison_exp
   start_time: timestamptz_comparison_exp
   title: String_comparison_exp
   updated_at: timestamptz_comparison_exp
@@ -1394,12 +1422,10 @@ enum nb_meeting_constraint {
 input nb_meeting_inc_input {
   guild_id: Int
   id: Int
-  sphere_id: Int
 }
 
 # input type for inserting data into table "nb_meeting"
 input nb_meeting_insert_input {
-  cr_user: cr_user_obj_rel_insert_input
   created_at: timestamptz
   description: String
   end_time: timestamptz
@@ -1408,10 +1434,9 @@ input nb_meeting_insert_input {
   location: String
   nb_guild: nb_guild_obj_rel_insert_input
   nb_meeting_users: nb_meeting_user_arr_rel_insert_input
-  nb_sphere: nb_sphere_obj_rel_insert_input
+  organizer: cr_user_obj_rel_insert_input
   organizer_id: uuid
   publication_time: timestamptz
-  sphere_id: Int
   start_time: timestamptz
   title: String
   updated_at: timestamptz
@@ -1426,7 +1451,6 @@ type nb_meeting_max_fields {
   id: Int
   location: String
   publication_time: timestamptz
-  sphere_id: Int
   start_time: timestamptz
   title: String
   updated_at: timestamptz
@@ -1441,7 +1465,6 @@ input nb_meeting_max_order_by {
   id: order_by
   location: order_by
   publication_time: order_by
-  sphere_id: order_by
   start_time: order_by
   title: order_by
   updated_at: order_by
@@ -1456,7 +1479,6 @@ type nb_meeting_min_fields {
   id: Int
   location: String
   publication_time: timestamptz
-  sphere_id: Int
   start_time: timestamptz
   title: String
   updated_at: timestamptz
@@ -1471,7 +1493,6 @@ input nb_meeting_min_order_by {
   id: order_by
   location: order_by
   publication_time: order_by
-  sphere_id: order_by
   start_time: order_by
   title: order_by
   updated_at: order_by
@@ -1501,7 +1522,6 @@ input nb_meeting_on_conflict {
 
 # ordering options when selecting data from "nb_meeting"
 input nb_meeting_order_by {
-  cr_user: cr_user_order_by
   created_at: order_by
   description: order_by
   end_time: order_by
@@ -1510,10 +1530,9 @@ input nb_meeting_order_by {
   location: order_by
   nb_guild: nb_guild_order_by
   nb_meeting_users_aggregate: nb_meeting_user_aggregate_order_by
-  nb_sphere: nb_sphere_order_by
+  organizer: cr_user_order_by
   organizer_id: order_by
   publication_time: order_by
-  sphere_id: order_by
   start_time: order_by
   title: order_by
   updated_at: order_by
@@ -1546,9 +1565,6 @@ enum nb_meeting_select_column {
   publication_time
 
   # column name
-  sphere_id
-
-  # column name
   start_time
 
   # column name
@@ -1568,7 +1584,6 @@ input nb_meeting_set_input {
   location: String
   organizer_id: uuid
   publication_time: timestamptz
-  sphere_id: Int
   start_time: timestamptz
   title: String
   updated_at: timestamptz
@@ -1578,56 +1593,48 @@ input nb_meeting_set_input {
 type nb_meeting_stddev_fields {
   guild_id: Float
   id: Float
-  sphere_id: Float
 }
 
 # order by stddev() on columns of table "nb_meeting"
 input nb_meeting_stddev_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # aggregate stddev_pop on columns
 type nb_meeting_stddev_pop_fields {
   guild_id: Float
   id: Float
-  sphere_id: Float
 }
 
 # order by stddev_pop() on columns of table "nb_meeting"
 input nb_meeting_stddev_pop_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # aggregate stddev_samp on columns
 type nb_meeting_stddev_samp_fields {
   guild_id: Float
   id: Float
-  sphere_id: Float
 }
 
 # order by stddev_samp() on columns of table "nb_meeting"
 input nb_meeting_stddev_samp_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # aggregate sum on columns
 type nb_meeting_sum_fields {
   guild_id: Int
   id: Int
-  sphere_id: Int
 }
 
 # order by sum() on columns of table "nb_meeting"
 input nb_meeting_sum_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # update columns of table "nb_meeting"
@@ -1655,9 +1662,6 @@ enum nb_meeting_update_column {
 
   # column name
   publication_time
-
-  # column name
-  sphere_id
 
   # column name
   start_time
@@ -1957,84 +1961,42 @@ input nb_meeting_user_variance_order_by {
 type nb_meeting_var_pop_fields {
   guild_id: Float
   id: Float
-  sphere_id: Float
 }
 
 # order by var_pop() on columns of table "nb_meeting"
 input nb_meeting_var_pop_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # aggregate var_samp on columns
 type nb_meeting_var_samp_fields {
   guild_id: Float
   id: Float
-  sphere_id: Float
 }
 
 # order by var_samp() on columns of table "nb_meeting"
 input nb_meeting_var_samp_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # aggregate variance on columns
 type nb_meeting_variance_fields {
   guild_id: Float
   id: Float
-  sphere_id: Float
 }
 
 # order by variance() on columns of table "nb_meeting"
 input nb_meeting_variance_order_by {
   guild_id: order_by
   id: order_by
-  sphere_id: order_by
 }
 
 # columns and relationships of "nb_sphere"
 type nb_sphere {
   id: Int!
   name: String!
-
-  # An array relationship
-  nb_meetings(
-    # distinct select on columns
-    distinct_on: [nb_meeting_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_meeting_order_by!]
-
-    # filter the rows returned
-    where: nb_meeting_bool_exp
-  ): [nb_meeting!]!
-
-  # An aggregated array relationship
-  nb_meetings_aggregate(
-    # distinct select on columns
-    distinct_on: [nb_meeting_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_meeting_order_by!]
-
-    # filter the rows returned
-    where: nb_meeting_bool_exp
-  ): nb_meeting_aggregate!
 
   # An array relationship
   nb_sphere_users(
@@ -2132,7 +2094,6 @@ input nb_sphere_bool_exp {
   _or: [nb_sphere_bool_exp]
   id: Int_comparison_exp
   name: String_comparison_exp
-  nb_meetings: nb_meeting_bool_exp
   nb_sphere_users: nb_sphere_users_bool_exp
 }
 
@@ -2151,7 +2112,6 @@ input nb_sphere_inc_input {
 input nb_sphere_insert_input {
   id: Int
   name: String
-  nb_meetings: nb_meeting_arr_rel_insert_input
   nb_sphere_users: nb_sphere_users_arr_rel_insert_input
 }
 
@@ -2205,7 +2165,6 @@ input nb_sphere_on_conflict {
 input nb_sphere_order_by {
   id: order_by
   name: order_by
-  nb_meetings_aggregate: nb_meeting_aggregate_order_by
   nb_sphere_users_aggregate: nb_sphere_users_aggregate_order_by
 }
 
