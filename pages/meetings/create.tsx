@@ -54,8 +54,8 @@ const CreateMeetingPage: NextPage = () => {
   );
 };
 
-CreateMeetingPage.getInitialProps = ({ req, res }) => {
-  return auth.getUserOrLogIn(req, res);
+CreateMeetingPage.getInitialProps = async ({ req, res }) => {
+  return auth.getSessionOrLogIn(req, res);
 };
 
 export default CreateMeetingPage;

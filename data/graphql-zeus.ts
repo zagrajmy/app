@@ -4571,7 +4571,7 @@ export type nb_meeting_user_aggregate_fields = {
 }
 
 export type nb_meeting_user_aggregate_order_by = {
-		avg?:nb_meeting_user_avg_order_by,
+	avg?:nb_meeting_user_avg_order_by,
 	count?:order_by,
 	max?:nb_meeting_user_max_order_by,
 	min?:nb_meeting_user_min_order_by,

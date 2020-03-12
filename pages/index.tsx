@@ -1,25 +1,24 @@
 import React from "react";
 import Head from "next/head";
 import { isAfter } from "date-fns";
-
+import { NextPage } from "next";
 import { useTranslation } from "react-i18next";
+
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
 import { Page, MeetingCard } from "../src/app/components";
 import { meetingsApi } from "../src/app/api";
 import { Meeting } from "../src/app/types";
 import { Link } from "../src/ui";
-import { hasura } from "../data/hasura";
-import { order_by } from "../data/graphql-zeus";
 
 type InitialProps = { meetings: Meeting[] };
 
-const IndexPage = ({ meetings }: InitialProps) => {
+const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
   const { t } = useTranslation();
 
   return (
     <Page>
       <Head>
-        <title>{zagraj.my}</title>
+        <title>{t("pageTitle")}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -39,7 +38,7 @@ const IndexPage = ({ meetings }: InitialProps) => {
             lineHeight: 1.15,
           }}
         >
-          zagraj.my
+          {t("pageTitle")}
         </h1>
         <p sx={{ fontSize: 4 }}>
           Smoki się same nie ubiją. Zapisz się na sesję.
