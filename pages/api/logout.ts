@@ -1,10 +1,10 @@
-import { NextApiResponse, NextApiRequest } from 'next';
+import { NextApiResponse, NextApiRequest } from "next";
 
-import { auth } from '../../src/app/auth';
+import { auth } from "../../src/app/auth";
 
 export default async function logout(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   try {
     await auth.handleLogout(req, res);

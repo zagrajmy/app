@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
 import { Theme } from "theme-ui";
+import { get } from "@theme-ui/css";
 import { Claims } from "../auth";
 import { Link } from "../../lib";
 import { UserAvatar } from "./UserAvatar";
@@ -71,7 +72,7 @@ export const Menu = ({ user, ...rest }: MenuProps) => (
         display: "flex",
         flexDirection: "column",
         boxShadow: "lg",
-        width: (theme: Theme) => theme?.space?.[6 as keyof typeof theme.space],
+        width: (theme: Theme) => get(theme, "space.6"),
         p: 1,
       }}
     >

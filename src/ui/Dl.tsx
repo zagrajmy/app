@@ -14,18 +14,24 @@ export const Dl = (props: ComponentProps<"dl">) => (
       bg: "gray.2",
 
       "dt, dd": { flex: "0 0 50%" },
-      dd: { marginLeft: 0 }
+      dd: { marginLeft: 0 },
     }}
     {...props}
   />
 );
 
-Dl.fromObject = (obj: object) => {
+const show = (x: unknown) =>
+  typeof x === "object" ? JSON.stringify(x) : String(x);
+
+/**
+ * Raw and easy presentation UI for any object
+ */
+Dl.FromObject = (props: { value: object }) => {
   return (
     <Dl>
-      {Object.entries(obj).flatMap(([k, v]) => [
+      {Object.entries(props.value).flatMap(([k, v]) => [
         <dt key={`${k}-k`}>{k}</dt>,
-        <dd key={`${k}-v`}>{v}</dd>
+        <dd key={`${k}-v`}>{show(v)}</dd>,
       ])}
     </Dl>
   );
