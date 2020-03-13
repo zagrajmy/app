@@ -2,7 +2,9 @@ import { initAuth0 } from "@auth0/nextjs-auth0";
 import { ServerResponse, IncomingMessage } from "http";
 
 import * as dotenv from "dotenv";
+
 import { Session, UserUuid } from "./types";
+import { hasura } from "../../../data/hasura";
 
 export * from "./types";
 
@@ -35,7 +37,7 @@ export let auth = (() => {
     clientId: AUTH0_CLIENT_ID!,
     clientSecret: AUTH0_CLIENT_SECRET!,
     scope: "openid profile",
-    redirectUri: "http://localhost:3000/api/logged-in",
+    redirectUri: "http://localhost:3000/api/login-callback",
     postLogoutRedirectUri: "http://localhost:3000/",
     session: {
       cookieSecret: AUTH0_COOKIE_SECRET!,
@@ -43,13 +45,13 @@ export let auth = (() => {
     },
   });
 
-  // Add `getSession` which calls hasura here.
   const getSession = async (
     req: IncomingMessage
   ): Promise<Session | undefined | null> => {
     const session = (await auth0.getSession(req)) as Session;
 
     if (session) {
+      // getCookie?
       session.user.uuid = "not-implemented-yet" as UserUuid;
     }
 
@@ -109,7 +111,10 @@ type Auth = typeof auth;
 auth =
   auth ||
   new Proxy<Auth>({} as Auth, {
+    /**
+     * @see https://github.com/auth0/nextjs-auth0/blob/master/src/instance.browser.ts
+     */
     get(_target, _property) {
-      return () => ({});
+      return () => ({ __SHOULD_NOT_BE_USED_IN_BROWSER: true });
     },
   });

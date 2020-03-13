@@ -41,7 +41,7 @@ export default class MyApp extends App<{
   static async getInitialProps({ Component, ctx }: AppContext) {
     const pageProps = await loadGetInitialProps(Component, ctx);
 
-    const cookies = nextCookies(ctx);
+    const cookies = nextCookies(ctx); // TODO: Use getCookies from nookies
 
     const lang = universalLanguageDetect({
       supportedLanguages: SUPPORTED_LANGUAGES,
