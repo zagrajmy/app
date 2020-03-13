@@ -1,6 +1,8 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useRef } from "react";
 import { Theme } from "theme-ui";
 import { get } from "@theme-ui/css";
+import useOnClickOutside from "use-onclickoutside";
+
 import { Claims } from "../auth";
 import { Link } from "../../lib";
 import { UserAvatar } from "./UserAvatar";
@@ -36,77 +38,89 @@ const Tip = () => (
 interface MenuProps extends ComponentProps<"details"> {
   user: Claims;
 }
-export const Menu = ({ user, ...rest }: MenuProps) => (
-  <details
-    sx={{
-      height: "48px",
-      width: "32px",
-      position: "relative",
-    }}
-    {...rest}
-  >
-    <summary
-      sx={{
-        display: "inline-flex",
-        cursor: "pointer",
-        listStyle: "none",
-        outline: "none",
+export const Menu = ({ user, ...rest }: MenuProps) => {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+  useOnClickOutside(detailsRef, () => {
+    if (detailsRef.current) {
+      detailsRef.current.open = false;
+    }
+  });
 
-        "::-webkit-details-marker": {
-          display: "none",
-        },
-
-        my: "8px",
-      }}
-    >
-      <UserAvatar user={user} />
-    </summary>
-    <div
+  return (
+    <details
+      ref={detailsRef}
       sx={{
-        right: 0,
-        top: "calc(100% + 2px)",
-        position: "absolute",
-        bg: "background",
-        borderRadius: 2,
-        zIndex: 2,
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "lg",
-        width: (theme: Theme) => get(theme, "space.6"),
-        p: 1,
+        height: "48px",
+        width: "32px",
+        position: "relative",
       }}
+      {...rest}
     >
-      <Tip />
-      <Link
-        href="/settings"
+      <summary
         sx={{
-          py: 2,
-          px: 3,
-          borderRadius: "rounded-sm",
-          color: "text",
-          whiteSpace: "pre",
-          textDecoration: "none",
-          transition: "background-color 200ms ease-in",
-          ":hover": { bg: "gray.2" },
+          display: "inline-flex",
+          cursor: "pointer",
+          listStyle: "none",
+          outline: "none",
+
+          "::-webkit-details-marker": {
+            display: "none",
+          },
+
+          my: "8px",
+
+          // ":focus > :first-of-type": {}, // TODO?
         }}
       >
-        Settings
-      </Link>
-      <Link
-        href="/api/logout"
+        <UserAvatar user={user} />
+      </summary>
+      <div
         sx={{
-          py: 2,
-          px: 3,
-          borderRadius: "rounded-sm",
-          color: "text",
-          whiteSpace: "pre",
-          textDecoration: "none",
-          transition: "background-color 200ms ease-in",
-          ":hover": { bg: "gray.2" },
+          right: 0,
+          top: "calc(100% + 2px)",
+          position: "absolute",
+          bg: "background",
+          borderRadius: 2,
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          boxShadow: "lg",
+          width: (theme: Theme) => get(theme, "space.6"),
+          p: 1,
         }}
       >
-        Log Out
-      </Link>
-    </div>
-  </details>
-);
+        <Tip />
+        <Link
+          href="/settings"
+          sx={{
+            py: 2,
+            px: 3,
+            borderRadius: "rounded-sm",
+            color: "text",
+            whiteSpace: "pre",
+            textDecoration: "none",
+            transition: "background-color 200ms ease-in",
+            ":hover": { bg: "gray.2" },
+          }}
+        >
+          Settings
+        </Link>
+        <Link
+          href="/api/logout"
+          sx={{
+            py: 2,
+            px: 3,
+            borderRadius: "rounded-sm",
+            color: "text",
+            whiteSpace: "pre",
+            textDecoration: "none",
+            transition: "background-color 200ms ease-in",
+            ":hover": { bg: "gray.2" },
+          }}
+        >
+          Log Out
+        </Link>
+      </div>
+    </details>
+  );
+};
