@@ -6,10 +6,16 @@ export interface UserAvatarProps extends Omit<AvatarProps, "ref"> {
   user: Pick<Claims, "name" | "nickname" | "picture">;
 }
 
-export function UserAvatar({ user, ...rest }: UserAvatarProps) {
+export function UserAvatar({ user, className, ...rest }: UserAvatarProps) {
   return (
     <Box
-      sx={{ width: 32, height: 32, borderRadius: "round", overflow: "hidden" }}
+      sx={{
+        width: 32,
+        height: 32,
+        borderRadius: "round",
+        overflow: "hidden",
+      }}
+      className={className}
     >
       <Avatar
         async

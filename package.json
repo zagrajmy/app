@@ -57,6 +57,7 @@
     "theme-ui": "^0.3.1",
     "ts-essentials": "^6.0.2",
     "use-auth0-hooks": "^0.7.0",
+    "use-onclickoutside": "^0.3.1",
     "utility-types": "^3.10.0"
   },
   "devDependencies": {
