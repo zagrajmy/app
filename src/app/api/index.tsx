@@ -98,6 +98,9 @@ export const meetings: Meeting[] = [
 ];
 
 export const meetingsApi = {
+  getUpcomingMeetings: (n: number) => {
+    // TODO: published and close to today
+  },
   getAll: () => Promise.resolve(meetings),
   get: (meetingId: Id) =>
     Promise.resolve(meetings.find(m => String(m.id) === String(meetingId))),
