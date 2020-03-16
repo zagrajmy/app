@@ -4395,10 +4395,10 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-egzek@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/egzek/-/egzek-0.1.0.tgz#24eb301e76d896a79469bdd93294eafcdc1294f5"
-  integrity sha512-G1W/P1+T/YrpqZVao64YDngy0j7xWif2vrrxvcTmyg0kNOYGXqnuidqoKQSkfrNfDPWHixBMxn4HLk1I/dqP6Q==
+egzek@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/egzek/-/egzek-1.1.0.tgz#2ed72bd4b12b53897a98c74adef8c95b36b148f0"
+  integrity sha512-+oBkstiJVgBcjur58Nc5LFvcm+6r8zEA/vuhjQHKYkdL19VQcMuLlP9GCm2Qf7M02EmUcZ1RUX8jM5zF64s23g==
 
 electron-to-chromium@^1.3.322, electron-to-chromium@^1.3.363:
   version "1.3.366"

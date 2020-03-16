@@ -64,7 +64,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@fimbul/heimdall": "^0.21.0",
     "@fimbul/wotan": "^0.21.1",
-    "egzek": "^0.1.0",
+    "egzek": "^1.1.0",
     "eslint": "^6.8.0",
     "eslint-config-chop-chop": "^2.0.0-rc.0",
     "execa": "^4.0.0",
