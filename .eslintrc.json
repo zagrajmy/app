@@ -13,6 +13,10 @@
   },
   "overrides": [
     {
+      "files": ["pages/api/**/*.ts"],
+      "rules": { "no-console": "off" }
+    },
+    {
       "files": ["pages/**/*.ts", "pages/**/*.tsx"],
       "rules": { "import/no-default-export": "off" }
     },
