@@ -45,6 +45,8 @@ export let auth = (() => {
     },
   });
 
+  // TODO: Remove me
+  // user id from session will be exactly the user_id in zagrajmy db
   const getSession = async (
     req: IncomingMessage
   ): Promise<Session | undefined | null> => {
