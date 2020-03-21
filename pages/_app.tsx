@@ -1,6 +1,6 @@
 import { universalLanguageDetect } from "@unly/universal-language-detector";
 import App, { AppContext } from "next/app";
-import nextCookies from "next-cookies";
+import { parseCookies } from "nookies";
 import React from "react";
 import { ThemeProvider as ThemeUiProvider, Styled } from "theme-ui";
 // It's a dependency of theme-ui
@@ -41,7 +41,7 @@ export default class MyApp extends App<{
   static async getInitialProps({ Component, ctx }: AppContext) {
     const pageProps = await loadGetInitialProps(Component, ctx);
 
-    const cookies = nextCookies(ctx); // TODO: Use getCookies from nookies
+    const cookies = parseCookies(ctx);
 
     const lang = universalLanguageDetect({
       supportedLanguages: SUPPORTED_LANGUAGES,
