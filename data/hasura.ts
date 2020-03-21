@@ -1,6 +1,6 @@
 import fetch from "isomorphic-unfetch";
 import { record } from "fp-ts/lib/Record";
-import { parseCookies } from "@hasparus/nookies";
+import { parseCookies } from "nookies";
 import { NextApiRequest } from "next";
 
 import { Chain } from "./graphql-zeus";

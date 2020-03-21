@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from "next";
 import { head } from "fp-ts/lib/Array";
 import * as O from "fp-ts/lib/Option";
 import { flow } from "fp-ts/lib/function";
-import { parseCookies } from "@hasparus/nookies";
+import { parseCookies } from "nookies";
 
 import { hasura, Db } from "../../data/hasura";
 import { auth, UserUuid } from "../../src/app/auth";
