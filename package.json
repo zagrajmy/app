@@ -47,7 +47,7 @@
     "prettier": "^1.19.1",
     "react": "^0.0.0-experimental-f42431abe",
     "react-datepicker": "^2.14.0",
-    "react-dom": "^0.0.0-experimental-f42431abe",
+    "react-dom": "^0.14.1",
     "react-feather": "^2.0.3",
     "react-hook-form": "^4.10.1",
     "react-i18next": "^11.3.4",
