@@ -8,8 +8,6 @@ keep the database here.
 
 # Setup
 
-In case you'd like to create your own Heroku app.
-
 ## Create the app
 
 ```
