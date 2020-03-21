@@ -1271,6 +1271,15 @@
     "@hapi/cryptiles" "4.x.x"
     "@hapi/hoek" "8.x.x"
 
+"@hasparus/nookies@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@hasparus/nookies/-/nookies-2.3.2.tgz#1903a50c749254414e79826e6bb3ab67c4938953"
+  integrity sha512-Ak6w6C7G/axtkv2fOsC/DT3tHJjNKa2oBO27XiWXcJHK/whtbQD/cp2Zg+aGWCYJ4sDumN/ZcZQ3n+h9L3rk5Q==
+  dependencies:
+    cookie "^0.4.0"
+    jsmin "^1.0.1"
+    set-cookie-parser "^2.4.3"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.0.0.tgz#10602de5570baea82f8afbfa2630b24e7a8cfe5b"
@@ -7922,15 +7931,6 @@ nom-ts@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/nom-ts/-/nom-ts-0.1.0.tgz#7a11fc375dce24bef62d8ff376f66cd167733b3c"
   integrity sha512-DSwUFrmfIhmjsBEDN0Wsc0aCU/RK4yoWyoRSTj+orGdjXMZywJ8UEbCtdAOn8S+roklXXyPEaDl1vC1L4XMjtA==
-
-nookies@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/nookies/-/nookies-2.1.1.tgz#89658d0e75d32911e1614635fa62cf3dfd002eae"
-  integrity sha512-ciGuW6z5nKRRmu3mobdoN/oKFflKuNOp2H5viAcdlE21/PxjDk/2Oo3bLq3Y10yNfr0gIvKV0rfRPqrtRSz3iw==
-  dependencies:
-    cookie "^0.4.0"
-    jsmin "^1.0.1"
-    set-cookie-parser "^2.4.3"
 
 normalize-glob@^0.0.2:
   version "0.0.2"

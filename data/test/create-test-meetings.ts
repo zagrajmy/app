@@ -2,7 +2,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import { config } from "dotenv";
-import { assert } from "ts-essentials";
 import { head, range } from "fp-ts/lib/Array";
 import * as TE from "fp-ts/lib/TaskEither";
 import { pipe } from "fp-ts/lib/pipeable";
@@ -20,11 +19,11 @@ import { randomElement } from "../../src/lib/randomElement";
 
 config();
 
-const { HASURA_URL, HASURA_ADMIN_SECRET } = process.env;
-assert(HASURA_URL && HASURA_ADMIN_SECRET);
+const ENV = "localhost";
 
 import("../hasura")
-  .then(({ hasura: { query, mutation } }) => {
+  .then(({ hasura }) => {
+    const { query, mutation } = hasura(ENV);
     const getUsers = TE.tryCatch(
       () =>
         query({

@@ -2,8 +2,8 @@ import { NextPage } from "next";
 import { Heading } from "theme-ui";
 import useSWR from "swr";
 import fetch from "isomorphic-unfetch";
-
 import { assert } from "ts-essentials";
+
 import { Page } from "../src/app/components";
 import { auth, Claims } from "../src/app/auth";
 import { Dl } from "../src/ui";
@@ -11,7 +11,7 @@ import { MaxWidthContainer } from "../src/app/components/MaxWidthContainer";
 import { useAppState } from "../src/app/store";
 import { HttpError } from "../src/lib/HttpError";
 
-type WeResponseJson = import("./api/u/we").WeResponseJson;
+type WeResponseJson = import("./api/u/me").MeResponseJson;
 
 type SettingsProps = {
   user: null | Claims;
@@ -19,7 +19,7 @@ type SettingsProps = {
 
 const Settings: NextPage<SettingsProps> = () => {
   const { user: sessionUsere } = useAppState();
-  const sameEmailUsers = useSWR("/api/u/we", url =>
+  const sameEmailUsers = useSWR("/api/u/me", url =>
     fetch(url).then(res => {
       if (res.ok) {
         // TODO: consider io-ts or typescript-is?

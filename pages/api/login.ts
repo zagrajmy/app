@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest, NextPageContext } from "next";
-import { setCookie } from "nookies";
+import { setCookie } from "@hasparus/nookies";
 
 import { auth } from "../../src/app/auth";
 import { noop } from "../../src/lib/noop";

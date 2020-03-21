@@ -1,15 +1,15 @@
-import { NextApiResponse, NextApiRequest, NextPageContext } from "next";
+import { NextApiResponse, NextApiRequest } from "next";
 import { head } from "fp-ts/lib/Array";
 import * as O from "fp-ts/lib/Option";
 import { flow } from "fp-ts/lib/function";
-import { parseCookies } from "nookies";
+import { parseCookies } from "@hasparus/nookies";
 
-import { hasura } from "../../data/hasura";
+import { hasura, Db } from "../../data/hasura";
 import { auth, UserUuid } from "../../src/app/auth";
 import { cr_user } from "../../data/graphql-zeus";
 
-const getCrUserByEmail = (email: string) =>
-  hasura
+const getCrUserByEmail = (db: Db) => (email: string) =>
+  db
     .query({
       cr_user: [{ where: { email: { _eq: email } } }, { uuid: true }],
     })
@@ -20,8 +20,8 @@ type CreateUserArg = Pick<
   cr_user,
   "uuid" | "username" | "email" | "first_name" | "last_name"
 >;
-const createUser = (user: CreateUserArg) =>
-  hasura
+const createUser = (db: Db) => (user: CreateUserArg) =>
+  db
     .mutation({
       insert_cr_user: [{ objects: [user] }, { returning: { uuid: true } }],
     })
@@ -39,12 +39,18 @@ export default async function loggedIn(
 ) {
   const session = await auth.getSession(req);
 
+  const { "zm|redirectTo": Location } = parseCookies({
+    req,
+  });
+  const db = hasura.fromNextReq(req);
+
   if (session && session.user.email_verified) {
     const { email } = session.user;
+
     // TODO: get rid of awaits, use TaskEither
 
     const [existingUser, auth0UserId] = await Promise.all([
-      getCrUserByEmail(email),
+      getCrUserByEmail(db)(email),
       auth.management
         .getUsersByEmail(email)
         .then(auth0Users =>
@@ -59,9 +65,10 @@ export default async function loggedIn(
     }
 
     let uuid: UserUuid | null = O.toNullable(existingUser)?.uuid;
+
     if (!uuid) {
       uuid = O.toNullable(
-        await createUser({
+        await createUser(db)({
           /**
            * Auth0 is the only source for our users,
            * so we use the same id for the user in zagrajmy db.
@@ -80,12 +87,6 @@ export default async function loggedIn(
       console.log(`User ${uuid} successfuly created.`);
     }
   }
-
-  // TODO: Contribute tighter types to
-  // https://github.com/maticzav/nookies/blob/master/src/index.ts
-  const { "zm|redirectTo": Location } = parseCookies(({
-    req,
-  } as any) as NextPageContext);
 
   res.writeHead(302, { Location }).end();
 }
