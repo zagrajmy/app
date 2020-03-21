@@ -4,7 +4,6 @@ import { ServerResponse, IncomingMessage } from "http";
 import * as dotenv from "dotenv";
 
 import { Session, UserUuid } from "./types";
-import { hasura } from "../../../data/hasura";
 
 export * from "./types";
 
