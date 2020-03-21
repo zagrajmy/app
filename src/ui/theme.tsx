@@ -1,18 +1,16 @@
-import * as themeUi from "theme-ui";
+import { Theme as ThemeUITheme, useThemeUI, SxStyleProp } from "theme-ui";
+import { ContextValue } from "@theme-ui/core";
 
 declare module "theme-ui" {
   export interface Theme {
     useCustomProperties?: boolean;
     forms: {
-      textarea: themeUi.SxStyleProp;
+      textarea: SxStyleProp;
     };
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  export function useThemeUI(): { theme: typeof theme };
 }
 
-const makeTheme = <T extends themeUi.Theme>(t: T): T => t;
+const makeTheme = <T extends ThemeUITheme>(t: T): T => t;
 
 export const theme = makeTheme({
   useCustomProperties: true,
@@ -143,3 +141,10 @@ export const theme = makeTheme({
     textarea: {},
   },
 });
+
+export type Theme = typeof theme;
+interface ThemeCtx extends Omit<ContextValue, "theme"> {
+  theme: Theme;
+}
+// TODO: Make sure we deepmerge our base theme with user theme in the future
+export const useTheme = (useThemeUI as unknown) as () => ThemeCtx;
