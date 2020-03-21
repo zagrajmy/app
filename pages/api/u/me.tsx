@@ -10,9 +10,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { auth, User } from "../../../src/app/auth";
 
-export type WeResponseJson = { users: User[] };
+export type MeResponseJson = { users: User[] };
 
-export default async function we(req: NextApiRequest, res: NextApiResponse) {
+export default async function me(req: NextApiRequest, res: NextApiResponse) {
   try {
     const session = await auth.getSession(req);
 
@@ -25,7 +25,7 @@ export default async function we(req: NextApiRequest, res: NextApiResponse) {
 
     const users = await auth.management.getUsersByEmail(session.user.email);
 
-    const json: WeResponseJson = { users };
+    const json: MeResponseJson = { users };
     return res.json(json);
   } catch (error) {
     console.error(error);
