@@ -10,12 +10,11 @@ import {
 import { OmitByValue } from "utility-types";
 
 import { useTranslation } from "react-i18next";
-import { meetings_meeting as Meeting } from "../../data/graphql-zeus";
+import { nb_meeting as Meeting } from "../../data/graphql-zeus";
 import { Page } from "../../src/app/components";
 import { auth } from "../../src/app/auth";
 
 const GUILD_ID = 1; // TODO
-const SPHERE_ID = 1; // TODO
 
 interface InputProps extends Omit<ThInputProps, "name"> {
   name: keyof OmitByValue<Meeting, object>;
@@ -27,7 +26,6 @@ const CreateMeetingPage: NextPage = () => {
   const { register, handleSubmit, errors, getValues } = useForm<Meeting>({
     defaultValues: {
       guild_id: GUILD_ID,
-      sphere_id: SPHERE_ID,
     },
   });
 
