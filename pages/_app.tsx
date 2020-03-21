@@ -64,6 +64,7 @@ export default class MyApp extends App<{
 
   render() {
     const { Component, pageProps, appState } = this.props;
+
     return (
       <ThemeUiProvider theme={theme}>
         <Global styles={globalStyles} />
