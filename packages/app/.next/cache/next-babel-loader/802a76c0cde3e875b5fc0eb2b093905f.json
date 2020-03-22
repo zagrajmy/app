@@ -1,1 +1,0 @@
-{"ast":null,"code":"// TODO: Codegen parts of this from the API in the future\nexport const User = {\n  avatar(u) {\n    return u.avatar || `${false ? window.location.origin : \"https://zagrajmy.now.sh\"}/api/u/avatar/${u.slug}`;\n  }\n\n};","map":null,"metadata":{},"sourceType":"module"}

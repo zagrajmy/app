@@ -9,7 +9,8 @@
         "components": ["Link"]
       }
     ],
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "react/prop-types": "off"
   },
   "overrides": [
     {
@@ -17,10 +18,15 @@
       "rules": { "no-console": "off" }
     },
     {
-      "files": ["packages/app/pages/**/*.ts", "packages/app/pages/**/*.tsx"],
+      "files": [
+        "packages/app/pages/**/*.ts",
+        "packages/app/pages/**/*.tsx",
+        "**/gatsby-theme-*/**"
+      ],
       "rules": { "import/no-default-export": "off" }
     },
     {
+      // allow default exports in shadowed files
       "files": ["packages/app/scripts/**/*.ts"],
       "rules": { "import/no-extraneous-dependencies": "off" }
     }

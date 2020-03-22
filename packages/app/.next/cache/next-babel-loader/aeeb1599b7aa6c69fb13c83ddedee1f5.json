@@ -1,1 +1,0 @@
-{"ast":null,"code":"export function match(key) {\n  return function match1(value, cases) {\n    return cases[value[key]](value);\n  };\n}\nexport var matchType = match(\"type\");\nexport var matchKind = match(\"kind\");","map":null,"metadata":{},"sourceType":"module"}
