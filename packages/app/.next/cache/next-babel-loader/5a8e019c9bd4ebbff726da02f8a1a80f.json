@@ -1,0 +1,1 @@
+{"ast":null,"code":"export function match(key) {\n  return function match1(value, cases) {\n    return cases[value[key]](value);\n  };\n}\nexport const matchType = match(\"type\");\nexport const matchKind = match(\"kind\");","map":null,"metadata":{},"sourceType":"module"}

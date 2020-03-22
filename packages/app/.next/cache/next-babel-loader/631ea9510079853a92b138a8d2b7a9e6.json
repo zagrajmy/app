@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class HttpError extends Error {\n  constructor(response) {\n    super(response.statusText);\n    this.response = response;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
