@@ -5,10 +5,12 @@ import { assert } from "ts-essentials";
 config();
 
 const { HASURA_URL, HASURA_ADMIN_SECRET } = process.env;
-assert(HASURA_URL && HASURA_ADMIN_SECRET);
+assert(HASURA_URL);
 
 exec(`
-  gq ${HASURA_URL}/v1/graphql --introspect -H "X-Hasura-Admin-Secret: ${HASURA_ADMIN_SECRET}" > data/schema.graphql
+  gq ${HASURA_URL}/v1/graphql --introspect ${
+  HASURA_ADMIN_SECRET ? `-H X-Hasura-Admin-Secret: ${HASURA_ADMIN_SECRET}` : ""
+} > data/schema.graphql
 `);
 
 declare global {

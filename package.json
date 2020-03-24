@@ -10,6 +10,8 @@
     "packages/*"
   ],
   "scripts": {
+    "app": "yarn workspace @zagrajmy/app",
+    "docs": "yarn workspace @zagrajmy/docs",
     "build": "lerna run build",
     "lint": "lerna run lint",
     "typecheck": "lerna run typecheck",

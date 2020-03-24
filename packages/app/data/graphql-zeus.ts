@@ -2,181 +2,366 @@
 /* eslint-disable */
 
 export type ValueTypes = {
-    ["Boolean_comparison_exp"]: {
-	_eq?:boolean,
-	_gt?:boolean,
-	_gte?:boolean,
-	_in?:boolean[],
-	_is_null?:boolean,
-	_lt?:boolean,
-	_lte?:boolean,
-	_neq?:boolean,
-	_nin?:boolean[]
-};
-	["cr_user"]: AliasType<{
-	date_joined?:true,
-	email?:true,
-	first_name?:true,
-	is_active?:true,
-	is_staff?:true,
-	is_superuser?:true,
-	last_login?:true,
-	last_name?:true,
-nb_guild_users?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user"]],
-nb_guild_users_aggregate?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user_aggregate"]],
-nb_meeting_users?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user"]],
-nb_meeting_users_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user_aggregate"]],
-nb_meetings?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting"]],
-nb_meetings_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting_aggregate"]],
-nb_sphere_users?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users"]],
-nb_sphere_users_aggregate?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users_aggregate"]],
-	password?:true,
-	username?:true,
-	uuid?:true
+    ["guild"]: AliasType<{
+	created_at?:true,
+	description?:true,
+guild_members?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member"]],
+guild_members_aggregate?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member_aggregate"]],
+	id?:true,
+meetings?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting"]],
+meetings_aggregate?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting_aggregate"]],
+	name?:true,
+	updated_at?:true
 		__typename?: true
 }>;
-	["cr_user_aggregate"]: AliasType<{
-	aggregate?:ValueTypes["cr_user_aggregate_fields"],
-	nodes?:ValueTypes["cr_user"]
+	["guild_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["guild_aggregate_fields"],
+	nodes?:ValueTypes["guild"]
 		__typename?: true
 }>;
-	["cr_user_aggregate_fields"]: AliasType<{
-count?: [{	columns?:ValueTypes["cr_user_select_column"][],	distinct?:boolean},true],
-	max?:ValueTypes["cr_user_max_fields"],
-	min?:ValueTypes["cr_user_min_fields"]
+	["guild_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["guild_avg_fields"],
+count?: [{	columns?:ValueTypes["guild_select_column"][],	distinct?:boolean},true],
+	max?:ValueTypes["guild_max_fields"],
+	min?:ValueTypes["guild_min_fields"],
+	stddev?:ValueTypes["guild_stddev_fields"],
+	stddev_pop?:ValueTypes["guild_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["guild_stddev_samp_fields"],
+	sum?:ValueTypes["guild_sum_fields"],
+	var_pop?:ValueTypes["guild_var_pop_fields"],
+	var_samp?:ValueTypes["guild_var_samp_fields"],
+	variance?:ValueTypes["guild_variance_fields"]
 		__typename?: true
 }>;
-	["cr_user_aggregate_order_by"]: {
+	["guild_aggregate_order_by"]: {
+	avg?:ValueTypes["guild_avg_order_by"],
 	count?:ValueTypes["order_by"],
-	max?:ValueTypes["cr_user_max_order_by"],
-	min?:ValueTypes["cr_user_min_order_by"]
+	max?:ValueTypes["guild_max_order_by"],
+	min?:ValueTypes["guild_min_order_by"],
+	stddev?:ValueTypes["guild_stddev_order_by"],
+	stddev_pop?:ValueTypes["guild_stddev_pop_order_by"],
+	stddev_samp?:ValueTypes["guild_stddev_samp_order_by"],
+	sum?:ValueTypes["guild_sum_order_by"],
+	var_pop?:ValueTypes["guild_var_pop_order_by"],
+	var_samp?:ValueTypes["guild_var_samp_order_by"],
+	variance?:ValueTypes["guild_variance_order_by"]
 };
-	["cr_user_arr_rel_insert_input"]: {
-	data:ValueTypes["cr_user_insert_input"][],
-	on_conflict?:ValueTypes["cr_user_on_conflict"]
+	["guild_arr_rel_insert_input"]: {
+	data:ValueTypes["guild_insert_input"][],
+	on_conflict?:ValueTypes["guild_on_conflict"]
 };
-	["cr_user_bool_exp"]: {
-	_and?:(ValueTypes["cr_user_bool_exp"] | undefined)[],
-	_not?:ValueTypes["cr_user_bool_exp"],
-	_or?:(ValueTypes["cr_user_bool_exp"] | undefined)[],
-	date_joined?:ValueTypes["timestamptz_comparison_exp"],
-	email?:ValueTypes["String_comparison_exp"],
-	first_name?:ValueTypes["String_comparison_exp"],
-	is_active?:ValueTypes["Boolean_comparison_exp"],
-	is_staff?:ValueTypes["Boolean_comparison_exp"],
-	is_superuser?:ValueTypes["Boolean_comparison_exp"],
-	last_login?:ValueTypes["timestamptz_comparison_exp"],
-	last_name?:ValueTypes["String_comparison_exp"],
-	nb_guild_users?:ValueTypes["nb_guild_user_bool_exp"],
-	nb_meeting_users?:ValueTypes["nb_meeting_user_bool_exp"],
-	nb_meetings?:ValueTypes["nb_meeting_bool_exp"],
-	nb_sphere_users?:ValueTypes["nb_sphere_users_bool_exp"],
-	password?:ValueTypes["String_comparison_exp"],
-	username?:ValueTypes["String_comparison_exp"],
-	uuid?:ValueTypes["uuid_comparison_exp"]
-};
-	["cr_user_constraint"]:cr_user_constraint;
-	["cr_user_insert_input"]: {
-	date_joined?:ValueTypes["timestamptz"],
-	email?:string,
-	first_name?:string,
-	is_active?:boolean,
-	is_staff?:boolean,
-	is_superuser?:boolean,
-	last_login?:ValueTypes["timestamptz"],
-	last_name?:string,
-	nb_guild_users?:ValueTypes["nb_guild_user_arr_rel_insert_input"],
-	nb_meeting_users?:ValueTypes["nb_meeting_user_arr_rel_insert_input"],
-	nb_meetings?:ValueTypes["nb_meeting_arr_rel_insert_input"],
-	nb_sphere_users?:ValueTypes["nb_sphere_users_arr_rel_insert_input"],
-	password?:string,
-	username?:string,
-	uuid?:ValueTypes["uuid"]
-};
-	["cr_user_max_fields"]: AliasType<{
-	date_joined?:true,
-	email?:true,
-	first_name?:true,
-	last_login?:true,
-	last_name?:true,
-	password?:true,
-	username?:true
+	["guild_avg_fields"]: AliasType<{
+	id?:true
 		__typename?: true
 }>;
-	["cr_user_max_order_by"]: {
-	date_joined?:ValueTypes["order_by"],
-	email?:ValueTypes["order_by"],
-	first_name?:ValueTypes["order_by"],
-	last_login?:ValueTypes["order_by"],
-	last_name?:ValueTypes["order_by"],
-	password?:ValueTypes["order_by"],
-	username?:ValueTypes["order_by"]
+	["guild_avg_order_by"]: {
+	id?:ValueTypes["order_by"]
 };
-	["cr_user_min_fields"]: AliasType<{
-	date_joined?:true,
-	email?:true,
-	first_name?:true,
-	last_login?:true,
-	last_name?:true,
-	password?:true,
-	username?:true
+	["guild_bool_exp"]: {
+	_and?:(ValueTypes["guild_bool_exp"] | undefined)[],
+	_not?:ValueTypes["guild_bool_exp"],
+	_or?:(ValueTypes["guild_bool_exp"] | undefined)[],
+	created_at?:ValueTypes["timestamptz_comparison_exp"],
+	description?:ValueTypes["String_comparison_exp"],
+	guild_members?:ValueTypes["guild_member_bool_exp"],
+	id?:ValueTypes["Int_comparison_exp"],
+	meetings?:ValueTypes["meeting_bool_exp"],
+	name?:ValueTypes["String_comparison_exp"],
+	updated_at?:ValueTypes["timestamptz_comparison_exp"]
+};
+	["guild_constraint"]:guild_constraint;
+	["guild_inc_input"]: {
+	id?:number
+};
+	["guild_insert_input"]: {
+	created_at?:ValueTypes["timestamptz"],
+	description?:string,
+	guild_members?:ValueTypes["guild_member_arr_rel_insert_input"],
+	id?:number,
+	meetings?:ValueTypes["meeting_arr_rel_insert_input"],
+	name?:string,
+	updated_at?:ValueTypes["timestamptz"]
+};
+	["guild_max_fields"]: AliasType<{
+	created_at?:true,
+	description?:true,
+	id?:true,
+	name?:true,
+	updated_at?:true
 		__typename?: true
 }>;
-	["cr_user_min_order_by"]: {
-	date_joined?:ValueTypes["order_by"],
-	email?:ValueTypes["order_by"],
-	first_name?:ValueTypes["order_by"],
-	last_login?:ValueTypes["order_by"],
-	last_name?:ValueTypes["order_by"],
-	password?:ValueTypes["order_by"],
-	username?:ValueTypes["order_by"]
+	["guild_max_order_by"]: {
+	created_at?:ValueTypes["order_by"],
+	description?:ValueTypes["order_by"],
+	id?:ValueTypes["order_by"],
+	name?:ValueTypes["order_by"],
+	updated_at?:ValueTypes["order_by"]
 };
-	["cr_user_mutation_response"]: AliasType<{
+	["guild_member"]: AliasType<{
+	guild?:ValueTypes["guild"],
+	guild_id?:true,
+	member_id?:true,
+	user?:ValueTypes["user"]
+		__typename?: true
+}>;
+	["guild_member_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["guild_member_aggregate_fields"],
+	nodes?:ValueTypes["guild_member"]
+		__typename?: true
+}>;
+	["guild_member_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["guild_member_avg_fields"],
+count?: [{	columns?:ValueTypes["guild_member_select_column"][],	distinct?:boolean},true],
+	max?:ValueTypes["guild_member_max_fields"],
+	min?:ValueTypes["guild_member_min_fields"],
+	stddev?:ValueTypes["guild_member_stddev_fields"],
+	stddev_pop?:ValueTypes["guild_member_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["guild_member_stddev_samp_fields"],
+	sum?:ValueTypes["guild_member_sum_fields"],
+	var_pop?:ValueTypes["guild_member_var_pop_fields"],
+	var_samp?:ValueTypes["guild_member_var_samp_fields"],
+	variance?:ValueTypes["guild_member_variance_fields"]
+		__typename?: true
+}>;
+	["guild_member_aggregate_order_by"]: {
+	avg?:ValueTypes["guild_member_avg_order_by"],
+	count?:ValueTypes["order_by"],
+	max?:ValueTypes["guild_member_max_order_by"],
+	min?:ValueTypes["guild_member_min_order_by"],
+	stddev?:ValueTypes["guild_member_stddev_order_by"],
+	stddev_pop?:ValueTypes["guild_member_stddev_pop_order_by"],
+	stddev_samp?:ValueTypes["guild_member_stddev_samp_order_by"],
+	sum?:ValueTypes["guild_member_sum_order_by"],
+	var_pop?:ValueTypes["guild_member_var_pop_order_by"],
+	var_samp?:ValueTypes["guild_member_var_samp_order_by"],
+	variance?:ValueTypes["guild_member_variance_order_by"]
+};
+	["guild_member_arr_rel_insert_input"]: {
+	data:ValueTypes["guild_member_insert_input"][],
+	on_conflict?:ValueTypes["guild_member_on_conflict"]
+};
+	["guild_member_avg_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_avg_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_member_bool_exp"]: {
+	_and?:(ValueTypes["guild_member_bool_exp"] | undefined)[],
+	_not?:ValueTypes["guild_member_bool_exp"],
+	_or?:(ValueTypes["guild_member_bool_exp"] | undefined)[],
+	guild?:ValueTypes["guild_bool_exp"],
+	guild_id?:ValueTypes["Int_comparison_exp"],
+	member_id?:ValueTypes["uuid_comparison_exp"],
+	user?:ValueTypes["user_bool_exp"]
+};
+	["guild_member_constraint"]:guild_member_constraint;
+	["guild_member_inc_input"]: {
+	guild_id?:number
+};
+	["guild_member_insert_input"]: {
+	guild?:ValueTypes["guild_obj_rel_insert_input"],
+	guild_id?:number,
+	member_id?:ValueTypes["uuid"],
+	user?:ValueTypes["user_obj_rel_insert_input"]
+};
+	["guild_member_max_fields"]: AliasType<{
+	guild_id?:true,
+	member_id?:true
+		__typename?: true
+}>;
+	["guild_member_max_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
+	member_id?:ValueTypes["order_by"]
+};
+	["guild_member_min_fields"]: AliasType<{
+	guild_id?:true,
+	member_id?:true
+		__typename?: true
+}>;
+	["guild_member_min_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
+	member_id?:ValueTypes["order_by"]
+};
+	["guild_member_mutation_response"]: AliasType<{
 	affected_rows?:true,
-	returning?:ValueTypes["cr_user"]
+	returning?:ValueTypes["guild_member"]
 		__typename?: true
 }>;
-	["cr_user_obj_rel_insert_input"]: {
-	data:ValueTypes["cr_user_insert_input"],
-	on_conflict?:ValueTypes["cr_user_on_conflict"]
+	["guild_member_obj_rel_insert_input"]: {
+	data:ValueTypes["guild_member_insert_input"],
+	on_conflict?:ValueTypes["guild_member_on_conflict"]
 };
-	["cr_user_on_conflict"]: {
-	constraint:ValueTypes["cr_user_constraint"],
-	update_columns:ValueTypes["cr_user_update_column"][],
-	where?:ValueTypes["cr_user_bool_exp"]
+	["guild_member_on_conflict"]: {
+	constraint:ValueTypes["guild_member_constraint"],
+	update_columns:ValueTypes["guild_member_update_column"][],
+	where?:ValueTypes["guild_member_bool_exp"]
 };
-	["cr_user_order_by"]: {
-	date_joined?:ValueTypes["order_by"],
-	email?:ValueTypes["order_by"],
-	first_name?:ValueTypes["order_by"],
-	is_active?:ValueTypes["order_by"],
-	is_staff?:ValueTypes["order_by"],
-	is_superuser?:ValueTypes["order_by"],
-	last_login?:ValueTypes["order_by"],
-	last_name?:ValueTypes["order_by"],
-	nb_guild_users_aggregate?:ValueTypes["nb_guild_user_aggregate_order_by"],
-	nb_meeting_users_aggregate?:ValueTypes["nb_meeting_user_aggregate_order_by"],
-	nb_meetings_aggregate?:ValueTypes["nb_meeting_aggregate_order_by"],
-	nb_sphere_users_aggregate?:ValueTypes["nb_sphere_users_aggregate_order_by"],
-	password?:ValueTypes["order_by"],
-	username?:ValueTypes["order_by"],
-	uuid?:ValueTypes["order_by"]
+	["guild_member_order_by"]: {
+	guild?:ValueTypes["guild_order_by"],
+	guild_id?:ValueTypes["order_by"],
+	member_id?:ValueTypes["order_by"],
+	user?:ValueTypes["user_order_by"]
 };
-	["cr_user_select_column"]:cr_user_select_column;
-	["cr_user_set_input"]: {
-	date_joined?:ValueTypes["timestamptz"],
-	email?:string,
-	first_name?:string,
-	is_active?:boolean,
-	is_staff?:boolean,
-	is_superuser?:boolean,
-	last_login?:ValueTypes["timestamptz"],
-	last_name?:string,
-	password?:string,
-	username?:string,
-	uuid?:ValueTypes["uuid"]
+	["guild_member_pk_columns_input"]: {
+	guild_id:number,
+	member_id:ValueTypes["uuid"]
 };
-	["cr_user_update_column"]:cr_user_update_column;
+	["guild_member_select_column"]:guild_member_select_column;
+	["guild_member_set_input"]: {
+	guild_id?:number,
+	member_id?:ValueTypes["uuid"]
+};
+	["guild_member_stddev_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_stddev_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_member_stddev_pop_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_stddev_pop_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_member_stddev_samp_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_stddev_samp_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_member_sum_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_sum_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_member_update_column"]:guild_member_update_column;
+	["guild_member_var_pop_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_var_pop_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_member_var_samp_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_var_samp_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_member_variance_fields"]: AliasType<{
+	guild_id?:true
+		__typename?: true
+}>;
+	["guild_member_variance_order_by"]: {
+	guild_id?:ValueTypes["order_by"]
+};
+	["guild_min_fields"]: AliasType<{
+	created_at?:true,
+	description?:true,
+	id?:true,
+	name?:true,
+	updated_at?:true
+		__typename?: true
+}>;
+	["guild_min_order_by"]: {
+	created_at?:ValueTypes["order_by"],
+	description?:ValueTypes["order_by"],
+	id?:ValueTypes["order_by"],
+	name?:ValueTypes["order_by"],
+	updated_at?:ValueTypes["order_by"]
+};
+	["guild_mutation_response"]: AliasType<{
+	affected_rows?:true,
+	returning?:ValueTypes["guild"]
+		__typename?: true
+}>;
+	["guild_obj_rel_insert_input"]: {
+	data:ValueTypes["guild_insert_input"],
+	on_conflict?:ValueTypes["guild_on_conflict"]
+};
+	["guild_on_conflict"]: {
+	constraint:ValueTypes["guild_constraint"],
+	update_columns:ValueTypes["guild_update_column"][],
+	where?:ValueTypes["guild_bool_exp"]
+};
+	["guild_order_by"]: {
+	created_at?:ValueTypes["order_by"],
+	description?:ValueTypes["order_by"],
+	guild_members_aggregate?:ValueTypes["guild_member_aggregate_order_by"],
+	id?:ValueTypes["order_by"],
+	meetings_aggregate?:ValueTypes["meeting_aggregate_order_by"],
+	name?:ValueTypes["order_by"],
+	updated_at?:ValueTypes["order_by"]
+};
+	["guild_pk_columns_input"]: {
+	id:number
+};
+	["guild_select_column"]:guild_select_column;
+	["guild_set_input"]: {
+	created_at?:ValueTypes["timestamptz"],
+	description?:string,
+	id?:number,
+	name?:string,
+	updated_at?:ValueTypes["timestamptz"]
+};
+	["guild_stddev_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["guild_stddev_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["guild_stddev_pop_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["guild_stddev_pop_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["guild_stddev_samp_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["guild_stddev_samp_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["guild_sum_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["guild_sum_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["guild_update_column"]:guild_update_column;
+	["guild_var_pop_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["guild_var_pop_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["guild_var_samp_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["guild_var_samp_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["guild_variance_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["guild_variance_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
 	["Int_comparison_exp"]: {
 	_eq?:number,
 	_gt?:number,
@@ -188,1253 +373,693 @@ count?: [{	columns?:ValueTypes["cr_user_select_column"][],	distinct?:boolean},tr
 	_neq?:number,
 	_nin?:number[]
 };
-	["mutation_root"]: AliasType<{
-delete_cr_user?: [{	where:ValueTypes["cr_user_bool_exp"]},ValueTypes["cr_user_mutation_response"]],
-delete_nb_guild?: [{	where:ValueTypes["nb_guild_bool_exp"]},ValueTypes["nb_guild_mutation_response"]],
-delete_nb_guild_user?: [{	where:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user_mutation_response"]],
-delete_nb_meeting?: [{	where:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting_mutation_response"]],
-delete_nb_meeting_user?: [{	where:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user_mutation_response"]],
-delete_nb_sphere?: [{	where:ValueTypes["nb_sphere_bool_exp"]},ValueTypes["nb_sphere_mutation_response"]],
-delete_nb_sphere_users?: [{	where:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users_mutation_response"]],
-insert_cr_user?: [{	objects:ValueTypes["cr_user_insert_input"][],	on_conflict?:ValueTypes["cr_user_on_conflict"]},ValueTypes["cr_user_mutation_response"]],
-insert_nb_guild?: [{	objects:ValueTypes["nb_guild_insert_input"][],	on_conflict?:ValueTypes["nb_guild_on_conflict"]},ValueTypes["nb_guild_mutation_response"]],
-insert_nb_guild_user?: [{	objects:ValueTypes["nb_guild_user_insert_input"][],	on_conflict?:ValueTypes["nb_guild_user_on_conflict"]},ValueTypes["nb_guild_user_mutation_response"]],
-insert_nb_meeting?: [{	objects:ValueTypes["nb_meeting_insert_input"][],	on_conflict?:ValueTypes["nb_meeting_on_conflict"]},ValueTypes["nb_meeting_mutation_response"]],
-insert_nb_meeting_user?: [{	objects:ValueTypes["nb_meeting_user_insert_input"][],	on_conflict?:ValueTypes["nb_meeting_user_on_conflict"]},ValueTypes["nb_meeting_user_mutation_response"]],
-insert_nb_sphere?: [{	objects:ValueTypes["nb_sphere_insert_input"][],	on_conflict?:ValueTypes["nb_sphere_on_conflict"]},ValueTypes["nb_sphere_mutation_response"]],
-insert_nb_sphere_users?: [{	objects:ValueTypes["nb_sphere_users_insert_input"][],	on_conflict?:ValueTypes["nb_sphere_users_on_conflict"]},ValueTypes["nb_sphere_users_mutation_response"]],
-update_cr_user?: [{	_set?:ValueTypes["cr_user_set_input"],	where:ValueTypes["cr_user_bool_exp"]},ValueTypes["cr_user_mutation_response"]],
-update_nb_guild?: [{	_inc?:ValueTypes["nb_guild_inc_input"],	_set?:ValueTypes["nb_guild_set_input"],	where:ValueTypes["nb_guild_bool_exp"]},ValueTypes["nb_guild_mutation_response"]],
-update_nb_guild_user?: [{	_inc?:ValueTypes["nb_guild_user_inc_input"],	_set?:ValueTypes["nb_guild_user_set_input"],	where:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user_mutation_response"]],
-update_nb_meeting?: [{	_inc?:ValueTypes["nb_meeting_inc_input"],	_set?:ValueTypes["nb_meeting_set_input"],	where:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting_mutation_response"]],
-update_nb_meeting_user?: [{	_inc?:ValueTypes["nb_meeting_user_inc_input"],	_set?:ValueTypes["nb_meeting_user_set_input"],	where:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user_mutation_response"]],
-update_nb_sphere?: [{	_inc?:ValueTypes["nb_sphere_inc_input"],	_set?:ValueTypes["nb_sphere_set_input"],	where:ValueTypes["nb_sphere_bool_exp"]},ValueTypes["nb_sphere_mutation_response"]],
-update_nb_sphere_users?: [{	_inc?:ValueTypes["nb_sphere_users_inc_input"],	_set?:ValueTypes["nb_sphere_users_set_input"],	where:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users_mutation_response"]]
-		__typename?: true
-}>;
-	["nb_guild"]: AliasType<{
-	created_at?:true,
-	description?:true,
-	id?:true,
-	name?:true,
-nb_guild_users?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user"]],
-nb_guild_users_aggregate?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user_aggregate"]],
-nb_meetings?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting"]],
-nb_meetings_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting_aggregate"]],
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_aggregate"]: AliasType<{
-	aggregate?:ValueTypes["nb_guild_aggregate_fields"],
-	nodes?:ValueTypes["nb_guild"]
-		__typename?: true
-}>;
-	["nb_guild_aggregate_fields"]: AliasType<{
-	avg?:ValueTypes["nb_guild_avg_fields"],
-count?: [{	columns?:ValueTypes["nb_guild_select_column"][],	distinct?:boolean},true],
-	max?:ValueTypes["nb_guild_max_fields"],
-	min?:ValueTypes["nb_guild_min_fields"],
-	stddev?:ValueTypes["nb_guild_stddev_fields"],
-	stddev_pop?:ValueTypes["nb_guild_stddev_pop_fields"],
-	stddev_samp?:ValueTypes["nb_guild_stddev_samp_fields"],
-	sum?:ValueTypes["nb_guild_sum_fields"],
-	var_pop?:ValueTypes["nb_guild_var_pop_fields"],
-	var_samp?:ValueTypes["nb_guild_var_samp_fields"],
-	variance?:ValueTypes["nb_guild_variance_fields"]
-		__typename?: true
-}>;
-	["nb_guild_aggregate_order_by"]: {
-	avg?:ValueTypes["nb_guild_avg_order_by"],
-	count?:ValueTypes["order_by"],
-	max?:ValueTypes["nb_guild_max_order_by"],
-	min?:ValueTypes["nb_guild_min_order_by"],
-	stddev?:ValueTypes["nb_guild_stddev_order_by"],
-	stddev_pop?:ValueTypes["nb_guild_stddev_pop_order_by"],
-	stddev_samp?:ValueTypes["nb_guild_stddev_samp_order_by"],
-	sum?:ValueTypes["nb_guild_sum_order_by"],
-	var_pop?:ValueTypes["nb_guild_var_pop_order_by"],
-	var_samp?:ValueTypes["nb_guild_var_samp_order_by"],
-	variance?:ValueTypes["nb_guild_variance_order_by"]
-};
-	["nb_guild_arr_rel_insert_input"]: {
-	data:ValueTypes["nb_guild_insert_input"][],
-	on_conflict?:ValueTypes["nb_guild_on_conflict"]
-};
-	["nb_guild_avg_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_avg_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_bool_exp"]: {
-	_and?:(ValueTypes["nb_guild_bool_exp"] | undefined)[],
-	_not?:ValueTypes["nb_guild_bool_exp"],
-	_or?:(ValueTypes["nb_guild_bool_exp"] | undefined)[],
-	created_at?:ValueTypes["timestamptz_comparison_exp"],
-	description?:ValueTypes["String_comparison_exp"],
-	id?:ValueTypes["Int_comparison_exp"],
-	name?:ValueTypes["String_comparison_exp"],
-	nb_guild_users?:ValueTypes["nb_guild_user_bool_exp"],
-	nb_meetings?:ValueTypes["nb_meeting_bool_exp"],
-	sphere_id?:ValueTypes["Int_comparison_exp"]
-};
-	["nb_guild_constraint"]:nb_guild_constraint;
-	["nb_guild_inc_input"]: {
-	id?:number,
-	sphere_id?:number
-};
-	["nb_guild_insert_input"]: {
-	created_at?:ValueTypes["timestamptz"],
-	description?:string,
-	id?:number,
-	name?:string,
-	nb_guild_users?:ValueTypes["nb_guild_user_arr_rel_insert_input"],
-	nb_meetings?:ValueTypes["nb_meeting_arr_rel_insert_input"],
-	sphere_id?:number
-};
-	["nb_guild_max_fields"]: AliasType<{
-	created_at?:true,
-	description?:true,
-	id?:true,
-	name?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_max_order_by"]: {
-	created_at?:ValueTypes["order_by"],
-	description?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	name?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_min_fields"]: AliasType<{
-	created_at?:true,
-	description?:true,
-	id?:true,
-	name?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_min_order_by"]: {
-	created_at?:ValueTypes["order_by"],
-	description?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	name?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_mutation_response"]: AliasType<{
-	affected_rows?:true,
-	returning?:ValueTypes["nb_guild"]
-		__typename?: true
-}>;
-	["nb_guild_obj_rel_insert_input"]: {
-	data:ValueTypes["nb_guild_insert_input"],
-	on_conflict?:ValueTypes["nb_guild_on_conflict"]
-};
-	["nb_guild_on_conflict"]: {
-	constraint:ValueTypes["nb_guild_constraint"],
-	update_columns:ValueTypes["nb_guild_update_column"][],
-	where?:ValueTypes["nb_guild_bool_exp"]
-};
-	["nb_guild_order_by"]: {
-	created_at?:ValueTypes["order_by"],
-	description?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	name?:ValueTypes["order_by"],
-	nb_guild_users_aggregate?:ValueTypes["nb_guild_user_aggregate_order_by"],
-	nb_meetings_aggregate?:ValueTypes["nb_meeting_aggregate_order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_select_column"]:nb_guild_select_column;
-	["nb_guild_set_input"]: {
-	created_at?:ValueTypes["timestamptz"],
-	description?:string,
-	id?:number,
-	name?:string,
-	sphere_id?:number
-};
-	["nb_guild_stddev_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_stddev_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_stddev_pop_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_stddev_pop_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_stddev_samp_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_stddev_samp_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_sum_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_sum_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_update_column"]:nb_guild_update_column;
-	["nb_guild_user"]: AliasType<{
-	cr_user?:ValueTypes["cr_user"],
-	guild_id?:true,
-	id?:true,
-	membership_type?:true,
-	nb_guild?:ValueTypes["nb_guild"],
-	user_id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_aggregate"]: AliasType<{
-	aggregate?:ValueTypes["nb_guild_user_aggregate_fields"],
-	nodes?:ValueTypes["nb_guild_user"]
-		__typename?: true
-}>;
-	["nb_guild_user_aggregate_fields"]: AliasType<{
-	avg?:ValueTypes["nb_guild_user_avg_fields"],
-count?: [{	columns?:ValueTypes["nb_guild_user_select_column"][],	distinct?:boolean},true],
-	max?:ValueTypes["nb_guild_user_max_fields"],
-	min?:ValueTypes["nb_guild_user_min_fields"],
-	stddev?:ValueTypes["nb_guild_user_stddev_fields"],
-	stddev_pop?:ValueTypes["nb_guild_user_stddev_pop_fields"],
-	stddev_samp?:ValueTypes["nb_guild_user_stddev_samp_fields"],
-	sum?:ValueTypes["nb_guild_user_sum_fields"],
-	var_pop?:ValueTypes["nb_guild_user_var_pop_fields"],
-	var_samp?:ValueTypes["nb_guild_user_var_samp_fields"],
-	variance?:ValueTypes["nb_guild_user_variance_fields"]
-		__typename?: true
-}>;
-	["nb_guild_user_aggregate_order_by"]: {
-	avg?:ValueTypes["nb_guild_user_avg_order_by"],
-	count?:ValueTypes["order_by"],
-	max?:ValueTypes["nb_guild_user_max_order_by"],
-	min?:ValueTypes["nb_guild_user_min_order_by"],
-	stddev?:ValueTypes["nb_guild_user_stddev_order_by"],
-	stddev_pop?:ValueTypes["nb_guild_user_stddev_pop_order_by"],
-	stddev_samp?:ValueTypes["nb_guild_user_stddev_samp_order_by"],
-	sum?:ValueTypes["nb_guild_user_sum_order_by"],
-	var_pop?:ValueTypes["nb_guild_user_var_pop_order_by"],
-	var_samp?:ValueTypes["nb_guild_user_var_samp_order_by"],
-	variance?:ValueTypes["nb_guild_user_variance_order_by"]
-};
-	["nb_guild_user_arr_rel_insert_input"]: {
-	data:ValueTypes["nb_guild_user_insert_input"][],
-	on_conflict?:ValueTypes["nb_guild_user_on_conflict"]
-};
-	["nb_guild_user_avg_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_avg_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_bool_exp"]: {
-	_and?:(ValueTypes["nb_guild_user_bool_exp"] | undefined)[],
-	_not?:ValueTypes["nb_guild_user_bool_exp"],
-	_or?:(ValueTypes["nb_guild_user_bool_exp"] | undefined)[],
-	cr_user?:ValueTypes["cr_user_bool_exp"],
-	guild_id?:ValueTypes["Int_comparison_exp"],
-	id?:ValueTypes["Int_comparison_exp"],
-	membership_type?:ValueTypes["String_comparison_exp"],
-	nb_guild?:ValueTypes["nb_guild_bool_exp"],
-	user_id?:ValueTypes["uuid_comparison_exp"]
-};
-	["nb_guild_user_constraint"]:nb_guild_user_constraint;
-	["nb_guild_user_inc_input"]: {
-	guild_id?:number,
-	id?:number
-};
-	["nb_guild_user_insert_input"]: {
-	cr_user?:ValueTypes["cr_user_obj_rel_insert_input"],
-	guild_id?:number,
-	id?:number,
-	membership_type?:string,
-	nb_guild?:ValueTypes["nb_guild_obj_rel_insert_input"],
-	user_id?:ValueTypes["uuid"]
-};
-	["nb_guild_user_max_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true,
-	membership_type?:true
-		__typename?: true
-}>;
-	["nb_guild_user_max_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	membership_type?:ValueTypes["order_by"]
-};
-	["nb_guild_user_min_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true,
-	membership_type?:true
-		__typename?: true
-}>;
-	["nb_guild_user_min_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	membership_type?:ValueTypes["order_by"]
-};
-	["nb_guild_user_mutation_response"]: AliasType<{
-	affected_rows?:true,
-	returning?:ValueTypes["nb_guild_user"]
-		__typename?: true
-}>;
-	["nb_guild_user_obj_rel_insert_input"]: {
-	data:ValueTypes["nb_guild_user_insert_input"],
-	on_conflict?:ValueTypes["nb_guild_user_on_conflict"]
-};
-	["nb_guild_user_on_conflict"]: {
-	constraint:ValueTypes["nb_guild_user_constraint"],
-	update_columns:ValueTypes["nb_guild_user_update_column"][],
-	where?:ValueTypes["nb_guild_user_bool_exp"]
-};
-	["nb_guild_user_order_by"]: {
-	cr_user?:ValueTypes["cr_user_order_by"],
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	membership_type?:ValueTypes["order_by"],
-	nb_guild?:ValueTypes["nb_guild_order_by"],
-	user_id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_select_column"]:nb_guild_user_select_column;
-	["nb_guild_user_set_input"]: {
-	guild_id?:number,
-	id?:number,
-	membership_type?:string,
-	user_id?:ValueTypes["uuid"]
-};
-	["nb_guild_user_stddev_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_stddev_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_stddev_pop_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_stddev_pop_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_stddev_samp_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_stddev_samp_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_sum_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_sum_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_update_column"]:nb_guild_user_update_column;
-	["nb_guild_user_var_pop_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_var_pop_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_var_samp_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_var_samp_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_user_variance_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_guild_user_variance_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_guild_var_pop_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_var_pop_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_var_samp_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_var_samp_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_guild_variance_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_guild_variance_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_meeting"]: AliasType<{
+	["meeting"]: AliasType<{
 	created_at?:true,
 	description?:true,
 	end_time?:true,
+	guild?:ValueTypes["guild"],
 	guild_id?:true,
 	id?:true,
 	location?:true,
-	nb_guild?:ValueTypes["nb_guild"],
-nb_meeting_users?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user"]],
-nb_meeting_users_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user_aggregate"]],
-	organizer?:ValueTypes["cr_user"],
+	organizer?:ValueTypes["user"],
 	organizer_id?:true,
+participants?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant"]],
+participants_aggregate?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant_aggregate"]],
 	publication_time?:true,
+	sphere_id?:true,
 	start_time?:true,
 	title?:true,
 	updated_at?:true
 		__typename?: true
 }>;
-	["nb_meeting_aggregate"]: AliasType<{
-	aggregate?:ValueTypes["nb_meeting_aggregate_fields"],
-	nodes?:ValueTypes["nb_meeting"]
+	["meeting_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["meeting_aggregate_fields"],
+	nodes?:ValueTypes["meeting"]
 		__typename?: true
 }>;
-	["nb_meeting_aggregate_fields"]: AliasType<{
-	avg?:ValueTypes["nb_meeting_avg_fields"],
-count?: [{	columns?:ValueTypes["nb_meeting_select_column"][],	distinct?:boolean},true],
-	max?:ValueTypes["nb_meeting_max_fields"],
-	min?:ValueTypes["nb_meeting_min_fields"],
-	stddev?:ValueTypes["nb_meeting_stddev_fields"],
-	stddev_pop?:ValueTypes["nb_meeting_stddev_pop_fields"],
-	stddev_samp?:ValueTypes["nb_meeting_stddev_samp_fields"],
-	sum?:ValueTypes["nb_meeting_sum_fields"],
-	var_pop?:ValueTypes["nb_meeting_var_pop_fields"],
-	var_samp?:ValueTypes["nb_meeting_var_samp_fields"],
-	variance?:ValueTypes["nb_meeting_variance_fields"]
+	["meeting_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["meeting_avg_fields"],
+count?: [{	columns?:ValueTypes["meeting_select_column"][],	distinct?:boolean},true],
+	max?:ValueTypes["meeting_max_fields"],
+	min?:ValueTypes["meeting_min_fields"],
+	stddev?:ValueTypes["meeting_stddev_fields"],
+	stddev_pop?:ValueTypes["meeting_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["meeting_stddev_samp_fields"],
+	sum?:ValueTypes["meeting_sum_fields"],
+	var_pop?:ValueTypes["meeting_var_pop_fields"],
+	var_samp?:ValueTypes["meeting_var_samp_fields"],
+	variance?:ValueTypes["meeting_variance_fields"]
 		__typename?: true
 }>;
-	["nb_meeting_aggregate_order_by"]: {
-	avg?:ValueTypes["nb_meeting_avg_order_by"],
+	["meeting_aggregate_order_by"]: {
+	avg?:ValueTypes["meeting_avg_order_by"],
 	count?:ValueTypes["order_by"],
-	max?:ValueTypes["nb_meeting_max_order_by"],
-	min?:ValueTypes["nb_meeting_min_order_by"],
-	stddev?:ValueTypes["nb_meeting_stddev_order_by"],
-	stddev_pop?:ValueTypes["nb_meeting_stddev_pop_order_by"],
-	stddev_samp?:ValueTypes["nb_meeting_stddev_samp_order_by"],
-	sum?:ValueTypes["nb_meeting_sum_order_by"],
-	var_pop?:ValueTypes["nb_meeting_var_pop_order_by"],
-	var_samp?:ValueTypes["nb_meeting_var_samp_order_by"],
-	variance?:ValueTypes["nb_meeting_variance_order_by"]
+	max?:ValueTypes["meeting_max_order_by"],
+	min?:ValueTypes["meeting_min_order_by"],
+	stddev?:ValueTypes["meeting_stddev_order_by"],
+	stddev_pop?:ValueTypes["meeting_stddev_pop_order_by"],
+	stddev_samp?:ValueTypes["meeting_stddev_samp_order_by"],
+	sum?:ValueTypes["meeting_sum_order_by"],
+	var_pop?:ValueTypes["meeting_var_pop_order_by"],
+	var_samp?:ValueTypes["meeting_var_samp_order_by"],
+	variance?:ValueTypes["meeting_variance_order_by"]
 };
-	["nb_meeting_arr_rel_insert_input"]: {
-	data:ValueTypes["nb_meeting_insert_input"][],
-	on_conflict?:ValueTypes["nb_meeting_on_conflict"]
+	["meeting_arr_rel_insert_input"]: {
+	data:ValueTypes["meeting_insert_input"][],
+	on_conflict?:ValueTypes["meeting_on_conflict"]
 };
-	["nb_meeting_avg_fields"]: AliasType<{
+	["meeting_avg_fields"]: AliasType<{
 	guild_id?:true,
-	id?:true
+	id?:true,
+	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_meeting_avg_order_by"]: {
+	["meeting_avg_order_by"]: {
 	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
+	id?:ValueTypes["order_by"],
+	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_meeting_bool_exp"]: {
-	_and?:(ValueTypes["nb_meeting_bool_exp"] | undefined)[],
-	_not?:ValueTypes["nb_meeting_bool_exp"],
-	_or?:(ValueTypes["nb_meeting_bool_exp"] | undefined)[],
+	["meeting_bool_exp"]: {
+	_and?:(ValueTypes["meeting_bool_exp"] | undefined)[],
+	_not?:ValueTypes["meeting_bool_exp"],
+	_or?:(ValueTypes["meeting_bool_exp"] | undefined)[],
 	created_at?:ValueTypes["timestamptz_comparison_exp"],
 	description?:ValueTypes["String_comparison_exp"],
 	end_time?:ValueTypes["timestamptz_comparison_exp"],
+	guild?:ValueTypes["guild_bool_exp"],
 	guild_id?:ValueTypes["Int_comparison_exp"],
 	id?:ValueTypes["Int_comparison_exp"],
 	location?:ValueTypes["String_comparison_exp"],
-	nb_guild?:ValueTypes["nb_guild_bool_exp"],
-	nb_meeting_users?:ValueTypes["nb_meeting_user_bool_exp"],
-	organizer?:ValueTypes["cr_user_bool_exp"],
+	organizer?:ValueTypes["user_bool_exp"],
 	organizer_id?:ValueTypes["uuid_comparison_exp"],
+	participants?:ValueTypes["meeting_participant_bool_exp"],
 	publication_time?:ValueTypes["timestamptz_comparison_exp"],
+	sphere_id?:ValueTypes["Int_comparison_exp"],
 	start_time?:ValueTypes["timestamptz_comparison_exp"],
 	title?:ValueTypes["String_comparison_exp"],
 	updated_at?:ValueTypes["timestamptz_comparison_exp"]
 };
-	["nb_meeting_constraint"]:nb_meeting_constraint;
-	["nb_meeting_inc_input"]: {
+	["meeting_constraint"]:meeting_constraint;
+	["meeting_inc_input"]: {
 	guild_id?:number,
-	id?:number
-};
-	["nb_meeting_insert_input"]: {
-	created_at?:ValueTypes["timestamptz"],
-	description?:string,
-	end_time?:ValueTypes["timestamptz"],
-	guild_id?:number,
-	id?:number,
-	location?:string,
-	nb_guild?:ValueTypes["nb_guild_obj_rel_insert_input"],
-	nb_meeting_users?:ValueTypes["nb_meeting_user_arr_rel_insert_input"],
-	organizer?:ValueTypes["cr_user_obj_rel_insert_input"],
-	organizer_id?:ValueTypes["uuid"],
-	publication_time?:ValueTypes["timestamptz"],
-	start_time?:ValueTypes["timestamptz"],
-	title?:string,
-	updated_at?:ValueTypes["timestamptz"]
-};
-	["nb_meeting_max_fields"]: AliasType<{
-	created_at?:true,
-	description?:true,
-	end_time?:true,
-	guild_id?:true,
-	id?:true,
-	location?:true,
-	publication_time?:true,
-	start_time?:true,
-	title?:true,
-	updated_at?:true
-		__typename?: true
-}>;
-	["nb_meeting_max_order_by"]: {
-	created_at?:ValueTypes["order_by"],
-	description?:ValueTypes["order_by"],
-	end_time?:ValueTypes["order_by"],
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	location?:ValueTypes["order_by"],
-	publication_time?:ValueTypes["order_by"],
-	start_time?:ValueTypes["order_by"],
-	title?:ValueTypes["order_by"],
-	updated_at?:ValueTypes["order_by"]
-};
-	["nb_meeting_min_fields"]: AliasType<{
-	created_at?:true,
-	description?:true,
-	end_time?:true,
-	guild_id?:true,
-	id?:true,
-	location?:true,
-	publication_time?:true,
-	start_time?:true,
-	title?:true,
-	updated_at?:true
-		__typename?: true
-}>;
-	["nb_meeting_min_order_by"]: {
-	created_at?:ValueTypes["order_by"],
-	description?:ValueTypes["order_by"],
-	end_time?:ValueTypes["order_by"],
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	location?:ValueTypes["order_by"],
-	publication_time?:ValueTypes["order_by"],
-	start_time?:ValueTypes["order_by"],
-	title?:ValueTypes["order_by"],
-	updated_at?:ValueTypes["order_by"]
-};
-	["nb_meeting_mutation_response"]: AliasType<{
-	affected_rows?:true,
-	returning?:ValueTypes["nb_meeting"]
-		__typename?: true
-}>;
-	["nb_meeting_obj_rel_insert_input"]: {
-	data:ValueTypes["nb_meeting_insert_input"],
-	on_conflict?:ValueTypes["nb_meeting_on_conflict"]
-};
-	["nb_meeting_on_conflict"]: {
-	constraint:ValueTypes["nb_meeting_constraint"],
-	update_columns:ValueTypes["nb_meeting_update_column"][],
-	where?:ValueTypes["nb_meeting_bool_exp"]
-};
-	["nb_meeting_order_by"]: {
-	created_at?:ValueTypes["order_by"],
-	description?:ValueTypes["order_by"],
-	end_time?:ValueTypes["order_by"],
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"],
-	location?:ValueTypes["order_by"],
-	nb_guild?:ValueTypes["nb_guild_order_by"],
-	nb_meeting_users_aggregate?:ValueTypes["nb_meeting_user_aggregate_order_by"],
-	organizer?:ValueTypes["cr_user_order_by"],
-	organizer_id?:ValueTypes["order_by"],
-	publication_time?:ValueTypes["order_by"],
-	start_time?:ValueTypes["order_by"],
-	title?:ValueTypes["order_by"],
-	updated_at?:ValueTypes["order_by"]
-};
-	["nb_meeting_select_column"]:nb_meeting_select_column;
-	["nb_meeting_set_input"]: {
-	created_at?:ValueTypes["timestamptz"],
-	description?:string,
-	end_time?:ValueTypes["timestamptz"],
-	guild_id?:number,
-	id?:number,
-	location?:string,
-	organizer_id?:ValueTypes["uuid"],
-	publication_time?:ValueTypes["timestamptz"],
-	start_time?:ValueTypes["timestamptz"],
-	title?:string,
-	updated_at?:ValueTypes["timestamptz"]
-};
-	["nb_meeting_stddev_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_meeting_stddev_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_meeting_stddev_pop_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_meeting_stddev_pop_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_meeting_stddev_samp_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_meeting_stddev_samp_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_meeting_sum_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_meeting_sum_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_meeting_update_column"]:nb_meeting_update_column;
-	["nb_meeting_user"]: AliasType<{
-	cr_user?:ValueTypes["cr_user"],
-	id?:true,
-	meeting_id?:true,
-	nb_meeting?:ValueTypes["nb_meeting"],
-	status?:true,
-	user_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_aggregate"]: AliasType<{
-	aggregate?:ValueTypes["nb_meeting_user_aggregate_fields"],
-	nodes?:ValueTypes["nb_meeting_user"]
-		__typename?: true
-}>;
-	["nb_meeting_user_aggregate_fields"]: AliasType<{
-	avg?:ValueTypes["nb_meeting_user_avg_fields"],
-count?: [{	columns?:ValueTypes["nb_meeting_user_select_column"][],	distinct?:boolean},true],
-	max?:ValueTypes["nb_meeting_user_max_fields"],
-	min?:ValueTypes["nb_meeting_user_min_fields"],
-	stddev?:ValueTypes["nb_meeting_user_stddev_fields"],
-	stddev_pop?:ValueTypes["nb_meeting_user_stddev_pop_fields"],
-	stddev_samp?:ValueTypes["nb_meeting_user_stddev_samp_fields"],
-	sum?:ValueTypes["nb_meeting_user_sum_fields"],
-	var_pop?:ValueTypes["nb_meeting_user_var_pop_fields"],
-	var_samp?:ValueTypes["nb_meeting_user_var_samp_fields"],
-	variance?:ValueTypes["nb_meeting_user_variance_fields"]
-		__typename?: true
-}>;
-	["nb_meeting_user_aggregate_order_by"]: {
-	avg?:ValueTypes["nb_meeting_user_avg_order_by"],
-	count?:ValueTypes["order_by"],
-	max?:ValueTypes["nb_meeting_user_max_order_by"],
-	min?:ValueTypes["nb_meeting_user_min_order_by"],
-	stddev?:ValueTypes["nb_meeting_user_stddev_order_by"],
-	stddev_pop?:ValueTypes["nb_meeting_user_stddev_pop_order_by"],
-	stddev_samp?:ValueTypes["nb_meeting_user_stddev_samp_order_by"],
-	sum?:ValueTypes["nb_meeting_user_sum_order_by"],
-	var_pop?:ValueTypes["nb_meeting_user_var_pop_order_by"],
-	var_samp?:ValueTypes["nb_meeting_user_var_samp_order_by"],
-	variance?:ValueTypes["nb_meeting_user_variance_order_by"]
-};
-	["nb_meeting_user_arr_rel_insert_input"]: {
-	data:ValueTypes["nb_meeting_user_insert_input"][],
-	on_conflict?:ValueTypes["nb_meeting_user_on_conflict"]
-};
-	["nb_meeting_user_avg_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_avg_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_bool_exp"]: {
-	_and?:(ValueTypes["nb_meeting_user_bool_exp"] | undefined)[],
-	_not?:ValueTypes["nb_meeting_user_bool_exp"],
-	_or?:(ValueTypes["nb_meeting_user_bool_exp"] | undefined)[],
-	cr_user?:ValueTypes["cr_user_bool_exp"],
-	id?:ValueTypes["Int_comparison_exp"],
-	meeting_id?:ValueTypes["Int_comparison_exp"],
-	nb_meeting?:ValueTypes["nb_meeting_bool_exp"],
-	status?:ValueTypes["String_comparison_exp"],
-	user_id?:ValueTypes["uuid_comparison_exp"]
-};
-	["nb_meeting_user_constraint"]:nb_meeting_user_constraint;
-	["nb_meeting_user_inc_input"]: {
-	id?:number,
-	meeting_id?:number
-};
-	["nb_meeting_user_insert_input"]: {
-	cr_user?:ValueTypes["cr_user_obj_rel_insert_input"],
-	id?:number,
-	meeting_id?:number,
-	nb_meeting?:ValueTypes["nb_meeting_obj_rel_insert_input"],
-	status?:string,
-	user_id?:ValueTypes["uuid"]
-};
-	["nb_meeting_user_max_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true,
-	status?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_max_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"],
-	status?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_min_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true,
-	status?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_min_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"],
-	status?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_mutation_response"]: AliasType<{
-	affected_rows?:true,
-	returning?:ValueTypes["nb_meeting_user"]
-		__typename?: true
-}>;
-	["nb_meeting_user_obj_rel_insert_input"]: {
-	data:ValueTypes["nb_meeting_user_insert_input"],
-	on_conflict?:ValueTypes["nb_meeting_user_on_conflict"]
-};
-	["nb_meeting_user_on_conflict"]: {
-	constraint:ValueTypes["nb_meeting_user_constraint"],
-	update_columns:ValueTypes["nb_meeting_user_update_column"][],
-	where?:ValueTypes["nb_meeting_user_bool_exp"]
-};
-	["nb_meeting_user_order_by"]: {
-	cr_user?:ValueTypes["cr_user_order_by"],
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"],
-	nb_meeting?:ValueTypes["nb_meeting_order_by"],
-	status?:ValueTypes["order_by"],
-	user_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_select_column"]:nb_meeting_user_select_column;
-	["nb_meeting_user_set_input"]: {
-	id?:number,
-	meeting_id?:number,
-	status?:string,
-	user_id?:ValueTypes["uuid"]
-};
-	["nb_meeting_user_stddev_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_stddev_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_stddev_pop_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_stddev_pop_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_stddev_samp_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_stddev_samp_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_sum_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_sum_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_update_column"]:nb_meeting_user_update_column;
-	["nb_meeting_user_var_pop_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_var_pop_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_var_samp_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_var_samp_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_user_variance_fields"]: AliasType<{
-	id?:true,
-	meeting_id?:true
-		__typename?: true
-}>;
-	["nb_meeting_user_variance_order_by"]: {
-	id?:ValueTypes["order_by"],
-	meeting_id?:ValueTypes["order_by"]
-};
-	["nb_meeting_var_pop_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_meeting_var_pop_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_meeting_var_samp_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_meeting_var_samp_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_meeting_variance_fields"]: AliasType<{
-	guild_id?:true,
-	id?:true
-		__typename?: true
-}>;
-	["nb_meeting_variance_order_by"]: {
-	guild_id?:ValueTypes["order_by"],
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere"]: AliasType<{
-	id?:true,
-	name?:true,
-nb_sphere_users?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users"]],
-nb_sphere_users_aggregate?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users_aggregate"]]
-		__typename?: true
-}>;
-	["nb_sphere_aggregate"]: AliasType<{
-	aggregate?:ValueTypes["nb_sphere_aggregate_fields"],
-	nodes?:ValueTypes["nb_sphere"]
-		__typename?: true
-}>;
-	["nb_sphere_aggregate_fields"]: AliasType<{
-	avg?:ValueTypes["nb_sphere_avg_fields"],
-count?: [{	columns?:ValueTypes["nb_sphere_select_column"][],	distinct?:boolean},true],
-	max?:ValueTypes["nb_sphere_max_fields"],
-	min?:ValueTypes["nb_sphere_min_fields"],
-	stddev?:ValueTypes["nb_sphere_stddev_fields"],
-	stddev_pop?:ValueTypes["nb_sphere_stddev_pop_fields"],
-	stddev_samp?:ValueTypes["nb_sphere_stddev_samp_fields"],
-	sum?:ValueTypes["nb_sphere_sum_fields"],
-	var_pop?:ValueTypes["nb_sphere_var_pop_fields"],
-	var_samp?:ValueTypes["nb_sphere_var_samp_fields"],
-	variance?:ValueTypes["nb_sphere_variance_fields"]
-		__typename?: true
-}>;
-	["nb_sphere_aggregate_order_by"]: {
-	avg?:ValueTypes["nb_sphere_avg_order_by"],
-	count?:ValueTypes["order_by"],
-	max?:ValueTypes["nb_sphere_max_order_by"],
-	min?:ValueTypes["nb_sphere_min_order_by"],
-	stddev?:ValueTypes["nb_sphere_stddev_order_by"],
-	stddev_pop?:ValueTypes["nb_sphere_stddev_pop_order_by"],
-	stddev_samp?:ValueTypes["nb_sphere_stddev_samp_order_by"],
-	sum?:ValueTypes["nb_sphere_sum_order_by"],
-	var_pop?:ValueTypes["nb_sphere_var_pop_order_by"],
-	var_samp?:ValueTypes["nb_sphere_var_samp_order_by"],
-	variance?:ValueTypes["nb_sphere_variance_order_by"]
-};
-	["nb_sphere_arr_rel_insert_input"]: {
-	data:ValueTypes["nb_sphere_insert_input"][],
-	on_conflict?:ValueTypes["nb_sphere_on_conflict"]
-};
-	["nb_sphere_avg_fields"]: AliasType<{
-	id?:true
-		__typename?: true
-}>;
-	["nb_sphere_avg_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere_bool_exp"]: {
-	_and?:(ValueTypes["nb_sphere_bool_exp"] | undefined)[],
-	_not?:ValueTypes["nb_sphere_bool_exp"],
-	_or?:(ValueTypes["nb_sphere_bool_exp"] | undefined)[],
-	id?:ValueTypes["Int_comparison_exp"],
-	name?:ValueTypes["String_comparison_exp"],
-	nb_sphere_users?:ValueTypes["nb_sphere_users_bool_exp"]
-};
-	["nb_sphere_constraint"]:nb_sphere_constraint;
-	["nb_sphere_inc_input"]: {
-	id?:number
-};
-	["nb_sphere_insert_input"]: {
-	id?:number,
-	name?:string,
-	nb_sphere_users?:ValueTypes["nb_sphere_users_arr_rel_insert_input"]
-};
-	["nb_sphere_max_fields"]: AliasType<{
-	id?:true,
-	name?:true
-		__typename?: true
-}>;
-	["nb_sphere_max_order_by"]: {
-	id?:ValueTypes["order_by"],
-	name?:ValueTypes["order_by"]
-};
-	["nb_sphere_min_fields"]: AliasType<{
-	id?:true,
-	name?:true
-		__typename?: true
-}>;
-	["nb_sphere_min_order_by"]: {
-	id?:ValueTypes["order_by"],
-	name?:ValueTypes["order_by"]
-};
-	["nb_sphere_mutation_response"]: AliasType<{
-	affected_rows?:true,
-	returning?:ValueTypes["nb_sphere"]
-		__typename?: true
-}>;
-	["nb_sphere_obj_rel_insert_input"]: {
-	data:ValueTypes["nb_sphere_insert_input"],
-	on_conflict?:ValueTypes["nb_sphere_on_conflict"]
-};
-	["nb_sphere_on_conflict"]: {
-	constraint:ValueTypes["nb_sphere_constraint"],
-	update_columns:ValueTypes["nb_sphere_update_column"][],
-	where?:ValueTypes["nb_sphere_bool_exp"]
-};
-	["nb_sphere_order_by"]: {
-	id?:ValueTypes["order_by"],
-	name?:ValueTypes["order_by"],
-	nb_sphere_users_aggregate?:ValueTypes["nb_sphere_users_aggregate_order_by"]
-};
-	["nb_sphere_select_column"]:nb_sphere_select_column;
-	["nb_sphere_set_input"]: {
-	id?:number,
-	name?:string
-};
-	["nb_sphere_stddev_fields"]: AliasType<{
-	id?:true
-		__typename?: true
-}>;
-	["nb_sphere_stddev_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere_stddev_pop_fields"]: AliasType<{
-	id?:true
-		__typename?: true
-}>;
-	["nb_sphere_stddev_pop_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere_stddev_samp_fields"]: AliasType<{
-	id?:true
-		__typename?: true
-}>;
-	["nb_sphere_stddev_samp_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere_sum_fields"]: AliasType<{
-	id?:true
-		__typename?: true
-}>;
-	["nb_sphere_sum_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere_update_column"]:nb_sphere_update_column;
-	["nb_sphere_users"]: AliasType<{
-	cr_user?:ValueTypes["cr_user"],
-	id?:true,
-	nb_sphere?:ValueTypes["nb_sphere"],
-	sphere_id?:true,
-	user_id?:true
-		__typename?: true
-}>;
-	["nb_sphere_users_aggregate"]: AliasType<{
-	aggregate?:ValueTypes["nb_sphere_users_aggregate_fields"],
-	nodes?:ValueTypes["nb_sphere_users"]
-		__typename?: true
-}>;
-	["nb_sphere_users_aggregate_fields"]: AliasType<{
-	avg?:ValueTypes["nb_sphere_users_avg_fields"],
-count?: [{	columns?:ValueTypes["nb_sphere_users_select_column"][],	distinct?:boolean},true],
-	max?:ValueTypes["nb_sphere_users_max_fields"],
-	min?:ValueTypes["nb_sphere_users_min_fields"],
-	stddev?:ValueTypes["nb_sphere_users_stddev_fields"],
-	stddev_pop?:ValueTypes["nb_sphere_users_stddev_pop_fields"],
-	stddev_samp?:ValueTypes["nb_sphere_users_stddev_samp_fields"],
-	sum?:ValueTypes["nb_sphere_users_sum_fields"],
-	var_pop?:ValueTypes["nb_sphere_users_var_pop_fields"],
-	var_samp?:ValueTypes["nb_sphere_users_var_samp_fields"],
-	variance?:ValueTypes["nb_sphere_users_variance_fields"]
-		__typename?: true
-}>;
-	["nb_sphere_users_aggregate_order_by"]: {
-	avg?:ValueTypes["nb_sphere_users_avg_order_by"],
-	count?:ValueTypes["order_by"],
-	max?:ValueTypes["nb_sphere_users_max_order_by"],
-	min?:ValueTypes["nb_sphere_users_min_order_by"],
-	stddev?:ValueTypes["nb_sphere_users_stddev_order_by"],
-	stddev_pop?:ValueTypes["nb_sphere_users_stddev_pop_order_by"],
-	stddev_samp?:ValueTypes["nb_sphere_users_stddev_samp_order_by"],
-	sum?:ValueTypes["nb_sphere_users_sum_order_by"],
-	var_pop?:ValueTypes["nb_sphere_users_var_pop_order_by"],
-	var_samp?:ValueTypes["nb_sphere_users_var_samp_order_by"],
-	variance?:ValueTypes["nb_sphere_users_variance_order_by"]
-};
-	["nb_sphere_users_arr_rel_insert_input"]: {
-	data:ValueTypes["nb_sphere_users_insert_input"][],
-	on_conflict?:ValueTypes["nb_sphere_users_on_conflict"]
-};
-	["nb_sphere_users_avg_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_sphere_users_avg_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_sphere_users_bool_exp"]: {
-	_and?:(ValueTypes["nb_sphere_users_bool_exp"] | undefined)[],
-	_not?:ValueTypes["nb_sphere_users_bool_exp"],
-	_or?:(ValueTypes["nb_sphere_users_bool_exp"] | undefined)[],
-	cr_user?:ValueTypes["cr_user_bool_exp"],
-	id?:ValueTypes["Int_comparison_exp"],
-	nb_sphere?:ValueTypes["nb_sphere_bool_exp"],
-	sphere_id?:ValueTypes["Int_comparison_exp"],
-	user_id?:ValueTypes["uuid_comparison_exp"]
-};
-	["nb_sphere_users_constraint"]:nb_sphere_users_constraint;
-	["nb_sphere_users_inc_input"]: {
 	id?:number,
 	sphere_id?:number
 };
-	["nb_sphere_users_insert_input"]: {
-	cr_user?:ValueTypes["cr_user_obj_rel_insert_input"],
+	["meeting_insert_input"]: {
+	created_at?:ValueTypes["timestamptz"],
+	description?:string,
+	end_time?:ValueTypes["timestamptz"],
+	guild?:ValueTypes["guild_obj_rel_insert_input"],
+	guild_id?:number,
 	id?:number,
-	nb_sphere?:ValueTypes["nb_sphere_obj_rel_insert_input"],
+	location?:string,
+	organizer?:ValueTypes["user_obj_rel_insert_input"],
+	organizer_id?:ValueTypes["uuid"],
+	participants?:ValueTypes["meeting_participant_arr_rel_insert_input"],
+	publication_time?:ValueTypes["timestamptz"],
 	sphere_id?:number,
-	user_id?:ValueTypes["uuid"]
+	start_time?:ValueTypes["timestamptz"],
+	title?:string,
+	updated_at?:ValueTypes["timestamptz"]
 };
-	["nb_sphere_users_max_fields"]: AliasType<{
+	["meeting_max_fields"]: AliasType<{
+	created_at?:true,
+	description?:true,
+	end_time?:true,
+	guild_id?:true,
 	id?:true,
-	sphere_id?:true
+	location?:true,
+	organizer_id?:true,
+	publication_time?:true,
+	sphere_id?:true,
+	start_time?:true,
+	title?:true,
+	updated_at?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_max_order_by"]: {
+	["meeting_max_order_by"]: {
+	created_at?:ValueTypes["order_by"],
+	description?:ValueTypes["order_by"],
+	end_time?:ValueTypes["order_by"],
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_sphere_users_min_fields"]: AliasType<{
-	id?:true,
-	sphere_id?:true
-		__typename?: true
-}>;
-	["nb_sphere_users_min_order_by"]: {
-	id?:ValueTypes["order_by"],
-	sphere_id?:ValueTypes["order_by"]
-};
-	["nb_sphere_users_mutation_response"]: AliasType<{
-	affected_rows?:true,
-	returning?:ValueTypes["nb_sphere_users"]
-		__typename?: true
-}>;
-	["nb_sphere_users_obj_rel_insert_input"]: {
-	data:ValueTypes["nb_sphere_users_insert_input"],
-	on_conflict?:ValueTypes["nb_sphere_users_on_conflict"]
-};
-	["nb_sphere_users_on_conflict"]: {
-	constraint:ValueTypes["nb_sphere_users_constraint"],
-	update_columns:ValueTypes["nb_sphere_users_update_column"][],
-	where?:ValueTypes["nb_sphere_users_bool_exp"]
-};
-	["nb_sphere_users_order_by"]: {
-	cr_user?:ValueTypes["cr_user_order_by"],
-	id?:ValueTypes["order_by"],
-	nb_sphere?:ValueTypes["nb_sphere_order_by"],
+	location?:ValueTypes["order_by"],
+	organizer_id?:ValueTypes["order_by"],
+	publication_time?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"],
-	user_id?:ValueTypes["order_by"]
+	start_time?:ValueTypes["order_by"],
+	title?:ValueTypes["order_by"],
+	updated_at?:ValueTypes["order_by"]
 };
-	["nb_sphere_users_select_column"]:nb_sphere_users_select_column;
-	["nb_sphere_users_set_input"]: {
+	["meeting_min_fields"]: AliasType<{
+	created_at?:true,
+	description?:true,
+	end_time?:true,
+	guild_id?:true,
+	id?:true,
+	location?:true,
+	organizer_id?:true,
+	publication_time?:true,
+	sphere_id?:true,
+	start_time?:true,
+	title?:true,
+	updated_at?:true
+		__typename?: true
+}>;
+	["meeting_min_order_by"]: {
+	created_at?:ValueTypes["order_by"],
+	description?:ValueTypes["order_by"],
+	end_time?:ValueTypes["order_by"],
+	guild_id?:ValueTypes["order_by"],
+	id?:ValueTypes["order_by"],
+	location?:ValueTypes["order_by"],
+	organizer_id?:ValueTypes["order_by"],
+	publication_time?:ValueTypes["order_by"],
+	sphere_id?:ValueTypes["order_by"],
+	start_time?:ValueTypes["order_by"],
+	title?:ValueTypes["order_by"],
+	updated_at?:ValueTypes["order_by"]
+};
+	["meeting_mutation_response"]: AliasType<{
+	affected_rows?:true,
+	returning?:ValueTypes["meeting"]
+		__typename?: true
+}>;
+	["meeting_obj_rel_insert_input"]: {
+	data:ValueTypes["meeting_insert_input"],
+	on_conflict?:ValueTypes["meeting_on_conflict"]
+};
+	["meeting_on_conflict"]: {
+	constraint:ValueTypes["meeting_constraint"],
+	update_columns:ValueTypes["meeting_update_column"][],
+	where?:ValueTypes["meeting_bool_exp"]
+};
+	["meeting_order_by"]: {
+	created_at?:ValueTypes["order_by"],
+	description?:ValueTypes["order_by"],
+	end_time?:ValueTypes["order_by"],
+	guild?:ValueTypes["guild_order_by"],
+	guild_id?:ValueTypes["order_by"],
+	id?:ValueTypes["order_by"],
+	location?:ValueTypes["order_by"],
+	organizer?:ValueTypes["user_order_by"],
+	organizer_id?:ValueTypes["order_by"],
+	participants_aggregate?:ValueTypes["meeting_participant_aggregate_order_by"],
+	publication_time?:ValueTypes["order_by"],
+	sphere_id?:ValueTypes["order_by"],
+	start_time?:ValueTypes["order_by"],
+	title?:ValueTypes["order_by"],
+	updated_at?:ValueTypes["order_by"]
+};
+	["meeting_participant"]: AliasType<{
+	meeting?:ValueTypes["meeting"],
+	meeting_id?:true,
+	participant?:ValueTypes["user"],
+	participant_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["meeting_participant_aggregate_fields"],
+	nodes?:ValueTypes["meeting_participant"]
+		__typename?: true
+}>;
+	["meeting_participant_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["meeting_participant_avg_fields"],
+count?: [{	columns?:ValueTypes["meeting_participant_select_column"][],	distinct?:boolean},true],
+	max?:ValueTypes["meeting_participant_max_fields"],
+	min?:ValueTypes["meeting_participant_min_fields"],
+	stddev?:ValueTypes["meeting_participant_stddev_fields"],
+	stddev_pop?:ValueTypes["meeting_participant_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["meeting_participant_stddev_samp_fields"],
+	sum?:ValueTypes["meeting_participant_sum_fields"],
+	var_pop?:ValueTypes["meeting_participant_var_pop_fields"],
+	var_samp?:ValueTypes["meeting_participant_var_samp_fields"],
+	variance?:ValueTypes["meeting_participant_variance_fields"]
+		__typename?: true
+}>;
+	["meeting_participant_aggregate_order_by"]: {
+	avg?:ValueTypes["meeting_participant_avg_order_by"],
+	count?:ValueTypes["order_by"],
+	max?:ValueTypes["meeting_participant_max_order_by"],
+	min?:ValueTypes["meeting_participant_min_order_by"],
+	stddev?:ValueTypes["meeting_participant_stddev_order_by"],
+	stddev_pop?:ValueTypes["meeting_participant_stddev_pop_order_by"],
+	stddev_samp?:ValueTypes["meeting_participant_stddev_samp_order_by"],
+	sum?:ValueTypes["meeting_participant_sum_order_by"],
+	var_pop?:ValueTypes["meeting_participant_var_pop_order_by"],
+	var_samp?:ValueTypes["meeting_participant_var_samp_order_by"],
+	variance?:ValueTypes["meeting_participant_variance_order_by"]
+};
+	["meeting_participant_arr_rel_insert_input"]: {
+	data:ValueTypes["meeting_participant_insert_input"][],
+	on_conflict?:ValueTypes["meeting_participant_on_conflict"]
+};
+	["meeting_participant_avg_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_avg_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_bool_exp"]: {
+	_and?:(ValueTypes["meeting_participant_bool_exp"] | undefined)[],
+	_not?:ValueTypes["meeting_participant_bool_exp"],
+	_or?:(ValueTypes["meeting_participant_bool_exp"] | undefined)[],
+	meeting?:ValueTypes["meeting_bool_exp"],
+	meeting_id?:ValueTypes["Int_comparison_exp"],
+	participant?:ValueTypes["user_bool_exp"],
+	participant_id?:ValueTypes["uuid_comparison_exp"]
+};
+	["meeting_participant_constraint"]:meeting_participant_constraint;
+	["meeting_participant_inc_input"]: {
+	meeting_id?:number
+};
+	["meeting_participant_insert_input"]: {
+	meeting?:ValueTypes["meeting_obj_rel_insert_input"],
+	meeting_id?:number,
+	participant?:ValueTypes["user_obj_rel_insert_input"],
+	participant_id?:ValueTypes["uuid"]
+};
+	["meeting_participant_max_fields"]: AliasType<{
+	meeting_id?:true,
+	participant_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_max_order_by"]: {
+	meeting_id?:ValueTypes["order_by"],
+	participant_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_min_fields"]: AliasType<{
+	meeting_id?:true,
+	participant_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_min_order_by"]: {
+	meeting_id?:ValueTypes["order_by"],
+	participant_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_mutation_response"]: AliasType<{
+	affected_rows?:true,
+	returning?:ValueTypes["meeting_participant"]
+		__typename?: true
+}>;
+	["meeting_participant_obj_rel_insert_input"]: {
+	data:ValueTypes["meeting_participant_insert_input"],
+	on_conflict?:ValueTypes["meeting_participant_on_conflict"]
+};
+	["meeting_participant_on_conflict"]: {
+	constraint:ValueTypes["meeting_participant_constraint"],
+	update_columns:ValueTypes["meeting_participant_update_column"][],
+	where?:ValueTypes["meeting_participant_bool_exp"]
+};
+	["meeting_participant_order_by"]: {
+	meeting?:ValueTypes["meeting_order_by"],
+	meeting_id?:ValueTypes["order_by"],
+	participant?:ValueTypes["user_order_by"],
+	participant_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_pk_columns_input"]: {
+	meeting_id:number,
+	participant_id:ValueTypes["uuid"]
+};
+	["meeting_participant_select_column"]:meeting_participant_select_column;
+	["meeting_participant_set_input"]: {
+	meeting_id?:number,
+	participant_id?:ValueTypes["uuid"]
+};
+	["meeting_participant_stddev_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_stddev_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_stddev_pop_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_stddev_pop_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_stddev_samp_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_stddev_samp_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_sum_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_sum_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_update_column"]:meeting_participant_update_column;
+	["meeting_participant_var_pop_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_var_pop_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_var_samp_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_var_samp_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_participant_variance_fields"]: AliasType<{
+	meeting_id?:true
+		__typename?: true
+}>;
+	["meeting_participant_variance_order_by"]: {
+	meeting_id?:ValueTypes["order_by"]
+};
+	["meeting_pk_columns_input"]: {
+	id:number
+};
+	["meeting_select_column"]:meeting_select_column;
+	["meeting_set_input"]: {
+	created_at?:ValueTypes["timestamptz"],
+	description?:string,
+	end_time?:ValueTypes["timestamptz"],
+	guild_id?:number,
 	id?:number,
+	location?:string,
+	organizer_id?:ValueTypes["uuid"],
+	publication_time?:ValueTypes["timestamptz"],
 	sphere_id?:number,
-	user_id?:ValueTypes["uuid"]
+	start_time?:ValueTypes["timestamptz"],
+	title?:string,
+	updated_at?:ValueTypes["timestamptz"]
 };
-	["nb_sphere_users_stddev_fields"]: AliasType<{
+	["meeting_stddev_fields"]: AliasType<{
+	guild_id?:true,
 	id?:true,
 	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_stddev_order_by"]: {
+	["meeting_stddev_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_sphere_users_stddev_pop_fields"]: AliasType<{
+	["meeting_stddev_pop_fields"]: AliasType<{
+	guild_id?:true,
 	id?:true,
 	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_stddev_pop_order_by"]: {
+	["meeting_stddev_pop_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_sphere_users_stddev_samp_fields"]: AliasType<{
+	["meeting_stddev_samp_fields"]: AliasType<{
+	guild_id?:true,
 	id?:true,
 	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_stddev_samp_order_by"]: {
+	["meeting_stddev_samp_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_sphere_users_sum_fields"]: AliasType<{
+	["meeting_sum_fields"]: AliasType<{
+	guild_id?:true,
 	id?:true,
 	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_sum_order_by"]: {
+	["meeting_sum_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_sphere_users_update_column"]:nb_sphere_users_update_column;
-	["nb_sphere_users_var_pop_fields"]: AliasType<{
+	["meeting_update_column"]:meeting_update_column;
+	["meeting_var_pop_fields"]: AliasType<{
+	guild_id?:true,
 	id?:true,
 	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_var_pop_order_by"]: {
+	["meeting_var_pop_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_sphere_users_var_samp_fields"]: AliasType<{
+	["meeting_var_samp_fields"]: AliasType<{
+	guild_id?:true,
 	id?:true,
 	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_var_samp_order_by"]: {
+	["meeting_var_samp_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_sphere_users_variance_fields"]: AliasType<{
+	["meeting_variance_fields"]: AliasType<{
+	guild_id?:true,
 	id?:true,
 	sphere_id?:true
 		__typename?: true
 }>;
-	["nb_sphere_users_variance_order_by"]: {
+	["meeting_variance_order_by"]: {
+	guild_id?:ValueTypes["order_by"],
 	id?:ValueTypes["order_by"],
 	sphere_id?:ValueTypes["order_by"]
 };
-	["nb_sphere_var_pop_fields"]: AliasType<{
-	id?:true
+	["mutation_root"]: AliasType<{
+delete_guild?: [{	where:ValueTypes["guild_bool_exp"]},ValueTypes["guild_mutation_response"]],
+delete_guild_by_pk?: [{	id:number},ValueTypes["guild"]],
+delete_guild_member?: [{	where:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member_mutation_response"]],
+delete_guild_member_by_pk?: [{	guild_id:number,	member_id:ValueTypes["uuid"]},ValueTypes["guild_member"]],
+delete_meeting?: [{	where:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting_mutation_response"]],
+delete_meeting_by_pk?: [{	id:number},ValueTypes["meeting"]],
+delete_meeting_participant?: [{	where:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant_mutation_response"]],
+delete_meeting_participant_by_pk?: [{	meeting_id:number,	participant_id:ValueTypes["uuid"]},ValueTypes["meeting_participant"]],
+delete_sphere?: [{	where:ValueTypes["sphere_bool_exp"]},ValueTypes["sphere_mutation_response"]],
+delete_sphere_by_pk?: [{	id:number},ValueTypes["sphere"]],
+delete_user?: [{	where:ValueTypes["user_bool_exp"]},ValueTypes["user_mutation_response"]],
+delete_user_by_pk?: [{	uuid:ValueTypes["uuid"]},ValueTypes["user"]],
+insert_guild?: [{	objects:ValueTypes["guild_insert_input"][],	on_conflict?:ValueTypes["guild_on_conflict"]},ValueTypes["guild_mutation_response"]],
+insert_guild_member?: [{	objects:ValueTypes["guild_member_insert_input"][],	on_conflict?:ValueTypes["guild_member_on_conflict"]},ValueTypes["guild_member_mutation_response"]],
+insert_guild_member_one?: [{	object:ValueTypes["guild_member_insert_input"],	on_conflict?:ValueTypes["guild_member_on_conflict"]},ValueTypes["guild_member"]],
+insert_guild_one?: [{	object:ValueTypes["guild_insert_input"],	on_conflict?:ValueTypes["guild_on_conflict"]},ValueTypes["guild"]],
+insert_meeting?: [{	objects:ValueTypes["meeting_insert_input"][],	on_conflict?:ValueTypes["meeting_on_conflict"]},ValueTypes["meeting_mutation_response"]],
+insert_meeting_one?: [{	object:ValueTypes["meeting_insert_input"],	on_conflict?:ValueTypes["meeting_on_conflict"]},ValueTypes["meeting"]],
+insert_meeting_participant?: [{	objects:ValueTypes["meeting_participant_insert_input"][],	on_conflict?:ValueTypes["meeting_participant_on_conflict"]},ValueTypes["meeting_participant_mutation_response"]],
+insert_meeting_participant_one?: [{	object:ValueTypes["meeting_participant_insert_input"],	on_conflict?:ValueTypes["meeting_participant_on_conflict"]},ValueTypes["meeting_participant"]],
+insert_sphere?: [{	objects:ValueTypes["sphere_insert_input"][],	on_conflict?:ValueTypes["sphere_on_conflict"]},ValueTypes["sphere_mutation_response"]],
+insert_sphere_one?: [{	object:ValueTypes["sphere_insert_input"],	on_conflict?:ValueTypes["sphere_on_conflict"]},ValueTypes["sphere"]],
+insert_user?: [{	objects:ValueTypes["user_insert_input"][],	on_conflict?:ValueTypes["user_on_conflict"]},ValueTypes["user_mutation_response"]],
+insert_user_one?: [{	object:ValueTypes["user_insert_input"],	on_conflict?:ValueTypes["user_on_conflict"]},ValueTypes["user"]],
+update_guild?: [{	_inc?:ValueTypes["guild_inc_input"],	_set?:ValueTypes["guild_set_input"],	where:ValueTypes["guild_bool_exp"]},ValueTypes["guild_mutation_response"]],
+update_guild_by_pk?: [{	_inc?:ValueTypes["guild_inc_input"],	_set?:ValueTypes["guild_set_input"],	pk_columns:ValueTypes["guild_pk_columns_input"]},ValueTypes["guild"]],
+update_guild_member?: [{	_inc?:ValueTypes["guild_member_inc_input"],	_set?:ValueTypes["guild_member_set_input"],	where:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member_mutation_response"]],
+update_guild_member_by_pk?: [{	_inc?:ValueTypes["guild_member_inc_input"],	_set?:ValueTypes["guild_member_set_input"],	pk_columns:ValueTypes["guild_member_pk_columns_input"]},ValueTypes["guild_member"]],
+update_meeting?: [{	_inc?:ValueTypes["meeting_inc_input"],	_set?:ValueTypes["meeting_set_input"],	where:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting_mutation_response"]],
+update_meeting_by_pk?: [{	_inc?:ValueTypes["meeting_inc_input"],	_set?:ValueTypes["meeting_set_input"],	pk_columns:ValueTypes["meeting_pk_columns_input"]},ValueTypes["meeting"]],
+update_meeting_participant?: [{	_inc?:ValueTypes["meeting_participant_inc_input"],	_set?:ValueTypes["meeting_participant_set_input"],	where:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant_mutation_response"]],
+update_meeting_participant_by_pk?: [{	_inc?:ValueTypes["meeting_participant_inc_input"],	_set?:ValueTypes["meeting_participant_set_input"],	pk_columns:ValueTypes["meeting_participant_pk_columns_input"]},ValueTypes["meeting_participant"]],
+update_sphere?: [{	_inc?:ValueTypes["sphere_inc_input"],	_set?:ValueTypes["sphere_set_input"],	where:ValueTypes["sphere_bool_exp"]},ValueTypes["sphere_mutation_response"]],
+update_sphere_by_pk?: [{	_inc?:ValueTypes["sphere_inc_input"],	_set?:ValueTypes["sphere_set_input"],	pk_columns:ValueTypes["sphere_pk_columns_input"]},ValueTypes["sphere"]],
+update_user?: [{	_set?:ValueTypes["user_set_input"],	where:ValueTypes["user_bool_exp"]},ValueTypes["user_mutation_response"]],
+update_user_by_pk?: [{	_set?:ValueTypes["user_set_input"],	pk_columns:ValueTypes["user_pk_columns_input"]},ValueTypes["user"]]
 		__typename?: true
 }>;
-	["nb_sphere_var_pop_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere_var_samp_fields"]: AliasType<{
-	id?:true
-		__typename?: true
-}>;
-	["nb_sphere_var_samp_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
-	["nb_sphere_variance_fields"]: AliasType<{
-	id?:true
-		__typename?: true
-}>;
-	["nb_sphere_variance_order_by"]: {
-	id?:ValueTypes["order_by"]
-};
 	["order_by"]:order_by;
 	["query_root"]: AliasType<{
-cr_user?: [{	distinct_on?:ValueTypes["cr_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["cr_user_order_by"][],	where?:ValueTypes["cr_user_bool_exp"]},ValueTypes["cr_user"]],
-cr_user_aggregate?: [{	distinct_on?:ValueTypes["cr_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["cr_user_order_by"][],	where?:ValueTypes["cr_user_bool_exp"]},ValueTypes["cr_user_aggregate"]],
-cr_user_by_pk?: [{	uuid:ValueTypes["uuid"]},ValueTypes["cr_user"]],
-nb_guild?: [{	distinct_on?:ValueTypes["nb_guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_order_by"][],	where?:ValueTypes["nb_guild_bool_exp"]},ValueTypes["nb_guild"]],
-nb_guild_aggregate?: [{	distinct_on?:ValueTypes["nb_guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_order_by"][],	where?:ValueTypes["nb_guild_bool_exp"]},ValueTypes["nb_guild_aggregate"]],
-nb_guild_by_pk?: [{	id:number},ValueTypes["nb_guild"]],
-nb_guild_user?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user"]],
-nb_guild_user_aggregate?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user_aggregate"]],
-nb_guild_user_by_pk?: [{	id:number},ValueTypes["nb_guild_user"]],
-nb_meeting?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting"]],
-nb_meeting_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting_aggregate"]],
-nb_meeting_by_pk?: [{	id:number},ValueTypes["nb_meeting"]],
-nb_meeting_user?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user"]],
-nb_meeting_user_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user_aggregate"]],
-nb_meeting_user_by_pk?: [{	id:number},ValueTypes["nb_meeting_user"]],
-nb_sphere?: [{	distinct_on?:ValueTypes["nb_sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_order_by"][],	where?:ValueTypes["nb_sphere_bool_exp"]},ValueTypes["nb_sphere"]],
-nb_sphere_aggregate?: [{	distinct_on?:ValueTypes["nb_sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_order_by"][],	where?:ValueTypes["nb_sphere_bool_exp"]},ValueTypes["nb_sphere_aggregate"]],
-nb_sphere_by_pk?: [{	id:number},ValueTypes["nb_sphere"]],
-nb_sphere_users?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users"]],
-nb_sphere_users_aggregate?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users_aggregate"]],
-nb_sphere_users_by_pk?: [{	id:number},ValueTypes["nb_sphere_users"]]
+guild?: [{	distinct_on?:ValueTypes["guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_order_by"][],	where?:ValueTypes["guild_bool_exp"]},ValueTypes["guild"]],
+guild_aggregate?: [{	distinct_on?:ValueTypes["guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_order_by"][],	where?:ValueTypes["guild_bool_exp"]},ValueTypes["guild_aggregate"]],
+guild_by_pk?: [{	id:number},ValueTypes["guild"]],
+guild_member?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member"]],
+guild_member_aggregate?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member_aggregate"]],
+guild_member_by_pk?: [{	guild_id:number,	member_id:ValueTypes["uuid"]},ValueTypes["guild_member"]],
+meeting?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting"]],
+meeting_aggregate?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting_aggregate"]],
+meeting_by_pk?: [{	id:number},ValueTypes["meeting"]],
+meeting_participant?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant"]],
+meeting_participant_aggregate?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant_aggregate"]],
+meeting_participant_by_pk?: [{	meeting_id:number,	participant_id:ValueTypes["uuid"]},ValueTypes["meeting_participant"]],
+sphere?: [{	distinct_on?:ValueTypes["sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["sphere_order_by"][],	where?:ValueTypes["sphere_bool_exp"]},ValueTypes["sphere"]],
+sphere_aggregate?: [{	distinct_on?:ValueTypes["sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["sphere_order_by"][],	where?:ValueTypes["sphere_bool_exp"]},ValueTypes["sphere_aggregate"]],
+sphere_by_pk?: [{	id:number},ValueTypes["sphere"]],
+user?: [{	distinct_on?:ValueTypes["user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["user_order_by"][],	where?:ValueTypes["user_bool_exp"]},ValueTypes["user"]],
+user_aggregate?: [{	distinct_on?:ValueTypes["user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["user_order_by"][],	where?:ValueTypes["user_bool_exp"]},ValueTypes["user_aggregate"]],
+user_by_pk?: [{	uuid:ValueTypes["uuid"]},ValueTypes["user"]]
 		__typename?: true
 }>;
+	["sphere"]: AliasType<{
+	domain?:true,
+	id?:true,
+	name?:true
+		__typename?: true
+}>;
+	["sphere_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["sphere_aggregate_fields"],
+	nodes?:ValueTypes["sphere"]
+		__typename?: true
+}>;
+	["sphere_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["sphere_avg_fields"],
+count?: [{	columns?:ValueTypes["sphere_select_column"][],	distinct?:boolean},true],
+	max?:ValueTypes["sphere_max_fields"],
+	min?:ValueTypes["sphere_min_fields"],
+	stddev?:ValueTypes["sphere_stddev_fields"],
+	stddev_pop?:ValueTypes["sphere_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["sphere_stddev_samp_fields"],
+	sum?:ValueTypes["sphere_sum_fields"],
+	var_pop?:ValueTypes["sphere_var_pop_fields"],
+	var_samp?:ValueTypes["sphere_var_samp_fields"],
+	variance?:ValueTypes["sphere_variance_fields"]
+		__typename?: true
+}>;
+	["sphere_aggregate_order_by"]: {
+	avg?:ValueTypes["sphere_avg_order_by"],
+	count?:ValueTypes["order_by"],
+	max?:ValueTypes["sphere_max_order_by"],
+	min?:ValueTypes["sphere_min_order_by"],
+	stddev?:ValueTypes["sphere_stddev_order_by"],
+	stddev_pop?:ValueTypes["sphere_stddev_pop_order_by"],
+	stddev_samp?:ValueTypes["sphere_stddev_samp_order_by"],
+	sum?:ValueTypes["sphere_sum_order_by"],
+	var_pop?:ValueTypes["sphere_var_pop_order_by"],
+	var_samp?:ValueTypes["sphere_var_samp_order_by"],
+	variance?:ValueTypes["sphere_variance_order_by"]
+};
+	["sphere_arr_rel_insert_input"]: {
+	data:ValueTypes["sphere_insert_input"][],
+	on_conflict?:ValueTypes["sphere_on_conflict"]
+};
+	["sphere_avg_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_avg_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["sphere_bool_exp"]: {
+	_and?:(ValueTypes["sphere_bool_exp"] | undefined)[],
+	_not?:ValueTypes["sphere_bool_exp"],
+	_or?:(ValueTypes["sphere_bool_exp"] | undefined)[],
+	domain?:ValueTypes["String_comparison_exp"],
+	id?:ValueTypes["Int_comparison_exp"],
+	name?:ValueTypes["String_comparison_exp"]
+};
+	["sphere_constraint"]:sphere_constraint;
+	["sphere_inc_input"]: {
+	id?:number
+};
+	["sphere_insert_input"]: {
+	domain?:string,
+	id?:number,
+	name?:string
+};
+	["sphere_max_fields"]: AliasType<{
+	domain?:true,
+	id?:true,
+	name?:true
+		__typename?: true
+}>;
+	["sphere_max_order_by"]: {
+	domain?:ValueTypes["order_by"],
+	id?:ValueTypes["order_by"],
+	name?:ValueTypes["order_by"]
+};
+	["sphere_min_fields"]: AliasType<{
+	domain?:true,
+	id?:true,
+	name?:true
+		__typename?: true
+}>;
+	["sphere_min_order_by"]: {
+	domain?:ValueTypes["order_by"],
+	id?:ValueTypes["order_by"],
+	name?:ValueTypes["order_by"]
+};
+	["sphere_mutation_response"]: AliasType<{
+	affected_rows?:true,
+	returning?:ValueTypes["sphere"]
+		__typename?: true
+}>;
+	["sphere_obj_rel_insert_input"]: {
+	data:ValueTypes["sphere_insert_input"],
+	on_conflict?:ValueTypes["sphere_on_conflict"]
+};
+	["sphere_on_conflict"]: {
+	constraint:ValueTypes["sphere_constraint"],
+	update_columns:ValueTypes["sphere_update_column"][],
+	where?:ValueTypes["sphere_bool_exp"]
+};
+	["sphere_order_by"]: {
+	domain?:ValueTypes["order_by"],
+	id?:ValueTypes["order_by"],
+	name?:ValueTypes["order_by"]
+};
+	["sphere_pk_columns_input"]: {
+	id:number
+};
+	["sphere_select_column"]:sphere_select_column;
+	["sphere_set_input"]: {
+	domain?:string,
+	id?:number,
+	name?:string
+};
+	["sphere_stddev_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_stddev_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["sphere_stddev_pop_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_stddev_pop_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["sphere_stddev_samp_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_stddev_samp_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["sphere_sum_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_sum_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["sphere_update_column"]:sphere_update_column;
+	["sphere_var_pop_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_var_pop_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["sphere_var_samp_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_var_samp_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
+	["sphere_variance_fields"]: AliasType<{
+	id?:true
+		__typename?: true
+}>;
+	["sphere_variance_order_by"]: {
+	id?:ValueTypes["order_by"]
+};
 	["String_comparison_exp"]: {
 	_eq?:string,
 	_gt?:string,
@@ -1453,27 +1078,24 @@ nb_sphere_users_by_pk?: [{	id:number},ValueTypes["nb_sphere_users"]]
 	_similar?:string
 };
 	["subscription_root"]: AliasType<{
-cr_user?: [{	distinct_on?:ValueTypes["cr_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["cr_user_order_by"][],	where?:ValueTypes["cr_user_bool_exp"]},ValueTypes["cr_user"]],
-cr_user_aggregate?: [{	distinct_on?:ValueTypes["cr_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["cr_user_order_by"][],	where?:ValueTypes["cr_user_bool_exp"]},ValueTypes["cr_user_aggregate"]],
-cr_user_by_pk?: [{	uuid:ValueTypes["uuid"]},ValueTypes["cr_user"]],
-nb_guild?: [{	distinct_on?:ValueTypes["nb_guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_order_by"][],	where?:ValueTypes["nb_guild_bool_exp"]},ValueTypes["nb_guild"]],
-nb_guild_aggregate?: [{	distinct_on?:ValueTypes["nb_guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_order_by"][],	where?:ValueTypes["nb_guild_bool_exp"]},ValueTypes["nb_guild_aggregate"]],
-nb_guild_by_pk?: [{	id:number},ValueTypes["nb_guild"]],
-nb_guild_user?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user"]],
-nb_guild_user_aggregate?: [{	distinct_on?:ValueTypes["nb_guild_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_guild_user_order_by"][],	where?:ValueTypes["nb_guild_user_bool_exp"]},ValueTypes["nb_guild_user_aggregate"]],
-nb_guild_user_by_pk?: [{	id:number},ValueTypes["nb_guild_user"]],
-nb_meeting?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting"]],
-nb_meeting_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_order_by"][],	where?:ValueTypes["nb_meeting_bool_exp"]},ValueTypes["nb_meeting_aggregate"]],
-nb_meeting_by_pk?: [{	id:number},ValueTypes["nb_meeting"]],
-nb_meeting_user?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user"]],
-nb_meeting_user_aggregate?: [{	distinct_on?:ValueTypes["nb_meeting_user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_meeting_user_order_by"][],	where?:ValueTypes["nb_meeting_user_bool_exp"]},ValueTypes["nb_meeting_user_aggregate"]],
-nb_meeting_user_by_pk?: [{	id:number},ValueTypes["nb_meeting_user"]],
-nb_sphere?: [{	distinct_on?:ValueTypes["nb_sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_order_by"][],	where?:ValueTypes["nb_sphere_bool_exp"]},ValueTypes["nb_sphere"]],
-nb_sphere_aggregate?: [{	distinct_on?:ValueTypes["nb_sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_order_by"][],	where?:ValueTypes["nb_sphere_bool_exp"]},ValueTypes["nb_sphere_aggregate"]],
-nb_sphere_by_pk?: [{	id:number},ValueTypes["nb_sphere"]],
-nb_sphere_users?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users"]],
-nb_sphere_users_aggregate?: [{	distinct_on?:ValueTypes["nb_sphere_users_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["nb_sphere_users_order_by"][],	where?:ValueTypes["nb_sphere_users_bool_exp"]},ValueTypes["nb_sphere_users_aggregate"]],
-nb_sphere_users_by_pk?: [{	id:number},ValueTypes["nb_sphere_users"]]
+guild?: [{	distinct_on?:ValueTypes["guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_order_by"][],	where?:ValueTypes["guild_bool_exp"]},ValueTypes["guild"]],
+guild_aggregate?: [{	distinct_on?:ValueTypes["guild_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_order_by"][],	where?:ValueTypes["guild_bool_exp"]},ValueTypes["guild_aggregate"]],
+guild_by_pk?: [{	id:number},ValueTypes["guild"]],
+guild_member?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member"]],
+guild_member_aggregate?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member_aggregate"]],
+guild_member_by_pk?: [{	guild_id:number,	member_id:ValueTypes["uuid"]},ValueTypes["guild_member"]],
+meeting?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting"]],
+meeting_aggregate?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting_aggregate"]],
+meeting_by_pk?: [{	id:number},ValueTypes["meeting"]],
+meeting_participant?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant"]],
+meeting_participant_aggregate?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant_aggregate"]],
+meeting_participant_by_pk?: [{	meeting_id:number,	participant_id:ValueTypes["uuid"]},ValueTypes["meeting_participant"]],
+sphere?: [{	distinct_on?:ValueTypes["sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["sphere_order_by"][],	where?:ValueTypes["sphere_bool_exp"]},ValueTypes["sphere"]],
+sphere_aggregate?: [{	distinct_on?:ValueTypes["sphere_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["sphere_order_by"][],	where?:ValueTypes["sphere_bool_exp"]},ValueTypes["sphere_aggregate"]],
+sphere_by_pk?: [{	id:number},ValueTypes["sphere"]],
+user?: [{	distinct_on?:ValueTypes["user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["user_order_by"][],	where?:ValueTypes["user_bool_exp"]},ValueTypes["user"]],
+user_aggregate?: [{	distinct_on?:ValueTypes["user_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["user_order_by"][],	where?:ValueTypes["user_bool_exp"]},ValueTypes["user_aggregate"]],
+user_by_pk?: [{	uuid:ValueTypes["uuid"]},ValueTypes["user"]]
 		__typename?: true
 }>;
 	["timestamptz"]:unknown;
@@ -1488,6 +1110,139 @@ nb_sphere_users_by_pk?: [{	id:number},ValueTypes["nb_sphere_users"]]
 	_neq?:ValueTypes["timestamptz"],
 	_nin?:ValueTypes["timestamptz"][]
 };
+	["user"]: AliasType<{
+	auth0_id?:true,
+	created_at?:true,
+	email?:true,
+guilds?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member"]],
+guilds_aggregate?: [{	distinct_on?:ValueTypes["guild_member_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["guild_member_order_by"][],	where?:ValueTypes["guild_member_bool_exp"]},ValueTypes["guild_member_aggregate"]],
+	last_login?:true,
+meetings?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant"]],
+meetings_aggregate?: [{	distinct_on?:ValueTypes["meeting_participant_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_participant_order_by"][],	where?:ValueTypes["meeting_participant_bool_exp"]},ValueTypes["meeting_participant_aggregate"]],
+	name?:true,
+organized_meetings?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting"]],
+organized_meetings_aggregate?: [{	distinct_on?:ValueTypes["meeting_select_column"][],	limit?:number,	offset?:number,	order_by?:ValueTypes["meeting_order_by"][],	where?:ValueTypes["meeting_bool_exp"]},ValueTypes["meeting_aggregate"]],
+	uuid?:true
+		__typename?: true
+}>;
+	["user_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["user_aggregate_fields"],
+	nodes?:ValueTypes["user"]
+		__typename?: true
+}>;
+	["user_aggregate_fields"]: AliasType<{
+count?: [{	columns?:ValueTypes["user_select_column"][],	distinct?:boolean},true],
+	max?:ValueTypes["user_max_fields"],
+	min?:ValueTypes["user_min_fields"]
+		__typename?: true
+}>;
+	["user_aggregate_order_by"]: {
+	count?:ValueTypes["order_by"],
+	max?:ValueTypes["user_max_order_by"],
+	min?:ValueTypes["user_min_order_by"]
+};
+	["user_arr_rel_insert_input"]: {
+	data:ValueTypes["user_insert_input"][],
+	on_conflict?:ValueTypes["user_on_conflict"]
+};
+	["user_bool_exp"]: {
+	_and?:(ValueTypes["user_bool_exp"] | undefined)[],
+	_not?:ValueTypes["user_bool_exp"],
+	_or?:(ValueTypes["user_bool_exp"] | undefined)[],
+	auth0_id?:ValueTypes["String_comparison_exp"],
+	created_at?:ValueTypes["timestamptz_comparison_exp"],
+	email?:ValueTypes["String_comparison_exp"],
+	guilds?:ValueTypes["guild_member_bool_exp"],
+	last_login?:ValueTypes["timestamptz_comparison_exp"],
+	meetings?:ValueTypes["meeting_participant_bool_exp"],
+	name?:ValueTypes["String_comparison_exp"],
+	organized_meetings?:ValueTypes["meeting_bool_exp"],
+	uuid?:ValueTypes["uuid_comparison_exp"]
+};
+	["user_constraint"]:user_constraint;
+	["user_insert_input"]: {
+	auth0_id?:string,
+	created_at?:ValueTypes["timestamptz"],
+	email?:string,
+	guilds?:ValueTypes["guild_member_arr_rel_insert_input"],
+	last_login?:ValueTypes["timestamptz"],
+	meetings?:ValueTypes["meeting_participant_arr_rel_insert_input"],
+	name?:string,
+	organized_meetings?:ValueTypes["meeting_arr_rel_insert_input"],
+	uuid?:ValueTypes["uuid"]
+};
+	["user_max_fields"]: AliasType<{
+	auth0_id?:true,
+	created_at?:true,
+	email?:true,
+	last_login?:true,
+	name?:true,
+	uuid?:true
+		__typename?: true
+}>;
+	["user_max_order_by"]: {
+	auth0_id?:ValueTypes["order_by"],
+	created_at?:ValueTypes["order_by"],
+	email?:ValueTypes["order_by"],
+	last_login?:ValueTypes["order_by"],
+	name?:ValueTypes["order_by"],
+	uuid?:ValueTypes["order_by"]
+};
+	["user_min_fields"]: AliasType<{
+	auth0_id?:true,
+	created_at?:true,
+	email?:true,
+	last_login?:true,
+	name?:true,
+	uuid?:true
+		__typename?: true
+}>;
+	["user_min_order_by"]: {
+	auth0_id?:ValueTypes["order_by"],
+	created_at?:ValueTypes["order_by"],
+	email?:ValueTypes["order_by"],
+	last_login?:ValueTypes["order_by"],
+	name?:ValueTypes["order_by"],
+	uuid?:ValueTypes["order_by"]
+};
+	["user_mutation_response"]: AliasType<{
+	affected_rows?:true,
+	returning?:ValueTypes["user"]
+		__typename?: true
+}>;
+	["user_obj_rel_insert_input"]: {
+	data:ValueTypes["user_insert_input"],
+	on_conflict?:ValueTypes["user_on_conflict"]
+};
+	["user_on_conflict"]: {
+	constraint:ValueTypes["user_constraint"],
+	update_columns:ValueTypes["user_update_column"][],
+	where?:ValueTypes["user_bool_exp"]
+};
+	["user_order_by"]: {
+	auth0_id?:ValueTypes["order_by"],
+	created_at?:ValueTypes["order_by"],
+	email?:ValueTypes["order_by"],
+	guilds_aggregate?:ValueTypes["guild_member_aggregate_order_by"],
+	last_login?:ValueTypes["order_by"],
+	meetings_aggregate?:ValueTypes["meeting_participant_aggregate_order_by"],
+	name?:ValueTypes["order_by"],
+	organized_meetings_aggregate?:ValueTypes["meeting_aggregate_order_by"],
+	uuid?:ValueTypes["order_by"]
+};
+	["user_pk_columns_input"]: {
+	uuid:ValueTypes["uuid"]
+};
+	["user_select_column"]:user_select_column;
+	["user_set_input"]: {
+	auth0_id?:string,
+	created_at?:ValueTypes["timestamptz"],
+	email?:string,
+	last_login?:ValueTypes["timestamptz"],
+	name?:string,
+	uuid?:ValueTypes["uuid"]
+};
+	["user_update_column"]:user_update_column;
 	["uuid"]:unknown;
 	["uuid_comparison_exp"]: {
 	_eq?:ValueTypes["uuid"],
@@ -1503,181 +1258,366 @@ nb_sphere_users_by_pk?: [{	id:number},ValueTypes["nb_sphere_users"]]
   }
 
 export type PartialObjects = {
-    ["Boolean_comparison_exp"]: {
-	_eq?:boolean,
-	_gt?:boolean,
-	_gte?:boolean,
-	_in?:boolean[],
-	_is_null?:boolean,
-	_lt?:boolean,
-	_lte?:boolean,
-	_neq?:boolean,
-	_nin?:boolean[]
-},
-	["cr_user"]: {
-		__typename?: "cr_user";
-			date_joined?:PartialObjects["timestamptz"],
-			email?:string,
-			first_name?:string,
-			is_active?:boolean,
-			is_staff?:boolean,
-			is_superuser?:boolean,
-			last_login?:PartialObjects["timestamptz"],
-			last_name?:string,
-			nb_guild_users?:PartialObjects["nb_guild_user"][],
-			nb_guild_users_aggregate?:PartialObjects["nb_guild_user_aggregate"],
-			nb_meeting_users?:PartialObjects["nb_meeting_user"][],
-			nb_meeting_users_aggregate?:PartialObjects["nb_meeting_user_aggregate"],
-			nb_meetings?:PartialObjects["nb_meeting"][],
-			nb_meetings_aggregate?:PartialObjects["nb_meeting_aggregate"],
-			nb_sphere_users?:PartialObjects["nb_sphere_users"][],
-			nb_sphere_users_aggregate?:PartialObjects["nb_sphere_users_aggregate"],
-			password?:string,
-			username?:string,
-			uuid?:PartialObjects["uuid"]
+    ["guild"]: {
+		__typename?: "guild";
+			created_at?:PartialObjects["timestamptz"],
+			description?:string,
+			guild_members?:PartialObjects["guild_member"][],
+			guild_members_aggregate?:PartialObjects["guild_member_aggregate"],
+			id?:number,
+			meetings?:PartialObjects["meeting"][],
+			meetings_aggregate?:PartialObjects["meeting_aggregate"],
+			name?:string,
+			updated_at?:PartialObjects["timestamptz"]
 	},
-	["cr_user_aggregate"]: {
-		__typename?: "cr_user_aggregate";
-			aggregate?:PartialObjects["cr_user_aggregate_fields"],
-			nodes?:PartialObjects["cr_user"][]
+	["guild_aggregate"]: {
+		__typename?: "guild_aggregate";
+			aggregate?:PartialObjects["guild_aggregate_fields"],
+			nodes?:PartialObjects["guild"][]
 	},
-	["cr_user_aggregate_fields"]: {
-		__typename?: "cr_user_aggregate_fields";
+	["guild_aggregate_fields"]: {
+		__typename?: "guild_aggregate_fields";
+			avg?:PartialObjects["guild_avg_fields"],
 			count?:number,
-			max?:PartialObjects["cr_user_max_fields"],
-			min?:PartialObjects["cr_user_min_fields"]
+			max?:PartialObjects["guild_max_fields"],
+			min?:PartialObjects["guild_min_fields"],
+			stddev?:PartialObjects["guild_stddev_fields"],
+			stddev_pop?:PartialObjects["guild_stddev_pop_fields"],
+			stddev_samp?:PartialObjects["guild_stddev_samp_fields"],
+			sum?:PartialObjects["guild_sum_fields"],
+			var_pop?:PartialObjects["guild_var_pop_fields"],
+			var_samp?:PartialObjects["guild_var_samp_fields"],
+			variance?:PartialObjects["guild_variance_fields"]
 	},
-	["cr_user_aggregate_order_by"]: {
+	["guild_aggregate_order_by"]: {
+	avg?:PartialObjects["guild_avg_order_by"],
 	count?:PartialObjects["order_by"],
-	max?:PartialObjects["cr_user_max_order_by"],
-	min?:PartialObjects["cr_user_min_order_by"]
+	max?:PartialObjects["guild_max_order_by"],
+	min?:PartialObjects["guild_min_order_by"],
+	stddev?:PartialObjects["guild_stddev_order_by"],
+	stddev_pop?:PartialObjects["guild_stddev_pop_order_by"],
+	stddev_samp?:PartialObjects["guild_stddev_samp_order_by"],
+	sum?:PartialObjects["guild_sum_order_by"],
+	var_pop?:PartialObjects["guild_var_pop_order_by"],
+	var_samp?:PartialObjects["guild_var_samp_order_by"],
+	variance?:PartialObjects["guild_variance_order_by"]
 },
-	["cr_user_arr_rel_insert_input"]: {
-	data:PartialObjects["cr_user_insert_input"][],
-	on_conflict?:PartialObjects["cr_user_on_conflict"]
+	["guild_arr_rel_insert_input"]: {
+	data:PartialObjects["guild_insert_input"][],
+	on_conflict?:PartialObjects["guild_on_conflict"]
 },
-	["cr_user_bool_exp"]: {
-	_and?:(PartialObjects["cr_user_bool_exp"] | undefined)[],
-	_not?:PartialObjects["cr_user_bool_exp"],
-	_or?:(PartialObjects["cr_user_bool_exp"] | undefined)[],
-	date_joined?:PartialObjects["timestamptz_comparison_exp"],
-	email?:PartialObjects["String_comparison_exp"],
-	first_name?:PartialObjects["String_comparison_exp"],
-	is_active?:PartialObjects["Boolean_comparison_exp"],
-	is_staff?:PartialObjects["Boolean_comparison_exp"],
-	is_superuser?:PartialObjects["Boolean_comparison_exp"],
-	last_login?:PartialObjects["timestamptz_comparison_exp"],
-	last_name?:PartialObjects["String_comparison_exp"],
-	nb_guild_users?:PartialObjects["nb_guild_user_bool_exp"],
-	nb_meeting_users?:PartialObjects["nb_meeting_user_bool_exp"],
-	nb_meetings?:PartialObjects["nb_meeting_bool_exp"],
-	nb_sphere_users?:PartialObjects["nb_sphere_users_bool_exp"],
-	password?:PartialObjects["String_comparison_exp"],
-	username?:PartialObjects["String_comparison_exp"],
-	uuid?:PartialObjects["uuid_comparison_exp"]
-},
-	["cr_user_constraint"]:cr_user_constraint,
-	["cr_user_insert_input"]: {
-	date_joined?:PartialObjects["timestamptz"],
-	email?:string,
-	first_name?:string,
-	is_active?:boolean,
-	is_staff?:boolean,
-	is_superuser?:boolean,
-	last_login?:PartialObjects["timestamptz"],
-	last_name?:string,
-	nb_guild_users?:PartialObjects["nb_guild_user_arr_rel_insert_input"],
-	nb_meeting_users?:PartialObjects["nb_meeting_user_arr_rel_insert_input"],
-	nb_meetings?:PartialObjects["nb_meeting_arr_rel_insert_input"],
-	nb_sphere_users?:PartialObjects["nb_sphere_users_arr_rel_insert_input"],
-	password?:string,
-	username?:string,
-	uuid?:PartialObjects["uuid"]
-},
-	["cr_user_max_fields"]: {
-		__typename?: "cr_user_max_fields";
-			date_joined?:PartialObjects["timestamptz"],
-			email?:string,
-			first_name?:string,
-			last_login?:PartialObjects["timestamptz"],
-			last_name?:string,
-			password?:string,
-			username?:string
+	["guild_avg_fields"]: {
+		__typename?: "guild_avg_fields";
+			id?:number
 	},
-	["cr_user_max_order_by"]: {
-	date_joined?:PartialObjects["order_by"],
-	email?:PartialObjects["order_by"],
-	first_name?:PartialObjects["order_by"],
-	last_login?:PartialObjects["order_by"],
-	last_name?:PartialObjects["order_by"],
-	password?:PartialObjects["order_by"],
-	username?:PartialObjects["order_by"]
+	["guild_avg_order_by"]: {
+	id?:PartialObjects["order_by"]
 },
-	["cr_user_min_fields"]: {
-		__typename?: "cr_user_min_fields";
-			date_joined?:PartialObjects["timestamptz"],
-			email?:string,
-			first_name?:string,
-			last_login?:PartialObjects["timestamptz"],
-			last_name?:string,
-			password?:string,
-			username?:string
+	["guild_bool_exp"]: {
+	_and?:(PartialObjects["guild_bool_exp"] | undefined)[],
+	_not?:PartialObjects["guild_bool_exp"],
+	_or?:(PartialObjects["guild_bool_exp"] | undefined)[],
+	created_at?:PartialObjects["timestamptz_comparison_exp"],
+	description?:PartialObjects["String_comparison_exp"],
+	guild_members?:PartialObjects["guild_member_bool_exp"],
+	id?:PartialObjects["Int_comparison_exp"],
+	meetings?:PartialObjects["meeting_bool_exp"],
+	name?:PartialObjects["String_comparison_exp"],
+	updated_at?:PartialObjects["timestamptz_comparison_exp"]
+},
+	["guild_constraint"]:guild_constraint,
+	["guild_inc_input"]: {
+	id?:number
+},
+	["guild_insert_input"]: {
+	created_at?:PartialObjects["timestamptz"],
+	description?:string,
+	guild_members?:PartialObjects["guild_member_arr_rel_insert_input"],
+	id?:number,
+	meetings?:PartialObjects["meeting_arr_rel_insert_input"],
+	name?:string,
+	updated_at?:PartialObjects["timestamptz"]
+},
+	["guild_max_fields"]: {
+		__typename?: "guild_max_fields";
+			created_at?:PartialObjects["timestamptz"],
+			description?:string,
+			id?:number,
+			name?:string,
+			updated_at?:PartialObjects["timestamptz"]
 	},
-	["cr_user_min_order_by"]: {
-	date_joined?:PartialObjects["order_by"],
-	email?:PartialObjects["order_by"],
-	first_name?:PartialObjects["order_by"],
-	last_login?:PartialObjects["order_by"],
-	last_name?:PartialObjects["order_by"],
-	password?:PartialObjects["order_by"],
-	username?:PartialObjects["order_by"]
+	["guild_max_order_by"]: {
+	created_at?:PartialObjects["order_by"],
+	description?:PartialObjects["order_by"],
+	id?:PartialObjects["order_by"],
+	name?:PartialObjects["order_by"],
+	updated_at?:PartialObjects["order_by"]
 },
-	["cr_user_mutation_response"]: {
-		__typename?: "cr_user_mutation_response";
+	["guild_member"]: {
+		__typename?: "guild_member";
+			guild?:PartialObjects["guild"],
+			guild_id?:number,
+			member_id?:PartialObjects["uuid"],
+			user?:PartialObjects["user"]
+	},
+	["guild_member_aggregate"]: {
+		__typename?: "guild_member_aggregate";
+			aggregate?:PartialObjects["guild_member_aggregate_fields"],
+			nodes?:PartialObjects["guild_member"][]
+	},
+	["guild_member_aggregate_fields"]: {
+		__typename?: "guild_member_aggregate_fields";
+			avg?:PartialObjects["guild_member_avg_fields"],
+			count?:number,
+			max?:PartialObjects["guild_member_max_fields"],
+			min?:PartialObjects["guild_member_min_fields"],
+			stddev?:PartialObjects["guild_member_stddev_fields"],
+			stddev_pop?:PartialObjects["guild_member_stddev_pop_fields"],
+			stddev_samp?:PartialObjects["guild_member_stddev_samp_fields"],
+			sum?:PartialObjects["guild_member_sum_fields"],
+			var_pop?:PartialObjects["guild_member_var_pop_fields"],
+			var_samp?:PartialObjects["guild_member_var_samp_fields"],
+			variance?:PartialObjects["guild_member_variance_fields"]
+	},
+	["guild_member_aggregate_order_by"]: {
+	avg?:PartialObjects["guild_member_avg_order_by"],
+	count?:PartialObjects["order_by"],
+	max?:PartialObjects["guild_member_max_order_by"],
+	min?:PartialObjects["guild_member_min_order_by"],
+	stddev?:PartialObjects["guild_member_stddev_order_by"],
+	stddev_pop?:PartialObjects["guild_member_stddev_pop_order_by"],
+	stddev_samp?:PartialObjects["guild_member_stddev_samp_order_by"],
+	sum?:PartialObjects["guild_member_sum_order_by"],
+	var_pop?:PartialObjects["guild_member_var_pop_order_by"],
+	var_samp?:PartialObjects["guild_member_var_samp_order_by"],
+	variance?:PartialObjects["guild_member_variance_order_by"]
+},
+	["guild_member_arr_rel_insert_input"]: {
+	data:PartialObjects["guild_member_insert_input"][],
+	on_conflict?:PartialObjects["guild_member_on_conflict"]
+},
+	["guild_member_avg_fields"]: {
+		__typename?: "guild_member_avg_fields";
+			guild_id?:number
+	},
+	["guild_member_avg_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_member_bool_exp"]: {
+	_and?:(PartialObjects["guild_member_bool_exp"] | undefined)[],
+	_not?:PartialObjects["guild_member_bool_exp"],
+	_or?:(PartialObjects["guild_member_bool_exp"] | undefined)[],
+	guild?:PartialObjects["guild_bool_exp"],
+	guild_id?:PartialObjects["Int_comparison_exp"],
+	member_id?:PartialObjects["uuid_comparison_exp"],
+	user?:PartialObjects["user_bool_exp"]
+},
+	["guild_member_constraint"]:guild_member_constraint,
+	["guild_member_inc_input"]: {
+	guild_id?:number
+},
+	["guild_member_insert_input"]: {
+	guild?:PartialObjects["guild_obj_rel_insert_input"],
+	guild_id?:number,
+	member_id?:PartialObjects["uuid"],
+	user?:PartialObjects["user_obj_rel_insert_input"]
+},
+	["guild_member_max_fields"]: {
+		__typename?: "guild_member_max_fields";
+			guild_id?:number,
+			member_id?:PartialObjects["uuid"]
+	},
+	["guild_member_max_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
+	member_id?:PartialObjects["order_by"]
+},
+	["guild_member_min_fields"]: {
+		__typename?: "guild_member_min_fields";
+			guild_id?:number,
+			member_id?:PartialObjects["uuid"]
+	},
+	["guild_member_min_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
+	member_id?:PartialObjects["order_by"]
+},
+	["guild_member_mutation_response"]: {
+		__typename?: "guild_member_mutation_response";
 			affected_rows?:number,
-			returning?:PartialObjects["cr_user"][]
+			returning?:PartialObjects["guild_member"][]
 	},
-	["cr_user_obj_rel_insert_input"]: {
-	data:PartialObjects["cr_user_insert_input"],
-	on_conflict?:PartialObjects["cr_user_on_conflict"]
+	["guild_member_obj_rel_insert_input"]: {
+	data:PartialObjects["guild_member_insert_input"],
+	on_conflict?:PartialObjects["guild_member_on_conflict"]
 },
-	["cr_user_on_conflict"]: {
-	constraint:PartialObjects["cr_user_constraint"],
-	update_columns:PartialObjects["cr_user_update_column"][],
-	where?:PartialObjects["cr_user_bool_exp"]
+	["guild_member_on_conflict"]: {
+	constraint:PartialObjects["guild_member_constraint"],
+	update_columns:PartialObjects["guild_member_update_column"][],
+	where?:PartialObjects["guild_member_bool_exp"]
 },
-	["cr_user_order_by"]: {
-	date_joined?:PartialObjects["order_by"],
-	email?:PartialObjects["order_by"],
-	first_name?:PartialObjects["order_by"],
-	is_active?:PartialObjects["order_by"],
-	is_staff?:PartialObjects["order_by"],
-	is_superuser?:PartialObjects["order_by"],
-	last_login?:PartialObjects["order_by"],
-	last_name?:PartialObjects["order_by"],
-	nb_guild_users_aggregate?:PartialObjects["nb_guild_user_aggregate_order_by"],
-	nb_meeting_users_aggregate?:PartialObjects["nb_meeting_user_aggregate_order_by"],
-	nb_meetings_aggregate?:PartialObjects["nb_meeting_aggregate_order_by"],
-	nb_sphere_users_aggregate?:PartialObjects["nb_sphere_users_aggregate_order_by"],
-	password?:PartialObjects["order_by"],
-	username?:PartialObjects["order_by"],
-	uuid?:PartialObjects["order_by"]
+	["guild_member_order_by"]: {
+	guild?:PartialObjects["guild_order_by"],
+	guild_id?:PartialObjects["order_by"],
+	member_id?:PartialObjects["order_by"],
+	user?:PartialObjects["user_order_by"]
 },
-	["cr_user_select_column"]:cr_user_select_column,
-	["cr_user_set_input"]: {
-	date_joined?:PartialObjects["timestamptz"],
-	email?:string,
-	first_name?:string,
-	is_active?:boolean,
-	is_staff?:boolean,
-	is_superuser?:boolean,
-	last_login?:PartialObjects["timestamptz"],
-	last_name?:string,
-	password?:string,
-	username?:string,
-	uuid?:PartialObjects["uuid"]
+	["guild_member_pk_columns_input"]: {
+	guild_id:number,
+	member_id:PartialObjects["uuid"]
 },
-	["cr_user_update_column"]:cr_user_update_column,
+	["guild_member_select_column"]:guild_member_select_column,
+	["guild_member_set_input"]: {
+	guild_id?:number,
+	member_id?:PartialObjects["uuid"]
+},
+	["guild_member_stddev_fields"]: {
+		__typename?: "guild_member_stddev_fields";
+			guild_id?:number
+	},
+	["guild_member_stddev_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_member_stddev_pop_fields"]: {
+		__typename?: "guild_member_stddev_pop_fields";
+			guild_id?:number
+	},
+	["guild_member_stddev_pop_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_member_stddev_samp_fields"]: {
+		__typename?: "guild_member_stddev_samp_fields";
+			guild_id?:number
+	},
+	["guild_member_stddev_samp_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_member_sum_fields"]: {
+		__typename?: "guild_member_sum_fields";
+			guild_id?:number
+	},
+	["guild_member_sum_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_member_update_column"]:guild_member_update_column,
+	["guild_member_var_pop_fields"]: {
+		__typename?: "guild_member_var_pop_fields";
+			guild_id?:number
+	},
+	["guild_member_var_pop_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_member_var_samp_fields"]: {
+		__typename?: "guild_member_var_samp_fields";
+			guild_id?:number
+	},
+	["guild_member_var_samp_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_member_variance_fields"]: {
+		__typename?: "guild_member_variance_fields";
+			guild_id?:number
+	},
+	["guild_member_variance_order_by"]: {
+	guild_id?:PartialObjects["order_by"]
+},
+	["guild_min_fields"]: {
+		__typename?: "guild_min_fields";
+			created_at?:PartialObjects["timestamptz"],
+			description?:string,
+			id?:number,
+			name?:string,
+			updated_at?:PartialObjects["timestamptz"]
+	},
+	["guild_min_order_by"]: {
+	created_at?:PartialObjects["order_by"],
+	description?:PartialObjects["order_by"],
+	id?:PartialObjects["order_by"],
+	name?:PartialObjects["order_by"],
+	updated_at?:PartialObjects["order_by"]
+},
+	["guild_mutation_response"]: {
+		__typename?: "guild_mutation_response";
+			affected_rows?:number,
+			returning?:PartialObjects["guild"][]
+	},
+	["guild_obj_rel_insert_input"]: {
+	data:PartialObjects["guild_insert_input"],
+	on_conflict?:PartialObjects["guild_on_conflict"]
+},
+	["guild_on_conflict"]: {
+	constraint:PartialObjects["guild_constraint"],
+	update_columns:PartialObjects["guild_update_column"][],
+	where?:PartialObjects["guild_bool_exp"]
+},
+	["guild_order_by"]: {
+	created_at?:PartialObjects["order_by"],
+	description?:PartialObjects["order_by"],
+	guild_members_aggregate?:PartialObjects["guild_member_aggregate_order_by"],
+	id?:PartialObjects["order_by"],
+	meetings_aggregate?:PartialObjects["meeting_aggregate_order_by"],
+	name?:PartialObjects["order_by"],
+	updated_at?:PartialObjects["order_by"]
+},
+	["guild_pk_columns_input"]: {
+	id:number
+},
+	["guild_select_column"]:guild_select_column,
+	["guild_set_input"]: {
+	created_at?:PartialObjects["timestamptz"],
+	description?:string,
+	id?:number,
+	name?:string,
+	updated_at?:PartialObjects["timestamptz"]
+},
+	["guild_stddev_fields"]: {
+		__typename?: "guild_stddev_fields";
+			id?:number
+	},
+	["guild_stddev_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["guild_stddev_pop_fields"]: {
+		__typename?: "guild_stddev_pop_fields";
+			id?:number
+	},
+	["guild_stddev_pop_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["guild_stddev_samp_fields"]: {
+		__typename?: "guild_stddev_samp_fields";
+			id?:number
+	},
+	["guild_stddev_samp_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["guild_sum_fields"]: {
+		__typename?: "guild_sum_fields";
+			id?:number
+	},
+	["guild_sum_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["guild_update_column"]:guild_update_column,
+	["guild_var_pop_fields"]: {
+		__typename?: "guild_var_pop_fields";
+			id?:number
+	},
+	["guild_var_pop_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["guild_var_samp_fields"]: {
+		__typename?: "guild_var_samp_fields";
+			id?:number
+	},
+	["guild_var_samp_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["guild_variance_fields"]: {
+		__typename?: "guild_variance_fields";
+			id?:number
+	},
+	["guild_variance_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
 	["Int_comparison_exp"]: {
 	_eq?:number,
 	_gt?:number,
@@ -1689,1253 +1629,693 @@ export type PartialObjects = {
 	_neq?:number,
 	_nin?:number[]
 },
-	["mutation_root"]: {
-		__typename?: "mutation_root";
-			delete_cr_user?:PartialObjects["cr_user_mutation_response"],
-			delete_nb_guild?:PartialObjects["nb_guild_mutation_response"],
-			delete_nb_guild_user?:PartialObjects["nb_guild_user_mutation_response"],
-			delete_nb_meeting?:PartialObjects["nb_meeting_mutation_response"],
-			delete_nb_meeting_user?:PartialObjects["nb_meeting_user_mutation_response"],
-			delete_nb_sphere?:PartialObjects["nb_sphere_mutation_response"],
-			delete_nb_sphere_users?:PartialObjects["nb_sphere_users_mutation_response"],
-			insert_cr_user?:PartialObjects["cr_user_mutation_response"],
-			insert_nb_guild?:PartialObjects["nb_guild_mutation_response"],
-			insert_nb_guild_user?:PartialObjects["nb_guild_user_mutation_response"],
-			insert_nb_meeting?:PartialObjects["nb_meeting_mutation_response"],
-			insert_nb_meeting_user?:PartialObjects["nb_meeting_user_mutation_response"],
-			insert_nb_sphere?:PartialObjects["nb_sphere_mutation_response"],
-			insert_nb_sphere_users?:PartialObjects["nb_sphere_users_mutation_response"],
-			update_cr_user?:PartialObjects["cr_user_mutation_response"],
-			update_nb_guild?:PartialObjects["nb_guild_mutation_response"],
-			update_nb_guild_user?:PartialObjects["nb_guild_user_mutation_response"],
-			update_nb_meeting?:PartialObjects["nb_meeting_mutation_response"],
-			update_nb_meeting_user?:PartialObjects["nb_meeting_user_mutation_response"],
-			update_nb_sphere?:PartialObjects["nb_sphere_mutation_response"],
-			update_nb_sphere_users?:PartialObjects["nb_sphere_users_mutation_response"]
-	},
-	["nb_guild"]: {
-		__typename?: "nb_guild";
-			created_at?:PartialObjects["timestamptz"],
-			description?:string,
-			id?:number,
-			name?:string,
-			nb_guild_users?:PartialObjects["nb_guild_user"][],
-			nb_guild_users_aggregate?:PartialObjects["nb_guild_user_aggregate"],
-			nb_meetings?:PartialObjects["nb_meeting"][],
-			nb_meetings_aggregate?:PartialObjects["nb_meeting_aggregate"],
-			sphere_id?:number
-	},
-	["nb_guild_aggregate"]: {
-		__typename?: "nb_guild_aggregate";
-			aggregate?:PartialObjects["nb_guild_aggregate_fields"],
-			nodes?:PartialObjects["nb_guild"][]
-	},
-	["nb_guild_aggregate_fields"]: {
-		__typename?: "nb_guild_aggregate_fields";
-			avg?:PartialObjects["nb_guild_avg_fields"],
-			count?:number,
-			max?:PartialObjects["nb_guild_max_fields"],
-			min?:PartialObjects["nb_guild_min_fields"],
-			stddev?:PartialObjects["nb_guild_stddev_fields"],
-			stddev_pop?:PartialObjects["nb_guild_stddev_pop_fields"],
-			stddev_samp?:PartialObjects["nb_guild_stddev_samp_fields"],
-			sum?:PartialObjects["nb_guild_sum_fields"],
-			var_pop?:PartialObjects["nb_guild_var_pop_fields"],
-			var_samp?:PartialObjects["nb_guild_var_samp_fields"],
-			variance?:PartialObjects["nb_guild_variance_fields"]
-	},
-	["nb_guild_aggregate_order_by"]: {
-	avg?:PartialObjects["nb_guild_avg_order_by"],
-	count?:PartialObjects["order_by"],
-	max?:PartialObjects["nb_guild_max_order_by"],
-	min?:PartialObjects["nb_guild_min_order_by"],
-	stddev?:PartialObjects["nb_guild_stddev_order_by"],
-	stddev_pop?:PartialObjects["nb_guild_stddev_pop_order_by"],
-	stddev_samp?:PartialObjects["nb_guild_stddev_samp_order_by"],
-	sum?:PartialObjects["nb_guild_sum_order_by"],
-	var_pop?:PartialObjects["nb_guild_var_pop_order_by"],
-	var_samp?:PartialObjects["nb_guild_var_samp_order_by"],
-	variance?:PartialObjects["nb_guild_variance_order_by"]
-},
-	["nb_guild_arr_rel_insert_input"]: {
-	data:PartialObjects["nb_guild_insert_input"][],
-	on_conflict?:PartialObjects["nb_guild_on_conflict"]
-},
-	["nb_guild_avg_fields"]: {
-		__typename?: "nb_guild_avg_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_avg_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_bool_exp"]: {
-	_and?:(PartialObjects["nb_guild_bool_exp"] | undefined)[],
-	_not?:PartialObjects["nb_guild_bool_exp"],
-	_or?:(PartialObjects["nb_guild_bool_exp"] | undefined)[],
-	created_at?:PartialObjects["timestamptz_comparison_exp"],
-	description?:PartialObjects["String_comparison_exp"],
-	id?:PartialObjects["Int_comparison_exp"],
-	name?:PartialObjects["String_comparison_exp"],
-	nb_guild_users?:PartialObjects["nb_guild_user_bool_exp"],
-	nb_meetings?:PartialObjects["nb_meeting_bool_exp"],
-	sphere_id?:PartialObjects["Int_comparison_exp"]
-},
-	["nb_guild_constraint"]:nb_guild_constraint,
-	["nb_guild_inc_input"]: {
-	id?:number,
-	sphere_id?:number
-},
-	["nb_guild_insert_input"]: {
-	created_at?:PartialObjects["timestamptz"],
-	description?:string,
-	id?:number,
-	name?:string,
-	nb_guild_users?:PartialObjects["nb_guild_user_arr_rel_insert_input"],
-	nb_meetings?:PartialObjects["nb_meeting_arr_rel_insert_input"],
-	sphere_id?:number
-},
-	["nb_guild_max_fields"]: {
-		__typename?: "nb_guild_max_fields";
-			created_at?:PartialObjects["timestamptz"],
-			description?:string,
-			id?:number,
-			name?:string,
-			sphere_id?:number
-	},
-	["nb_guild_max_order_by"]: {
-	created_at?:PartialObjects["order_by"],
-	description?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	name?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_min_fields"]: {
-		__typename?: "nb_guild_min_fields";
-			created_at?:PartialObjects["timestamptz"],
-			description?:string,
-			id?:number,
-			name?:string,
-			sphere_id?:number
-	},
-	["nb_guild_min_order_by"]: {
-	created_at?:PartialObjects["order_by"],
-	description?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	name?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_mutation_response"]: {
-		__typename?: "nb_guild_mutation_response";
-			affected_rows?:number,
-			returning?:PartialObjects["nb_guild"][]
-	},
-	["nb_guild_obj_rel_insert_input"]: {
-	data:PartialObjects["nb_guild_insert_input"],
-	on_conflict?:PartialObjects["nb_guild_on_conflict"]
-},
-	["nb_guild_on_conflict"]: {
-	constraint:PartialObjects["nb_guild_constraint"],
-	update_columns:PartialObjects["nb_guild_update_column"][],
-	where?:PartialObjects["nb_guild_bool_exp"]
-},
-	["nb_guild_order_by"]: {
-	created_at?:PartialObjects["order_by"],
-	description?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	name?:PartialObjects["order_by"],
-	nb_guild_users_aggregate?:PartialObjects["nb_guild_user_aggregate_order_by"],
-	nb_meetings_aggregate?:PartialObjects["nb_meeting_aggregate_order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_select_column"]:nb_guild_select_column,
-	["nb_guild_set_input"]: {
-	created_at?:PartialObjects["timestamptz"],
-	description?:string,
-	id?:number,
-	name?:string,
-	sphere_id?:number
-},
-	["nb_guild_stddev_fields"]: {
-		__typename?: "nb_guild_stddev_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_stddev_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_stddev_pop_fields"]: {
-		__typename?: "nb_guild_stddev_pop_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_stddev_pop_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_stddev_samp_fields"]: {
-		__typename?: "nb_guild_stddev_samp_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_stddev_samp_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_sum_fields"]: {
-		__typename?: "nb_guild_sum_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_sum_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_update_column"]:nb_guild_update_column,
-	["nb_guild_user"]: {
-		__typename?: "nb_guild_user";
-			cr_user?:PartialObjects["cr_user"],
-			guild_id?:number,
-			id?:number,
-			membership_type?:string,
-			nb_guild?:PartialObjects["nb_guild"],
-			user_id?:PartialObjects["uuid"]
-	},
-	["nb_guild_user_aggregate"]: {
-		__typename?: "nb_guild_user_aggregate";
-			aggregate?:PartialObjects["nb_guild_user_aggregate_fields"],
-			nodes?:PartialObjects["nb_guild_user"][]
-	},
-	["nb_guild_user_aggregate_fields"]: {
-		__typename?: "nb_guild_user_aggregate_fields";
-			avg?:PartialObjects["nb_guild_user_avg_fields"],
-			count?:number,
-			max?:PartialObjects["nb_guild_user_max_fields"],
-			min?:PartialObjects["nb_guild_user_min_fields"],
-			stddev?:PartialObjects["nb_guild_user_stddev_fields"],
-			stddev_pop?:PartialObjects["nb_guild_user_stddev_pop_fields"],
-			stddev_samp?:PartialObjects["nb_guild_user_stddev_samp_fields"],
-			sum?:PartialObjects["nb_guild_user_sum_fields"],
-			var_pop?:PartialObjects["nb_guild_user_var_pop_fields"],
-			var_samp?:PartialObjects["nb_guild_user_var_samp_fields"],
-			variance?:PartialObjects["nb_guild_user_variance_fields"]
-	},
-	["nb_guild_user_aggregate_order_by"]: {
-	avg?:PartialObjects["nb_guild_user_avg_order_by"],
-	count?:PartialObjects["order_by"],
-	max?:PartialObjects["nb_guild_user_max_order_by"],
-	min?:PartialObjects["nb_guild_user_min_order_by"],
-	stddev?:PartialObjects["nb_guild_user_stddev_order_by"],
-	stddev_pop?:PartialObjects["nb_guild_user_stddev_pop_order_by"],
-	stddev_samp?:PartialObjects["nb_guild_user_stddev_samp_order_by"],
-	sum?:PartialObjects["nb_guild_user_sum_order_by"],
-	var_pop?:PartialObjects["nb_guild_user_var_pop_order_by"],
-	var_samp?:PartialObjects["nb_guild_user_var_samp_order_by"],
-	variance?:PartialObjects["nb_guild_user_variance_order_by"]
-},
-	["nb_guild_user_arr_rel_insert_input"]: {
-	data:PartialObjects["nb_guild_user_insert_input"][],
-	on_conflict?:PartialObjects["nb_guild_user_on_conflict"]
-},
-	["nb_guild_user_avg_fields"]: {
-		__typename?: "nb_guild_user_avg_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_avg_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_bool_exp"]: {
-	_and?:(PartialObjects["nb_guild_user_bool_exp"] | undefined)[],
-	_not?:PartialObjects["nb_guild_user_bool_exp"],
-	_or?:(PartialObjects["nb_guild_user_bool_exp"] | undefined)[],
-	cr_user?:PartialObjects["cr_user_bool_exp"],
-	guild_id?:PartialObjects["Int_comparison_exp"],
-	id?:PartialObjects["Int_comparison_exp"],
-	membership_type?:PartialObjects["String_comparison_exp"],
-	nb_guild?:PartialObjects["nb_guild_bool_exp"],
-	user_id?:PartialObjects["uuid_comparison_exp"]
-},
-	["nb_guild_user_constraint"]:nb_guild_user_constraint,
-	["nb_guild_user_inc_input"]: {
-	guild_id?:number,
-	id?:number
-},
-	["nb_guild_user_insert_input"]: {
-	cr_user?:PartialObjects["cr_user_obj_rel_insert_input"],
-	guild_id?:number,
-	id?:number,
-	membership_type?:string,
-	nb_guild?:PartialObjects["nb_guild_obj_rel_insert_input"],
-	user_id?:PartialObjects["uuid"]
-},
-	["nb_guild_user_max_fields"]: {
-		__typename?: "nb_guild_user_max_fields";
-			guild_id?:number,
-			id?:number,
-			membership_type?:string
-	},
-	["nb_guild_user_max_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	membership_type?:PartialObjects["order_by"]
-},
-	["nb_guild_user_min_fields"]: {
-		__typename?: "nb_guild_user_min_fields";
-			guild_id?:number,
-			id?:number,
-			membership_type?:string
-	},
-	["nb_guild_user_min_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	membership_type?:PartialObjects["order_by"]
-},
-	["nb_guild_user_mutation_response"]: {
-		__typename?: "nb_guild_user_mutation_response";
-			affected_rows?:number,
-			returning?:PartialObjects["nb_guild_user"][]
-	},
-	["nb_guild_user_obj_rel_insert_input"]: {
-	data:PartialObjects["nb_guild_user_insert_input"],
-	on_conflict?:PartialObjects["nb_guild_user_on_conflict"]
-},
-	["nb_guild_user_on_conflict"]: {
-	constraint:PartialObjects["nb_guild_user_constraint"],
-	update_columns:PartialObjects["nb_guild_user_update_column"][],
-	where?:PartialObjects["nb_guild_user_bool_exp"]
-},
-	["nb_guild_user_order_by"]: {
-	cr_user?:PartialObjects["cr_user_order_by"],
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	membership_type?:PartialObjects["order_by"],
-	nb_guild?:PartialObjects["nb_guild_order_by"],
-	user_id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_select_column"]:nb_guild_user_select_column,
-	["nb_guild_user_set_input"]: {
-	guild_id?:number,
-	id?:number,
-	membership_type?:string,
-	user_id?:PartialObjects["uuid"]
-},
-	["nb_guild_user_stddev_fields"]: {
-		__typename?: "nb_guild_user_stddev_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_stddev_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_stddev_pop_fields"]: {
-		__typename?: "nb_guild_user_stddev_pop_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_stddev_pop_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_stddev_samp_fields"]: {
-		__typename?: "nb_guild_user_stddev_samp_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_stddev_samp_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_sum_fields"]: {
-		__typename?: "nb_guild_user_sum_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_sum_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_update_column"]:nb_guild_user_update_column,
-	["nb_guild_user_var_pop_fields"]: {
-		__typename?: "nb_guild_user_var_pop_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_var_pop_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_var_samp_fields"]: {
-		__typename?: "nb_guild_user_var_samp_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_var_samp_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_user_variance_fields"]: {
-		__typename?: "nb_guild_user_variance_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_guild_user_variance_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_guild_var_pop_fields"]: {
-		__typename?: "nb_guild_var_pop_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_var_pop_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_var_samp_fields"]: {
-		__typename?: "nb_guild_var_samp_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_var_samp_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_guild_variance_fields"]: {
-		__typename?: "nb_guild_variance_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_guild_variance_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_meeting"]: {
-		__typename?: "nb_meeting";
+	["meeting"]: {
+		__typename?: "meeting";
 			created_at?:PartialObjects["timestamptz"],
 			description?:string,
 			end_time?:PartialObjects["timestamptz"],
+			guild?:PartialObjects["guild"],
 			guild_id?:number,
 			id?:number,
 			location?:string,
-			nb_guild?:PartialObjects["nb_guild"],
-			nb_meeting_users?:PartialObjects["nb_meeting_user"][],
-			nb_meeting_users_aggregate?:PartialObjects["nb_meeting_user_aggregate"],
-			organizer?:PartialObjects["cr_user"],
+			organizer?:PartialObjects["user"],
 			organizer_id?:PartialObjects["uuid"],
+			participants?:PartialObjects["meeting_participant"][],
+			participants_aggregate?:PartialObjects["meeting_participant_aggregate"],
 			publication_time?:PartialObjects["timestamptz"],
+			sphere_id?:number,
 			start_time?:PartialObjects["timestamptz"],
 			title?:string,
 			updated_at?:PartialObjects["timestamptz"]
 	},
-	["nb_meeting_aggregate"]: {
-		__typename?: "nb_meeting_aggregate";
-			aggregate?:PartialObjects["nb_meeting_aggregate_fields"],
-			nodes?:PartialObjects["nb_meeting"][]
+	["meeting_aggregate"]: {
+		__typename?: "meeting_aggregate";
+			aggregate?:PartialObjects["meeting_aggregate_fields"],
+			nodes?:PartialObjects["meeting"][]
 	},
-	["nb_meeting_aggregate_fields"]: {
-		__typename?: "nb_meeting_aggregate_fields";
-			avg?:PartialObjects["nb_meeting_avg_fields"],
+	["meeting_aggregate_fields"]: {
+		__typename?: "meeting_aggregate_fields";
+			avg?:PartialObjects["meeting_avg_fields"],
 			count?:number,
-			max?:PartialObjects["nb_meeting_max_fields"],
-			min?:PartialObjects["nb_meeting_min_fields"],
-			stddev?:PartialObjects["nb_meeting_stddev_fields"],
-			stddev_pop?:PartialObjects["nb_meeting_stddev_pop_fields"],
-			stddev_samp?:PartialObjects["nb_meeting_stddev_samp_fields"],
-			sum?:PartialObjects["nb_meeting_sum_fields"],
-			var_pop?:PartialObjects["nb_meeting_var_pop_fields"],
-			var_samp?:PartialObjects["nb_meeting_var_samp_fields"],
-			variance?:PartialObjects["nb_meeting_variance_fields"]
+			max?:PartialObjects["meeting_max_fields"],
+			min?:PartialObjects["meeting_min_fields"],
+			stddev?:PartialObjects["meeting_stddev_fields"],
+			stddev_pop?:PartialObjects["meeting_stddev_pop_fields"],
+			stddev_samp?:PartialObjects["meeting_stddev_samp_fields"],
+			sum?:PartialObjects["meeting_sum_fields"],
+			var_pop?:PartialObjects["meeting_var_pop_fields"],
+			var_samp?:PartialObjects["meeting_var_samp_fields"],
+			variance?:PartialObjects["meeting_variance_fields"]
 	},
-	["nb_meeting_aggregate_order_by"]: {
-	avg?:PartialObjects["nb_meeting_avg_order_by"],
+	["meeting_aggregate_order_by"]: {
+	avg?:PartialObjects["meeting_avg_order_by"],
 	count?:PartialObjects["order_by"],
-	max?:PartialObjects["nb_meeting_max_order_by"],
-	min?:PartialObjects["nb_meeting_min_order_by"],
-	stddev?:PartialObjects["nb_meeting_stddev_order_by"],
-	stddev_pop?:PartialObjects["nb_meeting_stddev_pop_order_by"],
-	stddev_samp?:PartialObjects["nb_meeting_stddev_samp_order_by"],
-	sum?:PartialObjects["nb_meeting_sum_order_by"],
-	var_pop?:PartialObjects["nb_meeting_var_pop_order_by"],
-	var_samp?:PartialObjects["nb_meeting_var_samp_order_by"],
-	variance?:PartialObjects["nb_meeting_variance_order_by"]
+	max?:PartialObjects["meeting_max_order_by"],
+	min?:PartialObjects["meeting_min_order_by"],
+	stddev?:PartialObjects["meeting_stddev_order_by"],
+	stddev_pop?:PartialObjects["meeting_stddev_pop_order_by"],
+	stddev_samp?:PartialObjects["meeting_stddev_samp_order_by"],
+	sum?:PartialObjects["meeting_sum_order_by"],
+	var_pop?:PartialObjects["meeting_var_pop_order_by"],
+	var_samp?:PartialObjects["meeting_var_samp_order_by"],
+	variance?:PartialObjects["meeting_variance_order_by"]
 },
-	["nb_meeting_arr_rel_insert_input"]: {
-	data:PartialObjects["nb_meeting_insert_input"][],
-	on_conflict?:PartialObjects["nb_meeting_on_conflict"]
+	["meeting_arr_rel_insert_input"]: {
+	data:PartialObjects["meeting_insert_input"][],
+	on_conflict?:PartialObjects["meeting_on_conflict"]
 },
-	["nb_meeting_avg_fields"]: {
-		__typename?: "nb_meeting_avg_fields";
+	["meeting_avg_fields"]: {
+		__typename?: "meeting_avg_fields";
 			guild_id?:number,
-			id?:number
+			id?:number,
+			sphere_id?:number
 	},
-	["nb_meeting_avg_order_by"]: {
+	["meeting_avg_order_by"]: {
 	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
+	id?:PartialObjects["order_by"],
+	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_meeting_bool_exp"]: {
-	_and?:(PartialObjects["nb_meeting_bool_exp"] | undefined)[],
-	_not?:PartialObjects["nb_meeting_bool_exp"],
-	_or?:(PartialObjects["nb_meeting_bool_exp"] | undefined)[],
+	["meeting_bool_exp"]: {
+	_and?:(PartialObjects["meeting_bool_exp"] | undefined)[],
+	_not?:PartialObjects["meeting_bool_exp"],
+	_or?:(PartialObjects["meeting_bool_exp"] | undefined)[],
 	created_at?:PartialObjects["timestamptz_comparison_exp"],
 	description?:PartialObjects["String_comparison_exp"],
 	end_time?:PartialObjects["timestamptz_comparison_exp"],
+	guild?:PartialObjects["guild_bool_exp"],
 	guild_id?:PartialObjects["Int_comparison_exp"],
 	id?:PartialObjects["Int_comparison_exp"],
 	location?:PartialObjects["String_comparison_exp"],
-	nb_guild?:PartialObjects["nb_guild_bool_exp"],
-	nb_meeting_users?:PartialObjects["nb_meeting_user_bool_exp"],
-	organizer?:PartialObjects["cr_user_bool_exp"],
+	organizer?:PartialObjects["user_bool_exp"],
 	organizer_id?:PartialObjects["uuid_comparison_exp"],
+	participants?:PartialObjects["meeting_participant_bool_exp"],
 	publication_time?:PartialObjects["timestamptz_comparison_exp"],
+	sphere_id?:PartialObjects["Int_comparison_exp"],
 	start_time?:PartialObjects["timestamptz_comparison_exp"],
 	title?:PartialObjects["String_comparison_exp"],
 	updated_at?:PartialObjects["timestamptz_comparison_exp"]
 },
-	["nb_meeting_constraint"]:nb_meeting_constraint,
-	["nb_meeting_inc_input"]: {
+	["meeting_constraint"]:meeting_constraint,
+	["meeting_inc_input"]: {
 	guild_id?:number,
-	id?:number
-},
-	["nb_meeting_insert_input"]: {
-	created_at?:PartialObjects["timestamptz"],
-	description?:string,
-	end_time?:PartialObjects["timestamptz"],
-	guild_id?:number,
-	id?:number,
-	location?:string,
-	nb_guild?:PartialObjects["nb_guild_obj_rel_insert_input"],
-	nb_meeting_users?:PartialObjects["nb_meeting_user_arr_rel_insert_input"],
-	organizer?:PartialObjects["cr_user_obj_rel_insert_input"],
-	organizer_id?:PartialObjects["uuid"],
-	publication_time?:PartialObjects["timestamptz"],
-	start_time?:PartialObjects["timestamptz"],
-	title?:string,
-	updated_at?:PartialObjects["timestamptz"]
-},
-	["nb_meeting_max_fields"]: {
-		__typename?: "nb_meeting_max_fields";
-			created_at?:PartialObjects["timestamptz"],
-			description?:string,
-			end_time?:PartialObjects["timestamptz"],
-			guild_id?:number,
-			id?:number,
-			location?:string,
-			publication_time?:PartialObjects["timestamptz"],
-			start_time?:PartialObjects["timestamptz"],
-			title?:string,
-			updated_at?:PartialObjects["timestamptz"]
-	},
-	["nb_meeting_max_order_by"]: {
-	created_at?:PartialObjects["order_by"],
-	description?:PartialObjects["order_by"],
-	end_time?:PartialObjects["order_by"],
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	location?:PartialObjects["order_by"],
-	publication_time?:PartialObjects["order_by"],
-	start_time?:PartialObjects["order_by"],
-	title?:PartialObjects["order_by"],
-	updated_at?:PartialObjects["order_by"]
-},
-	["nb_meeting_min_fields"]: {
-		__typename?: "nb_meeting_min_fields";
-			created_at?:PartialObjects["timestamptz"],
-			description?:string,
-			end_time?:PartialObjects["timestamptz"],
-			guild_id?:number,
-			id?:number,
-			location?:string,
-			publication_time?:PartialObjects["timestamptz"],
-			start_time?:PartialObjects["timestamptz"],
-			title?:string,
-			updated_at?:PartialObjects["timestamptz"]
-	},
-	["nb_meeting_min_order_by"]: {
-	created_at?:PartialObjects["order_by"],
-	description?:PartialObjects["order_by"],
-	end_time?:PartialObjects["order_by"],
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	location?:PartialObjects["order_by"],
-	publication_time?:PartialObjects["order_by"],
-	start_time?:PartialObjects["order_by"],
-	title?:PartialObjects["order_by"],
-	updated_at?:PartialObjects["order_by"]
-},
-	["nb_meeting_mutation_response"]: {
-		__typename?: "nb_meeting_mutation_response";
-			affected_rows?:number,
-			returning?:PartialObjects["nb_meeting"][]
-	},
-	["nb_meeting_obj_rel_insert_input"]: {
-	data:PartialObjects["nb_meeting_insert_input"],
-	on_conflict?:PartialObjects["nb_meeting_on_conflict"]
-},
-	["nb_meeting_on_conflict"]: {
-	constraint:PartialObjects["nb_meeting_constraint"],
-	update_columns:PartialObjects["nb_meeting_update_column"][],
-	where?:PartialObjects["nb_meeting_bool_exp"]
-},
-	["nb_meeting_order_by"]: {
-	created_at?:PartialObjects["order_by"],
-	description?:PartialObjects["order_by"],
-	end_time?:PartialObjects["order_by"],
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"],
-	location?:PartialObjects["order_by"],
-	nb_guild?:PartialObjects["nb_guild_order_by"],
-	nb_meeting_users_aggregate?:PartialObjects["nb_meeting_user_aggregate_order_by"],
-	organizer?:PartialObjects["cr_user_order_by"],
-	organizer_id?:PartialObjects["order_by"],
-	publication_time?:PartialObjects["order_by"],
-	start_time?:PartialObjects["order_by"],
-	title?:PartialObjects["order_by"],
-	updated_at?:PartialObjects["order_by"]
-},
-	["nb_meeting_select_column"]:nb_meeting_select_column,
-	["nb_meeting_set_input"]: {
-	created_at?:PartialObjects["timestamptz"],
-	description?:string,
-	end_time?:PartialObjects["timestamptz"],
-	guild_id?:number,
-	id?:number,
-	location?:string,
-	organizer_id?:PartialObjects["uuid"],
-	publication_time?:PartialObjects["timestamptz"],
-	start_time?:PartialObjects["timestamptz"],
-	title?:string,
-	updated_at?:PartialObjects["timestamptz"]
-},
-	["nb_meeting_stddev_fields"]: {
-		__typename?: "nb_meeting_stddev_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_meeting_stddev_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_meeting_stddev_pop_fields"]: {
-		__typename?: "nb_meeting_stddev_pop_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_meeting_stddev_pop_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_meeting_stddev_samp_fields"]: {
-		__typename?: "nb_meeting_stddev_samp_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_meeting_stddev_samp_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_meeting_sum_fields"]: {
-		__typename?: "nb_meeting_sum_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_meeting_sum_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_meeting_update_column"]:nb_meeting_update_column,
-	["nb_meeting_user"]: {
-		__typename?: "nb_meeting_user";
-			cr_user?:PartialObjects["cr_user"],
-			id?:number,
-			meeting_id?:number,
-			nb_meeting?:PartialObjects["nb_meeting"],
-			status?:string,
-			user_id?:PartialObjects["uuid"]
-	},
-	["nb_meeting_user_aggregate"]: {
-		__typename?: "nb_meeting_user_aggregate";
-			aggregate?:PartialObjects["nb_meeting_user_aggregate_fields"],
-			nodes?:PartialObjects["nb_meeting_user"][]
-	},
-	["nb_meeting_user_aggregate_fields"]: {
-		__typename?: "nb_meeting_user_aggregate_fields";
-			avg?:PartialObjects["nb_meeting_user_avg_fields"],
-			count?:number,
-			max?:PartialObjects["nb_meeting_user_max_fields"],
-			min?:PartialObjects["nb_meeting_user_min_fields"],
-			stddev?:PartialObjects["nb_meeting_user_stddev_fields"],
-			stddev_pop?:PartialObjects["nb_meeting_user_stddev_pop_fields"],
-			stddev_samp?:PartialObjects["nb_meeting_user_stddev_samp_fields"],
-			sum?:PartialObjects["nb_meeting_user_sum_fields"],
-			var_pop?:PartialObjects["nb_meeting_user_var_pop_fields"],
-			var_samp?:PartialObjects["nb_meeting_user_var_samp_fields"],
-			variance?:PartialObjects["nb_meeting_user_variance_fields"]
-	},
-	["nb_meeting_user_aggregate_order_by"]: {
-	avg?:PartialObjects["nb_meeting_user_avg_order_by"],
-	count?:PartialObjects["order_by"],
-	max?:PartialObjects["nb_meeting_user_max_order_by"],
-	min?:PartialObjects["nb_meeting_user_min_order_by"],
-	stddev?:PartialObjects["nb_meeting_user_stddev_order_by"],
-	stddev_pop?:PartialObjects["nb_meeting_user_stddev_pop_order_by"],
-	stddev_samp?:PartialObjects["nb_meeting_user_stddev_samp_order_by"],
-	sum?:PartialObjects["nb_meeting_user_sum_order_by"],
-	var_pop?:PartialObjects["nb_meeting_user_var_pop_order_by"],
-	var_samp?:PartialObjects["nb_meeting_user_var_samp_order_by"],
-	variance?:PartialObjects["nb_meeting_user_variance_order_by"]
-},
-	["nb_meeting_user_arr_rel_insert_input"]: {
-	data:PartialObjects["nb_meeting_user_insert_input"][],
-	on_conflict?:PartialObjects["nb_meeting_user_on_conflict"]
-},
-	["nb_meeting_user_avg_fields"]: {
-		__typename?: "nb_meeting_user_avg_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_avg_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_bool_exp"]: {
-	_and?:(PartialObjects["nb_meeting_user_bool_exp"] | undefined)[],
-	_not?:PartialObjects["nb_meeting_user_bool_exp"],
-	_or?:(PartialObjects["nb_meeting_user_bool_exp"] | undefined)[],
-	cr_user?:PartialObjects["cr_user_bool_exp"],
-	id?:PartialObjects["Int_comparison_exp"],
-	meeting_id?:PartialObjects["Int_comparison_exp"],
-	nb_meeting?:PartialObjects["nb_meeting_bool_exp"],
-	status?:PartialObjects["String_comparison_exp"],
-	user_id?:PartialObjects["uuid_comparison_exp"]
-},
-	["nb_meeting_user_constraint"]:nb_meeting_user_constraint,
-	["nb_meeting_user_inc_input"]: {
-	id?:number,
-	meeting_id?:number
-},
-	["nb_meeting_user_insert_input"]: {
-	cr_user?:PartialObjects["cr_user_obj_rel_insert_input"],
-	id?:number,
-	meeting_id?:number,
-	nb_meeting?:PartialObjects["nb_meeting_obj_rel_insert_input"],
-	status?:string,
-	user_id?:PartialObjects["uuid"]
-},
-	["nb_meeting_user_max_fields"]: {
-		__typename?: "nb_meeting_user_max_fields";
-			id?:number,
-			meeting_id?:number,
-			status?:string
-	},
-	["nb_meeting_user_max_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"],
-	status?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_min_fields"]: {
-		__typename?: "nb_meeting_user_min_fields";
-			id?:number,
-			meeting_id?:number,
-			status?:string
-	},
-	["nb_meeting_user_min_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"],
-	status?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_mutation_response"]: {
-		__typename?: "nb_meeting_user_mutation_response";
-			affected_rows?:number,
-			returning?:PartialObjects["nb_meeting_user"][]
-	},
-	["nb_meeting_user_obj_rel_insert_input"]: {
-	data:PartialObjects["nb_meeting_user_insert_input"],
-	on_conflict?:PartialObjects["nb_meeting_user_on_conflict"]
-},
-	["nb_meeting_user_on_conflict"]: {
-	constraint:PartialObjects["nb_meeting_user_constraint"],
-	update_columns:PartialObjects["nb_meeting_user_update_column"][],
-	where?:PartialObjects["nb_meeting_user_bool_exp"]
-},
-	["nb_meeting_user_order_by"]: {
-	cr_user?:PartialObjects["cr_user_order_by"],
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"],
-	nb_meeting?:PartialObjects["nb_meeting_order_by"],
-	status?:PartialObjects["order_by"],
-	user_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_select_column"]:nb_meeting_user_select_column,
-	["nb_meeting_user_set_input"]: {
-	id?:number,
-	meeting_id?:number,
-	status?:string,
-	user_id?:PartialObjects["uuid"]
-},
-	["nb_meeting_user_stddev_fields"]: {
-		__typename?: "nb_meeting_user_stddev_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_stddev_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_stddev_pop_fields"]: {
-		__typename?: "nb_meeting_user_stddev_pop_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_stddev_pop_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_stddev_samp_fields"]: {
-		__typename?: "nb_meeting_user_stddev_samp_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_stddev_samp_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_sum_fields"]: {
-		__typename?: "nb_meeting_user_sum_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_sum_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_update_column"]:nb_meeting_user_update_column,
-	["nb_meeting_user_var_pop_fields"]: {
-		__typename?: "nb_meeting_user_var_pop_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_var_pop_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_var_samp_fields"]: {
-		__typename?: "nb_meeting_user_var_samp_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_var_samp_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_user_variance_fields"]: {
-		__typename?: "nb_meeting_user_variance_fields";
-			id?:number,
-			meeting_id?:number
-	},
-	["nb_meeting_user_variance_order_by"]: {
-	id?:PartialObjects["order_by"],
-	meeting_id?:PartialObjects["order_by"]
-},
-	["nb_meeting_var_pop_fields"]: {
-		__typename?: "nb_meeting_var_pop_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_meeting_var_pop_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_meeting_var_samp_fields"]: {
-		__typename?: "nb_meeting_var_samp_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_meeting_var_samp_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_meeting_variance_fields"]: {
-		__typename?: "nb_meeting_variance_fields";
-			guild_id?:number,
-			id?:number
-	},
-	["nb_meeting_variance_order_by"]: {
-	guild_id?:PartialObjects["order_by"],
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere"]: {
-		__typename?: "nb_sphere";
-			id?:number,
-			name?:string,
-			nb_sphere_users?:PartialObjects["nb_sphere_users"][],
-			nb_sphere_users_aggregate?:PartialObjects["nb_sphere_users_aggregate"]
-	},
-	["nb_sphere_aggregate"]: {
-		__typename?: "nb_sphere_aggregate";
-			aggregate?:PartialObjects["nb_sphere_aggregate_fields"],
-			nodes?:PartialObjects["nb_sphere"][]
-	},
-	["nb_sphere_aggregate_fields"]: {
-		__typename?: "nb_sphere_aggregate_fields";
-			avg?:PartialObjects["nb_sphere_avg_fields"],
-			count?:number,
-			max?:PartialObjects["nb_sphere_max_fields"],
-			min?:PartialObjects["nb_sphere_min_fields"],
-			stddev?:PartialObjects["nb_sphere_stddev_fields"],
-			stddev_pop?:PartialObjects["nb_sphere_stddev_pop_fields"],
-			stddev_samp?:PartialObjects["nb_sphere_stddev_samp_fields"],
-			sum?:PartialObjects["nb_sphere_sum_fields"],
-			var_pop?:PartialObjects["nb_sphere_var_pop_fields"],
-			var_samp?:PartialObjects["nb_sphere_var_samp_fields"],
-			variance?:PartialObjects["nb_sphere_variance_fields"]
-	},
-	["nb_sphere_aggregate_order_by"]: {
-	avg?:PartialObjects["nb_sphere_avg_order_by"],
-	count?:PartialObjects["order_by"],
-	max?:PartialObjects["nb_sphere_max_order_by"],
-	min?:PartialObjects["nb_sphere_min_order_by"],
-	stddev?:PartialObjects["nb_sphere_stddev_order_by"],
-	stddev_pop?:PartialObjects["nb_sphere_stddev_pop_order_by"],
-	stddev_samp?:PartialObjects["nb_sphere_stddev_samp_order_by"],
-	sum?:PartialObjects["nb_sphere_sum_order_by"],
-	var_pop?:PartialObjects["nb_sphere_var_pop_order_by"],
-	var_samp?:PartialObjects["nb_sphere_var_samp_order_by"],
-	variance?:PartialObjects["nb_sphere_variance_order_by"]
-},
-	["nb_sphere_arr_rel_insert_input"]: {
-	data:PartialObjects["nb_sphere_insert_input"][],
-	on_conflict?:PartialObjects["nb_sphere_on_conflict"]
-},
-	["nb_sphere_avg_fields"]: {
-		__typename?: "nb_sphere_avg_fields";
-			id?:number
-	},
-	["nb_sphere_avg_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere_bool_exp"]: {
-	_and?:(PartialObjects["nb_sphere_bool_exp"] | undefined)[],
-	_not?:PartialObjects["nb_sphere_bool_exp"],
-	_or?:(PartialObjects["nb_sphere_bool_exp"] | undefined)[],
-	id?:PartialObjects["Int_comparison_exp"],
-	name?:PartialObjects["String_comparison_exp"],
-	nb_sphere_users?:PartialObjects["nb_sphere_users_bool_exp"]
-},
-	["nb_sphere_constraint"]:nb_sphere_constraint,
-	["nb_sphere_inc_input"]: {
-	id?:number
-},
-	["nb_sphere_insert_input"]: {
-	id?:number,
-	name?:string,
-	nb_sphere_users?:PartialObjects["nb_sphere_users_arr_rel_insert_input"]
-},
-	["nb_sphere_max_fields"]: {
-		__typename?: "nb_sphere_max_fields";
-			id?:number,
-			name?:string
-	},
-	["nb_sphere_max_order_by"]: {
-	id?:PartialObjects["order_by"],
-	name?:PartialObjects["order_by"]
-},
-	["nb_sphere_min_fields"]: {
-		__typename?: "nb_sphere_min_fields";
-			id?:number,
-			name?:string
-	},
-	["nb_sphere_min_order_by"]: {
-	id?:PartialObjects["order_by"],
-	name?:PartialObjects["order_by"]
-},
-	["nb_sphere_mutation_response"]: {
-		__typename?: "nb_sphere_mutation_response";
-			affected_rows?:number,
-			returning?:PartialObjects["nb_sphere"][]
-	},
-	["nb_sphere_obj_rel_insert_input"]: {
-	data:PartialObjects["nb_sphere_insert_input"],
-	on_conflict?:PartialObjects["nb_sphere_on_conflict"]
-},
-	["nb_sphere_on_conflict"]: {
-	constraint:PartialObjects["nb_sphere_constraint"],
-	update_columns:PartialObjects["nb_sphere_update_column"][],
-	where?:PartialObjects["nb_sphere_bool_exp"]
-},
-	["nb_sphere_order_by"]: {
-	id?:PartialObjects["order_by"],
-	name?:PartialObjects["order_by"],
-	nb_sphere_users_aggregate?:PartialObjects["nb_sphere_users_aggregate_order_by"]
-},
-	["nb_sphere_select_column"]:nb_sphere_select_column,
-	["nb_sphere_set_input"]: {
-	id?:number,
-	name?:string
-},
-	["nb_sphere_stddev_fields"]: {
-		__typename?: "nb_sphere_stddev_fields";
-			id?:number
-	},
-	["nb_sphere_stddev_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere_stddev_pop_fields"]: {
-		__typename?: "nb_sphere_stddev_pop_fields";
-			id?:number
-	},
-	["nb_sphere_stddev_pop_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere_stddev_samp_fields"]: {
-		__typename?: "nb_sphere_stddev_samp_fields";
-			id?:number
-	},
-	["nb_sphere_stddev_samp_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere_sum_fields"]: {
-		__typename?: "nb_sphere_sum_fields";
-			id?:number
-	},
-	["nb_sphere_sum_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere_update_column"]:nb_sphere_update_column,
-	["nb_sphere_users"]: {
-		__typename?: "nb_sphere_users";
-			cr_user?:PartialObjects["cr_user"],
-			id?:number,
-			nb_sphere?:PartialObjects["nb_sphere"],
-			sphere_id?:number,
-			user_id?:PartialObjects["uuid"]
-	},
-	["nb_sphere_users_aggregate"]: {
-		__typename?: "nb_sphere_users_aggregate";
-			aggregate?:PartialObjects["nb_sphere_users_aggregate_fields"],
-			nodes?:PartialObjects["nb_sphere_users"][]
-	},
-	["nb_sphere_users_aggregate_fields"]: {
-		__typename?: "nb_sphere_users_aggregate_fields";
-			avg?:PartialObjects["nb_sphere_users_avg_fields"],
-			count?:number,
-			max?:PartialObjects["nb_sphere_users_max_fields"],
-			min?:PartialObjects["nb_sphere_users_min_fields"],
-			stddev?:PartialObjects["nb_sphere_users_stddev_fields"],
-			stddev_pop?:PartialObjects["nb_sphere_users_stddev_pop_fields"],
-			stddev_samp?:PartialObjects["nb_sphere_users_stddev_samp_fields"],
-			sum?:PartialObjects["nb_sphere_users_sum_fields"],
-			var_pop?:PartialObjects["nb_sphere_users_var_pop_fields"],
-			var_samp?:PartialObjects["nb_sphere_users_var_samp_fields"],
-			variance?:PartialObjects["nb_sphere_users_variance_fields"]
-	},
-	["nb_sphere_users_aggregate_order_by"]: {
-	avg?:PartialObjects["nb_sphere_users_avg_order_by"],
-	count?:PartialObjects["order_by"],
-	max?:PartialObjects["nb_sphere_users_max_order_by"],
-	min?:PartialObjects["nb_sphere_users_min_order_by"],
-	stddev?:PartialObjects["nb_sphere_users_stddev_order_by"],
-	stddev_pop?:PartialObjects["nb_sphere_users_stddev_pop_order_by"],
-	stddev_samp?:PartialObjects["nb_sphere_users_stddev_samp_order_by"],
-	sum?:PartialObjects["nb_sphere_users_sum_order_by"],
-	var_pop?:PartialObjects["nb_sphere_users_var_pop_order_by"],
-	var_samp?:PartialObjects["nb_sphere_users_var_samp_order_by"],
-	variance?:PartialObjects["nb_sphere_users_variance_order_by"]
-},
-	["nb_sphere_users_arr_rel_insert_input"]: {
-	data:PartialObjects["nb_sphere_users_insert_input"][],
-	on_conflict?:PartialObjects["nb_sphere_users_on_conflict"]
-},
-	["nb_sphere_users_avg_fields"]: {
-		__typename?: "nb_sphere_users_avg_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_sphere_users_avg_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_sphere_users_bool_exp"]: {
-	_and?:(PartialObjects["nb_sphere_users_bool_exp"] | undefined)[],
-	_not?:PartialObjects["nb_sphere_users_bool_exp"],
-	_or?:(PartialObjects["nb_sphere_users_bool_exp"] | undefined)[],
-	cr_user?:PartialObjects["cr_user_bool_exp"],
-	id?:PartialObjects["Int_comparison_exp"],
-	nb_sphere?:PartialObjects["nb_sphere_bool_exp"],
-	sphere_id?:PartialObjects["Int_comparison_exp"],
-	user_id?:PartialObjects["uuid_comparison_exp"]
-},
-	["nb_sphere_users_constraint"]:nb_sphere_users_constraint,
-	["nb_sphere_users_inc_input"]: {
 	id?:number,
 	sphere_id?:number
 },
-	["nb_sphere_users_insert_input"]: {
-	cr_user?:PartialObjects["cr_user_obj_rel_insert_input"],
+	["meeting_insert_input"]: {
+	created_at?:PartialObjects["timestamptz"],
+	description?:string,
+	end_time?:PartialObjects["timestamptz"],
+	guild?:PartialObjects["guild_obj_rel_insert_input"],
+	guild_id?:number,
 	id?:number,
-	nb_sphere?:PartialObjects["nb_sphere_obj_rel_insert_input"],
+	location?:string,
+	organizer?:PartialObjects["user_obj_rel_insert_input"],
+	organizer_id?:PartialObjects["uuid"],
+	participants?:PartialObjects["meeting_participant_arr_rel_insert_input"],
+	publication_time?:PartialObjects["timestamptz"],
 	sphere_id?:number,
-	user_id?:PartialObjects["uuid"]
+	start_time?:PartialObjects["timestamptz"],
+	title?:string,
+	updated_at?:PartialObjects["timestamptz"]
 },
-	["nb_sphere_users_max_fields"]: {
-		__typename?: "nb_sphere_users_max_fields";
+	["meeting_max_fields"]: {
+		__typename?: "meeting_max_fields";
+			created_at?:PartialObjects["timestamptz"],
+			description?:string,
+			end_time?:PartialObjects["timestamptz"],
+			guild_id?:number,
 			id?:number,
-			sphere_id?:number
+			location?:string,
+			organizer_id?:PartialObjects["uuid"],
+			publication_time?:PartialObjects["timestamptz"],
+			sphere_id?:number,
+			start_time?:PartialObjects["timestamptz"],
+			title?:string,
+			updated_at?:PartialObjects["timestamptz"]
 	},
-	["nb_sphere_users_max_order_by"]: {
+	["meeting_max_order_by"]: {
+	created_at?:PartialObjects["order_by"],
+	description?:PartialObjects["order_by"],
+	end_time?:PartialObjects["order_by"],
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_sphere_users_min_fields"]: {
-		__typename?: "nb_sphere_users_min_fields";
-			id?:number,
-			sphere_id?:number
-	},
-	["nb_sphere_users_min_order_by"]: {
-	id?:PartialObjects["order_by"],
-	sphere_id?:PartialObjects["order_by"]
-},
-	["nb_sphere_users_mutation_response"]: {
-		__typename?: "nb_sphere_users_mutation_response";
-			affected_rows?:number,
-			returning?:PartialObjects["nb_sphere_users"][]
-	},
-	["nb_sphere_users_obj_rel_insert_input"]: {
-	data:PartialObjects["nb_sphere_users_insert_input"],
-	on_conflict?:PartialObjects["nb_sphere_users_on_conflict"]
-},
-	["nb_sphere_users_on_conflict"]: {
-	constraint:PartialObjects["nb_sphere_users_constraint"],
-	update_columns:PartialObjects["nb_sphere_users_update_column"][],
-	where?:PartialObjects["nb_sphere_users_bool_exp"]
-},
-	["nb_sphere_users_order_by"]: {
-	cr_user?:PartialObjects["cr_user_order_by"],
-	id?:PartialObjects["order_by"],
-	nb_sphere?:PartialObjects["nb_sphere_order_by"],
+	location?:PartialObjects["order_by"],
+	organizer_id?:PartialObjects["order_by"],
+	publication_time?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"],
-	user_id?:PartialObjects["order_by"]
+	start_time?:PartialObjects["order_by"],
+	title?:PartialObjects["order_by"],
+	updated_at?:PartialObjects["order_by"]
 },
-	["nb_sphere_users_select_column"]:nb_sphere_users_select_column,
-	["nb_sphere_users_set_input"]: {
+	["meeting_min_fields"]: {
+		__typename?: "meeting_min_fields";
+			created_at?:PartialObjects["timestamptz"],
+			description?:string,
+			end_time?:PartialObjects["timestamptz"],
+			guild_id?:number,
+			id?:number,
+			location?:string,
+			organizer_id?:PartialObjects["uuid"],
+			publication_time?:PartialObjects["timestamptz"],
+			sphere_id?:number,
+			start_time?:PartialObjects["timestamptz"],
+			title?:string,
+			updated_at?:PartialObjects["timestamptz"]
+	},
+	["meeting_min_order_by"]: {
+	created_at?:PartialObjects["order_by"],
+	description?:PartialObjects["order_by"],
+	end_time?:PartialObjects["order_by"],
+	guild_id?:PartialObjects["order_by"],
+	id?:PartialObjects["order_by"],
+	location?:PartialObjects["order_by"],
+	organizer_id?:PartialObjects["order_by"],
+	publication_time?:PartialObjects["order_by"],
+	sphere_id?:PartialObjects["order_by"],
+	start_time?:PartialObjects["order_by"],
+	title?:PartialObjects["order_by"],
+	updated_at?:PartialObjects["order_by"]
+},
+	["meeting_mutation_response"]: {
+		__typename?: "meeting_mutation_response";
+			affected_rows?:number,
+			returning?:PartialObjects["meeting"][]
+	},
+	["meeting_obj_rel_insert_input"]: {
+	data:PartialObjects["meeting_insert_input"],
+	on_conflict?:PartialObjects["meeting_on_conflict"]
+},
+	["meeting_on_conflict"]: {
+	constraint:PartialObjects["meeting_constraint"],
+	update_columns:PartialObjects["meeting_update_column"][],
+	where?:PartialObjects["meeting_bool_exp"]
+},
+	["meeting_order_by"]: {
+	created_at?:PartialObjects["order_by"],
+	description?:PartialObjects["order_by"],
+	end_time?:PartialObjects["order_by"],
+	guild?:PartialObjects["guild_order_by"],
+	guild_id?:PartialObjects["order_by"],
+	id?:PartialObjects["order_by"],
+	location?:PartialObjects["order_by"],
+	organizer?:PartialObjects["user_order_by"],
+	organizer_id?:PartialObjects["order_by"],
+	participants_aggregate?:PartialObjects["meeting_participant_aggregate_order_by"],
+	publication_time?:PartialObjects["order_by"],
+	sphere_id?:PartialObjects["order_by"],
+	start_time?:PartialObjects["order_by"],
+	title?:PartialObjects["order_by"],
+	updated_at?:PartialObjects["order_by"]
+},
+	["meeting_participant"]: {
+		__typename?: "meeting_participant";
+			meeting?:PartialObjects["meeting"],
+			meeting_id?:number,
+			participant?:PartialObjects["user"],
+			participant_id?:PartialObjects["uuid"]
+	},
+	["meeting_participant_aggregate"]: {
+		__typename?: "meeting_participant_aggregate";
+			aggregate?:PartialObjects["meeting_participant_aggregate_fields"],
+			nodes?:PartialObjects["meeting_participant"][]
+	},
+	["meeting_participant_aggregate_fields"]: {
+		__typename?: "meeting_participant_aggregate_fields";
+			avg?:PartialObjects["meeting_participant_avg_fields"],
+			count?:number,
+			max?:PartialObjects["meeting_participant_max_fields"],
+			min?:PartialObjects["meeting_participant_min_fields"],
+			stddev?:PartialObjects["meeting_participant_stddev_fields"],
+			stddev_pop?:PartialObjects["meeting_participant_stddev_pop_fields"],
+			stddev_samp?:PartialObjects["meeting_participant_stddev_samp_fields"],
+			sum?:PartialObjects["meeting_participant_sum_fields"],
+			var_pop?:PartialObjects["meeting_participant_var_pop_fields"],
+			var_samp?:PartialObjects["meeting_participant_var_samp_fields"],
+			variance?:PartialObjects["meeting_participant_variance_fields"]
+	},
+	["meeting_participant_aggregate_order_by"]: {
+	avg?:PartialObjects["meeting_participant_avg_order_by"],
+	count?:PartialObjects["order_by"],
+	max?:PartialObjects["meeting_participant_max_order_by"],
+	min?:PartialObjects["meeting_participant_min_order_by"],
+	stddev?:PartialObjects["meeting_participant_stddev_order_by"],
+	stddev_pop?:PartialObjects["meeting_participant_stddev_pop_order_by"],
+	stddev_samp?:PartialObjects["meeting_participant_stddev_samp_order_by"],
+	sum?:PartialObjects["meeting_participant_sum_order_by"],
+	var_pop?:PartialObjects["meeting_participant_var_pop_order_by"],
+	var_samp?:PartialObjects["meeting_participant_var_samp_order_by"],
+	variance?:PartialObjects["meeting_participant_variance_order_by"]
+},
+	["meeting_participant_arr_rel_insert_input"]: {
+	data:PartialObjects["meeting_participant_insert_input"][],
+	on_conflict?:PartialObjects["meeting_participant_on_conflict"]
+},
+	["meeting_participant_avg_fields"]: {
+		__typename?: "meeting_participant_avg_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_avg_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_bool_exp"]: {
+	_and?:(PartialObjects["meeting_participant_bool_exp"] | undefined)[],
+	_not?:PartialObjects["meeting_participant_bool_exp"],
+	_or?:(PartialObjects["meeting_participant_bool_exp"] | undefined)[],
+	meeting?:PartialObjects["meeting_bool_exp"],
+	meeting_id?:PartialObjects["Int_comparison_exp"],
+	participant?:PartialObjects["user_bool_exp"],
+	participant_id?:PartialObjects["uuid_comparison_exp"]
+},
+	["meeting_participant_constraint"]:meeting_participant_constraint,
+	["meeting_participant_inc_input"]: {
+	meeting_id?:number
+},
+	["meeting_participant_insert_input"]: {
+	meeting?:PartialObjects["meeting_obj_rel_insert_input"],
+	meeting_id?:number,
+	participant?:PartialObjects["user_obj_rel_insert_input"],
+	participant_id?:PartialObjects["uuid"]
+},
+	["meeting_participant_max_fields"]: {
+		__typename?: "meeting_participant_max_fields";
+			meeting_id?:number,
+			participant_id?:PartialObjects["uuid"]
+	},
+	["meeting_participant_max_order_by"]: {
+	meeting_id?:PartialObjects["order_by"],
+	participant_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_min_fields"]: {
+		__typename?: "meeting_participant_min_fields";
+			meeting_id?:number,
+			participant_id?:PartialObjects["uuid"]
+	},
+	["meeting_participant_min_order_by"]: {
+	meeting_id?:PartialObjects["order_by"],
+	participant_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_mutation_response"]: {
+		__typename?: "meeting_participant_mutation_response";
+			affected_rows?:number,
+			returning?:PartialObjects["meeting_participant"][]
+	},
+	["meeting_participant_obj_rel_insert_input"]: {
+	data:PartialObjects["meeting_participant_insert_input"],
+	on_conflict?:PartialObjects["meeting_participant_on_conflict"]
+},
+	["meeting_participant_on_conflict"]: {
+	constraint:PartialObjects["meeting_participant_constraint"],
+	update_columns:PartialObjects["meeting_participant_update_column"][],
+	where?:PartialObjects["meeting_participant_bool_exp"]
+},
+	["meeting_participant_order_by"]: {
+	meeting?:PartialObjects["meeting_order_by"],
+	meeting_id?:PartialObjects["order_by"],
+	participant?:PartialObjects["user_order_by"],
+	participant_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_pk_columns_input"]: {
+	meeting_id:number,
+	participant_id:PartialObjects["uuid"]
+},
+	["meeting_participant_select_column"]:meeting_participant_select_column,
+	["meeting_participant_set_input"]: {
+	meeting_id?:number,
+	participant_id?:PartialObjects["uuid"]
+},
+	["meeting_participant_stddev_fields"]: {
+		__typename?: "meeting_participant_stddev_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_stddev_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_stddev_pop_fields"]: {
+		__typename?: "meeting_participant_stddev_pop_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_stddev_pop_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_stddev_samp_fields"]: {
+		__typename?: "meeting_participant_stddev_samp_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_stddev_samp_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_sum_fields"]: {
+		__typename?: "meeting_participant_sum_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_sum_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_update_column"]:meeting_participant_update_column,
+	["meeting_participant_var_pop_fields"]: {
+		__typename?: "meeting_participant_var_pop_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_var_pop_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_var_samp_fields"]: {
+		__typename?: "meeting_participant_var_samp_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_var_samp_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_participant_variance_fields"]: {
+		__typename?: "meeting_participant_variance_fields";
+			meeting_id?:number
+	},
+	["meeting_participant_variance_order_by"]: {
+	meeting_id?:PartialObjects["order_by"]
+},
+	["meeting_pk_columns_input"]: {
+	id:number
+},
+	["meeting_select_column"]:meeting_select_column,
+	["meeting_set_input"]: {
+	created_at?:PartialObjects["timestamptz"],
+	description?:string,
+	end_time?:PartialObjects["timestamptz"],
+	guild_id?:number,
 	id?:number,
+	location?:string,
+	organizer_id?:PartialObjects["uuid"],
+	publication_time?:PartialObjects["timestamptz"],
 	sphere_id?:number,
-	user_id?:PartialObjects["uuid"]
+	start_time?:PartialObjects["timestamptz"],
+	title?:string,
+	updated_at?:PartialObjects["timestamptz"]
 },
-	["nb_sphere_users_stddev_fields"]: {
-		__typename?: "nb_sphere_users_stddev_fields";
+	["meeting_stddev_fields"]: {
+		__typename?: "meeting_stddev_fields";
+			guild_id?:number,
 			id?:number,
 			sphere_id?:number
 	},
-	["nb_sphere_users_stddev_order_by"]: {
+	["meeting_stddev_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_sphere_users_stddev_pop_fields"]: {
-		__typename?: "nb_sphere_users_stddev_pop_fields";
+	["meeting_stddev_pop_fields"]: {
+		__typename?: "meeting_stddev_pop_fields";
+			guild_id?:number,
 			id?:number,
 			sphere_id?:number
 	},
-	["nb_sphere_users_stddev_pop_order_by"]: {
+	["meeting_stddev_pop_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_sphere_users_stddev_samp_fields"]: {
-		__typename?: "nb_sphere_users_stddev_samp_fields";
+	["meeting_stddev_samp_fields"]: {
+		__typename?: "meeting_stddev_samp_fields";
+			guild_id?:number,
 			id?:number,
 			sphere_id?:number
 	},
-	["nb_sphere_users_stddev_samp_order_by"]: {
+	["meeting_stddev_samp_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_sphere_users_sum_fields"]: {
-		__typename?: "nb_sphere_users_sum_fields";
+	["meeting_sum_fields"]: {
+		__typename?: "meeting_sum_fields";
+			guild_id?:number,
 			id?:number,
 			sphere_id?:number
 	},
-	["nb_sphere_users_sum_order_by"]: {
+	["meeting_sum_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_sphere_users_update_column"]:nb_sphere_users_update_column,
-	["nb_sphere_users_var_pop_fields"]: {
-		__typename?: "nb_sphere_users_var_pop_fields";
+	["meeting_update_column"]:meeting_update_column,
+	["meeting_var_pop_fields"]: {
+		__typename?: "meeting_var_pop_fields";
+			guild_id?:number,
 			id?:number,
 			sphere_id?:number
 	},
-	["nb_sphere_users_var_pop_order_by"]: {
+	["meeting_var_pop_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_sphere_users_var_samp_fields"]: {
-		__typename?: "nb_sphere_users_var_samp_fields";
+	["meeting_var_samp_fields"]: {
+		__typename?: "meeting_var_samp_fields";
+			guild_id?:number,
 			id?:number,
 			sphere_id?:number
 	},
-	["nb_sphere_users_var_samp_order_by"]: {
+	["meeting_var_samp_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_sphere_users_variance_fields"]: {
-		__typename?: "nb_sphere_users_variance_fields";
+	["meeting_variance_fields"]: {
+		__typename?: "meeting_variance_fields";
+			guild_id?:number,
 			id?:number,
 			sphere_id?:number
 	},
-	["nb_sphere_users_variance_order_by"]: {
+	["meeting_variance_order_by"]: {
+	guild_id?:PartialObjects["order_by"],
 	id?:PartialObjects["order_by"],
 	sphere_id?:PartialObjects["order_by"]
 },
-	["nb_sphere_var_pop_fields"]: {
-		__typename?: "nb_sphere_var_pop_fields";
-			id?:number
+	["mutation_root"]: {
+		__typename?: "mutation_root";
+			delete_guild?:PartialObjects["guild_mutation_response"],
+			delete_guild_by_pk?:PartialObjects["guild"],
+			delete_guild_member?:PartialObjects["guild_member_mutation_response"],
+			delete_guild_member_by_pk?:PartialObjects["guild_member"],
+			delete_meeting?:PartialObjects["meeting_mutation_response"],
+			delete_meeting_by_pk?:PartialObjects["meeting"],
+			delete_meeting_participant?:PartialObjects["meeting_participant_mutation_response"],
+			delete_meeting_participant_by_pk?:PartialObjects["meeting_participant"],
+			delete_sphere?:PartialObjects["sphere_mutation_response"],
+			delete_sphere_by_pk?:PartialObjects["sphere"],
+			delete_user?:PartialObjects["user_mutation_response"],
+			delete_user_by_pk?:PartialObjects["user"],
+			insert_guild?:PartialObjects["guild_mutation_response"],
+			insert_guild_member?:PartialObjects["guild_member_mutation_response"],
+			insert_guild_member_one?:PartialObjects["guild_member"],
+			insert_guild_one?:PartialObjects["guild"],
+			insert_meeting?:PartialObjects["meeting_mutation_response"],
+			insert_meeting_one?:PartialObjects["meeting"],
+			insert_meeting_participant?:PartialObjects["meeting_participant_mutation_response"],
+			insert_meeting_participant_one?:PartialObjects["meeting_participant"],
+			insert_sphere?:PartialObjects["sphere_mutation_response"],
+			insert_sphere_one?:PartialObjects["sphere"],
+			insert_user?:PartialObjects["user_mutation_response"],
+			insert_user_one?:PartialObjects["user"],
+			update_guild?:PartialObjects["guild_mutation_response"],
+			update_guild_by_pk?:PartialObjects["guild"],
+			update_guild_member?:PartialObjects["guild_member_mutation_response"],
+			update_guild_member_by_pk?:PartialObjects["guild_member"],
+			update_meeting?:PartialObjects["meeting_mutation_response"],
+			update_meeting_by_pk?:PartialObjects["meeting"],
+			update_meeting_participant?:PartialObjects["meeting_participant_mutation_response"],
+			update_meeting_participant_by_pk?:PartialObjects["meeting_participant"],
+			update_sphere?:PartialObjects["sphere_mutation_response"],
+			update_sphere_by_pk?:PartialObjects["sphere"],
+			update_user?:PartialObjects["user_mutation_response"],
+			update_user_by_pk?:PartialObjects["user"]
 	},
-	["nb_sphere_var_pop_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere_var_samp_fields"]: {
-		__typename?: "nb_sphere_var_samp_fields";
-			id?:number
-	},
-	["nb_sphere_var_samp_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
-	["nb_sphere_variance_fields"]: {
-		__typename?: "nb_sphere_variance_fields";
-			id?:number
-	},
-	["nb_sphere_variance_order_by"]: {
-	id?:PartialObjects["order_by"]
-},
 	["order_by"]:order_by,
 	["query_root"]: {
 		__typename?: "query_root";
-			cr_user?:PartialObjects["cr_user"][],
-			cr_user_aggregate?:PartialObjects["cr_user_aggregate"],
-			cr_user_by_pk?:PartialObjects["cr_user"],
-			nb_guild?:PartialObjects["nb_guild"][],
-			nb_guild_aggregate?:PartialObjects["nb_guild_aggregate"],
-			nb_guild_by_pk?:PartialObjects["nb_guild"],
-			nb_guild_user?:PartialObjects["nb_guild_user"][],
-			nb_guild_user_aggregate?:PartialObjects["nb_guild_user_aggregate"],
-			nb_guild_user_by_pk?:PartialObjects["nb_guild_user"],
-			nb_meeting?:PartialObjects["nb_meeting"][],
-			nb_meeting_aggregate?:PartialObjects["nb_meeting_aggregate"],
-			nb_meeting_by_pk?:PartialObjects["nb_meeting"],
-			nb_meeting_user?:PartialObjects["nb_meeting_user"][],
-			nb_meeting_user_aggregate?:PartialObjects["nb_meeting_user_aggregate"],
-			nb_meeting_user_by_pk?:PartialObjects["nb_meeting_user"],
-			nb_sphere?:PartialObjects["nb_sphere"][],
-			nb_sphere_aggregate?:PartialObjects["nb_sphere_aggregate"],
-			nb_sphere_by_pk?:PartialObjects["nb_sphere"],
-			nb_sphere_users?:PartialObjects["nb_sphere_users"][],
-			nb_sphere_users_aggregate?:PartialObjects["nb_sphere_users_aggregate"],
-			nb_sphere_users_by_pk?:PartialObjects["nb_sphere_users"]
+			guild?:PartialObjects["guild"][],
+			guild_aggregate?:PartialObjects["guild_aggregate"],
+			guild_by_pk?:PartialObjects["guild"],
+			guild_member?:PartialObjects["guild_member"][],
+			guild_member_aggregate?:PartialObjects["guild_member_aggregate"],
+			guild_member_by_pk?:PartialObjects["guild_member"],
+			meeting?:PartialObjects["meeting"][],
+			meeting_aggregate?:PartialObjects["meeting_aggregate"],
+			meeting_by_pk?:PartialObjects["meeting"],
+			meeting_participant?:PartialObjects["meeting_participant"][],
+			meeting_participant_aggregate?:PartialObjects["meeting_participant_aggregate"],
+			meeting_participant_by_pk?:PartialObjects["meeting_participant"],
+			sphere?:PartialObjects["sphere"][],
+			sphere_aggregate?:PartialObjects["sphere_aggregate"],
+			sphere_by_pk?:PartialObjects["sphere"],
+			user?:PartialObjects["user"][],
+			user_aggregate?:PartialObjects["user_aggregate"],
+			user_by_pk?:PartialObjects["user"]
 	},
+	["sphere"]: {
+		__typename?: "sphere";
+			domain?:string,
+			id?:number,
+			name?:string
+	},
+	["sphere_aggregate"]: {
+		__typename?: "sphere_aggregate";
+			aggregate?:PartialObjects["sphere_aggregate_fields"],
+			nodes?:PartialObjects["sphere"][]
+	},
+	["sphere_aggregate_fields"]: {
+		__typename?: "sphere_aggregate_fields";
+			avg?:PartialObjects["sphere_avg_fields"],
+			count?:number,
+			max?:PartialObjects["sphere_max_fields"],
+			min?:PartialObjects["sphere_min_fields"],
+			stddev?:PartialObjects["sphere_stddev_fields"],
+			stddev_pop?:PartialObjects["sphere_stddev_pop_fields"],
+			stddev_samp?:PartialObjects["sphere_stddev_samp_fields"],
+			sum?:PartialObjects["sphere_sum_fields"],
+			var_pop?:PartialObjects["sphere_var_pop_fields"],
+			var_samp?:PartialObjects["sphere_var_samp_fields"],
+			variance?:PartialObjects["sphere_variance_fields"]
+	},
+	["sphere_aggregate_order_by"]: {
+	avg?:PartialObjects["sphere_avg_order_by"],
+	count?:PartialObjects["order_by"],
+	max?:PartialObjects["sphere_max_order_by"],
+	min?:PartialObjects["sphere_min_order_by"],
+	stddev?:PartialObjects["sphere_stddev_order_by"],
+	stddev_pop?:PartialObjects["sphere_stddev_pop_order_by"],
+	stddev_samp?:PartialObjects["sphere_stddev_samp_order_by"],
+	sum?:PartialObjects["sphere_sum_order_by"],
+	var_pop?:PartialObjects["sphere_var_pop_order_by"],
+	var_samp?:PartialObjects["sphere_var_samp_order_by"],
+	variance?:PartialObjects["sphere_variance_order_by"]
+},
+	["sphere_arr_rel_insert_input"]: {
+	data:PartialObjects["sphere_insert_input"][],
+	on_conflict?:PartialObjects["sphere_on_conflict"]
+},
+	["sphere_avg_fields"]: {
+		__typename?: "sphere_avg_fields";
+			id?:number
+	},
+	["sphere_avg_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["sphere_bool_exp"]: {
+	_and?:(PartialObjects["sphere_bool_exp"] | undefined)[],
+	_not?:PartialObjects["sphere_bool_exp"],
+	_or?:(PartialObjects["sphere_bool_exp"] | undefined)[],
+	domain?:PartialObjects["String_comparison_exp"],
+	id?:PartialObjects["Int_comparison_exp"],
+	name?:PartialObjects["String_comparison_exp"]
+},
+	["sphere_constraint"]:sphere_constraint,
+	["sphere_inc_input"]: {
+	id?:number
+},
+	["sphere_insert_input"]: {
+	domain?:string,
+	id?:number,
+	name?:string
+},
+	["sphere_max_fields"]: {
+		__typename?: "sphere_max_fields";
+			domain?:string,
+			id?:number,
+			name?:string
+	},
+	["sphere_max_order_by"]: {
+	domain?:PartialObjects["order_by"],
+	id?:PartialObjects["order_by"],
+	name?:PartialObjects["order_by"]
+},
+	["sphere_min_fields"]: {
+		__typename?: "sphere_min_fields";
+			domain?:string,
+			id?:number,
+			name?:string
+	},
+	["sphere_min_order_by"]: {
+	domain?:PartialObjects["order_by"],
+	id?:PartialObjects["order_by"],
+	name?:PartialObjects["order_by"]
+},
+	["sphere_mutation_response"]: {
+		__typename?: "sphere_mutation_response";
+			affected_rows?:number,
+			returning?:PartialObjects["sphere"][]
+	},
+	["sphere_obj_rel_insert_input"]: {
+	data:PartialObjects["sphere_insert_input"],
+	on_conflict?:PartialObjects["sphere_on_conflict"]
+},
+	["sphere_on_conflict"]: {
+	constraint:PartialObjects["sphere_constraint"],
+	update_columns:PartialObjects["sphere_update_column"][],
+	where?:PartialObjects["sphere_bool_exp"]
+},
+	["sphere_order_by"]: {
+	domain?:PartialObjects["order_by"],
+	id?:PartialObjects["order_by"],
+	name?:PartialObjects["order_by"]
+},
+	["sphere_pk_columns_input"]: {
+	id:number
+},
+	["sphere_select_column"]:sphere_select_column,
+	["sphere_set_input"]: {
+	domain?:string,
+	id?:number,
+	name?:string
+},
+	["sphere_stddev_fields"]: {
+		__typename?: "sphere_stddev_fields";
+			id?:number
+	},
+	["sphere_stddev_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["sphere_stddev_pop_fields"]: {
+		__typename?: "sphere_stddev_pop_fields";
+			id?:number
+	},
+	["sphere_stddev_pop_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["sphere_stddev_samp_fields"]: {
+		__typename?: "sphere_stddev_samp_fields";
+			id?:number
+	},
+	["sphere_stddev_samp_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["sphere_sum_fields"]: {
+		__typename?: "sphere_sum_fields";
+			id?:number
+	},
+	["sphere_sum_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["sphere_update_column"]:sphere_update_column,
+	["sphere_var_pop_fields"]: {
+		__typename?: "sphere_var_pop_fields";
+			id?:number
+	},
+	["sphere_var_pop_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["sphere_var_samp_fields"]: {
+		__typename?: "sphere_var_samp_fields";
+			id?:number
+	},
+	["sphere_var_samp_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
+	["sphere_variance_fields"]: {
+		__typename?: "sphere_variance_fields";
+			id?:number
+	},
+	["sphere_variance_order_by"]: {
+	id?:PartialObjects["order_by"]
+},
 	["String_comparison_exp"]: {
 	_eq?:string,
 	_gt?:string,
@@ -2955,27 +2335,24 @@ export type PartialObjects = {
 },
 	["subscription_root"]: {
 		__typename?: "subscription_root";
-			cr_user?:PartialObjects["cr_user"][],
-			cr_user_aggregate?:PartialObjects["cr_user_aggregate"],
-			cr_user_by_pk?:PartialObjects["cr_user"],
-			nb_guild?:PartialObjects["nb_guild"][],
-			nb_guild_aggregate?:PartialObjects["nb_guild_aggregate"],
-			nb_guild_by_pk?:PartialObjects["nb_guild"],
-			nb_guild_user?:PartialObjects["nb_guild_user"][],
-			nb_guild_user_aggregate?:PartialObjects["nb_guild_user_aggregate"],
-			nb_guild_user_by_pk?:PartialObjects["nb_guild_user"],
-			nb_meeting?:PartialObjects["nb_meeting"][],
-			nb_meeting_aggregate?:PartialObjects["nb_meeting_aggregate"],
-			nb_meeting_by_pk?:PartialObjects["nb_meeting"],
-			nb_meeting_user?:PartialObjects["nb_meeting_user"][],
-			nb_meeting_user_aggregate?:PartialObjects["nb_meeting_user_aggregate"],
-			nb_meeting_user_by_pk?:PartialObjects["nb_meeting_user"],
-			nb_sphere?:PartialObjects["nb_sphere"][],
-			nb_sphere_aggregate?:PartialObjects["nb_sphere_aggregate"],
-			nb_sphere_by_pk?:PartialObjects["nb_sphere"],
-			nb_sphere_users?:PartialObjects["nb_sphere_users"][],
-			nb_sphere_users_aggregate?:PartialObjects["nb_sphere_users_aggregate"],
-			nb_sphere_users_by_pk?:PartialObjects["nb_sphere_users"]
+			guild?:PartialObjects["guild"][],
+			guild_aggregate?:PartialObjects["guild_aggregate"],
+			guild_by_pk?:PartialObjects["guild"],
+			guild_member?:PartialObjects["guild_member"][],
+			guild_member_aggregate?:PartialObjects["guild_member_aggregate"],
+			guild_member_by_pk?:PartialObjects["guild_member"],
+			meeting?:PartialObjects["meeting"][],
+			meeting_aggregate?:PartialObjects["meeting_aggregate"],
+			meeting_by_pk?:PartialObjects["meeting"],
+			meeting_participant?:PartialObjects["meeting_participant"][],
+			meeting_participant_aggregate?:PartialObjects["meeting_participant_aggregate"],
+			meeting_participant_by_pk?:PartialObjects["meeting_participant"],
+			sphere?:PartialObjects["sphere"][],
+			sphere_aggregate?:PartialObjects["sphere_aggregate"],
+			sphere_by_pk?:PartialObjects["sphere"],
+			user?:PartialObjects["user"][],
+			user_aggregate?:PartialObjects["user_aggregate"],
+			user_by_pk?:PartialObjects["user"]
 	},
 	["timestamptz"]:any,
 	["timestamptz_comparison_exp"]: {
@@ -2989,6 +2366,139 @@ export type PartialObjects = {
 	_neq?:PartialObjects["timestamptz"],
 	_nin?:PartialObjects["timestamptz"][]
 },
+	["user"]: {
+		__typename?: "user";
+			auth0_id?:string,
+			created_at?:PartialObjects["timestamptz"],
+			email?:string,
+			guilds?:PartialObjects["guild_member"][],
+			guilds_aggregate?:PartialObjects["guild_member_aggregate"],
+			last_login?:PartialObjects["timestamptz"],
+			meetings?:PartialObjects["meeting_participant"][],
+			meetings_aggregate?:PartialObjects["meeting_participant_aggregate"],
+			name?:string,
+			organized_meetings?:PartialObjects["meeting"][],
+			organized_meetings_aggregate?:PartialObjects["meeting_aggregate"],
+			uuid?:PartialObjects["uuid"]
+	},
+	["user_aggregate"]: {
+		__typename?: "user_aggregate";
+			aggregate?:PartialObjects["user_aggregate_fields"],
+			nodes?:PartialObjects["user"][]
+	},
+	["user_aggregate_fields"]: {
+		__typename?: "user_aggregate_fields";
+			count?:number,
+			max?:PartialObjects["user_max_fields"],
+			min?:PartialObjects["user_min_fields"]
+	},
+	["user_aggregate_order_by"]: {
+	count?:PartialObjects["order_by"],
+	max?:PartialObjects["user_max_order_by"],
+	min?:PartialObjects["user_min_order_by"]
+},
+	["user_arr_rel_insert_input"]: {
+	data:PartialObjects["user_insert_input"][],
+	on_conflict?:PartialObjects["user_on_conflict"]
+},
+	["user_bool_exp"]: {
+	_and?:(PartialObjects["user_bool_exp"] | undefined)[],
+	_not?:PartialObjects["user_bool_exp"],
+	_or?:(PartialObjects["user_bool_exp"] | undefined)[],
+	auth0_id?:PartialObjects["String_comparison_exp"],
+	created_at?:PartialObjects["timestamptz_comparison_exp"],
+	email?:PartialObjects["String_comparison_exp"],
+	guilds?:PartialObjects["guild_member_bool_exp"],
+	last_login?:PartialObjects["timestamptz_comparison_exp"],
+	meetings?:PartialObjects["meeting_participant_bool_exp"],
+	name?:PartialObjects["String_comparison_exp"],
+	organized_meetings?:PartialObjects["meeting_bool_exp"],
+	uuid?:PartialObjects["uuid_comparison_exp"]
+},
+	["user_constraint"]:user_constraint,
+	["user_insert_input"]: {
+	auth0_id?:string,
+	created_at?:PartialObjects["timestamptz"],
+	email?:string,
+	guilds?:PartialObjects["guild_member_arr_rel_insert_input"],
+	last_login?:PartialObjects["timestamptz"],
+	meetings?:PartialObjects["meeting_participant_arr_rel_insert_input"],
+	name?:string,
+	organized_meetings?:PartialObjects["meeting_arr_rel_insert_input"],
+	uuid?:PartialObjects["uuid"]
+},
+	["user_max_fields"]: {
+		__typename?: "user_max_fields";
+			auth0_id?:string,
+			created_at?:PartialObjects["timestamptz"],
+			email?:string,
+			last_login?:PartialObjects["timestamptz"],
+			name?:string,
+			uuid?:PartialObjects["uuid"]
+	},
+	["user_max_order_by"]: {
+	auth0_id?:PartialObjects["order_by"],
+	created_at?:PartialObjects["order_by"],
+	email?:PartialObjects["order_by"],
+	last_login?:PartialObjects["order_by"],
+	name?:PartialObjects["order_by"],
+	uuid?:PartialObjects["order_by"]
+},
+	["user_min_fields"]: {
+		__typename?: "user_min_fields";
+			auth0_id?:string,
+			created_at?:PartialObjects["timestamptz"],
+			email?:string,
+			last_login?:PartialObjects["timestamptz"],
+			name?:string,
+			uuid?:PartialObjects["uuid"]
+	},
+	["user_min_order_by"]: {
+	auth0_id?:PartialObjects["order_by"],
+	created_at?:PartialObjects["order_by"],
+	email?:PartialObjects["order_by"],
+	last_login?:PartialObjects["order_by"],
+	name?:PartialObjects["order_by"],
+	uuid?:PartialObjects["order_by"]
+},
+	["user_mutation_response"]: {
+		__typename?: "user_mutation_response";
+			affected_rows?:number,
+			returning?:PartialObjects["user"][]
+	},
+	["user_obj_rel_insert_input"]: {
+	data:PartialObjects["user_insert_input"],
+	on_conflict?:PartialObjects["user_on_conflict"]
+},
+	["user_on_conflict"]: {
+	constraint:PartialObjects["user_constraint"],
+	update_columns:PartialObjects["user_update_column"][],
+	where?:PartialObjects["user_bool_exp"]
+},
+	["user_order_by"]: {
+	auth0_id?:PartialObjects["order_by"],
+	created_at?:PartialObjects["order_by"],
+	email?:PartialObjects["order_by"],
+	guilds_aggregate?:PartialObjects["guild_member_aggregate_order_by"],
+	last_login?:PartialObjects["order_by"],
+	meetings_aggregate?:PartialObjects["meeting_participant_aggregate_order_by"],
+	name?:PartialObjects["order_by"],
+	organized_meetings_aggregate?:PartialObjects["meeting_aggregate_order_by"],
+	uuid?:PartialObjects["order_by"]
+},
+	["user_pk_columns_input"]: {
+	uuid:PartialObjects["uuid"]
+},
+	["user_select_column"]:user_select_column,
+	["user_set_input"]: {
+	auth0_id?:string,
+	created_at?:PartialObjects["timestamptz"],
+	email?:string,
+	last_login?:PartialObjects["timestamptz"],
+	name?:string,
+	uuid?:PartialObjects["uuid"]
+},
+	["user_update_column"]:user_update_column,
 	["uuid"]:any,
 	["uuid_comparison_exp"]: {
 	_eq?:PartialObjects["uuid"],
@@ -3003,485 +2513,383 @@ export type PartialObjects = {
 }
   }
 
-// expression to compare columns of type Boolean. All fields are combined with logical 'AND'.
+// columns and relationships of "guild"
 
-// columns and relationships of "cr_user"
+// aggregated selection of "guild"
 
-// aggregated selection of "cr_user"
+// aggregate fields of "guild"
 
-// aggregate fields of "cr_user"
+// order by aggregate values of table "guild"
 
-// order by aggregate values of table "cr_user"
+// input type for inserting array relation for remote table "guild"
 
-// input type for inserting array relation for remote table "cr_user"
+// aggregate avg on columns
 
-// Boolean expression to filter rows from the table "cr_user". All fields are combined with a logical 'AND'.
+// order by avg() on columns of table "guild"
 
-// unique or primary key constraints on table "cr_user"
+// Boolean expression to filter rows from the table "guild". All fields are combined with a logical 'AND'.
 
-// input type for inserting data into table "cr_user"
+// unique or primary key constraints on table "guild"
+
+// input type for incrementing integer columne in table "guild"
+
+// input type for inserting data into table "guild"
 
 // aggregate max on columns
 
-// order by max() on columns of table "cr_user"
+// order by max() on columns of table "guild"
+
+// columns and relationships of "guild_member"
+
+// aggregated selection of "guild_member"
+
+// aggregate fields of "guild_member"
+
+// order by aggregate values of table "guild_member"
+
+// input type for inserting array relation for remote table "guild_member"
+
+// aggregate avg on columns
+
+// order by avg() on columns of table "guild_member"
+
+// Boolean expression to filter rows from the table "guild_member". All fields are combined with a logical 'AND'.
+
+// unique or primary key constraints on table "guild_member"
+
+// input type for incrementing integer columne in table "guild_member"
+
+// input type for inserting data into table "guild_member"
+
+// aggregate max on columns
+
+// order by max() on columns of table "guild_member"
 
 // aggregate min on columns
 
-// order by min() on columns of table "cr_user"
+// order by min() on columns of table "guild_member"
 
-// response of any mutation on the table "cr_user"
+// response of any mutation on the table "guild_member"
 
-// input type for inserting object relation for remote table "cr_user"
+// input type for inserting object relation for remote table "guild_member"
 
-// on conflict condition type for table "cr_user"
+// on conflict condition type for table "guild_member"
 
-// ordering options when selecting data from "cr_user"
+// ordering options when selecting data from "guild_member"
 
-// select columns of table "cr_user"
+// primary key columns input for table: "guild_member"
 
-// input type for updating data in table "cr_user"
+// select columns of table "guild_member"
 
-// update columns of table "cr_user"
+// input type for updating data in table "guild_member"
+
+// aggregate stddev on columns
+
+// order by stddev() on columns of table "guild_member"
+
+// aggregate stddev_pop on columns
+
+// order by stddev_pop() on columns of table "guild_member"
+
+// aggregate stddev_samp on columns
+
+// order by stddev_samp() on columns of table "guild_member"
+
+// aggregate sum on columns
+
+// order by sum() on columns of table "guild_member"
+
+// update columns of table "guild_member"
+
+// aggregate var_pop on columns
+
+// order by var_pop() on columns of table "guild_member"
+
+// aggregate var_samp on columns
+
+// order by var_samp() on columns of table "guild_member"
+
+// aggregate variance on columns
+
+// order by variance() on columns of table "guild_member"
+
+// aggregate min on columns
+
+// order by min() on columns of table "guild"
+
+// response of any mutation on the table "guild"
+
+// input type for inserting object relation for remote table "guild"
+
+// on conflict condition type for table "guild"
+
+// ordering options when selecting data from "guild"
+
+// primary key columns input for table: "guild"
+
+// select columns of table "guild"
+
+// input type for updating data in table "guild"
+
+// aggregate stddev on columns
+
+// order by stddev() on columns of table "guild"
+
+// aggregate stddev_pop on columns
+
+// order by stddev_pop() on columns of table "guild"
+
+// aggregate stddev_samp on columns
+
+// order by stddev_samp() on columns of table "guild"
+
+// aggregate sum on columns
+
+// order by sum() on columns of table "guild"
+
+// update columns of table "guild"
+
+// aggregate var_pop on columns
+
+// order by var_pop() on columns of table "guild"
+
+// aggregate var_samp on columns
+
+// order by var_samp() on columns of table "guild"
+
+// aggregate variance on columns
+
+// order by variance() on columns of table "guild"
 
 // expression to compare columns of type Int. All fields are combined with logical 'AND'.
 
+// columns and relationships of "meeting"
+
+// aggregated selection of "meeting"
+
+// aggregate fields of "meeting"
+
+// order by aggregate values of table "meeting"
+
+// input type for inserting array relation for remote table "meeting"
+
+// aggregate avg on columns
+
+// order by avg() on columns of table "meeting"
+
+// Boolean expression to filter rows from the table "meeting". All fields are combined with a logical 'AND'.
+
+// unique or primary key constraints on table "meeting"
+
+// input type for incrementing integer columne in table "meeting"
+
+// input type for inserting data into table "meeting"
+
+// aggregate max on columns
+
+// order by max() on columns of table "meeting"
+
+// aggregate min on columns
+
+// order by min() on columns of table "meeting"
+
+// response of any mutation on the table "meeting"
+
+// input type for inserting object relation for remote table "meeting"
+
+// on conflict condition type for table "meeting"
+
+// ordering options when selecting data from "meeting"
+
+// columns and relationships of "meeting_participant"
+
+// aggregated selection of "meeting_participant"
+
+// aggregate fields of "meeting_participant"
+
+// order by aggregate values of table "meeting_participant"
+
+// input type for inserting array relation for remote table "meeting_participant"
+
+// aggregate avg on columns
+
+// order by avg() on columns of table "meeting_participant"
+
+// Boolean expression to filter rows from the table "meeting_participant". All fields are combined with a logical 'AND'.
+
+// unique or primary key constraints on table "meeting_participant"
+
+// input type for incrementing integer columne in table "meeting_participant"
+
+// input type for inserting data into table "meeting_participant"
+
+// aggregate max on columns
+
+// order by max() on columns of table "meeting_participant"
+
+// aggregate min on columns
+
+// order by min() on columns of table "meeting_participant"
+
+// response of any mutation on the table "meeting_participant"
+
+// input type for inserting object relation for remote table "meeting_participant"
+
+// on conflict condition type for table "meeting_participant"
+
+// ordering options when selecting data from "meeting_participant"
+
+// primary key columns input for table: "meeting_participant"
+
+// select columns of table "meeting_participant"
+
+// input type for updating data in table "meeting_participant"
+
+// aggregate stddev on columns
+
+// order by stddev() on columns of table "meeting_participant"
+
+// aggregate stddev_pop on columns
+
+// order by stddev_pop() on columns of table "meeting_participant"
+
+// aggregate stddev_samp on columns
+
+// order by stddev_samp() on columns of table "meeting_participant"
+
+// aggregate sum on columns
+
+// order by sum() on columns of table "meeting_participant"
+
+// update columns of table "meeting_participant"
+
+// aggregate var_pop on columns
+
+// order by var_pop() on columns of table "meeting_participant"
+
+// aggregate var_samp on columns
+
+// order by var_samp() on columns of table "meeting_participant"
+
+// aggregate variance on columns
+
+// order by variance() on columns of table "meeting_participant"
+
+// primary key columns input for table: "meeting"
+
+// select columns of table "meeting"
+
+// input type for updating data in table "meeting"
+
+// aggregate stddev on columns
+
+// order by stddev() on columns of table "meeting"
+
+// aggregate stddev_pop on columns
+
+// order by stddev_pop() on columns of table "meeting"
+
+// aggregate stddev_samp on columns
+
+// order by stddev_samp() on columns of table "meeting"
+
+// aggregate sum on columns
+
+// order by sum() on columns of table "meeting"
+
+// update columns of table "meeting"
+
+// aggregate var_pop on columns
+
+// order by var_pop() on columns of table "meeting"
+
+// aggregate var_samp on columns
+
+// order by var_samp() on columns of table "meeting"
+
+// aggregate variance on columns
+
+// order by variance() on columns of table "meeting"
+
 // mutation root
-
-// columns and relationships of "nb_guild"
-
-// aggregated selection of "nb_guild"
-
-// aggregate fields of "nb_guild"
-
-// order by aggregate values of table "nb_guild"
-
-// input type for inserting array relation for remote table "nb_guild"
-
-// aggregate avg on columns
-
-// order by avg() on columns of table "nb_guild"
-
-// Boolean expression to filter rows from the table "nb_guild". All fields are combined with a logical 'AND'.
-
-// unique or primary key constraints on table "nb_guild"
-
-// input type for incrementing integer columne in table "nb_guild"
-
-// input type for inserting data into table "nb_guild"
-
-// aggregate max on columns
-
-// order by max() on columns of table "nb_guild"
-
-// aggregate min on columns
-
-// order by min() on columns of table "nb_guild"
-
-// response of any mutation on the table "nb_guild"
-
-// input type for inserting object relation for remote table "nb_guild"
-
-// on conflict condition type for table "nb_guild"
-
-// ordering options when selecting data from "nb_guild"
-
-// select columns of table "nb_guild"
-
-// input type for updating data in table "nb_guild"
-
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "nb_guild"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "nb_guild"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "nb_guild"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "nb_guild"
-
-// update columns of table "nb_guild"
-
-// columns and relationships of "nb_guild_user"
-
-// aggregated selection of "nb_guild_user"
-
-// aggregate fields of "nb_guild_user"
-
-// order by aggregate values of table "nb_guild_user"
-
-// input type for inserting array relation for remote table "nb_guild_user"
-
-// aggregate avg on columns
-
-// order by avg() on columns of table "nb_guild_user"
-
-// Boolean expression to filter rows from the table "nb_guild_user". All fields are combined with a logical 'AND'.
-
-// unique or primary key constraints on table "nb_guild_user"
-
-// input type for incrementing integer columne in table "nb_guild_user"
-
-// input type for inserting data into table "nb_guild_user"
-
-// aggregate max on columns
-
-// order by max() on columns of table "nb_guild_user"
-
-// aggregate min on columns
-
-// order by min() on columns of table "nb_guild_user"
-
-// response of any mutation on the table "nb_guild_user"
-
-// input type for inserting object relation for remote table "nb_guild_user"
-
-// on conflict condition type for table "nb_guild_user"
-
-// ordering options when selecting data from "nb_guild_user"
-
-// select columns of table "nb_guild_user"
-
-// input type for updating data in table "nb_guild_user"
-
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "nb_guild_user"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "nb_guild_user"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "nb_guild_user"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "nb_guild_user"
-
-// update columns of table "nb_guild_user"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "nb_guild_user"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "nb_guild_user"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "nb_guild_user"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "nb_guild"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "nb_guild"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "nb_guild"
-
-// columns and relationships of "nb_meeting"
-
-// aggregated selection of "nb_meeting"
-
-// aggregate fields of "nb_meeting"
-
-// order by aggregate values of table "nb_meeting"
-
-// input type for inserting array relation for remote table "nb_meeting"
-
-// aggregate avg on columns
-
-// order by avg() on columns of table "nb_meeting"
-
-// Boolean expression to filter rows from the table "nb_meeting". All fields are combined with a logical 'AND'.
-
-// unique or primary key constraints on table "nb_meeting"
-
-// input type for incrementing integer columne in table "nb_meeting"
-
-// input type for inserting data into table "nb_meeting"
-
-// aggregate max on columns
-
-// order by max() on columns of table "nb_meeting"
-
-// aggregate min on columns
-
-// order by min() on columns of table "nb_meeting"
-
-// response of any mutation on the table "nb_meeting"
-
-// input type for inserting object relation for remote table "nb_meeting"
-
-// on conflict condition type for table "nb_meeting"
-
-// ordering options when selecting data from "nb_meeting"
-
-// select columns of table "nb_meeting"
-
-// input type for updating data in table "nb_meeting"
-
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "nb_meeting"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "nb_meeting"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "nb_meeting"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "nb_meeting"
-
-// update columns of table "nb_meeting"
-
-// columns and relationships of "nb_meeting_user"
-
-// aggregated selection of "nb_meeting_user"
-
-// aggregate fields of "nb_meeting_user"
-
-// order by aggregate values of table "nb_meeting_user"
-
-// input type for inserting array relation for remote table "nb_meeting_user"
-
-// aggregate avg on columns
-
-// order by avg() on columns of table "nb_meeting_user"
-
-// Boolean expression to filter rows from the table "nb_meeting_user". All fields are combined with a logical 'AND'.
-
-// unique or primary key constraints on table "nb_meeting_user"
-
-// input type for incrementing integer columne in table "nb_meeting_user"
-
-// input type for inserting data into table "nb_meeting_user"
-
-// aggregate max on columns
-
-// order by max() on columns of table "nb_meeting_user"
-
-// aggregate min on columns
-
-// order by min() on columns of table "nb_meeting_user"
-
-// response of any mutation on the table "nb_meeting_user"
-
-// input type for inserting object relation for remote table "nb_meeting_user"
-
-// on conflict condition type for table "nb_meeting_user"
-
-// ordering options when selecting data from "nb_meeting_user"
-
-// select columns of table "nb_meeting_user"
-
-// input type for updating data in table "nb_meeting_user"
-
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "nb_meeting_user"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "nb_meeting_user"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "nb_meeting_user"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "nb_meeting_user"
-
-// update columns of table "nb_meeting_user"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "nb_meeting_user"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "nb_meeting_user"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "nb_meeting_user"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "nb_meeting"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "nb_meeting"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "nb_meeting"
-
-// columns and relationships of "nb_sphere"
-
-// aggregated selection of "nb_sphere"
-
-// aggregate fields of "nb_sphere"
-
-// order by aggregate values of table "nb_sphere"
-
-// input type for inserting array relation for remote table "nb_sphere"
-
-// aggregate avg on columns
-
-// order by avg() on columns of table "nb_sphere"
-
-// Boolean expression to filter rows from the table "nb_sphere". All fields are combined with a logical 'AND'.
-
-// unique or primary key constraints on table "nb_sphere"
-
-// input type for incrementing integer columne in table "nb_sphere"
-
-// input type for inserting data into table "nb_sphere"
-
-// aggregate max on columns
-
-// order by max() on columns of table "nb_sphere"
-
-// aggregate min on columns
-
-// order by min() on columns of table "nb_sphere"
-
-// response of any mutation on the table "nb_sphere"
-
-// input type for inserting object relation for remote table "nb_sphere"
-
-// on conflict condition type for table "nb_sphere"
-
-// ordering options when selecting data from "nb_sphere"
-
-// select columns of table "nb_sphere"
-
-// input type for updating data in table "nb_sphere"
-
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "nb_sphere"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "nb_sphere"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "nb_sphere"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "nb_sphere"
-
-// update columns of table "nb_sphere"
-
-// columns and relationships of "nb_sphere_users"
-
-// aggregated selection of "nb_sphere_users"
-
-// aggregate fields of "nb_sphere_users"
-
-// order by aggregate values of table "nb_sphere_users"
-
-// input type for inserting array relation for remote table "nb_sphere_users"
-
-// aggregate avg on columns
-
-// order by avg() on columns of table "nb_sphere_users"
-
-// Boolean expression to filter rows from the table "nb_sphere_users". All fields are combined with a logical 'AND'.
-
-// unique or primary key constraints on table "nb_sphere_users"
-
-// input type for incrementing integer columne in table "nb_sphere_users"
-
-// input type for inserting data into table "nb_sphere_users"
-
-// aggregate max on columns
-
-// order by max() on columns of table "nb_sphere_users"
-
-// aggregate min on columns
-
-// order by min() on columns of table "nb_sphere_users"
-
-// response of any mutation on the table "nb_sphere_users"
-
-// input type for inserting object relation for remote table "nb_sphere_users"
-
-// on conflict condition type for table "nb_sphere_users"
-
-// ordering options when selecting data from "nb_sphere_users"
-
-// select columns of table "nb_sphere_users"
-
-// input type for updating data in table "nb_sphere_users"
-
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "nb_sphere_users"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "nb_sphere_users"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "nb_sphere_users"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "nb_sphere_users"
-
-// update columns of table "nb_sphere_users"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "nb_sphere_users"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "nb_sphere_users"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "nb_sphere_users"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "nb_sphere"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "nb_sphere"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "nb_sphere"
 
 // column ordering options
 
 // query root
+
+// columns and relationships of "sphere"
+
+// aggregated selection of "sphere"
+
+// aggregate fields of "sphere"
+
+// order by aggregate values of table "sphere"
+
+// input type for inserting array relation for remote table "sphere"
+
+// aggregate avg on columns
+
+// order by avg() on columns of table "sphere"
+
+// Boolean expression to filter rows from the table "sphere". All fields are combined with a logical 'AND'.
+
+// unique or primary key constraints on table "sphere"
+
+// input type for incrementing integer columne in table "sphere"
+
+// input type for inserting data into table "sphere"
+
+// aggregate max on columns
+
+// order by max() on columns of table "sphere"
+
+// aggregate min on columns
+
+// order by min() on columns of table "sphere"
+
+// response of any mutation on the table "sphere"
+
+// input type for inserting object relation for remote table "sphere"
+
+// on conflict condition type for table "sphere"
+
+// ordering options when selecting data from "sphere"
+
+// primary key columns input for table: "sphere"
+
+// select columns of table "sphere"
+
+// input type for updating data in table "sphere"
+
+// aggregate stddev on columns
+
+// order by stddev() on columns of table "sphere"
+
+// aggregate stddev_pop on columns
+
+// order by stddev_pop() on columns of table "sphere"
+
+// aggregate stddev_samp on columns
+
+// order by stddev_samp() on columns of table "sphere"
+
+// aggregate sum on columns
+
+// order by sum() on columns of table "sphere"
+
+// update columns of table "sphere"
+
+// aggregate var_pop on columns
+
+// order by var_pop() on columns of table "sphere"
+
+// aggregate var_samp on columns
+
+// order by var_samp() on columns of table "sphere"
+
+// aggregate variance on columns
+
+// order by variance() on columns of table "sphere"
 
 // expression to compare columns of type String. All fields are combined with logical 'AND'.
 
@@ -3489,228 +2897,502 @@ export type PartialObjects = {
 
 // expression to compare columns of type timestamptz. All fields are combined with logical 'AND'.
 
+// columns and relationships of "user"
+
+// aggregated selection of "user"
+
+// aggregate fields of "user"
+
+// order by aggregate values of table "user"
+
+// input type for inserting array relation for remote table "user"
+
+// Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'.
+
+// unique or primary key constraints on table "user"
+
+// input type for inserting data into table "user"
+
+// aggregate max on columns
+
+// order by max() on columns of table "user"
+
+// aggregate min on columns
+
+// order by min() on columns of table "user"
+
+// response of any mutation on the table "user"
+
+// input type for inserting object relation for remote table "user"
+
+// on conflict condition type for table "user"
+
+// ordering options when selecting data from "user"
+
+// primary key columns input for table: "user"
+
+// select columns of table "user"
+
+// input type for updating data in table "user"
+
+// update columns of table "user"
+
 // expression to compare columns of type uuid. All fields are combined with logical 'AND'.
 
-export type Boolean_comparison_exp = {
-		_eq?:boolean,
-	_gt?:boolean,
-	_gte?:boolean,
-	_in?:boolean[],
-	_is_null?:boolean,
-	_lt?:boolean,
-	_lte?:boolean,
-	_neq?:boolean,
-	_nin?:boolean[]
+export type guild = {
+	__typename?: "guild",
+	created_at:timestamptz,
+	description?:string,
+	guild_members:guild_member[],
+	guild_members_aggregate:guild_member_aggregate,
+	id:number,
+	meetings:meeting[],
+	meetings_aggregate:meeting_aggregate,
+	name:string,
+	updated_at:timestamptz
 }
 
-export type cr_user = {
-	__typename?: "cr_user",
-	date_joined:timestamptz,
-	email:string,
-	first_name?:string,
-	is_active:boolean,
-	is_staff:boolean,
-	is_superuser:boolean,
-	last_login?:timestamptz,
-	last_name?:string,
-	nb_guild_users:nb_guild_user[],
-	nb_guild_users_aggregate:nb_guild_user_aggregate,
-	nb_meeting_users:nb_meeting_user[],
-	nb_meeting_users_aggregate:nb_meeting_user_aggregate,
-	nb_meetings:nb_meeting[],
-	nb_meetings_aggregate:nb_meeting_aggregate,
-	nb_sphere_users:nb_sphere_users[],
-	nb_sphere_users_aggregate:nb_sphere_users_aggregate,
-	password:string,
-	username:string,
-	uuid:uuid
+export type guild_aggregate = {
+	__typename?: "guild_aggregate",
+	aggregate?:guild_aggregate_fields,
+	nodes:guild[]
 }
 
-export type cr_user_aggregate = {
-	__typename?: "cr_user_aggregate",
-	aggregate?:cr_user_aggregate_fields,
-	nodes:cr_user[]
-}
-
-export type cr_user_aggregate_fields = {
-	__typename?: "cr_user_aggregate_fields",
+export type guild_aggregate_fields = {
+	__typename?: "guild_aggregate_fields",
+	avg?:guild_avg_fields,
 	count?:number,
-	max?:cr_user_max_fields,
-	min?:cr_user_min_fields
+	max?:guild_max_fields,
+	min?:guild_min_fields,
+	stddev?:guild_stddev_fields,
+	stddev_pop?:guild_stddev_pop_fields,
+	stddev_samp?:guild_stddev_samp_fields,
+	sum?:guild_sum_fields,
+	var_pop?:guild_var_pop_fields,
+	var_samp?:guild_var_samp_fields,
+	variance?:guild_variance_fields
 }
 
-export type cr_user_aggregate_order_by = {
-		count?:order_by,
-	max?:cr_user_max_order_by,
-	min?:cr_user_min_order_by
+export type guild_aggregate_order_by = {
+		avg?:guild_avg_order_by,
+	count?:order_by,
+	max?:guild_max_order_by,
+	min?:guild_min_order_by,
+	stddev?:guild_stddev_order_by,
+	stddev_pop?:guild_stddev_pop_order_by,
+	stddev_samp?:guild_stddev_samp_order_by,
+	sum?:guild_sum_order_by,
+	var_pop?:guild_var_pop_order_by,
+	var_samp?:guild_var_samp_order_by,
+	variance?:guild_variance_order_by
 }
 
-export type cr_user_arr_rel_insert_input = {
-		data:cr_user_insert_input[],
-	on_conflict?:cr_user_on_conflict
+export type guild_arr_rel_insert_input = {
+		data:guild_insert_input[],
+	on_conflict?:guild_on_conflict
 }
 
-export type cr_user_bool_exp = {
-		_and?:(cr_user_bool_exp | undefined)[],
-	_not?:cr_user_bool_exp,
-	_or?:(cr_user_bool_exp | undefined)[],
-	date_joined?:timestamptz_comparison_exp,
-	email?:String_comparison_exp,
-	first_name?:String_comparison_exp,
-	is_active?:Boolean_comparison_exp,
-	is_staff?:Boolean_comparison_exp,
-	is_superuser?:Boolean_comparison_exp,
-	last_login?:timestamptz_comparison_exp,
-	last_name?:String_comparison_exp,
-	nb_guild_users?:nb_guild_user_bool_exp,
-	nb_meeting_users?:nb_meeting_user_bool_exp,
-	nb_meetings?:nb_meeting_bool_exp,
-	nb_sphere_users?:nb_sphere_users_bool_exp,
-	password?:String_comparison_exp,
-	username?:String_comparison_exp,
-	uuid?:uuid_comparison_exp
+export type guild_avg_fields = {
+	__typename?: "guild_avg_fields",
+	id?:number
 }
 
-export enum cr_user_constraint {
-	cr_user_pkey = "cr_user_pkey",
-	cr_user_uuid_key = "cr_user_uuid_key"
+export type guild_avg_order_by = {
+		id?:order_by
 }
 
-export type cr_user_insert_input = {
-		date_joined?:timestamptz,
-	email?:string,
-	first_name?:string,
-	is_active?:boolean,
-	is_staff?:boolean,
-	is_superuser?:boolean,
-	last_login?:timestamptz,
-	last_name?:string,
-	nb_guild_users?:nb_guild_user_arr_rel_insert_input,
-	nb_meeting_users?:nb_meeting_user_arr_rel_insert_input,
-	nb_meetings?:nb_meeting_arr_rel_insert_input,
-	nb_sphere_users?:nb_sphere_users_arr_rel_insert_input,
-	password?:string,
-	username?:string,
-	uuid?:uuid
+export type guild_bool_exp = {
+		_and?:(guild_bool_exp | undefined)[],
+	_not?:guild_bool_exp,
+	_or?:(guild_bool_exp | undefined)[],
+	created_at?:timestamptz_comparison_exp,
+	description?:String_comparison_exp,
+	guild_members?:guild_member_bool_exp,
+	id?:Int_comparison_exp,
+	meetings?:meeting_bool_exp,
+	name?:String_comparison_exp,
+	updated_at?:timestamptz_comparison_exp
 }
 
-export type cr_user_max_fields = {
-	__typename?: "cr_user_max_fields",
-	date_joined?:timestamptz,
-	email?:string,
-	first_name?:string,
-	last_login?:timestamptz,
-	last_name?:string,
-	password?:string,
-	username?:string
+export enum guild_constraint {
+	guild_pkey = "guild_pkey"
 }
 
-export type cr_user_max_order_by = {
-		date_joined?:order_by,
-	email?:order_by,
-	first_name?:order_by,
-	last_login?:order_by,
-	last_name?:order_by,
-	password?:order_by,
-	username?:order_by
+export type guild_inc_input = {
+		id?:number
 }
 
-export type cr_user_min_fields = {
-	__typename?: "cr_user_min_fields",
-	date_joined?:timestamptz,
-	email?:string,
-	first_name?:string,
-	last_login?:timestamptz,
-	last_name?:string,
-	password?:string,
-	username?:string
+export type guild_insert_input = {
+		created_at?:timestamptz,
+	description?:string,
+	guild_members?:guild_member_arr_rel_insert_input,
+	id?:number,
+	meetings?:meeting_arr_rel_insert_input,
+	name?:string,
+	updated_at?:timestamptz
 }
 
-export type cr_user_min_order_by = {
-		date_joined?:order_by,
-	email?:order_by,
-	first_name?:order_by,
-	last_login?:order_by,
-	last_name?:order_by,
-	password?:order_by,
-	username?:order_by
+export type guild_max_fields = {
+	__typename?: "guild_max_fields",
+	created_at?:timestamptz,
+	description?:string,
+	id?:number,
+	name?:string,
+	updated_at?:timestamptz
 }
 
-export type cr_user_mutation_response = {
-	__typename?: "cr_user_mutation_response",
+export type guild_max_order_by = {
+		created_at?:order_by,
+	description?:order_by,
+	id?:order_by,
+	name?:order_by,
+	updated_at?:order_by
+}
+
+export type guild_member = {
+	__typename?: "guild_member",
+	guild:guild,
+	guild_id:number,
+	member_id:uuid,
+	user:user
+}
+
+export type guild_member_aggregate = {
+	__typename?: "guild_member_aggregate",
+	aggregate?:guild_member_aggregate_fields,
+	nodes:guild_member[]
+}
+
+export type guild_member_aggregate_fields = {
+	__typename?: "guild_member_aggregate_fields",
+	avg?:guild_member_avg_fields,
+	count?:number,
+	max?:guild_member_max_fields,
+	min?:guild_member_min_fields,
+	stddev?:guild_member_stddev_fields,
+	stddev_pop?:guild_member_stddev_pop_fields,
+	stddev_samp?:guild_member_stddev_samp_fields,
+	sum?:guild_member_sum_fields,
+	var_pop?:guild_member_var_pop_fields,
+	var_samp?:guild_member_var_samp_fields,
+	variance?:guild_member_variance_fields
+}
+
+export type guild_member_aggregate_order_by = {
+		avg?:guild_member_avg_order_by,
+	count?:order_by,
+	max?:guild_member_max_order_by,
+	min?:guild_member_min_order_by,
+	stddev?:guild_member_stddev_order_by,
+	stddev_pop?:guild_member_stddev_pop_order_by,
+	stddev_samp?:guild_member_stddev_samp_order_by,
+	sum?:guild_member_sum_order_by,
+	var_pop?:guild_member_var_pop_order_by,
+	var_samp?:guild_member_var_samp_order_by,
+	variance?:guild_member_variance_order_by
+}
+
+export type guild_member_arr_rel_insert_input = {
+		data:guild_member_insert_input[],
+	on_conflict?:guild_member_on_conflict
+}
+
+export type guild_member_avg_fields = {
+	__typename?: "guild_member_avg_fields",
+	guild_id?:number
+}
+
+export type guild_member_avg_order_by = {
+		guild_id?:order_by
+}
+
+export type guild_member_bool_exp = {
+		_and?:(guild_member_bool_exp | undefined)[],
+	_not?:guild_member_bool_exp,
+	_or?:(guild_member_bool_exp | undefined)[],
+	guild?:guild_bool_exp,
+	guild_id?:Int_comparison_exp,
+	member_id?:uuid_comparison_exp,
+	user?:user_bool_exp
+}
+
+export enum guild_member_constraint {
+	guild_member_pkey = "guild_member_pkey"
+}
+
+export type guild_member_inc_input = {
+		guild_id?:number
+}
+
+export type guild_member_insert_input = {
+		guild?:guild_obj_rel_insert_input,
+	guild_id?:number,
+	member_id?:uuid,
+	user?:user_obj_rel_insert_input
+}
+
+export type guild_member_max_fields = {
+	__typename?: "guild_member_max_fields",
+	guild_id?:number,
+	member_id?:uuid
+}
+
+export type guild_member_max_order_by = {
+		guild_id?:order_by,
+	member_id?:order_by
+}
+
+export type guild_member_min_fields = {
+	__typename?: "guild_member_min_fields",
+	guild_id?:number,
+	member_id?:uuid
+}
+
+export type guild_member_min_order_by = {
+		guild_id?:order_by,
+	member_id?:order_by
+}
+
+export type guild_member_mutation_response = {
+	__typename?: "guild_member_mutation_response",
 	affected_rows:number,
-	returning:cr_user[]
+	returning:guild_member[]
 }
 
-export type cr_user_obj_rel_insert_input = {
-		data:cr_user_insert_input,
-	on_conflict?:cr_user_on_conflict
+export type guild_member_obj_rel_insert_input = {
+		data:guild_member_insert_input,
+	on_conflict?:guild_member_on_conflict
 }
 
-export type cr_user_on_conflict = {
-		constraint:cr_user_constraint,
-	update_columns:cr_user_update_column[],
-	where?:cr_user_bool_exp
+export type guild_member_on_conflict = {
+		constraint:guild_member_constraint,
+	update_columns:guild_member_update_column[],
+	where?:guild_member_bool_exp
 }
 
-export type cr_user_order_by = {
-		date_joined?:order_by,
-	email?:order_by,
-	first_name?:order_by,
-	is_active?:order_by,
-	is_staff?:order_by,
-	is_superuser?:order_by,
-	last_login?:order_by,
-	last_name?:order_by,
-	nb_guild_users_aggregate?:nb_guild_user_aggregate_order_by,
-	nb_meeting_users_aggregate?:nb_meeting_user_aggregate_order_by,
-	nb_meetings_aggregate?:nb_meeting_aggregate_order_by,
-	nb_sphere_users_aggregate?:nb_sphere_users_aggregate_order_by,
-	password?:order_by,
-	username?:order_by,
-	uuid?:order_by
+export type guild_member_order_by = {
+		guild?:guild_order_by,
+	guild_id?:order_by,
+	member_id?:order_by,
+	user?:user_order_by
 }
 
-export enum cr_user_select_column {
-	date_joined = "date_joined",
-	email = "email",
-	first_name = "first_name",
-	is_active = "is_active",
-	is_staff = "is_staff",
-	is_superuser = "is_superuser",
-	last_login = "last_login",
-	last_name = "last_name",
-	password = "password",
-	username = "username",
-	uuid = "uuid"
+export type guild_member_pk_columns_input = {
+		guild_id:number,
+	member_id:uuid
 }
 
-export type cr_user_set_input = {
-		date_joined?:timestamptz,
-	email?:string,
-	first_name?:string,
-	is_active?:boolean,
-	is_staff?:boolean,
-	is_superuser?:boolean,
-	last_login?:timestamptz,
-	last_name?:string,
-	password?:string,
-	username?:string,
-	uuid?:uuid
+export enum guild_member_select_column {
+	guild_id = "guild_id",
+	member_id = "member_id"
 }
 
-export enum cr_user_update_column {
-	date_joined = "date_joined",
-	email = "email",
-	first_name = "first_name",
-	is_active = "is_active",
-	is_staff = "is_staff",
-	is_superuser = "is_superuser",
-	last_login = "last_login",
-	last_name = "last_name",
-	password = "password",
-	username = "username",
-	uuid = "uuid"
+export type guild_member_set_input = {
+		guild_id?:number,
+	member_id?:uuid
+}
+
+export type guild_member_stddev_fields = {
+	__typename?: "guild_member_stddev_fields",
+	guild_id?:number
+}
+
+export type guild_member_stddev_order_by = {
+		guild_id?:order_by
+}
+
+export type guild_member_stddev_pop_fields = {
+	__typename?: "guild_member_stddev_pop_fields",
+	guild_id?:number
+}
+
+export type guild_member_stddev_pop_order_by = {
+		guild_id?:order_by
+}
+
+export type guild_member_stddev_samp_fields = {
+	__typename?: "guild_member_stddev_samp_fields",
+	guild_id?:number
+}
+
+export type guild_member_stddev_samp_order_by = {
+		guild_id?:order_by
+}
+
+export type guild_member_sum_fields = {
+	__typename?: "guild_member_sum_fields",
+	guild_id?:number
+}
+
+export type guild_member_sum_order_by = {
+		guild_id?:order_by
+}
+
+export enum guild_member_update_column {
+	guild_id = "guild_id",
+	member_id = "member_id"
+}
+
+export type guild_member_var_pop_fields = {
+	__typename?: "guild_member_var_pop_fields",
+	guild_id?:number
+}
+
+export type guild_member_var_pop_order_by = {
+		guild_id?:order_by
+}
+
+export type guild_member_var_samp_fields = {
+	__typename?: "guild_member_var_samp_fields",
+	guild_id?:number
+}
+
+export type guild_member_var_samp_order_by = {
+		guild_id?:order_by
+}
+
+export type guild_member_variance_fields = {
+	__typename?: "guild_member_variance_fields",
+	guild_id?:number
+}
+
+export type guild_member_variance_order_by = {
+		guild_id?:order_by
+}
+
+export type guild_min_fields = {
+	__typename?: "guild_min_fields",
+	created_at?:timestamptz,
+	description?:string,
+	id?:number,
+	name?:string,
+	updated_at?:timestamptz
+}
+
+export type guild_min_order_by = {
+		created_at?:order_by,
+	description?:order_by,
+	id?:order_by,
+	name?:order_by,
+	updated_at?:order_by
+}
+
+export type guild_mutation_response = {
+	__typename?: "guild_mutation_response",
+	affected_rows:number,
+	returning:guild[]
+}
+
+export type guild_obj_rel_insert_input = {
+		data:guild_insert_input,
+	on_conflict?:guild_on_conflict
+}
+
+export type guild_on_conflict = {
+		constraint:guild_constraint,
+	update_columns:guild_update_column[],
+	where?:guild_bool_exp
+}
+
+export type guild_order_by = {
+		created_at?:order_by,
+	description?:order_by,
+	guild_members_aggregate?:guild_member_aggregate_order_by,
+	id?:order_by,
+	meetings_aggregate?:meeting_aggregate_order_by,
+	name?:order_by,
+	updated_at?:order_by
+}
+
+export type guild_pk_columns_input = {
+		id:number
+}
+
+export enum guild_select_column {
+	created_at = "created_at",
+	description = "description",
+	id = "id",
+	name = "name",
+	updated_at = "updated_at"
+}
+
+export type guild_set_input = {
+		created_at?:timestamptz,
+	description?:string,
+	id?:number,
+	name?:string,
+	updated_at?:timestamptz
+}
+
+export type guild_stddev_fields = {
+	__typename?: "guild_stddev_fields",
+	id?:number
+}
+
+export type guild_stddev_order_by = {
+		id?:order_by
+}
+
+export type guild_stddev_pop_fields = {
+	__typename?: "guild_stddev_pop_fields",
+	id?:number
+}
+
+export type guild_stddev_pop_order_by = {
+		id?:order_by
+}
+
+export type guild_stddev_samp_fields = {
+	__typename?: "guild_stddev_samp_fields",
+	id?:number
+}
+
+export type guild_stddev_samp_order_by = {
+		id?:order_by
+}
+
+export type guild_sum_fields = {
+	__typename?: "guild_sum_fields",
+	id?:number
+}
+
+export type guild_sum_order_by = {
+		id?:order_by
+}
+
+export enum guild_update_column {
+	created_at = "created_at",
+	description = "description",
+	id = "id",
+	name = "name",
+	updated_at = "updated_at"
+}
+
+export type guild_var_pop_fields = {
+	__typename?: "guild_var_pop_fields",
+	id?:number
+}
+
+export type guild_var_pop_order_by = {
+		id?:order_by
+}
+
+export type guild_var_samp_fields = {
+	__typename?: "guild_var_samp_fields",
+	id?:number
+}
+
+export type guild_var_samp_order_by = {
+		id?:order_by
+}
+
+export type guild_variance_fields = {
+	__typename?: "guild_variance_fields",
+	id?:number
+}
+
+export type guild_variance_order_by = {
+		id?:order_by
 }
 
 export type Int_comparison_exp = {
@@ -3725,735 +3407,441 @@ export type Int_comparison_exp = {
 	_nin?:number[]
 }
 
-export type mutation_root = {
-	__typename?: "mutation_root",
-	delete_cr_user?:cr_user_mutation_response,
-	delete_nb_guild?:nb_guild_mutation_response,
-	delete_nb_guild_user?:nb_guild_user_mutation_response,
-	delete_nb_meeting?:nb_meeting_mutation_response,
-	delete_nb_meeting_user?:nb_meeting_user_mutation_response,
-	delete_nb_sphere?:nb_sphere_mutation_response,
-	delete_nb_sphere_users?:nb_sphere_users_mutation_response,
-	insert_cr_user?:cr_user_mutation_response,
-	insert_nb_guild?:nb_guild_mutation_response,
-	insert_nb_guild_user?:nb_guild_user_mutation_response,
-	insert_nb_meeting?:nb_meeting_mutation_response,
-	insert_nb_meeting_user?:nb_meeting_user_mutation_response,
-	insert_nb_sphere?:nb_sphere_mutation_response,
-	insert_nb_sphere_users?:nb_sphere_users_mutation_response,
-	update_cr_user?:cr_user_mutation_response,
-	update_nb_guild?:nb_guild_mutation_response,
-	update_nb_guild_user?:nb_guild_user_mutation_response,
-	update_nb_meeting?:nb_meeting_mutation_response,
-	update_nb_meeting_user?:nb_meeting_user_mutation_response,
-	update_nb_sphere?:nb_sphere_mutation_response,
-	update_nb_sphere_users?:nb_sphere_users_mutation_response
-}
-
-export type nb_guild = {
-	__typename?: "nb_guild",
-	created_at:timestamptz,
-	description:string,
-	id:number,
-	name:string,
-	nb_guild_users:nb_guild_user[],
-	nb_guild_users_aggregate:nb_guild_user_aggregate,
-	nb_meetings:nb_meeting[],
-	nb_meetings_aggregate:nb_meeting_aggregate,
-	sphere_id:number
-}
-
-export type nb_guild_aggregate = {
-	__typename?: "nb_guild_aggregate",
-	aggregate?:nb_guild_aggregate_fields,
-	nodes:nb_guild[]
-}
-
-export type nb_guild_aggregate_fields = {
-	__typename?: "nb_guild_aggregate_fields",
-	avg?:nb_guild_avg_fields,
-	count?:number,
-	max?:nb_guild_max_fields,
-	min?:nb_guild_min_fields,
-	stddev?:nb_guild_stddev_fields,
-	stddev_pop?:nb_guild_stddev_pop_fields,
-	stddev_samp?:nb_guild_stddev_samp_fields,
-	sum?:nb_guild_sum_fields,
-	var_pop?:nb_guild_var_pop_fields,
-	var_samp?:nb_guild_var_samp_fields,
-	variance?:nb_guild_variance_fields
-}
-
-export type nb_guild_aggregate_order_by = {
-		avg?:nb_guild_avg_order_by,
-	count?:order_by,
-	max?:nb_guild_max_order_by,
-	min?:nb_guild_min_order_by,
-	stddev?:nb_guild_stddev_order_by,
-	stddev_pop?:nb_guild_stddev_pop_order_by,
-	stddev_samp?:nb_guild_stddev_samp_order_by,
-	sum?:nb_guild_sum_order_by,
-	var_pop?:nb_guild_var_pop_order_by,
-	var_samp?:nb_guild_var_samp_order_by,
-	variance?:nb_guild_variance_order_by
-}
-
-export type nb_guild_arr_rel_insert_input = {
-		data:nb_guild_insert_input[],
-	on_conflict?:nb_guild_on_conflict
-}
-
-export type nb_guild_avg_fields = {
-	__typename?: "nb_guild_avg_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_avg_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_bool_exp = {
-		_and?:(nb_guild_bool_exp | undefined)[],
-	_not?:nb_guild_bool_exp,
-	_or?:(nb_guild_bool_exp | undefined)[],
-	created_at?:timestamptz_comparison_exp,
-	description?:String_comparison_exp,
-	id?:Int_comparison_exp,
-	name?:String_comparison_exp,
-	nb_guild_users?:nb_guild_user_bool_exp,
-	nb_meetings?:nb_meeting_bool_exp,
-	sphere_id?:Int_comparison_exp
-}
-
-export enum nb_guild_constraint {
-	nb_guild_pkey = "nb_guild_pkey"
-}
-
-export type nb_guild_inc_input = {
-		id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_insert_input = {
-		created_at?:timestamptz,
-	description?:string,
-	id?:number,
-	name?:string,
-	nb_guild_users?:nb_guild_user_arr_rel_insert_input,
-	nb_meetings?:nb_meeting_arr_rel_insert_input,
-	sphere_id?:number
-}
-
-export type nb_guild_max_fields = {
-	__typename?: "nb_guild_max_fields",
-	created_at?:timestamptz,
-	description?:string,
-	id?:number,
-	name?:string,
-	sphere_id?:number
-}
-
-export type nb_guild_max_order_by = {
-		created_at?:order_by,
-	description?:order_by,
-	id?:order_by,
-	name?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_min_fields = {
-	__typename?: "nb_guild_min_fields",
-	created_at?:timestamptz,
-	description?:string,
-	id?:number,
-	name?:string,
-	sphere_id?:number
-}
-
-export type nb_guild_min_order_by = {
-		created_at?:order_by,
-	description?:order_by,
-	id?:order_by,
-	name?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_mutation_response = {
-	__typename?: "nb_guild_mutation_response",
-	affected_rows:number,
-	returning:nb_guild[]
-}
-
-export type nb_guild_obj_rel_insert_input = {
-		data:nb_guild_insert_input,
-	on_conflict?:nb_guild_on_conflict
-}
-
-export type nb_guild_on_conflict = {
-		constraint:nb_guild_constraint,
-	update_columns:nb_guild_update_column[],
-	where?:nb_guild_bool_exp
-}
-
-export type nb_guild_order_by = {
-		created_at?:order_by,
-	description?:order_by,
-	id?:order_by,
-	name?:order_by,
-	nb_guild_users_aggregate?:nb_guild_user_aggregate_order_by,
-	nb_meetings_aggregate?:nb_meeting_aggregate_order_by,
-	sphere_id?:order_by
-}
-
-export enum nb_guild_select_column {
-	created_at = "created_at",
-	description = "description",
-	id = "id",
-	name = "name",
-	sphere_id = "sphere_id"
-}
-
-export type nb_guild_set_input = {
-		created_at?:timestamptz,
-	description?:string,
-	id?:number,
-	name?:string,
-	sphere_id?:number
-}
-
-export type nb_guild_stddev_fields = {
-	__typename?: "nb_guild_stddev_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_stddev_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_stddev_pop_fields = {
-	__typename?: "nb_guild_stddev_pop_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_stddev_pop_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_stddev_samp_fields = {
-	__typename?: "nb_guild_stddev_samp_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_stddev_samp_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_sum_fields = {
-	__typename?: "nb_guild_sum_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_sum_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export enum nb_guild_update_column {
-	created_at = "created_at",
-	description = "description",
-	id = "id",
-	name = "name",
-	sphere_id = "sphere_id"
-}
-
-export type nb_guild_user = {
-	__typename?: "nb_guild_user",
-	cr_user:cr_user,
-	guild_id:number,
-	id:number,
-	membership_type:string,
-	nb_guild:nb_guild,
-	user_id:uuid
-}
-
-export type nb_guild_user_aggregate = {
-	__typename?: "nb_guild_user_aggregate",
-	aggregate?:nb_guild_user_aggregate_fields,
-	nodes:nb_guild_user[]
-}
-
-export type nb_guild_user_aggregate_fields = {
-	__typename?: "nb_guild_user_aggregate_fields",
-	avg?:nb_guild_user_avg_fields,
-	count?:number,
-	max?:nb_guild_user_max_fields,
-	min?:nb_guild_user_min_fields,
-	stddev?:nb_guild_user_stddev_fields,
-	stddev_pop?:nb_guild_user_stddev_pop_fields,
-	stddev_samp?:nb_guild_user_stddev_samp_fields,
-	sum?:nb_guild_user_sum_fields,
-	var_pop?:nb_guild_user_var_pop_fields,
-	var_samp?:nb_guild_user_var_samp_fields,
-	variance?:nb_guild_user_variance_fields
-}
-
-export type nb_guild_user_aggregate_order_by = {
-		avg?:nb_guild_user_avg_order_by,
-	count?:order_by,
-	max?:nb_guild_user_max_order_by,
-	min?:nb_guild_user_min_order_by,
-	stddev?:nb_guild_user_stddev_order_by,
-	stddev_pop?:nb_guild_user_stddev_pop_order_by,
-	stddev_samp?:nb_guild_user_stddev_samp_order_by,
-	sum?:nb_guild_user_sum_order_by,
-	var_pop?:nb_guild_user_var_pop_order_by,
-	var_samp?:nb_guild_user_var_samp_order_by,
-	variance?:nb_guild_user_variance_order_by
-}
-
-export type nb_guild_user_arr_rel_insert_input = {
-		data:nb_guild_user_insert_input[],
-	on_conflict?:nb_guild_user_on_conflict
-}
-
-export type nb_guild_user_avg_fields = {
-	__typename?: "nb_guild_user_avg_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_avg_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_guild_user_bool_exp = {
-		_and?:(nb_guild_user_bool_exp | undefined)[],
-	_not?:nb_guild_user_bool_exp,
-	_or?:(nb_guild_user_bool_exp | undefined)[],
-	cr_user?:cr_user_bool_exp,
-	guild_id?:Int_comparison_exp,
-	id?:Int_comparison_exp,
-	membership_type?:String_comparison_exp,
-	nb_guild?:nb_guild_bool_exp,
-	user_id?:uuid_comparison_exp
-}
-
-export enum nb_guild_user_constraint {
-	nb_guild_user_pkey = "nb_guild_user_pkey"
-}
-
-export type nb_guild_user_inc_input = {
-		guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_insert_input = {
-		cr_user?:cr_user_obj_rel_insert_input,
-	guild_id?:number,
-	id?:number,
-	membership_type?:string,
-	nb_guild?:nb_guild_obj_rel_insert_input,
-	user_id?:uuid
-}
-
-export type nb_guild_user_max_fields = {
-	__typename?: "nb_guild_user_max_fields",
-	guild_id?:number,
-	id?:number,
-	membership_type?:string
-}
-
-export type nb_guild_user_max_order_by = {
-		guild_id?:order_by,
-	id?:order_by,
-	membership_type?:order_by
-}
-
-export type nb_guild_user_min_fields = {
-	__typename?: "nb_guild_user_min_fields",
-	guild_id?:number,
-	id?:number,
-	membership_type?:string
-}
-
-export type nb_guild_user_min_order_by = {
-		guild_id?:order_by,
-	id?:order_by,
-	membership_type?:order_by
-}
-
-export type nb_guild_user_mutation_response = {
-	__typename?: "nb_guild_user_mutation_response",
-	affected_rows:number,
-	returning:nb_guild_user[]
-}
-
-export type nb_guild_user_obj_rel_insert_input = {
-		data:nb_guild_user_insert_input,
-	on_conflict?:nb_guild_user_on_conflict
-}
-
-export type nb_guild_user_on_conflict = {
-		constraint:nb_guild_user_constraint,
-	update_columns:nb_guild_user_update_column[],
-	where?:nb_guild_user_bool_exp
-}
-
-export type nb_guild_user_order_by = {
-		cr_user?:cr_user_order_by,
-	guild_id?:order_by,
-	id?:order_by,
-	membership_type?:order_by,
-	nb_guild?:nb_guild_order_by,
-	user_id?:order_by
-}
-
-export enum nb_guild_user_select_column {
-	guild_id = "guild_id",
-	id = "id",
-	membership_type = "membership_type",
-	user_id = "user_id"
-}
-
-export type nb_guild_user_set_input = {
-		guild_id?:number,
-	id?:number,
-	membership_type?:string,
-	user_id?:uuid
-}
-
-export type nb_guild_user_stddev_fields = {
-	__typename?: "nb_guild_user_stddev_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_stddev_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_guild_user_stddev_pop_fields = {
-	__typename?: "nb_guild_user_stddev_pop_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_stddev_pop_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_guild_user_stddev_samp_fields = {
-	__typename?: "nb_guild_user_stddev_samp_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_stddev_samp_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_guild_user_sum_fields = {
-	__typename?: "nb_guild_user_sum_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_sum_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export enum nb_guild_user_update_column {
-	guild_id = "guild_id",
-	id = "id",
-	membership_type = "membership_type",
-	user_id = "user_id"
-}
-
-export type nb_guild_user_var_pop_fields = {
-	__typename?: "nb_guild_user_var_pop_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_var_pop_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_guild_user_var_samp_fields = {
-	__typename?: "nb_guild_user_var_samp_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_var_samp_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_guild_user_variance_fields = {
-	__typename?: "nb_guild_user_variance_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_guild_user_variance_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_guild_var_pop_fields = {
-	__typename?: "nb_guild_var_pop_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_var_pop_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_var_samp_fields = {
-	__typename?: "nb_guild_var_samp_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_var_samp_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_guild_variance_fields = {
-	__typename?: "nb_guild_variance_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_guild_variance_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_meeting = {
-	__typename?: "nb_meeting",
+export type meeting = {
+	__typename?: "meeting",
 	created_at:timestamptz,
 	description:string,
 	end_time?:timestamptz,
-	guild_id:number,
+	guild?:guild,
+	guild_id?:number,
 	id:number,
 	location?:string,
-	nb_guild:nb_guild,
-	nb_meeting_users:nb_meeting_user[],
-	nb_meeting_users_aggregate:nb_meeting_user_aggregate,
-	organizer:cr_user,
+	organizer:user,
 	organizer_id:uuid,
+	participants:meeting_participant[],
+	participants_aggregate:meeting_participant_aggregate,
 	publication_time?:timestamptz,
+	sphere_id:number,
 	start_time?:timestamptz,
 	title:string,
 	updated_at:timestamptz
 }
 
-export type nb_meeting_aggregate = {
-	__typename?: "nb_meeting_aggregate",
-	aggregate?:nb_meeting_aggregate_fields,
-	nodes:nb_meeting[]
+export type meeting_aggregate = {
+	__typename?: "meeting_aggregate",
+	aggregate?:meeting_aggregate_fields,
+	nodes:meeting[]
 }
 
-export type nb_meeting_aggregate_fields = {
-	__typename?: "nb_meeting_aggregate_fields",
-	avg?:nb_meeting_avg_fields,
+export type meeting_aggregate_fields = {
+	__typename?: "meeting_aggregate_fields",
+	avg?:meeting_avg_fields,
 	count?:number,
-	max?:nb_meeting_max_fields,
-	min?:nb_meeting_min_fields,
-	stddev?:nb_meeting_stddev_fields,
-	stddev_pop?:nb_meeting_stddev_pop_fields,
-	stddev_samp?:nb_meeting_stddev_samp_fields,
-	sum?:nb_meeting_sum_fields,
-	var_pop?:nb_meeting_var_pop_fields,
-	var_samp?:nb_meeting_var_samp_fields,
-	variance?:nb_meeting_variance_fields
+	max?:meeting_max_fields,
+	min?:meeting_min_fields,
+	stddev?:meeting_stddev_fields,
+	stddev_pop?:meeting_stddev_pop_fields,
+	stddev_samp?:meeting_stddev_samp_fields,
+	sum?:meeting_sum_fields,
+	var_pop?:meeting_var_pop_fields,
+	var_samp?:meeting_var_samp_fields,
+	variance?:meeting_variance_fields
 }
 
-export type nb_meeting_aggregate_order_by = {
-		avg?:nb_meeting_avg_order_by,
+export type meeting_aggregate_order_by = {
+		avg?:meeting_avg_order_by,
 	count?:order_by,
-	max?:nb_meeting_max_order_by,
-	min?:nb_meeting_min_order_by,
-	stddev?:nb_meeting_stddev_order_by,
-	stddev_pop?:nb_meeting_stddev_pop_order_by,
-	stddev_samp?:nb_meeting_stddev_samp_order_by,
-	sum?:nb_meeting_sum_order_by,
-	var_pop?:nb_meeting_var_pop_order_by,
-	var_samp?:nb_meeting_var_samp_order_by,
-	variance?:nb_meeting_variance_order_by
+	max?:meeting_max_order_by,
+	min?:meeting_min_order_by,
+	stddev?:meeting_stddev_order_by,
+	stddev_pop?:meeting_stddev_pop_order_by,
+	stddev_samp?:meeting_stddev_samp_order_by,
+	sum?:meeting_sum_order_by,
+	var_pop?:meeting_var_pop_order_by,
+	var_samp?:meeting_var_samp_order_by,
+	variance?:meeting_variance_order_by
 }
 
-export type nb_meeting_arr_rel_insert_input = {
-		data:nb_meeting_insert_input[],
-	on_conflict?:nb_meeting_on_conflict
+export type meeting_arr_rel_insert_input = {
+		data:meeting_insert_input[],
+	on_conflict?:meeting_on_conflict
 }
 
-export type nb_meeting_avg_fields = {
-	__typename?: "nb_meeting_avg_fields",
+export type meeting_avg_fields = {
+	__typename?: "meeting_avg_fields",
 	guild_id?:number,
-	id?:number
+	id?:number,
+	sphere_id?:number
 }
 
-export type nb_meeting_avg_order_by = {
+export type meeting_avg_order_by = {
 		guild_id?:order_by,
-	id?:order_by
+	id?:order_by,
+	sphere_id?:order_by
 }
 
-export type nb_meeting_bool_exp = {
-		_and?:(nb_meeting_bool_exp | undefined)[],
-	_not?:nb_meeting_bool_exp,
-	_or?:(nb_meeting_bool_exp | undefined)[],
+export type meeting_bool_exp = {
+		_and?:(meeting_bool_exp | undefined)[],
+	_not?:meeting_bool_exp,
+	_or?:(meeting_bool_exp | undefined)[],
 	created_at?:timestamptz_comparison_exp,
 	description?:String_comparison_exp,
 	end_time?:timestamptz_comparison_exp,
+	guild?:guild_bool_exp,
 	guild_id?:Int_comparison_exp,
 	id?:Int_comparison_exp,
 	location?:String_comparison_exp,
-	nb_guild?:nb_guild_bool_exp,
-	nb_meeting_users?:nb_meeting_user_bool_exp,
-	organizer?:cr_user_bool_exp,
+	organizer?:user_bool_exp,
 	organizer_id?:uuid_comparison_exp,
+	participants?:meeting_participant_bool_exp,
 	publication_time?:timestamptz_comparison_exp,
+	sphere_id?:Int_comparison_exp,
 	start_time?:timestamptz_comparison_exp,
 	title?:String_comparison_exp,
 	updated_at?:timestamptz_comparison_exp
 }
 
-export enum nb_meeting_constraint {
-	nb_meeting_pkey = "nb_meeting_pkey"
+export enum meeting_constraint {
+	meeting_pkey = "meeting_pkey"
 }
 
-export type nb_meeting_inc_input = {
+export type meeting_inc_input = {
 		guild_id?:number,
-	id?:number
+	id?:number,
+	sphere_id?:number
 }
 
-export type nb_meeting_insert_input = {
+export type meeting_insert_input = {
 		created_at?:timestamptz,
 	description?:string,
 	end_time?:timestamptz,
+	guild?:guild_obj_rel_insert_input,
 	guild_id?:number,
 	id?:number,
 	location?:string,
-	nb_guild?:nb_guild_obj_rel_insert_input,
-	nb_meeting_users?:nb_meeting_user_arr_rel_insert_input,
-	organizer?:cr_user_obj_rel_insert_input,
+	organizer?:user_obj_rel_insert_input,
+	organizer_id?:uuid,
+	participants?:meeting_participant_arr_rel_insert_input,
+	publication_time?:timestamptz,
+	sphere_id?:number,
+	start_time?:timestamptz,
+	title?:string,
+	updated_at?:timestamptz
+}
+
+export type meeting_max_fields = {
+	__typename?: "meeting_max_fields",
+	created_at?:timestamptz,
+	description?:string,
+	end_time?:timestamptz,
+	guild_id?:number,
+	id?:number,
+	location?:string,
 	organizer_id?:uuid,
 	publication_time?:timestamptz,
+	sphere_id?:number,
 	start_time?:timestamptz,
 	title?:string,
 	updated_at?:timestamptz
 }
 
-export type nb_meeting_max_fields = {
-	__typename?: "nb_meeting_max_fields",
-	created_at?:timestamptz,
-	description?:string,
-	end_time?:timestamptz,
-	guild_id?:number,
-	id?:number,
-	location?:string,
-	publication_time?:timestamptz,
-	start_time?:timestamptz,
-	title?:string,
-	updated_at?:timestamptz
-}
-
-export type nb_meeting_max_order_by = {
+export type meeting_max_order_by = {
 		created_at?:order_by,
 	description?:order_by,
 	end_time?:order_by,
 	guild_id?:order_by,
 	id?:order_by,
 	location?:order_by,
-	publication_time?:order_by,
-	start_time?:order_by,
-	title?:order_by,
-	updated_at?:order_by
-}
-
-export type nb_meeting_min_fields = {
-	__typename?: "nb_meeting_min_fields",
-	created_at?:timestamptz,
-	description?:string,
-	end_time?:timestamptz,
-	guild_id?:number,
-	id?:number,
-	location?:string,
-	publication_time?:timestamptz,
-	start_time?:timestamptz,
-	title?:string,
-	updated_at?:timestamptz
-}
-
-export type nb_meeting_min_order_by = {
-		created_at?:order_by,
-	description?:order_by,
-	end_time?:order_by,
-	guild_id?:order_by,
-	id?:order_by,
-	location?:order_by,
-	publication_time?:order_by,
-	start_time?:order_by,
-	title?:order_by,
-	updated_at?:order_by
-}
-
-export type nb_meeting_mutation_response = {
-	__typename?: "nb_meeting_mutation_response",
-	affected_rows:number,
-	returning:nb_meeting[]
-}
-
-export type nb_meeting_obj_rel_insert_input = {
-		data:nb_meeting_insert_input,
-	on_conflict?:nb_meeting_on_conflict
-}
-
-export type nb_meeting_on_conflict = {
-		constraint:nb_meeting_constraint,
-	update_columns:nb_meeting_update_column[],
-	where?:nb_meeting_bool_exp
-}
-
-export type nb_meeting_order_by = {
-		created_at?:order_by,
-	description?:order_by,
-	end_time?:order_by,
-	guild_id?:order_by,
-	id?:order_by,
-	location?:order_by,
-	nb_guild?:nb_guild_order_by,
-	nb_meeting_users_aggregate?:nb_meeting_user_aggregate_order_by,
-	organizer?:cr_user_order_by,
 	organizer_id?:order_by,
 	publication_time?:order_by,
+	sphere_id?:order_by,
 	start_time?:order_by,
 	title?:order_by,
 	updated_at?:order_by
 }
 
-export enum nb_meeting_select_column {
+export type meeting_min_fields = {
+	__typename?: "meeting_min_fields",
+	created_at?:timestamptz,
+	description?:string,
+	end_time?:timestamptz,
+	guild_id?:number,
+	id?:number,
+	location?:string,
+	organizer_id?:uuid,
+	publication_time?:timestamptz,
+	sphere_id?:number,
+	start_time?:timestamptz,
+	title?:string,
+	updated_at?:timestamptz
+}
+
+export type meeting_min_order_by = {
+		created_at?:order_by,
+	description?:order_by,
+	end_time?:order_by,
+	guild_id?:order_by,
+	id?:order_by,
+	location?:order_by,
+	organizer_id?:order_by,
+	publication_time?:order_by,
+	sphere_id?:order_by,
+	start_time?:order_by,
+	title?:order_by,
+	updated_at?:order_by
+}
+
+export type meeting_mutation_response = {
+	__typename?: "meeting_mutation_response",
+	affected_rows:number,
+	returning:meeting[]
+}
+
+export type meeting_obj_rel_insert_input = {
+		data:meeting_insert_input,
+	on_conflict?:meeting_on_conflict
+}
+
+export type meeting_on_conflict = {
+		constraint:meeting_constraint,
+	update_columns:meeting_update_column[],
+	where?:meeting_bool_exp
+}
+
+export type meeting_order_by = {
+		created_at?:order_by,
+	description?:order_by,
+	end_time?:order_by,
+	guild?:guild_order_by,
+	guild_id?:order_by,
+	id?:order_by,
+	location?:order_by,
+	organizer?:user_order_by,
+	organizer_id?:order_by,
+	participants_aggregate?:meeting_participant_aggregate_order_by,
+	publication_time?:order_by,
+	sphere_id?:order_by,
+	start_time?:order_by,
+	title?:order_by,
+	updated_at?:order_by
+}
+
+export type meeting_participant = {
+	__typename?: "meeting_participant",
+	meeting:meeting,
+	meeting_id:number,
+	participant:user,
+	participant_id:uuid
+}
+
+export type meeting_participant_aggregate = {
+	__typename?: "meeting_participant_aggregate",
+	aggregate?:meeting_participant_aggregate_fields,
+	nodes:meeting_participant[]
+}
+
+export type meeting_participant_aggregate_fields = {
+	__typename?: "meeting_participant_aggregate_fields",
+	avg?:meeting_participant_avg_fields,
+	count?:number,
+	max?:meeting_participant_max_fields,
+	min?:meeting_participant_min_fields,
+	stddev?:meeting_participant_stddev_fields,
+	stddev_pop?:meeting_participant_stddev_pop_fields,
+	stddev_samp?:meeting_participant_stddev_samp_fields,
+	sum?:meeting_participant_sum_fields,
+	var_pop?:meeting_participant_var_pop_fields,
+	var_samp?:meeting_participant_var_samp_fields,
+	variance?:meeting_participant_variance_fields
+}
+
+export type meeting_participant_aggregate_order_by = {
+		avg?:meeting_participant_avg_order_by,
+	count?:order_by,
+	max?:meeting_participant_max_order_by,
+	min?:meeting_participant_min_order_by,
+	stddev?:meeting_participant_stddev_order_by,
+	stddev_pop?:meeting_participant_stddev_pop_order_by,
+	stddev_samp?:meeting_participant_stddev_samp_order_by,
+	sum?:meeting_participant_sum_order_by,
+	var_pop?:meeting_participant_var_pop_order_by,
+	var_samp?:meeting_participant_var_samp_order_by,
+	variance?:meeting_participant_variance_order_by
+}
+
+export type meeting_participant_arr_rel_insert_input = {
+		data:meeting_participant_insert_input[],
+	on_conflict?:meeting_participant_on_conflict
+}
+
+export type meeting_participant_avg_fields = {
+	__typename?: "meeting_participant_avg_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_avg_order_by = {
+		meeting_id?:order_by
+}
+
+export type meeting_participant_bool_exp = {
+		_and?:(meeting_participant_bool_exp | undefined)[],
+	_not?:meeting_participant_bool_exp,
+	_or?:(meeting_participant_bool_exp | undefined)[],
+	meeting?:meeting_bool_exp,
+	meeting_id?:Int_comparison_exp,
+	participant?:user_bool_exp,
+	participant_id?:uuid_comparison_exp
+}
+
+export enum meeting_participant_constraint {
+	meeting_participant_pkey = "meeting_participant_pkey"
+}
+
+export type meeting_participant_inc_input = {
+		meeting_id?:number
+}
+
+export type meeting_participant_insert_input = {
+		meeting?:meeting_obj_rel_insert_input,
+	meeting_id?:number,
+	participant?:user_obj_rel_insert_input,
+	participant_id?:uuid
+}
+
+export type meeting_participant_max_fields = {
+	__typename?: "meeting_participant_max_fields",
+	meeting_id?:number,
+	participant_id?:uuid
+}
+
+export type meeting_participant_max_order_by = {
+		meeting_id?:order_by,
+	participant_id?:order_by
+}
+
+export type meeting_participant_min_fields = {
+	__typename?: "meeting_participant_min_fields",
+	meeting_id?:number,
+	participant_id?:uuid
+}
+
+export type meeting_participant_min_order_by = {
+		meeting_id?:order_by,
+	participant_id?:order_by
+}
+
+export type meeting_participant_mutation_response = {
+	__typename?: "meeting_participant_mutation_response",
+	affected_rows:number,
+	returning:meeting_participant[]
+}
+
+export type meeting_participant_obj_rel_insert_input = {
+		data:meeting_participant_insert_input,
+	on_conflict?:meeting_participant_on_conflict
+}
+
+export type meeting_participant_on_conflict = {
+		constraint:meeting_participant_constraint,
+	update_columns:meeting_participant_update_column[],
+	where?:meeting_participant_bool_exp
+}
+
+export type meeting_participant_order_by = {
+		meeting?:meeting_order_by,
+	meeting_id?:order_by,
+	participant?:user_order_by,
+	participant_id?:order_by
+}
+
+export type meeting_participant_pk_columns_input = {
+		meeting_id:number,
+	participant_id:uuid
+}
+
+export enum meeting_participant_select_column {
+	meeting_id = "meeting_id",
+	participant_id = "participant_id"
+}
+
+export type meeting_participant_set_input = {
+		meeting_id?:number,
+	participant_id?:uuid
+}
+
+export type meeting_participant_stddev_fields = {
+	__typename?: "meeting_participant_stddev_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_stddev_order_by = {
+		meeting_id?:order_by
+}
+
+export type meeting_participant_stddev_pop_fields = {
+	__typename?: "meeting_participant_stddev_pop_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_stddev_pop_order_by = {
+		meeting_id?:order_by
+}
+
+export type meeting_participant_stddev_samp_fields = {
+	__typename?: "meeting_participant_stddev_samp_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_stddev_samp_order_by = {
+		meeting_id?:order_by
+}
+
+export type meeting_participant_sum_fields = {
+	__typename?: "meeting_participant_sum_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_sum_order_by = {
+		meeting_id?:order_by
+}
+
+export enum meeting_participant_update_column {
+	meeting_id = "meeting_id",
+	participant_id = "participant_id"
+}
+
+export type meeting_participant_var_pop_fields = {
+	__typename?: "meeting_participant_var_pop_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_var_pop_order_by = {
+		meeting_id?:order_by
+}
+
+export type meeting_participant_var_samp_fields = {
+	__typename?: "meeting_participant_var_samp_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_var_samp_order_by = {
+		meeting_id?:order_by
+}
+
+export type meeting_participant_variance_fields = {
+	__typename?: "meeting_participant_variance_fields",
+	meeting_id?:number
+}
+
+export type meeting_participant_variance_order_by = {
+		meeting_id?:order_by
+}
+
+export type meeting_pk_columns_input = {
+		id:number
+}
+
+export enum meeting_select_column {
 	created_at = "created_at",
 	description = "description",
 	end_time = "end_time",
@@ -4462,12 +3850,13 @@ export enum nb_meeting_select_column {
 	location = "location",
 	organizer_id = "organizer_id",
 	publication_time = "publication_time",
+	sphere_id = "sphere_id",
 	start_time = "start_time",
 	title = "title",
 	updated_at = "updated_at"
 }
 
-export type nb_meeting_set_input = {
+export type meeting_set_input = {
 		created_at?:timestamptz,
 	description?:string,
 	end_time?:timestamptz,
@@ -4476,56 +3865,65 @@ export type nb_meeting_set_input = {
 	location?:string,
 	organizer_id?:uuid,
 	publication_time?:timestamptz,
+	sphere_id?:number,
 	start_time?:timestamptz,
 	title?:string,
 	updated_at?:timestamptz
 }
 
-export type nb_meeting_stddev_fields = {
-	__typename?: "nb_meeting_stddev_fields",
+export type meeting_stddev_fields = {
+	__typename?: "meeting_stddev_fields",
 	guild_id?:number,
-	id?:number
+	id?:number,
+	sphere_id?:number
 }
 
-export type nb_meeting_stddev_order_by = {
+export type meeting_stddev_order_by = {
 		guild_id?:order_by,
-	id?:order_by
+	id?:order_by,
+	sphere_id?:order_by
 }
 
-export type nb_meeting_stddev_pop_fields = {
-	__typename?: "nb_meeting_stddev_pop_fields",
+export type meeting_stddev_pop_fields = {
+	__typename?: "meeting_stddev_pop_fields",
 	guild_id?:number,
-	id?:number
+	id?:number,
+	sphere_id?:number
 }
 
-export type nb_meeting_stddev_pop_order_by = {
+export type meeting_stddev_pop_order_by = {
 		guild_id?:order_by,
-	id?:order_by
+	id?:order_by,
+	sphere_id?:order_by
 }
 
-export type nb_meeting_stddev_samp_fields = {
-	__typename?: "nb_meeting_stddev_samp_fields",
+export type meeting_stddev_samp_fields = {
+	__typename?: "meeting_stddev_samp_fields",
 	guild_id?:number,
-	id?:number
+	id?:number,
+	sphere_id?:number
 }
 
-export type nb_meeting_stddev_samp_order_by = {
+export type meeting_stddev_samp_order_by = {
 		guild_id?:order_by,
-	id?:order_by
+	id?:order_by,
+	sphere_id?:order_by
 }
 
-export type nb_meeting_sum_fields = {
-	__typename?: "nb_meeting_sum_fields",
+export type meeting_sum_fields = {
+	__typename?: "meeting_sum_fields",
 	guild_id?:number,
-	id?:number
+	id?:number,
+	sphere_id?:number
 }
 
-export type nb_meeting_sum_order_by = {
+export type meeting_sum_order_by = {
 		guild_id?:order_by,
-	id?:order_by
+	id?:order_by,
+	sphere_id?:order_by
 }
 
-export enum nb_meeting_update_column {
+export enum meeting_update_column {
 	created_at = "created_at",
 	description = "description",
 	end_time = "end_time",
@@ -4534,717 +3932,89 @@ export enum nb_meeting_update_column {
 	location = "location",
 	organizer_id = "organizer_id",
 	publication_time = "publication_time",
+	sphere_id = "sphere_id",
 	start_time = "start_time",
 	title = "title",
 	updated_at = "updated_at"
 }
 
-export type nb_meeting_user = {
-	__typename?: "nb_meeting_user",
-	cr_user:cr_user,
-	id:number,
-	meeting_id:number,
-	nb_meeting:nb_meeting,
-	status:string,
-	user_id:uuid
-}
-
-export type nb_meeting_user_aggregate = {
-	__typename?: "nb_meeting_user_aggregate",
-	aggregate?:nb_meeting_user_aggregate_fields,
-	nodes:nb_meeting_user[]
-}
-
-export type nb_meeting_user_aggregate_fields = {
-	__typename?: "nb_meeting_user_aggregate_fields",
-	avg?:nb_meeting_user_avg_fields,
-	count?:number,
-	max?:nb_meeting_user_max_fields,
-	min?:nb_meeting_user_min_fields,
-	stddev?:nb_meeting_user_stddev_fields,
-	stddev_pop?:nb_meeting_user_stddev_pop_fields,
-	stddev_samp?:nb_meeting_user_stddev_samp_fields,
-	sum?:nb_meeting_user_sum_fields,
-	var_pop?:nb_meeting_user_var_pop_fields,
-	var_samp?:nb_meeting_user_var_samp_fields,
-	variance?:nb_meeting_user_variance_fields
-}
-
-export type nb_meeting_user_aggregate_order_by = {
-	avg?:nb_meeting_user_avg_order_by,
-	count?:order_by,
-	max?:nb_meeting_user_max_order_by,
-	min?:nb_meeting_user_min_order_by,
-	stddev?:nb_meeting_user_stddev_order_by,
-	stddev_pop?:nb_meeting_user_stddev_pop_order_by,
-	stddev_samp?:nb_meeting_user_stddev_samp_order_by,
-	sum?:nb_meeting_user_sum_order_by,
-	var_pop?:nb_meeting_user_var_pop_order_by,
-	var_samp?:nb_meeting_user_var_samp_order_by,
-	variance?:nb_meeting_user_variance_order_by
-}
-
-export type nb_meeting_user_arr_rel_insert_input = {
-		data:nb_meeting_user_insert_input[],
-	on_conflict?:nb_meeting_user_on_conflict
-}
-
-export type nb_meeting_user_avg_fields = {
-	__typename?: "nb_meeting_user_avg_fields",
+export type meeting_var_pop_fields = {
+	__typename?: "meeting_var_pop_fields",
+	guild_id?:number,
 	id?:number,
-	meeting_id?:number
+	sphere_id?:number
 }
 
-export type nb_meeting_user_avg_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export type nb_meeting_user_bool_exp = {
-		_and?:(nb_meeting_user_bool_exp | undefined)[],
-	_not?:nb_meeting_user_bool_exp,
-	_or?:(nb_meeting_user_bool_exp | undefined)[],
-	cr_user?:cr_user_bool_exp,
-	id?:Int_comparison_exp,
-	meeting_id?:Int_comparison_exp,
-	nb_meeting?:nb_meeting_bool_exp,
-	status?:String_comparison_exp,
-	user_id?:uuid_comparison_exp
-}
-
-export enum nb_meeting_user_constraint {
-	nb_meeting_user_pkey = "nb_meeting_user_pkey"
-}
-
-export type nb_meeting_user_inc_input = {
-		id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_insert_input = {
-		cr_user?:cr_user_obj_rel_insert_input,
-	id?:number,
-	meeting_id?:number,
-	nb_meeting?:nb_meeting_obj_rel_insert_input,
-	status?:string,
-	user_id?:uuid
-}
-
-export type nb_meeting_user_max_fields = {
-	__typename?: "nb_meeting_user_max_fields",
-	id?:number,
-	meeting_id?:number,
-	status?:string
-}
-
-export type nb_meeting_user_max_order_by = {
-		id?:order_by,
-	meeting_id?:order_by,
-	status?:order_by
-}
-
-export type nb_meeting_user_min_fields = {
-	__typename?: "nb_meeting_user_min_fields",
-	id?:number,
-	meeting_id?:number,
-	status?:string
-}
-
-export type nb_meeting_user_min_order_by = {
-		id?:order_by,
-	meeting_id?:order_by,
-	status?:order_by
-}
-
-export type nb_meeting_user_mutation_response = {
-	__typename?: "nb_meeting_user_mutation_response",
-	affected_rows:number,
-	returning:nb_meeting_user[]
-}
-
-export type nb_meeting_user_obj_rel_insert_input = {
-		data:nb_meeting_user_insert_input,
-	on_conflict?:nb_meeting_user_on_conflict
-}
-
-export type nb_meeting_user_on_conflict = {
-		constraint:nb_meeting_user_constraint,
-	update_columns:nb_meeting_user_update_column[],
-	where?:nb_meeting_user_bool_exp
-}
-
-export type nb_meeting_user_order_by = {
-		cr_user?:cr_user_order_by,
+export type meeting_var_pop_order_by = {
+		guild_id?:order_by,
 	id?:order_by,
-	meeting_id?:order_by,
-	nb_meeting?:nb_meeting_order_by,
-	status?:order_by,
-	user_id?:order_by
-}
-
-export enum nb_meeting_user_select_column {
-	id = "id",
-	meeting_id = "meeting_id",
-	status = "status",
-	user_id = "user_id"
-}
-
-export type nb_meeting_user_set_input = {
-		id?:number,
-	meeting_id?:number,
-	status?:string,
-	user_id?:uuid
-}
-
-export type nb_meeting_user_stddev_fields = {
-	__typename?: "nb_meeting_user_stddev_fields",
-	id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_stddev_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export type nb_meeting_user_stddev_pop_fields = {
-	__typename?: "nb_meeting_user_stddev_pop_fields",
-	id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_stddev_pop_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export type nb_meeting_user_stddev_samp_fields = {
-	__typename?: "nb_meeting_user_stddev_samp_fields",
-	id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_stddev_samp_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export type nb_meeting_user_sum_fields = {
-	__typename?: "nb_meeting_user_sum_fields",
-	id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_sum_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export enum nb_meeting_user_update_column {
-	id = "id",
-	meeting_id = "meeting_id",
-	status = "status",
-	user_id = "user_id"
-}
-
-export type nb_meeting_user_var_pop_fields = {
-	__typename?: "nb_meeting_user_var_pop_fields",
-	id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_var_pop_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export type nb_meeting_user_var_samp_fields = {
-	__typename?: "nb_meeting_user_var_samp_fields",
-	id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_var_samp_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export type nb_meeting_user_variance_fields = {
-	__typename?: "nb_meeting_user_variance_fields",
-	id?:number,
-	meeting_id?:number
-}
-
-export type nb_meeting_user_variance_order_by = {
-		id?:order_by,
-	meeting_id?:order_by
-}
-
-export type nb_meeting_var_pop_fields = {
-	__typename?: "nb_meeting_var_pop_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_meeting_var_pop_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_meeting_var_samp_fields = {
-	__typename?: "nb_meeting_var_samp_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_meeting_var_samp_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_meeting_variance_fields = {
-	__typename?: "nb_meeting_variance_fields",
-	guild_id?:number,
-	id?:number
-}
-
-export type nb_meeting_variance_order_by = {
-		guild_id?:order_by,
-	id?:order_by
-}
-
-export type nb_sphere = {
-	__typename?: "nb_sphere",
-	id:number,
-	name:string,
-	nb_sphere_users:nb_sphere_users[],
-	nb_sphere_users_aggregate:nb_sphere_users_aggregate
-}
-
-export type nb_sphere_aggregate = {
-	__typename?: "nb_sphere_aggregate",
-	aggregate?:nb_sphere_aggregate_fields,
-	nodes:nb_sphere[]
-}
-
-export type nb_sphere_aggregate_fields = {
-	__typename?: "nb_sphere_aggregate_fields",
-	avg?:nb_sphere_avg_fields,
-	count?:number,
-	max?:nb_sphere_max_fields,
-	min?:nb_sphere_min_fields,
-	stddev?:nb_sphere_stddev_fields,
-	stddev_pop?:nb_sphere_stddev_pop_fields,
-	stddev_samp?:nb_sphere_stddev_samp_fields,
-	sum?:nb_sphere_sum_fields,
-	var_pop?:nb_sphere_var_pop_fields,
-	var_samp?:nb_sphere_var_samp_fields,
-	variance?:nb_sphere_variance_fields
-}
-
-export type nb_sphere_aggregate_order_by = {
-		avg?:nb_sphere_avg_order_by,
-	count?:order_by,
-	max?:nb_sphere_max_order_by,
-	min?:nb_sphere_min_order_by,
-	stddev?:nb_sphere_stddev_order_by,
-	stddev_pop?:nb_sphere_stddev_pop_order_by,
-	stddev_samp?:nb_sphere_stddev_samp_order_by,
-	sum?:nb_sphere_sum_order_by,
-	var_pop?:nb_sphere_var_pop_order_by,
-	var_samp?:nb_sphere_var_samp_order_by,
-	variance?:nb_sphere_variance_order_by
-}
-
-export type nb_sphere_arr_rel_insert_input = {
-		data:nb_sphere_insert_input[],
-	on_conflict?:nb_sphere_on_conflict
-}
-
-export type nb_sphere_avg_fields = {
-	__typename?: "nb_sphere_avg_fields",
-	id?:number
-}
-
-export type nb_sphere_avg_order_by = {
-		id?:order_by
-}
-
-export type nb_sphere_bool_exp = {
-		_and?:(nb_sphere_bool_exp | undefined)[],
-	_not?:nb_sphere_bool_exp,
-	_or?:(nb_sphere_bool_exp | undefined)[],
-	id?:Int_comparison_exp,
-	name?:String_comparison_exp,
-	nb_sphere_users?:nb_sphere_users_bool_exp
-}
-
-export enum nb_sphere_constraint {
-	nb_sphere_pkey = "nb_sphere_pkey"
-}
-
-export type nb_sphere_inc_input = {
-		id?:number
-}
-
-export type nb_sphere_insert_input = {
-		id?:number,
-	name?:string,
-	nb_sphere_users?:nb_sphere_users_arr_rel_insert_input
-}
-
-export type nb_sphere_max_fields = {
-	__typename?: "nb_sphere_max_fields",
-	id?:number,
-	name?:string
-}
-
-export type nb_sphere_max_order_by = {
-		id?:order_by,
-	name?:order_by
-}
-
-export type nb_sphere_min_fields = {
-	__typename?: "nb_sphere_min_fields",
-	id?:number,
-	name?:string
-}
-
-export type nb_sphere_min_order_by = {
-		id?:order_by,
-	name?:order_by
-}
-
-export type nb_sphere_mutation_response = {
-	__typename?: "nb_sphere_mutation_response",
-	affected_rows:number,
-	returning:nb_sphere[]
-}
-
-export type nb_sphere_obj_rel_insert_input = {
-		data:nb_sphere_insert_input,
-	on_conflict?:nb_sphere_on_conflict
-}
-
-export type nb_sphere_on_conflict = {
-		constraint:nb_sphere_constraint,
-	update_columns:nb_sphere_update_column[],
-	where?:nb_sphere_bool_exp
-}
-
-export type nb_sphere_order_by = {
-		id?:order_by,
-	name?:order_by,
-	nb_sphere_users_aggregate?:nb_sphere_users_aggregate_order_by
-}
-
-export enum nb_sphere_select_column {
-	id = "id",
-	name = "name"
-}
-
-export type nb_sphere_set_input = {
-		id?:number,
-	name?:string
-}
-
-export type nb_sphere_stddev_fields = {
-	__typename?: "nb_sphere_stddev_fields",
-	id?:number
-}
-
-export type nb_sphere_stddev_order_by = {
-		id?:order_by
-}
-
-export type nb_sphere_stddev_pop_fields = {
-	__typename?: "nb_sphere_stddev_pop_fields",
-	id?:number
-}
-
-export type nb_sphere_stddev_pop_order_by = {
-		id?:order_by
-}
-
-export type nb_sphere_stddev_samp_fields = {
-	__typename?: "nb_sphere_stddev_samp_fields",
-	id?:number
-}
-
-export type nb_sphere_stddev_samp_order_by = {
-		id?:order_by
-}
-
-export type nb_sphere_sum_fields = {
-	__typename?: "nb_sphere_sum_fields",
-	id?:number
-}
-
-export type nb_sphere_sum_order_by = {
-		id?:order_by
-}
-
-export enum nb_sphere_update_column {
-	id = "id",
-	name = "name"
-}
-
-export type nb_sphere_users = {
-	__typename?: "nb_sphere_users",
-	cr_user:cr_user,
-	id:number,
-	nb_sphere:nb_sphere,
-	sphere_id:number,
-	user_id:uuid
-}
-
-export type nb_sphere_users_aggregate = {
-	__typename?: "nb_sphere_users_aggregate",
-	aggregate?:nb_sphere_users_aggregate_fields,
-	nodes:nb_sphere_users[]
-}
-
-export type nb_sphere_users_aggregate_fields = {
-	__typename?: "nb_sphere_users_aggregate_fields",
-	avg?:nb_sphere_users_avg_fields,
-	count?:number,
-	max?:nb_sphere_users_max_fields,
-	min?:nb_sphere_users_min_fields,
-	stddev?:nb_sphere_users_stddev_fields,
-	stddev_pop?:nb_sphere_users_stddev_pop_fields,
-	stddev_samp?:nb_sphere_users_stddev_samp_fields,
-	sum?:nb_sphere_users_sum_fields,
-	var_pop?:nb_sphere_users_var_pop_fields,
-	var_samp?:nb_sphere_users_var_samp_fields,
-	variance?:nb_sphere_users_variance_fields
-}
-
-export type nb_sphere_users_aggregate_order_by = {
-		avg?:nb_sphere_users_avg_order_by,
-	count?:order_by,
-	max?:nb_sphere_users_max_order_by,
-	min?:nb_sphere_users_min_order_by,
-	stddev?:nb_sphere_users_stddev_order_by,
-	stddev_pop?:nb_sphere_users_stddev_pop_order_by,
-	stddev_samp?:nb_sphere_users_stddev_samp_order_by,
-	sum?:nb_sphere_users_sum_order_by,
-	var_pop?:nb_sphere_users_var_pop_order_by,
-	var_samp?:nb_sphere_users_var_samp_order_by,
-	variance?:nb_sphere_users_variance_order_by
-}
-
-export type nb_sphere_users_arr_rel_insert_input = {
-		data:nb_sphere_users_insert_input[],
-	on_conflict?:nb_sphere_users_on_conflict
-}
-
-export type nb_sphere_users_avg_fields = {
-	__typename?: "nb_sphere_users_avg_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_avg_order_by = {
-		id?:order_by,
 	sphere_id?:order_by
 }
 
-export type nb_sphere_users_bool_exp = {
-		_and?:(nb_sphere_users_bool_exp | undefined)[],
-	_not?:nb_sphere_users_bool_exp,
-	_or?:(nb_sphere_users_bool_exp | undefined)[],
-	cr_user?:cr_user_bool_exp,
-	id?:Int_comparison_exp,
-	nb_sphere?:nb_sphere_bool_exp,
-	sphere_id?:Int_comparison_exp,
-	user_id?:uuid_comparison_exp
-}
-
-export enum nb_sphere_users_constraint {
-	nb_sphere_users_pkey = "nb_sphere_users_pkey",
-	nb_sphere_users_sphere_id_user_id_aef2df6d_uniq = "nb_sphere_users_sphere_id_user_id_aef2df6d_uniq"
-}
-
-export type nb_sphere_users_inc_input = {
-		id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_insert_input = {
-		cr_user?:cr_user_obj_rel_insert_input,
-	id?:number,
-	nb_sphere?:nb_sphere_obj_rel_insert_input,
-	sphere_id?:number,
-	user_id?:uuid
-}
-
-export type nb_sphere_users_max_fields = {
-	__typename?: "nb_sphere_users_max_fields",
+export type meeting_var_samp_fields = {
+	__typename?: "meeting_var_samp_fields",
+	guild_id?:number,
 	id?:number,
 	sphere_id?:number
 }
 
-export type nb_sphere_users_max_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_sphere_users_min_fields = {
-	__typename?: "nb_sphere_users_min_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_min_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_sphere_users_mutation_response = {
-	__typename?: "nb_sphere_users_mutation_response",
-	affected_rows:number,
-	returning:nb_sphere_users[]
-}
-
-export type nb_sphere_users_obj_rel_insert_input = {
-		data:nb_sphere_users_insert_input,
-	on_conflict?:nb_sphere_users_on_conflict
-}
-
-export type nb_sphere_users_on_conflict = {
-		constraint:nb_sphere_users_constraint,
-	update_columns:nb_sphere_users_update_column[],
-	where?:nb_sphere_users_bool_exp
-}
-
-export type nb_sphere_users_order_by = {
-		cr_user?:cr_user_order_by,
+export type meeting_var_samp_order_by = {
+		guild_id?:order_by,
 	id?:order_by,
-	nb_sphere?:nb_sphere_order_by,
-	sphere_id?:order_by,
-	user_id?:order_by
+	sphere_id?:order_by
 }
 
-export enum nb_sphere_users_select_column {
-	id = "id",
-	sphere_id = "sphere_id",
-	user_id = "user_id"
-}
-
-export type nb_sphere_users_set_input = {
-		id?:number,
-	sphere_id?:number,
-	user_id?:uuid
-}
-
-export type nb_sphere_users_stddev_fields = {
-	__typename?: "nb_sphere_users_stddev_fields",
+export type meeting_variance_fields = {
+	__typename?: "meeting_variance_fields",
+	guild_id?:number,
 	id?:number,
 	sphere_id?:number
 }
 
-export type nb_sphere_users_stddev_order_by = {
-		id?:order_by,
+export type meeting_variance_order_by = {
+		guild_id?:order_by,
+	id?:order_by,
 	sphere_id?:order_by
 }
 
-export type nb_sphere_users_stddev_pop_fields = {
-	__typename?: "nb_sphere_users_stddev_pop_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_stddev_pop_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_sphere_users_stddev_samp_fields = {
-	__typename?: "nb_sphere_users_stddev_samp_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_stddev_samp_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_sphere_users_sum_fields = {
-	__typename?: "nb_sphere_users_sum_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_sum_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export enum nb_sphere_users_update_column {
-	id = "id",
-	sphere_id = "sphere_id",
-	user_id = "user_id"
-}
-
-export type nb_sphere_users_var_pop_fields = {
-	__typename?: "nb_sphere_users_var_pop_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_var_pop_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_sphere_users_var_samp_fields = {
-	__typename?: "nb_sphere_users_var_samp_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_var_samp_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_sphere_users_variance_fields = {
-	__typename?: "nb_sphere_users_variance_fields",
-	id?:number,
-	sphere_id?:number
-}
-
-export type nb_sphere_users_variance_order_by = {
-		id?:order_by,
-	sphere_id?:order_by
-}
-
-export type nb_sphere_var_pop_fields = {
-	__typename?: "nb_sphere_var_pop_fields",
-	id?:number
-}
-
-export type nb_sphere_var_pop_order_by = {
-		id?:order_by
-}
-
-export type nb_sphere_var_samp_fields = {
-	__typename?: "nb_sphere_var_samp_fields",
-	id?:number
-}
-
-export type nb_sphere_var_samp_order_by = {
-		id?:order_by
-}
-
-export type nb_sphere_variance_fields = {
-	__typename?: "nb_sphere_variance_fields",
-	id?:number
-}
-
-export type nb_sphere_variance_order_by = {
-		id?:order_by
+export type mutation_root = {
+	__typename?: "mutation_root",
+	delete_guild?:guild_mutation_response,
+	delete_guild_by_pk?:guild,
+	delete_guild_member?:guild_member_mutation_response,
+	delete_guild_member_by_pk?:guild_member,
+	delete_meeting?:meeting_mutation_response,
+	delete_meeting_by_pk?:meeting,
+	delete_meeting_participant?:meeting_participant_mutation_response,
+	delete_meeting_participant_by_pk?:meeting_participant,
+	delete_sphere?:sphere_mutation_response,
+	delete_sphere_by_pk?:sphere,
+	delete_user?:user_mutation_response,
+	delete_user_by_pk?:user,
+	insert_guild?:guild_mutation_response,
+	insert_guild_member?:guild_member_mutation_response,
+	insert_guild_member_one?:guild_member,
+	insert_guild_one?:guild,
+	insert_meeting?:meeting_mutation_response,
+	insert_meeting_one?:meeting,
+	insert_meeting_participant?:meeting_participant_mutation_response,
+	insert_meeting_participant_one?:meeting_participant,
+	insert_sphere?:sphere_mutation_response,
+	insert_sphere_one?:sphere,
+	insert_user?:user_mutation_response,
+	insert_user_one?:user,
+	update_guild?:guild_mutation_response,
+	update_guild_by_pk?:guild,
+	update_guild_member?:guild_member_mutation_response,
+	update_guild_member_by_pk?:guild_member,
+	update_meeting?:meeting_mutation_response,
+	update_meeting_by_pk?:meeting,
+	update_meeting_participant?:meeting_participant_mutation_response,
+	update_meeting_participant_by_pk?:meeting_participant,
+	update_sphere?:sphere_mutation_response,
+	update_sphere_by_pk?:sphere,
+	update_user?:user_mutation_response,
+	update_user_by_pk?:user
 }
 
 export enum order_by {
@@ -5258,27 +4028,237 @@ export enum order_by {
 
 export type query_root = {
 	__typename?: "query_root",
-	cr_user:cr_user[],
-	cr_user_aggregate:cr_user_aggregate,
-	cr_user_by_pk?:cr_user,
-	nb_guild:nb_guild[],
-	nb_guild_aggregate:nb_guild_aggregate,
-	nb_guild_by_pk?:nb_guild,
-	nb_guild_user:nb_guild_user[],
-	nb_guild_user_aggregate:nb_guild_user_aggregate,
-	nb_guild_user_by_pk?:nb_guild_user,
-	nb_meeting:nb_meeting[],
-	nb_meeting_aggregate:nb_meeting_aggregate,
-	nb_meeting_by_pk?:nb_meeting,
-	nb_meeting_user:nb_meeting_user[],
-	nb_meeting_user_aggregate:nb_meeting_user_aggregate,
-	nb_meeting_user_by_pk?:nb_meeting_user,
-	nb_sphere:nb_sphere[],
-	nb_sphere_aggregate:nb_sphere_aggregate,
-	nb_sphere_by_pk?:nb_sphere,
-	nb_sphere_users:nb_sphere_users[],
-	nb_sphere_users_aggregate:nb_sphere_users_aggregate,
-	nb_sphere_users_by_pk?:nb_sphere_users
+	guild:guild[],
+	guild_aggregate:guild_aggregate,
+	guild_by_pk?:guild,
+	guild_member:guild_member[],
+	guild_member_aggregate:guild_member_aggregate,
+	guild_member_by_pk?:guild_member,
+	meeting:meeting[],
+	meeting_aggregate:meeting_aggregate,
+	meeting_by_pk?:meeting,
+	meeting_participant:meeting_participant[],
+	meeting_participant_aggregate:meeting_participant_aggregate,
+	meeting_participant_by_pk?:meeting_participant,
+	sphere:sphere[],
+	sphere_aggregate:sphere_aggregate,
+	sphere_by_pk?:sphere,
+	user:user[],
+	user_aggregate:user_aggregate,
+	user_by_pk?:user
+}
+
+export type sphere = {
+	__typename?: "sphere",
+	domain?:string,
+	id:number,
+	name:string
+}
+
+export type sphere_aggregate = {
+	__typename?: "sphere_aggregate",
+	aggregate?:sphere_aggregate_fields,
+	nodes:sphere[]
+}
+
+export type sphere_aggregate_fields = {
+	__typename?: "sphere_aggregate_fields",
+	avg?:sphere_avg_fields,
+	count?:number,
+	max?:sphere_max_fields,
+	min?:sphere_min_fields,
+	stddev?:sphere_stddev_fields,
+	stddev_pop?:sphere_stddev_pop_fields,
+	stddev_samp?:sphere_stddev_samp_fields,
+	sum?:sphere_sum_fields,
+	var_pop?:sphere_var_pop_fields,
+	var_samp?:sphere_var_samp_fields,
+	variance?:sphere_variance_fields
+}
+
+export type sphere_aggregate_order_by = {
+		avg?:sphere_avg_order_by,
+	count?:order_by,
+	max?:sphere_max_order_by,
+	min?:sphere_min_order_by,
+	stddev?:sphere_stddev_order_by,
+	stddev_pop?:sphere_stddev_pop_order_by,
+	stddev_samp?:sphere_stddev_samp_order_by,
+	sum?:sphere_sum_order_by,
+	var_pop?:sphere_var_pop_order_by,
+	var_samp?:sphere_var_samp_order_by,
+	variance?:sphere_variance_order_by
+}
+
+export type sphere_arr_rel_insert_input = {
+		data:sphere_insert_input[],
+	on_conflict?:sphere_on_conflict
+}
+
+export type sphere_avg_fields = {
+	__typename?: "sphere_avg_fields",
+	id?:number
+}
+
+export type sphere_avg_order_by = {
+		id?:order_by
+}
+
+export type sphere_bool_exp = {
+		_and?:(sphere_bool_exp | undefined)[],
+	_not?:sphere_bool_exp,
+	_or?:(sphere_bool_exp | undefined)[],
+	domain?:String_comparison_exp,
+	id?:Int_comparison_exp,
+	name?:String_comparison_exp
+}
+
+export enum sphere_constraint {
+	sphere_pkey = "sphere_pkey"
+}
+
+export type sphere_inc_input = {
+		id?:number
+}
+
+export type sphere_insert_input = {
+		domain?:string,
+	id?:number,
+	name?:string
+}
+
+export type sphere_max_fields = {
+	__typename?: "sphere_max_fields",
+	domain?:string,
+	id?:number,
+	name?:string
+}
+
+export type sphere_max_order_by = {
+		domain?:order_by,
+	id?:order_by,
+	name?:order_by
+}
+
+export type sphere_min_fields = {
+	__typename?: "sphere_min_fields",
+	domain?:string,
+	id?:number,
+	name?:string
+}
+
+export type sphere_min_order_by = {
+		domain?:order_by,
+	id?:order_by,
+	name?:order_by
+}
+
+export type sphere_mutation_response = {
+	__typename?: "sphere_mutation_response",
+	affected_rows:number,
+	returning:sphere[]
+}
+
+export type sphere_obj_rel_insert_input = {
+		data:sphere_insert_input,
+	on_conflict?:sphere_on_conflict
+}
+
+export type sphere_on_conflict = {
+		constraint:sphere_constraint,
+	update_columns:sphere_update_column[],
+	where?:sphere_bool_exp
+}
+
+export type sphere_order_by = {
+		domain?:order_by,
+	id?:order_by,
+	name?:order_by
+}
+
+export type sphere_pk_columns_input = {
+		id:number
+}
+
+export enum sphere_select_column {
+	domain = "domain",
+	id = "id",
+	name = "name"
+}
+
+export type sphere_set_input = {
+		domain?:string,
+	id?:number,
+	name?:string
+}
+
+export type sphere_stddev_fields = {
+	__typename?: "sphere_stddev_fields",
+	id?:number
+}
+
+export type sphere_stddev_order_by = {
+		id?:order_by
+}
+
+export type sphere_stddev_pop_fields = {
+	__typename?: "sphere_stddev_pop_fields",
+	id?:number
+}
+
+export type sphere_stddev_pop_order_by = {
+		id?:order_by
+}
+
+export type sphere_stddev_samp_fields = {
+	__typename?: "sphere_stddev_samp_fields",
+	id?:number
+}
+
+export type sphere_stddev_samp_order_by = {
+		id?:order_by
+}
+
+export type sphere_sum_fields = {
+	__typename?: "sphere_sum_fields",
+	id?:number
+}
+
+export type sphere_sum_order_by = {
+		id?:order_by
+}
+
+export enum sphere_update_column {
+	domain = "domain",
+	id = "id",
+	name = "name"
+}
+
+export type sphere_var_pop_fields = {
+	__typename?: "sphere_var_pop_fields",
+	id?:number
+}
+
+export type sphere_var_pop_order_by = {
+		id?:order_by
+}
+
+export type sphere_var_samp_fields = {
+	__typename?: "sphere_var_samp_fields",
+	id?:number
+}
+
+export type sphere_var_samp_order_by = {
+		id?:order_by
+}
+
+export type sphere_variance_fields = {
+	__typename?: "sphere_variance_fields",
+	id?:number
+}
+
+export type sphere_variance_order_by = {
+		id?:order_by
 }
 
 export type String_comparison_exp = {
@@ -5301,27 +4281,24 @@ export type String_comparison_exp = {
 
 export type subscription_root = {
 	__typename?: "subscription_root",
-	cr_user:cr_user[],
-	cr_user_aggregate:cr_user_aggregate,
-	cr_user_by_pk?:cr_user,
-	nb_guild:nb_guild[],
-	nb_guild_aggregate:nb_guild_aggregate,
-	nb_guild_by_pk?:nb_guild,
-	nb_guild_user:nb_guild_user[],
-	nb_guild_user_aggregate:nb_guild_user_aggregate,
-	nb_guild_user_by_pk?:nb_guild_user,
-	nb_meeting:nb_meeting[],
-	nb_meeting_aggregate:nb_meeting_aggregate,
-	nb_meeting_by_pk?:nb_meeting,
-	nb_meeting_user:nb_meeting_user[],
-	nb_meeting_user_aggregate:nb_meeting_user_aggregate,
-	nb_meeting_user_by_pk?:nb_meeting_user,
-	nb_sphere:nb_sphere[],
-	nb_sphere_aggregate:nb_sphere_aggregate,
-	nb_sphere_by_pk?:nb_sphere,
-	nb_sphere_users:nb_sphere_users[],
-	nb_sphere_users_aggregate:nb_sphere_users_aggregate,
-	nb_sphere_users_by_pk?:nb_sphere_users
+	guild:guild[],
+	guild_aggregate:guild_aggregate,
+	guild_by_pk?:guild,
+	guild_member:guild_member[],
+	guild_member_aggregate:guild_member_aggregate,
+	guild_member_by_pk?:guild_member,
+	meeting:meeting[],
+	meeting_aggregate:meeting_aggregate,
+	meeting_by_pk?:meeting,
+	meeting_participant:meeting_participant[],
+	meeting_participant_aggregate:meeting_participant_aggregate,
+	meeting_participant_by_pk?:meeting_participant,
+	sphere:sphere[],
+	sphere_aggregate:sphere_aggregate,
+	sphere_by_pk?:sphere,
+	user:user[],
+	user_aggregate:user_aggregate,
+	user_by_pk?:user
 }
 
 export type timestamptz = any
@@ -5336,6 +4313,176 @@ export type timestamptz_comparison_exp = {
 	_lte?:timestamptz,
 	_neq?:timestamptz,
 	_nin?:timestamptz[]
+}
+
+export type user = {
+	__typename?: "user",
+	auth0_id?:string,
+	created_at:timestamptz,
+	email:string,
+	guilds:guild_member[],
+	guilds_aggregate:guild_member_aggregate,
+	last_login?:timestamptz,
+	meetings:meeting_participant[],
+	meetings_aggregate:meeting_participant_aggregate,
+	name:string,
+	organized_meetings:meeting[],
+	organized_meetings_aggregate:meeting_aggregate,
+	uuid:uuid
+}
+
+export type user_aggregate = {
+	__typename?: "user_aggregate",
+	aggregate?:user_aggregate_fields,
+	nodes:user[]
+}
+
+export type user_aggregate_fields = {
+	__typename?: "user_aggregate_fields",
+	count?:number,
+	max?:user_max_fields,
+	min?:user_min_fields
+}
+
+export type user_aggregate_order_by = {
+		count?:order_by,
+	max?:user_max_order_by,
+	min?:user_min_order_by
+}
+
+export type user_arr_rel_insert_input = {
+		data:user_insert_input[],
+	on_conflict?:user_on_conflict
+}
+
+export type user_bool_exp = {
+		_and?:(user_bool_exp | undefined)[],
+	_not?:user_bool_exp,
+	_or?:(user_bool_exp | undefined)[],
+	auth0_id?:String_comparison_exp,
+	created_at?:timestamptz_comparison_exp,
+	email?:String_comparison_exp,
+	guilds?:guild_member_bool_exp,
+	last_login?:timestamptz_comparison_exp,
+	meetings?:meeting_participant_bool_exp,
+	name?:String_comparison_exp,
+	organized_meetings?:meeting_bool_exp,
+	uuid?:uuid_comparison_exp
+}
+
+export enum user_constraint {
+	user_email_key = "user_email_key",
+	user_pkey = "user_pkey"
+}
+
+export type user_insert_input = {
+		auth0_id?:string,
+	created_at?:timestamptz,
+	email?:string,
+	guilds?:guild_member_arr_rel_insert_input,
+	last_login?:timestamptz,
+	meetings?:meeting_participant_arr_rel_insert_input,
+	name?:string,
+	organized_meetings?:meeting_arr_rel_insert_input,
+	uuid?:uuid
+}
+
+export type user_max_fields = {
+	__typename?: "user_max_fields",
+	auth0_id?:string,
+	created_at?:timestamptz,
+	email?:string,
+	last_login?:timestamptz,
+	name?:string,
+	uuid?:uuid
+}
+
+export type user_max_order_by = {
+		auth0_id?:order_by,
+	created_at?:order_by,
+	email?:order_by,
+	last_login?:order_by,
+	name?:order_by,
+	uuid?:order_by
+}
+
+export type user_min_fields = {
+	__typename?: "user_min_fields",
+	auth0_id?:string,
+	created_at?:timestamptz,
+	email?:string,
+	last_login?:timestamptz,
+	name?:string,
+	uuid?:uuid
+}
+
+export type user_min_order_by = {
+		auth0_id?:order_by,
+	created_at?:order_by,
+	email?:order_by,
+	last_login?:order_by,
+	name?:order_by,
+	uuid?:order_by
+}
+
+export type user_mutation_response = {
+	__typename?: "user_mutation_response",
+	affected_rows:number,
+	returning:user[]
+}
+
+export type user_obj_rel_insert_input = {
+		data:user_insert_input,
+	on_conflict?:user_on_conflict
+}
+
+export type user_on_conflict = {
+		constraint:user_constraint,
+	update_columns:user_update_column[],
+	where?:user_bool_exp
+}
+
+export type user_order_by = {
+		auth0_id?:order_by,
+	created_at?:order_by,
+	email?:order_by,
+	guilds_aggregate?:guild_member_aggregate_order_by,
+	last_login?:order_by,
+	meetings_aggregate?:meeting_participant_aggregate_order_by,
+	name?:order_by,
+	organized_meetings_aggregate?:meeting_aggregate_order_by,
+	uuid?:order_by
+}
+
+export type user_pk_columns_input = {
+		uuid:uuid
+}
+
+export enum user_select_column {
+	auth0_id = "auth0_id",
+	created_at = "created_at",
+	email = "email",
+	last_login = "last_login",
+	name = "name",
+	uuid = "uuid"
+}
+
+export type user_set_input = {
+		auth0_id?:string,
+	created_at?:timestamptz,
+	email?:string,
+	last_login?:timestamptz,
+	name?:string,
+	uuid?:uuid
+}
+
+export enum user_update_column {
+	auth0_id = "auth0_id",
+	created_at = "created_at",
+	email = "email",
+	last_login = "last_login",
+	name = "name",
+	uuid = "uuid"
 }
 
 export type uuid = any
@@ -5353,66 +4500,10 @@ export type uuid_comparison_exp = {
 }
 
 export const AllTypesProps: Record<string,any> = {
-	Boolean_comparison_exp:{
-		_eq:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_gt:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_gte:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_in:{
-			type:"Boolean",
-			array:true,
-			arrayRequired:false,
-			required:true
-		},
-		_is_null:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_lt:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_lte:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_neq:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_nin:{
-			type:"Boolean",
-			array:true,
-			arrayRequired:false,
-			required:true
-		}
-	},
-	cr_user:{
-		nb_guild_users:{
+	guild:{
+		guild_members:{
 			distinct_on:{
-				type:"nb_guild_user_select_column",
+				type:"guild_member_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -5430,21 +4521,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_user_order_by",
+				type:"guild_member_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"guild_member_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_users_aggregate:{
+		guild_members_aggregate:{
 			distinct_on:{
-				type:"nb_guild_user_select_column",
+				type:"guild_member_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -5462,21 +4553,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_user_order_by",
+				type:"guild_member_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"guild_member_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_users:{
+		meetings:{
 			distinct_on:{
-				type:"nb_meeting_user_select_column",
+				type:"meeting_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -5494,21 +4585,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_user_order_by",
+				type:"meeting_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_user_bool_exp",
+				type:"meeting_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_users_aggregate:{
+		meetings_aggregate:{
 			distinct_on:{
-				type:"nb_meeting_user_select_column",
+				type:"meeting_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -5526,151 +4617,23 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_user_order_by",
+				type:"meeting_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_meetings:{
-			distinct_on:{
-				type:"nb_meeting_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_meeting_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_meetings_aggregate:{
-			distinct_on:{
-				type:"nb_meeting_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_meeting_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_sphere_users:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_sphere_users_aggregate:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
+				type:"meeting_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		}
 	},
-	cr_user_aggregate_fields:{
+	guild_aggregate_fields:{
 		count:{
 			columns:{
-				type:"cr_user_select_column",
+				type:"guild_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -5683,7 +4646,13 @@ export const AllTypesProps: Record<string,any> = {
 			}
 		}
 	},
-	cr_user_aggregate_order_by:{
+	guild_aggregate_order_by:{
+		avg:{
+			type:"guild_avg_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
 		count:{
 			type:"order_by",
 			array:false,
@@ -5691,519 +4660,796 @@ export const AllTypesProps: Record<string,any> = {
 			required:false
 		},
 		max:{
-			type:"cr_user_max_order_by",
+			type:"guild_max_order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
 		min:{
-			type:"cr_user_min_order_by",
+			type:"guild_min_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev:{
+			type:"guild_stddev_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_pop:{
+			type:"guild_stddev_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_samp:{
+			type:"guild_stddev_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sum:{
+			type:"guild_sum_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_pop:{
+			type:"guild_var_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_samp:{
+			type:"guild_var_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		variance:{
+			type:"guild_variance_order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_arr_rel_insert_input:{
+	guild_arr_rel_insert_input:{
 		data:{
-			type:"cr_user_insert_input",
+			type:"guild_insert_input",
 			array:true,
 			arrayRequired:true,
 			required:true
 		},
 		on_conflict:{
-			type:"cr_user_on_conflict",
+			type:"guild_on_conflict",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_bool_exp:{
+	guild_avg_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_bool_exp:{
 		_and:{
-			type:"cr_user_bool_exp",
+			type:"guild_bool_exp",
 			array:true,
 			arrayRequired:false,
 			required:false
 		},
 		_not:{
-			type:"cr_user_bool_exp",
+			type:"guild_bool_exp",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
 		_or:{
-			type:"cr_user_bool_exp",
+			type:"guild_bool_exp",
 			array:true,
 			arrayRequired:false,
 			required:false
 		},
-		date_joined:{
+		created_at:{
 			type:"timestamptz_comparison_exp",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		email:{
+		description:{
 			type:"String_comparison_exp",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		first_name:{
+		guild_members:{
+			type:"guild_member_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meetings:{
+			type:"meeting_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
 			type:"String_comparison_exp",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		is_active:{
-			type:"Boolean_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_staff:{
-			type:"Boolean_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_superuser:{
-			type:"Boolean_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_login:{
+		updated_at:{
 			type:"timestamptz_comparison_exp",
 			array:false,
 			arrayRequired:false,
 			required:false
-		},
-		last_name:{
-			type:"String_comparison_exp",
+		}
+	},
+	guild_constraint: "enum",
+	guild_inc_input:{
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_insert_input:{
+		created_at:{
+			type:"timestamptz",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		nb_guild_users:{
-			type:"nb_guild_user_bool_exp",
+		description:{
+			type:"String",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		nb_meeting_users:{
-			type:"nb_meeting_user_bool_exp",
+		guild_members:{
+			type:"guild_member_arr_rel_insert_input",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		nb_meetings:{
-			type:"nb_meeting_bool_exp",
+		id:{
+			type:"Int",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		nb_sphere_users:{
-			type:"nb_sphere_users_bool_exp",
+		meetings:{
+			type:"meeting_arr_rel_insert_input",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		password:{
-			type:"String_comparison_exp",
+		name:{
+			type:"String",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		username:{
-			type:"String_comparison_exp",
+		updated_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_max_order_by:{
+		created_at:{
+			type:"order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		uuid:{
+		description:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_aggregate_fields:{
+		count:{
+			columns:{
+				type:"guild_member_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			distinct:{
+				type:"Boolean",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		}
+	},
+	guild_member_aggregate_order_by:{
+		avg:{
+			type:"guild_member_avg_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		count:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		max:{
+			type:"guild_member_max_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		min:{
+			type:"guild_member_min_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev:{
+			type:"guild_member_stddev_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_pop:{
+			type:"guild_member_stddev_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_samp:{
+			type:"guild_member_stddev_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sum:{
+			type:"guild_member_sum_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_pop:{
+			type:"guild_member_var_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_samp:{
+			type:"guild_member_var_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		variance:{
+			type:"guild_member_variance_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_arr_rel_insert_input:{
+		data:{
+			type:"guild_member_insert_input",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		on_conflict:{
+			type:"guild_member_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_avg_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_bool_exp:{
+		_and:{
+			type:"guild_member_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		_not:{
+			type:"guild_member_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		_or:{
+			type:"guild_member_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		guild:{
+			type:"guild_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
+			type:"Int_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		member_id:{
 			type:"uuid_comparison_exp",
 			array:false,
 			arrayRequired:false,
 			required:false
+		},
+		user:{
+			type:"user_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
 		}
 	},
-	cr_user_constraint: "enum",
-	cr_user_insert_input:{
-		date_joined:{
-			type:"timestamptz",
+	guild_member_constraint: "enum",
+	guild_member_inc_input:{
+		guild_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_insert_input:{
+		guild:{
+			type:"guild_obj_rel_insert_input",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		email:{
-			type:"String",
+		guild_id:{
+			type:"Int",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		first_name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_active:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_staff:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_superuser:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_login:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild_users:{
-			type:"nb_guild_user_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting_users:{
-			type:"nb_meeting_user_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meetings:{
-			type:"nb_meeting_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere_users:{
-			type:"nb_sphere_users_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		password:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		username:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		uuid:{
+		member_id:{
 			type:"uuid",
 			array:false,
 			arrayRequired:false,
 			required:false
+		},
+		user:{
+			type:"user_obj_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
 		}
 	},
-	cr_user_max_order_by:{
-		date_joined:{
+	guild_member_max_order_by:{
+		guild_id:{
 			type:"order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		email:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		first_name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_login:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		password:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		username:{
+		member_id:{
 			type:"order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_min_order_by:{
-		date_joined:{
+	guild_member_min_order_by:{
+		guild_id:{
 			type:"order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		email:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		first_name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_login:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		password:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		username:{
+		member_id:{
 			type:"order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_obj_rel_insert_input:{
+	guild_member_obj_rel_insert_input:{
 		data:{
-			type:"cr_user_insert_input",
+			type:"guild_member_insert_input",
 			array:false,
 			arrayRequired:false,
 			required:true
 		},
 		on_conflict:{
-			type:"cr_user_on_conflict",
+			type:"guild_member_on_conflict",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_on_conflict:{
+	guild_member_on_conflict:{
 		constraint:{
-			type:"cr_user_constraint",
+			type:"guild_member_constraint",
 			array:false,
 			arrayRequired:false,
 			required:true
 		},
 		update_columns:{
-			type:"cr_user_update_column",
+			type:"guild_member_update_column",
 			array:true,
 			arrayRequired:true,
 			required:true
 		},
 		where:{
-			type:"cr_user_bool_exp",
+			type:"guild_member_bool_exp",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_order_by:{
-		date_joined:{
+	guild_member_order_by:{
+		guild:{
+			type:"guild_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
 			type:"order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		email:{
+		member_id:{
 			type:"order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		first_name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_active:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_staff:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_superuser:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_login:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild_users_aggregate:{
-			type:"nb_guild_user_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting_users_aggregate:{
-			type:"nb_meeting_user_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meetings_aggregate:{
-			type:"nb_meeting_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere_users_aggregate:{
-			type:"nb_sphere_users_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		password:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		username:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		uuid:{
-			type:"order_by",
+		user:{
+			type:"user_order_by",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_select_column: "enum",
-	cr_user_set_input:{
-		date_joined:{
-			type:"timestamptz",
+	guild_member_pk_columns_input:{
+		guild_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		member_id:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:true
+		}
+	},
+	guild_member_select_column: "enum",
+	guild_member_set_input:{
+		guild_id:{
+			type:"Int",
 			array:false,
 			arrayRequired:false,
 			required:false
 		},
-		email:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		first_name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_active:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_staff:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		is_superuser:{
-			type:"Boolean",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_login:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		last_name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		password:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		username:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		uuid:{
+		member_id:{
 			type:"uuid",
 			array:false,
 			arrayRequired:false,
 			required:false
 		}
 	},
-	cr_user_update_column: "enum",
+	guild_member_stddev_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_stddev_pop_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_stddev_samp_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_sum_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_update_column: "enum",
+	guild_member_var_pop_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_var_samp_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_member_variance_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_min_order_by:{
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_obj_rel_insert_input:{
+		data:{
+			type:"guild_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		on_conflict:{
+			type:"guild_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_on_conflict:{
+		constraint:{
+			type:"guild_constraint",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		update_columns:{
+			type:"guild_update_column",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		where:{
+			type:"guild_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_order_by:{
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_members_aggregate:{
+			type:"guild_member_aggregate_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meetings_aggregate:{
+			type:"meeting_aggregate_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_pk_columns_input:{
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:true
+		}
+	},
+	guild_select_column: "enum",
+	guild_set_input:{
+		created_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_stddev_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_stddev_pop_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_stddev_samp_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_sum_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_update_column: "enum",
+	guild_var_pop_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_var_samp_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	guild_variance_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
 	Int_comparison_exp:{
 		_eq:{
 			type:"Int",
@@ -6260,3529 +5506,1372 @@ export const AllTypesProps: Record<string,any> = {
 			required:true
 		}
 	},
+	meeting:{
+		participants:{
+			distinct_on:{
+				type:"meeting_participant_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_participant_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_participant_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		participants_aggregate:{
+			distinct_on:{
+				type:"meeting_participant_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_participant_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_participant_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		}
+	},
+	meeting_aggregate_fields:{
+		count:{
+			columns:{
+				type:"meeting_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			distinct:{
+				type:"Boolean",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		}
+	},
+	meeting_aggregate_order_by:{
+		avg:{
+			type:"meeting_avg_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		count:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		max:{
+			type:"meeting_max_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		min:{
+			type:"meeting_min_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev:{
+			type:"meeting_stddev_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_pop:{
+			type:"meeting_stddev_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_samp:{
+			type:"meeting_stddev_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sum:{
+			type:"meeting_sum_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_pop:{
+			type:"meeting_var_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_samp:{
+			type:"meeting_var_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		variance:{
+			type:"meeting_variance_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_arr_rel_insert_input:{
+		data:{
+			type:"meeting_insert_input",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		on_conflict:{
+			type:"meeting_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_avg_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_bool_exp:{
+		_and:{
+			type:"meeting_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		_not:{
+			type:"meeting_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		_or:{
+			type:"meeting_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		created_at:{
+			type:"timestamptz_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		end_time:{
+			type:"timestamptz_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild:{
+			type:"guild_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
+			type:"Int_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		location:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer:{
+			type:"user_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer_id:{
+			type:"uuid_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participants:{
+			type:"meeting_participant_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		publication_time:{
+			type:"timestamptz_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"Int_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		start_time:{
+			type:"timestamptz_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		title:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"timestamptz_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_constraint: "enum",
+	meeting_inc_input:{
+		guild_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_insert_input:{
+		created_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		end_time:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild:{
+			type:"guild_obj_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		location:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer:{
+			type:"user_obj_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer_id:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participants:{
+			type:"meeting_participant_arr_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		publication_time:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		start_time:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		title:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_max_order_by:{
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		end_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		location:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		publication_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		start_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		title:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_min_order_by:{
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		end_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		location:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		publication_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		start_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		title:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_obj_rel_insert_input:{
+		data:{
+			type:"meeting_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		on_conflict:{
+			type:"meeting_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_on_conflict:{
+		constraint:{
+			type:"meeting_constraint",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		update_columns:{
+			type:"meeting_update_column",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		where:{
+			type:"meeting_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_order_by:{
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		end_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild:{
+			type:"guild_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		location:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer:{
+			type:"user_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participants_aggregate:{
+			type:"meeting_participant_aggregate_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		publication_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		start_time:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		title:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_aggregate_fields:{
+		count:{
+			columns:{
+				type:"meeting_participant_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			distinct:{
+				type:"Boolean",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		}
+	},
+	meeting_participant_aggregate_order_by:{
+		avg:{
+			type:"meeting_participant_avg_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		count:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		max:{
+			type:"meeting_participant_max_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		min:{
+			type:"meeting_participant_min_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev:{
+			type:"meeting_participant_stddev_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_pop:{
+			type:"meeting_participant_stddev_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		stddev_samp:{
+			type:"meeting_participant_stddev_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sum:{
+			type:"meeting_participant_sum_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_pop:{
+			type:"meeting_participant_var_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_samp:{
+			type:"meeting_participant_var_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		variance:{
+			type:"meeting_participant_variance_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_arr_rel_insert_input:{
+		data:{
+			type:"meeting_participant_insert_input",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		on_conflict:{
+			type:"meeting_participant_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_avg_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_bool_exp:{
+		_and:{
+			type:"meeting_participant_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		_not:{
+			type:"meeting_participant_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		_or:{
+			type:"meeting_participant_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		meeting:{
+			type:"meeting_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meeting_id:{
+			type:"Int_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant:{
+			type:"user_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant_id:{
+			type:"uuid_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_constraint: "enum",
+	meeting_participant_inc_input:{
+		meeting_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_insert_input:{
+		meeting:{
+			type:"meeting_obj_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meeting_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant:{
+			type:"user_obj_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant_id:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_max_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_min_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_obj_rel_insert_input:{
+		data:{
+			type:"meeting_participant_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		on_conflict:{
+			type:"meeting_participant_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_on_conflict:{
+		constraint:{
+			type:"meeting_participant_constraint",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		update_columns:{
+			type:"meeting_participant_update_column",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		where:{
+			type:"meeting_participant_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_order_by:{
+		meeting:{
+			type:"meeting_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant:{
+			type:"user_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_pk_columns_input:{
+		meeting_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		participant_id:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:true
+		}
+	},
+	meeting_participant_select_column: "enum",
+	meeting_participant_set_input:{
+		meeting_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		participant_id:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_stddev_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_stddev_pop_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_stddev_samp_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_sum_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_update_column: "enum",
+	meeting_participant_var_pop_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_var_samp_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_participant_variance_order_by:{
+		meeting_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_pk_columns_input:{
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:true
+		}
+	},
+	meeting_select_column: "enum",
+	meeting_set_input:{
+		created_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		description:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		end_time:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guild_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		location:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organizer_id:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		publication_time:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		start_time:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		title:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		updated_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_stddev_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_stddev_pop_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_stddev_samp_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_sum_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_update_column: "enum",
+	meeting_var_pop_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_var_samp_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	meeting_variance_order_by:{
+		guild_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sphere_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
 	mutation_root:{
-		delete_cr_user:{
+		delete_guild:{
 			where:{
-				type:"cr_user_bool_exp",
+				type:"guild_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:true
 			}
 		},
-		delete_nb_guild:{
-			where:{
-				type:"nb_guild_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		delete_nb_guild_user:{
-			where:{
-				type:"nb_guild_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		delete_nb_meeting:{
-			where:{
-				type:"nb_meeting_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		delete_nb_meeting_user:{
-			where:{
-				type:"nb_meeting_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		delete_nb_sphere:{
-			where:{
-				type:"nb_sphere_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		delete_nb_sphere_users:{
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		insert_cr_user:{
-			objects:{
-				type:"cr_user_insert_input",
-				array:true,
-				arrayRequired:true,
-				required:true
-			},
-			on_conflict:{
-				type:"cr_user_on_conflict",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		insert_nb_guild:{
-			objects:{
-				type:"nb_guild_insert_input",
-				array:true,
-				arrayRequired:true,
-				required:true
-			},
-			on_conflict:{
-				type:"nb_guild_on_conflict",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		insert_nb_guild_user:{
-			objects:{
-				type:"nb_guild_user_insert_input",
-				array:true,
-				arrayRequired:true,
-				required:true
-			},
-			on_conflict:{
-				type:"nb_guild_user_on_conflict",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		insert_nb_meeting:{
-			objects:{
-				type:"nb_meeting_insert_input",
-				array:true,
-				arrayRequired:true,
-				required:true
-			},
-			on_conflict:{
-				type:"nb_meeting_on_conflict",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		insert_nb_meeting_user:{
-			objects:{
-				type:"nb_meeting_user_insert_input",
-				array:true,
-				arrayRequired:true,
-				required:true
-			},
-			on_conflict:{
-				type:"nb_meeting_user_on_conflict",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		insert_nb_sphere:{
-			objects:{
-				type:"nb_sphere_insert_input",
-				array:true,
-				arrayRequired:true,
-				required:true
-			},
-			on_conflict:{
-				type:"nb_sphere_on_conflict",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		insert_nb_sphere_users:{
-			objects:{
-				type:"nb_sphere_users_insert_input",
-				array:true,
-				arrayRequired:true,
-				required:true
-			},
-			on_conflict:{
-				type:"nb_sphere_users_on_conflict",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		update_cr_user:{
-			_set:{
-				type:"cr_user_set_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			where:{
-				type:"cr_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		update_nb_guild:{
-			_inc:{
-				type:"nb_guild_inc_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			_set:{
-				type:"nb_guild_set_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			where:{
-				type:"nb_guild_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		update_nb_guild_user:{
-			_inc:{
-				type:"nb_guild_user_inc_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			_set:{
-				type:"nb_guild_user_set_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			where:{
-				type:"nb_guild_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		update_nb_meeting:{
-			_inc:{
-				type:"nb_meeting_inc_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			_set:{
-				type:"nb_meeting_set_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			where:{
-				type:"nb_meeting_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		update_nb_meeting_user:{
-			_inc:{
-				type:"nb_meeting_user_inc_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			_set:{
-				type:"nb_meeting_user_set_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			where:{
-				type:"nb_meeting_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		update_nb_sphere:{
-			_inc:{
-				type:"nb_sphere_inc_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			_set:{
-				type:"nb_sphere_set_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			where:{
-				type:"nb_sphere_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		update_nb_sphere_users:{
-			_inc:{
-				type:"nb_sphere_users_inc_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			_set:{
-				type:"nb_sphere_users_set_input",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		}
-	},
-	nb_guild:{
-		nb_guild_users:{
-			distinct_on:{
-				type:"nb_guild_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
+		delete_guild_by_pk:{
+			id:{
 				type:"Int",
 				array:false,
 				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_guild_user_order_by",
-				array:true,
-				arrayRequired:false,
 				required:true
-			},
+			}
+		},
+		delete_guild_member:{
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"guild_member_bool_exp",
 				array:false,
 				arrayRequired:false,
-				required:false
+				required:true
 			}
 		},
-		nb_guild_users_aggregate:{
-			distinct_on:{
-				type:"nb_guild_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
+		delete_guild_member_by_pk:{
+			guild_id:{
 				type:"Int",
 				array:false,
 				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_guild_user_order_by",
-				array:true,
-				arrayRequired:false,
 				required:true
 			},
+			member_id:{
+				type:"uuid",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		delete_meeting:{
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"meeting_bool_exp",
 				array:false,
 				arrayRequired:false,
-				required:false
+				required:true
 			}
 		},
-		nb_meetings:{
-			distinct_on:{
-				type:"nb_meeting_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
+		delete_meeting_by_pk:{
+			id:{
 				type:"Int",
 				array:false,
 				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_order_by",
-				array:true,
-				arrayRequired:false,
 				required:true
-			},
+			}
+		},
+		delete_meeting_participant:{
 			where:{
-				type:"nb_meeting_bool_exp",
+				type:"meeting_participant_bool_exp",
 				array:false,
 				arrayRequired:false,
-				required:false
+				required:true
 			}
 		},
-		nb_meetings_aggregate:{
-			distinct_on:{
-				type:"nb_meeting_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
+		delete_meeting_participant_by_pk:{
+			meeting_id:{
 				type:"Int",
 				array:false,
 				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_order_by",
-				array:true,
-				arrayRequired:false,
 				required:true
 			},
+			participant_id:{
+				type:"uuid",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		delete_sphere:{
 			where:{
-				type:"nb_meeting_bool_exp",
+				type:"sphere_bool_exp",
 				array:false,
 				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_guild_aggregate_fields:{
-		count:{
-			columns:{
-				type:"nb_guild_select_column",
-				array:true,
-				arrayRequired:false,
 				required:true
-			},
-			distinct:{
-				type:"Boolean",
-				array:false,
-				arrayRequired:false,
-				required:false
 			}
-		}
-	},
-	nb_guild_aggregate_order_by:{
-		avg:{
-			type:"nb_guild_avg_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
 		},
-		count:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		max:{
-			type:"nb_guild_max_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		min:{
-			type:"nb_guild_min_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev:{
-			type:"nb_guild_stddev_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_pop:{
-			type:"nb_guild_stddev_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_samp:{
-			type:"nb_guild_stddev_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sum:{
-			type:"nb_guild_sum_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_pop:{
-			type:"nb_guild_var_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_samp:{
-			type:"nb_guild_var_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		variance:{
-			type:"nb_guild_variance_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_arr_rel_insert_input:{
-		data:{
-			type:"nb_guild_insert_input",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_guild_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_avg_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_bool_exp:{
-		_and:{
-			type:"nb_guild_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		_not:{
-			type:"nb_guild_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_or:{
-			type:"nb_guild_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		created_at:{
-			type:"timestamptz_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild_users:{
-			type:"nb_guild_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meetings:{
-			type:"nb_meeting_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_constraint: "enum",
-	nb_guild_inc_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_insert_input:{
-		created_at:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild_users:{
-			type:"nb_guild_user_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meetings:{
-			type:"nb_meeting_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_max_order_by:{
-		created_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_min_order_by:{
-		created_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_obj_rel_insert_input:{
-		data:{
-			type:"nb_guild_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_guild_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_on_conflict:{
-		constraint:{
-			type:"nb_guild_constraint",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		update_columns:{
-			type:"nb_guild_update_column",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		where:{
-			type:"nb_guild_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_order_by:{
-		created_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild_users_aggregate:{
-			type:"nb_guild_user_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meetings_aggregate:{
-			type:"nb_meeting_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_select_column: "enum",
-	nb_guild_set_input:{
-		created_at:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_stddev_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_stddev_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_stddev_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_sum_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_update_column: "enum",
-	nb_guild_user_aggregate_fields:{
-		count:{
-			columns:{
-				type:"nb_guild_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			distinct:{
-				type:"Boolean",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_guild_user_aggregate_order_by:{
-		avg:{
-			type:"nb_guild_user_avg_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		count:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		max:{
-			type:"nb_guild_user_max_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		min:{
-			type:"nb_guild_user_min_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev:{
-			type:"nb_guild_user_stddev_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_pop:{
-			type:"nb_guild_user_stddev_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_samp:{
-			type:"nb_guild_user_stddev_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sum:{
-			type:"nb_guild_user_sum_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_pop:{
-			type:"nb_guild_user_var_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_samp:{
-			type:"nb_guild_user_var_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		variance:{
-			type:"nb_guild_user_variance_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_arr_rel_insert_input:{
-		data:{
-			type:"nb_guild_user_insert_input",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_guild_user_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_avg_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_bool_exp:{
-		_and:{
-			type:"nb_guild_user_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		_not:{
-			type:"nb_guild_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_or:{
-			type:"nb_guild_user_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		cr_user:{
-			type:"cr_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		membership_type:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild:{
-			type:"nb_guild_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_constraint: "enum",
-	nb_guild_user_inc_input:{
-		guild_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_insert_input:{
-		cr_user:{
-			type:"cr_user_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		membership_type:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild:{
-			type:"nb_guild_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_max_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		membership_type:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_min_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		membership_type:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_obj_rel_insert_input:{
-		data:{
-			type:"nb_guild_user_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_guild_user_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_on_conflict:{
-		constraint:{
-			type:"nb_guild_user_constraint",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		update_columns:{
-			type:"nb_guild_user_update_column",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		where:{
-			type:"nb_guild_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_order_by:{
-		cr_user:{
-			type:"cr_user_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		membership_type:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild:{
-			type:"nb_guild_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_select_column: "enum",
-	nb_guild_user_set_input:{
-		guild_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		membership_type:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_stddev_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_stddev_pop_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_stddev_samp_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_sum_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_update_column: "enum",
-	nb_guild_user_var_pop_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_var_samp_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_user_variance_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_var_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_var_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_guild_variance_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting:{
-		nb_meeting_users:{
-			distinct_on:{
-				type:"nb_meeting_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
+		delete_sphere_by_pk:{
+			id:{
 				type:"Int",
 				array:false,
 				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_user_order_by",
-				array:true,
-				arrayRequired:false,
 				required:true
-			},
+			}
+		},
+		delete_user:{
 			where:{
-				type:"nb_meeting_user_bool_exp",
+				type:"user_bool_exp",
 				array:false,
 				arrayRequired:false,
-				required:false
+				required:true
 			}
 		},
-		nb_meeting_users_aggregate:{
-			distinct_on:{
-				type:"nb_meeting_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_user_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_meeting_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_meeting_aggregate_fields:{
-		count:{
-			columns:{
-				type:"nb_meeting_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			distinct:{
-				type:"Boolean",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_meeting_aggregate_order_by:{
-		avg:{
-			type:"nb_meeting_avg_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		count:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		max:{
-			type:"nb_meeting_max_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		min:{
-			type:"nb_meeting_min_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev:{
-			type:"nb_meeting_stddev_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_pop:{
-			type:"nb_meeting_stddev_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_samp:{
-			type:"nb_meeting_stddev_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sum:{
-			type:"nb_meeting_sum_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_pop:{
-			type:"nb_meeting_var_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_samp:{
-			type:"nb_meeting_var_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		variance:{
-			type:"nb_meeting_variance_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_arr_rel_insert_input:{
-		data:{
-			type:"nb_meeting_insert_input",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_meeting_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_avg_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_bool_exp:{
-		_and:{
-			type:"nb_meeting_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		_not:{
-			type:"nb_meeting_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_or:{
-			type:"nb_meeting_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		created_at:{
-			type:"timestamptz_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		end_time:{
-			type:"timestamptz_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		location:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild:{
-			type:"nb_guild_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting_users:{
-			type:"nb_meeting_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		organizer:{
-			type:"cr_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		organizer_id:{
-			type:"uuid_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		publication_time:{
-			type:"timestamptz_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		start_time:{
-			type:"timestamptz_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		title:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		updated_at:{
-			type:"timestamptz_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_constraint: "enum",
-	nb_meeting_inc_input:{
-		guild_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_insert_input:{
-		created_at:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		end_time:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		location:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild:{
-			type:"nb_guild_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting_users:{
-			type:"nb_meeting_user_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		organizer:{
-			type:"cr_user_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		organizer_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		publication_time:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		start_time:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		title:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		updated_at:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_max_order_by:{
-		created_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		end_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		location:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		publication_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		start_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		title:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		updated_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_min_order_by:{
-		created_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		end_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		location:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		publication_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		start_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		title:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		updated_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_obj_rel_insert_input:{
-		data:{
-			type:"nb_meeting_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_meeting_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_on_conflict:{
-		constraint:{
-			type:"nb_meeting_constraint",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		update_columns:{
-			type:"nb_meeting_update_column",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		where:{
-			type:"nb_meeting_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_order_by:{
-		created_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		end_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		location:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_guild:{
-			type:"nb_guild_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting_users_aggregate:{
-			type:"nb_meeting_user_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		organizer:{
-			type:"cr_user_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		organizer_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		publication_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		start_time:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		title:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		updated_at:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_select_column: "enum",
-	nb_meeting_set_input:{
-		created_at:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		description:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		end_time:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		guild_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		location:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		organizer_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		publication_time:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		start_time:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		title:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		updated_at:{
-			type:"timestamptz",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_stddev_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_stddev_pop_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_stddev_samp_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_sum_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_update_column: "enum",
-	nb_meeting_user_aggregate_fields:{
-		count:{
-			columns:{
-				type:"nb_meeting_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			distinct:{
-				type:"Boolean",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_meeting_user_aggregate_order_by:{
-		avg:{
-			type:"nb_meeting_user_avg_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		count:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		max:{
-			type:"nb_meeting_user_max_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		min:{
-			type:"nb_meeting_user_min_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev:{
-			type:"nb_meeting_user_stddev_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_pop:{
-			type:"nb_meeting_user_stddev_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_samp:{
-			type:"nb_meeting_user_stddev_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sum:{
-			type:"nb_meeting_user_sum_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_pop:{
-			type:"nb_meeting_user_var_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_samp:{
-			type:"nb_meeting_user_var_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		variance:{
-			type:"nb_meeting_user_variance_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_arr_rel_insert_input:{
-		data:{
-			type:"nb_meeting_user_insert_input",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_meeting_user_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_avg_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_bool_exp:{
-		_and:{
-			type:"nb_meeting_user_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		_not:{
-			type:"nb_meeting_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_or:{
-			type:"nb_meeting_user_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		cr_user:{
-			type:"cr_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting:{
-			type:"nb_meeting_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		status:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_constraint: "enum",
-	nb_meeting_user_inc_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_insert_input:{
-		cr_user:{
-			type:"cr_user_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting:{
-			type:"nb_meeting_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		status:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_max_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		status:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_min_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		status:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_obj_rel_insert_input:{
-		data:{
-			type:"nb_meeting_user_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_meeting_user_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_on_conflict:{
-		constraint:{
-			type:"nb_meeting_user_constraint",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		update_columns:{
-			type:"nb_meeting_user_update_column",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		where:{
-			type:"nb_meeting_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_order_by:{
-		cr_user:{
-			type:"cr_user_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_meeting:{
-			type:"nb_meeting_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		status:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_select_column: "enum",
-	nb_meeting_user_set_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		status:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_stddev_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_stddev_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_stddev_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_sum_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_update_column: "enum",
-	nb_meeting_user_var_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_var_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_user_variance_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		meeting_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_var_pop_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_var_samp_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_meeting_variance_order_by:{
-		guild_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere:{
-		nb_sphere_users:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_sphere_users_aggregate:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_sphere_aggregate_fields:{
-		count:{
-			columns:{
-				type:"nb_sphere_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			distinct:{
-				type:"Boolean",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_sphere_aggregate_order_by:{
-		avg:{
-			type:"nb_sphere_avg_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		count:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		max:{
-			type:"nb_sphere_max_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		min:{
-			type:"nb_sphere_min_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev:{
-			type:"nb_sphere_stddev_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_pop:{
-			type:"nb_sphere_stddev_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_samp:{
-			type:"nb_sphere_stddev_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sum:{
-			type:"nb_sphere_sum_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_pop:{
-			type:"nb_sphere_var_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_samp:{
-			type:"nb_sphere_var_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		variance:{
-			type:"nb_sphere_variance_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_arr_rel_insert_input:{
-		data:{
-			type:"nb_sphere_insert_input",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_sphere_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_avg_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_bool_exp:{
-		_and:{
-			type:"nb_sphere_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		_not:{
-			type:"nb_sphere_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_or:{
-			type:"nb_sphere_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"String_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere_users:{
-			type:"nb_sphere_users_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_constraint: "enum",
-	nb_sphere_inc_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_insert_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere_users:{
-			type:"nb_sphere_users_arr_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_max_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_min_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_obj_rel_insert_input:{
-		data:{
-			type:"nb_sphere_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_sphere_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_on_conflict:{
-		constraint:{
-			type:"nb_sphere_constraint",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		update_columns:{
-			type:"nb_sphere_update_column",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		where:{
-			type:"nb_sphere_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere_users_aggregate:{
-			type:"nb_sphere_users_aggregate_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_select_column: "enum",
-	nb_sphere_set_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		name:{
-			type:"String",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_stddev_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_stddev_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_stddev_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_sum_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_update_column: "enum",
-	nb_sphere_users_aggregate_fields:{
-		count:{
-			columns:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			distinct:{
-				type:"Boolean",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		}
-	},
-	nb_sphere_users_aggregate_order_by:{
-		avg:{
-			type:"nb_sphere_users_avg_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		count:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		max:{
-			type:"nb_sphere_users_max_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		min:{
-			type:"nb_sphere_users_min_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev:{
-			type:"nb_sphere_users_stddev_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_pop:{
-			type:"nb_sphere_users_stddev_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		stddev_samp:{
-			type:"nb_sphere_users_stddev_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sum:{
-			type:"nb_sphere_users_sum_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_pop:{
-			type:"nb_sphere_users_var_pop_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		var_samp:{
-			type:"nb_sphere_users_var_samp_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		variance:{
-			type:"nb_sphere_users_variance_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_arr_rel_insert_input:{
-		data:{
-			type:"nb_sphere_users_insert_input",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_sphere_users_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_avg_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_bool_exp:{
-		_and:{
-			type:"nb_sphere_users_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		_not:{
-			type:"nb_sphere_users_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		_or:{
-			type:"nb_sphere_users_bool_exp",
-			array:true,
-			arrayRequired:false,
-			required:false
-		},
-		cr_user:{
-			type:"cr_user_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere:{
-			type:"nb_sphere_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid_comparison_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_constraint: "enum",
-	nb_sphere_users_inc_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_insert_input:{
-		cr_user:{
-			type:"cr_user_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere:{
-			type:"nb_sphere_obj_rel_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_max_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_min_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_obj_rel_insert_input:{
-		data:{
-			type:"nb_sphere_users_insert_input",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		on_conflict:{
-			type:"nb_sphere_users_on_conflict",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_on_conflict:{
-		constraint:{
-			type:"nb_sphere_users_constraint",
-			array:false,
-			arrayRequired:false,
-			required:true
-		},
-		update_columns:{
-			type:"nb_sphere_users_update_column",
-			array:true,
-			arrayRequired:true,
-			required:true
-		},
-		where:{
-			type:"nb_sphere_users_bool_exp",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_order_by:{
-		cr_user:{
-			type:"cr_user_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		nb_sphere:{
-			type:"nb_sphere_order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_select_column: "enum",
-	nb_sphere_users_set_input:{
-		id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"Int",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		user_id:{
-			type:"uuid",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_stddev_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_stddev_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_stddev_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_sum_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_update_column: "enum",
-	nb_sphere_users_var_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_var_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_users_variance_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		},
-		sphere_id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_var_pop_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_var_samp_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	nb_sphere_variance_order_by:{
-		id:{
-			type:"order_by",
-			array:false,
-			arrayRequired:false,
-			required:false
-		}
-	},
-	order_by: "enum",
-	query_root:{
-		cr_user:{
-			distinct_on:{
-				type:"cr_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"cr_user_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"cr_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		cr_user_aggregate:{
-			distinct_on:{
-				type:"cr_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"cr_user_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"cr_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		cr_user_by_pk:{
+		delete_user_by_pk:{
 			uuid:{
 				type:"uuid",
 				array:false,
@@ -9790,9 +6879,408 @@ export const AllTypesProps: Record<string,any> = {
 				required:true
 			}
 		},
-		nb_guild:{
+		insert_guild:{
+			objects:{
+				type:"guild_insert_input",
+				array:true,
+				arrayRequired:true,
+				required:true
+			},
+			on_conflict:{
+				type:"guild_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_guild_member:{
+			objects:{
+				type:"guild_member_insert_input",
+				array:true,
+				arrayRequired:true,
+				required:true
+			},
+			on_conflict:{
+				type:"guild_member_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_guild_member_one:{
+			object:{
+				type:"guild_member_insert_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			on_conflict:{
+				type:"guild_member_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_guild_one:{
+			object:{
+				type:"guild_insert_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			on_conflict:{
+				type:"guild_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_meeting:{
+			objects:{
+				type:"meeting_insert_input",
+				array:true,
+				arrayRequired:true,
+				required:true
+			},
+			on_conflict:{
+				type:"meeting_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_meeting_one:{
+			object:{
+				type:"meeting_insert_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			on_conflict:{
+				type:"meeting_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_meeting_participant:{
+			objects:{
+				type:"meeting_participant_insert_input",
+				array:true,
+				arrayRequired:true,
+				required:true
+			},
+			on_conflict:{
+				type:"meeting_participant_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_meeting_participant_one:{
+			object:{
+				type:"meeting_participant_insert_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			on_conflict:{
+				type:"meeting_participant_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_sphere:{
+			objects:{
+				type:"sphere_insert_input",
+				array:true,
+				arrayRequired:true,
+				required:true
+			},
+			on_conflict:{
+				type:"sphere_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_sphere_one:{
+			object:{
+				type:"sphere_insert_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			on_conflict:{
+				type:"sphere_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_user:{
+			objects:{
+				type:"user_insert_input",
+				array:true,
+				arrayRequired:true,
+				required:true
+			},
+			on_conflict:{
+				type:"user_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		insert_user_one:{
+			object:{
+				type:"user_insert_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			on_conflict:{
+				type:"user_on_conflict",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		update_guild:{
+			_inc:{
+				type:"guild_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"guild_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			where:{
+				type:"guild_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_guild_by_pk:{
+			_inc:{
+				type:"guild_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"guild_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			pk_columns:{
+				type:"guild_pk_columns_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_guild_member:{
+			_inc:{
+				type:"guild_member_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"guild_member_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			where:{
+				type:"guild_member_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_guild_member_by_pk:{
+			_inc:{
+				type:"guild_member_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"guild_member_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			pk_columns:{
+				type:"guild_member_pk_columns_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_meeting:{
+			_inc:{
+				type:"meeting_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"meeting_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			where:{
+				type:"meeting_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_meeting_by_pk:{
+			_inc:{
+				type:"meeting_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"meeting_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			pk_columns:{
+				type:"meeting_pk_columns_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_meeting_participant:{
+			_inc:{
+				type:"meeting_participant_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"meeting_participant_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			where:{
+				type:"meeting_participant_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_meeting_participant_by_pk:{
+			_inc:{
+				type:"meeting_participant_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"meeting_participant_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			pk_columns:{
+				type:"meeting_participant_pk_columns_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_sphere:{
+			_inc:{
+				type:"sphere_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"sphere_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			where:{
+				type:"sphere_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_sphere_by_pk:{
+			_inc:{
+				type:"sphere_inc_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			_set:{
+				type:"sphere_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			pk_columns:{
+				type:"sphere_pk_columns_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_user:{
+			_set:{
+				type:"user_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			where:{
+				type:"user_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		update_user_by_pk:{
+			_set:{
+				type:"user_set_input",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			pk_columns:{
+				type:"user_pk_columns_input",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		}
+	},
+	order_by: "enum",
+	query_root:{
+		guild:{
 			distinct_on:{
-				type:"nb_guild_select_column",
+				type:"guild_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -9810,21 +7298,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_order_by",
+				type:"guild_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_bool_exp",
+				type:"guild_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_aggregate:{
+		guild_aggregate:{
 			distinct_on:{
-				type:"nb_guild_select_column",
+				type:"guild_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -9842,19 +7330,19 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_order_by",
+				type:"guild_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_bool_exp",
+				type:"guild_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_by_pk:{
+		guild_by_pk:{
 			id:{
 				type:"Int",
 				array:false,
@@ -9862,9 +7350,9 @@ export const AllTypesProps: Record<string,any> = {
 				required:true
 			}
 		},
-		nb_guild_user:{
+		guild_member:{
 			distinct_on:{
-				type:"nb_guild_user_select_column",
+				type:"guild_member_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -9882,21 +7370,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_user_order_by",
+				type:"guild_member_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"guild_member_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_user_aggregate:{
+		guild_member_aggregate:{
 			distinct_on:{
-				type:"nb_guild_user_select_column",
+				type:"guild_member_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -9914,19 +7402,97 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_user_order_by",
+				type:"guild_member_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"guild_member_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_user_by_pk:{
+		guild_member_by_pk:{
+			guild_id:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			member_id:{
+				type:"uuid",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		meeting:{
+			distinct_on:{
+				type:"meeting_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		meeting_aggregate:{
+			distinct_on:{
+				type:"meeting_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		meeting_by_pk:{
 			id:{
 				type:"Int",
 				array:false,
@@ -9934,9 +7500,9 @@ export const AllTypesProps: Record<string,any> = {
 				required:true
 			}
 		},
-		nb_meeting:{
+		meeting_participant:{
 			distinct_on:{
-				type:"nb_meeting_select_column",
+				type:"meeting_participant_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -9954,21 +7520,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_order_by",
+				type:"meeting_participant_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_bool_exp",
+				type:"meeting_participant_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_aggregate:{
+		meeting_participant_aggregate:{
 			distinct_on:{
-				type:"nb_meeting_select_column",
+				type:"meeting_participant_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -9986,19 +7552,97 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_order_by",
+				type:"meeting_participant_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_bool_exp",
+				type:"meeting_participant_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_by_pk:{
+		meeting_participant_by_pk:{
+			meeting_id:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			participant_id:{
+				type:"uuid",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		sphere:{
+			distinct_on:{
+				type:"sphere_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"sphere_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"sphere_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		sphere_aggregate:{
+			distinct_on:{
+				type:"sphere_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"sphere_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"sphere_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		sphere_by_pk:{
 			id:{
 				type:"Int",
 				array:false,
@@ -10006,9 +7650,9 @@ export const AllTypesProps: Record<string,any> = {
 				required:true
 			}
 		},
-		nb_meeting_user:{
+		user:{
 			distinct_on:{
-				type:"nb_meeting_user_select_column",
+				type:"user_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10026,21 +7670,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_user_order_by",
+				type:"user_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_user_bool_exp",
+				type:"user_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_user_aggregate:{
+		user_aggregate:{
 			distinct_on:{
-				type:"nb_meeting_user_select_column",
+				type:"user_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10058,169 +7702,378 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_user_order_by",
+				type:"user_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_user_bool_exp",
+				type:"user_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_user_by_pk:{
-			id:{
-				type:"Int",
+		user_by_pk:{
+			uuid:{
+				type:"uuid",
 				array:false,
 				arrayRequired:false,
 				required:true
 			}
+		}
+	},
+	sphere_aggregate_fields:{
+		count:{
+			columns:{
+				type:"sphere_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			distinct:{
+				type:"Boolean",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		}
+	},
+	sphere_aggregate_order_by:{
+		avg:{
+			type:"sphere_avg_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
 		},
-		nb_sphere:{
-			distinct_on:{
-				type:"nb_sphere_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
+		count:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
 		},
-		nb_sphere_aggregate:{
-			distinct_on:{
-				type:"nb_sphere_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
+		max:{
+			type:"sphere_max_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
 		},
-		nb_sphere_by_pk:{
-			id:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
+		min:{
+			type:"sphere_min_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
 		},
-		nb_sphere_users:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
+		stddev:{
+			type:"sphere_stddev_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
 		},
-		nb_sphere_users_aggregate:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
+		stddev_pop:{
+			type:"sphere_stddev_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
 		},
-		nb_sphere_users_by_pk:{
-			id:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
+		stddev_samp:{
+			type:"sphere_stddev_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		sum:{
+			type:"sphere_sum_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_pop:{
+			type:"sphere_var_pop_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		var_samp:{
+			type:"sphere_var_samp_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		variance:{
+			type:"sphere_variance_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_arr_rel_insert_input:{
+		data:{
+			type:"sphere_insert_input",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		on_conflict:{
+			type:"sphere_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_avg_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_bool_exp:{
+		_and:{
+			type:"sphere_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		_not:{
+			type:"sphere_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		_or:{
+			type:"sphere_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		domain:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_constraint: "enum",
+	sphere_inc_input:{
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_insert_input:{
+		domain:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_max_order_by:{
+		domain:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_min_order_by:{
+		domain:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_obj_rel_insert_input:{
+		data:{
+			type:"sphere_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		on_conflict:{
+			type:"sphere_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_on_conflict:{
+		constraint:{
+			type:"sphere_constraint",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		update_columns:{
+			type:"sphere_update_column",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		where:{
+			type:"sphere_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_order_by:{
+		domain:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_pk_columns_input:{
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:true
+		}
+	},
+	sphere_select_column: "enum",
+	sphere_set_input:{
+		domain:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		id:{
+			type:"Int",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_stddev_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_stddev_pop_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_stddev_samp_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_sum_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_update_column: "enum",
+	sphere_var_pop_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_var_samp_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	sphere_variance_order_by:{
+		id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
 		}
 	},
 	String_comparison_exp:{
@@ -10316,9 +8169,9 @@ export const AllTypesProps: Record<string,any> = {
 		}
 	},
 	subscription_root:{
-		cr_user:{
+		guild:{
 			distinct_on:{
-				type:"cr_user_select_column",
+				type:"guild_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10336,21 +8189,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"cr_user_order_by",
+				type:"guild_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"cr_user_bool_exp",
+				type:"guild_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		cr_user_aggregate:{
+		guild_aggregate:{
 			distinct_on:{
-				type:"cr_user_select_column",
+				type:"guild_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10368,29 +8221,107 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"cr_user_order_by",
+				type:"guild_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"cr_user_bool_exp",
+				type:"guild_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		cr_user_by_pk:{
-			uuid:{
+		guild_by_pk:{
+			id:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		guild_member:{
+			distinct_on:{
+				type:"guild_member_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"guild_member_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"guild_member_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		guild_member_aggregate:{
+			distinct_on:{
+				type:"guild_member_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"guild_member_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"guild_member_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		guild_member_by_pk:{
+			guild_id:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			member_id:{
 				type:"uuid",
 				array:false,
 				arrayRequired:false,
 				required:true
 			}
 		},
-		nb_guild:{
+		meeting:{
 			distinct_on:{
-				type:"nb_guild_select_column",
+				type:"meeting_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10408,21 +8339,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_order_by",
+				type:"meeting_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_bool_exp",
+				type:"meeting_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_aggregate:{
+		meeting_aggregate:{
 			distinct_on:{
-				type:"nb_guild_select_column",
+				type:"meeting_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10440,19 +8371,19 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_order_by",
+				type:"meeting_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_bool_exp",
+				type:"meeting_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_by_pk:{
+		meeting_by_pk:{
 			id:{
 				type:"Int",
 				array:false,
@@ -10460,9 +8391,9 @@ export const AllTypesProps: Record<string,any> = {
 				required:true
 			}
 		},
-		nb_guild_user:{
+		meeting_participant:{
 			distinct_on:{
-				type:"nb_guild_user_select_column",
+				type:"meeting_participant_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10480,21 +8411,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_user_order_by",
+				type:"meeting_participant_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"meeting_participant_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_user_aggregate:{
+		meeting_participant_aggregate:{
 			distinct_on:{
-				type:"nb_guild_user_select_column",
+				type:"meeting_participant_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10512,19 +8443,97 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_guild_user_order_by",
+				type:"meeting_participant_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_guild_user_bool_exp",
+				type:"meeting_participant_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_guild_user_by_pk:{
+		meeting_participant_by_pk:{
+			meeting_id:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:true
+			},
+			participant_id:{
+				type:"uuid",
+				array:false,
+				arrayRequired:false,
+				required:true
+			}
+		},
+		sphere:{
+			distinct_on:{
+				type:"sphere_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"sphere_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"sphere_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		sphere_aggregate:{
+			distinct_on:{
+				type:"sphere_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"sphere_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"sphere_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		sphere_by_pk:{
 			id:{
 				type:"Int",
 				array:false,
@@ -10532,9 +8541,9 @@ export const AllTypesProps: Record<string,any> = {
 				required:true
 			}
 		},
-		nb_meeting:{
+		user:{
 			distinct_on:{
-				type:"nb_meeting_select_column",
+				type:"user_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10552,21 +8561,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_order_by",
+				type:"user_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_bool_exp",
+				type:"user_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_aggregate:{
+		user_aggregate:{
 			distinct_on:{
-				type:"nb_meeting_select_column",
+				type:"user_select_column",
 				array:true,
 				arrayRequired:false,
 				required:true
@@ -10584,237 +8593,21 @@ export const AllTypesProps: Record<string,any> = {
 				required:false
 			},
 			order_by:{
-				type:"nb_meeting_order_by",
+				type:"user_order_by",
 				array:true,
 				arrayRequired:false,
 				required:true
 			},
 			where:{
-				type:"nb_meeting_bool_exp",
+				type:"user_bool_exp",
 				array:false,
 				arrayRequired:false,
 				required:false
 			}
 		},
-		nb_meeting_by_pk:{
-			id:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		nb_meeting_user:{
-			distinct_on:{
-				type:"nb_meeting_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_user_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_meeting_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_meeting_user_aggregate:{
-			distinct_on:{
-				type:"nb_meeting_user_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_meeting_user_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_meeting_user_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_meeting_user_by_pk:{
-			id:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		nb_sphere:{
-			distinct_on:{
-				type:"nb_sphere_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_sphere_aggregate:{
-			distinct_on:{
-				type:"nb_sphere_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_sphere_by_pk:{
-			id:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:true
-			}
-		},
-		nb_sphere_users:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_sphere_users_aggregate:{
-			distinct_on:{
-				type:"nb_sphere_users_select_column",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			limit:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			offset:{
-				type:"Int",
-				array:false,
-				arrayRequired:false,
-				required:false
-			},
-			order_by:{
-				type:"nb_sphere_users_order_by",
-				array:true,
-				arrayRequired:false,
-				required:true
-			},
-			where:{
-				type:"nb_sphere_users_bool_exp",
-				array:false,
-				arrayRequired:false,
-				required:false
-			}
-		},
-		nb_sphere_users_by_pk:{
-			id:{
-				type:"Int",
+		user_by_pk:{
+			uuid:{
+				type:"uuid",
 				array:false,
 				arrayRequired:false,
 				required:true
@@ -10878,6 +8671,595 @@ export const AllTypesProps: Record<string,any> = {
 			required:true
 		}
 	},
+	user:{
+		guilds:{
+			distinct_on:{
+				type:"guild_member_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"guild_member_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"guild_member_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		guilds_aggregate:{
+			distinct_on:{
+				type:"guild_member_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"guild_member_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"guild_member_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		meetings:{
+			distinct_on:{
+				type:"meeting_participant_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_participant_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_participant_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		meetings_aggregate:{
+			distinct_on:{
+				type:"meeting_participant_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_participant_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_participant_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		organized_meetings:{
+			distinct_on:{
+				type:"meeting_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		},
+		organized_meetings_aggregate:{
+			distinct_on:{
+				type:"meeting_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			limit:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			offset:{
+				type:"Int",
+				array:false,
+				arrayRequired:false,
+				required:false
+			},
+			order_by:{
+				type:"meeting_order_by",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			where:{
+				type:"meeting_bool_exp",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		}
+	},
+	user_aggregate_fields:{
+		count:{
+			columns:{
+				type:"user_select_column",
+				array:true,
+				arrayRequired:false,
+				required:true
+			},
+			distinct:{
+				type:"Boolean",
+				array:false,
+				arrayRequired:false,
+				required:false
+			}
+		}
+	},
+	user_aggregate_order_by:{
+		count:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		max:{
+			type:"user_max_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		min:{
+			type:"user_min_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_arr_rel_insert_input:{
+		data:{
+			type:"user_insert_input",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		on_conflict:{
+			type:"user_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_bool_exp:{
+		_and:{
+			type:"user_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		_not:{
+			type:"user_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		_or:{
+			type:"user_bool_exp",
+			array:true,
+			arrayRequired:false,
+			required:false
+		},
+		auth0_id:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		created_at:{
+			type:"timestamptz_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		email:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guilds:{
+			type:"guild_member_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		last_login:{
+			type:"timestamptz_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meetings:{
+			type:"meeting_participant_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"String_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organized_meetings:{
+			type:"meeting_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		uuid:{
+			type:"uuid_comparison_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_constraint: "enum",
+	user_insert_input:{
+		auth0_id:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		created_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		email:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guilds:{
+			type:"guild_member_arr_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		last_login:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meetings:{
+			type:"meeting_participant_arr_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organized_meetings:{
+			type:"meeting_arr_rel_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		uuid:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_max_order_by:{
+		auth0_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		email:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		last_login:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		uuid:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_min_order_by:{
+		auth0_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		email:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		last_login:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		uuid:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_obj_rel_insert_input:{
+		data:{
+			type:"user_insert_input",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		on_conflict:{
+			type:"user_on_conflict",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_on_conflict:{
+		constraint:{
+			type:"user_constraint",
+			array:false,
+			arrayRequired:false,
+			required:true
+		},
+		update_columns:{
+			type:"user_update_column",
+			array:true,
+			arrayRequired:true,
+			required:true
+		},
+		where:{
+			type:"user_bool_exp",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_order_by:{
+		auth0_id:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		created_at:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		email:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		guilds_aggregate:{
+			type:"guild_member_aggregate_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		last_login:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		meetings_aggregate:{
+			type:"meeting_participant_aggregate_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		organized_meetings_aggregate:{
+			type:"meeting_aggregate_order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		uuid:{
+			type:"order_by",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_pk_columns_input:{
+		uuid:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:true
+		}
+	},
+	user_select_column: "enum",
+	user_set_input:{
+		auth0_id:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		created_at:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		email:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		last_login:{
+			type:"timestamptz",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		name:{
+			type:"String",
+			array:false,
+			arrayRequired:false,
+			required:false
+		},
+		uuid:{
+			type:"uuid",
+			array:false,
+			arrayRequired:false,
+			required:false
+		}
+	},
+	user_update_column: "enum",
 	uuid: "String",
 	uuid_comparison_exp:{
 		_eq:{
@@ -10938,567 +9320,481 @@ export const AllTypesProps: Record<string,any> = {
 }
 
 export const ReturnTypes: Record<string,any> = {
-	cr_user:{
-		date_joined:"timestamptz",
-		email:"String",
-		first_name:"String",
-		is_active:"Boolean",
-		is_staff:"Boolean",
-		is_superuser:"Boolean",
-		last_login:"timestamptz",
-		last_name:"String",
-		nb_guild_users:"nb_guild_user",
-		nb_guild_users_aggregate:"nb_guild_user_aggregate",
-		nb_meeting_users:"nb_meeting_user",
-		nb_meeting_users_aggregate:"nb_meeting_user_aggregate",
-		nb_meetings:"nb_meeting",
-		nb_meetings_aggregate:"nb_meeting_aggregate",
-		nb_sphere_users:"nb_sphere_users",
-		nb_sphere_users_aggregate:"nb_sphere_users_aggregate",
-		password:"String",
-		username:"String",
-		uuid:"uuid"
+	guild:{
+		created_at:"timestamptz",
+		description:"String",
+		guild_members:"guild_member",
+		guild_members_aggregate:"guild_member_aggregate",
+		id:"Int",
+		meetings:"meeting",
+		meetings_aggregate:"meeting_aggregate",
+		name:"String",
+		updated_at:"timestamptz"
 	},
-	cr_user_aggregate:{
-		aggregate:"cr_user_aggregate_fields",
-		nodes:"cr_user"
+	guild_aggregate:{
+		aggregate:"guild_aggregate_fields",
+		nodes:"guild"
 	},
-	cr_user_aggregate_fields:{
+	guild_aggregate_fields:{
+		avg:"guild_avg_fields",
 		count:"Int",
-		max:"cr_user_max_fields",
-		min:"cr_user_min_fields"
+		max:"guild_max_fields",
+		min:"guild_min_fields",
+		stddev:"guild_stddev_fields",
+		stddev_pop:"guild_stddev_pop_fields",
+		stddev_samp:"guild_stddev_samp_fields",
+		sum:"guild_sum_fields",
+		var_pop:"guild_var_pop_fields",
+		var_samp:"guild_var_samp_fields",
+		variance:"guild_variance_fields"
 	},
-	cr_user_max_fields:{
-		date_joined:"timestamptz",
-		email:"String",
-		first_name:"String",
-		last_login:"timestamptz",
-		last_name:"String",
-		password:"String",
-		username:"String"
+	guild_avg_fields:{
+		id:"Float"
 	},
-	cr_user_min_fields:{
-		date_joined:"timestamptz",
-		email:"String",
-		first_name:"String",
-		last_login:"timestamptz",
-		last_name:"String",
-		password:"String",
-		username:"String"
-	},
-	cr_user_mutation_response:{
-		affected_rows:"Int",
-		returning:"cr_user"
-	},
-	mutation_root:{
-		delete_cr_user:"cr_user_mutation_response",
-		delete_nb_guild:"nb_guild_mutation_response",
-		delete_nb_guild_user:"nb_guild_user_mutation_response",
-		delete_nb_meeting:"nb_meeting_mutation_response",
-		delete_nb_meeting_user:"nb_meeting_user_mutation_response",
-		delete_nb_sphere:"nb_sphere_mutation_response",
-		delete_nb_sphere_users:"nb_sphere_users_mutation_response",
-		insert_cr_user:"cr_user_mutation_response",
-		insert_nb_guild:"nb_guild_mutation_response",
-		insert_nb_guild_user:"nb_guild_user_mutation_response",
-		insert_nb_meeting:"nb_meeting_mutation_response",
-		insert_nb_meeting_user:"nb_meeting_user_mutation_response",
-		insert_nb_sphere:"nb_sphere_mutation_response",
-		insert_nb_sphere_users:"nb_sphere_users_mutation_response",
-		update_cr_user:"cr_user_mutation_response",
-		update_nb_guild:"nb_guild_mutation_response",
-		update_nb_guild_user:"nb_guild_user_mutation_response",
-		update_nb_meeting:"nb_meeting_mutation_response",
-		update_nb_meeting_user:"nb_meeting_user_mutation_response",
-		update_nb_sphere:"nb_sphere_mutation_response",
-		update_nb_sphere_users:"nb_sphere_users_mutation_response"
-	},
-	nb_guild:{
+	guild_max_fields:{
 		created_at:"timestamptz",
 		description:"String",
 		id:"Int",
 		name:"String",
-		nb_guild_users:"nb_guild_user",
-		nb_guild_users_aggregate:"nb_guild_user_aggregate",
-		nb_meetings:"nb_meeting",
-		nb_meetings_aggregate:"nb_meeting_aggregate",
-		sphere_id:"Int"
+		updated_at:"timestamptz"
 	},
-	nb_guild_aggregate:{
-		aggregate:"nb_guild_aggregate_fields",
-		nodes:"nb_guild"
+	guild_member:{
+		guild:"guild",
+		guild_id:"Int",
+		member_id:"uuid",
+		user:"user"
 	},
-	nb_guild_aggregate_fields:{
-		avg:"nb_guild_avg_fields",
+	guild_member_aggregate:{
+		aggregate:"guild_member_aggregate_fields",
+		nodes:"guild_member"
+	},
+	guild_member_aggregate_fields:{
+		avg:"guild_member_avg_fields",
 		count:"Int",
-		max:"nb_guild_max_fields",
-		min:"nb_guild_min_fields",
-		stddev:"nb_guild_stddev_fields",
-		stddev_pop:"nb_guild_stddev_pop_fields",
-		stddev_samp:"nb_guild_stddev_samp_fields",
-		sum:"nb_guild_sum_fields",
-		var_pop:"nb_guild_var_pop_fields",
-		var_samp:"nb_guild_var_samp_fields",
-		variance:"nb_guild_variance_fields"
+		max:"guild_member_max_fields",
+		min:"guild_member_min_fields",
+		stddev:"guild_member_stddev_fields",
+		stddev_pop:"guild_member_stddev_pop_fields",
+		stddev_samp:"guild_member_stddev_samp_fields",
+		sum:"guild_member_sum_fields",
+		var_pop:"guild_member_var_pop_fields",
+		var_samp:"guild_member_var_samp_fields",
+		variance:"guild_member_variance_fields"
 	},
-	nb_guild_avg_fields:{
-		id:"Float",
-		sphere_id:"Float"
+	guild_member_avg_fields:{
+		guild_id:"Float"
 	},
-	nb_guild_max_fields:{
+	guild_member_max_fields:{
+		guild_id:"Int",
+		member_id:"uuid"
+	},
+	guild_member_min_fields:{
+		guild_id:"Int",
+		member_id:"uuid"
+	},
+	guild_member_mutation_response:{
+		affected_rows:"Int",
+		returning:"guild_member"
+	},
+	guild_member_stddev_fields:{
+		guild_id:"Float"
+	},
+	guild_member_stddev_pop_fields:{
+		guild_id:"Float"
+	},
+	guild_member_stddev_samp_fields:{
+		guild_id:"Float"
+	},
+	guild_member_sum_fields:{
+		guild_id:"Int"
+	},
+	guild_member_var_pop_fields:{
+		guild_id:"Float"
+	},
+	guild_member_var_samp_fields:{
+		guild_id:"Float"
+	},
+	guild_member_variance_fields:{
+		guild_id:"Float"
+	},
+	guild_min_fields:{
 		created_at:"timestamptz",
 		description:"String",
 		id:"Int",
 		name:"String",
-		sphere_id:"Int"
+		updated_at:"timestamptz"
 	},
-	nb_guild_min_fields:{
-		created_at:"timestamptz",
-		description:"String",
-		id:"Int",
-		name:"String",
-		sphere_id:"Int"
-	},
-	nb_guild_mutation_response:{
+	guild_mutation_response:{
 		affected_rows:"Int",
-		returning:"nb_guild"
+		returning:"guild"
 	},
-	nb_guild_stddev_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_guild_stddev_pop_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_guild_stddev_samp_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_guild_sum_fields:{
-		id:"Int",
-		sphere_id:"Int"
-	},
-	nb_guild_user:{
-		cr_user:"cr_user",
-		guild_id:"Int",
-		id:"Int",
-		membership_type:"String",
-		nb_guild:"nb_guild",
-		user_id:"uuid"
-	},
-	nb_guild_user_aggregate:{
-		aggregate:"nb_guild_user_aggregate_fields",
-		nodes:"nb_guild_user"
-	},
-	nb_guild_user_aggregate_fields:{
-		avg:"nb_guild_user_avg_fields",
-		count:"Int",
-		max:"nb_guild_user_max_fields",
-		min:"nb_guild_user_min_fields",
-		stddev:"nb_guild_user_stddev_fields",
-		stddev_pop:"nb_guild_user_stddev_pop_fields",
-		stddev_samp:"nb_guild_user_stddev_samp_fields",
-		sum:"nb_guild_user_sum_fields",
-		var_pop:"nb_guild_user_var_pop_fields",
-		var_samp:"nb_guild_user_var_samp_fields",
-		variance:"nb_guild_user_variance_fields"
-	},
-	nb_guild_user_avg_fields:{
-		guild_id:"Float",
+	guild_stddev_fields:{
 		id:"Float"
 	},
-	nb_guild_user_max_fields:{
-		guild_id:"Int",
-		id:"Int",
-		membership_type:"String"
-	},
-	nb_guild_user_min_fields:{
-		guild_id:"Int",
-		id:"Int",
-		membership_type:"String"
-	},
-	nb_guild_user_mutation_response:{
-		affected_rows:"Int",
-		returning:"nb_guild_user"
-	},
-	nb_guild_user_stddev_fields:{
-		guild_id:"Float",
+	guild_stddev_pop_fields:{
 		id:"Float"
 	},
-	nb_guild_user_stddev_pop_fields:{
-		guild_id:"Float",
+	guild_stddev_samp_fields:{
 		id:"Float"
 	},
-	nb_guild_user_stddev_samp_fields:{
-		guild_id:"Float",
-		id:"Float"
-	},
-	nb_guild_user_sum_fields:{
-		guild_id:"Int",
+	guild_sum_fields:{
 		id:"Int"
 	},
-	nb_guild_user_var_pop_fields:{
-		guild_id:"Float",
+	guild_var_pop_fields:{
 		id:"Float"
 	},
-	nb_guild_user_var_samp_fields:{
-		guild_id:"Float",
+	guild_var_samp_fields:{
 		id:"Float"
 	},
-	nb_guild_user_variance_fields:{
-		guild_id:"Float",
+	guild_variance_fields:{
 		id:"Float"
 	},
-	nb_guild_var_pop_fields:{
+	meeting:{
+		created_at:"timestamptz",
+		description:"String",
+		end_time:"timestamptz",
+		guild:"guild",
+		guild_id:"Int",
+		id:"Int",
+		location:"String",
+		organizer:"user",
+		organizer_id:"uuid",
+		participants:"meeting_participant",
+		participants_aggregate:"meeting_participant_aggregate",
+		publication_time:"timestamptz",
+		sphere_id:"Int",
+		start_time:"timestamptz",
+		title:"String",
+		updated_at:"timestamptz"
+	},
+	meeting_aggregate:{
+		aggregate:"meeting_aggregate_fields",
+		nodes:"meeting"
+	},
+	meeting_aggregate_fields:{
+		avg:"meeting_avg_fields",
+		count:"Int",
+		max:"meeting_max_fields",
+		min:"meeting_min_fields",
+		stddev:"meeting_stddev_fields",
+		stddev_pop:"meeting_stddev_pop_fields",
+		stddev_samp:"meeting_stddev_samp_fields",
+		sum:"meeting_sum_fields",
+		var_pop:"meeting_var_pop_fields",
+		var_samp:"meeting_var_samp_fields",
+		variance:"meeting_variance_fields"
+	},
+	meeting_avg_fields:{
+		guild_id:"Float",
 		id:"Float",
 		sphere_id:"Float"
 	},
-	nb_guild_var_samp_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_guild_variance_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_meeting:{
+	meeting_max_fields:{
 		created_at:"timestamptz",
 		description:"String",
 		end_time:"timestamptz",
 		guild_id:"Int",
 		id:"Int",
 		location:"String",
-		nb_guild:"nb_guild",
-		nb_meeting_users:"nb_meeting_user",
-		nb_meeting_users_aggregate:"nb_meeting_user_aggregate",
-		organizer:"cr_user",
 		organizer_id:"uuid",
 		publication_time:"timestamptz",
+		sphere_id:"Int",
 		start_time:"timestamptz",
 		title:"String",
 		updated_at:"timestamptz"
 	},
-	nb_meeting_aggregate:{
-		aggregate:"nb_meeting_aggregate_fields",
-		nodes:"nb_meeting"
-	},
-	nb_meeting_aggregate_fields:{
-		avg:"nb_meeting_avg_fields",
-		count:"Int",
-		max:"nb_meeting_max_fields",
-		min:"nb_meeting_min_fields",
-		stddev:"nb_meeting_stddev_fields",
-		stddev_pop:"nb_meeting_stddev_pop_fields",
-		stddev_samp:"nb_meeting_stddev_samp_fields",
-		sum:"nb_meeting_sum_fields",
-		var_pop:"nb_meeting_var_pop_fields",
-		var_samp:"nb_meeting_var_samp_fields",
-		variance:"nb_meeting_variance_fields"
-	},
-	nb_meeting_avg_fields:{
-		guild_id:"Float",
-		id:"Float"
-	},
-	nb_meeting_max_fields:{
+	meeting_min_fields:{
 		created_at:"timestamptz",
 		description:"String",
 		end_time:"timestamptz",
 		guild_id:"Int",
 		id:"Int",
 		location:"String",
+		organizer_id:"uuid",
 		publication_time:"timestamptz",
+		sphere_id:"Int",
 		start_time:"timestamptz",
 		title:"String",
 		updated_at:"timestamptz"
 	},
-	nb_meeting_min_fields:{
-		created_at:"timestamptz",
-		description:"String",
-		end_time:"timestamptz",
-		guild_id:"Int",
-		id:"Int",
-		location:"String",
-		publication_time:"timestamptz",
-		start_time:"timestamptz",
-		title:"String",
-		updated_at:"timestamptz"
-	},
-	nb_meeting_mutation_response:{
+	meeting_mutation_response:{
 		affected_rows:"Int",
-		returning:"nb_meeting"
+		returning:"meeting"
 	},
-	nb_meeting_stddev_fields:{
-		guild_id:"Float",
-		id:"Float"
-	},
-	nb_meeting_stddev_pop_fields:{
-		guild_id:"Float",
-		id:"Float"
-	},
-	nb_meeting_stddev_samp_fields:{
-		guild_id:"Float",
-		id:"Float"
-	},
-	nb_meeting_sum_fields:{
-		guild_id:"Int",
-		id:"Int"
-	},
-	nb_meeting_user:{
-		cr_user:"cr_user",
-		id:"Int",
+	meeting_participant:{
+		meeting:"meeting",
 		meeting_id:"Int",
-		nb_meeting:"nb_meeting",
-		status:"String",
-		user_id:"uuid"
+		participant:"user",
+		participant_id:"uuid"
 	},
-	nb_meeting_user_aggregate:{
-		aggregate:"nb_meeting_user_aggregate_fields",
-		nodes:"nb_meeting_user"
+	meeting_participant_aggregate:{
+		aggregate:"meeting_participant_aggregate_fields",
+		nodes:"meeting_participant"
 	},
-	nb_meeting_user_aggregate_fields:{
-		avg:"nb_meeting_user_avg_fields",
+	meeting_participant_aggregate_fields:{
+		avg:"meeting_participant_avg_fields",
 		count:"Int",
-		max:"nb_meeting_user_max_fields",
-		min:"nb_meeting_user_min_fields",
-		stddev:"nb_meeting_user_stddev_fields",
-		stddev_pop:"nb_meeting_user_stddev_pop_fields",
-		stddev_samp:"nb_meeting_user_stddev_samp_fields",
-		sum:"nb_meeting_user_sum_fields",
-		var_pop:"nb_meeting_user_var_pop_fields",
-		var_samp:"nb_meeting_user_var_samp_fields",
-		variance:"nb_meeting_user_variance_fields"
+		max:"meeting_participant_max_fields",
+		min:"meeting_participant_min_fields",
+		stddev:"meeting_participant_stddev_fields",
+		stddev_pop:"meeting_participant_stddev_pop_fields",
+		stddev_samp:"meeting_participant_stddev_samp_fields",
+		sum:"meeting_participant_sum_fields",
+		var_pop:"meeting_participant_var_pop_fields",
+		var_samp:"meeting_participant_var_samp_fields",
+		variance:"meeting_participant_variance_fields"
 	},
-	nb_meeting_user_avg_fields:{
-		id:"Float",
+	meeting_participant_avg_fields:{
 		meeting_id:"Float"
 	},
-	nb_meeting_user_max_fields:{
-		id:"Int",
+	meeting_participant_max_fields:{
 		meeting_id:"Int",
-		status:"String"
+		participant_id:"uuid"
 	},
-	nb_meeting_user_min_fields:{
-		id:"Int",
+	meeting_participant_min_fields:{
 		meeting_id:"Int",
-		status:"String"
+		participant_id:"uuid"
 	},
-	nb_meeting_user_mutation_response:{
+	meeting_participant_mutation_response:{
 		affected_rows:"Int",
-		returning:"nb_meeting_user"
+		returning:"meeting_participant"
 	},
-	nb_meeting_user_stddev_fields:{
-		id:"Float",
+	meeting_participant_stddev_fields:{
 		meeting_id:"Float"
 	},
-	nb_meeting_user_stddev_pop_fields:{
-		id:"Float",
+	meeting_participant_stddev_pop_fields:{
 		meeting_id:"Float"
 	},
-	nb_meeting_user_stddev_samp_fields:{
-		id:"Float",
+	meeting_participant_stddev_samp_fields:{
 		meeting_id:"Float"
 	},
-	nb_meeting_user_sum_fields:{
-		id:"Int",
+	meeting_participant_sum_fields:{
 		meeting_id:"Int"
 	},
-	nb_meeting_user_var_pop_fields:{
-		id:"Float",
+	meeting_participant_var_pop_fields:{
 		meeting_id:"Float"
 	},
-	nb_meeting_user_var_samp_fields:{
-		id:"Float",
+	meeting_participant_var_samp_fields:{
 		meeting_id:"Float"
 	},
-	nb_meeting_user_variance_fields:{
-		id:"Float",
+	meeting_participant_variance_fields:{
 		meeting_id:"Float"
 	},
-	nb_meeting_var_pop_fields:{
+	meeting_stddev_fields:{
 		guild_id:"Float",
-		id:"Float"
-	},
-	nb_meeting_var_samp_fields:{
-		guild_id:"Float",
-		id:"Float"
-	},
-	nb_meeting_variance_fields:{
-		guild_id:"Float",
-		id:"Float"
-	},
-	nb_sphere:{
-		id:"Int",
-		name:"String",
-		nb_sphere_users:"nb_sphere_users",
-		nb_sphere_users_aggregate:"nb_sphere_users_aggregate"
-	},
-	nb_sphere_aggregate:{
-		aggregate:"nb_sphere_aggregate_fields",
-		nodes:"nb_sphere"
-	},
-	nb_sphere_aggregate_fields:{
-		avg:"nb_sphere_avg_fields",
-		count:"Int",
-		max:"nb_sphere_max_fields",
-		min:"nb_sphere_min_fields",
-		stddev:"nb_sphere_stddev_fields",
-		stddev_pop:"nb_sphere_stddev_pop_fields",
-		stddev_samp:"nb_sphere_stddev_samp_fields",
-		sum:"nb_sphere_sum_fields",
-		var_pop:"nb_sphere_var_pop_fields",
-		var_samp:"nb_sphere_var_samp_fields",
-		variance:"nb_sphere_variance_fields"
-	},
-	nb_sphere_avg_fields:{
-		id:"Float"
-	},
-	nb_sphere_max_fields:{
-		id:"Int",
-		name:"String"
-	},
-	nb_sphere_min_fields:{
-		id:"Int",
-		name:"String"
-	},
-	nb_sphere_mutation_response:{
-		affected_rows:"Int",
-		returning:"nb_sphere"
-	},
-	nb_sphere_stddev_fields:{
-		id:"Float"
-	},
-	nb_sphere_stddev_pop_fields:{
-		id:"Float"
-	},
-	nb_sphere_stddev_samp_fields:{
-		id:"Float"
-	},
-	nb_sphere_sum_fields:{
-		id:"Int"
-	},
-	nb_sphere_users:{
-		cr_user:"cr_user",
-		id:"Int",
-		nb_sphere:"nb_sphere",
-		sphere_id:"Int",
-		user_id:"uuid"
-	},
-	nb_sphere_users_aggregate:{
-		aggregate:"nb_sphere_users_aggregate_fields",
-		nodes:"nb_sphere_users"
-	},
-	nb_sphere_users_aggregate_fields:{
-		avg:"nb_sphere_users_avg_fields",
-		count:"Int",
-		max:"nb_sphere_users_max_fields",
-		min:"nb_sphere_users_min_fields",
-		stddev:"nb_sphere_users_stddev_fields",
-		stddev_pop:"nb_sphere_users_stddev_pop_fields",
-		stddev_samp:"nb_sphere_users_stddev_samp_fields",
-		sum:"nb_sphere_users_sum_fields",
-		var_pop:"nb_sphere_users_var_pop_fields",
-		var_samp:"nb_sphere_users_var_samp_fields",
-		variance:"nb_sphere_users_variance_fields"
-	},
-	nb_sphere_users_avg_fields:{
 		id:"Float",
 		sphere_id:"Float"
 	},
-	nb_sphere_users_max_fields:{
+	meeting_stddev_pop_fields:{
+		guild_id:"Float",
+		id:"Float",
+		sphere_id:"Float"
+	},
+	meeting_stddev_samp_fields:{
+		guild_id:"Float",
+		id:"Float",
+		sphere_id:"Float"
+	},
+	meeting_sum_fields:{
+		guild_id:"Int",
 		id:"Int",
 		sphere_id:"Int"
 	},
-	nb_sphere_users_min_fields:{
-		id:"Int",
-		sphere_id:"Int"
-	},
-	nb_sphere_users_mutation_response:{
-		affected_rows:"Int",
-		returning:"nb_sphere_users"
-	},
-	nb_sphere_users_stddev_fields:{
+	meeting_var_pop_fields:{
+		guild_id:"Float",
 		id:"Float",
 		sphere_id:"Float"
 	},
-	nb_sphere_users_stddev_pop_fields:{
+	meeting_var_samp_fields:{
+		guild_id:"Float",
 		id:"Float",
 		sphere_id:"Float"
 	},
-	nb_sphere_users_stddev_samp_fields:{
+	meeting_variance_fields:{
+		guild_id:"Float",
 		id:"Float",
 		sphere_id:"Float"
 	},
-	nb_sphere_users_sum_fields:{
-		id:"Int",
-		sphere_id:"Int"
-	},
-	nb_sphere_users_var_pop_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_sphere_users_var_samp_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_sphere_users_variance_fields:{
-		id:"Float",
-		sphere_id:"Float"
-	},
-	nb_sphere_var_pop_fields:{
-		id:"Float"
-	},
-	nb_sphere_var_samp_fields:{
-		id:"Float"
-	},
-	nb_sphere_variance_fields:{
-		id:"Float"
+	mutation_root:{
+		delete_guild:"guild_mutation_response",
+		delete_guild_by_pk:"guild",
+		delete_guild_member:"guild_member_mutation_response",
+		delete_guild_member_by_pk:"guild_member",
+		delete_meeting:"meeting_mutation_response",
+		delete_meeting_by_pk:"meeting",
+		delete_meeting_participant:"meeting_participant_mutation_response",
+		delete_meeting_participant_by_pk:"meeting_participant",
+		delete_sphere:"sphere_mutation_response",
+		delete_sphere_by_pk:"sphere",
+		delete_user:"user_mutation_response",
+		delete_user_by_pk:"user",
+		insert_guild:"guild_mutation_response",
+		insert_guild_member:"guild_member_mutation_response",
+		insert_guild_member_one:"guild_member",
+		insert_guild_one:"guild",
+		insert_meeting:"meeting_mutation_response",
+		insert_meeting_one:"meeting",
+		insert_meeting_participant:"meeting_participant_mutation_response",
+		insert_meeting_participant_one:"meeting_participant",
+		insert_sphere:"sphere_mutation_response",
+		insert_sphere_one:"sphere",
+		insert_user:"user_mutation_response",
+		insert_user_one:"user",
+		update_guild:"guild_mutation_response",
+		update_guild_by_pk:"guild",
+		update_guild_member:"guild_member_mutation_response",
+		update_guild_member_by_pk:"guild_member",
+		update_meeting:"meeting_mutation_response",
+		update_meeting_by_pk:"meeting",
+		update_meeting_participant:"meeting_participant_mutation_response",
+		update_meeting_participant_by_pk:"meeting_participant",
+		update_sphere:"sphere_mutation_response",
+		update_sphere_by_pk:"sphere",
+		update_user:"user_mutation_response",
+		update_user_by_pk:"user"
 	},
 	query_root:{
-		cr_user:"cr_user",
-		cr_user_aggregate:"cr_user_aggregate",
-		cr_user_by_pk:"cr_user",
-		nb_guild:"nb_guild",
-		nb_guild_aggregate:"nb_guild_aggregate",
-		nb_guild_by_pk:"nb_guild",
-		nb_guild_user:"nb_guild_user",
-		nb_guild_user_aggregate:"nb_guild_user_aggregate",
-		nb_guild_user_by_pk:"nb_guild_user",
-		nb_meeting:"nb_meeting",
-		nb_meeting_aggregate:"nb_meeting_aggregate",
-		nb_meeting_by_pk:"nb_meeting",
-		nb_meeting_user:"nb_meeting_user",
-		nb_meeting_user_aggregate:"nb_meeting_user_aggregate",
-		nb_meeting_user_by_pk:"nb_meeting_user",
-		nb_sphere:"nb_sphere",
-		nb_sphere_aggregate:"nb_sphere_aggregate",
-		nb_sphere_by_pk:"nb_sphere",
-		nb_sphere_users:"nb_sphere_users",
-		nb_sphere_users_aggregate:"nb_sphere_users_aggregate",
-		nb_sphere_users_by_pk:"nb_sphere_users"
+		guild:"guild",
+		guild_aggregate:"guild_aggregate",
+		guild_by_pk:"guild",
+		guild_member:"guild_member",
+		guild_member_aggregate:"guild_member_aggregate",
+		guild_member_by_pk:"guild_member",
+		meeting:"meeting",
+		meeting_aggregate:"meeting_aggregate",
+		meeting_by_pk:"meeting",
+		meeting_participant:"meeting_participant",
+		meeting_participant_aggregate:"meeting_participant_aggregate",
+		meeting_participant_by_pk:"meeting_participant",
+		sphere:"sphere",
+		sphere_aggregate:"sphere_aggregate",
+		sphere_by_pk:"sphere",
+		user:"user",
+		user_aggregate:"user_aggregate",
+		user_by_pk:"user"
+	},
+	sphere:{
+		domain:"String",
+		id:"Int",
+		name:"String"
+	},
+	sphere_aggregate:{
+		aggregate:"sphere_aggregate_fields",
+		nodes:"sphere"
+	},
+	sphere_aggregate_fields:{
+		avg:"sphere_avg_fields",
+		count:"Int",
+		max:"sphere_max_fields",
+		min:"sphere_min_fields",
+		stddev:"sphere_stddev_fields",
+		stddev_pop:"sphere_stddev_pop_fields",
+		stddev_samp:"sphere_stddev_samp_fields",
+		sum:"sphere_sum_fields",
+		var_pop:"sphere_var_pop_fields",
+		var_samp:"sphere_var_samp_fields",
+		variance:"sphere_variance_fields"
+	},
+	sphere_avg_fields:{
+		id:"Float"
+	},
+	sphere_max_fields:{
+		domain:"String",
+		id:"Int",
+		name:"String"
+	},
+	sphere_min_fields:{
+		domain:"String",
+		id:"Int",
+		name:"String"
+	},
+	sphere_mutation_response:{
+		affected_rows:"Int",
+		returning:"sphere"
+	},
+	sphere_stddev_fields:{
+		id:"Float"
+	},
+	sphere_stddev_pop_fields:{
+		id:"Float"
+	},
+	sphere_stddev_samp_fields:{
+		id:"Float"
+	},
+	sphere_sum_fields:{
+		id:"Int"
+	},
+	sphere_var_pop_fields:{
+		id:"Float"
+	},
+	sphere_var_samp_fields:{
+		id:"Float"
+	},
+	sphere_variance_fields:{
+		id:"Float"
 	},
 	subscription_root:{
-		cr_user:"cr_user",
-		cr_user_aggregate:"cr_user_aggregate",
-		cr_user_by_pk:"cr_user",
-		nb_guild:"nb_guild",
-		nb_guild_aggregate:"nb_guild_aggregate",
-		nb_guild_by_pk:"nb_guild",
-		nb_guild_user:"nb_guild_user",
-		nb_guild_user_aggregate:"nb_guild_user_aggregate",
-		nb_guild_user_by_pk:"nb_guild_user",
-		nb_meeting:"nb_meeting",
-		nb_meeting_aggregate:"nb_meeting_aggregate",
-		nb_meeting_by_pk:"nb_meeting",
-		nb_meeting_user:"nb_meeting_user",
-		nb_meeting_user_aggregate:"nb_meeting_user_aggregate",
-		nb_meeting_user_by_pk:"nb_meeting_user",
-		nb_sphere:"nb_sphere",
-		nb_sphere_aggregate:"nb_sphere_aggregate",
-		nb_sphere_by_pk:"nb_sphere",
-		nb_sphere_users:"nb_sphere_users",
-		nb_sphere_users_aggregate:"nb_sphere_users_aggregate",
-		nb_sphere_users_by_pk:"nb_sphere_users"
+		guild:"guild",
+		guild_aggregate:"guild_aggregate",
+		guild_by_pk:"guild",
+		guild_member:"guild_member",
+		guild_member_aggregate:"guild_member_aggregate",
+		guild_member_by_pk:"guild_member",
+		meeting:"meeting",
+		meeting_aggregate:"meeting_aggregate",
+		meeting_by_pk:"meeting",
+		meeting_participant:"meeting_participant",
+		meeting_participant_aggregate:"meeting_participant_aggregate",
+		meeting_participant_by_pk:"meeting_participant",
+		sphere:"sphere",
+		sphere_aggregate:"sphere_aggregate",
+		sphere_by_pk:"sphere",
+		user:"user",
+		user_aggregate:"user_aggregate",
+		user_by_pk:"user"
+	},
+	user:{
+		auth0_id:"String",
+		created_at:"timestamptz",
+		email:"String",
+		guilds:"guild_member",
+		guilds_aggregate:"guild_member_aggregate",
+		last_login:"timestamptz",
+		meetings:"meeting_participant",
+		meetings_aggregate:"meeting_participant_aggregate",
+		name:"String",
+		organized_meetings:"meeting",
+		organized_meetings_aggregate:"meeting_aggregate",
+		uuid:"uuid"
+	},
+	user_aggregate:{
+		aggregate:"user_aggregate_fields",
+		nodes:"user"
+	},
+	user_aggregate_fields:{
+		count:"Int",
+		max:"user_max_fields",
+		min:"user_min_fields"
+	},
+	user_max_fields:{
+		auth0_id:"String",
+		created_at:"timestamptz",
+		email:"String",
+		last_login:"timestamptz",
+		name:"String",
+		uuid:"uuid"
+	},
+	user_min_fields:{
+		auth0_id:"String",
+		created_at:"timestamptz",
+		email:"String",
+		last_login:"timestamptz",
+		name:"String",
+		uuid:"uuid"
+	},
+	user_mutation_response:{
+		affected_rows:"Int",
+		returning:"user"
 	}
 }
 
@@ -11621,15 +9917,16 @@ type MapType<SRC extends Anify<DST>, DST> = DST extends boolean
         : LastMapTypeSRCResolver<SRC[Key], DST[Key]>;
     };
 
-type OperationToGraphQL<V, T> = <Z>(o: Z | V) => Promise<MapType<T, Z>>;
+type OperationToGraphQL<V, T> = <Z extends V>(o: Z | V, variables?: Record<string, any>) => Promise<MapType<T, Z>>;
 
 type CastToGraphQL<V, T> = (
   resultOfYourQuery: any
-) => <Z>(o: Z | V) => MapType<T, Z>;
+) => <Z extends V>(o: Z | V) => MapType<T, Z>;
 
 type fetchOptions = ArgsType<typeof fetch>;
 
 export type SelectionFunction<V> = <T>(t: T | V) => T;
+type FetchFunction = (query: string, variables?: Record<string, any>) => any;
 
 
 
@@ -11680,6 +9977,10 @@ export const TypesPropsResolver = ({
   }
   const typeResolved = resolvedValue.type;
   const isArray: boolean = resolvedValue.array;
+  if (typeof value === 'string' && value.startsWith(`ZEUS_VAR$`)) {
+    const isRequired = resolvedValue.required ? '!' : ''
+    return `\$${value.split(`ZEUS_VAR$`)[1]}__ZEUS_VAR__${typeResolved}${isRequired}`;
+  }
   if (isArray && !blockArrays) {
     return `[${value
       .map((v: any) => TypesPropsResolver({ value: v, type, name, key, blockArrays: true }))
@@ -11787,13 +10088,33 @@ const traverseToSeekArrays = (parent: string[], a?: any): string => {
 
 const buildQuery = (type: string, a?: Record<any, any>) => traverseToSeekArrays([type], a);
 
-const queryConstruct = (t: 'query' | 'mutation' | 'subscription', tName: string) => (o: Record<any, any>) =>
-  `${t.toLowerCase()}${buildQuery(tName, o)}`;
+const inspectVariables = (query: string) => {
+  const regex = /\$\b\w*ZEUS_VAR\w*\b[!]?/g;
+  let result;
+  const AllVariables = [];
+  while ((result = regex.exec(query))) {
+    AllVariables.push(result[0]);
+  }
+  if (!AllVariables.length) {
+    return query;
+  }
+  let filteredQuery = query;
+  AllVariables.forEach((variable) => {
+    filteredQuery = filteredQuery.replace(variable, variable.split('__ZEUS_VAR__')[0]);
+  });
+  return `(${AllVariables.map((a) => a.split('__ZEUS_VAR__'))
+    .map(([variableName, variableType]) => `${variableName}:${variableType}`)
+    .join(', ')})${filteredQuery}`;
+};
 
-const fullChainConstruct = (options: fetchOptions) => (t: 'query' | 'mutation' | 'subscription', tName: string) => (
-  o: Record<any, any>,
-) => apiFetch(options, queryConstruct(t, tName)(o));
+const queryConstruct = (t: 'query' | 'mutation' | 'subscription', tName: string) => (o: Record<any, any>) =>
+  `${t.toLowerCase()}${inspectVariables(buildQuery(tName, o))}`;
   
+const fullChainConstruct = (fn: FetchFunction) => (t: 'query' | 'mutation' | 'subscription', tName: string) => (
+  o: Record<any, any>,
+  variables?: Record<string, any>,
+) => fn(queryConstruct(t, tName)(o), variables);
+
 const seekForAliases = (o: any) => {
   if (typeof o === 'object' && o) {
     const keys = Object.keys(o);
@@ -11821,6 +10142,8 @@ const seekForAliases = (o: any) => {
   }
 };
 
+export const $ = (t: TemplateStringsArray): any => `ZEUS_VAR$${t.join('')}`;
+
 
 const handleFetchResponse = (
   response: Parameters<Extract<Parameters<ReturnType<typeof fetch>['then']>[0], Function>>[0]
@@ -11836,7 +10159,7 @@ const handleFetchResponse = (
   return response.json();
 };
 
-const apiFetch = (options: fetchOptions, query: string) => {
+const apiFetch = (options: fetchOptions) => (query: string, variables: Record<string, any> = {}) => {
     let fetchFunction = fetch;
     let queryString = query;
     let fetchOptions = options[1] || {};
@@ -11853,7 +10176,7 @@ const apiFetch = (options: fetchOptions, query: string) => {
         });
     }
     return fetchFunction(`${options[0]}`, {
-      body: JSON.stringify({ query: queryString }),
+      body: JSON.stringify({ query: queryString, variables }),
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -11872,17 +10195,32 @@ const apiFetch = (options: fetchOptions, query: string) => {
   
 
 
-export const Chain = (...options: fetchOptions) => ({
-  query: ((o: any) =>
-    fullChainConstruct(options)('query', 'query_root')(o).then(
+export const Thunder = (fn: FetchFunction) => ({
+  query: ((o: any, variables) =>
+    fullChainConstruct(fn)('query', 'query_root')(o, variables).then(
       (response: any) => response
     )) as OperationToGraphQL<ValueTypes["query_root"],query_root>,
-mutation: ((o: any) =>
-    fullChainConstruct(options)('mutation', 'mutation_root')(o).then(
+mutation: ((o: any, variables) =>
+    fullChainConstruct(fn)('mutation', 'mutation_root')(o, variables).then(
       (response: any) => response
     )) as OperationToGraphQL<ValueTypes["mutation_root"],mutation_root>,
-subscription: ((o: any) =>
-    fullChainConstruct(options)('subscription', 'subscription_root')(o).then(
+subscription: ((o: any, variables) =>
+    fullChainConstruct(fn)('subscription', 'subscription_root')(o, variables).then(
+      (response: any) => response
+    )) as OperationToGraphQL<ValueTypes["subscription_root"],subscription_root>
+});
+
+export const Chain = (...options: fetchOptions) => ({
+  query: ((o: any, variables) =>
+    fullChainConstruct(apiFetch(options))('query', 'query_root')(o, variables).then(
+      (response: any) => response
+    )) as OperationToGraphQL<ValueTypes["query_root"],query_root>,
+mutation: ((o: any, variables) =>
+    fullChainConstruct(apiFetch(options))('mutation', 'mutation_root')(o, variables).then(
+      (response: any) => response
+    )) as OperationToGraphQL<ValueTypes["mutation_root"],mutation_root>,
+subscription: ((o: any, variables) =>
+    fullChainConstruct(apiFetch(options))('subscription', 'subscription_root')(o, variables).then(
       (response: any) => response
     )) as OperationToGraphQL<ValueTypes["subscription_root"],subscription_root>
 });
