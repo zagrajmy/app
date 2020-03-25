@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useTranslation } from "react-i18next";
-import { Link } from "../../lib/Link";
+import { Link } from "next-next-link";
 import { useAppState, StateFromAppInitialProps } from "../store";
 import { Menu } from "./Menu";
 import { NavLink } from "./NavLink";

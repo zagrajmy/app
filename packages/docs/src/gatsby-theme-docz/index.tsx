@@ -12,12 +12,12 @@ import * as modes from "gatsby-theme-docz/src/theme/modes";
 import styles from "gatsby-theme-docz/src/theme/styles";
 import prism from "gatsby-theme-docz/src/theme/prism";
 
-// console.log({ modes });
+import { theme as appTheme } from "@zagrajmy/app";
 
-const componentsMap = { ...baseComponents };
+const componentsMap = baseComponents;
 
 const theme = {
-  initialColorMode: "light",
+  initialColorModeName: "light",
   // Show errors above playground editor
   showLiveError: true,
   // Show preview of the code inside playground
@@ -25,7 +25,7 @@ const theme = {
   // Show editor when a playground is rendered
   showPlaygroundEditor: true,
   // Show dark/light mode switch toggle in header
-  showDarkModeSwitch: true,
+  showDarkModeSwitch: false,
   // Display edit this page button on every page
   showMarkdownEditButton: true,
   // Wrap the playground editor and preview in iframes to avoid style/script collisions
@@ -41,7 +41,8 @@ const theme = {
     heading: "system-ui",
     monospace: "'Fira Code', 'Hack', 'Hasklig'",
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
+  fontSizes: appTheme.fontSizes,
+  space: appTheme.space,
   fontWeights: {
     body: 400,
     heading: 700,
@@ -55,11 +56,11 @@ const theme = {
     body: "normal",
     caps: "0.2em",
   },
-  space: [0, 4, 8, 16, 32, 48, 64, 80, 100],
   radii: {
+    ...appTheme.radii,
+    // compatibility
     square: 0,
-    radius: 4,
-    rounded: 10,
+    radius: appTheme.radii["rounded-sm"],
   },
   styles,
   prism,

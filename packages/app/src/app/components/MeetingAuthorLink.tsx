@@ -1,9 +1,9 @@
+import { Link } from "next-next-link";
 import { Meeting } from "../types";
-import { Link } from "../../lib/Link";
 
 export const MeetingAuthorLink = ({
   children,
-  author
+  author,
 }: {
   children: React.ReactChild;
   author: Meeting["author"];

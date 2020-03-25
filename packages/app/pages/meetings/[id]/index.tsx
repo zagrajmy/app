@@ -3,11 +3,9 @@ import {
   Heading,
   Text,
   Button,
-  ButtonProps,
   Avatar,
   Flex,
   Textarea,
-  Theme,
   Input,
 } from "theme-ui";
 import { get } from "@theme-ui/css";
@@ -21,8 +19,7 @@ import pl from "date-fns/locale/pl";
 import { Id, Meeting, User } from "../../../src/app/types";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
-import { Link } from "../../../src/lib";
-import { Dl } from "../../../src/ui";
+import { Dl, Link, Theme } from "../../../src/ui";
 import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer";
 
 registerLocale("pl-PL", pl);
@@ -38,7 +35,7 @@ const EditMeetingButton = ({
   onFinishEdit,
   ...rest
 }: EditMeetingButtonProps) => {
-  const props: ButtonProps = {
+  const props = {
     title: "Edit meeting",
     ...rest,
   };
@@ -91,7 +88,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
     return "404: Couldn't find meeting.";
   }
 
-  const linkToAuthor = (children: React.ReactChild) => (
+  const LinkToAuthor: React.FC = ({ children }) => (
     <Link
       href="/u/[username_slug]"
       as={`/u/${meeting.author.slug}`}
@@ -219,7 +216,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           )}
 
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
-            {linkToAuthor(
+            <LinkToAuthor>
               <Avatar
                 src={User.avatar(meeting.author) || ""}
                 bg="primaryDark"
@@ -227,10 +224,10 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
                   borderRadius: "50%",
                 }}
               />
-            )}
+            </LinkToAuthor>
             <div sx={{ ml: 2, fontSize: 3 }}>
               <Text as="span">Hosted by </Text>
-              {linkToAuthor(meeting.author.name)}
+              <LinkToAuthor>{meeting.author.name}</LinkToAuthor>
             </div>
           </Flex>
         </header>

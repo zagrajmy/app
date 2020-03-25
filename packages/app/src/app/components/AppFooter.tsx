@@ -1,4 +1,4 @@
-import { Link } from "../../lib/Link";
+import { Link } from "next-next-link";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 
 export const AppFooter = () => {

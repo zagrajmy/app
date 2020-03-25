@@ -2,7 +2,7 @@ import React from "react";
 import { formatRelative } from "date-fns";
 import { Image } from "theme-ui";
 
-import { Link, LinkProps } from "../../lib/Link";
+import { Link, LinkProps } from "next-next-link";
 
 import { Meeting } from "../types";
 

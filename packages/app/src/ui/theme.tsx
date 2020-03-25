@@ -54,7 +54,9 @@ export const theme = makeTheme({
     primary: "#e85554",
     primaryLight: "#ea6463",
     primaryDark: "#d34e4d",
-    accent: "#2F81B5", // blue in triad of primary
+    secondary: "#5654e8",
+    accent: "#5654e8", // blue in triad of primary
+    muted: "#b19b9b",
     modes: {
       dark: {
         text: "#fff",

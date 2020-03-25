@@ -1,7 +1,7 @@
 {
   "name": "@zagrajmy/docs",
   "private": true,
-  "description": "A documentation for our reusable code and styleguide",
+  "description": "docs for the reusable code and styleguide",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -13,6 +13,7 @@
     "shadow": "gatsby-theme eject"
   },
   "dependencies": {
+    "@theme-ui/prism": "^0.3.0",
     "docz": "^2.2.0",
     "gatsby": "^2.20.2",
     "gatsby-plugin-typescript": "^2.3.0",
@@ -20,6 +21,9 @@
     "gatsby-theme-docz": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "resolutions": {
+    "theme-ui": "^0.4.0-alpha.0"
   },
   "bugs": {
     "url": "https://github.com/zagrajmy/frontend/issues"

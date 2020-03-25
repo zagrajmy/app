@@ -1,0 +1,23 @@
+---
+name: Dl
+---
+
+# Dl
+
+import { Playground, Props } from "docz";
+
+import { Dl } from "@zagrajmy/app";
+
+Raw and easy presentation UI for any object
+
+<Playground>
+  <Dl.FromObject
+    value={{
+      greeting: "Hello there!",
+      data: { author: "General Kenobi" },
+    }}
+  />
+</Playground>
+
+<!-- <Props of={Dl.FromObject} /> -->
+<!-- Props don't work. Is it because it's in another package? -->

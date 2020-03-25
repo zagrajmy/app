@@ -12,17 +12,17 @@ import {
 } from "gatsby-theme-docz/src/components/Icons";
 import { Logo } from "gatsby-theme-docz/src/components/Logo";
 
-export const Header = props => {
+export const Header = (props: { onOpen: () => void }) => {
   const { onOpen } = props;
   const {
     repository,
     themeConfig: { showDarkModeSwitch, showMarkdownEditButton },
   } = useConfig();
   const { edit = true, ...doc } = useCurrentDoc();
-  // const [colorMode, setColorMode] = useColorMode();
+  const [colorMode, setColorMode] = useColorMode();
 
   const toggleColorMode = () => {
-    // setColorMode(colorMode === "light" ? "dark" : "light");
+    setColorMode(colorMode === "light" ? "dark" : "light");
   };
 
   return (
@@ -65,13 +65,7 @@ export const Header = props => {
             rel="noopener noreferrer"
           >
             <Edit width={14} />
-            <Box
-              sx={{
-                pl: 2,
-              }}
-            >
-              Edit page
-            </Box>
+            <Box sx={{ pl: 2 }}>Edit page</Box>
           </a>
         )}
       </div>

@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:lib": "tsc -p ./tsconfig.lib.json && babel dist-ts -d dist && rm -rf dist-ts",
     "start": "next start",
     "lint": "eslint {src,pages}/**/*.{ts,tsx}",
     "fix": "wotan --fix && yarn lint --fix",
@@ -19,6 +20,11 @@
     "docz:build": "docz build",
     "docz:serve": "docz build && docz serve"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.10.0",
     "@emotion/babel-plugin-jsx-pragmatic": "^0.1.5",
@@ -46,6 +52,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.1",
     "next-fonts": "^1.0.3",
+    "next-next-link": "^0.0.1",
     "nom-ts": "^0.1.0",
     "nookies": "^2.2.0",
     "prettier": "^1.19.1",

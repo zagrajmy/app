@@ -1,10 +1,10 @@
 import { ComponentProps, useRef } from "react";
+import { Link } from "next-next-link";
 import { Theme } from "theme-ui";
 import { get } from "@theme-ui/css";
 import useOnClickOutside from "use-onclickoutside";
 
 import { Claims } from "../auth";
-import { Link } from "../../lib";
 import { UserAvatar } from "./UserAvatar";
 
 const Tip = () => (

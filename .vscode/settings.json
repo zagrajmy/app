@@ -2,5 +2,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
 
   "typescript.referencesCodeLens.enabled": false,
-  "overmind.port": 3301
+  "search.exclude": {
+    "**/dist": true,
+    "**/dist-ts": true
+  }
 }
