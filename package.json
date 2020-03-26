@@ -40,7 +40,7 @@
     "fp-ts": "^2.5.3",
     "i18next": "^19.3.3",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.3.1",
+    "next": "9.3.2",
     "next-fonts": "^1.0.3",
     "nom-ts": "^0.1.0",
     "nookies": "^2.2.0",
