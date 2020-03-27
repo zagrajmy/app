@@ -10,7 +10,7 @@ import * as styles from "gatsby-theme-docz/src/components/Layout/styles";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
-  const nav = useRef();
+  const nav = useRef<HTMLDivElement>(null);
   return (
     <Box sx={{ "& > div": { flex: "1 1 auto" } }} data-testid="layout">
       <Global styles={global} />
@@ -20,8 +20,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <Sidebar
             ref={nav}
             open={open}
-            onFocus={() => setOpen(true)}
-            onBlur={() => setOpen(false)}
+            // onFocus={() => setOpen(true)}
+            // onBlur={() => setOpen(false)}
             onClick={() => setOpen(false)}
           />
           <Box sx={styles.content} data-testid="main-container">
