@@ -3,10 +3,10 @@ import { useRef, useState } from "react";
 import { jsx, Box } from "theme-ui";
 import { Global } from "@emotion/core";
 import global from "gatsby-theme-docz/src/theme/global";
+import * as styles from "gatsby-theme-docz/src/components/Layout/styles";
 
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
-import * as styles from "gatsby-theme-docz/src/components/Layout/styles";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
