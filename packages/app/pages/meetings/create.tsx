@@ -10,7 +10,7 @@ import {
 import { OmitByValue } from "utility-types";
 
 import { useTranslation } from "react-i18next";
-import { nb_meeting as Meeting } from "../../data/graphql-zeus";
+import { meeting as Meeting } from "../../data/graphql-zeus";
 import { Page } from "../../src/app/components";
 import { auth } from "../../src/app/auth";
 
@@ -23,13 +23,13 @@ const Input = ThInput as (props: InputProps) => JSX.Element;
 
 const CreateMeetingPage: NextPage = () => {
   const { t } = useTranslation();
-  const { register, handleSubmit, errors, getValues } = useForm<Meeting>({
+  const { register, handleSubmit, errors } = useForm<Meeting>({
     defaultValues: {
       guild_id: GUILD_ID,
     },
   });
 
-  const onSubmit: OnSubmit<Meeting> = values => console.log({ values });
+  const onSubmit: OnSubmit<Meeting> = (values) => console.log({ values });
 
   return (
     <Page>

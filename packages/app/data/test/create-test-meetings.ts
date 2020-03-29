@@ -11,10 +11,7 @@ import { subWeeks, addWeeks, addHours } from "date-fns";
 
 import { flow } from "fp-ts/lib/function";
 import { failure } from "../../src/lib/failure";
-import {
-  nb_meeting_update_column,
-  nb_meeting_constraint,
-} from "../graphql-zeus";
+import { meeting_update_column, meeting_constraint } from "../graphql-zeus";
 import { randomElement } from "../../src/lib/randomElement";
 
 config();
@@ -27,7 +24,7 @@ import("../hasura")
     const getUsers = TE.tryCatch(
       () =>
         query({
-          cr_user: [
+          user: [
             {
               where: {
                 email: { _like: "zagrajmy.net+test-admiral.%@gmail.com" },
@@ -35,7 +32,7 @@ import("../hasura")
             },
             { uuid: true, username: true },
           ],
-        }).then(res => res.cr_user),
+        }).then((res) => res.user),
       failure("failed to fetch admirals")
     );
 
@@ -43,26 +40,26 @@ import("../hasura")
       TE.tryCatch(
         () =>
           query({
-            nb_guild: [
+            guild: [
               {
                 where: { name: { _eq: "Star Wars Admirals Play Battleship" } },
               },
               { id: true },
             ],
-          }).then(res => res.nb_guild),
+          }).then((res) => res.guild),
         failure("failed to fetch id")
       ),
       TE.map(head),
       TE.chain(TE.fromOption(failure("test sphere not found"))),
-      TE.map(guild => guild.id)
+      TE.map((guild) => guild.id)
     );
 
     // TODO: Add participants while creating meetings.
     const insertMeetings = (users: { uuid: string }[], testGuildId: number) =>
       mutation({
-        insert_nb_meeting: [
+        insert_meeting: [
           {
-            objects: range(-50, 100).map(i => {
+            objects: range(-50, 100).map((i) => {
               const date = subWeeks(new Date(), i);
               const startTime = addWeeks(date, 1);
               const endTime = addHours(startTime, 3);
@@ -81,8 +78,8 @@ import("../hasura")
               };
             }),
             on_conflict: {
-              constraint: nb_meeting_constraint.nb_meeting_pkey,
-              update_columns: Object.values(nb_meeting_update_column),
+              constraint: meeting_constraint.meeting_pkey,
+              update_columns: Object.values(meeting_update_column),
             },
           },
           {
@@ -99,15 +96,15 @@ import("../hasura")
       TE.chain(([users, testGuildId]) => {
         return TE.tryCatch(
           () => insertMeetings(users, testGuildId),
-          err => (err instanceof Error ? err : new Error(JSON.stringify(err)))
+          (err) => (err instanceof Error ? err : new Error(JSON.stringify(err)))
         );
       })
     )();
   })
   .then(
     flow(
-      E.fold(console.error, result => {
-        console.log(result.insert_nb_meeting);
+      E.fold(console.error, (result) => {
+        console.log(result.insert_meeting);
       })
     )
   );

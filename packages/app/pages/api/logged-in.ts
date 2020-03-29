@@ -6,30 +6,27 @@ import { parseCookies } from "nookies";
 
 import { hasura, Db } from "../../data/hasura";
 import { auth, UserUuid } from "../../src/app/auth";
-import { cr_user } from "../../data/graphql-zeus";
+import * as generated from "../../data/graphql-zeus";
 
 const getCrUserByEmail = (db: Db) => (email: string) =>
   db
     .query({
-      cr_user: [{ where: { email: { _eq: email } } }, { uuid: true }],
+      user: [{ where: { email: { _eq: email } } }, { uuid: true }],
     })
     // I am assuming that there is only one user with this email for now.
-    .then(x => head(x.cr_user));
+    .then((x) => head(x.user));
 
-type CreateUserArg = Pick<
-  cr_user,
-  "uuid" | "username" | "email" | "first_name" | "last_name"
->;
+type CreateUserArg = Pick<generated.user, "uuid" | "name" | "email">;
 const createUser = (db: Db) => (user: CreateUserArg) =>
   db
     .mutation({
-      insert_cr_user: [{ objects: [user] }, { returning: { uuid: true } }],
+      insert_user: [{ objects: [user] }, { returning: { uuid: true } }],
     })
     .then(
       flow(
-        x => x.insert_cr_user,
+        (x) => x.insert_user,
         O.fromNullable,
-        O.chain(data => head(data.returning.map(u => u.uuid)))
+        O.chain((data) => head(data.returning.map((u) => u.uuid)))
       )
     );
 
@@ -53,8 +50,8 @@ export default async function loggedIn(
       getCrUserByEmail(db)(email),
       auth.management
         .getUsersByEmail(email)
-        .then(auth0Users =>
-          O.toUndefined(head(auth0Users.map(u => u.user_id)))
+        .then((auth0Users) =>
+          O.toUndefined(head(auth0Users.map((u) => u.user_id)))
         ),
     ] as const);
 
@@ -79,9 +76,9 @@ export default async function loggedIn(
            */
           uuid: auth0UserId,
           email,
-          username: session.user.nickname,
-          first_name: session.user.given_name,
-          last_name: session.user.family_name,
+          name:
+            session.user.nickname ||
+            `${session.user.given_name} ${session.user.family_name}`,
         })
       );
       console.log(`User ${uuid} successfuly created.`);
