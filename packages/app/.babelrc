@@ -4,7 +4,8 @@
       "next/babel",
       {
         "preset-react": {
-          "pragma": "jsx"
+          "pragma": "jsx",
+          "pragmaFrag": "React.Fragment"
         }
       }
     ]

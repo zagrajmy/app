@@ -70,8 +70,10 @@ export const theme = makeTheme({
   fonts: {
     body:
       "system-ui, -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif",
-    heading: "inherit",
-    // mono
+    heading:
+      "system-ui, -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif",
+    monospace:
+      "'Fira Code', 'Hack', 'Hasklig', 'Inconsolata', 'Menlo', 'Consolas'",
   },
   fontWeights: {
     heading: "bold",

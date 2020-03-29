@@ -52,7 +52,7 @@ export const light = {
 };
 
 export const dark = {
-  ...cx.dark,
+  ...cx.modes.dark,
   primary: colors.skyBlue,
   text: colors.grayExtraLight,
   muted: colors.gray,

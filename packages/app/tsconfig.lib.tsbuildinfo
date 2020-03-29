@@ -290,8 +290,8 @@
         "signature": "43060dce08b2598c514a1fc676762e845ef23eec75c9e4c6eea7bbe646c3e8a4"
       },
       "./src/ui/theme.tsx": {
-        "version": "84a1f20c08d33afce02d314ab96dbd3badc98da7cf645f5fedab55b77f1527eb",
-        "signature": "fc426aefc47590979274fa2de63a4427a3916ac5de690ce6d07faf72f567dafa"
+        "version": "25df7540ee812cf0ce5e453e334c3f0d6318cb4768e20712cb47c7501a1f268a",
+        "signature": "5f2b9d220e9994451966ad517ca5221cb9ca956335b76c9b9731be982ba11dd6"
       },
       "./node_modules/@types/node/globals.d.ts": {
         "version": "1236b98326630298e0b9cd30ccecd77560ac925140b753f1b1a0ffc6e7b51ad4",
@@ -557,9 +557,13 @@
         "version": "893754a015d40c137f33b97bd6195191bb67e5412b927734ac1b34fd0b33547f",
         "signature": "0dd82b9de103456dbc495469fa6109506e04cfd682d3d93a57a8924438e5067a"
       },
+      "./src/ui/Spacer.tsx": {
+        "version": "122875d561c7305174d9598f52a9798d4329d0b3a88b255f1126aa3516d3ba29",
+        "signature": "eca8d60d35e60e1a457ffd2035e94c4a1a04c85f405513ce74401bc92cb72502"
+      },
       "./src/ui/index.tsx": {
-        "version": "5de213e0b447cc1257f2eafa2761d356a55bb5875b88ebd2498217be0e03d1ba",
-        "signature": "5de213e0b447cc1257f2eafa2761d356a55bb5875b88ebd2498217be0e03d1ba"
+        "version": "0aa20b179fc42513eb75e543f183816d3adb736e466725395b88d649f5c06111",
+        "signature": "0aa20b179fc42513eb75e543f183816d3adb736e466725395b88d649f5c06111"
       },
       "./src/index.ts": {
         "version": "0334ac4b9e7a3566c8dc02c9243d77860fe200288202e1acbadacb09184ead62",
@@ -2243,10 +2247,19 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "../../node_modules/date-fns/typings.d.ts"
       ],
+      "./src/ui/Spacer.tsx": [
+        "../../node_modules/theme-ui/dist/index.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "../../node_modules/date-fns/typings.d.ts"
+      ],
       "./src/ui/index.tsx": [
         "./src/ui/Dl.tsx",
         "./src/ui/theme.tsx",
         "./src/ui/Link.tsx",
+        "./src/ui/Spacer.tsx",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -4526,10 +4539,14 @@
       "./src/ui/Link.tsx": [
         "../../node_modules/next-next-link/dist/index.d.ts"
       ],
+      "./src/ui/Spacer.tsx": [
+        "../../node_modules/theme-ui/dist/index.d.ts"
+      ],
       "./src/ui/index.tsx": [
         "./src/ui/Dl.tsx",
         "./src/ui/theme.tsx",
-        "./src/ui/Link.tsx"
+        "./src/ui/Link.tsx",
+        "./src/ui/Spacer.tsx"
       ],
       "./src/index.ts": [
         "./src/lib/index.ts",
@@ -5636,6 +5653,7 @@
       "../../node_modules/@types/theme-ui/index.d.ts",
       "../../node_modules/@theme-ui/core/dist/index.d.ts",
       "../../node_modules/theme-ui/dist/index.d.ts",
+      "./src/ui/theme.tsx",
       "./node_modules/@types/node/globals.d.ts",
       "./node_modules/@types/node/assert.d.ts",
       "./node_modules/@types/node/async_hooks.d.ts",
@@ -5701,6 +5719,8 @@
       "../../node_modules/next/dist/client/link.d.ts",
       "../../node_modules/next/link.d.ts",
       "../../node_modules/next-next-link/dist/index.d.ts",
+      "./src/ui/Link.tsx",
+      "./src/ui/Spacer.tsx",
       "../../node_modules/@auth0/nextjs-auth0/dist/oidc-client-settings.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/session/cookie-store/settings.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/settings.d.ts",
@@ -5814,8 +5834,6 @@
       "../../node_modules/@types/yargs/index.d.ts",
       "../../node_modules/@types/yoga-layout/index.d.ts",
       "../../node_modules/@types/zen-observable/index.d.ts",
-      "./src/ui/theme.tsx",
-      "./src/ui/Link.tsx",
       "./src/ui/index.tsx",
       "./src/index.ts"
     ]

@@ -1,8 +1,12 @@
-import * as mixins from "~utils/mixins";
-export const editor = {
+/* eslint-disable import/no-extraneous-dependencies */
+import { SystemCssProperties, SystemStyleObject } from "theme-ui";
+import * as mixins from "gatsby-theme-docz/src/utils/mixins";
+import { ThemeConfig } from "docz";
+
+export const editor: SystemStyleObject = {
   p: 2,
-  borderTop: t => `1px solid ${t.colors.border}`,
-  background: t => t.colors.background,
+  borderTop: (t: ThemeConfig) => `1px solid ${t.colors.border}`,
+  background: (t: ThemeConfig) => t.colors.background,
   fontFamily: "monospace",
   fontSize: 18,
   "* > textarea:focus": {
@@ -10,7 +14,7 @@ export const editor = {
   },
 };
 
-export const error = {
+export const error: SystemCssProperties = {
   m: 0,
   py: 2,
   px: 3,
@@ -18,10 +22,10 @@ export const error = {
   fontSize: 1,
   color: "white",
 };
-export const previewWrapper = {
-  position: "relative",
-};
-export const previewInner = (showingCode, height = "auto") => ({
+export const previewInner = (
+  showingCode: boolean,
+  height = "auto"
+): SystemCssProperties => ({
   height,
   display: "block",
   minHeight: "100%",
@@ -29,18 +33,11 @@ export const previewInner = (showingCode, height = "auto") => ({
   bg: "playground.bg",
   borderRadius: showingCode ? "4px 4px 0 0" : "4px",
 });
-export const preview = {
+export const preview: SystemCssProperties = {
   m: 0,
   p: 3,
 };
-export const buttons = {
-  zIndex: 9,
-  display: "flex",
-  position: "absolute",
-  bottom: "0px",
-  right: "0px",
-};
-export const button = {
+export const button: SystemCssProperties = {
   ...mixins.ghostButton,
   display: "flex",
   alignItems: "center",
@@ -51,7 +48,7 @@ export const button = {
     ml: 1,
   },
 };
-export const link = {
+export const link: SystemCssProperties = {
   py: 0,
   ml: 1,
   height: 22,

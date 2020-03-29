@@ -12,11 +12,24 @@ import * as modes from "gatsby-theme-docz/src/theme/modes";
 import styles from "gatsby-theme-docz/src/theme/styles";
 import prism from "gatsby-theme-docz/src/theme/prism";
 
+import Router from "next/router";
+
 import { theme as appTheme } from "@zagrajmy/app";
+
+// mock for next/link
+/* eslint-disable @typescript-eslint/no-empty-function */
+Router.router = {
+  push: () => {},
+  replace: () => {},
+  prefetch: () => Promise.resolve(),
+} as any;
+/* eslint-disable @typescript-eslint/no-empty-function */
+// ---
 
 const componentsMap = baseComponents;
 
 const theme = {
+  ...appTheme,
   initialColorModeName: "light",
   // Show errors above playground editor
   showLiveError: true,
@@ -36,18 +49,6 @@ const theme = {
       dark: modes.dark,
     },
   },
-  fonts: {
-    body: "system-ui",
-    heading: "system-ui",
-    monospace: "'Fira Code', 'Hack', 'Hasklig'",
-  },
-  fontSizes: appTheme.fontSizes,
-  space: appTheme.space,
-  fontWeights: {
-    body: 400,
-    heading: 700,
-    bold: 700,
-  },
   lineHeights: {
     body: 1.5,
     heading: 1.125,
@@ -66,10 +67,7 @@ const theme = {
   prism,
 };
 
-/**
- * @type {React.FC}
- */
-const Theme = ({ children }) => {
+const Theme = ({ children }: { children?: React.ReactNode }) => {
   const config = useConfig();
 
   return (
