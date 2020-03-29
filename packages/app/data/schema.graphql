@@ -1,0 +1,2740 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+# columns and relationships of "guild"
+type guild {
+  created_at: timestamptz!
+  description: String
+
+  # An array relationship
+  guild_members(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): [guild_member!]!
+
+  # An aggregated array relationship
+  guild_members_aggregate(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): guild_member_aggregate!
+  id: Int!
+
+  # An array relationship
+  meetings(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): [meeting!]!
+
+  # An aggregated array relationship
+  meetings_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): meeting_aggregate!
+  name: String!
+  updated_at: timestamptz!
+}
+
+# aggregated selection of "guild"
+type guild_aggregate {
+  aggregate: guild_aggregate_fields
+  nodes: [guild!]!
+}
+
+# aggregate fields of "guild"
+type guild_aggregate_fields {
+  avg: guild_avg_fields
+  count(columns: [guild_select_column!], distinct: Boolean): Int
+  max: guild_max_fields
+  min: guild_min_fields
+  stddev: guild_stddev_fields
+  stddev_pop: guild_stddev_pop_fields
+  stddev_samp: guild_stddev_samp_fields
+  sum: guild_sum_fields
+  var_pop: guild_var_pop_fields
+  var_samp: guild_var_samp_fields
+  variance: guild_variance_fields
+}
+
+# order by aggregate values of table "guild"
+input guild_aggregate_order_by {
+  avg: guild_avg_order_by
+  count: order_by
+  max: guild_max_order_by
+  min: guild_min_order_by
+  stddev: guild_stddev_order_by
+  stddev_pop: guild_stddev_pop_order_by
+  stddev_samp: guild_stddev_samp_order_by
+  sum: guild_sum_order_by
+  var_pop: guild_var_pop_order_by
+  var_samp: guild_var_samp_order_by
+  variance: guild_variance_order_by
+}
+
+# input type for inserting array relation for remote table "guild"
+input guild_arr_rel_insert_input {
+  data: [guild_insert_input!]!
+  on_conflict: guild_on_conflict
+}
+
+# aggregate avg on columns
+type guild_avg_fields {
+  id: Float
+}
+
+# order by avg() on columns of table "guild"
+input guild_avg_order_by {
+  id: order_by
+}
+
+# Boolean expression to filter rows from the table "guild". All fields are combined with a logical 'AND'.
+input guild_bool_exp {
+  _and: [guild_bool_exp]
+  _not: guild_bool_exp
+  _or: [guild_bool_exp]
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  guild_members: guild_member_bool_exp
+  id: Int_comparison_exp
+  meetings: meeting_bool_exp
+  name: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+# unique or primary key constraints on table "guild"
+enum guild_constraint {
+  # unique or primary key constraint
+  guild_pkey
+}
+
+# input type for incrementing integer columne in table "guild"
+input guild_inc_input {
+  id: Int
+}
+
+# input type for inserting data into table "guild"
+input guild_insert_input {
+  created_at: timestamptz
+  description: String
+  guild_members: guild_member_arr_rel_insert_input
+  id: Int
+  meetings: meeting_arr_rel_insert_input
+  name: String
+  updated_at: timestamptz
+}
+
+# aggregate max on columns
+type guild_max_fields {
+  created_at: timestamptz
+  description: String
+  id: Int
+  name: String
+  updated_at: timestamptz
+}
+
+# order by max() on columns of table "guild"
+input guild_max_order_by {
+  created_at: order_by
+  description: order_by
+  id: order_by
+  name: order_by
+  updated_at: order_by
+}
+
+# columns and relationships of "guild_member"
+type guild_member {
+  # An object relationship
+  guild: guild!
+  guild_id: Int!
+  member_id: uuid!
+
+  # An object relationship
+  user: user!
+}
+
+# aggregated selection of "guild_member"
+type guild_member_aggregate {
+  aggregate: guild_member_aggregate_fields
+  nodes: [guild_member!]!
+}
+
+# aggregate fields of "guild_member"
+type guild_member_aggregate_fields {
+  avg: guild_member_avg_fields
+  count(columns: [guild_member_select_column!], distinct: Boolean): Int
+  max: guild_member_max_fields
+  min: guild_member_min_fields
+  stddev: guild_member_stddev_fields
+  stddev_pop: guild_member_stddev_pop_fields
+  stddev_samp: guild_member_stddev_samp_fields
+  sum: guild_member_sum_fields
+  var_pop: guild_member_var_pop_fields
+  var_samp: guild_member_var_samp_fields
+  variance: guild_member_variance_fields
+}
+
+# order by aggregate values of table "guild_member"
+input guild_member_aggregate_order_by {
+  avg: guild_member_avg_order_by
+  count: order_by
+  max: guild_member_max_order_by
+  min: guild_member_min_order_by
+  stddev: guild_member_stddev_order_by
+  stddev_pop: guild_member_stddev_pop_order_by
+  stddev_samp: guild_member_stddev_samp_order_by
+  sum: guild_member_sum_order_by
+  var_pop: guild_member_var_pop_order_by
+  var_samp: guild_member_var_samp_order_by
+  variance: guild_member_variance_order_by
+}
+
+# input type for inserting array relation for remote table "guild_member"
+input guild_member_arr_rel_insert_input {
+  data: [guild_member_insert_input!]!
+  on_conflict: guild_member_on_conflict
+}
+
+# aggregate avg on columns
+type guild_member_avg_fields {
+  guild_id: Float
+}
+
+# order by avg() on columns of table "guild_member"
+input guild_member_avg_order_by {
+  guild_id: order_by
+}
+
+# Boolean expression to filter rows from the table "guild_member". All fields are combined with a logical 'AND'.
+input guild_member_bool_exp {
+  _and: [guild_member_bool_exp]
+  _not: guild_member_bool_exp
+  _or: [guild_member_bool_exp]
+  guild: guild_bool_exp
+  guild_id: Int_comparison_exp
+  member_id: uuid_comparison_exp
+  user: user_bool_exp
+}
+
+# unique or primary key constraints on table "guild_member"
+enum guild_member_constraint {
+  # unique or primary key constraint
+  guild_member_pkey
+}
+
+# input type for incrementing integer columne in table "guild_member"
+input guild_member_inc_input {
+  guild_id: Int
+}
+
+# input type for inserting data into table "guild_member"
+input guild_member_insert_input {
+  guild: guild_obj_rel_insert_input
+  guild_id: Int
+  member_id: uuid
+  user: user_obj_rel_insert_input
+}
+
+# aggregate max on columns
+type guild_member_max_fields {
+  guild_id: Int
+  member_id: uuid
+}
+
+# order by max() on columns of table "guild_member"
+input guild_member_max_order_by {
+  guild_id: order_by
+  member_id: order_by
+}
+
+# aggregate min on columns
+type guild_member_min_fields {
+  guild_id: Int
+  member_id: uuid
+}
+
+# order by min() on columns of table "guild_member"
+input guild_member_min_order_by {
+  guild_id: order_by
+  member_id: order_by
+}
+
+# response of any mutation on the table "guild_member"
+type guild_member_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [guild_member!]!
+}
+
+# input type for inserting object relation for remote table "guild_member"
+input guild_member_obj_rel_insert_input {
+  data: guild_member_insert_input!
+  on_conflict: guild_member_on_conflict
+}
+
+# on conflict condition type for table "guild_member"
+input guild_member_on_conflict {
+  constraint: guild_member_constraint!
+  update_columns: [guild_member_update_column!]!
+  where: guild_member_bool_exp
+}
+
+# ordering options when selecting data from "guild_member"
+input guild_member_order_by {
+  guild: guild_order_by
+  guild_id: order_by
+  member_id: order_by
+  user: user_order_by
+}
+
+# primary key columns input for table: "guild_member"
+input guild_member_pk_columns_input {
+  guild_id: Int!
+  member_id: uuid!
+}
+
+# select columns of table "guild_member"
+enum guild_member_select_column {
+  # column name
+  guild_id
+
+  # column name
+  member_id
+}
+
+# input type for updating data in table "guild_member"
+input guild_member_set_input {
+  guild_id: Int
+  member_id: uuid
+}
+
+# aggregate stddev on columns
+type guild_member_stddev_fields {
+  guild_id: Float
+}
+
+# order by stddev() on columns of table "guild_member"
+input guild_member_stddev_order_by {
+  guild_id: order_by
+}
+
+# aggregate stddev_pop on columns
+type guild_member_stddev_pop_fields {
+  guild_id: Float
+}
+
+# order by stddev_pop() on columns of table "guild_member"
+input guild_member_stddev_pop_order_by {
+  guild_id: order_by
+}
+
+# aggregate stddev_samp on columns
+type guild_member_stddev_samp_fields {
+  guild_id: Float
+}
+
+# order by stddev_samp() on columns of table "guild_member"
+input guild_member_stddev_samp_order_by {
+  guild_id: order_by
+}
+
+# aggregate sum on columns
+type guild_member_sum_fields {
+  guild_id: Int
+}
+
+# order by sum() on columns of table "guild_member"
+input guild_member_sum_order_by {
+  guild_id: order_by
+}
+
+# update columns of table "guild_member"
+enum guild_member_update_column {
+  # column name
+  guild_id
+
+  # column name
+  member_id
+}
+
+# aggregate var_pop on columns
+type guild_member_var_pop_fields {
+  guild_id: Float
+}
+
+# order by var_pop() on columns of table "guild_member"
+input guild_member_var_pop_order_by {
+  guild_id: order_by
+}
+
+# aggregate var_samp on columns
+type guild_member_var_samp_fields {
+  guild_id: Float
+}
+
+# order by var_samp() on columns of table "guild_member"
+input guild_member_var_samp_order_by {
+  guild_id: order_by
+}
+
+# aggregate variance on columns
+type guild_member_variance_fields {
+  guild_id: Float
+}
+
+# order by variance() on columns of table "guild_member"
+input guild_member_variance_order_by {
+  guild_id: order_by
+}
+
+# aggregate min on columns
+type guild_min_fields {
+  created_at: timestamptz
+  description: String
+  id: Int
+  name: String
+  updated_at: timestamptz
+}
+
+# order by min() on columns of table "guild"
+input guild_min_order_by {
+  created_at: order_by
+  description: order_by
+  id: order_by
+  name: order_by
+  updated_at: order_by
+}
+
+# response of any mutation on the table "guild"
+type guild_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [guild!]!
+}
+
+# input type for inserting object relation for remote table "guild"
+input guild_obj_rel_insert_input {
+  data: guild_insert_input!
+  on_conflict: guild_on_conflict
+}
+
+# on conflict condition type for table "guild"
+input guild_on_conflict {
+  constraint: guild_constraint!
+  update_columns: [guild_update_column!]!
+  where: guild_bool_exp
+}
+
+# ordering options when selecting data from "guild"
+input guild_order_by {
+  created_at: order_by
+  description: order_by
+  guild_members_aggregate: guild_member_aggregate_order_by
+  id: order_by
+  meetings_aggregate: meeting_aggregate_order_by
+  name: order_by
+  updated_at: order_by
+}
+
+# primary key columns input for table: "guild"
+input guild_pk_columns_input {
+  id: Int!
+}
+
+# select columns of table "guild"
+enum guild_select_column {
+  # column name
+  created_at
+
+  # column name
+  description
+
+  # column name
+  id
+
+  # column name
+  name
+
+  # column name
+  updated_at
+}
+
+# input type for updating data in table "guild"
+input guild_set_input {
+  created_at: timestamptz
+  description: String
+  id: Int
+  name: String
+  updated_at: timestamptz
+}
+
+# aggregate stddev on columns
+type guild_stddev_fields {
+  id: Float
+}
+
+# order by stddev() on columns of table "guild"
+input guild_stddev_order_by {
+  id: order_by
+}
+
+# aggregate stddev_pop on columns
+type guild_stddev_pop_fields {
+  id: Float
+}
+
+# order by stddev_pop() on columns of table "guild"
+input guild_stddev_pop_order_by {
+  id: order_by
+}
+
+# aggregate stddev_samp on columns
+type guild_stddev_samp_fields {
+  id: Float
+}
+
+# order by stddev_samp() on columns of table "guild"
+input guild_stddev_samp_order_by {
+  id: order_by
+}
+
+# aggregate sum on columns
+type guild_sum_fields {
+  id: Int
+}
+
+# order by sum() on columns of table "guild"
+input guild_sum_order_by {
+  id: order_by
+}
+
+# update columns of table "guild"
+enum guild_update_column {
+  # column name
+  created_at
+
+  # column name
+  description
+
+  # column name
+  id
+
+  # column name
+  name
+
+  # column name
+  updated_at
+}
+
+# aggregate var_pop on columns
+type guild_var_pop_fields {
+  id: Float
+}
+
+# order by var_pop() on columns of table "guild"
+input guild_var_pop_order_by {
+  id: order_by
+}
+
+# aggregate var_samp on columns
+type guild_var_samp_fields {
+  id: Float
+}
+
+# order by var_samp() on columns of table "guild"
+input guild_var_samp_order_by {
+  id: order_by
+}
+
+# aggregate variance on columns
+type guild_variance_fields {
+  id: Float
+}
+
+# order by variance() on columns of table "guild"
+input guild_variance_order_by {
+  id: order_by
+}
+
+# expression to compare columns of type Int. All fields are combined with logical 'AND'.
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+# columns and relationships of "meeting"
+type meeting {
+  created_at: timestamptz!
+  description: String!
+  end_time: timestamptz
+
+  # An object relationship
+  guild: guild
+  guild_id: Int
+  id: Int!
+  location: String
+
+  # An object relationship
+  organizer: user!
+  organizer_id: uuid!
+
+  # An array relationship
+  participants(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): [meeting_participant!]!
+
+  # An aggregated array relationship
+  participants_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): meeting_participant_aggregate!
+  publication_time: timestamptz
+  sphere_id: Int!
+  start_time: timestamptz
+  title: String!
+  updated_at: timestamptz!
+}
+
+# aggregated selection of "meeting"
+type meeting_aggregate {
+  aggregate: meeting_aggregate_fields
+  nodes: [meeting!]!
+}
+
+# aggregate fields of "meeting"
+type meeting_aggregate_fields {
+  avg: meeting_avg_fields
+  count(columns: [meeting_select_column!], distinct: Boolean): Int
+  max: meeting_max_fields
+  min: meeting_min_fields
+  stddev: meeting_stddev_fields
+  stddev_pop: meeting_stddev_pop_fields
+  stddev_samp: meeting_stddev_samp_fields
+  sum: meeting_sum_fields
+  var_pop: meeting_var_pop_fields
+  var_samp: meeting_var_samp_fields
+  variance: meeting_variance_fields
+}
+
+# order by aggregate values of table "meeting"
+input meeting_aggregate_order_by {
+  avg: meeting_avg_order_by
+  count: order_by
+  max: meeting_max_order_by
+  min: meeting_min_order_by
+  stddev: meeting_stddev_order_by
+  stddev_pop: meeting_stddev_pop_order_by
+  stddev_samp: meeting_stddev_samp_order_by
+  sum: meeting_sum_order_by
+  var_pop: meeting_var_pop_order_by
+  var_samp: meeting_var_samp_order_by
+  variance: meeting_variance_order_by
+}
+
+# input type for inserting array relation for remote table "meeting"
+input meeting_arr_rel_insert_input {
+  data: [meeting_insert_input!]!
+  on_conflict: meeting_on_conflict
+}
+
+# aggregate avg on columns
+type meeting_avg_fields {
+  guild_id: Float
+  id: Float
+  sphere_id: Float
+}
+
+# order by avg() on columns of table "meeting"
+input meeting_avg_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# Boolean expression to filter rows from the table "meeting". All fields are combined with a logical 'AND'.
+input meeting_bool_exp {
+  _and: [meeting_bool_exp]
+  _not: meeting_bool_exp
+  _or: [meeting_bool_exp]
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  end_time: timestamptz_comparison_exp
+  guild: guild_bool_exp
+  guild_id: Int_comparison_exp
+  id: Int_comparison_exp
+  location: String_comparison_exp
+  organizer: user_bool_exp
+  organizer_id: uuid_comparison_exp
+  participants: meeting_participant_bool_exp
+  publication_time: timestamptz_comparison_exp
+  sphere_id: Int_comparison_exp
+  start_time: timestamptz_comparison_exp
+  title: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+# unique or primary key constraints on table "meeting"
+enum meeting_constraint {
+  # unique or primary key constraint
+  meeting_pkey
+}
+
+# input type for incrementing integer columne in table "meeting"
+input meeting_inc_input {
+  guild_id: Int
+  id: Int
+  sphere_id: Int
+}
+
+# input type for inserting data into table "meeting"
+input meeting_insert_input {
+  created_at: timestamptz
+  description: String
+  end_time: timestamptz
+  guild: guild_obj_rel_insert_input
+  guild_id: Int
+  id: Int
+  location: String
+  organizer: user_obj_rel_insert_input
+  organizer_id: uuid
+  participants: meeting_participant_arr_rel_insert_input
+  publication_time: timestamptz
+  sphere_id: Int
+  start_time: timestamptz
+  title: String
+  updated_at: timestamptz
+}
+
+# aggregate max on columns
+type meeting_max_fields {
+  created_at: timestamptz
+  description: String
+  end_time: timestamptz
+  guild_id: Int
+  id: Int
+  location: String
+  organizer_id: uuid
+  publication_time: timestamptz
+  sphere_id: Int
+  start_time: timestamptz
+  title: String
+  updated_at: timestamptz
+}
+
+# order by max() on columns of table "meeting"
+input meeting_max_order_by {
+  created_at: order_by
+  description: order_by
+  end_time: order_by
+  guild_id: order_by
+  id: order_by
+  location: order_by
+  organizer_id: order_by
+  publication_time: order_by
+  sphere_id: order_by
+  start_time: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+# aggregate min on columns
+type meeting_min_fields {
+  created_at: timestamptz
+  description: String
+  end_time: timestamptz
+  guild_id: Int
+  id: Int
+  location: String
+  organizer_id: uuid
+  publication_time: timestamptz
+  sphere_id: Int
+  start_time: timestamptz
+  title: String
+  updated_at: timestamptz
+}
+
+# order by min() on columns of table "meeting"
+input meeting_min_order_by {
+  created_at: order_by
+  description: order_by
+  end_time: order_by
+  guild_id: order_by
+  id: order_by
+  location: order_by
+  organizer_id: order_by
+  publication_time: order_by
+  sphere_id: order_by
+  start_time: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+# response of any mutation on the table "meeting"
+type meeting_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [meeting!]!
+}
+
+# input type for inserting object relation for remote table "meeting"
+input meeting_obj_rel_insert_input {
+  data: meeting_insert_input!
+  on_conflict: meeting_on_conflict
+}
+
+# on conflict condition type for table "meeting"
+input meeting_on_conflict {
+  constraint: meeting_constraint!
+  update_columns: [meeting_update_column!]!
+  where: meeting_bool_exp
+}
+
+# ordering options when selecting data from "meeting"
+input meeting_order_by {
+  created_at: order_by
+  description: order_by
+  end_time: order_by
+  guild: guild_order_by
+  guild_id: order_by
+  id: order_by
+  location: order_by
+  organizer: user_order_by
+  organizer_id: order_by
+  participants_aggregate: meeting_participant_aggregate_order_by
+  publication_time: order_by
+  sphere_id: order_by
+  start_time: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+# columns and relationships of "meeting_participant"
+type meeting_participant {
+  # An object relationship
+  meeting: meeting!
+  meeting_id: Int!
+
+  # An object relationship
+  participant: user!
+  participant_id: uuid!
+}
+
+# aggregated selection of "meeting_participant"
+type meeting_participant_aggregate {
+  aggregate: meeting_participant_aggregate_fields
+  nodes: [meeting_participant!]!
+}
+
+# aggregate fields of "meeting_participant"
+type meeting_participant_aggregate_fields {
+  avg: meeting_participant_avg_fields
+  count(columns: [meeting_participant_select_column!], distinct: Boolean): Int
+  max: meeting_participant_max_fields
+  min: meeting_participant_min_fields
+  stddev: meeting_participant_stddev_fields
+  stddev_pop: meeting_participant_stddev_pop_fields
+  stddev_samp: meeting_participant_stddev_samp_fields
+  sum: meeting_participant_sum_fields
+  var_pop: meeting_participant_var_pop_fields
+  var_samp: meeting_participant_var_samp_fields
+  variance: meeting_participant_variance_fields
+}
+
+# order by aggregate values of table "meeting_participant"
+input meeting_participant_aggregate_order_by {
+  avg: meeting_participant_avg_order_by
+  count: order_by
+  max: meeting_participant_max_order_by
+  min: meeting_participant_min_order_by
+  stddev: meeting_participant_stddev_order_by
+  stddev_pop: meeting_participant_stddev_pop_order_by
+  stddev_samp: meeting_participant_stddev_samp_order_by
+  sum: meeting_participant_sum_order_by
+  var_pop: meeting_participant_var_pop_order_by
+  var_samp: meeting_participant_var_samp_order_by
+  variance: meeting_participant_variance_order_by
+}
+
+# input type for inserting array relation for remote table "meeting_participant"
+input meeting_participant_arr_rel_insert_input {
+  data: [meeting_participant_insert_input!]!
+  on_conflict: meeting_participant_on_conflict
+}
+
+# aggregate avg on columns
+type meeting_participant_avg_fields {
+  meeting_id: Float
+}
+
+# order by avg() on columns of table "meeting_participant"
+input meeting_participant_avg_order_by {
+  meeting_id: order_by
+}
+
+# Boolean expression to filter rows from the table "meeting_participant". All fields are combined with a logical 'AND'.
+input meeting_participant_bool_exp {
+  _and: [meeting_participant_bool_exp]
+  _not: meeting_participant_bool_exp
+  _or: [meeting_participant_bool_exp]
+  meeting: meeting_bool_exp
+  meeting_id: Int_comparison_exp
+  participant: user_bool_exp
+  participant_id: uuid_comparison_exp
+}
+
+# unique or primary key constraints on table "meeting_participant"
+enum meeting_participant_constraint {
+  # unique or primary key constraint
+  meeting_participant_pkey
+}
+
+# input type for incrementing integer columne in table "meeting_participant"
+input meeting_participant_inc_input {
+  meeting_id: Int
+}
+
+# input type for inserting data into table "meeting_participant"
+input meeting_participant_insert_input {
+  meeting: meeting_obj_rel_insert_input
+  meeting_id: Int
+  participant: user_obj_rel_insert_input
+  participant_id: uuid
+}
+
+# aggregate max on columns
+type meeting_participant_max_fields {
+  meeting_id: Int
+  participant_id: uuid
+}
+
+# order by max() on columns of table "meeting_participant"
+input meeting_participant_max_order_by {
+  meeting_id: order_by
+  participant_id: order_by
+}
+
+# aggregate min on columns
+type meeting_participant_min_fields {
+  meeting_id: Int
+  participant_id: uuid
+}
+
+# order by min() on columns of table "meeting_participant"
+input meeting_participant_min_order_by {
+  meeting_id: order_by
+  participant_id: order_by
+}
+
+# response of any mutation on the table "meeting_participant"
+type meeting_participant_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [meeting_participant!]!
+}
+
+# input type for inserting object relation for remote table "meeting_participant"
+input meeting_participant_obj_rel_insert_input {
+  data: meeting_participant_insert_input!
+  on_conflict: meeting_participant_on_conflict
+}
+
+# on conflict condition type for table "meeting_participant"
+input meeting_participant_on_conflict {
+  constraint: meeting_participant_constraint!
+  update_columns: [meeting_participant_update_column!]!
+  where: meeting_participant_bool_exp
+}
+
+# ordering options when selecting data from "meeting_participant"
+input meeting_participant_order_by {
+  meeting: meeting_order_by
+  meeting_id: order_by
+  participant: user_order_by
+  participant_id: order_by
+}
+
+# primary key columns input for table: "meeting_participant"
+input meeting_participant_pk_columns_input {
+  meeting_id: Int!
+  participant_id: uuid!
+}
+
+# select columns of table "meeting_participant"
+enum meeting_participant_select_column {
+  # column name
+  meeting_id
+
+  # column name
+  participant_id
+}
+
+# input type for updating data in table "meeting_participant"
+input meeting_participant_set_input {
+  meeting_id: Int
+  participant_id: uuid
+}
+
+# aggregate stddev on columns
+type meeting_participant_stddev_fields {
+  meeting_id: Float
+}
+
+# order by stddev() on columns of table "meeting_participant"
+input meeting_participant_stddev_order_by {
+  meeting_id: order_by
+}
+
+# aggregate stddev_pop on columns
+type meeting_participant_stddev_pop_fields {
+  meeting_id: Float
+}
+
+# order by stddev_pop() on columns of table "meeting_participant"
+input meeting_participant_stddev_pop_order_by {
+  meeting_id: order_by
+}
+
+# aggregate stddev_samp on columns
+type meeting_participant_stddev_samp_fields {
+  meeting_id: Float
+}
+
+# order by stddev_samp() on columns of table "meeting_participant"
+input meeting_participant_stddev_samp_order_by {
+  meeting_id: order_by
+}
+
+# aggregate sum on columns
+type meeting_participant_sum_fields {
+  meeting_id: Int
+}
+
+# order by sum() on columns of table "meeting_participant"
+input meeting_participant_sum_order_by {
+  meeting_id: order_by
+}
+
+# update columns of table "meeting_participant"
+enum meeting_participant_update_column {
+  # column name
+  meeting_id
+
+  # column name
+  participant_id
+}
+
+# aggregate var_pop on columns
+type meeting_participant_var_pop_fields {
+  meeting_id: Float
+}
+
+# order by var_pop() on columns of table "meeting_participant"
+input meeting_participant_var_pop_order_by {
+  meeting_id: order_by
+}
+
+# aggregate var_samp on columns
+type meeting_participant_var_samp_fields {
+  meeting_id: Float
+}
+
+# order by var_samp() on columns of table "meeting_participant"
+input meeting_participant_var_samp_order_by {
+  meeting_id: order_by
+}
+
+# aggregate variance on columns
+type meeting_participant_variance_fields {
+  meeting_id: Float
+}
+
+# order by variance() on columns of table "meeting_participant"
+input meeting_participant_variance_order_by {
+  meeting_id: order_by
+}
+
+# primary key columns input for table: "meeting"
+input meeting_pk_columns_input {
+  id: Int!
+}
+
+# select columns of table "meeting"
+enum meeting_select_column {
+  # column name
+  created_at
+
+  # column name
+  description
+
+  # column name
+  end_time
+
+  # column name
+  guild_id
+
+  # column name
+  id
+
+  # column name
+  location
+
+  # column name
+  organizer_id
+
+  # column name
+  publication_time
+
+  # column name
+  sphere_id
+
+  # column name
+  start_time
+
+  # column name
+  title
+
+  # column name
+  updated_at
+}
+
+# input type for updating data in table "meeting"
+input meeting_set_input {
+  created_at: timestamptz
+  description: String
+  end_time: timestamptz
+  guild_id: Int
+  id: Int
+  location: String
+  organizer_id: uuid
+  publication_time: timestamptz
+  sphere_id: Int
+  start_time: timestamptz
+  title: String
+  updated_at: timestamptz
+}
+
+# aggregate stddev on columns
+type meeting_stddev_fields {
+  guild_id: Float
+  id: Float
+  sphere_id: Float
+}
+
+# order by stddev() on columns of table "meeting"
+input meeting_stddev_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# aggregate stddev_pop on columns
+type meeting_stddev_pop_fields {
+  guild_id: Float
+  id: Float
+  sphere_id: Float
+}
+
+# order by stddev_pop() on columns of table "meeting"
+input meeting_stddev_pop_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# aggregate stddev_samp on columns
+type meeting_stddev_samp_fields {
+  guild_id: Float
+  id: Float
+  sphere_id: Float
+}
+
+# order by stddev_samp() on columns of table "meeting"
+input meeting_stddev_samp_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# aggregate sum on columns
+type meeting_sum_fields {
+  guild_id: Int
+  id: Int
+  sphere_id: Int
+}
+
+# order by sum() on columns of table "meeting"
+input meeting_sum_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# update columns of table "meeting"
+enum meeting_update_column {
+  # column name
+  created_at
+
+  # column name
+  description
+
+  # column name
+  end_time
+
+  # column name
+  guild_id
+
+  # column name
+  id
+
+  # column name
+  location
+
+  # column name
+  organizer_id
+
+  # column name
+  publication_time
+
+  # column name
+  sphere_id
+
+  # column name
+  start_time
+
+  # column name
+  title
+
+  # column name
+  updated_at
+}
+
+# aggregate var_pop on columns
+type meeting_var_pop_fields {
+  guild_id: Float
+  id: Float
+  sphere_id: Float
+}
+
+# order by var_pop() on columns of table "meeting"
+input meeting_var_pop_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# aggregate var_samp on columns
+type meeting_var_samp_fields {
+  guild_id: Float
+  id: Float
+  sphere_id: Float
+}
+
+# order by var_samp() on columns of table "meeting"
+input meeting_var_samp_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# aggregate variance on columns
+type meeting_variance_fields {
+  guild_id: Float
+  id: Float
+  sphere_id: Float
+}
+
+# order by variance() on columns of table "meeting"
+input meeting_variance_order_by {
+  guild_id: order_by
+  id: order_by
+  sphere_id: order_by
+}
+
+# mutation root
+type mutation_root {
+  # delete data from the table: "guild"
+  delete_guild(
+    # filter the rows which have to be deleted
+    where: guild_bool_exp!
+  ): guild_mutation_response
+
+  # delete single row from the table: "guild"
+  delete_guild_by_pk(id: Int!): guild
+
+  # delete data from the table: "guild_member"
+  delete_guild_member(
+    # filter the rows which have to be deleted
+    where: guild_member_bool_exp!
+  ): guild_member_mutation_response
+
+  # delete single row from the table: "guild_member"
+  delete_guild_member_by_pk(guild_id: Int!, member_id: uuid!): guild_member
+
+  # delete data from the table: "meeting"
+  delete_meeting(
+    # filter the rows which have to be deleted
+    where: meeting_bool_exp!
+  ): meeting_mutation_response
+
+  # delete single row from the table: "meeting"
+  delete_meeting_by_pk(id: Int!): meeting
+
+  # delete data from the table: "meeting_participant"
+  delete_meeting_participant(
+    # filter the rows which have to be deleted
+    where: meeting_participant_bool_exp!
+  ): meeting_participant_mutation_response
+
+  # delete single row from the table: "meeting_participant"
+  delete_meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
+
+  # delete data from the table: "sphere"
+  delete_sphere(
+    # filter the rows which have to be deleted
+    where: sphere_bool_exp!
+  ): sphere_mutation_response
+
+  # delete single row from the table: "sphere"
+  delete_sphere_by_pk(id: Int!): sphere
+
+  # delete data from the table: "user"
+  delete_user(
+    # filter the rows which have to be deleted
+    where: user_bool_exp!
+  ): user_mutation_response
+
+  # delete single row from the table: "user"
+  delete_user_by_pk(uuid: uuid!): user
+
+  # insert data into the table: "guild"
+  insert_guild(
+    # the rows to be inserted
+    objects: [guild_insert_input!]!
+
+    # on conflict condition
+    on_conflict: guild_on_conflict
+  ): guild_mutation_response
+
+  # insert data into the table: "guild_member"
+  insert_guild_member(
+    # the rows to be inserted
+    objects: [guild_member_insert_input!]!
+
+    # on conflict condition
+    on_conflict: guild_member_on_conflict
+  ): guild_member_mutation_response
+
+  # insert a single row into the table: "guild_member"
+  insert_guild_member_one(
+    # the row to be inserted
+    object: guild_member_insert_input!
+
+    # on conflict condition
+    on_conflict: guild_member_on_conflict
+  ): guild_member
+
+  # insert a single row into the table: "guild"
+  insert_guild_one(
+    # the row to be inserted
+    object: guild_insert_input!
+
+    # on conflict condition
+    on_conflict: guild_on_conflict
+  ): guild
+
+  # insert data into the table: "meeting"
+  insert_meeting(
+    # the rows to be inserted
+    objects: [meeting_insert_input!]!
+
+    # on conflict condition
+    on_conflict: meeting_on_conflict
+  ): meeting_mutation_response
+
+  # insert a single row into the table: "meeting"
+  insert_meeting_one(
+    # the row to be inserted
+    object: meeting_insert_input!
+
+    # on conflict condition
+    on_conflict: meeting_on_conflict
+  ): meeting
+
+  # insert data into the table: "meeting_participant"
+  insert_meeting_participant(
+    # the rows to be inserted
+    objects: [meeting_participant_insert_input!]!
+
+    # on conflict condition
+    on_conflict: meeting_participant_on_conflict
+  ): meeting_participant_mutation_response
+
+  # insert a single row into the table: "meeting_participant"
+  insert_meeting_participant_one(
+    # the row to be inserted
+    object: meeting_participant_insert_input!
+
+    # on conflict condition
+    on_conflict: meeting_participant_on_conflict
+  ): meeting_participant
+
+  # insert data into the table: "sphere"
+  insert_sphere(
+    # the rows to be inserted
+    objects: [sphere_insert_input!]!
+
+    # on conflict condition
+    on_conflict: sphere_on_conflict
+  ): sphere_mutation_response
+
+  # insert a single row into the table: "sphere"
+  insert_sphere_one(
+    # the row to be inserted
+    object: sphere_insert_input!
+
+    # on conflict condition
+    on_conflict: sphere_on_conflict
+  ): sphere
+
+  # insert data into the table: "user"
+  insert_user(
+    # the rows to be inserted
+    objects: [user_insert_input!]!
+
+    # on conflict condition
+    on_conflict: user_on_conflict
+  ): user_mutation_response
+
+  # insert a single row into the table: "user"
+  insert_user_one(
+    # the row to be inserted
+    object: user_insert_input!
+
+    # on conflict condition
+    on_conflict: user_on_conflict
+  ): user
+
+  # update data of the table: "guild"
+  update_guild(
+    # increments the integer columns with given value of the filtered values
+    _inc: guild_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: guild_set_input
+
+    # filter the rows which have to be updated
+    where: guild_bool_exp!
+  ): guild_mutation_response
+
+  # update single row of the table: "guild"
+  update_guild_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: guild_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: guild_set_input
+    pk_columns: guild_pk_columns_input!
+  ): guild
+
+  # update data of the table: "guild_member"
+  update_guild_member(
+    # increments the integer columns with given value of the filtered values
+    _inc: guild_member_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: guild_member_set_input
+
+    # filter the rows which have to be updated
+    where: guild_member_bool_exp!
+  ): guild_member_mutation_response
+
+  # update single row of the table: "guild_member"
+  update_guild_member_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: guild_member_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: guild_member_set_input
+    pk_columns: guild_member_pk_columns_input!
+  ): guild_member
+
+  # update data of the table: "meeting"
+  update_meeting(
+    # increments the integer columns with given value of the filtered values
+    _inc: meeting_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: meeting_set_input
+
+    # filter the rows which have to be updated
+    where: meeting_bool_exp!
+  ): meeting_mutation_response
+
+  # update single row of the table: "meeting"
+  update_meeting_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: meeting_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: meeting_set_input
+    pk_columns: meeting_pk_columns_input!
+  ): meeting
+
+  # update data of the table: "meeting_participant"
+  update_meeting_participant(
+    # increments the integer columns with given value of the filtered values
+    _inc: meeting_participant_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: meeting_participant_set_input
+
+    # filter the rows which have to be updated
+    where: meeting_participant_bool_exp!
+  ): meeting_participant_mutation_response
+
+  # update single row of the table: "meeting_participant"
+  update_meeting_participant_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: meeting_participant_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: meeting_participant_set_input
+    pk_columns: meeting_participant_pk_columns_input!
+  ): meeting_participant
+
+  # update data of the table: "sphere"
+  update_sphere(
+    # increments the integer columns with given value of the filtered values
+    _inc: sphere_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: sphere_set_input
+
+    # filter the rows which have to be updated
+    where: sphere_bool_exp!
+  ): sphere_mutation_response
+
+  # update single row of the table: "sphere"
+  update_sphere_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: sphere_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: sphere_set_input
+    pk_columns: sphere_pk_columns_input!
+  ): sphere
+
+  # update data of the table: "user"
+  update_user(
+    # sets the columns of the filtered rows to the given values
+    _set: user_set_input
+
+    # filter the rows which have to be updated
+    where: user_bool_exp!
+  ): user_mutation_response
+
+  # update single row of the table: "user"
+  update_user_by_pk(
+    # sets the columns of the filtered rows to the given values
+    _set: user_set_input
+    pk_columns: user_pk_columns_input!
+  ): user
+}
+
+# column ordering options
+enum order_by {
+  # in the ascending order, nulls last
+  asc
+
+  # in the ascending order, nulls first
+  asc_nulls_first
+
+  # in the ascending order, nulls last
+  asc_nulls_last
+
+  # in the descending order, nulls first
+  desc
+
+  # in the descending order, nulls first
+  desc_nulls_first
+
+  # in the descending order, nulls last
+  desc_nulls_last
+}
+
+# query root
+type query_root {
+  # fetch data from the table: "guild"
+  guild(
+    # distinct select on columns
+    distinct_on: [guild_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_order_by!]
+
+    # filter the rows returned
+    where: guild_bool_exp
+  ): [guild!]!
+
+  # fetch aggregated fields from the table: "guild"
+  guild_aggregate(
+    # distinct select on columns
+    distinct_on: [guild_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_order_by!]
+
+    # filter the rows returned
+    where: guild_bool_exp
+  ): guild_aggregate!
+
+  # fetch data from the table: "guild" using primary key columns
+  guild_by_pk(id: Int!): guild
+
+  # fetch data from the table: "guild_member"
+  guild_member(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): [guild_member!]!
+
+  # fetch aggregated fields from the table: "guild_member"
+  guild_member_aggregate(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): guild_member_aggregate!
+
+  # fetch data from the table: "guild_member" using primary key columns
+  guild_member_by_pk(guild_id: Int!, member_id: uuid!): guild_member
+
+  # fetch data from the table: "meeting"
+  meeting(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): [meeting!]!
+
+  # fetch aggregated fields from the table: "meeting"
+  meeting_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): meeting_aggregate!
+
+  # fetch data from the table: "meeting" using primary key columns
+  meeting_by_pk(id: Int!): meeting
+
+  # fetch data from the table: "meeting_participant"
+  meeting_participant(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): [meeting_participant!]!
+
+  # fetch aggregated fields from the table: "meeting_participant"
+  meeting_participant_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): meeting_participant_aggregate!
+
+  # fetch data from the table: "meeting_participant" using primary key columns
+  meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
+
+  # fetch data from the table: "sphere"
+  sphere(
+    # distinct select on columns
+    distinct_on: [sphere_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [sphere_order_by!]
+
+    # filter the rows returned
+    where: sphere_bool_exp
+  ): [sphere!]!
+
+  # fetch aggregated fields from the table: "sphere"
+  sphere_aggregate(
+    # distinct select on columns
+    distinct_on: [sphere_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [sphere_order_by!]
+
+    # filter the rows returned
+    where: sphere_bool_exp
+  ): sphere_aggregate!
+
+  # fetch data from the table: "sphere" using primary key columns
+  sphere_by_pk(id: Int!): sphere
+
+  # fetch data from the table: "user"
+  user(
+    # distinct select on columns
+    distinct_on: [user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [user_order_by!]
+
+    # filter the rows returned
+    where: user_bool_exp
+  ): [user!]!
+
+  # fetch aggregated fields from the table: "user"
+  user_aggregate(
+    # distinct select on columns
+    distinct_on: [user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [user_order_by!]
+
+    # filter the rows returned
+    where: user_bool_exp
+  ): user_aggregate!
+
+  # fetch data from the table: "user" using primary key columns
+  user_by_pk(uuid: uuid!): user
+}
+
+# columns and relationships of "sphere"
+type sphere {
+  domain: String
+  id: Int!
+  name: String!
+}
+
+# aggregated selection of "sphere"
+type sphere_aggregate {
+  aggregate: sphere_aggregate_fields
+  nodes: [sphere!]!
+}
+
+# aggregate fields of "sphere"
+type sphere_aggregate_fields {
+  avg: sphere_avg_fields
+  count(columns: [sphere_select_column!], distinct: Boolean): Int
+  max: sphere_max_fields
+  min: sphere_min_fields
+  stddev: sphere_stddev_fields
+  stddev_pop: sphere_stddev_pop_fields
+  stddev_samp: sphere_stddev_samp_fields
+  sum: sphere_sum_fields
+  var_pop: sphere_var_pop_fields
+  var_samp: sphere_var_samp_fields
+  variance: sphere_variance_fields
+}
+
+# order by aggregate values of table "sphere"
+input sphere_aggregate_order_by {
+  avg: sphere_avg_order_by
+  count: order_by
+  max: sphere_max_order_by
+  min: sphere_min_order_by
+  stddev: sphere_stddev_order_by
+  stddev_pop: sphere_stddev_pop_order_by
+  stddev_samp: sphere_stddev_samp_order_by
+  sum: sphere_sum_order_by
+  var_pop: sphere_var_pop_order_by
+  var_samp: sphere_var_samp_order_by
+  variance: sphere_variance_order_by
+}
+
+# input type for inserting array relation for remote table "sphere"
+input sphere_arr_rel_insert_input {
+  data: [sphere_insert_input!]!
+  on_conflict: sphere_on_conflict
+}
+
+# aggregate avg on columns
+type sphere_avg_fields {
+  id: Float
+}
+
+# order by avg() on columns of table "sphere"
+input sphere_avg_order_by {
+  id: order_by
+}
+
+# Boolean expression to filter rows from the table "sphere". All fields are combined with a logical 'AND'.
+input sphere_bool_exp {
+  _and: [sphere_bool_exp]
+  _not: sphere_bool_exp
+  _or: [sphere_bool_exp]
+  domain: String_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+}
+
+# unique or primary key constraints on table "sphere"
+enum sphere_constraint {
+  # unique or primary key constraint
+  sphere_pkey
+}
+
+# input type for incrementing integer columne in table "sphere"
+input sphere_inc_input {
+  id: Int
+}
+
+# input type for inserting data into table "sphere"
+input sphere_insert_input {
+  domain: String
+  id: Int
+  name: String
+}
+
+# aggregate max on columns
+type sphere_max_fields {
+  domain: String
+  id: Int
+  name: String
+}
+
+# order by max() on columns of table "sphere"
+input sphere_max_order_by {
+  domain: order_by
+  id: order_by
+  name: order_by
+}
+
+# aggregate min on columns
+type sphere_min_fields {
+  domain: String
+  id: Int
+  name: String
+}
+
+# order by min() on columns of table "sphere"
+input sphere_min_order_by {
+  domain: order_by
+  id: order_by
+  name: order_by
+}
+
+# response of any mutation on the table "sphere"
+type sphere_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [sphere!]!
+}
+
+# input type for inserting object relation for remote table "sphere"
+input sphere_obj_rel_insert_input {
+  data: sphere_insert_input!
+  on_conflict: sphere_on_conflict
+}
+
+# on conflict condition type for table "sphere"
+input sphere_on_conflict {
+  constraint: sphere_constraint!
+  update_columns: [sphere_update_column!]!
+  where: sphere_bool_exp
+}
+
+# ordering options when selecting data from "sphere"
+input sphere_order_by {
+  domain: order_by
+  id: order_by
+  name: order_by
+}
+
+# primary key columns input for table: "sphere"
+input sphere_pk_columns_input {
+  id: Int!
+}
+
+# select columns of table "sphere"
+enum sphere_select_column {
+  # column name
+  domain
+
+  # column name
+  id
+
+  # column name
+  name
+}
+
+# input type for updating data in table "sphere"
+input sphere_set_input {
+  domain: String
+  id: Int
+  name: String
+}
+
+# aggregate stddev on columns
+type sphere_stddev_fields {
+  id: Float
+}
+
+# order by stddev() on columns of table "sphere"
+input sphere_stddev_order_by {
+  id: order_by
+}
+
+# aggregate stddev_pop on columns
+type sphere_stddev_pop_fields {
+  id: Float
+}
+
+# order by stddev_pop() on columns of table "sphere"
+input sphere_stddev_pop_order_by {
+  id: order_by
+}
+
+# aggregate stddev_samp on columns
+type sphere_stddev_samp_fields {
+  id: Float
+}
+
+# order by stddev_samp() on columns of table "sphere"
+input sphere_stddev_samp_order_by {
+  id: order_by
+}
+
+# aggregate sum on columns
+type sphere_sum_fields {
+  id: Int
+}
+
+# order by sum() on columns of table "sphere"
+input sphere_sum_order_by {
+  id: order_by
+}
+
+# update columns of table "sphere"
+enum sphere_update_column {
+  # column name
+  domain
+
+  # column name
+  id
+
+  # column name
+  name
+}
+
+# aggregate var_pop on columns
+type sphere_var_pop_fields {
+  id: Float
+}
+
+# order by var_pop() on columns of table "sphere"
+input sphere_var_pop_order_by {
+  id: order_by
+}
+
+# aggregate var_samp on columns
+type sphere_var_samp_fields {
+  id: Float
+}
+
+# order by var_samp() on columns of table "sphere"
+input sphere_var_samp_order_by {
+  id: order_by
+}
+
+# aggregate variance on columns
+type sphere_variance_fields {
+  id: Float
+}
+
+# order by variance() on columns of table "sphere"
+input sphere_variance_order_by {
+  id: order_by
+}
+
+# expression to compare columns of type String. All fields are combined with logical 'AND'.
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+# subscription root
+type subscription_root {
+  # fetch data from the table: "guild"
+  guild(
+    # distinct select on columns
+    distinct_on: [guild_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_order_by!]
+
+    # filter the rows returned
+    where: guild_bool_exp
+  ): [guild!]!
+
+  # fetch aggregated fields from the table: "guild"
+  guild_aggregate(
+    # distinct select on columns
+    distinct_on: [guild_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_order_by!]
+
+    # filter the rows returned
+    where: guild_bool_exp
+  ): guild_aggregate!
+
+  # fetch data from the table: "guild" using primary key columns
+  guild_by_pk(id: Int!): guild
+
+  # fetch data from the table: "guild_member"
+  guild_member(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): [guild_member!]!
+
+  # fetch aggregated fields from the table: "guild_member"
+  guild_member_aggregate(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): guild_member_aggregate!
+
+  # fetch data from the table: "guild_member" using primary key columns
+  guild_member_by_pk(guild_id: Int!, member_id: uuid!): guild_member
+
+  # fetch data from the table: "meeting"
+  meeting(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): [meeting!]!
+
+  # fetch aggregated fields from the table: "meeting"
+  meeting_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): meeting_aggregate!
+
+  # fetch data from the table: "meeting" using primary key columns
+  meeting_by_pk(id: Int!): meeting
+
+  # fetch data from the table: "meeting_participant"
+  meeting_participant(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): [meeting_participant!]!
+
+  # fetch aggregated fields from the table: "meeting_participant"
+  meeting_participant_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): meeting_participant_aggregate!
+
+  # fetch data from the table: "meeting_participant" using primary key columns
+  meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
+
+  # fetch data from the table: "sphere"
+  sphere(
+    # distinct select on columns
+    distinct_on: [sphere_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [sphere_order_by!]
+
+    # filter the rows returned
+    where: sphere_bool_exp
+  ): [sphere!]!
+
+  # fetch aggregated fields from the table: "sphere"
+  sphere_aggregate(
+    # distinct select on columns
+    distinct_on: [sphere_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [sphere_order_by!]
+
+    # filter the rows returned
+    where: sphere_bool_exp
+  ): sphere_aggregate!
+
+  # fetch data from the table: "sphere" using primary key columns
+  sphere_by_pk(id: Int!): sphere
+
+  # fetch data from the table: "user"
+  user(
+    # distinct select on columns
+    distinct_on: [user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [user_order_by!]
+
+    # filter the rows returned
+    where: user_bool_exp
+  ): [user!]!
+
+  # fetch aggregated fields from the table: "user"
+  user_aggregate(
+    # distinct select on columns
+    distinct_on: [user_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [user_order_by!]
+
+    # filter the rows returned
+    where: user_bool_exp
+  ): user_aggregate!
+
+  # fetch data from the table: "user" using primary key columns
+  user_by_pk(uuid: uuid!): user
+}
+
+scalar timestamptz
+
+# expression to compare columns of type timestamptz. All fields are combined with logical 'AND'.
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+# columns and relationships of "user"
+type user {
+  auth0_id: String
+  created_at: timestamptz!
+  email: String!
+
+  # An array relationship
+  guilds(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): [guild_member!]!
+
+  # An aggregated array relationship
+  guilds_aggregate(
+    # distinct select on columns
+    distinct_on: [guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [guild_member_order_by!]
+
+    # filter the rows returned
+    where: guild_member_bool_exp
+  ): guild_member_aggregate!
+  last_login: timestamptz
+
+  # An array relationship
+  meetings(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): [meeting_participant!]!
+
+  # An aggregated array relationship
+  meetings_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: meeting_participant_bool_exp
+  ): meeting_participant_aggregate!
+  name: String!
+
+  # An array relationship
+  organized_meetings(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): [meeting!]!
+
+  # An aggregated array relationship
+  organized_meetings_aggregate(
+    # distinct select on columns
+    distinct_on: [meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [meeting_order_by!]
+
+    # filter the rows returned
+    where: meeting_bool_exp
+  ): meeting_aggregate!
+  uuid: uuid!
+}
+
+# aggregated selection of "user"
+type user_aggregate {
+  aggregate: user_aggregate_fields
+  nodes: [user!]!
+}
+
+# aggregate fields of "user"
+type user_aggregate_fields {
+  count(columns: [user_select_column!], distinct: Boolean): Int
+  max: user_max_fields
+  min: user_min_fields
+}
+
+# order by aggregate values of table "user"
+input user_aggregate_order_by {
+  count: order_by
+  max: user_max_order_by
+  min: user_min_order_by
+}
+
+# input type for inserting array relation for remote table "user"
+input user_arr_rel_insert_input {
+  data: [user_insert_input!]!
+  on_conflict: user_on_conflict
+}
+
+# Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'.
+input user_bool_exp {
+  _and: [user_bool_exp]
+  _not: user_bool_exp
+  _or: [user_bool_exp]
+  auth0_id: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  email: String_comparison_exp
+  guilds: guild_member_bool_exp
+  last_login: timestamptz_comparison_exp
+  meetings: meeting_participant_bool_exp
+  name: String_comparison_exp
+  organized_meetings: meeting_bool_exp
+  uuid: uuid_comparison_exp
+}
+
+# unique or primary key constraints on table "user"
+enum user_constraint {
+  # unique or primary key constraint
+  user_email_key
+
+  # unique or primary key constraint
+  user_pkey
+}
+
+# input type for inserting data into table "user"
+input user_insert_input {
+  auth0_id: String
+  created_at: timestamptz
+  email: String
+  guilds: guild_member_arr_rel_insert_input
+  last_login: timestamptz
+  meetings: meeting_participant_arr_rel_insert_input
+  name: String
+  organized_meetings: meeting_arr_rel_insert_input
+  uuid: uuid
+}
+
+# aggregate max on columns
+type user_max_fields {
+  auth0_id: String
+  created_at: timestamptz
+  email: String
+  last_login: timestamptz
+  name: String
+  uuid: uuid
+}
+
+# order by max() on columns of table "user"
+input user_max_order_by {
+  auth0_id: order_by
+  created_at: order_by
+  email: order_by
+  last_login: order_by
+  name: order_by
+  uuid: order_by
+}
+
+# aggregate min on columns
+type user_min_fields {
+  auth0_id: String
+  created_at: timestamptz
+  email: String
+  last_login: timestamptz
+  name: String
+  uuid: uuid
+}
+
+# order by min() on columns of table "user"
+input user_min_order_by {
+  auth0_id: order_by
+  created_at: order_by
+  email: order_by
+  last_login: order_by
+  name: order_by
+  uuid: order_by
+}
+
+# response of any mutation on the table "user"
+type user_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [user!]!
+}
+
+# input type for inserting object relation for remote table "user"
+input user_obj_rel_insert_input {
+  data: user_insert_input!
+  on_conflict: user_on_conflict
+}
+
+# on conflict condition type for table "user"
+input user_on_conflict {
+  constraint: user_constraint!
+  update_columns: [user_update_column!]!
+  where: user_bool_exp
+}
+
+# ordering options when selecting data from "user"
+input user_order_by {
+  auth0_id: order_by
+  created_at: order_by
+  email: order_by
+  guilds_aggregate: guild_member_aggregate_order_by
+  last_login: order_by
+  meetings_aggregate: meeting_participant_aggregate_order_by
+  name: order_by
+  organized_meetings_aggregate: meeting_aggregate_order_by
+  uuid: order_by
+}
+
+# primary key columns input for table: "user"
+input user_pk_columns_input {
+  uuid: uuid!
+}
+
+# select columns of table "user"
+enum user_select_column {
+  # column name
+  auth0_id
+
+  # column name
+  created_at
+
+  # column name
+  email
+
+  # column name
+  last_login
+
+  # column name
+  name
+
+  # column name
+  uuid
+}
+
+# input type for updating data in table "user"
+input user_set_input {
+  auth0_id: String
+  created_at: timestamptz
+  email: String
+  last_login: timestamptz
+  name: String
+  uuid: uuid
+}
+
+# update columns of table "user"
+enum user_update_column {
+  # column name
+  auth0_id
+
+  # column name
+  created_at
+
+  # column name
+  email
+
+  # column name
+  last_login
+
+  # column name
+  name
+
+  # column name
+  uuid
+}
+
+scalar uuid
+
+# expression to compare columns of type uuid. All fields are combined with logical 'AND'.
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}
+

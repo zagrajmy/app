@@ -1,0 +1,41 @@
+---
+name: Link
+route: /ui/Link
+menu: ui
+---
+<!-- @jsx jsx -->
+<!-- @jsxFrag React.Fragment -->
+
+import { jsx } from 'theme-ui';
+import { Playground, Props } from "docz";
+import { Link, Spacer } from "@zagrajmy/app";
+
+# Link
+
+<Playground>
+  {() => {
+    const slug = 'han_solo'; 
+    return (
+      <Link
+        href="/u/[username_slug]"
+        as={`/u/${slug}`}
+      >
+        Profile
+      </Link>
+    )
+  }}
+</Playground>
+
+## variant "button"
+
+<Playground>
+  <Link variant="button" href="/join" style={{ display: 'inline-block' }}>
+    Join the meeting
+  </Link>
+
+  <Spacer height="1rem" />
+
+  <Link variant="button" href="/join">
+    Join the meeting
+  </Link>
+</Playground>

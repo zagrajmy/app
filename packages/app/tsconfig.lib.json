@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "outDir": "dist-ts", // babel transforms dist-ts to dist
+    "rootDir": "src",
+    "skipLibCheck": true, // temporary until theme-ui isn't correctly typed
+    "noEmit": false
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/i18n.ts", "node_modules"]
+}
