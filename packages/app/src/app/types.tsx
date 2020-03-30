@@ -1,6 +1,6 @@
 import { Flavor } from "nom-ts";
 
-// TODO: Codegen parts of this from the API in the future
+// TODO: Clean this up
 
 export type Username = Flavor<string, "Username">;
 

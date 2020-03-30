@@ -1,9 +1,8 @@
 {
-  // extends can't be used, because deploys don't get entire repo
-  // "extends": "../../tsconfig.json",
-  // compilerOptions here is just copied from the root.
+  "// extends can't be used, because deploys don't get entire repo": "",
+  "// compilerOptions here is just copied from the root.": "",
   "compilerOptions": {
-    "target": "es2018", // babel does the rest
+    "target": "es2018",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": false,

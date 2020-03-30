@@ -16,7 +16,9 @@ const getCrUserByEmail = (db: Db) => (email: string) =>
     // I am assuming that there is only one user with this email for now.
     .then((x) => head(x.user));
 
-type CreateUserArg = Pick<generated.user, "uuid" | "name" | "email">;
+type CreateUserArg = Required<
+  Pick<generated.user, "auth0_id" | "name" | "email">
+>;
 const createUser = (db: Db) => (user: CreateUserArg) =>
   db
     .mutation({
@@ -66,15 +68,7 @@ export default async function loggedIn(
     if (!uuid) {
       uuid = O.toNullable(
         await createUser(db)({
-          /**
-           * Auth0 is the only source for our users,
-           * so we use the same id for the user in zagrajmy db.
-           * It isn't pretty, but it's useful.
-           *
-           * TODO: This requires change of uuid type to `text`.
-           * A new db schema will probably follow.
-           */
-          uuid: auth0UserId,
+          auth0_id: auth0UserId,
           email,
           name:
             session.user.nickname ||
