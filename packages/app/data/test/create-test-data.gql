@@ -1,7 +1,7 @@
 mutation CreateSpheresAndGuilds {
-  firstProductionSphere: insert_nb_sphere(
+  firstProductionSphere: insert_sphere(
     objects: { name: "zagrajmy.net", id: 1 }
-    on_conflict: { constraint: nb_sphere_pkey, update_columns: name }
+    on_conflict: { constraint: sphere_pkey, update_columns: name }
   ) {
     affected_rows
     returning {
@@ -9,9 +9,9 @@ mutation CreateSpheresAndGuilds {
       name
     }
   }
-  firstTestSphere: insert_nb_sphere(
+  firstTestSphere: insert_sphere(
     objects: { name: "zagrajmy.now.sh", id: 2 }
-    on_conflict: { constraint: nb_sphere_pkey, update_columns: name }
+    on_conflict: { constraint: sphere_pkey, update_columns: name }
   ) {
     affected_rows
     returning {
@@ -19,25 +19,23 @@ mutation CreateSpheresAndGuilds {
       name
     }
   }
-  zagrajmyNetGuilds: insert_nb_guild(
+  zagrajmyNetGuilds: insert_guild(
     objects: [
       {
         id: 1
-        sphere_id: 1
         name: "RPG we Wrocławiu"
         description: "Lorem ipsum dolor sit amet"
         created_at: "now"
       }
       {
         id: 2
-        sphere_id: 1
         name: "Klub Niszowych Gier RPG"
         description: "Celem działalności klubu jest dobra zabawa grając w dobre gry RPG. Naszym preferowanym stylem są gry ze spektrum bardziej narracyjnego niż symulacyjnego lub gamistycznego.\n\nCzłonkostwo w klubie na chwile obecną jest na zaproszenie, staramy się dobierać osoby z którymi mieliśmy okazję zagrać i dobrze się grało.\nCzłonkowie klubu mogą wystąpić w dowolnym momencie.\n\nKażdy może zaproponować co ma ochotę poprowadzić oraz kiedy (dobrą praktyką jest ustalenie terminu za pomocą ankiety).\n\nW przypadku większej liczby zgłoszeń niż liczba dostępnych miejsc na sesję, organizator dobiera graczy według własnego uznania.\n\nCzłonkowie klubu są proszeni o przestrzeganie zasad fair play oraz dobrej współpracy w grupie.\n\nPodczas gier staramy się promować dobre i nowoczesne podejście do gier na przykład z sesją 0, wybranym narzędziem bezpieczeństwa, ustaleniem zasad stołu itp"
         created_at: "now"
       }
     ]
     on_conflict: {
-      constraint: nb_guild_pkey
+      constraint: guild_pkey
       update_columns: [created_at, description, name]
     }
   ) {
@@ -46,25 +44,23 @@ mutation CreateSpheresAndGuilds {
       id
     }
   }
-  zagrajmyNowShGuilds: insert_nb_guild(
+  zagrajmyNowShGuilds: insert_guild(
     objects: [
       {
         id: 3
-        sphere_id: 2
         name: "RPGi we Wrocku"
         description: "Test guild"
         created_at: "now"
       }
       {
         id: 4
-        sphere_id: 2
         name: "Star Wars Admirals Play Battleship"
         description: "A bunch of test accounts with names from Star Wars"
         created_at: "now"
       }
     ]
     on_conflict: {
-      constraint: nb_guild_pkey
+      constraint: guild_pkey
       update_columns: [created_at, description, name]
     }
   ) {
@@ -73,67 +69,56 @@ mutation CreateSpheresAndGuilds {
       id
     }
   }
-  starWarsCharacters: insert_cr_user(
+  starWarsCharacters: insert_user(
     objects: [
       {
-        username: "Admiral Ackbar"
+        name: "Admiral Ackbar"
         email: "zagrajmy.net+test-admiral.ackbar@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Coburn"
+        name: "Admiral Coburn"
         email: "zagrajmy.net+test-admiral.coburn@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Garrick"
+        name: "Admiral Garrick"
         email: "zagrajmy.net+test-admiral.garrick@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Kassius"
+        name: "Admiral Kassius"
         email: "zagrajmy.net+test-admiral.kassius@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Kilian"
+        name: "Admiral Kilian"
         email: "zagrajmy.net+test-admiral.kilian@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Mott"
+        name: "Admiral Mott"
         email: "zagrajmy.net+test-admiral.mott@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Ozzel"
+        name: "Admiral Ozzel"
         email: "zagrajmy.net+test-admiral.ozzel@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Piett"
+        name: "Admiral Piett"
         email: "zagrajmy.net+test-admiral.piett@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Raddus"
+        name: "Admiral Raddus"
         email: "zagrajmy.net+test-admiral.raddus@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Statura"
+        name: "Admiral Statura"
         email: "zagrajmy.net+test-admiral.statura@gmail.com"
-        password: "zagrajmy2020"
       }
       {
-        username: "Admiral Trench"
+        name: "Admiral Trench"
         email: "zagrajmy.net+test-admiral.trench@gmail.com"
-        password: "zagrajmy2020"
       }
     ]
     on_conflict: {
-      constraint: cr_user_pkey
-      update_columns: [username, date_joined, password]
+      constraint: user_pkey
+      update_columns: [name, email, created_at]
     }
   ) {
     affected_rows
