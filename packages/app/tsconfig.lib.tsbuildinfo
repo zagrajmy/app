@@ -290,8 +290,8 @@
         "signature": "43060dce08b2598c514a1fc676762e845ef23eec75c9e4c6eea7bbe646c3e8a4"
       },
       "./src/ui/theme.tsx": {
-        "version": "285b3369ba2c097c2998c98bf17ba618e34ed9baab7f9052b591a7a982665e65",
-        "signature": "bf7a2947058cf9e16438d75812fbddac18cb6ab83780efa336dbb3a847375309"
+        "version": "45e98c9fd02cd9c0d1e42dc2b5c141064956f2dcab77c8c6c48cbb5f412bd0e2",
+        "signature": "895b1ed61a268acd24b02e02eec7276dd5f73b3c88e0eddd46e9aa43bd62140d"
       },
       "../../node_modules/@types/node/globals.d.ts": {
         "version": "1236b98326630298e0b9cd30ccecd77560ac925140b753f1b1a0ffc6e7b51ad4",
@@ -565,9 +565,17 @@
         "version": "122875d561c7305174d9598f52a9798d4329d0b3a88b255f1126aa3516d3ba29",
         "signature": "eca8d60d35e60e1a457ffd2035e94c4a1a04c85f405513ce74401bc92cb72502"
       },
+      "./src/ui/Card.tsx": {
+        "version": "768c482051a2541d4e37a4865384722842a5a500270301af0ad59d31062819c3",
+        "signature": "768c482051a2541d4e37a4865384722842a5a500270301af0ad59d31062819c3"
+      },
+      "./src/ui/Container.tsx": {
+        "version": "b7f5a6efd3cc82a544849445246cf4aa20dab96bed237294228b78cf6b881df9",
+        "signature": "b7f5a6efd3cc82a544849445246cf4aa20dab96bed237294228b78cf6b881df9"
+      },
       "./src/ui/index.tsx": {
-        "version": "0aa20b179fc42513eb75e543f183816d3adb736e466725395b88d649f5c06111",
-        "signature": "0aa20b179fc42513eb75e543f183816d3adb736e466725395b88d649f5c06111"
+        "version": "475b3a434f0ad975af8820a9df07fc7951fbc07192fa64e6a8c90d44ca607ebc",
+        "signature": "475b3a434f0ad975af8820a9df07fc7951fbc07192fa64e6a8c90d44ca607ebc"
       },
       "./src/index.ts": {
         "version": "0334ac4b9e7a3566c8dc02c9243d77860fe200288202e1acbadacb09184ead62",
@@ -610,8 +618,8 @@
         "signature": "c274e300ebb3aad850fe4fa941ce16dc5529b6de859d9ad256b00859ae4e4224"
       },
       "../../node_modules/@auth0/nextjs-auth0/dist/handlers/login.d.ts": {
-        "version": "f2019ae51662daf185d873fe623559eba78dd88933c4c2c680602844ba2eb7f7",
-        "signature": "f2019ae51662daf185d873fe623559eba78dd88933c4c2c680602844ba2eb7f7"
+        "version": "490ccb005232aedd9e981bad4916dd0eb1269d937b74296c481eb557d11932df",
+        "signature": "490ccb005232aedd9e981bad4916dd0eb1269d937b74296c481eb557d11932df"
       },
       "../../node_modules/@auth0/nextjs-auth0/dist/tokens/token-cache.d.ts": {
         "version": "461a5095d1aaa0c19911187da42eccf592cd000a293b82f90fec5725ac36eee9",
@@ -634,8 +642,8 @@
         "signature": "af0f570ca9047c613be127c8f046f7445d680367cf45306dfc80eb14fa4c7d59"
       },
       "../../node_modules/@auth0/nextjs-auth0/dist/instance.d.ts": {
-        "version": "8ebc7683be9942e27d4a399a761d0b180c87e70ccbe7f60582e2e53e6854cde6",
-        "signature": "8ebc7683be9942e27d4a399a761d0b180c87e70ccbe7f60582e2e53e6854cde6"
+        "version": "bf6f7fb4928bb66e30902b50ca5fabe0804edcd44fedd660d10dfeb1e647253f",
+        "signature": "bf6f7fb4928bb66e30902b50ca5fabe0804edcd44fedd660d10dfeb1e647253f"
       },
       "../../node_modules/@auth0/nextjs-auth0/dist/index.d.ts": {
         "version": "5141f23a22f8b93d90f5867cc61d138665b91526b5ef7853688594ab2ea5e6be",
@@ -662,8 +670,8 @@
         "signature": "a68d37849b9ac898e8e83b7ca292b00327e2cd41e981bd834d8ba063effd7140"
       },
       "./src/app/auth/index.ts": {
-        "version": "f34dc20b3f8669ab07ff03f999ebb6fec207d471b1a5cfaf7c76bef53f39f53a",
-        "signature": "c3e92272cdb6f7fbe598655764380ee2aba0139e57b7afc94d69d2073b9de798"
+        "version": "6508702591b2676397f922eebcdc9874d1be3b0ba97e9dda6b6c9b96e3eb2a17",
+        "signature": "062863d182797e496c09e920d80d553930bba7f9e5270c7c791d59e535bb1772"
       },
       "./src/declarations/augmented.d.ts": {
         "version": "87616a79a0009c5b97f1c32e41efaf8abe4dcd32a813d2fa25a40512fedf5c03",
@@ -689,10 +697,6 @@
         "version": "c11e5b48e59a61168daf47bad6a6cd1d3e6cf197c7ec1d5cd6fb47811877e696",
         "signature": "c7c596c98c56b98d6ed6de4db68cf49d3817caac8f37c973e3efb045426640cf"
       },
-      "./src/app/components/MaxWidthContainer.tsx": {
-        "version": "db27de3c1a779f0d34b517bca36850e3f03adc6388915642e0a2cafcac5f0ee0",
-        "signature": "12dd6267b002d0db1fcb83ac6d593135db3e68f3a8409c8ef028dd3c6d737173"
-      },
       "./src/app/components/MeetingAuthorLink.tsx": {
         "version": "24bd80bfb88673c32e9f7de2d54842b273e1c981f0146cdf29f48627545bd07c",
         "signature": "bc55d6434c5c66b1c4682efc36d217fc61fd8d4a8b1a6b4747ac3f3726a05496"
@@ -702,7 +706,7 @@
         "signature": "44a94bafc05152a3aaf501c193413de77cbcb50db696ee2134842191a870d476"
       },
       "./src/app/components/MeetingCard.tsx": {
-        "version": "9d14c4b668d1231d147ad1d1483673a9664130a0fa6439d61e5ad23dcb75fdce",
+        "version": "ca030c72096428ee73eabdf6bf0647c21729586675c5ba9cf3aeddfb21cc02f0",
         "signature": "6cdc7f54e1a7b0a77e6867dbd3be2621294218a1fd12acaec1db5a21c4a5b10d"
       },
       "./src/app/components/MeetingCardsList.tsx": {
@@ -718,7 +722,7 @@
         "signature": "6fba12e351ad070857418fb2a7f78d1ad832cd0a78b85a93582765f353a84d70"
       },
       "./src/ui/Avatar.tsx": {
-        "version": "66f1ef319bf1fe7100f64f9f42404586423a39ae98bb0fd799cdb4bce9ee171d",
+        "version": "b1bb6ab94273e3f0200a2e67aa87c2b61ff11ff463c31b1af53c936a78568722",
         "signature": "f0aa04b898615f6a7b80c9cd0843ef05dae7a5634690c8772d28d6144fe070d5"
       },
       "./src/app/components/UserAvatar.tsx": {
@@ -2426,11 +2430,31 @@
         "./node_modules/date-fns/typings.d.ts",
         "../../node_modules/date-fns/typings.d.ts"
       ],
+      "./src/ui/Card.tsx": [
+        "../../node_modules/theme-ui/dist/index.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../../node_modules/@types/node/util.d.ts",
+        "../../node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "../../node_modules/date-fns/typings.d.ts"
+      ],
+      "./src/ui/Container.tsx": [
+        "../../node_modules/theme-ui/dist/index.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../../node_modules/@types/node/util.d.ts",
+        "../../node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "../../node_modules/date-fns/typings.d.ts"
+      ],
       "./src/ui/index.tsx": [
         "./src/ui/Dl.tsx",
         "./src/ui/theme.tsx",
         "./src/ui/Link.tsx",
         "./src/ui/Spacer.tsx",
+        "./src/ui/Card.tsx",
+        "./src/ui/Container.tsx",
         "../../node_modules/@types/node/fs.d.ts",
         "../../node_modules/@types/node/ts3.2/fs.d.ts",
         "../../node_modules/@types/node/util.d.ts",
@@ -2680,7 +2704,9 @@
       "./src/app/auth/index.ts": [
         "../../node_modules/@auth0/nextjs-auth0/dist/index.d.ts",
         "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/next/types/index.d.ts",
         "../../node_modules/dotenv/types/index.d.ts",
+        "../../node_modules/@auth0/nextjs-auth0/dist/settings.d.ts",
         "./src/app/auth/types.ts",
         "../../node_modules/@types/auth0/index.d.ts",
         "../../node_modules/@types/node/fs.d.ts",
@@ -2741,16 +2767,6 @@
       "./src/app/components/AppFooter.tsx": [
         "../../node_modules/next-next-link/dist/index.d.ts",
         "./src/app/components/HeaderFooterListItem.tsx",
-        "../../node_modules/@types/node/fs.d.ts",
-        "../../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../../node_modules/@types/node/util.d.ts",
-        "../../node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "../../node_modules/date-fns/typings.d.ts"
-      ],
-      "./src/app/components/MaxWidthContainer.tsx": [
-        "../../node_modules/@types/react/index.d.ts",
-        "../../node_modules/theme-ui/dist/index.d.ts",
         "../../node_modules/@types/node/fs.d.ts",
         "../../node_modules/@types/node/ts3.2/fs.d.ts",
         "../../node_modules/@types/node/util.d.ts",
@@ -5004,7 +5020,9 @@
         "./src/ui/Dl.tsx",
         "./src/ui/theme.tsx",
         "./src/ui/Link.tsx",
-        "./src/ui/Spacer.tsx"
+        "./src/ui/Spacer.tsx",
+        "./src/ui/Card.tsx",
+        "./src/ui/Container.tsx"
       ],
       "./src/index.ts": [
         "./src/lib/index.ts",
@@ -5235,6 +5253,7 @@
       ],
       "./src/app/auth/index.ts": [
         "./src/app/auth/types.ts",
+        "../../node_modules/@auth0/nextjs-auth0/dist/session/session.d.ts",
         "../../node_modules/@types/auth0/index.d.ts",
         "../../node_modules/@auth0/nextjs-auth0/dist/handlers/login.d.ts",
         "../../node_modules/@auth0/nextjs-auth0/dist/handlers/callback.d.ts",
@@ -5274,10 +5293,6 @@
       ],
       "./src/app/components/HeaderFooterListItem.tsx": [
         "../../node_modules/@types/react/index.d.ts"
-      ],
-      "./src/app/components/MaxWidthContainer.tsx": [
-        "../../node_modules/@types/react/index.d.ts",
-        "../../node_modules/theme-ui/dist/index.d.ts"
       ],
       "./src/app/components/MeetingAuthorLink.tsx": [
         "../../node_modules/@types/react/index.d.ts",
@@ -6158,9 +6173,54 @@
         "../../node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "../../node_modules/date-fns/typings.d.ts"
+      ],
+      "./src/ui/Card.tsx": [
+        "../../node_modules/theme-ui/dist/index.d.ts"
+      ],
+      "./src/ui/Container.tsx": [
+        "../../node_modules/theme-ui/dist/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.es2016.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.d.ts",
+      "../../node_modules/typescript/lib/lib.es2019.d.ts",
+      "../../node_modules/typescript/lib/lib.es2020.d.ts",
+      "../../node_modules/typescript/lib/lib.esnext.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.object.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.string.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.intl.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.regexp.d.ts",
+      "../../node_modules/typescript/lib/lib.es2019.array.d.ts",
+      "../../node_modules/typescript/lib/lib.es2019.object.d.ts",
+      "../../node_modules/typescript/lib/lib.es2019.string.d.ts",
+      "../../node_modules/typescript/lib/lib.es2019.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts",
+      "../../node_modules/typescript/lib/lib.es2020.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2020.string.d.ts",
+      "../../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
+      "../../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "./src/lib/isDefined.ts",
       "./src/lib/randomElement.ts",
       "./src/lib/match.tsx",
@@ -6194,7 +6254,6 @@
       "../../node_modules/@types/theme-ui__components/index.d.ts",
       "../../node_modules/@types/theme-ui/index.d.ts",
       "../../node_modules/theme-ui/dist/index.d.ts",
-      "./src/ui/theme.tsx",
       "../../node_modules/@types/node/globals.d.ts",
       "../../node_modules/@types/node/assert.d.ts",
       "../../node_modules/@types/node/async_hooks.d.ts",
@@ -6261,10 +6320,7 @@
       "../../node_modules/next/dist/client/link.d.ts",
       "../../node_modules/next/link.d.ts",
       "../../node_modules/next-next-link/dist/index.d.ts",
-      "./src/ui/Link.tsx",
       "./src/ui/Spacer.tsx",
-      "./src/ui/index.tsx",
-      "./src/index.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/oidc-client-settings.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/session/cookie-store/settings.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/settings.d.ts",
@@ -6274,46 +6330,34 @@
       "../../node_modules/jose/types/index.d.ts",
       "../../node_modules/openid-client/types/index.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/utils/oidc-client.d.ts",
-      "../../node_modules/@auth0/nextjs-auth0/dist/handlers/login.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/tokens/token-cache.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/session/store.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/handlers/callback.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/handlers/profile.d.ts",
       "../../node_modules/@auth0/nextjs-auth0/dist/handlers/require-authentication.d.ts",
-      "../../node_modules/@auth0/nextjs-auth0/dist/instance.d.ts",
-      "../../node_modules/@auth0/nextjs-auth0/dist/index.d.ts",
       "../../node_modules/dotenv/types/index.d.ts",
       "../../node_modules/nom-ts/dist/main.d.ts",
       "../../node_modules/nom-ts/dist/index.d.ts",
       "../../node_modules/@types/auth0/index.d.ts",
       "./src/app/auth/types.ts",
-      "./src/app/auth/index.ts",
       "./src/declarations/augmented.d.ts",
       "./src/declarations/missing.d.ts",
       "./src/app/types.tsx",
       "./src/app/api/index.tsx",
       "./src/app/components/HeaderFooterListItem.tsx",
       "./src/app/components/AppFooter.tsx",
-      "./src/app/components/MaxWidthContainer.tsx",
       "./src/app/components/MeetingAuthorLink.tsx",
       "./node_modules/date-fns/typings.d.ts",
-      "./src/app/components/MeetingCard.tsx",
       "./src/app/components/MeetingCardsList.tsx",
       "./src/app/components/MeetingDetailsImage.tsx",
       "../../node_modules/use-onclickoutside/types/index.d.ts",
-      "./src/ui/Avatar.tsx",
-      "./src/app/components/UserAvatar.tsx",
-      "./src/app/components/Menu.tsx",
       "../../node_modules/i18next/index.d.ts",
       "../../node_modules/react-i18next/src/index.d.ts",
-      "./src/app/store/index.tsx",
       "../../node_modules/next/dist/client/with-router.d.ts",
       "../../node_modules/next/dist/client/router.d.ts",
       "../../node_modules/next/router.d.ts",
       "./src/app/components/NavLink.tsx",
-      "./src/app/components/NavHeader.tsx",
       "./src/app/components/Page.tsx",
-      "./src/app/components/index.tsx",
       "../../node_modules/@babel/types/lib/index.d.ts",
       "../../node_modules/@types/babel__generator/index.d.ts",
       "../../node_modules/@types/babel__traverse/index.d.ts",
@@ -6382,45 +6426,23 @@
       "../../node_modules/@types/yargs/index.d.ts",
       "../../node_modules/@types/yoga-layout/index.d.ts",
       "../../node_modules/@types/zen-observable/index.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.d.ts",
-      "../../node_modules/typescript/lib/lib.es2016.d.ts",
-      "../../node_modules/typescript/lib/lib.es2017.d.ts",
-      "../../node_modules/typescript/lib/lib.es2018.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.d.ts",
-      "../../node_modules/typescript/lib/lib.es2020.d.ts",
-      "../../node_modules/typescript/lib/lib.esnext.d.ts",
-      "../../node_modules/typescript/lib/lib.es5.d.ts",
-      "../../node_modules/typescript/lib/lib.dom.d.ts",
-      "../../node_modules/typescript/lib/lib.dom.iterable.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
-      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts",
-      "../../node_modules/typescript/lib/lib.es2017.object.d.ts",
-      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
-      "../../node_modules/typescript/lib/lib.es2017.string.d.ts",
-      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
-      "../../node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
-      "../../node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
-      "../../node_modules/typescript/lib/lib.es2018.intl.d.ts",
-      "../../node_modules/typescript/lib/lib.es2018.promise.d.ts",
-      "../../node_modules/typescript/lib/lib.es2018.regexp.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.array.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.object.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.string.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.symbol.d.ts",
-      "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts",
-      "../../node_modules/typescript/lib/lib.es2020.promise.d.ts",
-      "../../node_modules/typescript/lib/lib.es2020.string.d.ts",
-      "../../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
-      "../../node_modules/typescript/lib/lib.esnext.intl.d.ts"
+      "./src/ui/theme.tsx",
+      "./src/ui/Card.tsx",
+      "./src/ui/Container.tsx",
+      "./src/ui/index.tsx",
+      "../../node_modules/@auth0/nextjs-auth0/dist/handlers/login.d.ts",
+      "../../node_modules/@auth0/nextjs-auth0/dist/instance.d.ts",
+      "./src/app/auth/index.ts",
+      "./src/app/components/MeetingCard.tsx",
+      "./src/ui/Avatar.tsx",
+      "./src/ui/Link.tsx",
+      "./src/index.ts",
+      "../../node_modules/@auth0/nextjs-auth0/dist/index.d.ts",
+      "./src/app/components/UserAvatar.tsx",
+      "./src/app/components/Menu.tsx",
+      "./src/app/store/index.tsx",
+      "./src/app/components/NavHeader.tsx",
+      "./src/app/components/index.tsx"
     ]
   },
   "version": "3.8.3"

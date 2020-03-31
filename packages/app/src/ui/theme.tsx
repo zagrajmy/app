@@ -18,6 +18,9 @@ export const theme = makeTheme({
   fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
     (x) => `${x}rem`
   ),
+  sizes: {
+    container: 1100,
+  },
   radii: {
     none: 0,
     "rounded-sm": ".125rem",
@@ -143,6 +146,19 @@ export const theme = makeTheme({
   forms: {
     fontSize: 3,
     textarea: {},
+  },
+  cards: {
+    primary: {
+      position: "relative",
+      boxShadow: "md",
+      border: "1px solid rgba(0, 0, 0, 0.3)",
+      borderRadius: "rounded-lg",
+      background: "rgba(255, 255, 255, 0.9)",
+      minHeight: "200px",
+      width: "800px",
+      maxWidth: "80vw",
+      margin: "1em",
+    },
   },
 });
 

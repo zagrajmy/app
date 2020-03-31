@@ -1,11 +1,11 @@
 import { NextPage } from "next";
 import { OnSubmit, useForm } from "react-hook-form";
 import {
-  Box,
   Input as ThInput,
   InputProps as ThInputProps,
   Label,
   Textarea,
+  Card,
 } from "theme-ui";
 import { OmitByValue } from "utility-types";
 
@@ -33,7 +33,7 @@ const CreateMeetingPage: NextPage = () => {
 
   return (
     <Page>
-      <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+      <Card as="form" onSubmit={handleSubmit(onSubmit)}>
         <Label>
           {t("title")}
           <Input name={t("title")} ref={register} />
@@ -47,7 +47,7 @@ const CreateMeetingPage: NextPage = () => {
             sx={{ resize: "none" }}
           />
         </Label>
-      </Box>
+      </Card>
     </Page>
   );
 };

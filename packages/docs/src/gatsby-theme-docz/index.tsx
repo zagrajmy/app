@@ -63,7 +63,10 @@ const theme = {
     square: 0,
     radius: appTheme.radii["rounded-sm"],
   },
-  styles,
+  styles: {
+    ...styles,
+    ...appTheme.styles,
+  },
   prism,
 };
 

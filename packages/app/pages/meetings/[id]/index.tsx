@@ -18,9 +18,8 @@ import {
 import pl from "date-fns/locale/pl";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
-import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer";
+import { Container, Dl, Link, Theme } from "../../../src/ui";
 import { Id, Meeting, User } from "../../../src/app/types";
-import { Dl, Link, Theme } from "../../../src/ui";
 
 registerLocale("pl-PL", pl);
 
@@ -121,7 +120,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           </Button>
         </Box>
       )}
-      <MaxWidthContainer
+      <Container
         bg="white"
         as={isEditing ? "form" : "article"}
         // as="form"
@@ -259,7 +258,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
             <p sx={{ mt: 0 }}>{description}</p>
           )}
         </section>
-      </MaxWidthContainer>
+      </Container>
     </Page>
   );
 }

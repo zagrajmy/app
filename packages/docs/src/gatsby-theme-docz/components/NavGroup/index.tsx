@@ -27,6 +27,8 @@ export const NavGroup = ({ item, sidebarRef }: NavGroupProps) => {
   return (
     <div sx={{ my: 3 }} data-testid="nav-group">
       <div
+        role="menu"
+        tabIndex={0}
         sx={{
           mb: 1,
           fontSize: 2,
@@ -38,6 +40,11 @@ export const NavGroup = ({ item, sidebarRef }: NavGroupProps) => {
           alignItems: "center",
         }}
         onClick={toggleSubheadings}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === "Space") {
+            toggleSubheadings();
+          }
+        }}
       >
         {item.name}
         <ChevronDown
