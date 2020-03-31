@@ -1,14 +1,13 @@
 import { initAuth0 } from "@auth0/nextjs-auth0";
 import { IncomingMessage, ServerResponse } from "http";
-
+import { NextApiRequest } from "next";
 import * as dotenv from "dotenv";
 
-import { Session, UserUuid } from "./types";
+import absoluteUrl from "../../lib/absoluteUrl";
 
 export * from "./types";
 
-// eslint-disable-next-line import/no-mutable-exports
-export let auth = (() => {
+export const makeAuth = (nextReq?: NextApiRequest) => {
   if (typeof window !== "undefined") {
     return undefined;
   }
@@ -31,40 +30,27 @@ export let auth = (() => {
     AUTH0_COOKIE_SECRET,
   } = process.env;
 
+  const { origin } = absoluteUrl(nextReq);
+  console.log({ origin });
   const auth0 = initAuth0({
     domain: AUTH0_DOMAIN!,
     clientId: AUTH0_CLIENT_ID!,
     clientSecret: AUTH0_CLIENT_SECRET!,
     scope: "openid profile",
-    redirectUri: "http://localhost:3000/api/login-callback",
-    postLogoutRedirectUri: "http://localhost:3000/",
+    redirectUri: `${origin}/api/login-callback`,
+    postLogoutRedirectUri: `${origin}/`,
     session: {
       cookieSecret: AUTH0_COOKIE_SECRET!,
       cookieLifetime: 60 * 60 * 8,
     },
   });
 
-  // TODO: Remove me
-  // user id from session will be exactly the user_id in zagrajmy db
-  const getSession = async (
-    req: IncomingMessage
-  ): Promise<Session | undefined | null> => {
-    const session = (await auth0.getSession(req)) as Session;
-
-    if (session) {
-      // getCookie?
-      session.user.uuid = "not-implemented-yet" as UserUuid;
-    }
-
-    return session;
-  };
-
   const getSessionOrLogIn = async (
     req?: IncomingMessage,
     res?: ServerResponse
   ) => {
     if (typeof window === "undefined" && req && res) {
-      const session = await getSession(req);
+      const session = await auth0.getSession(req);
       if (!session?.user) {
         res.writeHead(302, { Location: "/api/login" });
         res.end();
@@ -77,8 +63,8 @@ export let auth = (() => {
     return { user: null };
   };
 
+  type ManagementClient = import("auth0").ManagementClient;
   const createManagementClient = () => {
-    type ManagementClient = import("auth0").ManagementClient;
     if (typeof window === "undefined") {
       // eslint-disable-next-line global-require
       const { ManagementClient } = require("auth0") as typeof import("auth0");
@@ -99,13 +85,22 @@ export let auth = (() => {
     });
   };
 
+  let managementClient: ManagementClient;
+
   return {
     ...auth0,
-    getSession,
     getSessionOrLogIn,
-    management: createManagementClient(),
+    get management() {
+      if (!managementClient) {
+        managementClient = createManagementClient();
+      }
+      return managementClient;
+    },
   };
-})()!;
+};
+
+// eslint-disable-next-line import/no-mutable-exports
+export let auth = makeAuth()!;
 
 type Auth = typeof auth;
 

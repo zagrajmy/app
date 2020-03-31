@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse, NextPageContext } from "next";
 import { setCookie } from "nookies";
 
-import { auth } from "../../src/app/auth";
+import { makeAuth } from "../../src/app/auth";
 import { noop } from "../../src/lib/noop";
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
@@ -15,7 +15,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       return res;
     };
 
-    await auth.handleLogin(req, res, {
+    await makeAuth(req).handleLogin(req, res, {
       authParams: { scope: "openid email profile" },
     });
 
