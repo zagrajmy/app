@@ -6,6 +6,7 @@ declare module "theme-ui" {
     useCustomProperties?: boolean;
     forms: {
       textarea: SxStyleProp;
+      select: SxStyleProp;
     };
   }
 }
@@ -144,8 +145,13 @@ export const theme = makeTheme({
     },
   },
   forms: {
-    fontSize: 3,
     textarea: {},
+    select: {
+      ":disabled": {
+        opacity: 0.7,
+        cursor: "not-allowed",
+      },
+    },
   },
   cards: {
     primary: {
@@ -158,6 +164,16 @@ export const theme = makeTheme({
       width: "800px",
       maxWidth: "80vw",
       margin: "1em",
+    },
+  },
+  layout: {
+    container: {},
+    sheet: {
+      bg: "white",
+      borderRadius: "rounded-lg",
+      boxShadow: "sm",
+      p: 3,
+      zIndex: 1,
     },
   },
 });

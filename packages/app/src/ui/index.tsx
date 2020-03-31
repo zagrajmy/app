@@ -4,3 +4,4 @@ export * from "./Link";
 export * from "./Spacer";
 export * from "./Card";
 export * from "./Container";
+export * from "./FormDatepicker";

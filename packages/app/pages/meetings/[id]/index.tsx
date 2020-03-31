@@ -1,6 +1,5 @@
 import { get } from "@theme-ui/css";
 import { useRef, useState } from "react";
-import Datepicker, { registerLocale } from "react-datepicker";
 import { CheckSquare, Edit } from "react-feather";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -15,13 +14,11 @@ import {
   Textarea,
 } from "theme-ui";
 
-import pl from "date-fns/locale/pl";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
-import { Container, Dl, Link, Theme } from "../../../src/ui";
+import { Container, Dl, Link, Theme, FormDatepicker } from "../../../src/ui";
 import { Id, Meeting, User } from "../../../src/app/types";
 
-registerLocale("pl-PL", pl);
 
 interface EditMeetingButtonProps {
   isEditing: boolean;
@@ -121,16 +118,12 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
         </Box>
       )}
       <Container
-        bg="white"
+        variant="sheet"
         as={isEditing ? "form" : "article"}
         // as="form"
         ref={formRef as any /* as React.Ref<HTMLFormElement> */}
         onSubmit={onSubmit}
-        p={3}
         sx={{
-          borderRadius: "rounded-lg",
-          boxShadow: "sm",
-          zIndex: 1,
           mt:
             meeting.image?.kind !== "background"
               ? (th: Theme) => `-${get(th, "space.3")}px`
@@ -154,17 +147,10 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
               }}
             >
               {isEditing ? (
-                <Controller
+                <FormDatepicker
                   name="start_time"
-                  as={Datepicker}
-                  control={form.control}
-                  showTimeSelect
-                  customInput={<Input sx={{ bg: "gray.1", border: 0 }} />}
-                  valueName="selected"
-                  defaultValue={start_time || new Date()}
-                  dateFormat="Pp"
-                  timeFormat="p"
-                  // locale="pl-PL" // TODO: Check if it's detected and respects preference
+                  input={<Input sx={{ bg: "gray.1", border: 0 }} />}
+                  defaultValue={start_time}
                 />
               ) : (
                 <Text as="span" sx={{ padding: 1, fontWeight: 500 }}>

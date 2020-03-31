@@ -11,6 +11,7 @@ module.exports = {
     ],
     "no-restricted-syntax": "off",
     "react/prop-types": "off",
+    "react/no-array-index-key": "off",
   },
   overrides: [
     {
