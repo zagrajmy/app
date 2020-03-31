@@ -77,8 +77,8 @@ export const Playground = ({
   const [editorHeight, setEditorHeight] = React.useState<number>();
   const Wrapper = React.useCallback(
     useScoping || useScopingInPlayground
-      ? props => <IframeWrapper {...props}>{props.children}</IframeWrapper>
-      : props => (
+      ? (props) => <IframeWrapper {...props}>{props.children}</IframeWrapper>
+      : (props) => (
           // eslint-disable-next-line @typescript-eslint/no-use-before-define
           <div sx={styles.previewInner(showingCode)}>{props.children}</div>
         ),
@@ -101,7 +101,7 @@ export const Playground = ({
       data-testid="playground"
       sx={{
         ...syntaxStyles,
-        border: t => `2px solid ${t.colors.border}`,
+        border: (t) => `2px solid ${t.colors.border}`,
       }}
     >
       <LiveProvider

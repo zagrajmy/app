@@ -16,7 +16,7 @@
     "lint": "lerna run lint",
     "typecheck": "lerna run typecheck",
     "ci": "lerna run ci",
-    "fix": "wotan --fix && prettier --write && yarn lint -- --fix"
+    "fix": "wotan --fix && lerna run format && lerna run lint:fix"
   },
   "devDependencies": {
     "@fimbul/heimdall": "^0.21.0",

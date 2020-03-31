@@ -46,7 +46,7 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
       </header>
 
       <MeetingCardsList>
-        {meetings.map(m => (
+        {meetings.map((m) => (
           <li key={m.id}>
             <MeetingCard meeting={m} />
           </li>
@@ -73,8 +73,10 @@ IndexPage.getInitialProps = async (): Promise<InitialProps> => {
   const today = new Date();
   const meetings = await meetingsApi
     .getAll()
-    .then(xs =>
-      xs.filter(x => !x.start_time || isAfter(x.start_time, today)).slice(0, 3)
+    .then((xs) =>
+      xs
+        .filter((x) => !x.start_time || isAfter(x.start_time, today))
+        .slice(0, 3)
     );
   return { meetings };
 };

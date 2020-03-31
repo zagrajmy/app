@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export { default as ChevronDown } from "react-feather/dist/icons/chevron-down";
 export { default as ChevronUp } from "react-feather/dist/icons/chevron-up";
 export { default as Clipboard } from "react-feather/dist/icons/clipboard";

@@ -9,9 +9,9 @@ export const themeProp = (str: string) => (props: {
 
 export const usePrismTheme = () => {
   const {
-      theme,
-      colorMode,
-    } = useThemeUI() as any /* todo in theme-ui/color-modes */;
+    theme,
+    colorMode,
+  } = useThemeUI() as any; /* todo in theme-ui/color-modes */
   const getTheme = pipe(
     get("prismTheme"),
     defaultTo(get(`prism.${colorMode}`, theme))

@@ -10,7 +10,10 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "shadow": "gatsby-theme eject"
+    "shadow": "gatsby-theme eject",
+    "format": "prettier src/**/*.{ts,tsx,js,jsx,graphql,gql} --write",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "npm run lint --fix"
   },
   "dependencies": {
     "@theme-ui/prism": "^0.3.0",

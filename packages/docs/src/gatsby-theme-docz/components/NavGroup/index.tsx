@@ -1,11 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
 import { useCurrentDoc } from "docz";
 import { ChevronDown } from "gatsby-theme-docz/src/components/Icons";
 import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
 import React from "react";
 import { jsx } from "theme-ui";
-
-import * as styles from "./styles";
 
 export interface NavGroupProps {
   item: { name: string; menu: { name: string; route: string; id: string }[] };
@@ -23,7 +22,7 @@ export const NavGroup = ({ item, sidebarRef }: NavGroupProps) => {
     if (sidebarRef.current && currentDocRef.current) {
       sidebarRef.current.scrollTo(0, currentDocRef.current.offsetTop);
     }
-  }, []);
+  }, [sidebarRef]);
 
   return (
     <div sx={{ my: 3 }} data-testid="nav-group">
@@ -59,7 +58,7 @@ export const NavGroup = ({ item, sidebarRef }: NavGroupProps) => {
       <div sx={{ ml: 2 }} data-testid="nav-group-links">
         {menu &&
           subheadingsVisible &&
-          menu.map(menu => {
+          menu.map((menu) => {
             if (currentDoc.route === menu.route) {
               return (
                 <NavLink key={menu.id} item={menu} ref={currentDocRef}>

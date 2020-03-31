@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
 
 /** @jsxFrag React.Fragment */
@@ -38,7 +39,7 @@ export const Sidebar = React.forwardRef(
           currentDocRef.current.offsetTop
         );
       }
-    }, []);
+    }, [ref]);
     return (
       <>
         <Box onClick={props.onClick} sx={styles.overlay(props)}>
@@ -51,7 +52,7 @@ export const Sidebar = React.forwardRef(
             onChange={handleChange}
           />
           {menus &&
-            menus.map(menu => {
+            menus.map((menu) => {
               if (!menu.route)
                 return <NavGroup key={menu.id} item={menu} sidebarRef={ref} />;
 

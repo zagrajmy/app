@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
 import { Global } from "@emotion/core";
 import { media } from "gatsby-theme-docz/src/theme/breakpoints";
@@ -23,7 +24,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           height: "100vh",
         }}
       >
-        <Header onOpen={() => setOpen(s => !s)} />
+        <Header onOpen={() => setOpen((s) => !s)} />
         <div
           sx={{
             py: 0,

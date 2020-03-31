@@ -36,7 +36,7 @@ const MeetingsPage = ({ meetings }: MeetingsPageProps) => {
       <article sx={{ mt: 3 }}>
         <Heading as="h3">Recent meetings</Heading>
         <MeetingCardsList>
-          {meetings.map(m => (
+          {meetings.map((m) => (
             <li key={m.id}>
               <MeetingCard meeting={m} />
             </li>

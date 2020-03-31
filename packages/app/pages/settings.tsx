@@ -19,8 +19,8 @@ type SettingsProps = {
 
 const Settings: NextPage<SettingsProps> = () => {
   const { user: sessionUsere } = useAppState();
-  const sameEmailUsers = useSWR("/api/u/me", url =>
-    fetch(url).then(res => {
+  const sameEmailUsers = useSWR("/api/u/me", (url) =>
+    fetch(url).then((res) => {
       if (res.ok) {
         // TODO: consider io-ts or typescript-is?
         return res.json() as Promise<WeResponseJson>;
@@ -54,7 +54,7 @@ const Settings: NextPage<SettingsProps> = () => {
         {sameEmailUsers.data && (
           <section>
             <Heading as="h3">Your Accounts</Heading>
-            {sameEmailUsers.data.users.map(user => (
+            {sameEmailUsers.data.users.map((user) => (
               <Dl.FromObject value={user} key={user.user_id} />
             ))}
           </section>
