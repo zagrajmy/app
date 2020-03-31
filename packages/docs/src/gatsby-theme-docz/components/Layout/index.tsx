@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { useRef, useState } from "react";
-import { jsx, Box } from "theme-ui";
 import { Global } from "@emotion/core";
-import global from "gatsby-theme-docz/src/theme/global";
 import { media } from "gatsby-theme-docz/src/theme/breakpoints";
+import global from "gatsby-theme-docz/src/theme/global";
+import { useRef, useState } from "react";
+import { Box, jsx } from "theme-ui";
 
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";

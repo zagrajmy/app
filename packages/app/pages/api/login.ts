@@ -1,4 +1,4 @@
-import { NextApiResponse, NextApiRequest, NextPageContext } from "next";
+import { NextApiRequest, NextApiResponse, NextPageContext } from "next";
 import { setCookie } from "nookies";
 
 import { auth } from "../../src/app/auth";

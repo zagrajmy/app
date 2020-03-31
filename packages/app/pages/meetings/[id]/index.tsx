@@ -1,26 +1,26 @@
-import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  Avatar,
-  Flex,
-  Textarea,
-  Input,
-} from "theme-ui";
 import { get } from "@theme-ui/css";
-import { Edit, CheckSquare } from "react-feather";
-import { useState, useRef } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useRef, useState } from "react";
 import Datepicker, { registerLocale } from "react-datepicker";
+import { CheckSquare, Edit } from "react-feather";
+import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Text,
+  Textarea,
+} from "theme-ui";
 
 import pl from "date-fns/locale/pl";
-import { Id, Meeting, User } from "../../../src/app/types";
 import { meetingsApi } from "../../../src/app/api";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
-import { Dl, Link, Theme } from "../../../src/ui";
 import { MaxWidthContainer } from "../../../src/app/components/MaxWidthContainer";
+import { Id, Meeting, User } from "../../../src/app/types";
+import { Dl, Link, Theme } from "../../../src/ui";
 
 registerLocale("pl-PL", pl);
 

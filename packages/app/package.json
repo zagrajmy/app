@@ -8,7 +8,6 @@
     "build:lib": "tsc -p ./tsconfig.lib.json && babel dist-ts -d dist && rm -rf dist-ts",
     "start": "next start",
     "lint": "eslint {src,pages}/**/*.{ts,tsx}",
-    "fix": "wotan --fix && yarn lint --fix",
     "typecheck": "tsc --noEmit",
     "ci": "yarn lint && yarn typecheck",
     "ts-node": "ts-node -P scripts/tsconfig.json",
@@ -45,6 +44,8 @@
     "@zeit/next-css": "^1.0.1",
     "auth0": "^2.24.0",
     "babel-plugin-emotion": "^10.0.29",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "babel-plugin-styled-components": "^1.10.7",
     "date-fns": "2.11.0",
     "docz": "^2.2.0",
@@ -57,7 +58,6 @@
     "next-next-link": "^0.0.1",
     "nom-ts": "^0.1.0",
     "nookies": "^2.2.1",
-    "prettier": "^2.0.2",
     "react": "^16.13.1",
     "react-datepicker": "^2.14.0",
     "react-dom": "^16.13.1",
@@ -75,21 +75,13 @@
     "utility-types": "^3.10.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-    "@fimbul/heimdall": "^0.21.0",
-    "@fimbul/wotan": "^0.21.1",
     "egzek": "^1.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-chop-chop": "^2.0.0-rc.0",
-    "execa": "^4.0.0",
     "graphql": "^14.6.0",
     "graphql-compiler": "^1.7.0",
     "graphql-zeus": "^2.6.3",
     "graphqurl": "^0.3.3",
     "now": "^17.1.1",
     "ts-jest": "^25.2.1",
-    "typescript": "^3.8.3",
-    "typescript-deno-plugin": "^1.2.7"
+    "typescript": "^3.8.3"
   }
 }

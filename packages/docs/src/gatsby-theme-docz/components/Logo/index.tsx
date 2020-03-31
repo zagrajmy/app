@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx, Flex } from "theme-ui";
 import { Link, useConfig } from "docz";
+import { Flex, jsx } from "theme-ui";
 
 export const Logo = () => {
   const config = useConfig();

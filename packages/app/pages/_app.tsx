@@ -1,20 +1,20 @@
-import { universalLanguageDetect } from "@unly/universal-language-detector";
-import App, { AppContext } from "next/app";
-import { parseCookies } from "nookies";
-import React from "react";
-import { ThemeProvider as ThemeUiProvider, Styled } from "theme-ui";
 // It's a dependency of theme-ui
 // Should theme-ui reexport Global?
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Global, InterpolationWithTheme } from "@emotion/core";
+import { universalLanguageDetect } from "@unly/universal-language-detector";
+import App, { AppContext } from "next/app";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
+import { parseCookies } from "nookies";
+import React from "react";
+import { Styled, ThemeProvider as ThemeUiProvider } from "theme-ui";
 
-import { theme } from "../src/ui/theme";
-import { NavHeader } from "../src/app/components";
 import { auth } from "../src/app/auth";
-import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
-import { SUPPORTED_LANGUAGES, FALLBACK_LANG } from "../src/i18n";
+import { NavHeader } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
+import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
+import { FALLBACK_LANG, SUPPORTED_LANGUAGES } from "../src/i18n";
+import { theme } from "../src/ui/theme";
 
 import "react-datepicker/dist/react-datepicker.css";
 

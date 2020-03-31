@@ -1,5 +1,5 @@
-import React from "react";
 import { formatRelative } from "date-fns";
+import React from "react";
 import { Image } from "theme-ui";
 
 import { Link, LinkProps } from "next-next-link";

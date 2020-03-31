@@ -1,12 +1,12 @@
-import { NextApiResponse, NextApiRequest } from "next";
 import { head } from "fp-ts/lib/Array";
-import * as O from "fp-ts/lib/Option";
 import { flow } from "fp-ts/lib/function";
+import * as O from "fp-ts/lib/Option";
+import { NextApiRequest, NextApiResponse } from "next";
 import { parseCookies } from "nookies";
 
-import { hasura, Db } from "../../data/hasura";
-import { auth, UserUuid } from "../../src/app/auth";
 import * as generated from "../../data/graphql-zeus";
+import { Db, hasura } from "../../data/hasura";
+import { auth, UserUuid } from "../../src/app/auth";
 
 const getCrUserByEmail = (db: Db) => (email: string) =>
   db

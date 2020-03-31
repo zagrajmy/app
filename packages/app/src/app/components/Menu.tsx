@@ -1,7 +1,7 @@
-import { ComponentProps, useRef } from "react";
-import { Link } from "next-next-link";
-import { Theme } from "theme-ui";
 import { get } from "@theme-ui/css";
+import { Link } from "next-next-link";
+import { ComponentProps, useRef } from "react";
+import { Theme } from "theme-ui";
 import useOnClickOutside from "use-onclickoutside";
 
 import { Claims } from "../auth";

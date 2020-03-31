@@ -1,11 +1,11 @@
 import React from "react";
 
-import { useTranslation } from "react-i18next";
 import { Link } from "next-next-link";
-import { useAppState, StateFromAppInitialProps } from "../store";
+import { useTranslation } from "react-i18next";
+import { StateFromAppInitialProps, useAppState } from "../store";
+import { HeaderFooterListItem } from "./HeaderFooterListItem";
 import { Menu } from "./Menu";
 import { NavLink } from "./NavLink";
-import { HeaderFooterListItem } from "./HeaderFooterListItem";
 
 export interface NavHeaderProps
   extends Pick<StateFromAppInitialProps, "user"> {}

@@ -1,8 +1,8 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import translationPL from "../public/locales/pl.json";
 import translationEN from "../public/locales/en.json";
+import translationPL from "../public/locales/pl.json";
 
 // Polish and English will always be bundled
 // Additional languages / customizations

@@ -1,18 +1,18 @@
 /** @jsx jsx */
 /* eslint-disable import/no-extraneous-dependencies */
-import { jsx } from "theme-ui";
-import React from "react";
-import { useConfig } from "docz";
-import { LiveProvider, LiveError, LivePreview, LiveEditor } from "react-live";
-import { Resizable } from "re-resizable";
 import copy from "copy-text-to-clipboard";
-import ReactResizeDetector from "react-resize-detector";
-import { IframeWrapper } from "gatsby-theme-docz/src/components/Playground/IframeWrapper";
+import { useConfig } from "docz";
 import * as Icons from "gatsby-theme-docz/src/components/Icons";
+import { IframeWrapper } from "gatsby-theme-docz/src/components/Playground/IframeWrapper";
 import { Language } from "prism-react-renderer";
+import { Resizable } from "re-resizable";
+import React from "react";
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
+import ReactResizeDetector from "react-resize-detector";
+import { jsx } from "theme-ui";
 
-import { usePrismTheme } from "../../utils/theme";
 import { syntaxStyles } from "../../theme/syntax";
+import { usePrismTheme } from "../../utils/theme";
 
 import * as styles from "./styles";
 

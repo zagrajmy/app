@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
 import { Search } from "gatsby-theme-docz/src/components/Icons";
+import { jsx } from "theme-ui";
 
 export const NavSearch = props => {
   return (

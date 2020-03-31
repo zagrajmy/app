@@ -1,15 +1,15 @@
-import { NextPage } from "next";
-import { Heading } from "theme-ui";
-import useSWR from "swr";
 import fetch from "isomorphic-unfetch";
+import { NextPage } from "next";
+import useSWR from "swr";
+import { Heading } from "theme-ui";
 import { assert } from "ts-essentials";
 
-import { Page } from "../src/app/components";
 import { auth, Claims } from "../src/app/auth";
-import { Dl } from "../src/ui";
+import { Page } from "../src/app/components";
 import { MaxWidthContainer } from "../src/app/components/MaxWidthContainer";
 import { useAppState } from "../src/app/store";
 import { HttpError } from "../src/lib/HttpError";
+import { Dl } from "../src/ui";
 
 type WeResponseJson = import("./api/u/me").MeResponseJson;
 

@@ -1,4 +1,4 @@
-import { Meeting, User, Id } from "../types";
+import { Id, Meeting, User } from "../types";
 
 // TODO:
 

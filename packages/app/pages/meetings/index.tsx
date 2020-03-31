@@ -1,11 +1,11 @@
-import { Heading } from "theme-ui";
 import { useTranslation } from "react-i18next";
+import { Heading } from "theme-ui";
 
 import { Fragment } from "react";
-import { Meeting } from "../../src/app/types";
-import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { meetingsApi } from "../../src/app/api";
+import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { useAppState } from "../../src/app/store";
+import { Meeting } from "../../src/app/types";
 import { Link } from "../../src/ui";
 
 interface MeetingsPageProps {

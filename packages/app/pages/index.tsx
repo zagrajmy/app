@@ -1,12 +1,12 @@
-import React from "react";
-import Head from "next/head";
 import { isAfter } from "date-fns";
 import { NextPage } from "next";
+import Head from "next/head";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
-import { Page, MeetingCard } from "../src/app/components";
 import { meetingsApi } from "../src/app/api";
+import { MeetingCard, Page } from "../src/app/components";
+import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
 import { Meeting } from "../src/app/types";
 import { Link } from "../src/ui";
 

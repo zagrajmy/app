@@ -1,6 +1,6 @@
 {
   rulesDirectories: {
-    tslint: ".",
+    tslint: "./node_modules/tslint/lib/rules",
   },
   rules: {
     "no-misused-generics": "warning",

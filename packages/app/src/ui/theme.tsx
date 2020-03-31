@@ -1,5 +1,5 @@
-import { Theme as ThemeUITheme, useThemeUI, SxStyleProp } from "theme-ui";
 import { ContextValue } from "@theme-ui/core";
+import { SxStyleProp, Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 
 declare module "theme-ui" {
   export interface Theme {

@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 
+import { addHours, addWeeks, subWeeks } from "date-fns";
 import { config } from "dotenv";
-import { head, range } from "fp-ts/lib/Array";
-import * as TE from "fp-ts/lib/TaskEither";
-import { pipe } from "fp-ts/lib/pipeable";
-import * as E from "fp-ts/lib/Either";
 import { sequenceT } from "fp-ts/lib/Apply";
-import { subWeeks, addWeeks, addHours } from "date-fns";
+import { head, range } from "fp-ts/lib/Array";
+import * as E from "fp-ts/lib/Either";
+import { pipe } from "fp-ts/lib/pipeable";
+import * as TE from "fp-ts/lib/TaskEither";
 
 import { flow } from "fp-ts/lib/function";
 import { failure } from "../../src/lib/failure";
-import { meeting_update_column, meeting_constraint } from "../graphql-zeus";
 import { randomElement } from "../../src/lib/randomElement";
+import { meeting_constraint, meeting_update_column } from "../graphql-zeus";
 
 config();
 

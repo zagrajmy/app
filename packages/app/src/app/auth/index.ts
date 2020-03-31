@@ -1,5 +1,5 @@
 import { initAuth0 } from "@auth0/nextjs-auth0";
-import { ServerResponse, IncomingMessage } from "http";
+import { IncomingMessage, ServerResponse } from "http";
 
 import * as dotenv from "dotenv";
 

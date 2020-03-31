@@ -1,10 +1,10 @@
-import fetch from "isomorphic-unfetch";
 import { record } from "fp-ts/lib/Record";
-import { parseCookies } from "nookies";
+import fetch from "isomorphic-unfetch";
 import { NextApiRequest } from "next";
+import { parseCookies } from "nookies";
 
-import { Chain } from "./graphql-zeus";
 import { isDefined } from "../src/lib/isDefined";
+import { Chain } from "./graphql-zeus";
 
 const _global = typeof window !== "undefined" ? window : globalThis;
 Object.assign(_global, { fetch: _global.fetch || fetch });

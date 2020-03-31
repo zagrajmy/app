@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { SystemCssProperties, SystemStyleObject } from "theme-ui";
-import * as mixins from "gatsby-theme-docz/src/utils/mixins";
 import { ThemeConfig } from "docz";
+import * as mixins from "gatsby-theme-docz/src/utils/mixins";
+import { SystemCssProperties, SystemStyleObject } from "theme-ui";
 
 export const editor: SystemStyleObject = {
   p: 2,

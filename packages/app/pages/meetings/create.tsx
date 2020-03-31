@@ -1,9 +1,9 @@
 import { NextPage } from "next";
-import { useForm, OnSubmit } from "react-hook-form";
+import { OnSubmit, useForm } from "react-hook-form";
 import {
+  Box,
   Input as ThInput,
   InputProps as ThInputProps,
-  Box,
   Label,
   Textarea,
 } from "theme-ui";
@@ -11,8 +11,8 @@ import { OmitByValue } from "utility-types";
 
 import { useTranslation } from "react-i18next";
 import { meeting as Meeting } from "../../data/graphql-zeus";
-import { Page } from "../../src/app/components";
 import { auth } from "../../src/app/auth";
+import { Page } from "../../src/app/components";
 
 const GUILD_ID = 1; // TODO
 

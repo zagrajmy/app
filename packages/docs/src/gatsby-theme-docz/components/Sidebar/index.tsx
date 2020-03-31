@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
 /** @jsxFrag React.Fragment */
-import React, { useState, useRef, useEffect } from "react";
 import { Global } from "@emotion/core";
-import { jsx, Box } from "theme-ui";
-import { useMenus, useCurrentDoc } from "docz";
-import * as styles from "gatsby-theme-docz/src/components/Sidebar/styles";
-import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
+import { useCurrentDoc, useMenus } from "docz";
 import { NavGroup } from "gatsby-theme-docz/src/components/NavGroup";
+import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
+import * as styles from "gatsby-theme-docz/src/components/Sidebar/styles";
+import React, { useEffect, useRef, useState } from "react";
+import { Box, jsx } from "theme-ui";
 
 import { NavSearch } from "../NavSearch";
 

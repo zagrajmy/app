@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import React from "react";
 import { useCurrentDoc } from "docz";
-import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
 import { ChevronDown } from "gatsby-theme-docz/src/components/Icons";
+import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
+import React from "react";
+import { jsx } from "theme-ui";
 
 import * as styles from "./styles";
 

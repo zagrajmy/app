@@ -1,5 +1,5 @@
-import { Box, BoxProps } from "theme-ui";
 import { forwardRef } from "react";
+import { Box, BoxProps } from "theme-ui";
 
 export const MaxWidthContainer = forwardRef(
   (props: BoxProps, ref: React.Ref<HTMLDivElement>) => (

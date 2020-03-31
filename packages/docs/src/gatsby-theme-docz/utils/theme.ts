@@ -1,5 +1,5 @@
+import { defaultTo, get, pipe } from "lodash/fp";
 import { useThemeUI } from "theme-ui";
-import { get, pipe, defaultTo } from "lodash/fp";
 
 export const themeProp = (str: string) => (props: {
   theme: Record<string, any>;
