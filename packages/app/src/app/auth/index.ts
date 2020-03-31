@@ -31,15 +31,15 @@ export const makeAuth = (nextReq?: NextApiRequest) => {
   } = process.env;
 
   const referer = nextReq?.headers.referer;
-  const host = referer ? new URL(referer).host : "";
+  const origin = referer ? new URL(referer).origin : "";
 
   const auth0Settings: IAuth0Settings = {
     domain: AUTH0_DOMAIN!,
     clientId: AUTH0_CLIENT_ID!,
     clientSecret: AUTH0_CLIENT_SECRET!,
     scope: "openid profile",
-    redirectUri: `${host}/api/login-callback`,
-    postLogoutRedirectUri: `${host}/`,
+    redirectUri: `${origin}/api/login-callback`,
+    postLogoutRedirectUri: `${origin}/`,
     session: {
       cookieSecret: AUTH0_COOKIE_SECRET!,
       cookieLifetime: 60 * 60 * 8,
