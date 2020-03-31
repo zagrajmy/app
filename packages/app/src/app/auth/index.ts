@@ -32,6 +32,7 @@ export const makeAuth = (nextReq?: NextApiRequest) => {
 
   const referer = nextReq?.headers.referer;
   const origin = referer ? new URL(referer).origin : "";
+  console.log({ referer, origin });
 
   const auth0Settings: IAuth0Settings = {
     domain: AUTH0_DOMAIN!,
