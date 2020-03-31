@@ -30,7 +30,8 @@ export const makeAuth = (nextReq?: NextApiRequest) => {
     AUTH0_COOKIE_SECRET,
   } = process.env;
 
-  const { host } = new URL(nextReq?.headers.referer || "");
+  const referer = nextReq?.headers.referer;
+  const host = referer ? new URL(referer).host : "";
 
   const auth0Settings: IAuth0Settings = {
     domain: AUTH0_DOMAIN!,
