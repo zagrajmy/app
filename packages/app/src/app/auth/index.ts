@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { NextApiRequest } from "next";
 import * as dotenv from "dotenv";
 
-import absoluteUrl from "../../lib/absoluteUrl";
+import IAuth0Settings from "@auth0/nextjs-auth0/dist/settings";
 
 export * from "./types";
 
@@ -30,20 +30,22 @@ export const makeAuth = (nextReq?: NextApiRequest) => {
     AUTH0_COOKIE_SECRET,
   } = process.env;
 
-  const { origin } = absoluteUrl(nextReq);
-  console.log({ origin });
-  const auth0 = initAuth0({
+  const { host } = new URL(nextReq?.headers.referer || "");
+
+  const auth0Settings: IAuth0Settings = {
     domain: AUTH0_DOMAIN!,
     clientId: AUTH0_CLIENT_ID!,
     clientSecret: AUTH0_CLIENT_SECRET!,
     scope: "openid profile",
-    redirectUri: `${origin}/api/login-callback`,
-    postLogoutRedirectUri: `${origin}/`,
+    redirectUri: `${host}/api/login-callback`,
+    postLogoutRedirectUri: `${host}/`,
     session: {
       cookieSecret: AUTH0_COOKIE_SECRET!,
       cookieLifetime: 60 * 60 * 8,
     },
-  });
+  };
+
+  const auth0 = initAuth0(auth0Settings);
 
   const getSessionOrLogIn = async (
     req?: IncomingMessage,

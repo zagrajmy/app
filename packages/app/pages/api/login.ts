@@ -15,7 +15,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       return res;
     };
 
-    await makeAuth(req).handleLogin(req, res, {
+    await makeAuth(req)!.handleLogin(req, res, {
       authParams: { scope: "openid email profile" },
     });
 
