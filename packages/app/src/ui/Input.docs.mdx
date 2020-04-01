@@ -1,0 +1,49 @@
+---
+name: Input
+route: /ui/Input
+menu: UI
+---
+
+import { useState } from "react";
+import { Grid } from "theme-ui";
+import { Playground, Props } from "docz";
+
+import * as icons from "./icons";
+import { Input } from "./Input";
+
+# Input
+
+<Playground>
+  <Input placeholder="Aa" />
+</Playground>
+
+<PropDoc heading="inline: boolean" />
+
+<Playground>
+  <Input inline placeholder="Aa" />
+</Playground>
+
+<PropDoc heading="icon: ReactNode" />
+
+<Playground>
+  <Grid gap={2}>
+    <Input icon="⏲" />
+    <Input type="number" icon={<icons.Users size={18} />} defaultValue={10} />
+  </Grid>
+</Playground>
+
+<PropDoc heading="onClear: () => void" />
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("Clear me");
+    return (
+      <Input
+        inline
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onClear={() => void setValue("")}
+      />
+    );
+  }}
+</Playground>

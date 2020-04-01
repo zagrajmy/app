@@ -1,7 +1,8 @@
 import ReactDatePicker, { registerLocale } from "react-datepicker";
-import pl from "date-fns/locale/pl";
 import { Controller, ControllerProps } from "react-hook-form";
 import { ReactNode } from "react";
+import { Input } from "theme-ui";
+import pl from "date-fns/locale/pl";
 
 registerLocale("pl-PL", pl);
 
@@ -13,7 +14,7 @@ interface FormDatepickerProps
   input?: ReactNode;
 }
 export function FormDatepicker({
-  input,
+  input = <Input />,
   defaultValue = new Date(),
   ...rest
 }: FormDatepickerProps) {
