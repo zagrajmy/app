@@ -70,6 +70,7 @@ import("../hasura")
                 description:
                   "Just a group of Star Wars admirals playing battleship.\nMeeting generated for tests.",
                 guild_id: testGuildId,
+                sphere_id: 2, // (zagrajmy.now.sh) TODO
                 created_at: date.toISOString(),
                 start_time: startTime.toISOString(),
                 end_time: endTime.toISOString(),

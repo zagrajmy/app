@@ -11,6 +11,7 @@ import {
   Flex,
 } from "theme-ui";
 import { OmitByValue } from "utility-types";
+import fetch from "isomorphic-unfetch";
 
 import { useTranslation } from "react-i18next";
 import { meeting as Meeting } from "../../data/graphql-zeus";
@@ -21,6 +22,7 @@ import {
   Input as ThInput,
   InputProps as ThInputProps,
 } from "../../src/ui";
+import { InsertMeetingBody } from "../api/meetings/insert";
 
 const GUILD_ID = 1; // TODO
 
@@ -43,8 +45,41 @@ const CreateMeetingPage: NextPage = () => {
     },
   });
 
-  const onSubmit: OnSubmit<Meeting> = (values, event) =>
-    console.log({ values, event });
+  const onSubmit: OnSubmit<Meeting> = (values) => {
+    const formAction = document.activeElement?.getAttribute("formAction");
+
+    if (formAction !== "publish" && formAction !== "save-draft") {
+      throw new Error("Unexpected formAction");
+    }
+
+    const body: InsertMeetingBody = {
+      command: formAction,
+      meeting: {
+        description: values.description,
+        end_time: values.end_time,
+        guild_id: values.guild_id,
+        start_time: values.start_time,
+        title: values.title,
+        sphere_id: 2, // TODO (zagrajmy.now.sh)
+      },
+    };
+
+    // TODO: Move fetching outside of callback handler to a proper place
+    // useEffect or query hook
+    fetch("/api/meetings/insert", {
+      method: "POST",
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        console.log({ res });
+      })
+      .catch((err) => {
+        // TODO: Handle me. Display error in the UI.
+        // Let's make useMutation hook or think about react-query
+        // once again
+        // steida had a pretty cool useMutation hook on Twitter
+      });
+  };
 
   return (
     <Page>
@@ -80,9 +115,11 @@ const CreateMeetingPage: NextPage = () => {
           />
         </div>
         <div>
-          <Label htmlFor="guild">{t("guild")}</Label>
+          <Label htmlFor="guild">
+            {t("guild")} <small>{t("optional")}</small>
+          </Label>
           <Select name="guild" disabled>
-            <option>Twoja Gildia</option>
+            <option value={1}>Twoja Gildia</option>
           </Select>
         </div>
         <Grid columns={2}>

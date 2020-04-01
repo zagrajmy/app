@@ -7,6 +7,7 @@ import * as dotenv from "dotenv";
 // TODO: but write tests first
 
 import IAuth0Settings from "@auth0/nextjs-auth0/dist/settings";
+import { Session } from "./types";
 
 export * from "./types";
 
@@ -102,6 +103,7 @@ export const makeAuth = (nextReq?: IncomingMessage) => {
 
   return {
     ...auth0,
+    getSession: auth0.getSession as (req: IncomingMessage) => Promise<Session>,
     getSessionOrLogIn,
     get management() {
       if (!managementClient) {

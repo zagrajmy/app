@@ -11,11 +11,13 @@ Object.assign(_global, { fetch: _global.fetch || fetch });
 
 const { HASURA_URL } = process.env;
 
+type Instance = "localhost" | "development" | "production";
+
 /**
  * configured by `zm|db-env` cookie
  */
 const hasuraEnvs: Record<
-  string,
+  Instance,
   | {
       url: string;
       adminSecret?: string | undefined;
@@ -41,7 +43,7 @@ const hasuraEnvs: Record<
 /**
  * creates a hasura graphql client for database env name
  */
-export const hasura = (instance: string) => {
+export const hasura = (instance: Instance) => {
   const creds = hasuraEnvs[instance];
 
   if (!creds) {
@@ -57,8 +59,10 @@ export const hasura = (instance: string) => {
   });
 };
 
-hasura.fromNextReq = (req: NextApiRequest) => {
-  return hasura(parseCookies({ req })["zm|db-env"] || "development");
+hasura.fromReq = (req: NextApiRequest) => {
+  return hasura(
+    (parseCookies({ req })["zm|db-env"] as Instance) || "development"
+  );
 };
 
 export interface Db extends ReturnType<typeof hasura> {}

@@ -41,7 +41,7 @@ export default async function loggedIn(
   const { "zm|redirectTo": Location } = parseCookies({
     req,
   });
-  const db = hasura.fromNextReq(req);
+  const db = hasura.fromReq(req);
 
   if (session && session.user.email_verified) {
     const { email } = session.user;
