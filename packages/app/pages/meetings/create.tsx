@@ -8,6 +8,9 @@ import {
   Container,
   LabelProps,
   Select,
+  Grid,
+  Button,
+  Flex,
 } from "theme-ui";
 import { OmitByValue } from "utility-types";
 
@@ -38,7 +41,8 @@ const CreateMeetingPage: NextPage = () => {
     },
   });
 
-  const onSubmit: OnSubmit<Meeting> = (values) => console.log({ values });
+  const onSubmit: OnSubmit<Meeting> = (values, event) =>
+    console.log({ values, event });
 
   return (
     <Page>
@@ -47,7 +51,13 @@ const CreateMeetingPage: NextPage = () => {
         variant="sheet"
         sx={
           {
+            maxWidth: 720,
+
+            px: 5,
+            pb: 5,
+            pt: 4,
             mt: 4,
+
             display: "grid",
             gridGap: 3,
           } as any /* TODO: Add gridGap to Theme UI styles */
@@ -73,24 +83,26 @@ const CreateMeetingPage: NextPage = () => {
             <option>Twoja Gildia</option>
           </Select>
         </div>
-        <div>
-          <Label htmlFor="start_time">{t("meeting_start_time")}</Label>
-          <FormDatepicker
-            name="start_time"
-            control={control}
-            // input?
-          />
-        </div>
-        <div>
-          <Label htmlFor="end_time">{t("meeting_end_time")}</Label>
-          <FormDatepicker name="end_time" control={control} />
-        </div>
-        <div>
-          <Label htmlFor="publication_time">
-            {t("meeting_publication_time")}
-          </Label>
-          <FormDatepicker name="publication_time" control={control} />
-        </div>
+        <Grid columns={2}>
+          <div>
+            <Label htmlFor="start_time">{t("meeting-start-time")}</Label>
+            <FormDatepicker name="start-time" control={control} />
+          </div>
+          <div>
+            <Label htmlFor="end_time">{t("meeting-end-time")}</Label>
+            <FormDatepicker name="end-time" control={control} />
+          </div>
+        </Grid>
+        <Flex
+          sx={{ justifyContent: "flex-end", "& > button": { marginLeft: 2 } }}
+        >
+          <Button variant="secondary" type="submit" formAction="save-draft">
+            {t("save-draft")}
+          </Button>
+          <Button variant="primary" type="submit" formAction="publish">
+            {t("publish")}
+          </Button>
+        </Flex>
       </Container>
     </Page>
   );

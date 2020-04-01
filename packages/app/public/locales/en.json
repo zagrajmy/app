@@ -8,5 +8,10 @@
   "meeting-date": "Meeting Date",
   "new-meeting": "Organize Meeting",
   "not-published": "Not Published",
-  "guild": "Guild"
+  "guild": "Guild",
+  "meeting-start-time": "From",
+  "meeting-end-time": "To",
+  "meeting-publication-time": "Publication Time",
+  "save-draft": "Save Draft",
+  "publish": "Publish"
 }

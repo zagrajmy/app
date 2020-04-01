@@ -1,12 +1,14 @@
 import { ContextValue } from "@theme-ui/core";
-import { SxStyleProp, Theme as ThemeUITheme, useThemeUI } from "theme-ui";
+import { Theme as ThemeUITheme, useThemeUI, SystemStyleObject } from "theme-ui";
+import { buttons } from "./buttons";
 
 declare module "theme-ui" {
   export interface Theme {
     useCustomProperties?: boolean;
     forms: {
-      textarea: SxStyleProp;
-      select: SxStyleProp;
+      textarea: SystemStyleObject;
+      select: SystemStyleObject;
+      label: SystemStyleObject;
     };
   }
 }
@@ -60,7 +62,7 @@ export const theme = makeTheme({
     primaryDark: "#d34e4d",
     secondary: "#5654e8",
     accent: "#5654e8", // blue in triad of primary
-    muted: "#b19b9b",
+    muted: "rgba(0, 0, 0, 0.6)",
     modes: {
       dark: {
         text: "#fff",
@@ -85,6 +87,7 @@ export const theme = makeTheme({
   styles: {
     root: {
       fontSize: "16px",
+      lineHeight: 1.4,
       minHeight: "100vh",
       fontFamily: "body",
       color: "text",
@@ -104,60 +107,7 @@ export const theme = makeTheme({
       },
     },
   },
-  buttons: {
-    primary: {
-      display: "block",
-      bg: "primary",
-      color: "white",
-      padding: "0.8em 1.2em",
-      borderRadius: "rounded-lg",
-      textDecoration: "none",
-      cursor: "pointer",
-      boxShadow: "sm",
-      transition: "box-shadow 150ms linear",
-      ":hover": {
-        boxShadow: "md",
-        bg: "primaryLight",
-        borderColor: "primaryLight",
-      },
-    },
-    icon: {
-      fontSize: "inherit",
-      cursor: "pointer",
-      "> svg": {
-        zIndex: 1,
-        borderRadius: "round",
-        width: "1.25em",
-        height: "1.25em",
-        text: "gray.9",
-      },
-      ":hover, :focus": {
-        color: "text",
-        ":before": {
-          position: "absolute",
-          borderRadius: "50%",
-          width: "1.75em",
-          height: "1.75em",
-          content: "''",
-          bg: "gray.2",
-        },
-      },
-    },
-    secondary: {
-      display: "block",
-      color: "text",
-      bg: "gray.2",
-      padding: "0.8em 1.2em",
-      borderRadius: "rounded-lg",
-      textDecoration: "none",
-      cursor: "pointer",
-      boxShadow: "sm",
-      transition: "box-shadow 150ms linear",
-      ":hover": {
-        boxShadow: "md",
-      },
-    },
-  },
+  buttons,
   forms: {
     textarea: {},
     select: {
@@ -165,6 +115,10 @@ export const theme = makeTheme({
         opacity: 0.7,
         cursor: "not-allowed",
       },
+    },
+    label: {
+      fontWeight: "bold",
+      color: "muted",
     },
   },
   cards: {
