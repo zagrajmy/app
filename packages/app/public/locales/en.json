@@ -7,5 +7,12 @@
   "meeting-description": "Meeting Description",
   "meeting-date": "Meeting Date",
   "new-meeting": "Organize Meeting",
-  "not-published": "Not Published"
+  "not-published": "Not Published",
+  "guild": "Guild",
+  "meeting-start-time": "From",
+  "meeting-end-time": "To",
+  "meeting-publication-time": "Publication Time",
+  "save-draft": "Save Draft",
+  "publish": "Publish",
+  "optional": "Optional"
 }

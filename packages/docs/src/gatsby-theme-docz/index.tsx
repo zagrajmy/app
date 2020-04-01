@@ -16,6 +16,8 @@ import Router from "next/router";
 
 import { theme as appTheme } from "@zagrajmy/app";
 
+import { PropDoc } from "../components/PropDoc";
+
 // mock for next/link
 /* eslint-disable @typescript-eslint/no-empty-function */
 Router.router = {
@@ -26,7 +28,7 @@ Router.router = {
 /* eslint-disable @typescript-eslint/no-empty-function */
 // ---
 
-const componentsMap = baseComponents;
+const componentsMap = { ...baseComponents, PropDoc };
 
 const theme = {
   ...appTheme,
@@ -63,7 +65,10 @@ const theme = {
     square: 0,
     radius: appTheme.radii["rounded-sm"],
   },
-  styles,
+  styles: {
+    ...styles,
+    ...appTheme.styles,
+  },
   prism,
 };
 

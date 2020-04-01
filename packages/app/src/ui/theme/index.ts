@@ -1,11 +1,15 @@
 import { ContextValue } from "@theme-ui/core";
-import { SxStyleProp, Theme as ThemeUITheme, useThemeUI } from "theme-ui";
+import { Theme as ThemeUITheme, useThemeUI, SystemStyleObject } from "theme-ui";
+import { buttons } from "./buttons";
+import { forms } from "./forms";
 
 declare module "theme-ui" {
   export interface Theme {
     useCustomProperties?: boolean;
     forms: {
-      textarea: SxStyleProp;
+      textarea: SystemStyleObject;
+      select: SystemStyleObject;
+      label: SystemStyleObject;
     };
   }
 }
@@ -18,6 +22,9 @@ export const theme = makeTheme({
   fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
     (x) => `${x}rem`
   ),
+  sizes: {
+    container: 1100,
+  },
   radii: {
     none: 0,
     "rounded-sm": ".125rem",
@@ -56,7 +63,7 @@ export const theme = makeTheme({
     primaryDark: "#d34e4d",
     secondary: "#5654e8",
     accent: "#5654e8", // blue in triad of primary
-    muted: "#b19b9b",
+    muted: "rgba(0, 0, 0, 0.6)",
     modes: {
       dark: {
         text: "#fff",
@@ -81,6 +88,7 @@ export const theme = makeTheme({
   styles: {
     root: {
       fontSize: "16px",
+      lineHeight: 1.4,
       minHeight: "100vh",
       fontFamily: "body",
       color: "text",
@@ -88,6 +96,9 @@ export const theme = makeTheme({
       display: "flex",
       flexDirection: "column",
       textRendering: "optimizeLegibility",
+      "*": {
+        outlineColor: "secondary",
+      },
       // TODO:
       h1: {
         fontWeight: 800,
@@ -100,49 +111,30 @@ export const theme = makeTheme({
       },
     },
   },
-  buttons: {
+  buttons,
+  forms,
+  cards: {
     primary: {
-      display: "block",
-      bg: "primary",
-      color: "white",
-      padding: "0.8em 1.2em",
+      position: "relative",
+      boxShadow: "md",
+      border: "1px solid rgba(0, 0, 0, 0.3)",
       borderRadius: "rounded-lg",
-      textDecoration: "none",
-      cursor: "pointer",
-      boxShadow: "sm",
-      transition: "box-shadow 150ms linear",
-      ":hover": {
-        boxShadow: "md",
-        bg: "primaryLight",
-        borderColor: "primaryLight",
-      },
-    },
-    icon: {
-      cursor: "pointer",
-      ":hover": {
-        bg: "gray.0",
-        border: "1px solid",
-        borderColor: "gray.1",
-      },
-    },
-    secondary: {
-      display: "block",
-      color: "text",
-      bg: "gray.2",
-      padding: "0.8em 1.2em",
-      borderRadius: "rounded-lg",
-      textDecoration: "none",
-      cursor: "pointer",
-      boxShadow: "sm",
-      transition: "box-shadow 150ms linear",
-      ":hover": {
-        boxShadow: "md",
-      },
+      background: "rgba(255, 255, 255, 0.9)",
+      minHeight: "200px",
+      width: "800px",
+      maxWidth: "80vw",
+      margin: "1em",
     },
   },
-  forms: {
-    fontSize: 3,
-    textarea: {},
+  layout: {
+    container: {},
+    sheet: {
+      bg: "white",
+      borderRadius: "rounded-lg",
+      boxShadow: "sm",
+      p: 3,
+      zIndex: 1,
+    },
   },
 });
 

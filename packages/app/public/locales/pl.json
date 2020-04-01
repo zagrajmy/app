@@ -7,5 +7,12 @@
   "meeting-description": "Opis spotkania",
   "meeting-date": "Data spotkania",
   "new-meeting": "Zorganizuj spotkanie",
-  "not-published": "Nie opublikowano"
+  "not-published": "Nie opublikowano",
+  "guild": "Gildia",
+  "meeting-start-time": "Od",
+  "meeting-end-time": "Do",
+  "meeting-publication-time": "Czas publikacji",
+  "save-draft": "Zapisz",
+  "publish": "Opublikuj",
+  "optional": "Opcjonalne"
 }

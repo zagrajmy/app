@@ -8,11 +8,6 @@ const { colors: cx } = theme;
 
 export const light = {
   ...cx,
-  primary: cx.primary,
-  text: cx.text,
-  muted: cx.accent,
-  link: cx.primary,
-  background: cx.background,
   border: cx.gray[3],
   sidebar: {
     bg: cx.gray[2],

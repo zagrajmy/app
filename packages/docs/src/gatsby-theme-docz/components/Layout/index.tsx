@@ -2,26 +2,26 @@
 /** @jsx jsx */
 import { Global } from "@emotion/core";
 import { media } from "gatsby-theme-docz/src/theme/breakpoints";
-import global from "gatsby-theme-docz/src/theme/global";
 import { useRef, useState } from "react";
 import { Box, jsx } from "theme-ui";
 
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
+import { globalStyles } from "../../theme/global";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
   const nav = useRef<HTMLDivElement>(null);
   return (
     <Box sx={{ "& > div": { flex: "1 1 auto" } }} data-testid="layout">
-      <Global styles={global} />
+      <Global styles={globalStyles} />
       <Box
         as="main"
         sx={{
           backgroundColor: "background",
           display: "flex",
           flexDirection: "column",
-          height: "100vh",
+          minHeight: "100vh",
         }}
       >
         <Header onOpen={() => setOpen((s) => !s)} />
@@ -29,8 +29,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           sx={{
             py: 0,
             flex: 1,
-            display: "grid",
-            gridTemplateColumns: "250px 1fr",
+            display: "flex",
             [media.tablet]: {
               display: "block",
             },

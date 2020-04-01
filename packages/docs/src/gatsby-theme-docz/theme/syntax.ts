@@ -1,4 +1,5 @@
 export const syntaxStyles = {
+  lineHeight: 1.4,
   ".comment": {
     fontStyle: "italic",
   },

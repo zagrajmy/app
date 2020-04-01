@@ -1,13 +1,22 @@
 import { initAuth0 } from "@auth0/nextjs-auth0";
 import { IncomingMessage, ServerResponse } from "http";
-import { NextApiRequest } from "next";
 import * as dotenv from "dotenv";
 
+// TODO: Eject nextjs-auth0 to refactor this into lightweight functional API
+// I'm not sure this is currently serverless friendly
+// TODO: but write tests first
+
 import IAuth0Settings from "@auth0/nextjs-auth0/dist/settings";
+import { Session } from "./types";
 
 export * from "./types";
 
-export const makeAuth = (nextReq?: NextApiRequest) => {
+const getUrl = ({ headers: { referer, host } }: IncomingMessage) =>
+  referer && referer !== "/"
+    ? referer
+    : `http${host?.includes("localhost") ? "" : "s"}://${host}`;
+
+export const makeAuth = (nextReq?: IncomingMessage) => {
   if (typeof window !== "undefined") {
     return undefined;
   }
@@ -30,9 +39,10 @@ export const makeAuth = (nextReq?: NextApiRequest) => {
     AUTH0_COOKIE_SECRET,
   } = process.env;
 
-  const referer = nextReq?.headers.referer;
-  const origin = referer ? new URL(referer).origin : "";
-  console.log({ referer, origin });
+  const url = nextReq && getUrl(nextReq);
+  const origin = url ? new URL(url).origin : "INVALID::";
+
+  console.log({ url, origin, referer: nextReq?.headers.referer });
 
   const auth0Settings: IAuth0Settings = {
     domain: AUTH0_DOMAIN!,
@@ -93,6 +103,7 @@ export const makeAuth = (nextReq?: NextApiRequest) => {
 
   return {
     ...auth0,
+    getSession: auth0.getSession as (req: IncomingMessage) => Promise<Session>,
     getSessionOrLogIn,
     get management() {
       if (!managementClient) {

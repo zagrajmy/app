@@ -1,6 +1,6 @@
 import { formatRelative } from "date-fns";
 import React from "react";
-import { Image } from "theme-ui";
+import { Image, Card } from "theme-ui";
 
 import { Link, LinkProps } from "next-next-link";
 
@@ -28,6 +28,7 @@ const CardBackgroundLink = (props: LinkProps) => (
       left: 0,
       width: "100%",
       height: "100%",
+      cursor: "pointer",
     }}
     {...props}
   />
@@ -44,20 +45,11 @@ interface MeetingCardProps {
 }
 export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
   return (
-    <article
+    <Card
+      as="article"
       sx={{
-        position: "relative",
-        boxShadow: "md",
-        border: "1px solid rgba(0, 0, 0, 0.3)",
-        borderRadius: "rounded-lg",
-        background: "rgba(255, 255, 255, 0.9)",
-        minHeight: "200px",
         display: "flex",
         flexDirection: ["column", "row"],
-        width: "800px",
-        maxWidth: "80vw",
-        margin: "1em",
-        cursor: "pointer",
         transition: "box-shadow 150ms linear",
         ":hover": {
           boxShadow: "lg",
@@ -93,6 +85,6 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         <MeetingCreationInfo meeting={meeting} />
         <p>{meeting.description}</p>
       </div>
-    </article>
+    </Card>
   );
 };

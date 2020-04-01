@@ -6,10 +6,9 @@ import { assert } from "ts-essentials";
 
 import { auth, Claims } from "../src/app/auth";
 import { Page } from "../src/app/components";
-import { MaxWidthContainer } from "../src/app/components/MaxWidthContainer";
+import { Container, Dl } from "../src/ui";
 import { useAppState } from "../src/app/store";
 import { HttpError } from "../src/lib/HttpError";
-import { Dl } from "../src/ui";
 
 type WeResponseJson = import("./api/u/me").MeResponseJson;
 
@@ -18,7 +17,7 @@ type SettingsProps = {
 };
 
 const Settings: NextPage<SettingsProps> = () => {
-  const { user: sessionUsere } = useAppState();
+  const { user: sessionUser } = useAppState();
   const sameEmailUsers = useSWR("/api/u/me", (url) =>
     fetch(url).then((res) => {
       if (res.ok) {
@@ -35,13 +34,13 @@ const Settings: NextPage<SettingsProps> = () => {
   }
 
   assert(
-    sessionUsere,
+    sessionUser,
     "if user session is not present, we should have been redirected"
   );
 
   return (
     <Page>
-      <MaxWidthContainer sx={{ py: 4 }}>
+      <Container py={4}>
         <p>
           Disclaimer: We show too much data and this page will certainly change
           in the future. In the meanwhile, it's useful for debugging.
@@ -49,7 +48,7 @@ const Settings: NextPage<SettingsProps> = () => {
         <p>We might leave this as a "development view" of settings.</p>
         <section>
           <Heading as="h3">Your Session Data</Heading>
-          <Dl.FromObject value={sessionUsere} />
+          <Dl.FromObject value={sessionUser} />
         </section>
         {sameEmailUsers.data && (
           <section>
@@ -59,7 +58,7 @@ const Settings: NextPage<SettingsProps> = () => {
             ))}
           </section>
         )}
-      </MaxWidthContainer>
+      </Container>
     </Page>
   );
 };

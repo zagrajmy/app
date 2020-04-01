@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { defaultTo, get, pipe } from "lodash/fp";
 import { useThemeUI } from "theme-ui";
 

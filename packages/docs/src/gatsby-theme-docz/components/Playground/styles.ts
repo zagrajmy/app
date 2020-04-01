@@ -8,7 +8,8 @@ export const editor: SystemStyleObject = {
   borderTop: (t: ThemeConfig) => `1px solid ${t.colors.border}`,
   background: (t: ThemeConfig) => t.colors.background,
   fontFamily: "monospace",
-  fontSize: 18,
+  fontSize: 16,
+  lineHeight: 1.4,
   "* > textarea:focus": {
     outline: "none",
   },

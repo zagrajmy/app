@@ -26,18 +26,11 @@ interface Auth0Claims extends IClaims {
 export type UserUuid = Brand<string, "UserId">;
 
 /**
- * User data from our Postgres DB
- */
-interface ZagrajmyClaims {
-  uuid: UserUuid;
-}
-
-/**
  * User data from Auth0 with our own `uuid`.
  * @see https://auth0.com/docs/scopes/current/oidc-scopes#standard-claims
  * @see https://auth0.com/docs/users/normalized
  */
-export interface Claims extends Auth0Claims, ZagrajmyClaims {}
+export interface Claims extends Auth0Claims {}
 
 export interface Session extends ISession {
   user: Claims;

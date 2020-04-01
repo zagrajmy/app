@@ -1,7 +1,7 @@
 ---
 name: Avatar
 route: /ui/Avatar
-menu: ui
+menu: UI
 ---
 
 import { Playground, Props } from "docz";
@@ -15,4 +15,10 @@ import { Avatar } from "./Avatar";
     title="hasparus"
     src="http://zagrajmy.net/api/u/avatar/hasparus"
   />
+</Playground>
+
+## Invalid `src`
+
+<Playground>
+  <Avatar src="http://this-website.does-not-exist/image.png" />
 </Playground>
