@@ -8,7 +8,9 @@ import { Calendar } from "./icons";
 
 registerLocale("pl-PL", pl);
 
-const defaultInput = <Input icon={<Calendar size={18} />} />;
+const defaultInput = (
+  <Input icon={<Calendar size={18} sx={{ color: "muted" }} />} />
+);
 
 interface FormDatepickerProps
   extends Omit<

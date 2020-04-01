@@ -1,8 +1,6 @@
 import { NextPage } from "next";
 import { OnSubmit, useForm } from "react-hook-form";
 import {
-  Input as ThInput,
-  InputProps as ThInputProps,
   Label as ThLabel,
   Textarea,
   Container,
@@ -18,7 +16,11 @@ import { useTranslation } from "react-i18next";
 import { meeting as Meeting } from "../../data/graphql-zeus";
 import { makeAuth } from "../../src/app/auth";
 import { Page } from "../../src/app/components";
-import { FormDatepicker } from "../../src";
+import {
+  FormDatepicker,
+  Input as ThInput,
+  InputProps as ThInputProps,
+} from "../../src/ui";
 
 const GUILD_ID = 1; // TODO
 

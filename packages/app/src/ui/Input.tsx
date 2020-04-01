@@ -18,7 +18,7 @@ const overlayStyle = {
   width: "38px",
 } as const;
 
-interface InputProps extends ThemeUiInputProps {
+export interface InputProps extends ThemeUiInputProps {
   icon?: React.ReactNode;
   onClear?: () => void;
   inline?: boolean;
@@ -52,17 +52,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <Box
         className={className}
+        variant="forms.input"
         sx={{
           position: "relative",
           flexBasis: "auto",
           display: inline ? "inline-block" : "block",
-          appearance: "none",
-          fontSize: "inherit",
-          lineHeight: "inherit",
-          border: "1px solid",
-          borderRadius: 4,
-          color: "inherit",
-          bg: "transparent",
         }}
       >
         {icon && <Center sx={overlayStyle}>{icon}</Center>}

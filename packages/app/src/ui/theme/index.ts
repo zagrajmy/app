@@ -1,6 +1,7 @@
 import { ContextValue } from "@theme-ui/core";
 import { Theme as ThemeUITheme, useThemeUI, SystemStyleObject } from "theme-ui";
 import { buttons } from "./buttons";
+import { forms } from "./forms";
 
 declare module "theme-ui" {
   export interface Theme {
@@ -95,6 +96,9 @@ export const theme = makeTheme({
       display: "flex",
       flexDirection: "column",
       textRendering: "optimizeLegibility",
+      "*": {
+        outlineColor: "secondary",
+      },
       // TODO:
       h1: {
         fontWeight: 800,
@@ -108,19 +112,7 @@ export const theme = makeTheme({
     },
   },
   buttons,
-  forms: {
-    textarea: {},
-    select: {
-      ":disabled": {
-        opacity: 0.7,
-        cursor: "not-allowed",
-      },
-    },
-    label: {
-      fontWeight: "bold",
-      color: "muted",
-    },
-  },
+  forms,
   cards: {
     primary: {
       position: "relative",
