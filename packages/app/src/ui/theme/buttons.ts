@@ -1,4 +1,3 @@
-import { SystemStyleObject } from "theme-ui";
 import { Variants } from "./design-graph-utility";
 
 const primarySecondaryCommon = {

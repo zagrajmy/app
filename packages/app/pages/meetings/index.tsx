@@ -68,7 +68,7 @@ const MeetingsPage: NextPage<MeetingsPageProps> = ({ initialData }) => {
               </MeetingCardsList>
             </section>
             <section>
-              <Heading as="h3">>Meetings I participate in</Heading>
+              <Heading as="h3">Meetings I participate in</Heading>
               <MeetingCardsList>
                 {meetings?.map((meeting) => (
                   <li key={meeting.id}>

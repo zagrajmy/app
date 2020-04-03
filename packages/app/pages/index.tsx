@@ -61,7 +61,7 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
           paddingBottom: "2em",
         }}
       >
-        <Link variant="button" href="/meetings/dashboard">
+        <Link variant="button" href="/meetings">
           {t("see-more")}
         </Link>
       </section>
