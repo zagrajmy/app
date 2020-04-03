@@ -1,4 +1,5 @@
 import { SystemStyleObject } from "theme-ui";
+import { Variants } from "./design-graph-utility";
 
 const field: SystemStyleObject = {
   appearance: "none",
@@ -11,7 +12,7 @@ const field: SystemStyleObject = {
   bg: "gray.1",
 };
 
-export const forms: Record<string, SystemStyleObject> = {
+export const forms: Variants = {
   textarea: field,
   input: field,
   select: {
@@ -24,5 +25,7 @@ export const forms: Record<string, SystemStyleObject> = {
   label: {
     fontWeight: "bold",
     color: "muted",
+    whiteSpace: "pre",
+    alignItems: "center",
   },
 };

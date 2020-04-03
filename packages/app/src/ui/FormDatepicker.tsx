@@ -21,7 +21,6 @@ interface FormDatepickerProps
 }
 export function FormDatepicker({
   input = defaultInput,
-  defaultValue = new Date(),
   ...rest
 }: FormDatepickerProps) {
   return (
@@ -39,7 +38,6 @@ export function FormDatepicker({
         showTimeSelect
         customInput={input}
         valueName="selected"
-        defaultValue={defaultValue}
         dateFormat="Pp"
         timeFormat="p"
         {...rest}

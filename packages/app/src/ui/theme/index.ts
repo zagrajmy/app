@@ -9,11 +9,12 @@ declare module "theme-ui" {
   }
 }
 
-// This is badly typed in theme-ui
-type IgnoredProperties = "buttons" | "forms";
+// TODO Contribute
+type BadlyTypedThemeUIThemeKeys = "forms" | "buttons";
 
-const makeTheme = <T extends Omit<ThemeUITheme, IgnoredProperties>>(t: T): T =>
-  t;
+const makeTheme = <T extends Omit<ThemeUITheme, BadlyTypedThemeUIThemeKeys>>(
+  t: T
+): T => t;
 
 export const theme = makeTheme({
   useCustomProperties: true,

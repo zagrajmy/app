@@ -13862,10 +13862,10 @@ node-releases@^1.1.29, node-releases@^1.1.44, node-releases@^1.1.53:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.53.tgz#2d821bfa499ed7c5dffc5e2f28c88e78a08ee3f4"
   integrity sha512-wp8zyQVwef2hpZ/dJH7SfSrIPD6YoJz6BDQDpGEkcA0s3LpAQoxBIYmfIq6QAhC1DhwsyCgTaTTcONwX8qzCuQ==
 
-nom-ts@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/nom-ts/-/nom-ts-0.1.0.tgz#7a11fc375dce24bef62d8ff376f66cd167733b3c"
-  integrity sha512-DSwUFrmfIhmjsBEDN0Wsc0aCU/RK4yoWyoRSTj+orGdjXMZywJ8UEbCtdAOn8S+roklXXyPEaDl1vC1L4XMjtA==
+nom-ts@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/nom-ts/-/nom-ts-0.1.2.tgz#0d2c6f66b5bac36c83e87f757648e5dfe048d200"
+  integrity sha512-YpSwB2HTIlAZrzALlhATu+FsYIXPnRhtQO8NDWzIMBYhabieyIr8YqvPTCoM16i1JKG3bQocG+VtQqOSP6MOxw==
 
 noms@0.0.0:
   version "0.0.0"

@@ -1,12 +1,12 @@
 import { Link } from "next-next-link";
-import { Meeting } from "../types";
+import { Meeting } from "../model";
 
 export const MeetingAuthorLink = ({
   children,
   author,
 }: {
   children: React.ReactChild;
-  author: Meeting["author"];
+  author: Meeting["organizer"];
 }) => (
   <Link
     href="/u/[username_slug]"

@@ -8,6 +8,7 @@ import * as g from "../../../data/graphql-zeus";
 import { hasura, Db } from "../../../data/hasura";
 import { auth } from "../../../src/app/auth";
 import { formatValidationErrors } from "../../../src/lib/formatValidationErrors";
+import { queryUuidForAuth0Id } from "../../../src/app/api/user";
 
 // TODO: Research how much performance improvement would we get from using
 // gql client on the frontend
@@ -55,18 +56,34 @@ const addPublicationTime = ({ command, meeting }: InsertMeetingBody) => {
   };
 };
 
-const auth0IdToUuid = (query: Db["query"], auth0Id: string) =>
-  query({
-    user: [{ where: { auth0_id: { _eq: auth0Id } } }, { uuid: true }],
-  }).then((res) => res.user?.[0].uuid as string);
+const runMutation = (
+  mutation: Db["mutation"],
+  meeting: InsertMeetingBody["meeting"] & { publication_time?: string },
+  organizer_id: string
+) =>
+  mutation({
+    insert_meeting_one: [
+      {
+        object: {
+          ...meeting,
+          organizer_id,
+        },
+        on_conflict: {
+          constraint: g.meeting_constraint.meeting_pkey,
+          update_columns: Object.values(g.meeting_update_column),
+        },
+      },
+      { id: true },
+    ],
+  });
 
-export default async function insertMeeting(
+export default auth.requireAuthentication(async function insertMeeting(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { query, mutation } = hasura.fromReq(req);
 
-  pipe(
+  return pipe(
     InsertMeetingBody.decode(JSON.parse(req.body)),
     map(addPublicationTime),
     fold(
@@ -75,27 +92,11 @@ export default async function insertMeeting(
       ({ command: _, meeting }) => {
         return auth
           .getSession(req)
-          .then((session) => auth0IdToUuid(query, session.user.sub))
-          .then((organizer_id) => {
-            return mutation({
-              insert_meeting_one: [
-                {
-                  object: {
-                    ...meeting,
-                    organizer_id,
-                  },
-                  on_conflict: {
-                    constraint: g.meeting_constraint.meeting_pkey,
-                    update_columns: Object.values(g.meeting_update_column),
-                  },
-                },
-                { id: true },
-              ],
-            });
-          })
+          .then((session) => queryUuidForAuth0Id(query, session!.user!.sub))
+          .then((organizer_id) => runMutation(mutation, meeting, organizer_id))
           .then((data) => res.status(200).send(data))
           .catch((reason) => res.status(500).send(reason));
       }
     )
   );
-}
+});

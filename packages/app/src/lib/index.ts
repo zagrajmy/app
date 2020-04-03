@@ -6,3 +6,4 @@ export * from "./makeError";
 export * from "./noop";
 export * from "./HttpError";
 export * from "./formatValidationErrors";
+export * from "./utilityTypes";

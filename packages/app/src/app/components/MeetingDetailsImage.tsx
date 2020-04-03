@@ -1,7 +1,7 @@
 import { Image } from "theme-ui";
 
 import { matchKind } from "../../lib/match";
-import { Meeting } from "../types";
+import { Meeting } from "../model";
 
 export const MeetingDetailsImage = ({
   image,
