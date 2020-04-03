@@ -17,7 +17,7 @@
     "typecheck": "lerna run typecheck",
     "ci": "lerna run ci",
     "fix": "wotan --fix && lerna run format && lerna run lint:fix",
-    "release": "lerna run deploy && lerna publish"
+    "release": "lerna publish && lerna run deploy"
   },
   "devDependencies": {
     "@fimbul/heimdall": "^0.21.0",
