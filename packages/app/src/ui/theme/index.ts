@@ -6,11 +6,7 @@ import { forms } from "./forms";
 declare module "theme-ui" {
   export interface Theme {
     useCustomProperties?: boolean;
-    forms: {
-      textarea: SystemStyleObject;
-      select: SystemStyleObject;
-      label: SystemStyleObject;
-    };
+    forms: Record<string, SystemStyleObject>;
   }
 }
 

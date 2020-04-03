@@ -1,4 +1,6 @@
-const field = {
+import { SystemStyleObject } from "theme-ui";
+
+const field: SystemStyleObject = {
   appearance: "none",
   fontSize: "inherit",
   lineHeight: "inherit",
@@ -9,7 +11,7 @@ const field = {
   bg: "gray.1",
 };
 
-export const forms = {
+export const forms: Record<string, SystemStyleObject> = {
   textarea: field,
   input: field,
   select: {
