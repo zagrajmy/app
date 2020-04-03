@@ -2,7 +2,7 @@
   "name": "@zagrajmy/docs",
   "private": true,
   "description": "docs for the reusable code and styleguide",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@theme-ui/prism": "^0.3.0",
     "@theme-ui/style-guide": "^0.3.0",
-    "@zagrajmy/app": "^0.1.0",
+    "@zagrajmy/app": "^0.0.1",
     "docz": "^2.2.0",
     "gatsby": "^2.20.8",
     "gatsby-plugin-typescript": "^2.3.1",
