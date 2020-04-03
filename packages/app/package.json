@@ -21,7 +21,9 @@
     "madge:circular": "npx madge --circular --ts-config ./tsconfig.json ."
   },
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "source": "src/index.ts",
   "files": [
     "dist"
   ],

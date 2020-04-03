@@ -3,11 +3,21 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "dist",
-    "outDir": "dist-ts", // babel transforms dist-ts to dist
+    "outDir": "dist-ts", // babel transforms dist-ts to dist for jsx and macro support
     "rootDir": "src",
-    "skipLibCheck": true, // temporary until theme-ui isn't correctly typed
-    "noEmit": false
+    "noEmit": false,
+    "skipLibCheck": true // temporary until theme-ui isn't correctly typed
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  // app/components can't be compiled due to dependency on /data
+  // simplifying /data/types might help with this.
+  // I actually need something like app/components/ui-data-types.ts
+  // for simple shared types for the interface
+  // an incomplete set
+  "include": [
+    "src/lib/**/*",
+    "src/ui/**/*",
+    "src/index.ts",
+    "src/declarations"
+  ],
   "exclude": ["src/i18n.ts", "node_modules"]
 }

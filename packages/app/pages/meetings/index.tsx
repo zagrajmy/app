@@ -6,7 +6,7 @@ import useSWR from "swr";
 
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { useAppState } from "../../src/app/store";
-import { Meeting } from "../../src/app/model";
+import { Meeting } from "../../data/types";
 import { Link } from "../../src/ui";
 import { makeAuth } from "../../src/app/auth";
 import { getMyMeetings } from "../../src/app/api/user";

@@ -17,7 +17,7 @@ import {
 import { meetingsApi } from "../../../src/app/api/meetingsMock";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Container, Dl, Link, Theme, FormDatepicker } from "../../../src/ui";
-import { Id, Meeting, User } from "../../../src/app/model";
+import { Id, Meeting, User } from "../../../data/types";
 
 interface EditMeetingButtonProps {
   isEditing: boolean;

@@ -4,7 +4,7 @@ import { Image, Card } from "theme-ui";
 
 import { Link, LinkProps } from "next-next-link";
 
-import { Meeting } from "../model";
+import { Meeting } from "../../../data/types";
 
 interface MeetingCreationInfoProps {
   meeting: Pick<Meeting, "organizer" | "start_time">;

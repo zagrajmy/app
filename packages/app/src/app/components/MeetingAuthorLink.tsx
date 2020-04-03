@@ -1,5 +1,5 @@
 import { Link } from "next-next-link";
-import { Meeting } from "../model";
+import { Meeting } from "../../../data/types";
 
 export const MeetingAuthorLink = ({
   children,

@@ -1,4 +1,4 @@
-import { Id, Meeting, User } from "../model";
+import { Id, Meeting, User } from "../../../data/types";
 
 // TODO:
 

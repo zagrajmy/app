@@ -1,7 +1,7 @@
-import { generated } from "../../../data";
+import { generated } from "..";
 import { Id } from "./Id";
-import { Assign, Required, StrictOmit } from "../../lib/utilityTypes";
-import { User } from "../store/User";
+import { Assign, Required, StrictOmit } from "../../src/lib/utilityTypes";
+import { User } from "./User";
 
 type MeetingImageKind = "background" | "banner" | "small";
 
