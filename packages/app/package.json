@@ -21,7 +21,7 @@
     "docz:build": "docz build",
     "docz:serve": "docz build && docz serve",
     "format": "prettier {pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql} --write",
-    "madge:circular": "npx madge --circular --extensions ts,tsx ."
+    "madge:circular": "npx madge --circular --ts-config ./tsconfig.json ."
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
