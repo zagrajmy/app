@@ -13,7 +13,7 @@ import { getMyMeetings } from "../../src/app/api/user";
 import { MyMeetingsResult } from "../api/meetings/my-meetings";
 
 interface MeetingsPageProps {
-  initialData: MyMeetingsResult;
+  initialData?: MyMeetingsResult;
 }
 
 const MeetingsPage: NextPage<MeetingsPageProps> = ({ initialData }) => {
@@ -99,12 +99,7 @@ MeetingsPage.getInitialProps = async (ctx) => {
     console.error(err);
   }
 
-  return {
-    initialData: {
-      organized_meetings: [],
-      meetings: [],
-    },
-  };
+  return {};
 };
 
 export default MeetingsPage;
