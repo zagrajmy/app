@@ -17,9 +17,9 @@
     "lint:fix": "npm run lint --fix"
   },
   "dependencies": {
-    "@zagrajmy/app": "*",
     "@theme-ui/prism": "^0.3.0",
     "@theme-ui/style-guide": "^0.3.0",
+    "@zagrajmy/app": "^0.1.0",
     "docz": "^2.2.0",
     "gatsby": "^2.20.8",
     "gatsby-plugin-typescript": "^2.3.1",
