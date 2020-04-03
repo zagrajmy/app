@@ -1,14 +1,16 @@
-import { SystemStyleObject, Theme } from "theme-ui";
+import { SystemStyleObject } from "theme-ui";
 
-const primarySecondaryCommon: SystemStyleObject = {
+const primarySecondaryCommon = {
   cursor: "pointer",
   display: "block",
   padding: "0.8em 1.2em",
+  border: "1px solid",
+  borderColor: "gray.3",
   borderRadius: "rounded",
   textDecoration: "none",
 
   boxShadow: "sm",
-  transition: "box-shadow 150ms linear",
+  transition: "box-shadow 150ms linear, background-color 150ms linear",
   ":hover": {
     boxShadow: "md",
   },
@@ -18,9 +20,10 @@ export const buttons: Record<string, SystemStyleObject> = {
   primary: {
     ...primarySecondaryCommon,
     bg: "primary",
+    borderColor: "primary",
     color: "white",
     ":hover": {
-      boxShadow: "md",
+      ...primarySecondaryCommon[":hover"],
       bg: "primaryLight",
       borderColor: "primaryLight",
     },
@@ -29,6 +32,10 @@ export const buttons: Record<string, SystemStyleObject> = {
     ...primarySecondaryCommon,
     color: "text",
     bg: "gray.2",
+    ":hover": {
+      ...primarySecondaryCommon[":hover"],
+      bg: "gray.1",
+    },
   },
   icon: {
     fontSize: "inherit",
