@@ -1,3 +1,11 @@
+/**
+ * I'd like to keep this module pretty small to make sure
+ * the frontend is flat and decentralized.
+ *
+ * The user is needed on most of the pages, so this is a
+ * the thing we can share.
+ */
+
 import { createContext, useContext, useRef } from "react";
 import { Claims } from "../auth";
 

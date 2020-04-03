@@ -15,21 +15,44 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["packages/app/pages/api/**/*.ts"],
+      // we actually want to deploy logs in serverside code
+      files: ["packages/app/pages/api/**"],
       rules: { "no-console": "off" },
     },
     {
       files: [
-        "packages/app/pages/**/*.ts",
-        "packages/app/pages/**/*.tsx",
+        // Next requires pages are exported as default
+        "packages/app/pages/**",
+        // allow default exports in shadowed files
         "**/gatsby-theme-*/**",
       ],
       rules: { "import/no-default-export": "off" },
     },
     {
-      // allow default exports in shadowed files
+      // scripts are ran on developer machines
       files: ["packages/app/scripts/**/*.ts"],
       rules: { "import/no-extraneous-dependencies": "off" },
+    },
+    {
+      files: ["packages/app/{data,src,pages}/**"],
+      rules: {
+        "no-restricted-imports": [
+          "error",
+          {
+            paths: [
+              {
+                name: "nom-ts",
+                message: "Please import lib/utilityTypes instead.",
+              },
+              {
+                name: "utility-types",
+                importNames: ["Assign"],
+                message: "Please use Assign from lib/utilityTypes instead.",
+              },
+            ],
+          },
+        ],
+      },
     },
   ],
 };

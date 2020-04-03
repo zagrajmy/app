@@ -1,4 +1,7 @@
-const field = {
+import { SystemStyleObject } from "theme-ui";
+import { variants } from "./design-graph-utility";
+
+const field: SystemStyleObject = {
   appearance: "none",
   fontSize: "inherit",
   lineHeight: "inherit",
@@ -9,7 +12,7 @@ const field = {
   bg: "gray.1",
 };
 
-export const forms = {
+export const forms = variants({
   textarea: field,
   input: field,
   select: {
@@ -22,5 +25,7 @@ export const forms = {
   label: {
     fontWeight: "bold",
     color: "muted",
+    whiteSpace: "pre",
+    alignItems: "center",
   },
-};
+});

@@ -1,20 +1,16 @@
 import { initAuth0 } from "@auth0/nextjs-auth0";
 import { IncomingMessage, ServerResponse } from "http";
 import * as dotenv from "dotenv";
+import IAuth0Settings from "@auth0/nextjs-auth0/dist/settings";
 
 // TODO: Eject nextjs-auth0 to refactor this into lightweight functional API
 // I'm not sure this is currently serverless friendly
 // TODO: but write tests first
 
-import IAuth0Settings from "@auth0/nextjs-auth0/dist/settings";
-import { Session } from "./types";
+import { Session, Claims } from "./types";
+import { getUrl } from "../../lib/getUrl";
 
 export * from "./types";
-
-const getUrl = ({ headers: { referer, host } }: IncomingMessage) =>
-  referer && referer !== "/"
-    ? referer
-    : `http${host?.includes("localhost") ? "" : "s"}://${host}`;
 
 export const makeAuth = (nextReq?: IncomingMessage) => {
   if (typeof window !== "undefined") {
@@ -40,9 +36,7 @@ export const makeAuth = (nextReq?: IncomingMessage) => {
   } = process.env;
 
   const url = nextReq && getUrl(nextReq);
-  const origin = url ? new URL(url).origin : "INVALID::";
-
-  console.log({ url, origin, referer: nextReq?.headers.referer });
+  const origin = url ? new URL(url).origin : "~INVALID";
 
   const auth0Settings: IAuth0Settings = {
     domain: AUTH0_DOMAIN!,
@@ -72,7 +66,7 @@ export const makeAuth = (nextReq?: IncomingMessage) => {
         return { user: null };
       }
 
-      return { user: session.user };
+      return { user: session.user as Claims };
     }
     return { user: null };
   };
@@ -103,7 +97,9 @@ export const makeAuth = (nextReq?: IncomingMessage) => {
 
   return {
     ...auth0,
-    getSession: auth0.getSession as (req: IncomingMessage) => Promise<Session>,
+    getSession: auth0.getSession as (
+      req: IncomingMessage
+    ) => Promise<Session | null | undefined>,
     getSessionOrLogIn,
     get management() {
       if (!managementClient) {

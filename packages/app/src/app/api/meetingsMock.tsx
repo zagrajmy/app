@@ -1,14 +1,16 @@
-import { Id, Meeting, User } from "../types";
+import { Id, Meeting, User } from "../model";
 
 // TODO:
 
 const piotr: User = {
+  uuid: "1",
   name: "Piotr Monwid-Olechnowicz",
   slug: "hasparus",
   email: "piotr@zagraj.my",
 };
 
 const tony: User = {
+  uuid: "2",
   name: "Ironman",
   slug: "ironman",
   email: "boss@stark.com",
@@ -18,63 +20,77 @@ export const meetings: Meeting[] = [
   // past meetings
   {
     id: 1,
-    author: piotr,
+    sphere_id: 1,
+    organizer: piotr,
     title: "Dungeon World One-Shot",
     description: "Lorem ipsum dolor sit amet",
-    published_at: new Date(1000),
+    publication_time: new Date(1000),
     created_at: new Date(900),
+    updated_at: new Date(900),
     start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "background",
     },
+    participants: [],
   },
   {
     id: 2,
-    author: piotr,
+    sphere_id: 1,
+    organizer: piotr,
     title: "D&D Tomb of Annihilation: Episode 01",
     description: "",
-    published_at: new Date(1400),
+    publication_time: new Date(1400),
     created_at: new Date(1100),
+    updated_at: new Date(1100),
     start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "banner",
     },
+    participants: [],
   },
   {
     id: 3,
-    author: tony,
+    sphere_id: 1,
+    organizer: tony,
     title: "Avengers Weekly Board Games I",
     description: "",
-    published_at: new Date(2000),
+    publication_time: new Date(2000),
     created_at: new Date(1800),
+    updated_at: new Date(1800),
     start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "small",
     },
+    participants: [],
   },
   {
     id: 4,
-    author: tony,
+    sphere_id: 1,
+    organizer: tony,
     title: "Avengers Weekly Board Games II",
     description: "Lorem ipsum dolor sit amet",
-    published_at: new Date(2200),
+    publication_time: new Date(2200),
     created_at: new Date(2000),
+    updated_at: new Date(2000),
     start_time: new Date(5000),
     image: {
       src: "https://source.unsplash.com/random/2200x400",
       kind: "background",
     },
+    participants: [],
   },
   // future meetings
   ...new Array(100).fill(0).map(
     (_, i): Meeting => ({
       id: `future-${i}`,
-      author: piotr,
+      sphere_id: 1,
+      organizer: piotr,
       created_at: new Date(Date.now() - i * 1000),
-      published_at: new Date(Date.now() - i * 1000),
+      updated_at: new Date(Date.now() - i * Math.random() * 200),
+      publication_time: new Date(Date.now() - i * 1000),
       start_time: i % 2 === 0 ? new Date(Date.now() + i * 100000) : undefined,
       title: `Dungeon World One-Shot ${i}`,
       description: "This is a test meeting. We have no backend yet",
@@ -93,6 +109,7 @@ export const meetings: Meeting[] = [
         },
         undefined,
       ] as const)[i % 4],
+      participants: [],
     })
   ),
 ];

@@ -1,20 +1,21 @@
 import { ContextValue } from "@theme-ui/core";
-import { Theme as ThemeUITheme, useThemeUI, SystemStyleObject } from "theme-ui";
+import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 import { buttons } from "./buttons";
 import { forms } from "./forms";
+import { Variants } from "./design-graph-utility";
 
 declare module "theme-ui" {
   export interface Theme {
     useCustomProperties?: boolean;
-    forms: {
-      textarea: SystemStyleObject;
-      select: SystemStyleObject;
-      label: SystemStyleObject;
-    };
   }
 }
 
-const makeTheme = <T extends ThemeUITheme>(t: T): T => t;
+// TODO Contribute
+type BadlyTypedThemeUIThemeKeys = "forms" | "buttons";
+
+const makeTheme = <T extends Omit<ThemeUITheme, BadlyTypedThemeUIThemeKeys>>(
+  t: T
+): T => t;
 
 export const theme = makeTheme({
   useCustomProperties: true,

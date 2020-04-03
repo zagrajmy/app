@@ -1375,10 +1375,7 @@ type mutation_root {
   ): meeting_participant_mutation_response
 
   # delete single row from the table: "meeting_participant"
-  delete_meeting_participant_by_pk(
-    meeting_id: Int!
-    participant_id: uuid!
-  ): meeting_participant
+  delete_meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
 
   # delete data from the table: "sphere"
   delete_sphere(
@@ -1810,10 +1807,7 @@ type query_root {
   ): meeting_participant_aggregate!
 
   # fetch data from the table: "meeting_participant" using primary key columns
-  meeting_participant_by_pk(
-    meeting_id: Int!
-    participant_id: uuid!
-  ): meeting_participant
+  meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
 
   # fetch data from the table: "sphere"
   sphere(
@@ -2319,10 +2313,7 @@ type subscription_root {
   ): meeting_participant_aggregate!
 
   # fetch data from the table: "meeting_participant" using primary key columns
-  meeting_participant_by_pk(
-    meeting_id: Int!
-    participant_id: uuid!
-  ): meeting_participant
+  meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
 
   # fetch data from the table: "sphere"
   sphere(
@@ -2746,3 +2737,4 @@ input uuid_comparison_exp {
   _neq: uuid
   _nin: [uuid!]
 }
+

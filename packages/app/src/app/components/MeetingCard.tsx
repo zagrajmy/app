@@ -4,13 +4,16 @@ import { Image, Card } from "theme-ui";
 
 import { Link, LinkProps } from "next-next-link";
 
-import { Meeting } from "../types";
+import { Meeting } from "../model";
 
-const MeetingCreationInfo: React.FC<{ meeting: Meeting }> = ({ meeting }) => {
+interface MeetingCreationInfoProps {
+  meeting: Pick<Meeting, "organizer" | "start_time">;
+}
+const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
   return (
     <span>
-      <Link href="/u/[username_slug]" as={`/u/${meeting.author.slug}`}>
-        {meeting.author.name}
+      <Link href="/u/[username_slug]" as={`/u/${meeting.organizer.slug}`}>
+        {meeting.organizer.name}
       </Link>
       {meeting.start_time
         ? ` • ${formatRelative(new Date(meeting.start_time), new Date())}`
@@ -41,8 +44,10 @@ const borderRadii = {
 };
 
 interface MeetingCardProps {
-  meeting: Meeting;
+  meeting: Pick<Meeting, "id" | "title" | "image" | "description"> &
+    MeetingCreationInfoProps["meeting"];
 }
+
 export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
   return (
     <Card

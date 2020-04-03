@@ -1,7 +1,7 @@
 import { get } from "@theme-ui/css";
 import { useRef, useState } from "react";
 import { CheckSquare, Edit } from "react-feather";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
   Avatar,
@@ -14,11 +14,10 @@ import {
   Textarea,
 } from "theme-ui";
 
-import { meetingsApi } from "../../../src/app/api";
+import { meetingsApi } from "../../../src/app/api/meetingsMock";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { Container, Dl, Link, Theme, FormDatepicker } from "../../../src/ui";
-import { Id, Meeting, User } from "../../../src/app/types";
-
+import { Id, Meeting, User } from "../../../src/app/model";
 
 interface EditMeetingButtonProps {
   isEditing: boolean;
@@ -87,7 +86,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
   const LinkToAuthor: React.FC = ({ children }) => (
     <Link
       href="/u/[username_slug]"
-      as={`/u/${meeting.author.slug}`}
+      as={`/u/${meeting.organizer.slug}`}
       sx={{ fontWeight: "bold", display: "inline-flex" }}
     >
       {children}
@@ -150,7 +149,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
                 <FormDatepicker
                   name="start_time"
                   input={<Input sx={{ bg: "gray.1", border: 0 }} />}
-                  defaultValue={start_time}
+                  defaultValue={start_time || new Date()}
                 />
               ) : (
                 <Text as="span" sx={{ padding: 1, fontWeight: 500 }}>
@@ -203,7 +202,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
             <LinkToAuthor>
               <Avatar
-                src={User.avatar(meeting.author) || ""}
+                src={User.avatar(meeting.organizer) || ""}
                 bg="primaryDark"
                 sx={{
                   borderRadius: "50%",
@@ -212,15 +211,15 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
             </LinkToAuthor>
             <div sx={{ ml: 2, fontSize: 3 }}>
               <Text as="span">Hosted by </Text>
-              <LinkToAuthor>{meeting.author.name}</LinkToAuthor>
+              <LinkToAuthor>{meeting.organizer.name}</LinkToAuthor>
             </div>
           </Flex>
         </header>
         <Dl sx={{ mt: 2 }}>
           <dt>Opublikowano</dt>
           <dd>
-            {meeting.published_at
-              ? new Date(meeting.published_at).toLocaleString("pl-PL")
+            {meeting.publication_time
+              ? new Date(meeting.publication_time).toLocaleString("pl-PL")
               : t("not-published")}
           </dd>
           <dt>Utworzono</dt>

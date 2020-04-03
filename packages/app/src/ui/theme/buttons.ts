@@ -1,4 +1,5 @@
-import { SystemStyleObject, Theme } from "theme-ui";
+import { SystemStyleObject } from "theme-ui";
+import { variants } from "./design-graph-utility";
 
 const primarySecondaryCommon: SystemStyleObject = {
   cursor: "pointer",
@@ -14,7 +15,7 @@ const primarySecondaryCommon: SystemStyleObject = {
   },
 };
 
-export const buttons: Theme["buttons"] = {
+export const buttons = variants({
   primary: {
     ...primarySecondaryCommon,
     bg: "primary",
@@ -52,4 +53,4 @@ export const buttons: Theme["buttons"] = {
       },
     },
   },
-};
+});

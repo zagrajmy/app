@@ -116,7 +116,8 @@ const CreateMeetingPage: NextPage = () => {
         </div>
         <div>
           <Label htmlFor="guild">
-            {t("guild")} <small>{t("optional")}</small>
+            {t("guild")}{" "}
+            <small sx={{ fontWeight: "normal" }}>({t("optional")})</small>
           </Label>
           <Select name="guild" disabled>
             <option value={1}>Twoja Gildia</option>

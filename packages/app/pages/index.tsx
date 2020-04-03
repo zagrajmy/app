@@ -4,10 +4,10 @@ import Head from "next/head";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { meetingsApi } from "../src/app/api";
+import { meetingsApi } from "../src/app/api/meetingsMock";
 import { MeetingCard, Page } from "../src/app/components";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
-import { Meeting } from "../src/app/types";
+import { Meeting } from "../src/app/model";
 import { Link } from "../src/ui";
 
 type InitialProps = { meetings: Meeting[] };
@@ -61,7 +61,7 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
           paddingBottom: "2em",
         }}
       >
-        <Link variant="button" href="/meetings">
+        <Link variant="button" href="/meetings/dashboard">
           {t("see-more")}
         </Link>
       </section>
@@ -69,7 +69,7 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
   );
 };
 
-IndexPage.getInitialProps = async (): Promise<InitialProps> => {
+IndexPage.getInitialProps = async (ctx): Promise<InitialProps> => {
   const today = new Date();
   const meetings = await meetingsApi
     .getAll()
@@ -78,6 +78,7 @@ IndexPage.getInitialProps = async (): Promise<InitialProps> => {
         .filter((x) => !x.start_time || isAfter(x.start_time, today))
         .slice(0, 3)
     );
+
   return { meetings };
 };
 
