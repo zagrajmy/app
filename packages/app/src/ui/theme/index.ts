@@ -1,16 +1,19 @@
 import { ContextValue } from "@theme-ui/core";
-import { Theme as ThemeUITheme, useThemeUI, SystemStyleObject } from "theme-ui";
+import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 import { buttons } from "./buttons";
 import { forms } from "./forms";
 
 declare module "theme-ui" {
   export interface Theme {
     useCustomProperties?: boolean;
-    forms: Record<string, SystemStyleObject>;
   }
 }
 
-const makeTheme = <T extends ThemeUITheme>(t: T): T => t;
+// This is badly typed in theme-ui
+type IgnoredProperties = "buttons" | "forms";
+
+const makeTheme = <T extends Omit<ThemeUITheme, IgnoredProperties>>(t: T): T =>
+  t;
 
 export const theme = makeTheme({
   useCustomProperties: true,

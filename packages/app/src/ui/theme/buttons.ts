@@ -14,7 +14,7 @@ const primarySecondaryCommon: SystemStyleObject = {
   },
 };
 
-export const buttons: Theme["buttons"] = {
+export const buttons: Record<string, SystemStyleObject> = {
   primary: {
     ...primarySecondaryCommon,
     bg: "primary",
