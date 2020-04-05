@@ -10,7 +10,7 @@ import baseComponents from "gatsby-theme-docz/src/components";
 import * as modes from "gatsby-theme-docz/src/theme/modes";
 import prism from "gatsby-theme-docz/src/theme/prism";
 import styles from "gatsby-theme-docz/src/theme/styles";
-import { ThemeProvider, jsx } from "theme-ui";
+import { jsx, ThemeProvider } from "theme-ui";
 
 import Router from "next/router";
 

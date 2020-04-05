@@ -1,6 +1,6 @@
 import { formatRelative } from "date-fns";
 import React from "react";
-import { Image, Card } from "theme-ui";
+import { Card, Image } from "theme-ui";
 
 import { Link, LinkProps } from "next-next-link";
 

@@ -5,9 +5,9 @@ import { media } from "gatsby-theme-docz/src/theme/breakpoints";
 import { useRef, useState } from "react";
 import { Box, jsx } from "theme-ui";
 
+import { globalStyles } from "../../theme/global";
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
-import { globalStyles } from "../../theme/global";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);

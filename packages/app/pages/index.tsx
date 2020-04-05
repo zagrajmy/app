@@ -4,10 +4,10 @@ import Head from "next/head";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { Meeting } from "../data/types";
 import { meetingsApi } from "../src/app/api/meetingsMock";
 import { MeetingCard, Page } from "../src/app/components";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
-import { Meeting } from "../data/types";
 import { Link } from "../src/ui";
 
 type InitialProps = { meetings: Meeting[] };

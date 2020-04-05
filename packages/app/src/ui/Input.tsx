@@ -1,10 +1,10 @@
+import { forwardRef, useCallback, useRef } from "react";
 import {
   Box,
+  IconButton,
   Input as ThemeUiInput,
   InputProps as ThemeUiInputProps,
-  IconButton,
 } from "theme-ui";
-import { forwardRef, useRef, useCallback } from "react";
 
 import { Center } from "./Center";
 import { X } from "./icons";

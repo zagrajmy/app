@@ -1,10 +1,10 @@
-import { IncomingMessage, IncomingHttpHeaders } from "http";
-import isomorphicUnfetch from "isomorphic-unfetch";
 import { record } from "fp-ts/lib/Record";
+import { IncomingHttpHeaders, IncomingMessage } from "http";
+import isomorphicUnfetch from "isomorphic-unfetch";
 
 import { getUrl } from "./getUrl";
-import { Assign, Json } from "./utilityTypes";
 import { HttpError } from "./HttpError";
+import { Assign, Json } from "./utilityTypes";
 
 export function makeSummon(f: typeof fetch) {
   return function summon(

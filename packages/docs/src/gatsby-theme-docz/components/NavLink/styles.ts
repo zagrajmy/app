@@ -18,9 +18,7 @@ export const smallLink: SystemStyleObject = {
   fontSize: 1,
   position: "relative",
   color: "sidebar.tocLink",
-  ":hover::before": {
-    
-  },
+  ":hover::before": {},
   "&.active": {
     color: "sidebar.tocLinkActive",
   },

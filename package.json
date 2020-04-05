@@ -17,15 +17,20 @@
     "typecheck": "lerna run typecheck",
     "ci": "lerna run ci",
     "fix": "wotan --fix && lerna run format && lerna run lint:fix",
-    "release": "lerna publish && lerna run deploy"
+    "release": "lerna publish && lerna run deploy",
+    "test": "jest"
   },
   "devDependencies": {
     "@fimbul/heimdall": "^0.21.0",
     "@fimbul/wotan": "^0.21.1",
+    "@types/jest": "^25.2.1",
     "eslint": "^6.8.0",
     "eslint-config-chop-chop": "^2.0.0-rc.0",
+    "jest": "^25.2.7",
+    "jest-fetch-mock": "^3.0.3",
     "lerna": "^3.20.2",
     "prettier": "^2.0.2",
+    "ts-jest": "^25.3.1",
     "tslint": "^6.1.0",
     "typescript": "^3.8.3"
   }

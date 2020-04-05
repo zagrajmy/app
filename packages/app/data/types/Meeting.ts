@@ -1,6 +1,6 @@
 import { generated } from "..";
-import { Id } from "./Id";
 import { Assign, Required, StrictOmit } from "../../src/lib/utilityTypes";
+import { Id } from "./Id";
 import { User } from "./User";
 
 type MeetingImageKind = "background" | "banner" | "small";

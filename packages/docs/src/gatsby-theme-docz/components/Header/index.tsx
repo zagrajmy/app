@@ -10,7 +10,7 @@ import {
   Sun,
 } from "gatsby-theme-docz/src/components/Icons";
 import { Logo } from "gatsby-theme-docz/src/components/Logo";
-import { Box, Flex, useColorMode, jsx } from "theme-ui";
+import { Box, Flex, jsx, useColorMode } from "theme-ui";
 
 export const Header = (props: { onOpen: () => void }) => {
   const { onOpen } = props;

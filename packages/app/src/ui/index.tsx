@@ -5,4 +5,4 @@ export * from "./Spacer";
 export * from "./Card";
 export * from "./Container";
 export * from "./FormDatepicker";
-export * from './Input';
+export * from "./Input";

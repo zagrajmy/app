@@ -1,10 +1,10 @@
+import pl from "date-fns/locale/pl";
+import { ReactNode } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import { Controller, ControllerProps } from "react-hook-form";
-import { ReactNode } from "react";
-import pl from "date-fns/locale/pl";
 
-import { Input } from "./Input";
 import { Calendar } from "./icons";
+import { Input } from "./Input";
 
 registerLocale("pl-PL", pl);
 

@@ -1,14 +1,14 @@
-import { Email } from "./Email";
+import { generated } from "..";
+import { slugify } from "../../src/lib/slugify";
 import {
   Assign,
   DeepPartial,
+  Optional,
   Required,
   StrictOmit,
-  Optional,
 } from "../../src/lib/utilityTypes";
-import { generated } from "..";
+import { Email } from "./Email";
 import { Id } from "./Id";
-import { slugify } from "../../src/lib/slugify";
 
 type GuildKeys = "guilds" | "guilds_aggregate";
 type MeetingKeys =

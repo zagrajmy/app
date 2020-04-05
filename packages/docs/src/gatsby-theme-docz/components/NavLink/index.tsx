@@ -1,10 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
+import { Entry, useCurrentDoc, useDocs } from "docz";
+import { Link } from "gatsby";
+import { get } from "lodash/fp";
 import React, { ComponentProps } from "react";
 import { jsx } from "theme-ui";
-import { Link } from "gatsby";
-import { useDocs, useCurrentDoc, Entry } from "docz";
-import { get } from "lodash/fp";
 
 import * as styles from "./styles";
 

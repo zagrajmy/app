@@ -1,14 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import * as t from "io-ts";
-import { pipe } from "fp-ts/lib/pipeable";
 import { fold, map } from "fp-ts/lib/Either";
+import { pipe } from "fp-ts/lib/pipeable";
+import * as t from "io-ts";
+import { NextApiRequest, NextApiResponse } from "next";
 
 import { UnreachableCaseError } from "ts-essentials";
 import * as g from "../../../data/graphql-zeus";
-import { hasura, Db } from "../../../data/hasura";
+import { Db, hasura } from "../../../data/hasura";
+import { queryUuidForAuth0Id } from "../../../src/app/api/user";
 import { auth } from "../../../src/app/auth";
 import { formatValidationErrors } from "../../../src/lib/formatValidationErrors";
-import { queryUuidForAuth0Id } from "../../../src/app/api/user";
 
 // TODO: Research how much performance improvement would we get from using
 // gql client on the frontend

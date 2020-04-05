@@ -1,9 +1,9 @@
+import { forwardRef, Ref } from "react";
 import {
   Avatar as ThemeUIAvatar,
   AvatarProps as ThemeUIAvatarProps,
   Box,
 } from "theme-ui";
-import { forwardRef, Ref } from "react";
 
 export interface AvatarProps extends Omit<ThemeUIAvatarProps, "ref"> {}
 

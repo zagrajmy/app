@@ -1,8 +1,8 @@
 /** @jsx jsx */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { jsx } from "theme-ui";
-import { Fragment } from "react";
 import cs from "gatsby-theme-docz/src/components";
+import { Fragment } from "react";
+import { jsx } from "theme-ui";
 
 interface PropDocProps {
   /**
