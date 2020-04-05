@@ -2,7 +2,7 @@ import { IncomingMessage } from "http";
 
 export const getUrl = ({
   headers: { referer, host } = {},
-}: IncomingMessage) => {
+}: Pick<IncomingMessage, "headers">) => {
   if (referer && referer !== "/") {
     return referer;
   }
