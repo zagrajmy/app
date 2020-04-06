@@ -16,9 +16,12 @@ const getCrUserByEmail = (db: Db) => (email: string) =>
     // I am assuming that there is only one user with this email for now.
     .then((x) => head(x.user));
 
-type CreateUserArg = Required<
-  Pick<generated.user, "auth0_id" | "name" | "email">
->;
+interface CreateUserArg
+  extends Required<
+      Pick<generated.user_insert_input, "auth0_id" | "name" | "email">
+    >,
+    Pick<generated.user_insert_input, "locale"> {}
+
 const createUser = (db: Db) => (user: CreateUserArg) =>
   db
     .mutation({
@@ -45,6 +48,8 @@ export default async function loggedIn(
 
   if (session && session.user.email_verified) {
     const { email } = session.user;
+
+    console.log(session.user);
 
     // TODO: get rid of awaits, use TaskEither
 
@@ -73,6 +78,7 @@ export default async function loggedIn(
           name:
             session.user.nickname ||
             `${session.user.given_name} ${session.user.family_name}`,
+          locale: session.user.locale,
         })
       );
       console.log(`User ${uuid} successfuly created.`);

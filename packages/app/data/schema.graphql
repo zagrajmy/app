@@ -622,6 +622,35 @@ input Int_comparison_exp {
   _nin: [Int!]
 }
 
+scalar jsonb
+
+# expression to compare columns of type jsonb. All fields are combined with logical 'AND'.
+input jsonb_comparison_exp {
+  # is the column contained in the given json value
+  _contained_in: jsonb
+
+  # does the column contain the given json value at the top level
+  _contains: jsonb
+  _eq: jsonb
+  _gt: jsonb
+  _gte: jsonb
+
+  # does the string exist as a top-level key in the column
+  _has_key: String
+
+  # do all of these strings exist as top-level keys in the column
+  _has_keys_all: [String!]
+
+  # do any of these strings exist as top-level keys in the column
+  _has_keys_any: [String!]
+  _in: [jsonb!]
+  _is_null: Boolean
+  _lt: jsonb
+  _lte: jsonb
+  _neq: jsonb
+  _nin: [jsonb!]
+}
+
 # columns and relationships of "meeting"
 type meeting {
   created_at: timestamptz!
@@ -632,6 +661,12 @@ type meeting {
   guild: guild
   guild_id: Int
   id: Int!
+
+  # { kind: "background" | "banner" | "small", src: string }
+  image(
+    # JSON select path
+    path: String
+  ): jsonb
   location: String
 
   # An object relationship
@@ -716,6 +751,11 @@ input meeting_aggregate_order_by {
   variance: meeting_variance_order_by
 }
 
+# append existing jsonb value of filtered columns with new jsonb value
+input meeting_append_input {
+  image: jsonb
+}
+
 # input type for inserting array relation for remote table "meeting"
 input meeting_arr_rel_insert_input {
   data: [meeting_insert_input!]!
@@ -747,6 +787,7 @@ input meeting_bool_exp {
   guild: guild_bool_exp
   guild_id: Int_comparison_exp
   id: Int_comparison_exp
+  image: jsonb_comparison_exp
   location: String_comparison_exp
   organizer: user_bool_exp
   organizer_id: uuid_comparison_exp
@@ -764,6 +805,22 @@ enum meeting_constraint {
   meeting_pkey
 }
 
+# delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+input meeting_delete_at_path_input {
+  image: [String]
+}
+
+# delete the array element with specified index (negative integers count from the
+# end). throws an error if top level container is not an array
+input meeting_delete_elem_input {
+  image: Int
+}
+
+# delete key/value pair or string element. key/value pairs are matched based on their key value
+input meeting_delete_key_input {
+  image: String
+}
+
 # input type for incrementing integer columne in table "meeting"
 input meeting_inc_input {
   guild_id: Int
@@ -779,6 +836,7 @@ input meeting_insert_input {
   guild: guild_obj_rel_insert_input
   guild_id: Int
   id: Int
+  image: jsonb
   location: String
   organizer: user_obj_rel_insert_input
   organizer_id: uuid
@@ -884,6 +942,7 @@ input meeting_order_by {
   guild: guild_order_by
   guild_id: order_by
   id: order_by
+  image: order_by
   location: order_by
   organizer: user_order_by
   organizer_id: order_by
@@ -1147,6 +1206,11 @@ input meeting_pk_columns_input {
   id: Int!
 }
 
+# prepend existing jsonb value of filtered columns with new jsonb value
+input meeting_prepend_input {
+  image: jsonb
+}
+
 # select columns of table "meeting"
 enum meeting_select_column {
   # column name
@@ -1163,6 +1227,9 @@ enum meeting_select_column {
 
   # column name
   id
+
+  # column name
+  image
 
   # column name
   location
@@ -1193,6 +1260,7 @@ input meeting_set_input {
   end_time: timestamptz
   guild_id: Int
   id: Int
+  image: jsonb
   location: String
   organizer_id: uuid
   publication_time: timestamptz
@@ -1274,6 +1342,9 @@ enum meeting_update_column {
 
   # column name
   id
+
+  # column name
+  image
 
   # column name
   location
@@ -1375,10 +1446,7 @@ type mutation_root {
   ): meeting_participant_mutation_response
 
   # delete single row from the table: "meeting_participant"
-  delete_meeting_participant_by_pk(
-    meeting_id: Int!
-    participant_id: uuid!
-  ): meeting_participant
+  delete_meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
 
   # delete data from the table: "sphere"
   delete_sphere(
@@ -1552,8 +1620,24 @@ type mutation_root {
 
   # update data of the table: "meeting"
   update_meeting(
+    # append existing jsonb value of filtered columns with new jsonb value
+    _append: meeting_append_input
+
+    # delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    _delete_at_path: meeting_delete_at_path_input
+
+    # delete the array element with specified index (negative integers count from
+    # the end). throws an error if top level container is not an array
+    _delete_elem: meeting_delete_elem_input
+
+    # delete key/value pair or string element. key/value pairs are matched based on their key value
+    _delete_key: meeting_delete_key_input
+
     # increments the integer columns with given value of the filtered values
     _inc: meeting_inc_input
+
+    # prepend existing jsonb value of filtered columns with new jsonb value
+    _prepend: meeting_prepend_input
 
     # sets the columns of the filtered rows to the given values
     _set: meeting_set_input
@@ -1564,8 +1648,24 @@ type mutation_root {
 
   # update single row of the table: "meeting"
   update_meeting_by_pk(
+    # append existing jsonb value of filtered columns with new jsonb value
+    _append: meeting_append_input
+
+    # delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    _delete_at_path: meeting_delete_at_path_input
+
+    # delete the array element with specified index (negative integers count from
+    # the end). throws an error if top level container is not an array
+    _delete_elem: meeting_delete_elem_input
+
+    # delete key/value pair or string element. key/value pairs are matched based on their key value
+    _delete_key: meeting_delete_key_input
+
     # increments the integer columns with given value of the filtered values
     _inc: meeting_inc_input
+
+    # prepend existing jsonb value of filtered columns with new jsonb value
+    _prepend: meeting_prepend_input
 
     # sets the columns of the filtered rows to the given values
     _set: meeting_set_input
@@ -1810,10 +1910,7 @@ type query_root {
   ): meeting_participant_aggregate!
 
   # fetch data from the table: "meeting_participant" using primary key columns
-  meeting_participant_by_pk(
-    meeting_id: Int!
-    participant_id: uuid!
-  ): meeting_participant
+  meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
 
   # fetch data from the table: "sphere"
   sphere(
@@ -2319,10 +2416,7 @@ type subscription_root {
   ): meeting_participant_aggregate!
 
   # fetch data from the table: "meeting_participant" using primary key columns
-  meeting_participant_by_pk(
-    meeting_id: Int!
-    participant_id: uuid!
-  ): meeting_participant
+  meeting_participant_by_pk(meeting_id: Int!, participant_id: uuid!): meeting_participant
 
   # fetch data from the table: "sphere"
   sphere(
@@ -2460,6 +2554,7 @@ type user {
     where: guild_member_bool_exp
   ): guild_member_aggregate!
   last_login: timestamptz
+  locale: String!
 
   # An array relationship
   meetings(
@@ -2572,6 +2667,7 @@ input user_bool_exp {
   email: String_comparison_exp
   guilds: guild_member_bool_exp
   last_login: timestamptz_comparison_exp
+  locale: String_comparison_exp
   meetings: meeting_participant_bool_exp
   name: String_comparison_exp
   organized_meetings: meeting_bool_exp
@@ -2594,6 +2690,7 @@ input user_insert_input {
   email: String
   guilds: guild_member_arr_rel_insert_input
   last_login: timestamptz
+  locale: String
   meetings: meeting_participant_arr_rel_insert_input
   name: String
   organized_meetings: meeting_arr_rel_insert_input
@@ -2606,6 +2703,7 @@ type user_max_fields {
   created_at: timestamptz
   email: String
   last_login: timestamptz
+  locale: String
   name: String
   uuid: uuid
 }
@@ -2616,6 +2714,7 @@ input user_max_order_by {
   created_at: order_by
   email: order_by
   last_login: order_by
+  locale: order_by
   name: order_by
   uuid: order_by
 }
@@ -2626,6 +2725,7 @@ type user_min_fields {
   created_at: timestamptz
   email: String
   last_login: timestamptz
+  locale: String
   name: String
   uuid: uuid
 }
@@ -2636,6 +2736,7 @@ input user_min_order_by {
   created_at: order_by
   email: order_by
   last_login: order_by
+  locale: order_by
   name: order_by
   uuid: order_by
 }
@@ -2669,6 +2770,7 @@ input user_order_by {
   email: order_by
   guilds_aggregate: guild_member_aggregate_order_by
   last_login: order_by
+  locale: order_by
   meetings_aggregate: meeting_participant_aggregate_order_by
   name: order_by
   organized_meetings_aggregate: meeting_aggregate_order_by
@@ -2695,6 +2797,9 @@ enum user_select_column {
   last_login
 
   # column name
+  locale
+
+  # column name
   name
 
   # column name
@@ -2707,6 +2812,7 @@ input user_set_input {
   created_at: timestamptz
   email: String
   last_login: timestamptz
+  locale: String
   name: String
   uuid: uuid
 }
@@ -2724,6 +2830,9 @@ enum user_update_column {
 
   # column name
   last_login
+
+  # column name
+  locale
 
   # column name
   name
@@ -2746,3 +2855,4 @@ input uuid_comparison_exp {
   _neq: uuid
   _nin: [uuid!]
 }
+

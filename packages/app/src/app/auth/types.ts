@@ -30,7 +30,9 @@ export type UserUuid = Brand<string, "UserId">;
  * @see https://auth0.com/docs/scopes/current/oidc-scopes#standard-claims
  * @see https://auth0.com/docs/users/normalized
  */
-export interface Claims extends Auth0Claims {}
+export interface Claims extends Auth0Claims {
+  // add own stuff here if needed
+}
 
 export interface Session extends ISession {
   user: Claims;
