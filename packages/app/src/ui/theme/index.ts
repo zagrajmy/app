@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { ContextValue } from "@theme-ui/core";
 import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
+
+import { Assign } from "../../lib";
+
 import { buttons } from "./buttons";
 import { forms } from "./forms";
+import { links } from "./links";
 
 declare module "theme-ui" {
   export interface Theme {
@@ -10,9 +15,16 @@ declare module "theme-ui" {
 }
 
 // TODO Contribute
-type BadlyTypedThemeUIThemeKeys = "forms" | "buttons";
+type BadlyTypedThemeUIThemeKeys =
+  | "forms"
+  | "buttons"
+  | "cards"
+  | "links"
+  | "layout";
 
-const makeTheme = <T extends Omit<ThemeUITheme, BadlyTypedThemeUIThemeKeys>>(
+const makeTheme = <
+  T extends Assign<ThemeUITheme, Record<BadlyTypedThemeUIThemeKeys, unknown>>
+>(
   t: T
 ): T => t;
 
@@ -117,7 +129,7 @@ export const theme = makeTheme({
     primary: {
       position: "relative",
       boxShadow: "md",
-      border: "1px solid rgba(0, 0, 0, 0.3)",
+      border: "1px solid rgba(0, 0, 0, 0.2)",
       borderRadius: "rounded-lg",
       background: "rgba(255, 255, 255, 0.9)",
       minHeight: "200px",
@@ -126,6 +138,7 @@ export const theme = makeTheme({
       margin: "1em",
     },
   },
+  links,
   layout: {
     container: {},
     sheet: {
@@ -142,5 +155,6 @@ export type Theme = typeof theme;
 interface ThemeCtx extends Omit<ContextValue, "theme"> {
   theme: Theme;
 }
+
 // TODO: Make sure we deepmerge our base theme with user theme in the future
 export const useTheme = (useThemeUI as unknown) as () => ThemeCtx;

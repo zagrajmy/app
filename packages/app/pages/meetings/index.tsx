@@ -29,8 +29,6 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
     { initialData }
   );
 
-  console.log({ data });
-
   const { meetings, organizedMeetings } = useMemo(() => {
     return {
       meetings: data?.meetings.map((x) => Meeting.parse(x.meeting)) || [],

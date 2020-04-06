@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { PromiseType } from "utility-types";
 
-import { hasura, Db } from "../../../data/hasura";
-import { auth } from "../../../src/app/auth";
 import { order_by } from "../../../data/graphql-zeus";
+import { Db, hasura } from "../../../data/hasura";
 import { requestedMeetingFields } from "./__requestedMeetingFields";
 
 function queryRecentlyPublished(query: Db["query"], limit: number) {

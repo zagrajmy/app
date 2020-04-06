@@ -17,7 +17,14 @@ import {
 import { Id, Meeting, User } from "../../../data/types";
 import { meetingsApi } from "../../../src/app/api/meetingsMock";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
-import { Container, Dl, FormDatepicker, Link, Theme } from "../../../src/ui";
+import {
+  Container,
+  Dl,
+  FormDatepicker,
+  Link,
+  LinkProps,
+  Theme,
+} from "../../../src/ui";
 
 interface EditMeetingButtonProps {
   isEditing: boolean;
@@ -83,11 +90,13 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
     return "404: Couldn't find meeting.";
   }
 
-  const LinkToAuthor: React.FC = ({ children }) => (
+  interface LinkToAuthorProps extends LinkProps {}
+  const LinkToAuthor = ({ children, ...rest }: LinkToAuthorProps) => (
     <Link
       href="/u/[username_slug]"
       as={`/u/${meeting.organizer.slug}`}
-      sx={{ fontWeight: "bold", display: "inline-flex" }}
+      sx={{ display: "inline-flex" }}
+      {...rest}
     >
       {children}
     </Link>
@@ -211,7 +220,9 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
             </LinkToAuthor>
             <div sx={{ ml: 2, fontSize: 3 }}>
               <Text as="span">Hosted by </Text>
-              <LinkToAuthor>{meeting.organizer.name}</LinkToAuthor>
+              <LinkToAuthor variant="underlined">
+                {meeting.organizer.name}
+              </LinkToAuthor>
             </div>
           </Flex>
         </header>

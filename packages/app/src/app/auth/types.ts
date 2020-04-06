@@ -1,5 +1,5 @@
 import { IClaims, ISession } from "@auth0/nextjs-auth0/dist/session/session";
-import { Brand } from "nom-ts";
+import { Brand } from "../../lib";
 
 /**
  * Key-value store for the user's claims.

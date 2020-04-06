@@ -71,6 +71,8 @@ const CreateMeetingPage: NextPage = () => {
       body: JSON.stringify(body),
     })
       .then((res) => {
+        // TODO
+        // eslint-disable-next-line no-console
         console.log({ res });
       })
       .catch((err) => {

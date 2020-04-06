@@ -10,6 +10,7 @@ module.exports = {
       },
     ],
     "no-restricted-syntax": "off",
+    "no-nested-ternary": "off",
     "react/prop-types": "off",
     "react/no-array-index-key": "off",
   },
