@@ -49,8 +49,6 @@ export default async function loggedIn(
   if (session && session.user.email_verified) {
     const { email } = session.user;
 
-    console.log(session.user);
-
     // TODO: get rid of awaits, use TaskEither
 
     const [existingUser, auth0UserId] = await Promise.all([

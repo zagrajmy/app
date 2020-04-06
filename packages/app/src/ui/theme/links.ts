@@ -8,13 +8,15 @@ const underlined: SystemStyleObject = {
     "--transition": "250ms 33ms cubic-bezier(0.19, 1, 0.22, 1)",
   } as {}),
   position: "relative",
+  zIndex: 0,
   color: "currentColor",
   textDecoration: "none",
+  outline: "none",
   transition: "color var(--transition)",
   ":before": {
     content: "''",
     display: "block",
-    height: "0.75rem",
+    height: "0.6em",
     position: "absolute",
     top: "50%",
     right: "-0.15rem",
@@ -30,7 +32,7 @@ const underlined: SystemStyleObject = {
     transition:
       "background-color var(--transition), transform var(--transition)",
   },
-  "&:hover": {
+  ":hover, :focus": {
     color: "white",
     ":before": {
       backgroundColor: "accent",

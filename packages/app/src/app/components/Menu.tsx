@@ -51,7 +51,7 @@ export const Menu = ({ user, ...rest }: MenuProps) => {
       ref={detailsRef}
       sx={{
         height: "48px",
-        width: "32px",
+        width: "48px",
         position: "relative",
       }}
       {...rest}
@@ -67,8 +67,8 @@ export const Menu = ({ user, ...rest }: MenuProps) => {
             display: "none",
           },
 
-          my: "8px",
-
+          py: 2,
+          px: 1,
           // ":focus > :first-of-type": {}, // TODO?
         }}
       >

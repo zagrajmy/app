@@ -134,8 +134,9 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
         sx={{
           mt:
             meeting.image?.kind !== "background"
-              ? (th: Theme) => `-${get(th, "space.3")}px`
+              ? (th: Theme) => `-${get(th, "space.4")}px`
               : 0,
+          mb: 4,
         }}
       >
         <header>

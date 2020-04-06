@@ -144,7 +144,7 @@ export const theme = makeTheme({
     sheet: {
       bg: "white",
       borderRadius: "rounded-lg",
-      boxShadow: "sm",
+      boxShadow: "md",
       p: 3,
       zIndex: 1,
     },

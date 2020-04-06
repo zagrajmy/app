@@ -2,8 +2,7 @@ import { formatRelative } from "date-fns";
 import React from "react";
 import { Card, Image } from "theme-ui";
 
-import { Link, LinkProps } from "next-next-link";
-
+import { Link, LinkProps } from "../../ui";
 import { Meeting } from "../../../data/types";
 
 interface MeetingCreationInfoProps {
@@ -12,7 +11,11 @@ interface MeetingCreationInfoProps {
 const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
   return (
     <span>
-      <Link href="/u/[username_slug]" as={`/u/${meeting.organizer.slug}`}>
+      <Link
+        href="/u/[username_slug]"
+        as={`/u/${meeting.organizer.slug}`}
+        variant="underlined"
+      >
         {meeting.organizer.name}
       </Link>
       {meeting.start_time

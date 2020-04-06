@@ -22,6 +22,16 @@ export const forms: Variants = {
       cursor: "not-allowed",
     },
   },
+  "select-small": {
+    cursor: "pointer",
+    border: "none",
+    "& ~ svg": {
+      display: "none",
+    },
+    "> option": {
+      color: "text",
+    },
+  },
   label: {
     fontWeight: "bold",
     color: "muted",
