@@ -29,6 +29,8 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
     { initialData }
   );
 
+  console.log({ data });
+
   const { meetings, organizedMeetings } = useMemo(() => {
     return {
       meetings: data?.meetings.map((x) => Meeting.parse(x.meeting)) || [],
@@ -146,7 +148,7 @@ const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
 
   return (
     <Page sx={{ "& > *": { width: 800 }, alignItems: "center" }}>
-      <RecentMeetings />
+      <RecentMeetings initialData={props.initialData} />
     </Page>
   );
 };
