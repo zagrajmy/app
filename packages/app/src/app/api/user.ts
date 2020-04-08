@@ -1,18 +1,21 @@
 import { IncomingMessage } from "http";
-import fetch from "isomorphic-unfetch";
 
 import { Db } from "../../../data/hasura";
 import type { MyMeetingsResult } from "../../../pages/api/meetings/my-meetings";
 import { RecentlyPublishedMeetingsResult } from "../../../pages/api/meetings/recently-published";
 import { summon } from "../../lib";
-import { getUrl } from "../../lib/getUrl";
+import { generated } from "../../../data";
 
 // serverside
 
-export const queryUuidForAuth0Id = (query: Db["query"], auth0Id: string) =>
+export const queryUserByAuth0Id = <T extends generated.ValueTypes["user"]>(
+  query: Db["query"],
+  auth0Id: string,
+  properties: T
+) =>
   query({
-    user: [{ where: { auth0_id: { _eq: auth0Id } } }, { uuid: true }],
-  }).then((res) => res.user?.[0].uuid as string);
+    user: [{ where: { auth0_id: { _eq: auth0Id } } }, properties],
+  }).then((res) => res.user?.[0]);
 
 // clientside
 
@@ -20,19 +23,7 @@ export const queryUuidForAuth0Id = (query: Db["query"], auth0Id: string) =>
 export function getMyMeetings(
   req?: IncomingMessage
 ): Promise<MyMeetingsResult> {
-  const baseUrl = req ? new URL(getUrl(req)).origin : "";
-  const url = `${baseUrl}/api/meetings/my-meetings`;
-
-  return fetch(url, { headers: req?.headers! as Record<string, string> }).then(
-    (response) => {
-      if (!response.ok) {
-        const err = new Error(response.statusText);
-        Object.assign(err, { response });
-        throw err;
-      }
-      return response.json();
-    }
-  );
+  return summon("/api/meetings/my-meetings", {}, req);
 }
 
 export function getRecentlyPublishedMeetings(

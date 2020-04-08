@@ -2,8 +2,8 @@ import { formatRelative } from "date-fns";
 import React from "react";
 import { Card, Image } from "theme-ui";
 
-import { Link, LinkProps } from "../../ui";
 import { Meeting } from "../../../data/types";
+import { Link, LinkProps } from "../../ui";
 
 interface MeetingCreationInfoProps {
   meeting: Pick<Meeting, "organizer" | "start_time">;
@@ -25,7 +25,10 @@ const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
   );
 };
 
-// onClicks on divs are evil and require javascript
+/**
+ * onClicks on divs are evil, and what's worse, they require javascript
+ * put this inside of Card to make it clickable
+ */
 const CardBackgroundLink = (props: LinkProps) => (
   <Link
     sx={{

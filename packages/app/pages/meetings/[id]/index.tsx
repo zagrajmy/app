@@ -78,7 +78,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
     },
   });
 
-  const onSubmit = form.handleSubmit((value) => {
+  const onSubmit = form.handleSubmit(value => {
     console.log("Meeting edited", { value, errors: form.errors });
 
     // AWAIT DB CHANGE HERE

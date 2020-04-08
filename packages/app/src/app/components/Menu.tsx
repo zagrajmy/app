@@ -36,9 +36,9 @@ const Tip = () => (
 );
 
 interface MenuProps extends ComponentProps<"details"> {
-  user: Claims;
+  claims: Claims;
 }
-export const Menu = ({ user, ...rest }: MenuProps) => {
+export const Menu = ({ claims, ...rest }: MenuProps) => {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   useOnClickOutside(detailsRef, () => {
     if (detailsRef.current) {
@@ -72,7 +72,7 @@ export const Menu = ({ user, ...rest }: MenuProps) => {
           // ":focus > :first-of-type": {}, // TODO?
         }}
       >
-        <UserAvatar user={user} />
+        <UserAvatar claims={claims} />
       </summary>
       <div
         sx={{

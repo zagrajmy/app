@@ -31,7 +31,7 @@ export function makeSummon(f: typeof fetch) {
     if (newInit) {
       if ("json" in newInit) {
         newInit.body = JSON.stringify(newInit.json);
-        newInit.method = "POST";
+        newInit.method = newInit.method || "POST";
         delete newInit.json;
       }
       if (Object.keys(newInit.headers).length === 0) {
@@ -50,4 +50,11 @@ export function makeSummon(f: typeof fetch) {
   };
 }
 
+/**
+ * **IMPURE:**
+ * - Throws `HttpError` on `4xx` and `5xx` responses.
+ * - Throws `TypeError: Failed to fetch`.
+ *
+ * Headers are merged only if the second argument is not undefined.
+ */
 export const summon = makeSummon(isomorphicUnfetch);

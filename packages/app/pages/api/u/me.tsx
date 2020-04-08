@@ -1,34 +1,118 @@
+import * as t from "io-ts";
+import * as TE from "fp-ts/lib/TaskEither";
+import * as E from "fp-ts/lib/Either";
 import { NextApiRequest, NextApiResponse } from "next";
+
+import { pipe } from "fp-ts/lib/pipeable";
+import { flow } from "fp-ts/lib/function";
+import { auth, User, Claims } from "../../../src/app/auth";
+import { ReqHandler } from "../../../src/lib/ReqHandler";
+import { hasura } from "../../../data";
+import { SUPPORTED_LANGUAGES } from "../../../src/i18n";
+import { makeError, formatValidationErrors } from "../../../src";
+
+type SupportedLanguage = import("../../../src/i18n").SupportedLanguage;
+
+export type GetMeResponseJson = { users: User[] };
 
 /**
  * Returns users from Auth0 Management API with matching email
  * for the user in current session if his email is verified.
- *
- * Linking identities out of the box is in Developer plan in Auth0,
- * this code is reminder to consider upgrading.
  */
+const getLoggedInUserData: ReqHandler<[Claims], GetMeResponseJson> = (user) => {
+  if (!user.email_verified) {
+    return ReqHandler.left(401, "email not verified");
+  }
 
-import { auth, User } from "../../../src/app/auth";
+  return TE.tryCatch(
+    () =>
+      auth.management.getUsersByEmail(user.email).then((users) => ({ users })),
+    ReqHandler.Err(500)
+  );
+};
 
-export type MeResponseJson = { users: User[] };
+export type PatchMeResponseJson = {
+  uuid?: string;
+  locale?: string;
+};
+
+const PatchMeRequestBody = t.partial({
+  locale: t.union(SUPPORTED_LANGUAGES.map((l) => t.literal(l))),
+});
+
+const patchLoggedInUser: ReqHandler<
+  [NextApiRequest, Claims, SupportedLanguage],
+  PatchMeResponseJson
+> = (req, user, locale) => {
+  return TE.tryCatch(
+    () => {
+      return hasura
+        .fromReq(req)
+        .mutation({
+          update_user: [
+            {
+              where: { email: { _eq: user.email } },
+              _set: { locale },
+            },
+            { returning: { uuid: true, locale: true } },
+          ],
+        })
+        .then((res) => res.update_user?.returning[0] || {});
+    },
+    (reason) => {
+      console.error({ reason });
+      return ReqHandler.Err(500, "failed to update user");
+    }
+  );
+};
 
 export default async function me(req: NextApiRequest, res: NextApiResponse) {
   try {
     const session = await auth.getSession(req);
 
     if (!session) {
-      return res.status(401);
-    }
-    if (!session.user.email_verified) {
-      return res.status(403);
+      return res.status(401).end();
     }
 
-    const users = await auth.management.getUsersByEmail(session.user.email);
-
-    const json: MeResponseJson = { users };
-    return res.json(json);
+    switch (req.method) {
+      case "GET":
+        return ReqHandler.respond(getLoggedInUserData(session.user), res);
+      case "PATCH":
+        return ReqHandler.respond(
+          pipe(
+            E.parseJSON(req.body, ReqHandler.Err(400)),
+            E.chain(
+              flow(
+                PatchMeRequestBody.decode,
+                E.mapLeft<t.Errors, ReqHandler.Err>((validationErrors) => ({
+                  status: 400,
+                  error: makeError(formatValidationErrors(validationErrors)),
+                }))
+              )
+            ),
+            TE.fromEither,
+            TE.chain(({ locale }) => {
+              if (locale) {
+                return patchLoggedInUser(req, session.user, locale);
+              }
+              console.log("no update needed");
+              return TE.right({ locale });
+            })
+          ),
+          res
+        );
+      default:
+        return ReqHandler.respond(
+          ReqHandler.left(500, "method not handled"),
+          res
+        );
+    }
   } catch (error) {
-    console.error(error);
-    return res.status(error.status || 500).end(error.message);
+    console.log({ error });
+    // getSession can throw?
+    return ReqHandler.respond(
+      TE.left(ReqHandler.Err(error.status || 500)(error.message)),
+      res
+    );
   }
 }

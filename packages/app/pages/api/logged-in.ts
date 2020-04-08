@@ -14,7 +14,7 @@ const getCrUserByEmail = (db: Db) => (email: string) =>
       user: [{ where: { email: { _eq: email } } }, { uuid: true }],
     })
     // I am assuming that there is only one user with this email for now.
-    .then((x) => head(x.user));
+    .then(x => head(x.user));
 
 interface CreateUserArg
   extends Required<
@@ -29,9 +29,9 @@ const createUser = (db: Db) => (user: CreateUserArg) =>
     })
     .then(
       flow(
-        (x) => x.insert_user,
+        x => x.insert_user,
         O.fromNullable,
-        O.chain((data) => head(data.returning.map((u) => u.uuid)))
+        O.chain(data => head(data.returning.map(u => u.uuid)))
       )
     );
 
@@ -55,8 +55,8 @@ export default async function loggedIn(
       getCrUserByEmail(db)(email),
       auth.management
         .getUsersByEmail(email)
-        .then((auth0Users) =>
-          O.toUndefined(head(auth0Users.map((u) => u.user_id)))
+        .then(auth0Users =>
+          O.toUndefined(head(auth0Users.map(u => u.user_id)))
         ),
     ] as const);
 

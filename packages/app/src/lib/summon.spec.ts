@@ -9,6 +9,8 @@ beforeEach(() => {
 });
 
 describe("summon", () => {
+  // requirements
+
   it("throws HttpError on HTTP 400", async () => {
     fetchMock.once("/bad-request", { status: 400 });
 
@@ -67,5 +69,17 @@ describe("summon", () => {
       headers: { referer: "https://example.com:1234" },
     });
     expect(fetchMock).toBeCalledWith("https://example.com:1234/test");
+  });
+
+  // bugs
+
+  it("doesn't override method which is already set", async () => {
+    fetchMock.mockResponseOnce("{}");
+
+    await summon("/test", { method: "PATCH", json: { foo: { bar: "qux" } } });
+    expect(fetchMock).toBeCalledWith("/test", {
+      method: "PATCH",
+      body: '{"foo":{"bar":"qux"}}',
+    });
   });
 });

@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { UnreachableCaseError } from "ts-essentials";
 import * as g from "../../../data/graphql-zeus";
 import { Db, hasura } from "../../../data/hasura";
-import { queryUuidForAuth0Id } from "../../../src/app/api/user";
+import { queryUserByAuth0Id } from "../../../src/app/api/user";
 import { auth } from "../../../src/app/auth";
 import { formatValidationErrors } from "../../../src/lib/formatValidationErrors";
 
@@ -92,7 +92,11 @@ export default auth.requireAuthentication(async function insertMeeting(
       ({ command: _, meeting }) => {
         return auth
           .getSession(req)
-          .then((session) => queryUuidForAuth0Id(query, session!.user!.sub))
+          .then((session) =>
+            queryUserByAuth0Id(query, session!.user!.sub, { uuid: true }).then(
+              (u) => u.uuid as string
+            )
+          )
           .then((organizer_id) => runMutation(mutation, meeting, organizer_id))
           .then((data) => res.status(200).send(data))
           .catch((reason) => res.status(500).send(reason));

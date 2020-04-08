@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 type MeetingCardsListProps = ComponentProps<"ul">;
-export const MeetingCardsList: React.FC<MeetingCardsListProps> = (props) => {
+export const MeetingCardsList: React.FC<MeetingCardsListProps> = props => {
   return (
     <ul
       sx={{

@@ -8,15 +8,23 @@ import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 import { parseCookies } from "nookies";
 import React from "react";
 import { Styled, ThemeProvider as ThemeUiProvider } from "theme-ui";
+import { I18nextProvider } from "react-i18next";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 import { auth } from "../src/app/auth";
 import { NavHeader } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
-import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
-import { FALLBACK_LANG, SUPPORTED_LANGUAGES } from "../src/i18n";
+import {
+  AppStateProvider,
+  StateFromAppInitialProps,
+  ApplicationState,
+} from "../src/app/store";
+import { FALLBACK_LANG, SUPPORTED_LANGUAGES, i18n } from "../src/i18n";
 import { theme } from "../src/ui/theme";
 
-import "react-datepicker/dist/react-datepicker.css";
+import { queryUserByAuth0Id } from "../src/app/api/user";
+import { hasura } from "../data";
 
 const globalStyles: InterpolationWithTheme<any> = {
   body: {
@@ -41,41 +49,55 @@ export default class MyApp extends App<{
   static async getInitialProps({ Component, ctx }: AppContext) {
     const pageProps = await loadGetInitialProps(Component, ctx);
 
+    const session = ctx.req && (await auth.getSession(ctx.req));
+
     const cookies = parseCookies(ctx);
 
-    const lang = universalLanguageDetect({
-      supportedLanguages: SUPPORTED_LANGUAGES,
-      fallbackLanguage: FALLBACK_LANG,
-      acceptLanguageHeader: ctx.req?.headers?.["accept-language"],
-      serverCookies: cookies,
-      errorHandler: (error, level, origin, context) => {
-        console.error(error, level, origin, context);
-      },
-    });
+    let lang = "en";
+    let zmUser: ApplicationState["zmUser"];
+
+    if (!session) {
+      lang = universalLanguageDetect({
+        supportedLanguages: SUPPORTED_LANGUAGES,
+        fallbackLanguage: FALLBACK_LANG,
+        acceptLanguageHeader: ctx.req?.headers?.["accept-language"],
+        serverCookies: cookies,
+        errorHandler: (error, level, origin, context) => {
+          console.error(error, level, origin, context);
+        },
+      });
+    } else {
+      zmUser = await queryUserByAuth0Id(
+        hasura.fromReq(ctx.req!).query,
+        session.user.sub,
+        { uuid: true, locale: true }
+      );
+      lang = zmUser.locale;
+    }
 
     Object.assign(pageProps, { lang, cookies });
-
-    if (ctx.req) {
-      const session = await auth.getSession(ctx.req);
-      return { appState: { user: session?.user }, pageProps };
-    }
-    return { pageProps, appState: {} };
+    return { appState: { user: session?.user, zmUser }, pageProps };
   }
 
   render() {
     const { Component, pageProps, appState } = this.props;
 
     return (
-      <ThemeUiProvider theme={theme}>
-        <Global styles={globalStyles} />
-        <AppStateProvider stateFromInitialProps={appState}>
-          <Styled.root sx={theme.styles.root}>
-            <NavHeader user={appState.user} />
-            <Component {...pageProps} />
-            <AppFooter />
-          </Styled.root>
-        </AppStateProvider>
-      </ThemeUiProvider>
+      <I18nextProvider i18n={i18n}>
+        <ThemeUiProvider theme={theme}>
+          <Global styles={globalStyles} />
+          <AppStateProvider
+            stateFromInitialProps={appState}
+            lang={pageProps.lang}
+          >
+            <Styled.root sx={theme.styles.root}>
+              <NavHeader appState={appState} />
+              <Component {...pageProps} />
+              <AppFooter />
+            </Styled.root>
+          </AppStateProvider>
+        </ThemeUiProvider>
+      </I18nextProvider>
     );
   }
 }

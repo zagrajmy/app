@@ -10,7 +10,7 @@ import { useAppState } from "../src/app/store";
 import { HttpError } from "../src/lib/HttpError";
 import { Container, Dl } from "../src/ui";
 
-type WeResponseJson = import("./api/u/me").MeResponseJson;
+type WeResponseJson = import("./api/u/me").GetMeResponseJson;
 
 type SettingsProps = {
   user: null | Claims;
@@ -18,8 +18,8 @@ type SettingsProps = {
 
 const Settings: NextPage<SettingsProps> = () => {
   const { user: sessionUser } = useAppState();
-  const sameEmailUsers = useSWR("/api/u/me", (url) =>
-    fetch(url).then((res) => {
+  const sameEmailUsers = useSWR("/api/u/me", url =>
+    fetch(url).then(res => {
       if (res.ok) {
         // TODO: consider io-ts or typescript-is?
         return res.json() as Promise<WeResponseJson>;
@@ -53,7 +53,7 @@ const Settings: NextPage<SettingsProps> = () => {
         {sameEmailUsers.data && (
           <section>
             <Heading as="h3">Your Accounts</Heading>
-            {sameEmailUsers.data.users.map((user) => (
+            {sameEmailUsers.data.users.map(user => (
               <Dl.FromObject value={user} key={user.user_id} />
             ))}
           </section>

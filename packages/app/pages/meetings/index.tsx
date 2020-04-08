@@ -23,6 +23,7 @@ interface LoggedInUserMeetingsProps {
 }
 function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
   const { t } = useTranslation();
+
   const { data, error } = useSWR<MyMeetingsResult, unknown>(
     "/api/meetings/my-meetings",
     () => getMyMeetings(),
@@ -75,6 +76,9 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
                     <MeetingCard meeting={meeting} />
                   </li>
                 ))}
+                {meetings.length === 0 && (
+                  <p>{t("not-participating-in-any-meeting")}</p>
+                )}
               </MeetingCardsList>
             )}
           </section>
@@ -146,7 +150,11 @@ const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
 
   return (
     <Page sx={{ "& > *": { width: 800 }, alignItems: "center" }}>
-      <RecentMeetings initialData={props.initialData} />
+      <RecentMeetings
+        initialData={
+          Array.isArray(props.initialData) ? props.initialData : undefined
+        }
+      />
     </Page>
   );
 };

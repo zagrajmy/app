@@ -14,7 +14,7 @@ const Error: NextPage<ErrorProps> = ({ err }) => {
 };
 
 Error.getInitialProps = ({ res, err }) => {
-  return { err };
+  return { res, err };
 };
 
 export default Error;

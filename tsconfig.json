@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2018", // babel does the rest
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,

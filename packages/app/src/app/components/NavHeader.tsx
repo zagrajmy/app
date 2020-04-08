@@ -1,17 +1,63 @@
-import React from "react";
 import { alpha } from "@theme-ui/color";
 import { Link } from "next-next-link";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { Select, SelectProps } from "../../ui";
 
-import { StateFromAppInitialProps, useAppState } from "../store";
+import { SUPPORTED_LANGUAGES, SupportedLanguage } from "../../i18n";
+import {
+  StateFromAppInitialProps,
+  useAppState,
+  ApplicationState,
+} from "../store";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 import { Menu } from "./Menu";
 import { NavLink } from "./NavLink";
-import { SUPPORTED_LANGUAGES } from "../../i18n";
+import { summon } from "../../lib";
 
-const LocalePicker = (props: Omit<SelectProps, "ref">) => {
+/**
+ * I think we're gonna use `user.locale` only as language
+ * on the frontend and let browser locale take care of
+ * number and date formatting.
+ */
+interface LanguagePickerProps
+  extends Omit<SelectProps, "ref" | "onChange" | "value"> {
+  user: ApplicationState["zmUser"];
+}
+const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const { value } = event.target;
+
+    if (!SUPPORTED_LANGUAGES.includes(value as SupportedLanguage)) {
+      throw new Error(
+        `${value} is not supported language.\n
+        Supported languages are ${SUPPORTED_LANGUAGES}`
+      );
+    }
+
+    // TODO: Optimistic update? Should I just use swr here?
+    summon("/api/u/me", {
+      method: "PATCH",
+      json: {
+        locale: value,
+      },
+    })
+      .then(() => {
+        // temporary lazy solution
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.error(err);
+        // TODO: Rollback application if it failed
+        // TODO: Display error toast
+      });
+  };
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <Select
       variant="select-small"
@@ -26,7 +72,9 @@ const LocalePicker = (props: Omit<SelectProps, "ref">) => {
           color: "white",
         },
       }}
-      {...props}
+      value={user?.locale || "en"}
+      onChange={handleChange}
+      {...rest}
     >
       {SUPPORTED_LANGUAGES.map((l) => (
         <option key={l}>{l}</option>
@@ -35,14 +83,16 @@ const LocalePicker = (props: Omit<SelectProps, "ref">) => {
   );
 };
 
-export interface NavHeaderProps
-  extends Pick<StateFromAppInitialProps, "user"> {}
+export interface NavHeaderProps {
+  appState: Pick<StateFromAppInitialProps, "user" | "zmUser">;
+}
 
 export const NavHeader = (props: NavHeaderProps) => {
   const { t } = useTranslation();
   const state = useAppState();
 
-  const user = state.user || props.user;
+  const claims = state.user || props.appState.user;
+  const user = state.zmUser || props.appState.zmUser;
 
   return (
     <header>
@@ -69,17 +119,14 @@ export const NavHeader = (props: NavHeaderProps) => {
             <Link href="/">zagraj.my</Link>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
-            <LocalePicker
-              value={user?.locale || "en"}
-              onChange={(e) => console.log("change locale", e.target.value)}
-            />
+            <LanguagePicker user={user} />
           </HeaderFooterListItem>
           <HeaderFooterListItem>
             <NavLink href="/meetings">{t("meetings")}</NavLink>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
-            {user ? (
-              <Menu user={user} />
+            {claims ? (
+              <Menu claims={claims} />
             ) : (
               <Link
                 href="/api/login"

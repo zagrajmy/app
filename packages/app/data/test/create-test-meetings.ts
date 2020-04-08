@@ -32,7 +32,7 @@ import("../hasura")
             },
             { uuid: true, username: true },
           ],
-        }).then((res) => res.user),
+        }).then(res => res.user),
       failure("failed to fetch admirals")
     );
 
@@ -46,12 +46,12 @@ import("../hasura")
               },
               { id: true },
             ],
-          }).then((res) => res.guild),
+          }).then(res => res.guild),
         failure("failed to fetch id")
       ),
       TE.map(head),
       TE.chain(TE.fromOption(failure("test sphere not found"))),
-      TE.map((guild) => guild.id)
+      TE.map(guild => guild.id)
     );
 
     // TODO: Add participants while creating meetings.
@@ -59,7 +59,7 @@ import("../hasura")
       mutation({
         insert_meeting: [
           {
-            objects: range(-50, 100).map((i) => {
+            objects: range(-50, 100).map(i => {
               const date = subWeeks(new Date(), i);
               const startTime = addWeeks(date, 1);
               const endTime = addHours(startTime, 3);
@@ -97,14 +97,14 @@ import("../hasura")
       TE.chain(([users, testGuildId]) => {
         return TE.tryCatch(
           () => insertMeetings(users, testGuildId),
-          (err) => (err instanceof Error ? err : new Error(JSON.stringify(err)))
+          err => (err instanceof Error ? err : new Error(JSON.stringify(err)))
         );
       })
     )();
   })
   .then(
     flow(
-      E.fold(console.error, (result) => {
+      E.fold(console.error, result => {
         console.log(result.insert_meeting);
       })
     )

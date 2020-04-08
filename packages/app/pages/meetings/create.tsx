@@ -45,7 +45,7 @@ const CreateMeetingPage: NextPage = () => {
     },
   });
 
-  const onSubmit: OnSubmit<Meeting> = (values) => {
+  const onSubmit: OnSubmit<Meeting> = values => {
     const formAction = document.activeElement?.getAttribute("formAction");
 
     if (formAction !== "publish" && formAction !== "save-draft") {
@@ -70,12 +70,12 @@ const CreateMeetingPage: NextPage = () => {
       method: "POST",
       body: JSON.stringify(body),
     })
-      .then((res) => {
+      .then(res => {
         // TODO
         // eslint-disable-next-line no-console
         console.log({ res });
       })
-      .catch((err) => {
+      .catch(err => {
         // TODO: Handle me. Display error in the UI.
         // Let's make useMutation hook or think about react-query
         // once again

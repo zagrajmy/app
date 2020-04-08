@@ -59,7 +59,7 @@ export const hasura = (instance: Instance) => {
   });
 };
 
-hasura.fromReq = (req: NextApiRequest) => {
+hasura.fromReq = (req: IncomingMessage) => {
   return hasura(
     (parseCookies({ req })["zm|db-env"] as Instance) || "development"
   );
