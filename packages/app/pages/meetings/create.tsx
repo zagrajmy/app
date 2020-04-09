@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import { NextPage } from "next";
 import { OnSubmit, useForm } from "react-hook-form";
 import {
@@ -23,6 +22,7 @@ import {
   InputProps as ThInputProps,
 } from "../../src/ui";
 import { InsertMeetingBody } from "../api/meetings/insert";
+import { summon } from "../../src";
 
 const GUILD_ID = 1; // TODO
 
@@ -45,7 +45,7 @@ const CreateMeetingPage: NextPage = () => {
     },
   });
 
-  const onSubmit: OnSubmit<Meeting> = values => {
+  const onSubmit: OnSubmit<Meeting> = (values) => {
     const formAction = document.activeElement?.getAttribute("formAction");
 
     if (formAction !== "publish" && formAction !== "save-draft") {
@@ -66,16 +66,17 @@ const CreateMeetingPage: NextPage = () => {
 
     // TODO: Move fetching outside of callback handler to a proper place
     // useEffect or query hook
-    fetch("/api/meetings/insert", {
+    summon("/api/meetings/insert", {
       method: "POST",
-      body: JSON.stringify(body),
+      json: body,
     })
-      .then(res => {
+      .then((res) => {
         // TODO
         // eslint-disable-next-line no-console
         console.log({ res });
       })
-      .catch(err => {
+      .catch((error) => {
+        console.error(error);
         // TODO: Handle me. Display error in the UI.
         // Let's make useMutation hook or think about react-query
         // once again

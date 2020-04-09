@@ -15,7 +15,7 @@
     "build": "lerna run build",
     "lint": "lerna run lint",
     "typecheck": "lerna run typecheck",
-    "ci": "lerna run ci",
+    "ci": "lerna run ci && npm run test",
     "fix": "wotan --fix && lerna run format && lerna run lint:fix",
     "release": "lerna publish && lerna run deploy",
     "test": "jest"
@@ -32,5 +32,8 @@
     "prettier": "^2.0.2",
     "ts-jest": "^25.3.1",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.2"
   }
 }

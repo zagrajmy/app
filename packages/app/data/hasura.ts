@@ -1,13 +1,14 @@
 import { record } from "fp-ts/lib/Record";
-import fetch from "isomorphic-unfetch";
-import { NextApiRequest } from "next";
+import { IncomingMessage } from "http";
 import { parseCookies } from "nookies";
 
+import { globals } from "../src/lib/summon";
 import { isDefined } from "../src/lib/isDefined";
 import { Chain } from "./graphql-zeus";
 
-const _global = typeof window !== "undefined" ? window : globalThis;
-Object.assign(_global, { fetch: _global.fetch || fetch });
+if (typeof fetch === "undefined") {
+  Object.assign(globalThis, { fetch: globals.fetch });
+}
 
 const { HASURA_URL } = process.env;
 

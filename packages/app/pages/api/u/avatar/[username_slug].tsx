@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function avatar(
@@ -15,7 +14,7 @@ export default async function avatar(
   try {
     const gravatarResponse = await fetch(
       `https://unavatar.now.sh/facebook/${username_slug}?json&fallback=false`
-    ).then(r => r.json());
+    ).then((r) => r.json());
 
     userAvatar = gravatarResponse.url || userAvatar;
   } catch {

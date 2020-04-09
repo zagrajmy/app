@@ -6,7 +6,7 @@ import { Meeting } from "../../../data/types";
 import { Link, LinkProps } from "../../ui";
 
 interface MeetingCreationInfoProps {
-  meeting: Pick<Meeting, "organizer" | "start_time">;
+  meeting: Pick<Meeting, "organizer" | "start_time" | "end_time">;
 }
 const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
   return (
@@ -20,6 +20,9 @@ const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
       </Link>
       {meeting.start_time
         ? ` • ${formatRelative(new Date(meeting.start_time), new Date())}`
+        : ""}
+      {meeting.start_time && meeting.end_time
+        ? ` — ${formatRelative(new Date(meeting.end_time), new Date())}`
         : ""}
     </span>
   );

@@ -2,11 +2,11 @@ import { IncomingMessage } from "http";
 
 import { Db } from "../../../data/hasura";
 import type { MyMeetingsResult } from "../../../pages/api/meetings/my-meetings";
-import { RecentlyPublishedMeetingsResult } from "../../../pages/api/meetings/recently-published";
+import type { RecentlyPublishedMeetingsResult } from "../../../pages/api/meetings/recently-published";
 import { summon } from "../../lib";
 import { generated } from "../../../data";
 
-// serverside
+// Data Layer
 
 export const queryUserByAuth0Id = <T extends generated.ValueTypes["user"]>(
   query: Db["query"],
@@ -17,9 +17,8 @@ export const queryUserByAuth0Id = <T extends generated.ValueTypes["user"]>(
     user: [{ where: { auth0_id: { _eq: auth0Id } } }, properties],
   }).then((res) => res.user?.[0]);
 
-// clientside
+// Next API Routes
 
-// TODO: Use summon
 export function getMyMeetings(
   req?: IncomingMessage
 ): Promise<MyMeetingsResult> {
@@ -27,7 +26,12 @@ export function getMyMeetings(
 }
 
 export function getRecentlyPublishedMeetings(
-  req?: IncomingMessage
+  req?: IncomingMessage,
+  limit?: number
 ): Promise<RecentlyPublishedMeetingsResult> {
-  return summon("/api/meetings/recently-published", undefined, req);
+  return summon(
+    "/api/meetings/recently-published",
+    limit ? { searchParams: { limit: String(limit) } } : undefined,
+    req
+  );
 }

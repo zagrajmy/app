@@ -26,7 +26,7 @@ interface LanguagePickerProps
   user: ApplicationState["zmUser"];
 }
 const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
-  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = event => {
     const { value } = event.target;
 
     if (!SUPPORTED_LANGUAGES.includes(value as SupportedLanguage)) {
@@ -47,7 +47,7 @@ const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
         // temporary lazy solution
         window.location.reload();
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
         // TODO: Rollback application if it failed
         // TODO: Display error toast
@@ -76,7 +76,7 @@ const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
       onChange={handleChange}
       {...rest}
     >
-      {SUPPORTED_LANGUAGES.map((l) => (
+      {SUPPORTED_LANGUAGES.map(l => (
         <option key={l}>{l}</option>
       ))}
     </Select>

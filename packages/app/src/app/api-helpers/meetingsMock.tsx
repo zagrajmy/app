@@ -7,6 +7,7 @@ const piotr: User = {
   name: "Piotr Monwid-Olechnowicz",
   slug: "hasparus",
   email: "piotr@zagraj.my",
+  locale: "en",
 };
 
 const tony: User = {
@@ -14,6 +15,7 @@ const tony: User = {
   name: "Ironman",
   slug: "ironman",
   email: "boss@stark.com",
+  locale: "pl",
 };
 
 export const meetings: Meeting[] = [

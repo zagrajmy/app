@@ -9,7 +9,7 @@ import { Meeting } from "../../data/types";
 import {
   getMyMeetings,
   getRecentlyPublishedMeetings,
-} from "../../src/app/api/user";
+} from "../../src/app/api-helpers";
 import { Claims, makeAuth } from "../../src/app/auth";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { useAppState } from "../../src/app/store";
@@ -32,7 +32,7 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
 
   const { meetings, organizedMeetings } = useMemo(() => {
     return {
-      meetings: data?.meetings.map((x) => Meeting.parse(x.meeting)) || [],
+      meetings: data?.meetings.map(x => Meeting.parse(x.meeting)) || [],
       organizedMeetings: data?.organized_meetings.map(Meeting.parse) || [],
     };
   }, [data]);
@@ -58,7 +58,7 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
             <Heading as="h3">Organized meetings</Heading>
             {organizedMeetings && (
               <MeetingCardsList>
-                {organizedMeetings?.map((meeting) => (
+                {organizedMeetings?.map(meeting => (
                   <li key={meeting.id}>
                     <MeetingCard meeting={meeting} />
                   </li>
@@ -71,7 +71,7 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
             {meetings && (
               <MeetingCardsList>
                 {/* eslint-disable-next-line sonarjs/no-identical-functions */}
-                {meetings?.map((meeting) => (
+                {meetings?.map(meeting => (
                   <li key={meeting.id}>
                     <MeetingCard meeting={meeting} />
                   </li>
@@ -115,7 +115,7 @@ function RecentMeetings({ initialData }: RecentMeetingsProps) {
         <Heading as="h3">{t("recent-meetings")}</Heading>
         {meetings && (
           <MeetingCardsList>
-            {meetings?.map((meeting) => (
+            {meetings?.map(meeting => (
               <li key={meeting.id}>
                 <MeetingCard meeting={meeting} />
               </li>
@@ -132,7 +132,7 @@ type MeetingsPageProps =
   | RecentMeetingsProps
   | { error?: Error; initialData?: never };
 
-const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
+const MeetingsPage: NextPage<MeetingsPageProps> = props => {
   const { user } = useAppState();
 
   if ("error" in props) {

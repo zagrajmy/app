@@ -32,7 +32,7 @@ export const theme = makeTheme({
   useCustomProperties: true,
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
-    x => `${x}rem`
+    (x) => `${x}rem`
   ),
   sizes: {
     container: 1100,
@@ -111,15 +111,17 @@ export const theme = makeTheme({
       "*": {
         outlineColor: "secondary",
       },
-      // TODO:
       h1: {
         fontWeight: 800,
         fontSize: 8,
       },
       h2: {
-        fontWeight: 700,
+        fontWeight: 800,
         fontSize: 7,
-        letterSpacing: "-0.049375rem",
+      },
+      h3: {
+        fontWeight: 800,
+        fontSize: 6,
       },
     },
   },

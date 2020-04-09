@@ -4,7 +4,6 @@ import {
   Assign,
   DeepPartial,
   Optional,
-  Required,
   StrictOmit,
 } from "../../src/lib/utilityTypes";
 import { Email } from "./Email";
@@ -17,13 +16,14 @@ type MeetingKeys =
   | "organized_meetings"
   | "organized_meetings_aggregate";
 type Irrelevant = "created_at";
-type IgnoredKeys = GuildKeys | MeetingKeys | Irrelevant;
+type NotNeededInMostCases = "locale";
+type IgnoredKeys = GuildKeys | MeetingKeys | Irrelevant | NotNeededInMostCases;
 
 interface MinimalUser
-  extends Required<
-    DeepPartial<StrictOmit<generated.user, IgnoredKeys>>,
-    "email" | "name"
-  > {}
+  extends DeepPartial<StrictOmit<generated.user, IgnoredKeys>> {
+  name: generated.user["name"];
+  email: generated.user["email"];
+}
 
 export interface User
   extends Assign<

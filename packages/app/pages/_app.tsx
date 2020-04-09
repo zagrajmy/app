@@ -23,7 +23,7 @@ import {
 import { FALLBACK_LANG, SUPPORTED_LANGUAGES, i18n } from "../src/i18n";
 import { theme } from "../src/ui/theme";
 
-import { queryUserByAuth0Id } from "../src/app/api/user";
+import { queryUserByAuth0Id } from "../src/app/api-helpers";
 import { hasura } from "../data";
 
 const globalStyles: InterpolationWithTheme<any> = {

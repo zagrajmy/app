@@ -15,4 +15,13 @@ export type Json =
   | { [property: string]: Json }
   | Json[];
 
+export type JsonWithUndefined =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | { [property: string]: JsonWithUndefined }
+  | JsonWithUndefined[];
+
 export type NonEmpty = Exclude<Builtin, null | undefined>;

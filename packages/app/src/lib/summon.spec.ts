@@ -71,6 +71,21 @@ describe("summon", () => {
     expect(fetchMock).toBeCalledWith("https://example.com:1234/test");
   });
 
+  it("stringifies init.searchParams", async () => {
+    let req: Request | string | undefined;
+    fetchMock.mockImplementation((request) => {
+      req = request;
+      return Promise.resolve(new Response("{}"));
+    });
+
+    await summon("https://example.com/test", {
+      searchParams: { a: "42", b: "b" },
+    });
+
+    const url = typeof req === "string" ? req : req?.url;
+    expect(url).toBe("https://example.com/test?a=42&b=b");
+  });
+
   // bugs
 
   it("doesn't override method which is already set", async () => {

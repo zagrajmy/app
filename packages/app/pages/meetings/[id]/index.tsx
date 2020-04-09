@@ -15,7 +15,7 @@ import {
 } from "theme-ui";
 
 import { Id, Meeting, User } from "../../../data/types";
-import { meetingsApi } from "../../../src/app/api/meetingsMock";
+import { meetingsApi } from "../../../src/app/api-helpers/meetingsMock";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import {
   Container,
@@ -25,6 +25,20 @@ import {
   LinkProps,
   Theme,
 } from "../../../src/ui";
+
+interface LinkToAuthorProps extends Omit<LinkProps, "href" | "as"> {
+  meeting: Meeting;
+}
+const LinkToAuthor = ({ children, meeting, ...rest }: LinkToAuthorProps) => (
+  <Link
+    href="/u/[username_slug]"
+    as={`/u/${meeting.organizer.slug}`}
+    sx={{ display: "inline-flex" }}
+    {...rest}
+  >
+    {children}
+  </Link>
+);
 
 interface EditMeetingButtonProps {
   isEditing: boolean;
@@ -78,7 +92,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
     },
   });
 
-  const onSubmit = form.handleSubmit(value => {
+  const onSubmit = form.handleSubmit((value) => {
     console.log("Meeting edited", { value, errors: form.errors });
 
     // AWAIT DB CHANGE HERE
@@ -89,18 +103,6 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
   if (!meeting) {
     return "404: Couldn't find meeting.";
   }
-
-  interface LinkToAuthorProps extends LinkProps {}
-  const LinkToAuthor = ({ children, ...rest }: LinkToAuthorProps) => (
-    <Link
-      href="/u/[username_slug]"
-      as={`/u/${meeting.organizer.slug}`}
-      sx={{ display: "inline-flex" }}
-      {...rest}
-    >
-      {children}
-    </Link>
-  );
 
   const { start_time, description, title } = form.watch({ nest: true });
 
@@ -210,7 +212,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
           )}
 
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
-            <LinkToAuthor>
+            <LinkToAuthor meeting={meeting}>
               <Avatar
                 src={User.avatar(meeting.organizer) || ""}
                 bg="primaryDark"
@@ -221,7 +223,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
             </LinkToAuthor>
             <div sx={{ ml: 2, fontSize: 3 }}>
               <Text as="span">Hosted by </Text>
-              <LinkToAuthor variant="underlined">
+              <LinkToAuthor variant="underlined" meeting={meeting}>
                 {meeting.organizer.name}
               </LinkToAuthor>
             </div>

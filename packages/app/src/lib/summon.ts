@@ -1,15 +1,31 @@
 import { record } from "fp-ts/lib/Record";
 import { IncomingHttpHeaders, IncomingMessage } from "http";
-import isomorphicUnfetch from "isomorphic-unfetch";
 
 import { getUrl } from "./getUrl";
 import { HttpError } from "./HttpError";
-import { Assign, Json } from "./utilityTypes";
+import { Assign, JsonWithUndefined } from "./utilityTypes";
+
+export const globals =
+  typeof window === "undefined"
+    ? {
+        /* eslint-disable global-require */
+        Request: require("node-fetch").Request as typeof Request,
+        fetch: require("node-fetch").default,
+        /* eslint-enable global-require */
+      }
+    : window;
 
 export function makeSummon(f: typeof fetch) {
   return function summon(
     info: RequestInfo,
-    init?: Assign<RequestInit, { headers?: IncomingHttpHeaders; json?: Json }>,
+    init?: Assign<
+      RequestInit,
+      {
+        headers?: IncomingHttpHeaders;
+        json?: JsonWithUndefined;
+        searchParams?: Record<string, string> | URLSearchParams;
+      }
+    >,
     /** request to extract own URL from */
     req?: Pick<IncomingMessage, "headers">
   ) {
@@ -24,16 +40,27 @@ export function makeSummon(f: typeof fetch) {
     if (typeof info === "string") {
       newInfo = baseUrl + info;
     } else {
-      newInfo = new Request(baseUrl + info.url, info);
+      newInfo = new globals.Request(baseUrl + info.url, info);
     }
 
     const newInit = init && { ...init, headers };
     if (newInit) {
-      if ("json" in newInit) {
+      if (newInit.searchParams) {
+        newInfo = new globals.Request(newInfo);
+        const url = new URL(newInfo.url);
+        url.search = new URLSearchParams(newInit.searchParams).toString();
+
+        newInfo = new globals.Request(url.toString(), newInfo);
+
+        delete newInit.searchParams;
+      }
+
+      if (newInit.json) {
         newInit.body = JSON.stringify(newInit.json);
         newInit.method = newInit.method || "POST";
         delete newInit.json;
       }
+
       if (Object.keys(newInit.headers).length === 0) {
         delete newInit.headers;
       }
@@ -57,4 +84,4 @@ export function makeSummon(f: typeof fetch) {
  *
  * Headers are merged only if the second argument is not undefined.
  */
-export const summon = makeSummon(isomorphicUnfetch);
+export const summon = makeSummon(globals.fetch);

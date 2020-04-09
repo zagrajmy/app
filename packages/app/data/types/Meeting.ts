@@ -23,6 +23,9 @@ export interface MeetingImage {
   kind: MeetingImageKind;
 }
 
+/**
+ * UI model for meetings
+ */
 export interface Meeting
   extends Assign<
     MinimalMeeting,
@@ -46,7 +49,3 @@ export const Meeting = {
     };
   },
 };
-
-export declare namespace Meeting {
-  export type WithOrganizer = Required<Meeting, "organizer">;
-}
