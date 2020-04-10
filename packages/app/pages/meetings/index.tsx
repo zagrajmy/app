@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { Heading } from "theme-ui";
 
 import { assert } from "ts-essentials";
+import { Search } from "react-feather";
 import { Meeting } from "../../data/types";
 import {
   getMyMeetings,
@@ -13,7 +14,7 @@ import {
 import { Claims, makeAuth } from "../../src/app/auth";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { useAppState } from "../../src/app/store";
-import { Link } from "../../src/ui";
+import { Link, Input } from "../../src/ui";
 import { MyMeetingsResult } from "../api/meetings/my-meetings";
 import { RecentlyPublishedMeetingsResult } from "../api/meetings/recently-published";
 
@@ -32,7 +33,7 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
 
   const { meetings, organizedMeetings } = useMemo(() => {
     return {
-      meetings: data?.meetings.map(x => Meeting.parse(x.meeting)) || [],
+      meetings: data?.meetings.map((x) => Meeting.parse(x.meeting)) || [],
       organizedMeetings: data?.organized_meetings.map(Meeting.parse) || [],
     };
   }, [data]);
@@ -44,21 +45,32 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
   return (
     <Fragment>
       <header sx={{ py: 3, display: "flex", justifyContent: "flex-end" }}>
+        <Input
+          placeholder="Szukaj spotkań"
+          sx={{ mr: 2, flexGrow: 1 }}
+          icon={<Search />}
+        />
         <Link variant="button" href="/meetings/create">
           {t("new-meeting")}
         </Link>
       </header>
-      <section sx={{ my: 3, p: 3, bg: "gray.3", borderRadius: "rounded-lg" }}>
-        <Heading as="h3">Your next meeting</Heading>
-        <Heading as="h2">Curse of Strahd III</Heading>
+      <section
+        sx={{ mt: 2, mb: 3, p: 3, bg: "gray.3", borderRadius: "rounded-lg" }}
+      >
+        <Heading as="h3" sx={{ opacity: 0.8 }}>
+          {t("your-next-meeting")}
+        </Heading>
+        <span sx={{ fontSize: 7, fontWeight: "heading" }}>
+          Curse of Strahd III
+        </span>
       </section>
       <article sx={{ mt: 3 }}>
         <Fragment>
           <section>
-            <Heading as="h3">Organized meetings</Heading>
+            <Heading as="h3">{t("organized-meetings")}</Heading>
             {organizedMeetings && (
               <MeetingCardsList>
-                {organizedMeetings?.map(meeting => (
+                {organizedMeetings?.map((meeting) => (
                   <li key={meeting.id}>
                     <MeetingCard meeting={meeting} />
                   </li>
@@ -67,11 +79,11 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
             )}
           </section>
           <section>
-            <Heading as="h3">Meetings I participate in</Heading>
+            <Heading as="h3">{t("meetings-you-participate-in")}</Heading>
             {meetings && (
               <MeetingCardsList>
                 {/* eslint-disable-next-line sonarjs/no-identical-functions */}
-                {meetings?.map(meeting => (
+                {meetings?.map((meeting) => (
                   <li key={meeting.id}>
                     <MeetingCard meeting={meeting} />
                   </li>
@@ -92,6 +104,7 @@ interface RecentMeetingsProps {
   user?: never;
   initialData?: RecentlyPublishedMeetingsResult;
 }
+
 // TODO: Display also on /meetings/recent
 function RecentMeetings({ initialData }: RecentMeetingsProps) {
   const { t } = useTranslation();
@@ -115,7 +128,7 @@ function RecentMeetings({ initialData }: RecentMeetingsProps) {
         <Heading as="h3">{t("recent-meetings")}</Heading>
         {meetings && (
           <MeetingCardsList>
-            {meetings?.map(meeting => (
+            {meetings?.map((meeting) => (
               <li key={meeting.id}>
                 <MeetingCard meeting={meeting} />
               </li>
@@ -132,24 +145,29 @@ type MeetingsPageProps =
   | RecentMeetingsProps
   | { error?: Error; initialData?: never };
 
-const MeetingsPage: NextPage<MeetingsPageProps> = props => {
+const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
   const { user } = useAppState();
 
   if ("error" in props) {
     throw props.error;
   }
 
+  const pageStyles = {
+    "& > *": { width: 800, maxWidth: "100%" },
+    alignItems: "center",
+  };
+
   if (user) {
     assert(!Array.isArray(props.initialData));
     return (
-      <Page sx={{ "& > *": { width: 800 }, alignItems: "center" }}>
+      <Page sx={pageStyles}>
         <LoggedInUserMeetings user={user} initialData={props.initialData} />
       </Page>
     );
   }
 
   return (
-    <Page sx={{ "& > *": { width: 800 }, alignItems: "center" }}>
+    <Page sx={pageStyles}>
       <RecentMeetings
         initialData={
           Array.isArray(props.initialData) ? props.initialData : undefined

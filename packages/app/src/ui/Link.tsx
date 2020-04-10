@@ -2,7 +2,7 @@ import { Link as BaseLink, LinkProps as BaseLinkProps } from "next-next-link";
 import { Theme, useTheme } from "./theme";
 
 export interface LinkProps extends BaseLinkProps {
-  variant?: "button" | keyof Theme["links"];
+  variant?: "button" | "buttons.secondary" | keyof Theme["links"];
 }
 export const Link = ({ variant, ...rest }: LinkProps) => {
   const { theme } = useTheme();
@@ -11,6 +11,8 @@ export const Link = ({ variant, ...rest }: LinkProps) => {
       ? {}
       : variant === "button"
       ? theme.buttons.primary
+      : variant === "buttons.secondary"
+      ? theme.buttons.secondary
       : theme.links[variant];
 
   return <BaseLink sx={variantStyles} {...rest} />;

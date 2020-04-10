@@ -11,11 +11,17 @@ import { X } from "./icons";
 
 // TODO: Derive this px values from theme
 
+const ICON_SIZE = 46;
+
 const overlayStyle = {
   outline: "none",
   position: "absolute",
-  height: "38px", // 32px + 8px - 2 * 1px
-  width: "38px",
+  height: "100%",
+  minHeight: ICON_SIZE,
+  width: ICON_SIZE,
+  svg: {
+    stroke: "gray.7",
+  },
 } as const;
 
 export interface InputProps extends ThemeUiInputProps {
@@ -64,13 +70,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           // TODO: Fix and test it in theme-ui?
           ref={(ref as React.Ref<HTMLInputElement>) as any}
           sx={{
+            height: "100%",
             width: "100%",
             p: 2,
             font: "inherit",
             lineHeight: "inherit",
             border: "none",
             background: "none",
-            ...(icon && { pl: "36px" }),
+            ...(icon && { pl: ICON_SIZE - 2 }),
           }}
           {...rest}
         />

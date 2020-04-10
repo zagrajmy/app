@@ -95,7 +95,7 @@ export const theme = makeTheme({
       "'Fira Code', 'Hack', 'Hasklig', 'Inconsolata', 'Menlo', 'Consolas'",
   },
   fontWeights: {
-    heading: "bold",
+    heading: 700,
   },
   styles: {
     root: {
@@ -109,6 +109,7 @@ export const theme = makeTheme({
       flexDirection: "column",
       textRendering: "optimizeLegibility",
       "*": {
+        boxSizing: "border-box",
         outlineColor: "secondary",
       },
       h1: {
@@ -116,12 +117,11 @@ export const theme = makeTheme({
         fontSize: 8,
       },
       h2: {
-        fontWeight: 800,
+        fontWeight: 700,
         fontSize: 7,
       },
       h3: {
-        fontWeight: 800,
-        fontSize: 6,
+        fontSize: 3,
       },
     },
   },
@@ -135,9 +135,10 @@ export const theme = makeTheme({
       borderRadius: "rounded-lg",
       background: "rgba(255, 255, 255, 0.9)",
       minHeight: "200px",
-      width: "800px",
+      width: "100%",
+      minWidth: "400px",
+      flexGrow: 1,
       maxWidth: "80vw",
-      margin: "1em",
     },
   },
   links,

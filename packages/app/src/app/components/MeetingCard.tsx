@@ -3,7 +3,7 @@ import React from "react";
 import { Card, Image } from "theme-ui";
 
 import { Meeting } from "../../../data/types";
-import { Link, LinkProps } from "../../ui";
+import { Link, LinkProps, Heading } from "../../ui";
 
 interface MeetingCreationInfoProps {
   meeting: Pick<Meeting, "organizer" | "start_time" | "end_time">;
@@ -95,7 +95,9 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
         />
       )}
       <div sx={{ pl: "1em" }}>
-        <h3>{meeting.title}</h3>
+        <Heading as="h3" sx={{ my: "1em" }}>
+          {meeting.title}
+        </Heading>
         <MeetingCreationInfo meeting={meeting} />
         <p>{meeting.description}</p>
       </div>

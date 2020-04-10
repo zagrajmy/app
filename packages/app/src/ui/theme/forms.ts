@@ -14,13 +14,14 @@ const field: SystemStyleObject = {
 
 export const forms: Variants = {
   textarea: field,
-  input: field,
+  input: { ...field, height: "48px" },
   select: {
     ...field,
     ":disabled": {
       opacity: 0.7,
       cursor: "not-allowed",
     },
+    height: "48px",
   },
   "select-small": {
     cursor: "pointer",

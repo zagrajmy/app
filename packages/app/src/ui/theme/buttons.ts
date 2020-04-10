@@ -3,7 +3,7 @@ import { Variants } from "./design-graph-utility";
 const primarySecondaryCommon = {
   cursor: "pointer",
   display: "block",
-  padding: "0.8em 1.2em",
+  padding: "0.75em 1.25em",
   border: "1px solid",
   borderColor: "gray.3",
   borderRadius: "rounded",
