@@ -21,5 +21,11 @@ jobs:
         run: yarn build
       - name: Check
         run: yarn ci
-        env:
-          CI: true
+    env:
+      CI: true
+      AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+      AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
+      AUTH0_COOKIE_SECRET: ${{ secrets.AUTH0_COOKIE_SECRET }}
+      AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+      HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+      HASURA_URL: ${{ secrets.HASURA_URL }}
