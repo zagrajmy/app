@@ -1,5 +1,6 @@
 import i18n, { ResourceLanguage } from "i18next";
-import { initReactI18next } from "react-i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
+import { assert } from "ts-essentials";
 
 import translationEN from "../public/locales/en.json";
 import translationPL from "../public/locales/pl.json";
@@ -7,6 +8,8 @@ import translationPL from "../public/locales/pl.json";
 export const SUPPORTED_LANGUAGES = ["pl", "en"] as ["pl", "en"];
 export type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
 export const FALLBACK_LANG: SupportedLanguage = "en";
+export const isSupportedLanguage = (x: unknown): x is SupportedLanguage =>
+  SUPPORTED_LANGUAGES.includes(x as SupportedLanguage);
 
 // Polish and English will always be bundled
 // Additional languages / customizations
@@ -37,3 +40,9 @@ i18n.use(initReactI18next).init({
 });
 
 export { i18n };
+
+export function useLanguage() {
+  const [, { language }] = useTranslation();
+  assert(isSupportedLanguage(language));
+  return language;
+}

@@ -1,14 +1,38 @@
 import { formatRelative } from "date-fns";
 import React from "react";
 import { Card, Image } from "theme-ui";
+import { pl, enUS } from "date-fns/locale";
 
 import { Meeting } from "../../../data/types";
 import { Link, LinkProps, Heading } from "../../ui";
+import { useLanguage, SupportedLanguage } from "../../i18n";
+
+const pickLocale = (language: SupportedLanguage) =>
+  language === "pl" ? pl : enUS;
+
+const timeFromNow = (time: Date | string, language: SupportedLanguage) =>
+  formatRelative(new Date(time), new Date(), { locale: pickLocale(language) });
+
+const meetingTimes = (
+  m: Pick<Meeting, "start_time" | "end_time">,
+  language: SupportedLanguage
+) => {
+  if (!m.start_time) {
+    return "";
+  }
+  return (
+    timeFromNow(m.start_time, language) +
+    (m.end_time ? ` — ${timeFromNow(m.end_time, language)}` : "")
+  );
+};
 
 interface MeetingCreationInfoProps {
   meeting: Pick<Meeting, "organizer" | "start_time" | "end_time">;
 }
 const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
+  const lang = useLanguage();
+  const times = meetingTimes(meeting, lang);
+
   return (
     <span>
       <Link
@@ -18,12 +42,7 @@ const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
       >
         {meeting.organizer.name}
       </Link>
-      {meeting.start_time
-        ? ` • ${formatRelative(new Date(meeting.start_time), new Date())}`
-        : ""}
-      {meeting.start_time && meeting.end_time
-        ? ` — ${formatRelative(new Date(meeting.end_time), new Date())}`
-        : ""}
+      {times && ` • ${times}`}
     </span>
   );
 };

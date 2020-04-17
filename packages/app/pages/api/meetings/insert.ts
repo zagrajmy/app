@@ -60,8 +60,8 @@ const runMutation = (
   mutation: Db["mutation"],
   meeting: InsertMeetingBody["meeting"] & { publication_time?: string },
   organizer_id: string
-) =>
-  mutation({
+) => {
+  return mutation({
     insert_meeting_one: [
       {
         object: {
@@ -76,7 +76,7 @@ const runMutation = (
       { id: true },
     ],
   });
-
+};
 export default auth.requireAuthentication(async function insertMeeting(
   req: NextApiRequest,
   res: NextApiResponse
@@ -87,19 +87,19 @@ export default auth.requireAuthentication(async function insertMeeting(
     InsertMeetingBody.decode(JSON.parse(req.body)),
     map(addPublicationTime),
     fold(
-      errors =>
+      (errors) =>
         res.status(400).send({ errors: formatValidationErrors(errors) }),
       ({ command: _, meeting }) => {
         return auth
           .getSession(req)
-          .then(session =>
+          .then((session) =>
             queryUserByAuth0Id(query, session!.user!.sub, { uuid: true }).then(
-              u => u.uuid as string
+              (u) => u.uuid as string
             )
           )
-          .then(organizer_id => runMutation(mutation, meeting, organizer_id))
-          .then(data => res.status(200).send(data))
-          .catch(reason => res.status(500).send(reason));
+          .then((organizer_id) => runMutation(mutation, meeting, organizer_id))
+          .then((data) => res.status(200).send(data))
+          .catch((reason) => res.status(500).send(reason));
       }
     )
   );

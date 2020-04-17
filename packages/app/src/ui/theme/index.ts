@@ -145,6 +145,7 @@ export const theme = makeTheme({
   layout: {
     container: {},
     sheet: {
+      maxWidth: 720,
       bg: "white",
       borderRadius: "rounded-lg",
       boxShadow: "md",
