@@ -23,8 +23,8 @@ import {
 } from "../../src/ui";
 import { InsertMeetingBody } from "../api/meetings/insert";
 import { summon } from "../../src";
-
-const GUILD_ID = 1; // TODO
+import { hasura } from "../../data";
+import { useAppState } from "../../src/app/store";
 
 type MeetingProperty = keyof OmitByValue<Meeting, object>;
 
@@ -39,15 +39,18 @@ const Label = ThLabel as (
 
 const CreateMeetingPage: NextPage = () => {
   const { t } = useTranslation();
-  const { register, handleSubmit, errors, control } = useForm<Meeting>({
+  const { register, handleSubmit, errors, control, getValues } = useForm<
+    Meeting
+  >({
     defaultValues: {
-      guild_id: GUILD_ID,
+      guild_id: 1,
     },
   });
 
+  const state = useAppState();
+
   const onSubmit: OnSubmit<Meeting> = (values) => {
     const formAction = document.activeElement?.getAttribute("formAction");
-
     if (formAction !== "publish" && formAction !== "save-draft") {
       throw new Error("Unexpected formAction");
     }
@@ -63,6 +66,8 @@ const CreateMeetingPage: NextPage = () => {
         sphere_id: 2, // TODO (zagrajmy.now.sh)
       },
     };
+
+    console.log({ body });
 
     // TODO: Move fetching outside of callback handler to a proper place
     // useEffect or query hook
@@ -89,19 +94,17 @@ const CreateMeetingPage: NextPage = () => {
       <Container
         as="form"
         variant="sheet"
-        sx={
-          {
-            maxWidth: 720,
+        sx={{
+          px: 5,
+          pb: 5,
+          pt: 4,
+          mt: 4,
 
-            px: 5,
-            pb: 5,
-            pt: 4,
-            mt: 4,
-
-            display: "grid",
-            gridGap: 3,
-          } as any /* TODO: Add gridGap to Theme UI styles */
-        }
+          display: "grid",
+          // TODO: gridGap in theme-ui should accept number
+          // export type GridGapProperty<TLength> = Globals | TLength | string;
+          gridGap: 3 as any,
+        }}
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>
@@ -129,11 +132,11 @@ const CreateMeetingPage: NextPage = () => {
         <Grid columns={2}>
           <div>
             <Label htmlFor="start_time">{t("meeting-start-time")}</Label>
-            <FormDatepicker name="start-time" control={control} />
+            <FormDatepicker name="start_time" control={control} />
           </div>
           <div>
             <Label htmlFor="end_time">{t("meeting-end-time")}</Label>
-            <FormDatepicker name="end-time" control={control} />
+            <FormDatepicker name="end_time" control={control} />
           </div>
         </Grid>
         <Flex
@@ -152,7 +155,11 @@ const CreateMeetingPage: NextPage = () => {
 };
 
 CreateMeetingPage.getInitialProps = async ({ req, res }) => {
-  return makeAuth(req)?.getSessionOrLogIn(req, res) || {};
+  const session = (await makeAuth(req)?.getSessionOrLogIn(req, res)) || {
+    user: null,
+  };
+
+  return { ...session };
 };
 
 export default CreateMeetingPage;
