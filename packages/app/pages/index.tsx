@@ -18,7 +18,7 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
   return (
     <Page>
       <Head>
-        <title>{t("pageTitle")}</title>
+        <title>{t("page-title")}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -40,11 +40,9 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
                 lineHeight: 1.15,
               }}
             >
-              {t("pageTitle")}
+              {t("page-title")}
             </h1>
-            <p sx={{ fontSize: 4 }}>
-              Smoki się same nie ubiją. Zapisz się na sesję.
-            </p>
+            <p sx={{ fontSize: 4 }}>{t("sphere-subtitle-prompt")}</p>
           </header>
           <MeetingCardsList>
             {meetings.map((m) => (
