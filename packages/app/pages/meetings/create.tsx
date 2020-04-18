@@ -39,9 +39,7 @@ const Label = ThLabel as (
 
 const CreateMeetingPage: NextPage = () => {
   const { t } = useTranslation();
-  const { register, handleSubmit, errors, control, getValues } = useForm<
-    Meeting
-  >({
+  const { register, handleSubmit, control } = useForm<Meeting>({
     defaultValues: {
       guild_id: 1,
     },
@@ -66,8 +64,6 @@ const CreateMeetingPage: NextPage = () => {
         sphere_id: 2, // TODO (zagrajmy.now.sh)
       },
     };
-
-    console.log({ body });
 
     // TODO: Move fetching outside of callback handler to a proper place
     // useEffect or query hook
