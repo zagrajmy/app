@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint {src,pages}/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
-    "typecheck": "cross-env NODE_OPTIONS=--max_old_space_size=4096 tsc --noEmit --skipLibCheck",
+    "typecheck": "yarn cross-env NODE_OPTIONS=--max_old_space_size=4096 tsc --noEmit --skipLibCheck",
     "ci": "yarn typecheck && yarn lint",
     "ts-node": "ts-node -P scripts/tsconfig.json",
     "get-schema": "yarn ts-node scripts/getSchema",

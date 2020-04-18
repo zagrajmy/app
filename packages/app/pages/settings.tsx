@@ -17,7 +17,7 @@ type SettingsProps = {
 };
 
 const Settings: NextPage<SettingsProps> = () => {
-  const { user: sessionUser } = useAppState();
+  const { claims: sessionUser } = useAppState();
   const sameEmailUsers = useSWR("/api/u/me", (url) =>
     summon(url).then((res) => {
       if (res.ok) {

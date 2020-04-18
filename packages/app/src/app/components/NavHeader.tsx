@@ -5,38 +5,30 @@ import { useTranslation } from "react-i18next";
 
 import { Select, SelectProps } from "../../ui";
 
-import { SUPPORTED_LANGUAGES, SupportedLanguage } from "../../i18n";
 import {
-  StateFromAppInitialProps,
-  useAppState,
-  ApplicationState,
-} from "../store";
-import { HeaderFooterListItem } from "./HeaderFooterListItem";
-import { Menu } from "./Menu";
+  SUPPORTED_LANGUAGES,
+  assertLanguageIsSupported,
+  useLanguage,
+} from "../../i18n";
+import { StateFromAppInitialProps, useAppState } from "../store";
 import { NavLink } from "./NavLink";
 import { summon } from "../../lib";
 
-/**
- * I think we're gonna use `user.locale` only as language
- * on the frontend and let browser locale take care of
- * number and date formatting.
- */
+import { HeaderFooterListItem } from "./HeaderFooterListItem";
+import { Menu } from "./Menu";
+
 interface LanguagePickerProps
-  extends Omit<SelectProps, "ref" | "onChange" | "value"> {
-  user: ApplicationState["zmUser"];
-}
-const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
-  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = event => {
+  extends Omit<SelectProps, "ref" | "onChange" | "value"> {}
+const LanguagePicker = (props: LanguagePickerProps) => {
+  const { i18n } = useTranslation();
+  const lang = useLanguage();
+
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const { value } = event.target;
 
-    if (!SUPPORTED_LANGUAGES.includes(value as SupportedLanguage)) {
-      throw new Error(
-        `${value} is not supported language.\n
-        Supported languages are ${SUPPORTED_LANGUAGES}`
-      );
-    }
+    assertLanguageIsSupported(value);
 
-    // TODO: Optimistic update? Should I just use swr here?
+    i18n.changeLanguage(value);
     summon("/api/u/me", {
       method: "PATCH",
       json: {
@@ -45,18 +37,14 @@ const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
     })
       .then(() => {
         // temporary lazy solution
-        window.location.reload();
+        // window.location.reload();
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         // TODO: Rollback application if it failed
         // TODO: Display error toast
       });
   };
-
-  if (!user) {
-    return null;
-  }
 
   return (
     <Select
@@ -72,11 +60,11 @@ const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
           color: "white",
         },
       }}
-      value={user?.locale || "en"}
+      value={lang}
       onChange={handleChange}
-      {...rest}
+      {...props}
     >
-      {SUPPORTED_LANGUAGES.map(l => (
+      {SUPPORTED_LANGUAGES.map((l) => (
         <option key={l}>{l}</option>
       ))}
     </Select>
@@ -84,15 +72,14 @@ const LanguagePicker = ({ user, ...rest }: LanguagePickerProps) => {
 };
 
 export interface NavHeaderProps {
-  appState: Pick<StateFromAppInitialProps, "user" | "zmUser">;
+  appState: Pick<StateFromAppInitialProps, "claims" | "user">;
 }
 
 export const NavHeader = (props: NavHeaderProps) => {
   const { t } = useTranslation();
   const state = useAppState();
 
-  const claims = state.user || props.appState.user;
-  const user = state.zmUser || props.appState.zmUser;
+  const claims = state.claims || props.appState.claims;
 
   return (
     <header>
@@ -119,7 +106,7 @@ export const NavHeader = (props: NavHeaderProps) => {
             <Link href="/">zagraj.my</Link>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
-            <LanguagePicker user={user} />
+            <LanguagePicker />
           </HeaderFooterListItem>
           <HeaderFooterListItem>
             <NavLink href="/meetings">{t("meetings")}</NavLink>
@@ -145,7 +132,7 @@ export const NavHeader = (props: NavHeaderProps) => {
                   },
                 }}
               >
-                <div>Log in</div>
+                <div>{t('log-in')}</div>
               </Link>
             )}
           </HeaderFooterListItem>

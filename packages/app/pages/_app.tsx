@@ -54,11 +54,11 @@ export default class MyApp extends App<{
     const cookies = parseCookies(ctx);
 
     let lang = "en";
-    let zmUser: ApplicationState["zmUser"];
+    let user: ApplicationState["user"];
 
     if (!session) {
       lang = universalLanguageDetect({
-        supportedLanguages: SUPPORTED_LANGUAGES,
+        supportedLanguages: [...SUPPORTED_LANGUAGES],
         fallbackLanguage: FALLBACK_LANG,
         acceptLanguageHeader: ctx.req?.headers?.["accept-language"],
         serverCookies: cookies,
@@ -67,16 +67,20 @@ export default class MyApp extends App<{
         },
       });
     } else {
-      zmUser = await queryUserByAuth0Id(
+      user = await queryUserByAuth0Id(
         hasura.fromReq(ctx.req!).query,
         session.user.sub,
         { uuid: true, locale: true }
       );
-      lang = zmUser.locale;
+      lang = user.locale;
     }
 
+    const appState: StateFromAppInitialProps = {
+      claims: session?.user,
+      user,
+    };
     Object.assign(pageProps, { lang, cookies });
-    return { appState: { user: session?.user, zmUser }, pageProps };
+    return { appState, pageProps };
   }
 
   render() {

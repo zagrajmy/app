@@ -146,7 +146,7 @@ type MeetingsPageProps =
   | { error?: Error; initialData?: never };
 
 const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
-  const { user } = useAppState();
+  const { claims: user } = useAppState();
 
   if ("error" in props) {
     throw props.error;

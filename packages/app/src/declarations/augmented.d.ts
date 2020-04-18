@@ -28,26 +28,26 @@ declare module "react" {
 
 declare global {
   // augments map for pairs and triples
-  interface Array<T> {
+  interface ReadonlyArray<T> {
     /**
      * Calls a defined callback function on each element of an array, and returns an array that contains the results.
      * @param callbackfn A function that accepts up to three arguments. The map method calls the callbackfn function one time for each element in the array.
      * @param thisArg An object to which the this keyword can refer in the callbackfn function. If thisArg is omitted, undefined is used as the this value.
      */
     map<U>(
-      this: [T, T, T],
+      this: readonly [T, T, T],
       callbackfn: (value: T, index: number, array: T[]) => U,
       thisArg?: any
-    ): [U, U, U];
+    ): readonly [U, U, U];
     /**
      * Calls a defined callback function on each element of an array, and returns an array that contains the results.
      * @param callbackfn A function that accepts up to three arguments. The map method calls the callbackfn function one time for each element in the array.
      * @param thisArg An object to which the this keyword can refer in the callbackfn function. If thisArg is omitted, undefined is used as the this value.
      */
     map<U>(
-      this: [T, T],
+      this: readonly [T, T],
       callbackfn: (value: T, index: number, array: T[]) => U,
       thisArg?: any
-    ): [U, U];
+    ): readonly [U, U];
   }
 }

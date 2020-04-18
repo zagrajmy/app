@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import React, { Fragment } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { Meeting } from "../data/types";

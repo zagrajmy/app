@@ -11,23 +11,21 @@ import { useTranslation } from "react-i18next";
 import { Claims } from "../auth";
 
 export type ApplicationState = {
-  // rename to claims
-  user?: Claims | null | undefined;
-  // rename to user
-  zmUser?: {
+  claims?: Claims | null | undefined;
+  user?: {
     uuid: string;
     locale: string;
   };
 };
 
-export const initialState: ApplicationState = { user: null };
+export const initialState: ApplicationState = { claims: null };
 
 const ctx = createContext(initialState);
 
 export const useAppState = () => useContext(ctx);
 
 export type StateFromAppInitialProps = Partial<
-  Pick<ApplicationState, "user" | "zmUser">
+  Pick<ApplicationState, "claims" | "user">
 >;
 
 interface AppStateProviderProps {
@@ -37,15 +35,31 @@ interface AppStateProviderProps {
 
 const { Provider } = ctx;
 
+const useOnceImmediately = (f: () => void) => {
+  const done = useRef(false);
+  if (!done) {
+    f();
+  }
+};
+
 export const AppStateProvider: React.FC<AppStateProviderProps> = ({
   children,
   stateFromInitialProps,
   lang,
 }) => {
   const { i18n } = useTranslation();
-  if (lang !== i18n.language) {
-    // we need this in first render
-    i18n.changeLanguage(lang);
+  useOnceImmediately(() => {
+    if (lang !== i18n.language) {
+      // we need this in first render
+      i18n.changeLanguage(lang);
+    }
+  });
+  if (process.env.NODE_ENV === "development") {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      // eslint-disable-next-line no-console
+      console.log({ stateFromInitialProps });
+    });
   }
 
   const cached = useRef<ApplicationState>(initialState);
@@ -56,8 +70,8 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
     }
   }
 
-  if (stateFromInitialProps.user) {
-    cached.current.user = stateFromInitialProps.user;
+  if (stateFromInitialProps.claims) {
+    cached.current.claims = stateFromInitialProps.claims;
   }
 
   return <Provider value={cached.current}>{children}</Provider>;
