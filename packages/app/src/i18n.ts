@@ -1,6 +1,5 @@
 import i18n, { ResourceLanguage } from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
-import { assert } from "ts-essentials";
 
 import translationEN from "../public/locales/en.json";
 import translationPL from "../public/locales/pl.json";

@@ -93,6 +93,7 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
   });
 
   const onSubmit = form.handleSubmit((value) => {
+    // eslint-disable-next-line no-console
     console.log("Meeting edited", { value, errors: form.errors });
 
     // AWAIT DB CHANGE HERE
