@@ -3,7 +3,7 @@ import { createElement, ComponentType } from "react";
 import { ApplicationState, useAppState } from "./store";
 import { Assign } from "../lib";
 
-type InjectedProps = Pick<ApplicationState, "user">;
+type InjectedProps = { user: NonNullable<ApplicationState['user']> }
 type ResultProps<P> = Omit<P, keyof InjectedProps>;
 
 /**

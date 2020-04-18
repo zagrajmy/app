@@ -26,6 +26,7 @@ export const buttons: Variants = {
       ...primarySecondaryCommon[":hover"],
       bg: "primaryLight",
       borderColor: "primaryLight",
+      boxShadow: "lg",
     },
   },
   secondary: {

@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { UnreachableCaseError } from "ts-essentials";
 import * as g from "../../../data/graphql-zeus";
 import { Db, hasura } from "../../../data/hasura";
-import { queryUserByAuth0Id } from "../../../src/app/api-helpers";
+import { queryUserByAuth0Id } from "../../../data/queries";
 import { auth } from "../../../src/app/auth";
 import { formatValidationErrors } from "../../../src/lib/formatValidationErrors";
 
@@ -81,7 +81,7 @@ export default auth.requireAuthentication(async function insertMeeting(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { query, mutation } = hasura.fromReq(req);
+  const { query, mutation } = hasura.fromCookies(req);
 
   return pipe(
     InsertMeetingBody.decode(JSON.parse(req.body)),

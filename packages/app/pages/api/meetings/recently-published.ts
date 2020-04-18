@@ -30,7 +30,7 @@ export default async function recentlyPublishedMeetings(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { query } = hasura.fromReq(req);
+  const { query } = hasura.fromCookies(req);
 
   const limit = req.query.limit !== undefined ? Number(req.query.limit) : 6;
   assert(Number.isInteger(limit));

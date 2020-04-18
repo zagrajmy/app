@@ -13,8 +13,11 @@ import {
 import { OmitByValue } from "utility-types";
 
 import { useTranslation } from "react-i18next";
+import { IncomingMessage } from "http";
+import { assert } from "ts-essentials";
+import useSWR from "swr";
 import { meeting as Meeting } from "../../data/graphql-zeus";
-import { makeAuth } from "../../src/app/auth";
+import { makeAuth, auth } from "../../src/app/auth";
 import { Page } from "../../src/app/components";
 import {
   FormDatepicker,
@@ -23,9 +26,14 @@ import {
 } from "../../src/ui";
 import { InsertMeetingBody } from "../api/meetings/insert";
 import { summon } from "../../src";
-import { hasura } from "../../data";
-import { useAppState } from "../../src/app/store";
 import { withUser } from "../../src/app/withUser";
+import { hasura } from "../../data";
+
+const extractGuilds = (data: {
+  guild_member: { guild: { id: number; name: string } }[];
+}) => ({
+  guilds: data.guild_member.map((gm) => gm.guild),
+});
 
 type MeetingProperty = keyof OmitByValue<Meeting, object>;
 
@@ -38,15 +46,31 @@ const Label = ThLabel as (
   props: Omit<LabelProps, "htmlFor"> & { htmlFor: MeetingProperty }
 ) => JSX.Element;
 
-const CreateMeetingPage: NextPage = withUser(() => {
-  const { t } = useTranslation();
-  const { register, handleSubmit, control } = useForm<Meeting>({
-    defaultValues: {
-      guild_id: 1,
-    },
-  });
+interface CreateMeetingPageProps {
+  initialData?: { guilds: { id: number; name: string }[] };
+}
 
-  const state = useAppState();
+const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
+  CreateMeetingPageProps
+>((props) => {
+  const { t } = useTranslation();
+  const { data } = useSWR(
+    "user-guilds",
+    () => {
+      return hasura
+        .fromCookies()
+        .query({
+          guild_member: [
+            { where: { member_id: { _eq: props.user.uuid } } },
+            { guild: { id: true, name: true } },
+          ],
+        })
+        .then(extractGuilds);
+    },
+    { initialData: props.initialData }
+  );
+
+  const { register, handleSubmit, control } = useForm<Meeting>();
 
   const onSubmit: OnSubmit<Meeting> = (values) => {
     const formAction = document.activeElement?.getAttribute("formAction");
@@ -122,8 +146,17 @@ const CreateMeetingPage: NextPage = withUser(() => {
             {t("guild")}{" "}
             <small sx={{ fontWeight: "normal" }}>({t("optional")})</small>
           </Label>
-          <Select name="guild" disabled>
-            <option value={1}>Twoja Gildia</option>
+          <Select name="guild" disabled={!data || data.guilds.length === 0}>
+            {data &&
+              (data.guilds.length === 0 ? (
+                <option>{t("you-belong-to-no-guild")}</option>
+              ) : (
+                data.guilds.map((g) => (
+                  <option key={g.id} value={g.id}>
+                    {g.name}
+                  </option>
+                ))
+              ))}
           </Select>
         </div>
         <Grid columns={2}>
@@ -152,11 +185,26 @@ const CreateMeetingPage: NextPage = withUser(() => {
 });
 
 CreateMeetingPage.getInitialProps = async ({ req, res }) => {
-  const session = (await makeAuth(req)?.getSessionOrLogIn(req, res)) || {
-    user: null,
-  };
+  if (req) {
+    const session = await makeAuth(req)!.getSessionOrLogIn(req, res);
+    const { query } = hasura.fromCookies(req);
 
-  return { ...session };
+    // When can this happen?
+    if (!session.user) {
+      return {};
+    }
+
+    return query({
+      guild_member: [
+        { where: { user: { auth0_id: { _eq: session.user.sub } } } },
+        { guild: { id: true, name: true } },
+      ],
+    })
+      .then(extractGuilds)
+      .then((initialData) => ({ initialData }));
+  }
+
+  return {};
 };
 
 export default CreateMeetingPage;

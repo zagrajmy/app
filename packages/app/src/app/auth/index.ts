@@ -6,6 +6,7 @@ import { IncomingMessage, ServerResponse } from "http";
 // TODO: Eject nextjs-auth0 to refactor this into lightweight functional API
 // I'm not sure this is currently serverless friendly
 // TODO: but write tests first
+// TODO: We'd like to keep zagrajmy user id in session
 
 import { getUrl } from "../../lib/getUrl";
 import { Claims, Session } from "./types";
@@ -54,8 +55,8 @@ export const makeAuth = (nextReq?: IncomingMessage) => {
   const auth0 = initAuth0(auth0Settings);
 
   const getSessionOrLogIn = async (
-    req?: IncomingMessage,
-    res?: ServerResponse
+    req: IncomingMessage | undefined,
+    res: ServerResponse | undefined
   ) => {
     if (typeof window === "undefined" && req && res) {
       const session = await auth0.getSession(req);

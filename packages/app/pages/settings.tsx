@@ -1,23 +1,19 @@
 import { NextPage } from "next";
 import useSWR from "swr";
-import { Heading } from "theme-ui";
+import { Heading, Container } from "theme-ui";
 import { assert } from "ts-essentials";
 
-import { auth, Claims } from "../src/app/auth";
-import { Page } from "../src/app/components";
-import { useAppState } from "../src/app/store";
+import { auth } from "../src/app/auth";
 import { HttpError } from "../src/lib/HttpError";
-import { Container, Dl } from "../src/ui";
-import { summon } from "../src";
+import { summon, Dl } from "../src";
+import { withUser } from "../src/app/withUser";
+import { Page } from "../src/app/components";
 
 type WeResponseJson = import("./api/u/me").GetMeResponseJson;
 
-type SettingsProps = {
-  user: null | Claims;
-};
+type SettingsProps = {};
 
-const Settings: NextPage<SettingsProps> = () => {
-  const { claims: sessionUser } = useAppState();
+const Settings: NextPage<SettingsProps> = withUser(({ user }) => {
   const sameEmailUsers = useSWR("/api/u/me", (url) =>
     summon(url).then((res) => {
       if (res.ok) {
@@ -34,7 +30,7 @@ const Settings: NextPage<SettingsProps> = () => {
   }
 
   assert(
-    sessionUser,
+    user,
     "if user session is not present, we should have been redirected"
   );
 
@@ -48,23 +44,24 @@ const Settings: NextPage<SettingsProps> = () => {
         <p>We might leave this as a "development view" of settings.</p>
         <section>
           <Heading as="h3">Your Session Data</Heading>
-          <Dl.FromObject value={sessionUser} />
+          <Dl.FromObject value={user} />
         </section>
         {sameEmailUsers.data && (
           <section>
             <Heading as="h3">Your Accounts</Heading>
-            {sameEmailUsers.data.users.map((user) => (
-              <Dl.FromObject value={user} key={user.user_id} />
+            {sameEmailUsers.data.users.map((u) => (
+              <Dl.FromObject value={u} key={u.user_id} />
             ))}
           </section>
         )}
       </Container>
     </Page>
   );
-};
+});
 
-Settings.getInitialProps = ({ req, res }): Promise<SettingsProps> => {
-  return auth.getSessionOrLogIn(req, res);
+Settings.getInitialProps = async ({ req, res }): Promise<SettingsProps> => {
+  auth.getSessionOrLogIn(req, res);
+  return {};
 };
 
 export default Settings;

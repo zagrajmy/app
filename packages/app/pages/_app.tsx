@@ -15,15 +15,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { auth } from "../src/app/auth";
 import { NavHeader } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
-import {
-  AppStateProvider,
-  StateFromAppInitialProps,
-  ApplicationState,
-} from "../src/app/store";
+import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
 import { FALLBACK_LANG, SUPPORTED_LANGUAGES, i18n } from "../src/i18n";
 import { theme } from "../src/ui/theme";
 
-import { queryUserByAuth0Id } from "../src/app/api-helpers";
+import { queryUserByAuth0Id } from "../data/queries";
 import { hasura } from "../data";
 
 const globalStyles: InterpolationWithTheme<any> = {
@@ -68,7 +64,7 @@ export default class MyApp extends App<{
       });
     } else {
       user = await queryUserByAuth0Id(
-        hasura.fromReq(ctx.req!).query,
+        hasura.fromCookies(ctx.req!).query,
         session.user.sub,
         { uuid: true, locale: true }
       );
