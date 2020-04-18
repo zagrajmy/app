@@ -13,6 +13,7 @@ module.exports = {
     "no-nested-ternary": "off",
     "react/prop-types": "off",
     "react/no-array-index-key": "off",
+    "no-undef-init": "off",
   },
   overrides: [
     {

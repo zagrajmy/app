@@ -25,6 +25,7 @@ import { InsertMeetingBody } from "../api/meetings/insert";
 import { summon } from "../../src";
 import { hasura } from "../../data";
 import { useAppState } from "../../src/app/store";
+import { withUser } from "../../src/app/withUser";
 
 type MeetingProperty = keyof OmitByValue<Meeting, object>;
 
@@ -37,7 +38,7 @@ const Label = ThLabel as (
   props: Omit<LabelProps, "htmlFor"> & { htmlFor: MeetingProperty }
 ) => JSX.Element;
 
-const CreateMeetingPage: NextPage = () => {
+const CreateMeetingPage: NextPage = withUser(() => {
   const { t } = useTranslation();
   const { register, handleSubmit, control } = useForm<Meeting>({
     defaultValues: {
@@ -148,7 +149,7 @@ const CreateMeetingPage: NextPage = () => {
       </Container>
     </Page>
   );
-};
+});
 
 CreateMeetingPage.getInitialProps = async ({ req, res }) => {
   const session = (await makeAuth(req)?.getSessionOrLogIn(req, res)) || {

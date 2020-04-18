@@ -10,23 +10,22 @@ import { createContext, useContext, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Claims } from "../auth";
 
+interface ApplicationStateUser extends Claims {
+  uuid: string;
+  locale: string;
+}
+
 export type ApplicationState = {
-  claims?: Claims | null | undefined;
-  user?: {
-    uuid: string;
-    locale: string;
-  };
+  user?: ApplicationStateUser | null;
 };
 
-export const initialState: ApplicationState = { claims: null };
+export const initialState: ApplicationState = { user: null };
 
 const ctx = createContext(initialState);
 
 export const useAppState = () => useContext(ctx);
 
-export type StateFromAppInitialProps = Partial<
-  Pick<ApplicationState, "claims" | "user">
->;
+export type StateFromAppInitialProps = Partial<Pick<ApplicationState, "user">>;
 
 interface AppStateProviderProps {
   stateFromInitialProps: StateFromAppInitialProps;
@@ -68,10 +67,6 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
     if (v) {
       (cached.current[k as keyof ApplicationState] as any) = v;
     }
-  }
-
-  if (stateFromInitialProps.claims) {
-    cached.current.claims = stateFromInitialProps.claims;
   }
 
   return <Provider value={cached.current}>{children}</Provider>;

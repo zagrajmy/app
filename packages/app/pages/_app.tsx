@@ -54,7 +54,7 @@ export default class MyApp extends App<{
     const cookies = parseCookies(ctx);
 
     let lang = "en";
-    let user: ApplicationState["user"];
+    let user: { uuid: string; locale: string } | undefined = undefined;
 
     if (!session) {
       lang = universalLanguageDetect({
@@ -75,10 +75,8 @@ export default class MyApp extends App<{
       lang = user.locale;
     }
 
-    const appState: StateFromAppInitialProps = {
-      claims: session?.user,
-      user,
-    };
+    const appState: StateFromAppInitialProps =
+      session?.user && user ? { user: { ...session.user, ...user } } : {};
     Object.assign(pageProps, { lang, cookies });
     return { appState, pageProps };
   }

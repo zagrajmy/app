@@ -72,14 +72,14 @@ const LanguagePicker = (props: LanguagePickerProps) => {
 };
 
 export interface NavHeaderProps {
-  appState: Pick<StateFromAppInitialProps, "claims" | "user">;
+  appState: Pick<StateFromAppInitialProps, "user">;
 }
 
 export const NavHeader = (props: NavHeaderProps) => {
   const { t } = useTranslation();
   const state = useAppState();
 
-  const claims = state.claims || props.appState.claims;
+  const user = state.user || props.appState.user;
 
   return (
     <header>
@@ -112,8 +112,8 @@ export const NavHeader = (props: NavHeaderProps) => {
             <NavLink href="/meetings">{t("meetings")}</NavLink>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
-            {claims ? (
-              <Menu claims={claims} />
+            {user ? (
+              <Menu claims={user} />
             ) : (
               <Link
                 href="/api/login"
@@ -132,7 +132,7 @@ export const NavHeader = (props: NavHeaderProps) => {
                   },
                 }}
               >
-                <div>{t('log-in')}</div>
+                <div>{t("log-in")}</div>
               </Link>
             )}
           </HeaderFooterListItem>
