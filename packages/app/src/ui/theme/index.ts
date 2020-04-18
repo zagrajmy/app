@@ -36,6 +36,7 @@ export const theme = makeTheme({
   ),
   sizes: {
     container: 1100,
+    containerThin: 720,
   },
   radii: {
     none: 0,
@@ -145,7 +146,8 @@ export const theme = makeTheme({
   layout: {
     container: {},
     sheet: {
-      maxWidth: 720,
+      width: "container",
+      maxWidth: "100%",
       bg: "white",
       borderRadius: "rounded-lg",
       boxShadow: "md",

@@ -1,6 +1,5 @@
 import { get } from "@theme-ui/css";
-import { useRef, useState } from "react";
-import { CheckSquare, Edit } from "react-feather";
+import { useRef, useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,8 +13,10 @@ import {
   Textarea,
 } from "theme-ui";
 
-import { Id, Meeting, User } from "../../../data/types";
-import { meetingsApi } from "../../../src/app/api-helpers/meetingsMock";
+import { NextPageContext } from "next";
+import useSWR from "swr";
+import { useRouter } from "next/router";
+import { Meeting, User } from "../../../data/types";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import {
   Container,
@@ -25,6 +26,34 @@ import {
   LinkProps,
   Theme,
 } from "../../../src/ui";
+import { CheckSquare, Edit } from "../../../src/ui/icons";
+import { hasura } from "../../../data";
+import { AsyncReturnType } from "../../../src";
+
+function queryMeeting(ctx: {
+  req?: NextPageContext["req"];
+  query: NextPageContext["query"];
+}) {
+  return hasura
+    .fromCookies(ctx.req)
+    .query({
+      meeting_by_pk: [
+        { id: Number(ctx.query.id) },
+        {
+          id: true,
+          organizer: { name: true, email: true },
+          participants: [{}, { participant: { name: true, email: true } }],
+          title: true,
+          description: true,
+          image: [{}, true],
+          start_time: true,
+          end_time: true,
+          publication_time: true,
+        },
+      ],
+    })
+    .then((x) => ({ meeting: x.meeting_by_pk }));
+}
 
 interface LinkToAuthorProps extends Omit<LinkProps, "href" | "as"> {
   meeting: Meeting;
@@ -75,22 +104,21 @@ const EditMeetingButton = ({
   );
 };
 
-type Query = { id: Id };
-
+type QueriedData = AsyncReturnType<typeof queryMeeting>;
 interface InitialProps {
-  meeting?: Meeting;
+  initialData?: QueriedData;
 }
 
-export function MeetingDetailsPage({ meeting }: InitialProps) {
-  const [isEditing, setIsEditing] = useState(false);
+export function MeetingDetailsPage({ initialData, ...rest }: InitialProps) {
+  const { query } = useRouter();
   const { t } = useTranslation();
 
+  const { data } = useSWR([{ query }], queryMeeting, { initialData });
+
+  const [isEditing, setIsEditing] = useState(false);
+
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<Meeting>({
-    defaultValues: {
-      ...meeting,
-    },
-  });
+  const form = useForm<Meeting>({ defaultValues: data?.meeting || {} });
 
   const onSubmit = form.handleSubmit((value) => {
     // eslint-disable-next-line no-console
@@ -101,8 +129,15 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
     setIsEditing(false);
   });
 
+  const meeting = useMemo(() => data?.meeting && Meeting.parse(data.meeting), [data]);
+
+  if (!data) {
+    return null; // TODO skeleton UI
+  }
+
   if (!meeting) {
-    return "404: Couldn't find meeting.";
+    // THIS SHOULD NOT HAPPEN HERE
+    return "404: Couldn't find meeting."; // OH SHIT IM NOT DISPLAYING THEM, I'LL DO IT NOW
   }
 
   const { start_time, description, title } = form.watch({ nest: true });
@@ -191,7 +226,6 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
                 margin: 0,
                 padding: 0,
                 minWidth: 0,
-                // TODO: this shouldn't be copied
                 fontSize: 7,
                 letterSpacing: "-0.049375rem",
                 border: "none",
@@ -263,15 +297,12 @@ export function MeetingDetailsPage({ meeting }: InitialProps) {
   );
 }
 
-MeetingDetailsPage.getInitialProps = async ({
-  query,
-}: {
-  res: Response;
-  req: Request;
-  query: Query;
-}): Promise<InitialProps> => {
-  const meeting = await meetingsApi.get(query.id);
-  return { meeting };
+MeetingDetailsPage.getInitialProps = async (
+  ctx: NextPageContext
+): Promise<InitialProps> => {
+  return queryMeeting(ctx).then(({ meeting }) => ({
+    initialData: meeting && { meeting },
+  }));
 };
 
 export default MeetingDetailsPage;

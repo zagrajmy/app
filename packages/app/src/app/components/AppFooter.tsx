@@ -3,7 +3,7 @@ import { HeaderFooterListItem } from "./HeaderFooterListItem";
 
 export const AppFooter = () => {
   return (
-    <footer sx={{ bg: "gray.9" }}>
+    <footer sx={{ bg: "gray.9", mt: "auto" }}>
       <ul
         sx={{
           height: "68px",

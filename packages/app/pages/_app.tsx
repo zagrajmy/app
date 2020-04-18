@@ -16,11 +16,22 @@ import { auth } from "../src/app/auth";
 import { NavHeader } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
 import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
-import { FALLBACK_LANG, SUPPORTED_LANGUAGES, i18n } from "../src/i18n";
+import {
+  FALLBACK_LANG,
+  SUPPORTED_LANGUAGES,
+  i18n,
+  SupportedLanguage,
+} from "../src/i18n";
 import { theme } from "../src/ui/theme";
 
 import { queryUserByAuth0Id } from "../data/queries";
 import { hasura } from "../data";
+
+export type InjectedPageProps = {
+  // is this needed?
+  cookies: { [key: string]: string | undefined };
+  lang: SupportedLanguage;
+};
 
 const globalStyles: InterpolationWithTheme<any> = {
   body: {

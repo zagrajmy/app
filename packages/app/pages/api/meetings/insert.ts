@@ -8,7 +8,7 @@ import * as g from "../../../data/graphql-zeus";
 import { Db, hasura } from "../../../data/hasura";
 import { queryUserByAuth0Id } from "../../../data/queries";
 import { auth } from "../../../src/app/auth";
-import { formatValidationErrors } from "../../../src/lib/formatValidationErrors";
+import { formatValidationErrors, PromiseType } from "../../../src";
 
 // TODO: Research how much performance improvement would we get from using
 // gql client on the frontend
@@ -77,6 +77,7 @@ const runMutation = (
     ],
   });
 };
+
 export default auth.requireAuthentication(async function insertMeeting(
   req: NextApiRequest,
   res: NextApiResponse
@@ -104,3 +105,7 @@ export default auth.requireAuthentication(async function insertMeeting(
     )
   );
 });
+
+export type InsertMeetingResultJson = PromiseType<
+  ReturnType<typeof runMutation>
+>;

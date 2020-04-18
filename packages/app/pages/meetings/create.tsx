@@ -11,11 +11,10 @@ import {
   Textarea,
 } from "theme-ui";
 import { OmitByValue } from "utility-types";
-
 import { useTranslation } from "react-i18next";
-import { IncomingMessage } from "http";
-import { assert } from "ts-essentials";
 import useSWR from "swr";
+import { useRouter } from "next/router";
+
 import { meeting as Meeting } from "../../data/graphql-zeus";
 import { makeAuth, auth } from "../../src/app/auth";
 import { Page } from "../../src/app/components";
@@ -24,7 +23,10 @@ import {
   Input as ThInput,
   InputProps as ThInputProps,
 } from "../../src/ui";
-import { InsertMeetingBody } from "../api/meetings/insert";
+import {
+  InsertMeetingBody,
+  InsertMeetingResultJson,
+} from "../api/meetings/insert";
 import { summon } from "../../src";
 import { withUser } from "../../src/app/withUser";
 import { hasura } from "../../data";
@@ -54,6 +56,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
   CreateMeetingPageProps
 >((props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const { data } = useSWR(
     "user-guilds",
     () => {
@@ -96,8 +99,16 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
       method: "POST",
       json: body,
     })
-      .then((res) => {
-        // TODO
+      .then((res: InsertMeetingResultJson) => {
+        if (!res.insert_meeting_one?.id) {
+          throw new Error("failed to insert meeting");
+        }
+
+        router.push(
+          "/meetings/[id]",
+          `/meetings/${res.insert_meeting_one?.id}`
+        );
+
         // eslint-disable-next-line no-console
         console.log({ res });
       })
@@ -116,6 +127,8 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
         as="form"
         variant="sheet"
         sx={{
+          width: "containerThin",
+
           px: 5,
           pb: 5,
           pt: 4,
