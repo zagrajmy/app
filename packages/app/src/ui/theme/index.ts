@@ -4,6 +4,7 @@ import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 
 import { Assign } from "../../lib";
 
+import { colors } from "./colors";
 import { buttons } from "./buttons";
 import { forms } from "./forms";
 import { links } from "./links";
@@ -54,36 +55,7 @@ export const theme = makeTheme({
       "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
     xxl: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
   },
-  // https://palx.jxnblk.com/ > #e85554
-  colors: {
-    text: "#071d1d",
-    background: "#f1eded",
-    white: "#ffffff",
-    gray: [
-      "#faf9f9",
-      "#f1eded",
-      "#e6dfdf",
-      "#dbd1d1",
-      "#cec1c1",
-      "#c1afaf",
-      "#b19b9b",
-      "#9a8484",
-      "#796868",
-      "#473d3d",
-    ],
-    primary: "#e85554",
-    primaryLight: "#ea6463",
-    primaryDark: "#d34e4d",
-    secondary: "#5654e8",
-    accent: "#5654e8", // blue in triad of primary
-    muted: "rgba(0, 0, 0, 0.6)",
-    modes: {
-      dark: {
-        text: "#fff",
-        background: "#222",
-      },
-    },
-  },
+  colors,
   initialColorModeName: "light",
   useColorSchemeMediaQuery: false, // TODO
   useBodyStyles: false,
@@ -153,6 +125,12 @@ export const theme = makeTheme({
       boxShadow: "md",
       p: 3,
       zIndex: 1,
+    },
+  },
+  messages: {
+    critical: {
+      backgroundColor: "critical",
+      borderLeftColor: "criticalDark",
     },
   },
 });

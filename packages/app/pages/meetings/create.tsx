@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { OnSubmit, useForm } from "react-hook-form";
+import { OnSubmit, useForm, ErrorMessage } from "react-hook-form";
 import {
   Button,
   Container,
@@ -9,14 +9,16 @@ import {
   LabelProps,
   Select,
   Textarea,
+  Message,
 } from "theme-ui";
 import { OmitByValue } from "utility-types";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
+import { useState } from "react";
 import { meeting as Meeting } from "../../data/graphql-zeus";
-import { makeAuth, auth } from "../../src/app/auth";
+import { makeAuth } from "../../src/app/auth";
 import { Page } from "../../src/app/components";
 import {
   FormDatepicker,
@@ -27,7 +29,7 @@ import {
   InsertMeetingBody,
   InsertMeetingResultJson,
 } from "../api/meetings/insert";
-import { summon } from "../../src";
+import { summon, makeError } from "../../src";
 import { withUser } from "../../src/app/withUser";
 import { hasura } from "../../data";
 
@@ -73,7 +75,10 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
     { initialData: props.initialData }
   );
 
-  const { register, handleSubmit, control } = useForm<Meeting>();
+  const [backendError, setBackendError] = useState<Error | undefined>();
+  const { register, handleSubmit, control, errors, watch } = useForm<Meeting>(
+    {}
+  );
 
   const onSubmit: OnSubmit<Meeting> = (values) => {
     const formAction = document.activeElement?.getAttribute("formAction");
@@ -113,14 +118,13 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
         console.log({ res });
       })
       .catch((error) => {
-        console.error(error);
-        // TODO: Handle me. Display error in the UI.
+        setBackendError(makeError(error));
         // Let's make useMutation hook or think about react-query
-        // once again
         // steida had a pretty cool useMutation hook on Twitter
       });
   };
 
+  const now = new Date();
   return (
     <Page>
       <Container
@@ -143,7 +147,17 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
       >
         <div>
           <Label htmlFor="title">{t("title")}</Label>
-          <Input name="title" ref={register} />
+          <Input
+            name="title"
+            ref={register({ required: `${t("title")} ${t("is-required")}` })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="title"
+            as={Message}
+            variant="critical"
+            sx={{ mt: 1 }}
+          />
         </div>
         <div>
           <Label htmlFor="description">{t("description")}</Label>
@@ -172,14 +186,18 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
               ))}
           </Select>
         </div>
-        <Grid columns={2}>
+        <Grid columns={[1, 2]}>
           <div>
             <Label htmlFor="start_time">{t("meeting-start-time")}</Label>
-            <FormDatepicker name="start_time" control={control} />
+            <FormDatepicker min={now} name="start_time" control={control} />
           </div>
           <div>
             <Label htmlFor="end_time">{t("meeting-end-time")}</Label>
-            <FormDatepicker name="end_time" control={control} />
+            <FormDatepicker
+              min={watch("start_time", now.toISOString())}
+              name="end_time"
+              control={control}
+            />
           </div>
         </Grid>
         <Flex
@@ -192,6 +210,11 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
             {t("publish")}
           </Button>
         </Flex>
+        {backendError && (
+          <Message as="p" variant="critical">
+            {backendError.message}
+          </Message>
+        )}
       </Container>
     </Page>
   );

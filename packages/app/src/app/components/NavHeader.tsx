@@ -59,6 +59,10 @@ const LanguagePicker = (props: LanguagePickerProps) => {
         ":hover, :focus": {
           color: "white",
         },
+        option: {
+          backgroundColor: "gray.1",
+          color: "text",
+        },
       }}
       value={lang}
       onChange={handleChange}
@@ -103,7 +107,7 @@ export const NavHeader = (props: NavHeaderProps) => {
           }}
         >
           <HeaderFooterListItem sx={{ flex: 1, textAlign: "left" }}>
-            <Link href="/">zagraj.my</Link>
+            <Link href="/">{t("page-title")}</Link>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
             <LanguagePicker />

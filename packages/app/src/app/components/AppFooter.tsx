@@ -1,7 +1,11 @@
 import { Link } from "next-next-link";
+import { useTranslation } from "react-i18next";
+
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 
 export const AppFooter = () => {
+  const { t } = useTranslation();
+
   return (
     <footer sx={{ bg: "gray.9", mt: "auto" }}>
       <ul
@@ -18,7 +22,7 @@ export const AppFooter = () => {
         }}
       >
         <HeaderFooterListItem sx={{ flex: 1, textAlign: "left" }}>
-          <Link href="/">zagraj.my</Link>
+          <Link href="/">{t("page-title")}</Link>
         </HeaderFooterListItem>
         <HeaderFooterListItem>
           <a href="https://github.com/zagrajmy/">GitHub</a>

@@ -1,8 +1,22 @@
 import pl from "date-fns/locale/pl";
-import { ReactNode } from "react";
-import ReactDatePicker, { registerLocale } from "react-datepicker";
+import { ReactNode, forwardRef } from "react";
+import ReactDatePicker, {
+  registerLocale,
+  ReactDatePickerProps,
+} from "react-datepicker";
 import { Controller, ControllerProps } from "react-hook-form";
+import {
+  getMinutes,
+  getHours,
+  set,
+  subMinutes,
+  isSameDay,
+  differenceInCalendarDays,
+} from "date-fns";
+import { array } from "fp-ts/lib/Array";
+import { none, some } from "fp-ts/lib/Option";
 
+import { SystemStyleObject } from "theme-ui";
 import { Calendar } from "./icons";
 import { Input } from "./Input";
 
@@ -12,37 +26,71 @@ const defaultInput = (
   <Input icon={<Calendar size={18} sx={{ color: "muted" }} />} />
 );
 
-interface FormDatepickerProps
+const excludedHoursOnMinDate = (min: Date) => {
+  const latestSlot = set(min, {
+    milliseconds: 0,
+    seconds: 0,
+    minutes: getMinutes(min) >= 30 ? 30 : 0,
+  });
+
+  return array.unfold(latestSlot, (x) =>
+    differenceInCalendarDays(latestSlot, x) > 0
+      ? none
+      : some([x, subMinutes(x, 30)])
+  );
+};
+
+const reactDatePickerStyleOverride: SystemStyleObject = {
+  ".react-datepicker-wrapper": {
+    display: "unset",
+    border: "unset",
+    padding: "unset",
+  },
+};
+
+type OmittedPropsForMin = "minTime" | "minDate" | "excludeTimes";
+interface DatePickerProps
   extends Omit<
-    ControllerProps<typeof ReactDatePicker>,
-    "customInput" | "as" | "valueName"
+    ReactDatePickerProps,
+    OmittedPropsForMin | "customInput" | "selected" | "value"
   > {
   input?: ReactNode;
+  min?: Date;
+  value: ReactDatePickerProps["selected"];
 }
-export function FormDatepicker({
-  input = defaultInput,
-  ...rest
-}: FormDatepickerProps) {
-  return (
-    <div
-      sx={{
-        ".react-datepicker-wrapper": {
-          display: "unset",
-          border: "unset",
-          padding: "unset",
-        },
-      }}
-    >
-      <Controller
-        as={ReactDatePicker}
-        showTimeSelect
-        customInput={input}
-        valueName="selected"
-        dateFormat="Pp"
-        timeFormat="p"
-        {...rest}
-        // locale="pl-PL" // TODO: Check if it's detected and respects preference
-      />
-    </div>
-  );
+
+const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(
+  ({ input = defaultInput, min, value, ...rest }, ref) => {
+    return (
+      <div sx={reactDatePickerStyleOverride}>
+        <ReactDatePicker
+          ref={ref}
+          showTimeSelect
+          customInput={input}
+          dateFormat="Pp"
+          timeFormat="p"
+          selected={value}
+          autoComplete="off"
+          minDate={min}
+          excludeTimes={
+            min && value && isSameDay(value, min)
+              ? excludedHoursOnMinDate(min)
+              : undefined
+          }
+          {...rest}
+          // locale="pl-PL" // TODO: Check if it's detected and respects preference
+        />
+      </div>
+    );
+  }
+);
+
+interface FormDatepickerProps
+  extends Omit<
+    ControllerProps<typeof DatePicker>,
+    "valueName" | "as" | "value"
+  > {}
+
+export function FormDatepicker(props: FormDatepickerProps) {
+  return <Controller as={DatePicker} {...props} />;
 }
