@@ -52,15 +52,15 @@ type OmittedPropsForMin = "minTime" | "minDate" | "excludeTimes";
 interface DatePickerProps
   extends Omit<
     ReactDatePickerProps,
-    OmittedPropsForMin | "customInput" | "selected" | "value"
+    OmittedPropsForMin | "customInput" | "selected"
   > {
   input?: ReactNode;
   min?: Date;
-  value: ReactDatePickerProps["selected"];
 }
 
 const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(
   ({ input = defaultInput, min, value, ...rest }, ref) => {
+    const date = value !== undefined ? new Date(value) : undefined;
     return (
       <div sx={reactDatePickerStyleOverride}>
         <ReactDatePicker
@@ -69,11 +69,11 @@ const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(
           customInput={input}
           dateFormat="Pp"
           timeFormat="p"
-          selected={value}
+          selected={date}
           autoComplete="off"
           minDate={min}
           excludeTimes={
-            min && value && isSameDay(value, min)
+            min && date && isSameDay(date, min)
               ? excludedHoursOnMinDate(min)
               : undefined
           }
@@ -84,6 +84,7 @@ const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(
     );
   }
 );
+DatePicker.displayName = "DatePicker";
 
 interface FormDatepickerProps
   extends Omit<

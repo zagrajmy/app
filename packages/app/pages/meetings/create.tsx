@@ -54,6 +54,7 @@ interface CreateMeetingPageProps {
   initialData?: { guilds: { id: number; name: string }[] };
 }
 
+// TODO: Add validations in the endpoint.
 const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
   CreateMeetingPageProps
 >((props) => {
@@ -194,7 +195,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
           <div>
             <Label htmlFor="end_time">{t("meeting-end-time")}</Label>
             <FormDatepicker
-              min={watch("start_time", now.toISOString())}
+              min={new Date(watch("start_time") || now)}
               name="end_time"
               control={control}
             />
