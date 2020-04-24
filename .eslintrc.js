@@ -1,20 +1,5 @@
 module.exports = {
-  extends: "chop-chop",
-  rules: {
-    "sonarjs/no-duplicate-string": "off",
-    "jsx-a11y/anchor-has-content": "off",
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        components: ["Link"],
-      },
-    ],
-    "no-restricted-syntax": "off",
-    "no-nested-ternary": "off",
-    "react/prop-types": "off",
-    "react/no-array-index-key": "off",
-    "no-undef-init": "off",
-  },
+  extends: "@zagrajmy/eslint-config",
   overrides: [
     {
       // we actually want to deploy logs in serverside code

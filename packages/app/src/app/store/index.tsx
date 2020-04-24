@@ -6,8 +6,9 @@
  * the thing we can share.
  */
 
-import { createContext, useContext, useRef, useEffect } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+
 import { Claims } from "../auth";
 
 interface ApplicationStateUser extends Claims {

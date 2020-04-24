@@ -4,11 +4,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { Meeting } from "../data/types";
+import { getRecentlyPublishedMeetings } from "../src/app/api-helpers";
 import { MeetingCard, Page } from "../src/app/components";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
-import { Link, Container } from "../src/ui";
-import { getRecentlyPublishedMeetings } from "../src/app/api-helpers";
-import { NoPublishedMeetings } from "../src/ui/messageScreens/NoPublishedMeetings";
+import { Container, Link } from "../src/ui";
+import { NoPublishedMeetingsScreen } from "../src/ui/messageScreens/NoPublishedMeetings";
 
 type InitialProps = { meetings: Meeting[] };
 
@@ -37,7 +37,7 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
                 marginTop: 0,
                 marginBottom: "0.4em",
                 width: "100%",
-                lineHeight: 1.15,
+                lineHeight: "heading",
               }}
             >
               {t("page-title")}
@@ -66,11 +66,11 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
         </Container>
       ) : (
         <Container sx={{ flex: 1 }}>
-          <NoPublishedMeetings sx={{ height: "76vh", my: 4 }}>
+          <NoPublishedMeetingsScreen sx={{ height: "76vh", my: 4 }}>
             <Link variant="button" href="/meetings/create" sx={{ fontSize: 3 }}>
               Create a meeting
             </Link>
-          </NoPublishedMeetings>
+          </NoPublishedMeetingsScreen>
         </Container>
       )}
     </Page>

@@ -6,15 +6,18 @@ import { parseCookies } from "nookies";
 
 import * as generated from "../../data/graphql-zeus";
 import { Db, hasura } from "../../data/hasura";
-import { auth, UserUuid } from "../../src/app/auth";
+import { auth } from "../../src/app/auth";
 
-const getCrUserByEmail = (db: Db) => (email: string) =>
+const queryUserByEmail = (db: Db) => (email: string) =>
   db
     .query({
-      user: [{ where: { email: { _eq: email } } }, { uuid: true }],
+      user: [
+        { where: { email: { _eq: email } } },
+        { uuid: true, auth0_id: true },
+      ],
     })
     // I am assuming that there is only one user with this email for now.
-    .then(x => head(x.user));
+    .then((x) => head(x.user));
 
 interface CreateUserArg
   extends Required<
@@ -29,11 +32,19 @@ const createUser = (db: Db) => (user: CreateUserArg) =>
     })
     .then(
       flow(
-        x => x.insert_user,
+        (x) => x.insert_user,
         O.fromNullable,
-        O.chain(data => head(data.returning.map(u => u.uuid)))
+        O.chain((data) => head(data.returning.map((u) => u.uuid)))
       )
     );
+
+const addAuth0Id = (db: Db, user: { uuid: string }, auth0Id: string) =>
+  db.mutation({
+    update_user_by_pk: [
+      { pk_columns: { uuid: user.uuid }, _set: { auth0_id: auth0Id } },
+      {},
+    ],
+  });
 
 export default async function loggedIn(
   req: NextApiRequest,
@@ -52,11 +63,11 @@ export default async function loggedIn(
     // TODO: get rid of awaits, use TaskEither
 
     const [existingUser, auth0UserId] = await Promise.all([
-      getCrUserByEmail(db)(email),
+      queryUserByEmail(db)(email),
       auth.management
         .getUsersByEmail(email)
-        .then(auth0Users =>
-          O.toUndefined(head(auth0Users.map(u => u.user_id)))
+        .then((auth0Users) =>
+          O.toUndefined(head(auth0Users.map((u) => u.user_id)))
         ),
     ] as const);
 
@@ -66,10 +77,10 @@ export default async function loggedIn(
       );
     }
 
-    let uuid: UserUuid | null = O.toNullable(existingUser)?.uuid;
+    const user = O.toUndefined(existingUser);
 
-    if (!uuid) {
-      uuid = O.toNullable(
+    if (!user) {
+      const uuid = O.toNullable(
         await createUser(db)({
           auth0_id: auth0UserId,
           email,
@@ -80,6 +91,10 @@ export default async function loggedIn(
         })
       );
       console.log(`User ${uuid} successfuly created.`);
+    } else if (!user.auth0_id) {
+      // if the user exists, but his account is not linked with Auth0, we'll
+      // save the Auth0 ID to our database.
+      await addAuth0Id(db, user, auth0UserId);
     }
   }
 

@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse, NextPageContext } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import { setCookie } from "nookies";
 
 import { makeAuth } from "../../src/app/auth";
@@ -19,12 +19,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       authParams: { scope: "openid email profile" },
     });
 
-    setCookie(
-      ({ res } as any) as NextPageContext,
-      "zm|redirectTo",
-      req.headers.referer || "/",
-      {}
-    );
+    setCookie({ res }, "zm|redirectTo", req.headers.referer || "/", {});
 
     res.writeHead = writeHead;
     res.end = end;

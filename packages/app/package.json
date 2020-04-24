@@ -18,7 +18,8 @@
     "deploy:app": "now",
     "hasura:console": "cd data/throwaway/hasura && hasura console",
     "format": "prettier {pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql} --write",
-    "madge:circular": "npx madge --circular --ts-config ./tsconfig.json ."
+    "madge:circular": "npx madge --circular --ts-config ./tsconfig.json .",
+    "test:e2e": "jest test/e2e"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -82,12 +83,14 @@
     "utility-types": "^3.10.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.2.1",
     "egzek": "^1.2.0",
     "graphql": "^14.6.0",
     "graphql-compiler": "^1.7.0",
     "graphql-zeus": "^2.6.3",
     "graphqurl": "^0.3.3",
     "now": "^17.1.1",
+    "playwright": "^0.14.0",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"
   }

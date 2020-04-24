@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import { Heading, Grid, Flex } from "theme-ui";
+import { Flex, Grid, Heading } from "theme-ui";
+
 import { Center } from "../Center";
 
 const Human = () => (
@@ -45,13 +46,14 @@ const Human = () => (
   </svg>
 );
 
-interface NoPublishedMeetings extends ComponentPropsWithoutRef<"div"> {
+interface NoPublishedMeetingsScreenProps
+  extends ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode;
 }
-export const NoPublishedMeetings = ({
+export const NoPublishedMeetingsScreen = ({
   children,
   ...rest
-}: NoPublishedMeetings) => (
+}: NoPublishedMeetingsScreenProps) => (
   <Grid
     as="section"
     columns={[1, 2]}
@@ -59,9 +61,9 @@ export const NoPublishedMeetings = ({
     {...rest}
   >
     <Human sx={{ flex: 1 }} />
-    <Flex sx={{ flexDirection: "column" }}>
+    <Flex sx={{ flexDirection: "column", fontSize: 4 }}>
       <Heading as="h3">No meetings here.</Heading>
-      <p sx={{ fontSize: 4 }}>
+      <p>
         Null, zero, zilch, nada.
         <br />
         Be the first, it ain't hard.

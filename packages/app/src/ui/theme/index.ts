@@ -3,9 +3,8 @@ import { ContextValue } from "@theme-ui/core";
 import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 
 import { Assign } from "../../lib";
-
-import { colors } from "./colors";
 import { buttons } from "./buttons";
+import { colors } from "./colors";
 import { forms } from "./forms";
 import { links } from "./links";
 
@@ -33,7 +32,7 @@ export const theme = makeTheme({
   useCustomProperties: true,
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
-    (x) => `${x}rem`
+    (x) => `${x}em`
   ),
   sizes: {
     container: 1100,
@@ -70,10 +69,14 @@ export const theme = makeTheme({
   fontWeights: {
     heading: 700,
   },
+  lineHeights: {
+    body: 1.5,
+    heading: 1.125,
+  },
   styles: {
     root: {
       fontSize: "16px",
-      lineHeight: 1.4,
+      lineHeight: "body",
       minHeight: "100vh",
       fontFamily: "body",
       color: "text",

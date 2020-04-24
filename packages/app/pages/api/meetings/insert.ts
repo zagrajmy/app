@@ -95,7 +95,7 @@ export default auth.requireAuthentication(async function insertMeeting(
           .getSession(req)
           .then((session) =>
             queryUserByAuth0Id(query, session!.user!.sub, { uuid: true }).then(
-              (u) => u.uuid as string
+              (u) => u!.uuid as string
             )
           )
           .then((organizer_id) => runMutation(mutation, meeting, organizer_id))

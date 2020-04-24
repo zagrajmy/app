@@ -1,11 +1,11 @@
 import { NextPage } from "next";
 import { Fragment, useMemo } from "react";
+import { Search } from "react-feather";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 import { Heading } from "theme-ui";
-
 import { assert } from "ts-essentials";
-import { Search } from "react-feather";
+
 import { Meeting } from "../../data/types";
 import {
   getMyMeetings,
@@ -14,7 +14,7 @@ import {
 import { Claims, makeAuth } from "../../src/app/auth";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { useAppState } from "../../src/app/store";
-import { Link, Input } from "../../src/ui";
+import { Input, Link } from "../../src/ui";
 import { MyMeetingsResult } from "../api/meetings/my-meetings";
 import { RecentlyPublishedMeetingsResult } from "../api/meetings/recently-published";
 
