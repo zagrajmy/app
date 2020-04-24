@@ -1,0 +1,11 @@
+{
+  "name": "@zagrajmy/eslint-config",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "eslint-config-chop-chop": "^2.0.0-rc.0",
+    "eslint-plugin-simple-import-sort": "^5.0.2"
+  }
+}
