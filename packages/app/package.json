@@ -20,7 +20,9 @@
     "format": "prettier {pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql} --write",
     "madge:circular": "npx madge --circular --ts-config ./tsconfig.json .",
     "test:e2e": "yarn cypress open",
-    "test:e2e:record": "concurrently --kill-others --names \"app,cy\" \"yarn build && yarn start\" \"yarn wait-on http://localhost:3000/ && yarn dotenv-load cypress run --record\""
+    "test:e2e:record": "concurrently --kill-others --names \"app,cy\" \"yarn build && yarn start\" \"yarn wait-on http://localhost:3000/ && yarn dotenv-load cypress run --record\"",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -82,7 +84,8 @@
     "ts-node": "^8.8.0",
     "use-auth0-hooks": "^0.7.0",
     "use-onclickoutside": "^0.3.1",
-    "utility-types": "^3.10.0"
+    "utility-types": "^3.10.0",
+    "snyk": "^1.316.0"
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^5.1.2",
@@ -98,5 +101,6 @@
     "ts-jest": "^25.2.1",
     "ts-loader": "^7.0.2",
     "typescript": "^3.8.3"
-  }
+  },
+  "snyk": true
 }
