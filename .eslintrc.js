@@ -41,5 +41,14 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ["packages/app/test/**/*.{js,ts}"],
+      rules: {
+        // we don't want to install cypress
+        // in production builds
+        "import/no-extraneous-dependencies": "off",
+        "global-require": "off",
+      },
+    },
   ],
 };
