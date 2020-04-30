@@ -7,7 +7,6 @@ import { IncomingMessage, ServerResponse } from "http";
 // I'm not sure this is currently serverless friendly
 // TODO: but write tests first
 // TODO: We'd like to keep zagrajmy user id in session
-
 import { getUrl } from "../../lib/getUrl";
 import { Claims, Session } from "./types";
 
@@ -49,6 +48,7 @@ export const makeAuth = (nextReq?: IncomingMessage) => {
     session: {
       cookieSecret: AUTH0_COOKIE_SECRET!,
       cookieLifetime: 60 * 60 * 8,
+      cookieName: "zm|session",
     },
   };
 

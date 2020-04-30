@@ -1,3 +1,5 @@
+// @ts-check
+
 const rootConfig = require("../../.eslintrc.js");
 
 module.exports = {

@@ -1,5 +1,4 @@
 import { Avatar, AvatarProps } from "../../ui/Avatar";
-
 import { Claims } from "../auth";
 
 export interface UserAvatarProps extends Omit<AvatarProps, "ref"> {

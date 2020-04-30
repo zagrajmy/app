@@ -55,6 +55,16 @@ export default async function loggedIn(
   const { "zm|redirectTo": Location } = parseCookies({
     req,
   });
+
+  console.log({
+    cookies: req.cookies,
+    session,
+  });
+  if (!Location) {
+    console.error(parseCookies({ req }));
+    throw new Error("zm|redirectTo cookie must be set");
+  }
+
   const db = hasura.fromCookies(req);
 
   if (session && session.user.email_verified) {
@@ -88,6 +98,7 @@ export default async function loggedIn(
             session.user.nickname ||
             `${session.user.given_name} ${session.user.family_name}`,
           locale: session.user.locale,
+          // avatar: session.user.picture.includes("cdn.auth0.com") ? null : session.user.picture
         })
       );
       console.log(`User ${uuid} successfuly created.`);

@@ -1,15 +1,15 @@
-import * as t from "io-ts";
-import * as TE from "fp-ts/lib/TaskEither";
 import * as E from "fp-ts/lib/Either";
+import { flow } from "fp-ts/lib/function";
+import { pipe } from "fp-ts/lib/pipeable";
+import * as TE from "fp-ts/lib/TaskEither";
+import * as t from "io-ts";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { pipe } from "fp-ts/lib/pipeable";
-import { flow } from "fp-ts/lib/function";
-import { auth, User, Claims } from "../../../src/app/auth";
-import { ReqHandler } from "../../../src/lib/ReqHandler";
 import { hasura } from "../../../data";
+import { asMutable, formatValidationErrors, makeError } from "../../../src";
+import { auth, Claims, User } from "../../../src/app/auth";
 import { SUPPORTED_LANGUAGES } from "../../../src/i18n";
-import { makeError, formatValidationErrors, asMutable } from "../../../src";
+import { ReqHandler } from "../../../src/lib/ReqHandler";
 
 type SupportedLanguage = import("../../../src/i18n").SupportedLanguage;
 

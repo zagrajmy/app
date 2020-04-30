@@ -19,7 +19,8 @@
     "hasura:console": "cd data/throwaway/hasura && hasura console",
     "format": "prettier {pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql} --write",
     "madge:circular": "npx madge --circular --ts-config ./tsconfig.json .",
-    "test:e2e": "jest test/e2e"
+    "test:e2e": "yarn cypress open",
+    "test:e2e:record": "concurrently --kill-others --names \"app,cy\" \"yarn build && yarn start\" \"yarn wait-on http://localhost:3000/ && yarn dotenv-load cypress run --record\""
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -65,6 +66,7 @@
     "node-fetch": "^2.6.0",
     "nom-ts": "^0.1.2",
     "nookies": "^2.2.1",
+    "patch-package": "^6.2.2",
     "polished": "^3.5.1",
     "react": "^16.13.1",
     "react-datepicker": "^2.14.1",
@@ -83,15 +85,18 @@
     "utility-types": "^3.10.0"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.1.2",
+    "@testing-library/cypress": "^6.0.0",
     "@testing-library/dom": "^7.2.1",
+    "cypress": "^4.5.0",
     "egzek": "^1.2.0",
     "graphql": "^14.6.0",
     "graphql-compiler": "^1.7.0",
     "graphql-zeus": "^2.6.3",
     "graphqurl": "^0.3.3",
     "now": "^17.1.1",
-    "playwright": "^0.14.0",
     "ts-jest": "^25.2.1",
+    "ts-loader": "^7.0.2",
     "typescript": "^3.8.3"
   }
 }

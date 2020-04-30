@@ -1,0 +1,15 @@
+{
+  "fixturesFolder": "test/fixtures",
+  "integrationFolder": "test/e2e",
+  "pluginsFile": "test/plugins/index.js",
+  "screenshotsFolder": "test/screenshots",
+  "videosFolder": "test/videos",
+  "supportFile": "test/support/index.ts",
+  "// Cypress crashes when paths below end with '/'": "",
+  "//baseUrl": "https://zagrajmy.now.sh",
+  "baseUrl": "http://localhost:3000",
+  "defaultCommandTimeout": 8000,
+  "port": 3001,
+  "chromeWebSecurity": false,
+  "//projectId": ""
+}

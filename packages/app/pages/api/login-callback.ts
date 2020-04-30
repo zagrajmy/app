@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
 import { parseCookies } from "nookies";
+
 import { makeAuth } from "../../src/app/auth";
 
 export default async function callback(

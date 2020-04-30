@@ -7,4 +7,5 @@ export * from "./noop";
 export * from "./HttpError";
 export * from "./formatValidationErrors";
 export * from "./utilityTypes";
+export * from "./validationErrorToError";
 export { summon } from "./summon";
