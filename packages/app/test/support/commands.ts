@@ -25,12 +25,12 @@ Cypress.Commands.add(
 
     cy.request({
       method: "POST",
-      url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
+      url: `https://${TEST_AUTH_DOMAIN}/oauth/token`,
       body: {
         grant_type: "password",
         username: testAccount.username,
         password: testAccount.password,
-        audience: `https://${process.env.AUTH0_DOMAIN}/userinfo`,
+        audience: `https://${TEST_AUTH_DOMAIN}/userinfo`,
         scope: "openid profile email",
         client_id: AUTH0_CLIENT_ID,
         client_secret: AUTH0_CLIENT_SECRET,
