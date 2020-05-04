@@ -15,7 +15,7 @@
     "build": "lerna run build",
     "lint": "lerna run lint",
     "typecheck": "lerna run typecheck",
-    "ci": "lerna run ci && npm run test",
+    "ci": "lerna run ci",
     "fix": "wotan --fix && lerna run format && lerna run lint:fix",
     "release": "lerna publish && lerna run deploy",
     "test": "jest --runInBand",
