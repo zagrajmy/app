@@ -1,5 +1,3 @@
-import { AUTH0_DOMAIN } from "../support/util";
-
 describe("/", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -9,7 +7,7 @@ describe("/", () => {
     cy.findByText(/log in/i)
       .click()
       .url()
-      .should("include", `${AUTH0_DOMAIN}/u/login`);
+      .should("include", `/u/login`);
   });
 
   it("enters index page, logins and goes to /meetings page", () => {

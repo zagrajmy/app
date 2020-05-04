@@ -15,6 +15,8 @@ module.exports = {
     "react/prop-types": "off",
     "react/no-array-index-key": "off",
     "no-undef-init": "off",
+    // TypeScript checks this
+    "no-undef": "off",
 
     "sort-imports": "off",
     "import/order": "off",

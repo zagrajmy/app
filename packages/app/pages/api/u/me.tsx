@@ -108,7 +108,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse) {
         );
     }
   } catch (error) {
-    console.log({ error });
+    console.error(error);
     // getSession can throw?
     return ReqHandler.respond(
       TE.left(ReqHandler.Err(error.status || 500)(error.message)),

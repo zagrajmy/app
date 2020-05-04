@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { ErrorMessage,OnSubmit, useForm } from "react-hook-form";
+import { ErrorMessage, OnSubmit, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 import {
@@ -19,7 +19,7 @@ import { OmitByValue } from "utility-types";
 
 import { hasura } from "../../data";
 import { meeting as Meeting } from "../../data/graphql-zeus";
-import { makeError,summon } from "../../src";
+import { makeError, summon } from "../../src";
 import { makeAuth } from "../../src/app/auth";
 import { Page } from "../../src/app/components";
 import { withUser } from "../../src/app/withUser";
@@ -115,6 +115,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
           `/meetings/${res.insert_meeting_one?.id}`
         );
 
+        // TODO
         // eslint-disable-next-line no-console
         console.log({ res });
       })

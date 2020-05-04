@@ -7,7 +7,7 @@
     "../node_modules/cypress",
     "../node_modules/@types/testing-library__cypress",
     "./**/*.ts",
-    "./plugins/index.js"
+    "plugins/index.js"
   ],
   "exclude": ["../node_modules/@types/jest"]
 }

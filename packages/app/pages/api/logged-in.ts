@@ -56,10 +56,6 @@ export default async function loggedIn(
     req,
   });
 
-  console.log({
-    cookies: req.cookies,
-    session,
-  });
   if (!Location) {
     console.error(parseCookies({ req }));
     throw new Error("zm|redirectTo cookie must be set");

@@ -12,12 +12,17 @@ import { Claims, Session } from "./types";
 
 export * from "./types";
 
+let dotenvRead = false;
+
 export const makeAuth = (nextReq?: IncomingMessage) => {
   if (typeof window !== "undefined") {
     return undefined;
   }
 
-  dotenv.config();
+  if (!dotenvRead) {
+    dotenv.config();
+    dotenvRead = true;
+  }
 
   /**
    * We use the same Auth0 application to access

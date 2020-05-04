@@ -4,7 +4,15 @@
 import "@testing-library/cypress/add-commands";
 
 import { getOrPanic } from "../../src/lib/validationErrorToError";
-import { AUTH0_DOMAIN, decodeTestAccount, env } from "../support/util";
+import { decodeTestAccount } from "../support/util";
+
+const {
+  AUTH0_DOMAIN: TEST_AUTH_DOMAIN,
+  AUTH0_CLIENT_ID,
+  AUTH0_CLIENT_SECRET,
+} = process.env;
+
+export { TEST_AUTH_DOMAIN };
 
 type TestAccountName = "UNVERIFIED" | "DEFAULT";
 
@@ -12,22 +20,22 @@ Cypress.Commands.add(
   "login",
   (testAccountName: TestAccountName = "DEFAULT") => {
     const testAccount = getOrPanic(
-      decodeTestAccount(env(`TEST_ACCOUNT_${testAccountName}`))
+      decodeTestAccount(process.env[`TEST_ACCOUNT_${testAccountName}`])
     );
 
     cy.request({
       method: "POST",
-      url: `https://${AUTH0_DOMAIN}/oauth/token`,
+      url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
       body: {
         grant_type: "password",
         username: testAccount.username,
         password: testAccount.password,
-        audience: `https://${AUTH0_DOMAIN}/userinfo`,
+        audience: `https://${process.env.AUTH0_DOMAIN}/userinfo`,
         scope: "openid profile email",
-        client_id: env("AUTH0_CLIENT_ID"),
-        client_secret: env("AUTH0_CLIENT_SECRET"),
+        client_id: AUTH0_CLIENT_ID,
+        client_secret: AUTH0_CLIENT_SECRET,
       },
-    }).then((res) => {
+    }).then(res => {
       const { access_token, expires_in, id_token } = res.body;
       const auth0State = "some-random-state";
       const callbackUrl = `/api/login-callback?access_token=${access_token}&scope=openid&id_token=${id_token}&expires_in=${expires_in}&token_type=Bearer&state=${auth0State}`;
