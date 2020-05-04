@@ -10,11 +10,16 @@ function readDotenv(path) {
     .trim()
     .split("\n")
     .map((s) => s.split("="))
-    .reduce((acc, [k, v]) => {
-      // eslint-disable-next-line no-undef
-      acc[k] = v;
-      return acc;
-    }, {});
+    .reduce(
+      /**
+       * @param {Record<string, string | undefined>} acc
+       */
+      (acc, [k, v]) => {
+        acc[k] = v;
+        return acc;
+      },
+      {}
+    );
 }
 
 module.exports = { readDotenv };

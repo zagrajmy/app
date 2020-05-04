@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { PromiseType } from "utility-types";
 import { assert } from "ts-essentials";
+import { PromiseType } from "utility-types";
 
 import { order_by } from "../../../data/graphql-zeus";
 import { Db, hasura } from "../../../data/hasura";

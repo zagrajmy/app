@@ -6,7 +6,7 @@
  * the thing we can share.
  */
 
-import { createContext, useContext, useEffect, useRef } from "react";
+import { createContext, useContext, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Claims } from "../auth";
@@ -54,13 +54,13 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
       i18n.changeLanguage(lang);
     }
   });
-  if (process.env.NODE_ENV === "development") {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      // eslint-disable-next-line no-console
-      console.log({ stateFromInitialProps });
-    });
-  }
+  // if (process.env.NODE_ENV === "development") {
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //   useEffect(() => {
+  //     // eslint-disable-next-line no-console
+  //     console.log({ stateFromInitialProps });
+  //   });
+  // }
 
   const cached = useRef<ApplicationState>(initialState);
 

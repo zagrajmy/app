@@ -9,6 +9,5 @@
     "./**/*.ts",
     "./plugins/index.js"
   ],
-  "exclude": ["../node_modules/@types/jest"],
-  "files": ["./**/*.ts"]
+  "exclude": ["../node_modules/@types/jest"]
 }

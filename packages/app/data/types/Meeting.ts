@@ -1,5 +1,10 @@
 import { generated } from "..";
-import { Assign, Required, StrictOmit } from "../../src/lib/utilityTypes";
+import {
+  Assign,
+  DeepPartial,
+  Required,
+  StrictOmit,
+} from "../../src/lib/utilityTypes";
 import { Id } from "./Id";
 import { User } from "./User";
 
@@ -7,7 +12,7 @@ type MeetingImageKind = "background" | "banner" | "small";
 
 interface MinimalMeeting
   extends Required<
-    Partial<
+    DeepPartial<
       StrictOmit<
         generated.meeting,
         "guild" | "participants_aggregate" | "organizer"
@@ -39,8 +44,10 @@ export interface Meeting
   image?: MeetingImage;
 }
 
+type CopiedProperties = "participants";
+
 export const Meeting = {
-  parse(m: MinimalMeeting): Meeting {
+  parse<T extends MinimalMeeting>(m: T): Meeting & Pick<T, CopiedProperties> {
     return {
       ...m,
       title: m.title || "",

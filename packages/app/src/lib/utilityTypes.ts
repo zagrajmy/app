@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
 // imports are restricted in favor of this file
 
-import type { Mutable, PromiseType } from "utility-types";
 import type { Builtin } from "ts-essentials";
+import type { Mutable, PromiseType } from "utility-types";
 
 export type { Flavor, Brand, Dict } from "nom-ts";
 export type {

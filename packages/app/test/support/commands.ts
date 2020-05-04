@@ -1,40 +1,53 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
 // https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
-// add a custom command cy.foo()
-// Cypress.Commands.add('foo', () => 'foo');
 
 import "@testing-library/cypress/add-commands";
+
+import { getOrPanic } from "../../src/lib/validationErrorToError";
+import { AUTH0_DOMAIN, decodeTestAccount, env } from "../support/util";
+
+type TestAccountName = "UNVERIFIED" | "DEFAULT";
+
+Cypress.Commands.add(
+  "login",
+  (testAccountName: TestAccountName = "DEFAULT") => {
+    const testAccount = getOrPanic(
+      decodeTestAccount(env(`TEST_ACCOUNT_${testAccountName}`))
+    );
+
+    cy.request({
+      method: "POST",
+      url: `https://${AUTH0_DOMAIN}/oauth/token`,
+      body: {
+        grant_type: "password",
+        username: testAccount.username,
+        password: testAccount.password,
+        audience: `https://${AUTH0_DOMAIN}/userinfo`,
+        scope: "openid profile email",
+        client_id: env("AUTH0_CLIENT_ID"),
+        client_secret: env("AUTH0_CLIENT_SECRET"),
+      },
+    }).then((res) => {
+      const { access_token, expires_in, id_token } = res.body;
+      const auth0State = "some-random-state";
+      const callbackUrl = `/api/login-callback?access_token=${access_token}&scope=openid&id_token=${id_token}&expires_in=${expires_in}&token_type=Bearer&state=${auth0State}`;
+      const redirectTo = "/";
+
+      cy.setCookie("zm|redirectTo", redirectTo)
+        .setCookie("SameSite", "None")
+        .setCookie("a0:state", auth0State)
+        .visit(callbackUrl, {});
+    });
+  }
+);
 
 // see more example of adding custom commands to Cypress TS interface
 // in https://github.com/cypress-io/add-cypress-custom-command-in-typescript
 // add new command to the existing Cypress interface
 declare global {
   namespace Cypress {
-    interface Chainable {}
+    interface Chainable {
+      login(testAccountName: TestAccountName): Chainable<Response>;
+    }
   }
 }

@@ -154,23 +154,37 @@ export default class MyApp extends App<MyAppInitialProps> {
   render() {
     const { Component, pageProps, appState, blockingState } = this.props;
 
-    let page: React.ReactNode = null;
+    let root: React.ReactNode = null;
     switch (blockingState.type) {
       case "normal":
-        page = <Component {...pageProps} />;
+        root = (
+          <Styled.root sx={theme.styles.root}>
+            <NavHeader claims={appState.user} />
+            <Component {...pageProps} />
+            <AppFooter />
+          </Styled.root>
+        );
+
         break;
       case "email-not-verified":
-        page = (
-          <Page>
-            <EmailConfirmationScreen
-              sx={{ height: "76vh", my: 4 }}
-              username={
-                blockingState.session.user.nickname ||
-                blockingState.session.user.given_name
-              }
-            />
-          </Page>
-        );
+        {
+          const { user } = blockingState.session;
+          root = (
+            <Styled.root sx={theme.styles.root}>
+              <NavHeader claims={user} />
+              <Page>
+                <EmailConfirmationScreen
+                  sx={{ height: "76vh", my: 4 }}
+                  username={
+                    blockingState.session.user.nickname ||
+                    blockingState.session.user.given_name
+                  }
+                />
+              </Page>
+              <AppFooter />
+            </Styled.root>
+          );
+        }
         break;
       default:
         throw new UnreachableCaseError(blockingState);
@@ -184,11 +198,7 @@ export default class MyApp extends App<MyAppInitialProps> {
             stateFromInitialProps={appState}
             lang={pageProps.lang}
           >
-            <Styled.root sx={theme.styles.root}>
-              <NavHeader appState={appState} />
-              {page}
-              <AppFooter />
-            </Styled.root>
+            {root}
           </AppStateProvider>
         </ThemeUiProvider>
       </I18nextProvider>

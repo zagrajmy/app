@@ -1,7 +1,10 @@
 import { get } from "@theme-ui/css";
-import { useRef, useState, useMemo } from "react";
+import { NextPageContext } from "next";
+import { useRouter } from "next/router";
+import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import useSWR from "swr";
 import {
   Avatar,
   Box,
@@ -13,10 +16,9 @@ import {
   Textarea,
 } from "theme-ui";
 
-import { NextPageContext } from "next";
-import useSWR from "swr";
-import { useRouter } from "next/router";
+import { hasura } from "../../../data";
 import { Meeting, User } from "../../../data/types";
+import { AsyncReturnType } from "../../../src";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import {
   Container,
@@ -27,8 +29,6 @@ import {
   Theme,
 } from "../../../src/ui";
 import { CheckSquare, Edit } from "../../../src/ui/icons";
-import { hasura } from "../../../data";
-import { AsyncReturnType } from "../../../src";
 
 function queryMeeting(ctx: {
   req?: NextPageContext["req"];
@@ -109,7 +109,7 @@ interface InitialProps {
   initialData?: QueriedData;
 }
 
-export function MeetingDetailsPage({ initialData, ...rest }: InitialProps) {
+export function MeetingDetailsPage({ initialData }: InitialProps) {
   const { query } = useRouter();
   const { t } = useTranslation();
 
@@ -129,7 +129,9 @@ export function MeetingDetailsPage({ initialData, ...rest }: InitialProps) {
     setIsEditing(false);
   });
 
-  const meeting = useMemo(() => data?.meeting && Meeting.parse(data.meeting), [data]);
+  const meeting = useMemo(() => data?.meeting && Meeting.parse(data.meeting), [
+    data,
+  ]);
 
   if (!data) {
     return null; // TODO skeleton UI

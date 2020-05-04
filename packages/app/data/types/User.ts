@@ -40,7 +40,7 @@ export interface User
 }
 
 export const User = {
-  avatar(u: User) {
+  avatar(u: Pick<User, "avatar" | "slug">) {
     return (
       u.avatar ||
       `${

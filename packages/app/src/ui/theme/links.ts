@@ -1,6 +1,7 @@
 import { flow } from "fp-ts/lib/function";
 import { setSaturation, transparentize } from "polished";
 import { SystemStyleObject, Theme as ThemeUITheme } from "theme-ui";
+
 import { parseColor } from "./util";
 
 const underlined: SystemStyleObject = {

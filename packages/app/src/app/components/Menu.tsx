@@ -38,6 +38,10 @@ const Tip = () => (
 interface MenuProps extends ComponentProps<"details"> {
   claims: Claims;
 }
+
+/**
+ * @note https://adrianroselli.com/2017/10/dont-use-aria-menu-roles-for-site-nav.html
+ */
 export const Menu = ({ claims, ...rest }: MenuProps) => {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   useOnClickOutside(detailsRef, () => {

@@ -3,19 +3,18 @@ import { Link } from "next-next-link";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Select, SelectProps } from "../../ui";
-
 import {
-  SUPPORTED_LANGUAGES,
   assertLanguageIsSupported,
+  SUPPORTED_LANGUAGES,
   useLanguage,
 } from "../../i18n";
-import { StateFromAppInitialProps, useAppState } from "../store";
-import { NavLink } from "./NavLink";
 import { summon } from "../../lib";
-
+import { Select, SelectProps } from "../../ui";
+import type { Claims } from "../auth";
+import { useAppState } from "../store";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 import { Menu } from "./Menu";
+import { NavLink } from "./NavLink";
 
 interface LanguagePickerProps
   extends Omit<SelectProps, "ref" | "onChange" | "value"> {}
@@ -76,14 +75,14 @@ const LanguagePicker = (props: LanguagePickerProps) => {
 };
 
 export interface NavHeaderProps {
-  appState: Pick<StateFromAppInitialProps, "user">;
+  claims: Claims | undefined | null;
 }
 
 export const NavHeader = (props: NavHeaderProps) => {
   const { t } = useTranslation();
   const state = useAppState();
 
-  const user = state.user || props.appState.user;
+  const claims = state.user || props.claims;
 
   return (
     <header>
@@ -116,8 +115,8 @@ export const NavHeader = (props: NavHeaderProps) => {
             <NavLink href="/meetings">{t("meetings")}</NavLink>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
-            {user ? (
-              <Menu claims={user} />
+            {claims ? (
+              <Menu claims={claims} />
             ) : (
               <Link
                 href="/api/login"

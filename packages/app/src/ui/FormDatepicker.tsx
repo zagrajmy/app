@@ -1,22 +1,21 @@
-import pl from "date-fns/locale/pl";
-import { ReactNode, forwardRef } from "react";
-import ReactDatePicker, {
-  registerLocale,
-  ReactDatePickerProps,
-} from "react-datepicker";
-import { Controller, ControllerProps } from "react-hook-form";
 import {
+  differenceInCalendarDays,
   getMinutes,
-  getHours,
+  isSameDay,
   set,
   subMinutes,
-  isSameDay,
-  differenceInCalendarDays,
 } from "date-fns";
+import pl from "date-fns/locale/pl";
 import { array } from "fp-ts/lib/Array";
 import { none, some } from "fp-ts/lib/Option";
-
+import { forwardRef, ReactNode } from "react";
+import ReactDatePicker, {
+  ReactDatePickerProps,
+  registerLocale,
+} from "react-datepicker";
+import { Controller, ControllerProps } from "react-hook-form";
 import { SystemStyleObject } from "theme-ui";
+
 import { Calendar } from "./icons";
 import { Input } from "./Input";
 

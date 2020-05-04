@@ -1,7 +1,7 @@
-import { NextApiResponse } from "next";
-import * as TE from "fp-ts/lib/TaskEither";
 import { fold } from "fp-ts/lib/Either";
 import { flow } from "fp-ts/lib/function";
+import * as TE from "fp-ts/lib/TaskEither";
+import { NextApiResponse } from "next";
 
 import { makeError } from "./makeError";
 import { NonEmpty } from "./utilityTypes";

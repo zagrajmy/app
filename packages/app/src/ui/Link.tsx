@@ -1,4 +1,5 @@
 import { Link as BaseLink, LinkProps as BaseLinkProps } from "next-next-link";
+
 import { Theme, useTheme } from "./theme";
 
 export interface LinkProps extends BaseLinkProps {

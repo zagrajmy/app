@@ -1,7 +1,7 @@
-import { createElement, ComponentType } from "react";
+import { ComponentType,createElement } from "react";
 
-import { ApplicationState, useAppState } from "./store";
 import { Assign } from "../lib";
+import { ApplicationState, useAppState } from "./store";
 
 type InjectedProps = { user: NonNullable<ApplicationState['user']> }
 type ResultProps<P> = Omit<P, keyof InjectedProps>;

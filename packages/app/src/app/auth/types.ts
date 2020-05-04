@@ -1,4 +1,5 @@
 import { IClaims, ISession } from "@auth0/nextjs-auth0/dist/session/session";
+
 import { Brand } from "../../lib";
 
 /**
@@ -11,7 +12,7 @@ interface Auth0Claims extends IClaims {
   family_name: string;
   nickname: string;
   name: string;
-  picture?: string;
+  picture: string; // Auth0 provides default avatar
   locale?: string; // 'en'
   email: string;
   email_verified?: boolean;

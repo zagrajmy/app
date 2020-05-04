@@ -1,11 +1,11 @@
 import { formatRelative } from "date-fns";
+import { enUS,pl } from "date-fns/locale";
 import React from "react";
 import { Card, Image } from "theme-ui";
-import { pl, enUS } from "date-fns/locale";
 
 import { Meeting } from "../../../data/types";
-import { Link, LinkProps, Heading } from "../../ui";
-import { useLanguage, SupportedLanguage } from "../../i18n";
+import { SupportedLanguage,useLanguage } from "../../i18n";
+import { Heading,Link, LinkProps } from "../../ui";
 
 const pickLocale = (language: SupportedLanguage) =>
   language === "pl" ? pl : enUS;
