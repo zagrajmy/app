@@ -75,6 +75,10 @@ export const theme = makeTheme({
   },
   styles: {
     root: {
+      "*": {
+        outlineColor: "secondary",
+        boxSizing: "border-box",
+      },
       fontSize: "16px",
       lineHeight: "body",
       minHeight: "100vh",
@@ -84,10 +88,6 @@ export const theme = makeTheme({
       display: "flex",
       flexDirection: "column",
       textRendering: "optimizeLegibility",
-      "*": {
-        boxSizing: "border-box",
-        outlineColor: "secondary",
-      },
       h1: {
         fontWeight: 800,
         fontSize: 8,

@@ -7,7 +7,6 @@
  */
 
 import { createContext, useContext, useRef } from "react";
-import { useTranslation } from "react-i18next";
 
 import { Claims } from "../auth";
 
@@ -26,34 +25,16 @@ const ctx = createContext(initialState);
 
 export const useAppState = () => useContext(ctx);
 
-export type StateFromAppInitialProps = Partial<Pick<ApplicationState, "user">>;
-
 interface AppStateProviderProps {
-  stateFromInitialProps: StateFromAppInitialProps;
-  lang: string;
+  stateFromInitialProps: ApplicationState;
 }
 
 const { Provider } = ctx;
 
-const useOnceImmediately = (f: () => void) => {
-  const done = useRef(false);
-  if (!done) {
-    f();
-  }
-};
-
 export const AppStateProvider: React.FC<AppStateProviderProps> = ({
   children,
   stateFromInitialProps,
-  lang,
 }) => {
-  const { i18n } = useTranslation();
-  useOnceImmediately(() => {
-    if (lang !== i18n.language) {
-      // we need this in first render
-      i18n.changeLanguage(lang);
-    }
-  });
   // if (process.env.NODE_ENV === "development") {
   //   // eslint-disable-next-line react-hooks/rules-of-hooks
   //   useEffect(() => {

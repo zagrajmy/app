@@ -44,9 +44,16 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
 
   return (
     <Fragment>
-      <header sx={{ py: 3, display: "flex", justifyContent: "flex-end" }}>
+      <header
+        sx={{
+          py: 3,
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }}
+      >
         <Input
-          placeholder="Szukaj spotkań"
+          placeholder={t("search-meetings")}
           sx={{ mr: 2, flexGrow: 1 }}
           icon={<Search />}
         />

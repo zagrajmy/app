@@ -47,7 +47,7 @@ Cypress.Commands.add(
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(testAccountName: TestAccountName): Chainable<Response>;
+      login(testAccountName?: TestAccountName): Chainable<Response>;
     }
   }
 }

@@ -11,7 +11,7 @@ export const AppFooter = () => {
       <ul
         sx={{
           height: "68px",
-          p: "4px 12px",
+          px: 2,
           margin: 0,
           display: "flex",
           alignItems: "center",

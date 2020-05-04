@@ -1,6 +1,6 @@
 import { alpha } from "@theme-ui/color";
 import { Link } from "next-next-link";
-import React from "react";
+import React, { ComponentProps } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -74,18 +74,23 @@ const LanguagePicker = (props: LanguagePickerProps) => {
   );
 };
 
-export interface NavHeaderProps {
+export interface NavHeaderProps extends ComponentProps<"header"> {
   claims: Claims | undefined | null;
+  links?: string[];
 }
 
-export const NavHeader = (props: NavHeaderProps) => {
+export const NavHeader = ({
+  claims: propsClaims,
+  links = [],
+  ...rest
+}: NavHeaderProps) => {
   const { t } = useTranslation();
   const state = useAppState();
 
-  const claims = state.user || props.claims;
+  const claims = state.user || propsClaims;
 
   return (
-    <header>
+    <header {...rest}>
       <nav
         sx={{
           bg: "gray.9",
@@ -95,7 +100,7 @@ export const NavHeader = (props: NavHeaderProps) => {
         <ul
           sx={{
             height: "68px",
-            p: "4px 12px",
+            px: 2,
             margin: 0,
             display: "flex",
             alignItems: "center",
@@ -111,9 +116,11 @@ export const NavHeader = (props: NavHeaderProps) => {
           <HeaderFooterListItem>
             <LanguagePicker />
           </HeaderFooterListItem>
-          <HeaderFooterListItem>
-            <NavLink href="/meetings">{t("meetings")}</NavLink>
-          </HeaderFooterListItem>
+          {links.map((s) => (
+            <HeaderFooterListItem key={s}>
+              <NavLink href={`/${s}`}>{t(s)}</NavLink>
+            </HeaderFooterListItem>
+          ))}
           <HeaderFooterListItem>
             {claims ? (
               <Menu claims={claims} />

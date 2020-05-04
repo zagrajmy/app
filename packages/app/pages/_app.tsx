@@ -5,24 +5,22 @@ import "react-datepicker/dist/react-datepicker.css";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Global, InterpolationWithTheme } from "@emotion/core";
 import { universalLanguageDetect } from "@unly/universal-language-detector";
-import App, { AppContext } from "next/app";
+import App, { AppContext, AppProps } from "next/app";
 import {
   AppInitialProps,
-  loadGetInitialProps,
   NextPageContext,
 } from "next/dist/next-server/lib/utils";
 import { parseCookies } from "nookies";
-import React from "react";
+import React, { useRef } from "react";
 import { I18nextProvider } from "react-i18next";
 import { Styled, ThemeProvider as ThemeUiProvider } from "theme-ui";
-import { UnreachableCaseError } from "ts-essentials";
 
 import { hasura } from "../data";
 import { queryUserByAuth0Id } from "../data/queries";
 import { auth, Session } from "../src/app/auth";
 import { NavHeader, Page } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
-import { AppStateProvider, StateFromAppInitialProps } from "../src/app/store";
+import { ApplicationState, AppStateProvider } from "../src/app/store";
 import {
   FALLBACK_LANG,
   i18n,
@@ -33,7 +31,7 @@ import { EmailConfirmationScreen } from "../src/ui/messageScreens";
 import { theme } from "../src/ui/theme";
 
 function detectLanguage(
-  ctx: NextPageContext,
+  req: Exclude<NextPageContext["req"], undefined>,
   cookies: {
     [key: string]: string;
   }
@@ -41,7 +39,7 @@ function detectLanguage(
   return universalLanguageDetect({
     supportedLanguages: [...SUPPORTED_LANGUAGES],
     fallbackLanguage: FALLBACK_LANG,
-    acceptLanguageHeader: ctx.req?.headers?.["accept-language"],
+    acceptLanguageHeader: req.headers?.["accept-language"],
     serverCookies: cookies,
     errorHandler: (error, level, origin, context) => {
       console.error(error, level, origin, context);
@@ -49,17 +47,12 @@ function detectLanguage(
   });
 }
 
-type ModalBlockingState =
-  | { type: "normal" }
-  | { type: "email-not-verified"; session: Session };
-
-export namespace ModalBlockingState {
-  export const Normal = { type: "normal" } as const;
-  export const EmailNotVerified = (session: Session) => ({
-    type: "email-not-verified" as const,
-    session,
-  });
-}
+const useOnceImmediately = (f: () => void) => {
+  const done = useRef(false);
+  if (!done.current) {
+    f();
+  }
+};
 
 export type InjectedPageProps = {
   // is this needed?
@@ -68,140 +61,106 @@ export type InjectedPageProps = {
 };
 
 const globalStyles: InterpolationWithTheme<any> = {
-  body: {
-    margin: 0,
-  },
-  html: {
-    boxSizing: "border-box",
-  },
-  "*, *:before, *:after": {
-    boxSizing: "inherit",
-  },
+  body: { margin: 0 },
 };
 
-interface MyAppInitialProps extends AppInitialProps {
-  appState: StateFromAppInitialProps;
-  blockingState: ModalBlockingState;
+interface MyAppInitialProps extends AppInitialProps, AppProps {
+  appState: ApplicationState;
+  lang: string;
+  session?: Session | null;
 }
 
-export default class MyApp extends App<MyAppInitialProps> {
-  /**
-   * We might this logic outside some day when we want to
-   * optimize landing/non-app pages.
-   * https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
-   */
-  static async getInitialProps({
-    Component,
-    ctx,
-  }: AppContext): Promise<MyAppInitialProps> {
-    const pageProps = await loadGetInitialProps(Component, ctx);
+export default function MyApp({
+  Component,
+  pageProps,
+  appState,
+  session: propsSession,
+  lang,
+}: MyAppInitialProps) {
+  const session = useRef<Session | undefined | null>();
+  session.current = propsSession || session.current;
 
-    const session = ctx.req && (await auth.getSession(ctx.req));
-
-    const cookies = parseCookies(ctx);
-
-    let lang = "en";
-    let user: { uuid: string; locale: string } | undefined = undefined;
-
-    if (!session) {
-      lang = detectLanguage(ctx, cookies);
-      return {
-        appState: {},
-        pageProps: {
-          ...pageProps,
-          lang: detectLanguage(ctx, cookies),
-        },
-        blockingState: ModalBlockingState.Normal,
-      };
+  useOnceImmediately(() => {
+    if (lang !== i18n.language) {
+      // we need this in first render
+      i18n.changeLanguage(lang);
     }
+  });
 
-    if (!session.user.email_verified) {
-      return {
-        appState: {},
-        pageProps: {
-          ...pageProps,
-          lang: detectLanguage(ctx, cookies),
-          cookies,
-        },
-        blockingState: ModalBlockingState.EmailNotVerified(session),
-      };
-    }
+  let root: React.ReactNode = null;
+  if (session.current && !session.current.user.email_verified) {
+    const { user } = session.current;
 
+    root = (
+      <Styled.root sx={theme.styles.root}>
+        <NavHeader claims={user} />
+        <Page>
+          <EmailConfirmationScreen
+            sx={{ height: "76vh", my: 4 }}
+            username={user.nickname || user.given_name}
+          />
+        </Page>
+        <AppFooter />
+      </Styled.root>
+    );
+  } else {
+    root = (
+      <Styled.root sx={theme.styles.root}>
+        <NavHeader claims={appState.user} links={["meetings"]} />
+        <Component {...pageProps} />
+        <AppFooter />
+      </Styled.root>
+    );
+  }
+
+  return (
+    <I18nextProvider i18n={i18n}>
+      <ThemeUiProvider theme={theme}>
+        <Global styles={globalStyles} />
+        <AppStateProvider stateFromInitialProps={appState}>
+          {root}
+        </AppStateProvider>
+      </ThemeUiProvider>
+    </I18nextProvider>
+  );
+}
+
+/**
+ * We might this move logic outside some day when we want to
+ * optimize landing/non-app pages.
+ * https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
+ */
+
+MyApp.getInitialProps = async (context: AppContext) => {
+  const appProps = await App.getInitialProps(context);
+  const { ctx } = context;
+
+  const session = ctx.req && (await auth.getSession(ctx.req));
+
+  let user: { uuid: string; locale: string } | undefined = undefined;
+
+  if (session) {
     user = await queryUserByAuth0Id(
       hasura.fromCookies(ctx.req!).query,
       session.user.sub,
       { uuid: true, locale: true }
     );
-    if (user) {
-      // this will almost always be true
-      lang = user.locale;
-    }
-
-    const appState: StateFromAppInitialProps =
-      session?.user && user ? { user: { ...session.user, ...user } } : {};
-
-    return {
-      appState,
-      pageProps: {
-        ...pageProps,
-        lang,
-        cookies,
-      },
-      blockingState: ModalBlockingState.Normal,
-    };
   }
 
-  render() {
-    const { Component, pageProps, appState, blockingState } = this.props;
-
-    let root: React.ReactNode = null;
-    switch (blockingState.type) {
-      case "normal":
-        root = (
-          <Styled.root sx={theme.styles.root}>
-            <NavHeader claims={appState.user} />
-            <Component {...pageProps} />
-            <AppFooter />
-          </Styled.root>
-        );
-
-        break;
-      case "email-not-verified":
-        {
-          const { user } = blockingState.session;
-          root = (
-            <Styled.root sx={theme.styles.root}>
-              <NavHeader claims={user} />
-              <Page>
-                <EmailConfirmationScreen
-                  sx={{ height: "76vh", my: 4 }}
-                  username={
-                    blockingState.session.user.nickname ||
-                    blockingState.session.user.given_name
-                  }
-                />
-              </Page>
-              <AppFooter />
-            </Styled.root>
-          );
-        }
-        break;
-      default:
-        throw new UnreachableCaseError(blockingState);
-    }
-
-    return (
-      <I18nextProvider i18n={i18n}>
-        <ThemeUiProvider theme={theme}>
-          <Global styles={globalStyles} />
-          <AppStateProvider
-            stateFromInitialProps={appState}
-            lang={pageProps.lang}
-          >
-            {root}
-          </AppStateProvider>
-        </ThemeUiProvider>
-      </I18nextProvider>
-    );
+  let lang = "en";
+  if (user) {
+    lang = user.locale;
+  } else if (ctx.req) {
+    lang = detectLanguage(ctx.req, parseCookies(ctx));
   }
-}
+
+  const appState: ApplicationState =
+    session?.user && user ? { user: { ...session.user, ...user } } : {};
+
+  return {
+    ...appProps,
+    appState,
+    session,
+    lang,
+  };
+};

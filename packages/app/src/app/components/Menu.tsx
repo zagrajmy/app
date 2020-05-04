@@ -17,7 +17,7 @@ const Tip = () => (
       position: "absolute",
       right: 0,
       bottom: "calc(100% - 2px)",
-      pr: 1,
+      pr: 2,
       pt: "2px",
     }}
   >
@@ -55,7 +55,6 @@ export const Menu = ({ claims, ...rest }: MenuProps) => {
       ref={detailsRef}
       sx={{
         height: "48px",
-        width: "48px",
         position: "relative",
       }}
       {...rest}

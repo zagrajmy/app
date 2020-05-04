@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -10,9 +10,9 @@ import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
 import { Container, Link } from "../src/ui";
 import { NoPublishedMeetingsScreen } from "../src/ui/messageScreens/NoPublishedMeetings";
 
-type InitialProps = { meetings: Meeting[] };
+type IndexPageProps = { meetings: Meeting[] };
 
-const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
+const IndexPage: NextPage<IndexPageProps> = ({ meetings }) => {
   const { t } = useTranslation();
 
   return (
@@ -77,10 +77,12 @@ const IndexPage: NextPage<InitialProps> = ({ meetings }) => {
   );
 };
 
-IndexPage.getInitialProps = async (ctx): Promise<InitialProps> => {
+export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
+  ctx
+) => {
   const meetings = await getRecentlyPublishedMeetings(ctx.req, 3);
 
-  return { meetings: meetings.map(Meeting.parse) };
+  return { props: { meetings: meetings.map(Meeting.parse) } };
 };
 
 export default IndexPage;

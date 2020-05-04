@@ -42,7 +42,7 @@ const addAuth0Id = (db: Db, user: { uuid: string }, auth0Id: string) =>
   db.mutation({
     update_user_by_pk: [
       { pk_columns: { uuid: user.uuid }, _set: { auth0_id: auth0Id } },
-      {},
+      { auth0_id: true },
     ],
   });
 
