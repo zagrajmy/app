@@ -1,15 +1,15 @@
 import { NextPage } from "next";
 import useSWR from "swr";
-import { Container,Heading } from "theme-ui";
+import { Container, Heading } from "theme-ui";
 import { assert } from "ts-essentials";
 
-import { Dl,summon } from "../src";
+import { Dl, summon } from "../src";
 import { auth } from "../src/app/auth";
 import { Page } from "../src/app/components";
 import { withUser } from "../src/app/withUser";
 import { HttpError } from "../src/lib/HttpError";
 
-type WeResponseJson = import("./api/u/me").GetMeResponseJson;
+type MeResponseJson = import("./api/u/me").GetMeResponseJson;
 
 type SettingsProps = {};
 
@@ -18,7 +18,7 @@ const Settings: NextPage<SettingsProps> = withUser(({ user }) => {
     summon(url).then((res) => {
       if (res.ok) {
         // TODO: consider io-ts or typescript-is?
-        return res.json() as Promise<WeResponseJson>;
+        return res.json() as Promise<MeResponseJson>;
       }
       throw new HttpError(res);
     })
