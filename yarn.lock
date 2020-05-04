@@ -14958,14 +14958,7 @@ mkdirp@*, mkdirp@1.x, mkdirp@^1.0.3:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.3.tgz#4cf2e30ad45959dddea53ad97d518b6c8205e1ea"
   integrity sha512-6uCP4Qc0sWsgMLy1EOqqS/3rjDHOEnsStVr/4vtAIK2Y5i2kA7lFFejYrpIyiN9w0pYf4ckeCYT9f1r1P9KX5g==
 
-mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@~0.5.1:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.4.tgz#fd01504a6797ec5c9be81ff43d204961ed64a512"
-  integrity sha512-iG9AK/dJLtJ0XNgTuDbSyNS3zECqDlAhnQW4CsNxBG3LQJBbHmRX1egw39DmtOdCAqY+dKXV+sgPgilNWUKMVw==
-  dependencies:
-    minimist "^1.2.5"
-
-mkdirp@^0.5.4:
+mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.4, mkdirp@~0.5.1:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.5.tgz#d91cefd62d1436ca0f41620e251288d420099def"
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
@@ -19236,12 +19229,7 @@ semver@7.0.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
   integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
 
-semver@^7.1.3:
-  version "7.1.3"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.1.3.tgz#e4345ce73071c53f336445cfc19efb1c311df2a6"
-  integrity sha512-ekM0zfiA9SCBlsKa2X1hxyxiI4L3B6EbVJkkdgQXnSEEaHlGdvyodMruTiulSRWMMB4NeIuYNMC9rTKTz97GxA==
-
-semver@^7.3.2:
+semver@^7.1.3, semver@^7.3.2:
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
   integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
@@ -21188,26 +21176,10 @@ ts-invariant@^0.4.0:
   dependencies:
     tslib "^1.9.3"
 
-ts-jest@^25.2.1:
-  version "25.3.0"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-25.3.0.tgz#c12d34573cbe34d49f10567940e44fd19d1c9178"
-  integrity sha512-qH/uhaC+AFDU9JfAueSr0epIFJkGMvUPog4FxSEVAtPOur1Oni5WBJMiQIkfHvc7PviVRsnlVLLY2I6221CQew==
-  dependencies:
-    bs-logger "0.x"
-    buffer-from "1.x"
-    fast-json-stable-stringify "2.x"
-    json5 "2.x"
-    lodash.memoize "4.x"
-    make-error "1.x"
-    mkdirp "1.x"
-    resolve "1.x"
-    semver "6.x"
-    yargs-parser "^18.1.1"
-
-ts-jest@^25.3.1:
-  version "25.3.1"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-25.3.1.tgz#58e2ed3506e4e4487c0b9b532846a5cade9656ba"
-  integrity sha512-O53FtKguoMUByalAJW+NWEv7c4tus5ckmhfa7/V0jBb2z8v5rDSLFC1Ate7wLknYPC1euuhY6eJjQq4FtOZrkg==
+ts-jest@^25.2.1, ts-jest@^25.3.1:
+  version "25.4.0"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-25.4.0.tgz#5ad504299f8541d463a52e93e5e9d76876be0ba4"
+  integrity sha512-+0ZrksdaquxGUBwSdTIcdX7VXdwLIlSRsyjivVA9gcO+Cvr6ByqDhu/mi5+HCcb6cMkiQp5xZ8qRO7/eCqLeyw==
   dependencies:
     bs-logger "0.x"
     buffer-from "1.x"
