@@ -79,7 +79,7 @@
     "react-hook-form": "^5.2.0",
     "react-i18next": "^11.3.4",
     "react-window-infinite-loader": "^1.0.5",
-    "snyk": "^1.316.0",
+    "snyk": "^1.319.0",
     "styled-system": "^5.1.5",
     "swr": "^0.2.0",
     "theme-ui": "^0.4.0-alpha.0",

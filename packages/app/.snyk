@@ -554,3 +554,35 @@ patch:
         patched: '2020-04-30T13:13:32.067Z'
     - docz > gatsby-theme-docz > gatsby > gatsby-cli > gatsby-recipes > @mdx-js/runtime > @mdx-js/mdx > remark-mdx > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
         patched: '2020-04-30T13:13:32.067Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/core > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/core > @babel/helper-module-transforms > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/core > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/core > @babel/helpers > @babel/traverse > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/core > @babel/helper-module-transforms > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/core > @babel/helpers > @babel/traverse > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
+    - docz > gatsby-theme-docz > gatsby > gatsby-plugin-typescript > @babel/preset-typescript > @babel/plugin-transform-typescript > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-06T01:55:35.628Z'
