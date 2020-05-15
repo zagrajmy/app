@@ -27,7 +27,7 @@ import {
   SUPPORTED_LANGUAGES,
   SupportedLanguage,
 } from "../src/i18n";
-import { EmailConfirmationScreen } from "../src/ui/messageScreens";
+import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
 import { theme } from "../src/ui/theme";
 
 function detectLanguage(

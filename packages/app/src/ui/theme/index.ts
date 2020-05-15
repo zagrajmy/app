@@ -99,6 +99,7 @@ export const theme = makeTheme({
       h3: {
         fontSize: 3,
       },
+      p: { maxWidth: "70ch" },
     },
   },
   buttons,

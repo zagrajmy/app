@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import { Flex, Grid, Heading } from "theme-ui";
 
-import { Center } from "../Center";
+import { Center } from "../../Center";
 
 const Human = () => (
   <svg

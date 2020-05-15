@@ -8,7 +8,7 @@ import { getRecentlyPublishedMeetings } from "../src/app/api-helpers";
 import { MeetingCard, Page } from "../src/app/components";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
 import { Container, Link } from "../src/ui";
-import { NoPublishedMeetingsScreen } from "../src/ui/messageScreens/NoPublishedMeetings";
+import { NoPublishedMeetingsScreen } from "../src/ui/organisms/messageScreens";
 
 type IndexPageProps = { meetings: Meeting[] };
 
