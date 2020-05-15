@@ -7,26 +7,17 @@ import { Dl, summon } from "../src";
 import { auth } from "../src/app/auth";
 import { Page } from "../src/app/components";
 import { withUser } from "../src/app/withUser";
-import { HttpError } from "../src/lib/HttpError";
 
 type MeResponseJson = import("./api/u/me").GetMeResponseJson;
 
 type SettingsProps = {};
 
-const Settings: NextPage<SettingsProps> = withUser(({ user }) => {
-  const sameEmailUsers = useSWR("/api/u/me", (url) =>
-    summon(url).then((res) => {
-      if (res.ok) {
-        // TODO: consider io-ts or typescript-is?
-        return res.json() as Promise<MeResponseJson>;
-      }
-      throw new HttpError(res);
-    })
-  );
+const Settings: NextPage<SettingsProps> = withUser(function Settings({ user }) {
+  const sameEmailUsers = useSWR<MeResponseJson, Error>(`/api/u/me`, summon);
 
   if (sameEmailUsers.error) {
     // TODO: handle 403: don't show anything
-    console.error(sameEmailUsers);
+    console.error(sameEmailUsers.error);
   }
 
   assert(
@@ -49,7 +40,7 @@ const Settings: NextPage<SettingsProps> = withUser(({ user }) => {
         {sameEmailUsers.data && (
           <section>
             <Heading as="h3">Your Accounts</Heading>
-            {sameEmailUsers.data.users.map((u) => (
+            {sameEmailUsers.data.users.map(u => (
               <Dl.FromObject value={u} key={u.user_id} />
             ))}
           </section>
