@@ -34,10 +34,6 @@ const LanguagePicker = (props: LanguagePickerProps) => {
         locale: value,
       },
     })
-      .then(() => {
-        // temporary lazy solution
-        // window.location.reload();
-      })
       .catch((err) => {
         console.error(err);
         // TODO: Rollback application if it failed
