@@ -33,12 +33,11 @@ const LanguagePicker = (props: LanguagePickerProps) => {
       json: {
         locale: value,
       },
-    })
-      .catch((err) => {
-        console.error(err);
-        // TODO: Rollback application if it failed
-        // TODO: Display error toast
-      });
+    }).catch((err) => {
+      console.error(err);
+      // TODO: Rollback application if it failed
+      // TODO: Display error toast
+    });
   };
 
   return (

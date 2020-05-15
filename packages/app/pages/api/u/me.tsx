@@ -19,14 +19,14 @@ export type GetMeResponseJson = { users: User[] };
  * Returns users from Auth0 Management API with matching email
  * for the user in current session if his email is verified.
  */
-const getLoggedInUserData: ReqHandler<[Claims], GetMeResponseJson> = user => {
+const getLoggedInUserData: ReqHandler<[Claims], GetMeResponseJson> = (user) => {
   if (!user.email_verified) {
     return ReqHandler.left(401, "email not verified");
   }
 
   return TE.tryCatch(
     () =>
-      auth.management.getUsersByEmail(user.email).then(users => ({ users })),
+      auth.management.getUsersByEmail(user.email).then((users) => ({ users })),
     ReqHandler.Err(500)
   );
 };
@@ -37,7 +37,7 @@ export type PatchMeResponseJson = {
 };
 
 const PatchMeRequestBody = t.partial({
-  locale: t.union(asMutable(SUPPORTED_LANGUAGES.map(l => t.literal(l)))),
+  locale: t.union(asMutable(SUPPORTED_LANGUAGES.map((l) => t.literal(l)))),
 });
 
 const patchLoggedInUser: ReqHandler<
@@ -57,9 +57,9 @@ const patchLoggedInUser: ReqHandler<
             { returning: { uuid: true, locale: true } },
           ],
         })
-        .then(res => res.update_user?.returning[0] || {});
+        .then((res) => res.update_user?.returning[0] || {});
     },
-    reason => {
+    (reason) => {
       console.error({ reason });
       return ReqHandler.Err(500, "failed to update user");
     }
@@ -85,7 +85,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse) {
             E.chain(
               flow(
                 PatchMeRequestBody.decode,
-                E.mapLeft<t.Errors, ReqHandler.Err>(validationErrors => ({
+                E.mapLeft<t.Errors, ReqHandler.Err>((validationErrors) => ({
                   status: 400,
                   error: makeError(formatValidationErrors(validationErrors)),
                 }))

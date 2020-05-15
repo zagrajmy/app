@@ -10972,9 +10972,9 @@ export const TypesPropsResolver = ({
     if (typeof resolvedType === "object") {
       const argsKeys = Object.keys(resolvedType);
       return `{${argsKeys
-        .filter(ak => value[ak] !== undefined)
+        .filter((ak) => value[ak] !== undefined)
         .map(
-          ak =>
+          (ak) =>
             `${ak}:${TypesPropsResolver({
               value: value[ak],
               type: typeResolved,
@@ -10996,7 +10996,7 @@ const isArrayFunction = (parent: string[], a: any[]) => {
     return keyValues.length > 0
       ? `(${keyValues
           .map(
-            v =>
+            (v) =>
               `${v}:${TypesPropsResolver({
                 value: values[v],
                 type: mainKey,
@@ -11018,7 +11018,7 @@ const isArrayFunction = (parent: string[], a: any[]) => {
     keyValues.length > 0
       ? `(${keyValues
           .map(
-            v =>
+            (v) =>
               `${v}:${TypesPropsResolver({
                 value: values[v],
                 type: valueToResolve,
@@ -11043,7 +11043,7 @@ const resolveKV = (
 
 const objectToTree = (o: { [x: string]: boolean | string }): string =>
   `{${Object.keys(o)
-    .map(k => `${resolveKV(k, o[k])}`)
+    .map((k) => `${resolveKV(k, o[k])}`)
     .join(" ")}}`;
 
 const traverseToSeekArrays = (parent: string[], a?: any): string => {
@@ -11056,9 +11056,9 @@ const traverseToSeekArrays = (parent: string[], a?: any): string => {
     return isArrayFunction([...parent], a);
   } else {
     if (typeof a === "object") {
-      Object.keys(a).map(k => {
+      Object.keys(a).map((k) => {
         if (k === "__alias") {
-          Object.keys(a[k]).map(aliasKey => {
+          Object.keys(a[k]).map((aliasKey) => {
             const aliasOperations = a[k][aliasKey];
             const aliasOperationName = Object.keys(aliasOperations)[0];
             const aliasOperation = aliasOperations[aliasOperationName];
@@ -11094,13 +11094,13 @@ const inspectVariables = (query: string) => {
     return query;
   }
   let filteredQuery = query;
-  AllVariables.forEach(variable => {
+  AllVariables.forEach((variable) => {
     filteredQuery = filteredQuery.replace(
       variable,
       variable.split("__ZEUS_VAR__")[0]
     );
   });
-  return `(${AllVariables.map(a => a.split("__ZEUS_VAR__"))
+  return `(${AllVariables.map((a) => a.split("__ZEUS_VAR__"))
     .map(([variableName, variableType]) => `${variableName}:${variableType}`)
     .join(", ")})${filteredQuery}`;
 };
@@ -11123,7 +11123,7 @@ const seekForAliases = (o: any) => {
     if (keys.length < 1) {
       return;
     }
-    keys.forEach(k => {
+    keys.forEach((k) => {
       const value = o[k];
       if (k.indexOf("__alias__") !== -1) {
         const [operation, alias] = k.split("__alias__");
@@ -11155,7 +11155,7 @@ const handleFetchResponse = (
     return new Promise((resolve, reject) => {
       response
         .text()
-        .then(text => {
+        .then((text) => {
           try {
             reject(JSON.parse(text));
           } catch (err) {

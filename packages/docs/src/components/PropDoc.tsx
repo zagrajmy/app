@@ -2,6 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import cs from "gatsby-theme-docz/src/components";
 import { Fragment } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { jsx } from "theme-ui";
 
 interface PropDocProps {

@@ -3,9 +3,9 @@
 /** @jsx jsx */
 
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
+import { ComponentProps } from "react";
 import { jsx, Styled } from "theme-ui";
 
-import { ComponentProps } from "react";
 import { syntaxStyles } from "../../theme/syntax";
 import { usePrismTheme } from "../../utils/theme";
 

@@ -1,7 +1,7 @@
 import { head } from "fp-ts/lib/Array";
 import { toUndefined } from "fp-ts/lib/Option";
-import { Db } from "./hasura";
 import { ValueTypes } from "./graphql-zeus";
+import { Db } from "./hasura";
 
 export const queryUserByAuth0Id = <T extends ValueTypes["user"]>(
   query: Db["query"],

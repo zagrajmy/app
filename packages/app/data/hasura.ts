@@ -2,8 +2,8 @@ import { record } from "fp-ts/lib/Record";
 import { IncomingMessage } from "http";
 import { parseCookies } from "nookies";
 
-import { globals } from "../src/lib/summon";
 import { isDefined } from "../src/lib/isDefined";
+import { globals } from "../src/lib/summon";
 import { Chain } from "./graphql-zeus";
 
 if (typeof fetch === "undefined") {

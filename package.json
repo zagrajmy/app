@@ -29,12 +29,15 @@
     "jest": "^25.2.7",
     "jest-fetch-mock": "^3.0.3",
     "lerna": "^3.20.2",
-    "prettier": "^2.0.2",
+    "prettier": "^2.0.5",
     "ts-jest": "^25.3.1",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "cross-env": "^7.0.2",
     "postinstall-postinstall": "^2.1.0"
+  },
+  "resolutions": {
+    "prettier": "^2.0.5"
   }
 }

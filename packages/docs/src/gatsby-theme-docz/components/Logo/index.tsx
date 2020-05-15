@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { Link, useConfig } from "docz";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Flex, jsx } from "theme-ui";
 
 export const Logo = () => {

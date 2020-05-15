@@ -13,7 +13,6 @@ import { jsx } from "theme-ui";
 
 import { syntaxStyles } from "../../theme/syntax";
 import { usePrismTheme } from "../../utils/theme";
-
 import * as styles from "./styles";
 
 const getResizableProps = (width: string, setWidth: (v: string) => void) => ({

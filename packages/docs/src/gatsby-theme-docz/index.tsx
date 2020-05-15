@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 /** @jsx jsx */
 /* eslint-disable import/no-extraneous-dependencies */
+import { theme as appTheme } from "@zagrajmy/app";
 import {
   ComponentsProvider,
   theme as makeThemeProvider,
@@ -10,11 +11,8 @@ import baseComponents from "gatsby-theme-docz/src/components";
 import * as modes from "gatsby-theme-docz/src/theme/modes";
 import prism from "gatsby-theme-docz/src/theme/prism";
 import styles from "gatsby-theme-docz/src/theme/styles";
-import { jsx, ThemeProvider } from "theme-ui";
-
 import Router from "next/router";
-
-import { theme as appTheme } from "@zagrajmy/app";
+import { jsx, ThemeProvider } from "theme-ui";
 
 import { PropDoc } from "../components/PropDoc";
 

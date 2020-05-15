@@ -40,7 +40,7 @@ const Settings: NextPage<SettingsProps> = withUser(function Settings({ user }) {
         {sameEmailUsers.data && (
           <section>
             <Heading as="h3">Your Accounts</Heading>
-            {sameEmailUsers.data.users.map(u => (
+            {sameEmailUsers.data.users.map((u) => (
               <Dl.FromObject value={u} key={u.user_id} />
             ))}
           </section>

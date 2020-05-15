@@ -1,8 +1,7 @@
+import { theme } from "@zagrajmy/app";
 import * as colors from "gatsby-theme-docz/src/theme/colors";
 import prismDark from "gatsby-theme-docz/src/theme/prism/dark";
 import prismLight from "gatsby-theme-docz/src/theme/prism/light";
-
-import { theme } from "@zagrajmy/app";
 
 const { colors: cx } = theme;
 

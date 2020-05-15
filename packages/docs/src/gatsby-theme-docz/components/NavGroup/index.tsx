@@ -13,7 +13,7 @@ export interface NavGroupProps {
 export const NavGroup = ({ item, sidebarRef }: NavGroupProps) => {
   const currentDoc = useCurrentDoc();
   const currentDocRef = React.useRef<HTMLDivElement>();
-  const { name, menu } = item;
+  const { menu } = item;
   const [subheadingsVisible, setShowsubheadings] = React.useState(true);
 
   const toggleSubheadings = () => setShowsubheadings(!subheadingsVisible);
@@ -65,18 +65,18 @@ export const NavGroup = ({ item, sidebarRef }: NavGroupProps) => {
       <div sx={{ ml: 2 }} data-testid="nav-group-links">
         {menu &&
           subheadingsVisible &&
-          menu.map((menu) => {
-            if (currentDoc.route === menu.route) {
+          menu.map((x) => {
+            if (currentDoc.route === x.route) {
               return (
-                <NavLink key={menu.id} item={menu} ref={currentDocRef}>
-                  {menu.name}
+                <NavLink key={x.id} item={x} ref={currentDocRef}>
+                  {x.name}
                 </NavLink>
               );
             }
 
             return (
-              <NavLink key={menu.id} item={menu}>
-                {menu.name}
+              <NavLink key={x.id} item={x}>
+                {x.name}
               </NavLink>
             );
           })}

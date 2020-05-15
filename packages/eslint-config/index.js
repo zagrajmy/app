@@ -4,12 +4,7 @@ module.exports = {
   rules: {
     "sonarjs/no-duplicate-string": "off",
     "jsx-a11y/anchor-has-content": "off",
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        components: ["Link"],
-      },
-    ],
+    "jsx-a11y/anchor-is-valid": "off",
     "no-restricted-syntax": "off",
     "no-nested-ternary": "off",
     "react/prop-types": "off",
