@@ -106,7 +106,10 @@ export default function MyApp({
   } else {
     root = (
       <Styled.root sx={theme.styles.root}>
-        <NavHeader claims={appState.user} links={["meetings"]} />
+        <NavHeader
+          claims={appState.user}
+          // links={["meetings"]}
+        />
         <Component {...pageProps} />
         <AppFooter />
       </Styled.root>

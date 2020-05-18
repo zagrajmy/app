@@ -16,5 +16,6 @@ module.exports = {
     "sort-imports": "off",
     "import/order": "off",
     "simple-import-sort/sort": "error",
+    "no-else-return": "off",
   },
 };
