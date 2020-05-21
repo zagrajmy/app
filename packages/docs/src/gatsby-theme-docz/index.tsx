@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-filename-extension */
-/** @jsx jsx */
 /* eslint-disable import/no-extraneous-dependencies */
 import { theme as appTheme } from "@zagrajmy/app";
 import {
@@ -12,7 +11,7 @@ import * as modes from "gatsby-theme-docz/src/theme/modes";
 import prism from "gatsby-theme-docz/src/theme/prism";
 import styles from "gatsby-theme-docz/src/theme/styles";
 import Router from "next/router";
-import { jsx, ThemeProvider } from "theme-ui";
+import { Styled, ThemeProvider } from "theme-ui";
 
 import { PropDoc } from "../components/PropDoc";
 
@@ -76,7 +75,7 @@ const Theme = ({ children }: { children?: React.ReactNode }) => {
   return (
     <ThemeProvider theme={config.themeConfig}>
       <ComponentsProvider components={componentsMap}>
-        {children}
+        <Styled.root>{children}</Styled.root>
       </ComponentsProvider>
     </ThemeProvider>
   );

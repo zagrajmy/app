@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Jest Tests",
+      "name": "(app) Debug Jest Tests",
       "type": "node",
       "request": "launch",
       "runtimeArgs": [
@@ -13,6 +13,30 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "port": 9229
+    },
+    {
+      "name": "(docs) Debug gatsby develop",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby",
+      "cwd": "${workspaceFolder}/packages/docs",
+      "args": ["develop"],
+      "stopOnEntry": false,
+      "runtimeArgs": ["--nolazy", "--inspect-brk"],
+      "sourceMaps": false
+    },
+    {
+      "name": "(docs) Debug gatsby build",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby",
+      "cwd": "${workspaceFolder}/packages/docs",
+      "args": ["build"],
+      "stopOnEntry": false,
+      "runtimeArgs": ["--nolazy"],
+      "sourceMaps": false
     }
   ]
 }

@@ -31,9 +31,7 @@ const makeTheme = <
 export const theme = makeTheme({
   useCustomProperties: true,
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
-    (x) => `${x}em`
-  ),
+  fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(x => `${x}em`),
   sizes: {
     container: 1100,
     containerThin: 720,
@@ -68,6 +66,7 @@ export const theme = makeTheme({
   },
   fontWeights: {
     heading: 700,
+    bold: 700,
   },
   lineHeights: {
     body: 1.5,
@@ -94,10 +93,13 @@ export const theme = makeTheme({
       },
       h2: {
         fontWeight: 700,
-        fontSize: 7,
+        fontSize: 4,
       },
       h3: {
         fontSize: 3,
+      },
+      "h4, h5, h6": {
+        fontSize: 2,
       },
       p: { maxWidth: "70ch" },
     },

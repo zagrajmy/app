@@ -1,10 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-extraneous-dependencies */
-/** @jsx jsx */
 
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import { ComponentProps } from "react";
-import { jsx, Styled } from "theme-ui";
+import { Styled } from "theme-ui";
 
 import { syntaxStyles } from "../../theme/syntax";
 import { usePrismTheme } from "../../utils/theme";

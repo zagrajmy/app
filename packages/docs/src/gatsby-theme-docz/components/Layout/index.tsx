@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/** @jsx jsx */
+
 import { Global } from "@emotion/core";
 import { media } from "gatsby-theme-docz/src/theme/breakpoints";
 import { useRef, useState } from "react";
-import { Box, jsx } from "theme-ui";
+import { Box } from "theme-ui";
 
 import { globalStyles } from "../../theme/global";
 import { Header } from "../Header";

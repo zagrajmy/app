@@ -1,4 +1,3 @@
-/** @jsx jsx */
 /* eslint-disable import/no-extraneous-dependencies */
 import copy from "copy-text-to-clipboard";
 import { useConfig } from "docz";
@@ -9,7 +8,6 @@ import { Resizable } from "re-resizable";
 import React from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
 import ReactResizeDetector from "react-resize-detector";
-import { jsx } from "theme-ui";
 
 import { syntaxStyles } from "../../theme/syntax";
 import { usePrismTheme } from "../../utils/theme";

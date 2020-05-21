@@ -25,6 +25,7 @@
     "@fimbul/heimdall": "^0.21.0",
     "@fimbul/wotan": "^0.21.1",
     "@types/jest": "^25.2.2",
+    "concurrently": "^5.2.0",
     "eslint": "^6.8.0",
     "jest": "^25.2.7",
     "jest-fetch-mock": "^3.0.3",
@@ -38,6 +39,7 @@
     "postinstall-postinstall": "^2.1.0"
   },
   "resolutions": {
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "theme-ui": "^0.4.0-alpha.0"
   }
 }

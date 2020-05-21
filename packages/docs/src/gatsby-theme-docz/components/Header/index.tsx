@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable import/no-extraneous-dependencies */
-/** @jsx jsx */
+
 import { useConfig, useCurrentDoc } from "docz";
 import * as styles from "gatsby-theme-docz/src/components/Header/styles";
 import {
@@ -10,7 +10,7 @@ import {
   Sun,
 } from "gatsby-theme-docz/src/components/Icons";
 import { Logo } from "gatsby-theme-docz/src/components/Logo";
-import { Box, Flex, jsx, useColorMode } from "theme-ui";
+import { Box, Flex, useColorMode } from "theme-ui";
 
 export const Header = (props: { onOpen: () => void }) => {
   const { onOpen } = props;

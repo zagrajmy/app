@@ -1,0 +1,64 @@
+---
+name: FestivalAgenda
+route: organisms/FestivalAgenda
+menu: Organisms
+---
+
+import { Playground, Props } from "docz";
+import { Heading } from "../Heading";
+
+import { FestivalAgenda } from "./FestivalAgenda";
+
+# FestivalAgenda
+
+<Playground>
+  <Heading>Agenda</Heading>
+  <FestivalAgenda id="agenda">
+    <FestivalAgenda.Room name="RPG Room">
+      <FestivalAgenda.Item
+        time="14:00 - 15:00"
+        organizer={{ name: "Paul Kubrick" }}
+        title="Agenda & Principles in PbtA Games"
+        description={`Apocalypse World szturmem wbił się na arenę niezależnych gier RPG prezentując nowe podejście do grania narracyjnego. Od tego czasu powstało wiele gier bazując na jego podstawowych założeniach. Przyjrzymy się zasadom dla Mistrza Ceremonii z najbardziej popularnych gier na licencji Apocalypse World.`}
+      />
+      <FestivalAgenda.Item
+        time="15:00 - 16:00"
+        organizer={{ name: "Dirk 'Draco' Dunkins" }}
+        title="Mechs vs Kaiju, a new setting for FATE Core"
+      />
+      <FestivalAgenda.Item time="16:00 - 17:30" title="Networking Break" />
+      <FestivalAgenda.Item
+        time="17:30 - 18:30"
+        organizer={{ name: "John Radovit", organization: "Chapterhouse" }}
+        title="Popkulturowe motywy na sesjach RPG"
+        description={`
+          "Gość wygląda na staromodnego, ale trochę diabolicznego, gentlemana - trochę jak mix Bonda i Draculi" - taki opis może na sesji zdziałać dużo więcej niż długie rozwodzenie się nad szczegółami stroju czy cechami twarzy NPC. Dlatego szukając kompromisu między byciem wyczerpująco zrozumiałym a płynnością sesji warto sięgnąć po utarte motywy, które każdemu kojarzą się z tym samym.
+          
+          Motywy, metafory, przenośnie, memy - są dla nas pomocą nie tylko przy opisach, ale również przy wymyślaniu scenariuszy i sięganiu po niesztampowe rozwiązania, które wyprowadzą graczy i MG z utartych torów ich myślenia.
+          
+          Gdzie je znaleźć, jak je wykorzystać i na co przy tym uważać? O tym opowiem na mojej prelekcji.`}
+      />
+    </FestivalAgenda.Room>
+    <FestivalAgenda.Room name="Manga Room">
+      <FestivalAgenda.Item
+        time="14:00 - 15:00"
+        organizer={{ name: "Dirk 'Draco' Dunkins" }}
+        title="Character arcs in Naruto"
+      />
+    </FestivalAgenda.Room>
+    <FestivalAgenda.Room name="Game Room">
+      <FestivalAgenda.Item
+        time="14:00 - 18:00"
+        organizer={{
+          name: "Peter Peterson",
+          organization: "Story Games Column",
+        }}
+        title="Jesteście ścigani przez ciemną aleję..."
+        description={`System: Dungeon World
+                      Gracze: 5, mogą być początkujący, PEGI 12
+                      Opis: Dungeon World Little Prep One Shot
+                      Uwagi: Można przynieść postacie, ja też przyniosę kilka dla graczy do wzięcia/zmutowania.`}
+      />
+    </FestivalAgenda.Room>
+  </FestivalAgenda>
+</Playground>
