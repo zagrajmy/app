@@ -10926,9 +10926,9 @@ graphql-type-json@^0.2.4:
   integrity sha512-/tq02ayMQjrG4oDFDRLLrPk0KvJXue0nVXoItBe7uAdbNXjQUu+HYCBdAmPLQoseVzUKKMzrhq2P/sfI76ON6w==
 
 graphql-zeus@^2.6.3:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/graphql-zeus/-/graphql-zeus-2.6.3.tgz#2a96abbb115bc6fe97d6dfc176864459e726a48d"
-  integrity sha512-Na6kZCOpH6BwLZQw1ZCagbRZPJbBVfjN6H+6kZStfA1cebBduSnAX4cSiklNVCsqtIA3tYtyGeB6h3iq2qUOPQ==
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/graphql-zeus/-/graphql-zeus-2.6.6.tgz#b42aaebff8957b817ed2e38d3ca61bdb839612c2"
+  integrity sha512-4xbs3PZmSsuMZw0QXiWjm9c2180EODzGvANJu8CJtYU8p33SnIK30JoSvFKeyLmS8zpKLEov0FqN8FbY9PmLRA==
   dependencies:
     cross-fetch "^3.0.4"
     graphql "^14.0.2"
