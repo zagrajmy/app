@@ -6,13 +6,13 @@ export const syntaxStyles = {
   ".property, .tag, .boolean, .number, .constant, .symbol, .deleted, .function, .class-name, .regex, .important, .variable": {
     color: "text",
   },
-  ".atrule, .attr-value, .keyword": {
+  ".atrule, .keyword": {
     color: "primary",
   },
-  ".selector, .attr-name, .string, .char, .builtin, .inserted": {
+  ".selector, .attr-name, .builtin, .inserted": {
     color: "gray.9",
   },
-  ".comment,.prolog,.doctype,.cdata,.punctuation,.operator,.entity,.url": {
+  ".string,.char,.attr-value,.comment,.prolog,.doctype,.cdata,.punctuation,.operator,.entity,.url": {
     color: "gray.7",
   },
 };
