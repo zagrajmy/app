@@ -7,7 +7,7 @@ export const Center = (
   <Box
     {...props}
     sx={{
-      ...props.sx,
+      ...(props.sx as {}),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
