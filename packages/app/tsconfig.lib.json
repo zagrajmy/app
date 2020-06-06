@@ -19,5 +19,5 @@
     "src/index.ts",
     "src/declarations"
   ],
-  "exclude": ["src/i18n.ts", "node_modules"]
+  "exclude": ["src/ui/**/*.docs.tsx", "src/i18n.ts", "node_modules"]
 }

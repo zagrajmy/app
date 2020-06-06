@@ -1,5 +1,6 @@
 import { head } from "fp-ts/lib/Array";
 import { toUndefined } from "fp-ts/lib/Option";
+
 import { ValueTypes } from "./graphql-zeus";
 import { Db } from "./hasura";
 

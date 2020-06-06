@@ -90,7 +90,7 @@ export default async function loggedIn(
         await createUser(db)({
           auth0_id: auth0UserId,
           email,
-          name:
+          name: // TODO username, first_name and last_name
             session.user.nickname ||
             `${session.user.given_name} ${session.user.family_name}`,
           locale: session.user.locale,

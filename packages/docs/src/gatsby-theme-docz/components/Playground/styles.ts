@@ -13,6 +13,9 @@ export const editor: SystemStyleObject = {
   "* > textarea:focus": {
     outline: "none",
   },
+  "textarea::selection": {
+    backgroundColor: "gray.2",
+  },
 };
 
 export const error: SystemCssProperties = {

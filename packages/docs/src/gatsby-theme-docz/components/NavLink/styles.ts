@@ -2,7 +2,7 @@
 import { SystemStyleObject } from "theme-ui";
 
 export const link: SystemStyleObject = {
-  my: 2,
+  my: 1,
   display: "block",
   color: "sidebar.navGroup",
   textDecoration: "none",

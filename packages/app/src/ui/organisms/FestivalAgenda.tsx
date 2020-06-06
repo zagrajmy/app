@@ -8,6 +8,25 @@ const listStyles: SystemStyleObject = {
   pl: 0,
 };
 
+function FestivalAgendaItemTime({ children }: { children: string }) {
+  return (
+    <div
+      sx={{
+        width: ["100%", "30%"],
+        flexGrow: 0,
+        flexShrink: 0,
+        fontSize: 3,
+        fontWeight: "bold",
+        color: ["gray.4", "gray.6"],
+        mb: 1,
+        lineHeight: 1,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export interface FestivalAgendaProps {
   id: string;
   children: React.ReactNode;
@@ -24,7 +43,12 @@ export function FestivalAgenda({
   return (
     <ul
       id={id}
-      sx={{ ...listStyles, "> li:not(:first-child)": { mt: 4 }, ...sx }}
+      sx={{
+        ...listStyles,
+        // TODO: Stack?
+        "> li:not(:first-child)": { mt: 4 },
+        ...sx,
+      }}
       {...rest}
     >
       {children}
@@ -74,21 +98,7 @@ FestivalAgenda.Item = ({
 }: FestivalAgendaItemProps) => {
   return (
     <li sx={{ display: "flex", flexDirection: ["column", "row"] }}>
-      <div
-        sx={{
-          width: ["100%", "30%"],
-          flexGrow: 0,
-          flexShrink: 0,
-
-          fontSize: 3,
-          fontWeight: "bold",
-          color: ["gray.4", "gray.6"],
-          mb: 1,
-          lineHeight: 1,
-        }}
-      >
-        {time}
-      </div>
+      <FestivalAgendaItemTime>{time}</FestivalAgendaItemTime>
       <div>
         <Heading as="h4" size={3} sx={{ color: "gray.6", mb: 2 }}>
           {title}

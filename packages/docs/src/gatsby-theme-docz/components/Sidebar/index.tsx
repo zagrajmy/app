@@ -47,7 +47,11 @@ export const Sidebar = React.forwardRef(
         >
           {props.open && <Global styles={styles.global} />}
         </Box>
-        <Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
+        <Box
+          ref={ref}
+          sx={{ ...styles.wrapper(props), flexShrink: 0 }}
+          data-testid="sidebar"
+        >
           <NavSearch
             placeholder="Type to search..."
             value={query}

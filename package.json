@@ -40,6 +40,6 @@
   },
   "resolutions": {
     "prettier": "^2.0.5",
-    "theme-ui": "^0.4.0-alpha.0"
+    "theme-ui": "^0.4.0-alpha.3"
   }
 }

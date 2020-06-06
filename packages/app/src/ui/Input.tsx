@@ -30,6 +30,11 @@ export interface InputProps extends ThemeUiInputProps {
   inline?: boolean;
 }
 
+export interface FormInputProps<Name> extends Omit<InputProps, "name"> {
+  name: Name;
+}
+export type FormInput<Name> = (props: FormInputProps<Name>) => JSX.Element;
+
 /**
  * Input variants can be defined in `theme.forms`
  * and the component uses the `theme.forms.input` variant by default.

@@ -31,7 +31,9 @@ const makeTheme = <
 export const theme = makeTheme({
   useCustomProperties: true,
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(x => `${x}em`),
+  fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
+    (x) => `${x}em`
+  ),
   sizes: {
     container: 1100,
     containerThin: 720,
@@ -89,7 +91,7 @@ export const theme = makeTheme({
       textRendering: "optimizeLegibility",
       h1: {
         fontWeight: 800,
-        fontSize: 8,
+        fontSize: 5,
       },
       h2: {
         fontWeight: 700,
@@ -101,7 +103,7 @@ export const theme = makeTheme({
       "h4, h5, h6": {
         fontSize: 2,
       },
-      p: { maxWidth: "70ch" },
+      p: { width: "70ch", maxWidth: "100%" },
     },
   },
   buttons,

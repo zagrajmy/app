@@ -57,7 +57,7 @@ const styles = {
     fontFamily: "monospace",
   },
   pre: {
-    my: 4,
+    my: 3,
     p: 3,
     variant: "prism",
     textAlign: "left",

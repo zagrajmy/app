@@ -17,6 +17,7 @@ export const NavSearch = (props: ComponentProps<"input">) => {
         "&:focus-within": {
           backgroundColor: "gray.3",
         },
+        mb: 2,
       }}
       data-testid="nav-search"
     >
