@@ -6,16 +6,27 @@ import { Heading } from "../Heading";
 const listStyles: SystemStyleObject = {
   listStyle: "none",
   pl: 0,
-  my: 4,
 };
 
 export interface FestivalAgendaProps {
   id: string;
   children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  sx?: SystemStyleObject;
 }
-export function FestivalAgenda({ id, children }: FestivalAgendaProps) {
+export function FestivalAgenda({
+  id,
+  children,
+  sx,
+  ...rest
+}: FestivalAgendaProps) {
   return (
-    <ul id={id} sx={listStyles}>
+    <ul
+      id={id}
+      sx={{ ...listStyles, "> li:not(:first-child)": { mt: 4 }, ...sx }}
+      {...rest}
+    >
       {children}
     </ul>
   );
@@ -28,7 +39,7 @@ export interface FestivalAgendaRoomProps {
 FestivalAgenda.Room = ({ name, children }: FestivalAgendaRoomProps) => {
   return (
     <li id={slugify(name)}>
-      <Heading as="h3" sx={{ mb: 2, color: "gray.7" }}>
+      <Heading as="h3" sx={{ mb: 3, color: "gray.7" }}>
         {name}
       </Heading>
       <ol
