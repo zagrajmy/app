@@ -8,4 +8,5 @@ module.exports = {
   files: ["../app/src/**/*.docs.mdx", "./src/**/*.mdx"],
   // end the workaround
   debug: true,
+  propsParser: false,
 };
