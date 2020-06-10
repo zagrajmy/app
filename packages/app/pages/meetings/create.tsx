@@ -143,7 +143,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
           display: "grid",
           // TODO: gridGap in theme-ui should accept number
           // export type GridGapProperty<TLength> = Globals | TLength | string;
-          gridGap: 3 as any,
+          gridGap: 3 as any, // TODO: Turn this into `gap`
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -165,8 +165,8 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
           <Label htmlFor="description">{t("description")}</Label>
           <Textarea
             name="description"
-            rows={5}
             ref={register}
+            rows={5}
             sx={{ resize: "none" }}
           />
         </div>
