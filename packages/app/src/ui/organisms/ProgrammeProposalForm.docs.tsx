@@ -62,11 +62,9 @@ export const Demo = () => {
         >
           <ReactJson
             src={settings}
-            onEdit={({ new_value }) => {
-              if (new_value) {
-                setSettings(
-                  (new_value as any) as ProgrammeProposalFestivalSettings
-                );
+            onEdit={({ updated_src }) => {
+              if (updated_src) {
+                setSettings(updated_src as ProgrammeProposalFestivalSettings);
               } else {
                 console.error("settings new_value is empty");
               }
