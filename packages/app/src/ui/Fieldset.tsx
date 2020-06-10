@@ -6,7 +6,7 @@ export const Fieldset = (props: FieldsetProps) => {
     <Stack
       as="fieldset"
       gap={3}
-      sx={{ border: "none", m: 0, p: 0 }}
+      sx={{ border: "none", px: 0, py: 3, mx: 0, my: 2 }}
       {...props}
     />
   );
