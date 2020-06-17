@@ -42,12 +42,13 @@ module.exports = {
       },
     },
     {
-      files: ["packages/app/test/**/*.{js,ts}"],
+      files: ["packages/app/test/**/*.{js,ts}", "*.docs.tsx"],
       rules: {
         // we don't want to install cypress
         // in production builds
         "import/no-extraneous-dependencies": "off",
         "global-require": "off",
+        "no-console": "off",
       },
     },
   ],

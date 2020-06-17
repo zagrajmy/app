@@ -99,7 +99,7 @@ FestivalAgenda.Item = ({
   return (
     <li sx={{ display: "flex", flexDirection: ["column", "row"] }}>
       <FestivalAgendaItemTime>{time}</FestivalAgendaItemTime>
-      <div>
+      <div sx={{ overflowX: "hidden" }}>
         <Heading as="h4" size={3} sx={{ color: "gray.6", mb: 2 }}>
           {title}
         </Heading>

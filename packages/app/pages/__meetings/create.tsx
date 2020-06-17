@@ -36,7 +36,7 @@ import {
 const extractGuilds = (data: {
   guild_member: { guild: { id: number; name: string } }[];
 }) => ({
-  guilds: data.guild_member.map(gm => gm.guild),
+  guilds: data.guild_member.map((gm) => gm.guild),
 });
 
 type MeetingProperty = keyof OmitByValue<Meeting, object>;
@@ -57,7 +57,7 @@ interface CreateMeetingPageProps {
 // TODO: Add validations in the endpoint.
 const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
   CreateMeetingPageProps
->(props => {
+>((props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { data } = useSWR(
@@ -81,7 +81,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
     {}
   );
 
-  const onSubmit: OnSubmit<Meeting> = values => {
+  const onSubmit: OnSubmit<Meeting> = (values) => {
     const formAction = document.activeElement?.getAttribute("formAction");
     if (formAction !== "publish" && formAction !== "save-draft") {
       throw new Error("Unexpected formAction");
@@ -119,7 +119,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
         // eslint-disable-next-line no-console
         console.log({ res });
       })
-      .catch(error => {
+      .catch((error) => {
         setBackendError(makeError(error));
         // Let's make useMutation hook or think about react-query
         // steida had a pretty cool useMutation hook on Twitter
@@ -180,7 +180,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
               (data.guilds.length === 0 ? (
                 <option>{t("you-belong-to-no-guild")}</option>
               ) : (
-                data.guilds.map(g => (
+                data.guilds.map((g) => (
                   <option key={g.id} value={g.id}>
                     {g.name}
                   </option>
@@ -233,13 +233,13 @@ CreateMeetingPage.getInitialProps = async ({ req, res }) => {
     }
 
     return query({
-      guild_member: [
+      nb_guild_member: [
         { where: { user: { auth0_id: { _eq: session.user.sub } } } },
         { guild: { id: true, name: true } },
       ],
     })
       .then(extractGuilds)
-      .then(initialData => ({ initialData }));
+      .then((initialData) => ({ initialData }));
   }
 
   return {};

@@ -8,7 +8,7 @@ import { requestedMeetingFields } from "./__requestedMeetingFields";
 
 function queryMeetings(query: Db["query"], auth0Id: string) {
   return query({
-    user: [
+    cr_user: [
       { where: { auth0_id: { _eq: auth0Id } } },
       {
         organized_meetings: [
@@ -29,7 +29,7 @@ function queryMeetings(query: Db["query"], auth0Id: string) {
 
 export type MyMeetingsResult = PromiseType<
   ReturnType<typeof queryMeetings>
->["user"][0];
+>["cr_user"][0];
 
 export default auth.requireAuthentication(async function myMeetings(
   req: NextApiRequest,
@@ -40,5 +40,5 @@ export default auth.requireAuthentication(async function myMeetings(
 
   const data = await queryMeetings(query, session?.user.sub || "");
 
-  return res.status(200).send(data.user[0]);
+  return res.status(200).send(data.cr_user[0]);
 });

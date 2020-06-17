@@ -49,7 +49,7 @@ const patchLoggedInUser: ReqHandler<
       return hasura
         .fromCookies(req)
         .mutation({
-          update_user: [
+          update_cr_user: [
             {
               where: { email: { _eq: user.email } },
               _set: { locale },
@@ -57,7 +57,7 @@ const patchLoggedInUser: ReqHandler<
             { returning: { uuid: true, locale: true } },
           ],
         })
-        .then((res) => res.update_user?.returning[0] || {});
+        .then((res) => res.update_cr_user?.returning[0] || {});
     },
     (reason) => {
       console.error({ reason });

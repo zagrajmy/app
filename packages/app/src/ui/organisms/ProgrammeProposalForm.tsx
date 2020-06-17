@@ -55,19 +55,17 @@ export interface ProgrammeProposalFestivalSettings extends FieldLabels {
 
 export interface ProgrammeProposalFormProps {
   settings: ProgrammeProposalFestivalSettings;
+  onSubmit: (values: ProgrammeProposalFormFields) => void;
 }
 
 export function ProgrammeProposalForm({
   settings: { introText, footerText, ...labels },
+  onSubmit,
 }: ProgrammeProposalFormProps) {
   const { t } = useTranslation();
-  const { register, handleSubmit, control, errors, watch } = useForm<
+  const { register, handleSubmit, errors } = useForm<
     ProgrammeProposalFormFields
   >();
-
-  const onSubmit: OnSubmit<ProgrammeProposalFormFields> = (values) => {
-    console.log({ values });
-  };
 
   return (
     <Container

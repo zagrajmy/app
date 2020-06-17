@@ -71,7 +71,7 @@ export const Demo = () => {
             }}
           />
         </div>
-        <ProgrammeProposalForm settings={settings} />
+        <ProgrammeProposalForm settings={settings} onSubmit={console.log} />
       </Fragment>
     </I18nextProvider>
   );
@@ -82,4 +82,5 @@ export const docsComponentProps: ProgrammeProposalFormProps = {
     introText: "intro-text",
     footerText: "footer-text",
   },
+  onSubmit: (values) => console.log({ values }),
 };
