@@ -9,7 +9,7 @@
     "dev:lib:tsc": "tsc -p ./tsconfig.lib.json -w",
     "dev:lib:babel": "cross-env CHOKIDAR_USEPOLLING=true babel --watch --verbose --extensions '.ts,.js,.jsx' dist-ts -d dist",
     "start": "next start",
-    "lint": "eslint {src,pages}/**/*.{ts,tsx}",
+    "lint": "eslint {src,pages,test}/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
     "typecheck": "yarn cross-env NODE_OPTIONS=--max_old_space_size=4096 tsc --noEmit --skipLibCheck",
     "typecheck:tests": "yarn tsc --noEmit --skipLibCheck -p ./test",
