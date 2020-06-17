@@ -7,6 +7,7 @@ import { CommonHead } from "../src/app/components/CommonHead";
 import { getUrl } from "../src/lib/getUrl";
 import { Container } from "../src/ui";
 import { hasura } from "../data";
+import { order_by } from "../data/graphql-zeus";
 
 interface SphereNotFoundProps {
   error: "sphere-not-found";
@@ -68,12 +69,11 @@ const DEV_SPHERES = [
   { id: 2, domain: "zagrajmy.now.sh" },
 ];
 
-function isHub(url: string, devSphereId: string) {
+function isHub(url: string, devSphereId?: number) {
   return (
     DEV_SPHERES.find(
       (sphere) =>
-        url.includes(`https://${sphere.domain}`) ||
-        Number(devSphereId) === sphere.id
+        url.includes(`https://${sphere.domain}`) || devSphereId === sphere.id
     ) !== undefined
   );
 }
@@ -81,26 +81,16 @@ function isHub(url: string, devSphereId: string) {
 export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
   ctx
 ) => {
-  const devSphereId = ctx.query.__dev_sphere_id;
+  const devSphereId =
+    ctx.query.__dev_sphere_id === undefined
+      ? undefined
+      : Number(ctx.query.__dev_sphere_id);
   const url = getUrl(ctx.req);
 
-  if (isHub(url, String(devSphereId))) {
+  if (isHub(url, devSphereId)) {
     const props: HubHomeProps = {
       festivals: [],
       spheres: [],
-    };
-
-    return {
-      props,
-    };
-  }
-
-  if (devSphereId) {
-    // TODO: We're in a Sphere. Fetch festival.
-    // TODO: Ask with sphereId
-    const props: SphereHomeProps = {
-      sphereId: String(devSphereId),
-      festivalAgenda: [],
     };
 
     return {
@@ -112,9 +102,55 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
     ? String(ctx.query.__dev_sphere_domain)
     : new URL(url).hostname;
 
-  hasura.fromCookies(ctx.req).query({ 
-     
-  })
+  const sphere = hasura
+    .fromCookies(ctx.req)
+    .query({
+      nb_sphere: [
+        {
+          where: devSphereId
+            ? { id: { _eq: devSphereId } }
+            : { django_site: { domain: { _eq: domain } } },
+        },
+        {
+          name: true,
+          settings: [{}, true],
+          ch_festivals: [
+            {
+              order_by: [{ start_time: order_by.desc_nulls_last }],
+              where: { start_publication: { _lte: "now" } },
+              limit: 1,
+            },
+            {
+              ch_rooms: [
+                {},
+                {
+                  ch_time_tables: [
+                    {
+                      order_by: [{ start_time: order_by.asc }],
+                      where: { meeting_confirmed: { _eq: true } },
+                    },
+                    {
+                      nb_meeting: {
+                        id: true,
+                        image: true,
+                        meeting_url: true,
+                        slug: true,
+                        name: true,
+                        description: true,
+                        cr_user: {
+                          username: true,
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    })
+    .then((res) => res.nb_sphere);
 
   if (domain) {
     // TODO Ask with url.
