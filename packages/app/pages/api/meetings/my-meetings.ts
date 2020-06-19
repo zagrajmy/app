@@ -19,7 +19,7 @@ function queryMeetings(query: Db["query"], auth0Id: string) {
           // offset can wait now
           { limit: 20, order_by: [{ meeting: { created_at: order_by.desc } }] },
           {
-            meeting: requestedMeetingFields,
+            nb_meeting: requestedMeetingFields,
           },
         ],
       },

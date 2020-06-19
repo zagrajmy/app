@@ -1,17 +1,18 @@
 export const requestedMeetingFields = {
   id: true,
-  title: true,
+  name: true,
   description: true,
   publication_time: true,
   start_time: true,
   end_time: true,
+  image: true,
   guild: {
     id: true,
     name: true,
   },
   sphere_id: true,
   organizer: {
-    name: true,
+    username: true,
     email: true,
   },
 } as const;

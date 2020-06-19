@@ -3,14 +3,28 @@ import Head from "next/head";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Meeting } from "../data/types";
 import { getRecentlyPublishedMeetings } from "../src/app/api-helpers";
 import { MeetingCard, Page } from "../src/app/components";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
 import { Container, Link } from "../src/ui";
 import { NoPublishedMeetingsScreen } from "../src/ui/organisms/messageScreens";
 
-type IndexPageProps = { meetings: Meeting[] };
+/**
+ * @deprecated
+ */
+type OldMeeting = {
+  organizer: {
+    username: string;
+  };
+  start_time: string | Date;
+  end_time: string | Date;
+  id: number;
+  name: string;
+  image?: string;
+  description: string;
+};
+
+type IndexPageProps = { meetings: OldMeeting[] };
 
 const IndexPage: NextPage<IndexPageProps> = ({ meetings }) => {
   const { t } = useTranslation();
@@ -82,7 +96,7 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
 ) => {
   const meetings = await getRecentlyPublishedMeetings(ctx.req, 3);
 
-  return { props: { meetings: meetings.map(Meeting.parse) } };
+  return { props: { meetings } };
 };
 
 export default IndexPage;

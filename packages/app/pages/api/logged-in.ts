@@ -91,7 +91,7 @@ export default async function loggedIn(
           auth0_id: auth0UserId,
           email,
           // TODO username, first_name and last_name
-          name:
+          username:
             session.user.nickname ||
             `${session.user.given_name} ${session.user.family_name}`,
           locale: session.user.locale,

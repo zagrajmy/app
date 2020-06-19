@@ -2,12 +2,12 @@ import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { hasura } from "../data";
+import { order_by } from "../data/graphql-zeus";
 import { Page } from "../src/app/components";
 import { CommonHead } from "../src/app/components/CommonHead";
 import { getUrl } from "../src/lib/getUrl";
 import { Container } from "../src/ui";
-import { hasura } from "../data";
-import { order_by } from "../data/graphql-zeus";
 
 interface SphereNotFoundProps {
   error: "sphere-not-found";
@@ -102,7 +102,7 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
     ? String(ctx.query.__dev_sphere_domain)
     : new URL(url).hostname;
 
-  const sphere = hasura
+  const sphere = await hasura
     .fromCookies(ctx.req)
     .query({
       nb_sphere: [

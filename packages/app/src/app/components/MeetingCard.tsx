@@ -3,7 +3,6 @@ import { enUS, pl } from "date-fns/locale";
 import React from "react";
 import { Card, Image } from "theme-ui";
 
-import { Meeting } from "../../../data/types";
 import { SupportedLanguage, useLanguage } from "../../i18n";
 import { Heading, Link, LinkProps } from "../../ui";
 
@@ -14,7 +13,10 @@ const timeFromNow = (time: Date | string, language: SupportedLanguage) =>
   formatRelative(new Date(time), new Date(), { locale: pickLocale(language) });
 
 const meetingTimes = (
-  m: Pick<Meeting, "start_time" | "end_time">,
+  m: {
+    start_time: string | Date;
+    end_time: string | Date;
+  },
   language: SupportedLanguage
 ) => {
   if (!m.start_time) {
@@ -27,7 +29,11 @@ const meetingTimes = (
 };
 
 interface MeetingCreationInfoProps {
-  meeting: Pick<Meeting, "organizer" | "start_time" | "end_time">;
+  meeting: {
+    organizer: { username: string };
+    start_time: string | Date;
+    end_time: string | Date;
+  };
 }
 const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
   const lang = useLanguage();
@@ -37,10 +43,10 @@ const MeetingCreationInfo = ({ meeting }: MeetingCreationInfoProps) => {
     <span>
       <Link
         href="/u/[username_slug]"
-        as={`/u/${meeting.organizer.slug}`}
+        as={`/u/${meeting.organizer.username}`}
         variant="underlined"
       >
-        {meeting.organizer.name}
+        {meeting.organizer.username}
       </Link>
       {times && ` • ${times}`}
     </span>
@@ -72,8 +78,12 @@ const borderRadii = {
 };
 
 interface MeetingCardProps {
-  meeting: Pick<Meeting, "id" | "title" | "image" | "description"> &
-    MeetingCreationInfoProps["meeting"];
+  meeting: {
+    id: number;
+    name: string;
+    image?: string;
+    description: string;
+  } & MeetingCreationInfoProps["meeting"];
 }
 
 export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
@@ -92,15 +102,11 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
       <CardBackgroundLink
         href="/meetings/[id]"
         as={`/meetings/${meeting.id}`}
-        sx={{
-          ...borderRadii,
-          // backgroundImage: Do we need it?
-          //   meeting.image?.kind === "background" ? meeting.image.src : "none",
-        }}
+        sx={borderRadii}
       />
       {meeting.image && (
         <Image
-          src={meeting.image?.src}
+          src={meeting.image}
           alt=""
           bg="gray.2"
           sx={{
@@ -115,7 +121,7 @@ export const MeetingCard: React.FC<MeetingCardProps> = ({ meeting }) => {
       )}
       <div sx={{ pl: "1em" }}>
         <Heading as="h3" sx={{ my: "1em" }}>
-          {meeting.title}
+          {meeting.name}
         </Heading>
         <MeetingCreationInfo meeting={meeting} />
         <p>{meeting.description}</p>

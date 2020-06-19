@@ -2241,36 +2241,10 @@ export type ValueTypes = {
       },
       ValueTypes["ch_helper_aggregate"]
     ];
-    ch_proposals?: [
-      {
-        distinct_on?: ValueTypes["ch_proposal_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_proposal_order_by"][];
-        where?: ValueTypes["ch_proposal_bool_exp"];
-      },
-      ValueTypes["ch_proposal"]
-    ];
-    ch_proposals_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_proposal_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_proposal_order_by"][];
-        where?: ValueTypes["ch_proposal_bool_exp"];
-      },
-      ValueTypes["ch_proposal_aggregate"]
-    ];
     date_joined?: true;
     email?: true;
     first_name?: true;
-    is_active?: true;
-    is_staff?: true;
-    is_superuser?: true;
-    last_login?: true;
-    last_name?: true;
-    locale?: true;
-    nb_guild_members?: [
+    guilds?: [
       {
         distinct_on?: ValueTypes["nb_guild_member_select_column"][];
         limit?: number;
@@ -2280,7 +2254,7 @@ export type ValueTypes = {
       },
       ValueTypes["nb_guild_member"]
     ];
-    nb_guild_members_aggregate?: [
+    guilds_aggregate?: [
       {
         distinct_on?: ValueTypes["nb_guild_member_select_column"][];
         limit?: number;
@@ -2290,47 +2264,13 @@ export type ValueTypes = {
       },
       ValueTypes["nb_guild_member_aggregate"]
     ];
-    nb_meeting_participants?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
-      },
-      ValueTypes["nb_meeting_participants"]
-    ];
-    nb_meeting_participants_aggregate?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
-      },
-      ValueTypes["nb_meeting_participants_aggregate"]
-    ];
-    nb_meetings?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_order_by"][];
-        where?: ValueTypes["nb_meeting_bool_exp"];
-      },
-      ValueTypes["nb_meeting"]
-    ];
-    nb_meetings_aggregate?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_order_by"][];
-        where?: ValueTypes["nb_meeting_bool_exp"];
-      },
-      ValueTypes["nb_meeting_aggregate"]
-    ];
-    nb_sphere_managers?: [
+    is_active?: true;
+    is_staff?: true;
+    is_superuser?: true;
+    last_login?: true;
+    last_name?: true;
+    locale?: true;
+    managed_spheres?: [
       {
         distinct_on?: ValueTypes["nb_sphere_managers_select_column"][];
         limit?: number;
@@ -2340,7 +2280,7 @@ export type ValueTypes = {
       },
       ValueTypes["nb_sphere_managers"]
     ];
-    nb_sphere_managers_aggregate?: [
+    managed_spheres_aggregate?: [
       {
         distinct_on?: ValueTypes["nb_sphere_managers_select_column"][];
         limit?: number;
@@ -2350,7 +2290,67 @@ export type ValueTypes = {
       },
       ValueTypes["nb_sphere_managers_aggregate"]
     ];
+    meetings?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
+        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+      },
+      ValueTypes["nb_meeting_participants"]
+    ];
+    meetings_aggregate?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
+        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+      },
+      ValueTypes["nb_meeting_participants_aggregate"]
+    ];
+    organized_meetings?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_order_by"][];
+        where?: ValueTypes["nb_meeting_bool_exp"];
+      },
+      ValueTypes["nb_meeting"]
+    ];
+    organized_meetings_aggregate?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_order_by"][];
+        where?: ValueTypes["nb_meeting_bool_exp"];
+      },
+      ValueTypes["nb_meeting_aggregate"]
+    ];
     password?: true;
+    proposals?: [
+      {
+        distinct_on?: ValueTypes["ch_proposal_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_proposal_order_by"][];
+        where?: ValueTypes["ch_proposal_bool_exp"];
+      },
+      ValueTypes["ch_proposal"]
+    ];
+    proposals_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_proposal_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_proposal_order_by"][];
+        where?: ValueTypes["ch_proposal_bool_exp"];
+      },
+      ValueTypes["ch_proposal_aggregate"]
+    ];
     username?: true;
     uuid?: true;
     __typename?: true;
@@ -2361,92 +2361,66 @@ export type ValueTypes = {
     __typename?: true;
   }>;
   ["cr_user_aggregate_fields"]: AliasType<{
-    avg?: ValueTypes["cr_user_avg_fields"];
     count?: [
       { columns?: ValueTypes["cr_user_select_column"][]; distinct?: boolean },
       true
     ];
     max?: ValueTypes["cr_user_max_fields"];
     min?: ValueTypes["cr_user_min_fields"];
-    stddev?: ValueTypes["cr_user_stddev_fields"];
-    stddev_pop?: ValueTypes["cr_user_stddev_pop_fields"];
-    stddev_samp?: ValueTypes["cr_user_stddev_samp_fields"];
-    sum?: ValueTypes["cr_user_sum_fields"];
-    var_pop?: ValueTypes["cr_user_var_pop_fields"];
-    var_samp?: ValueTypes["cr_user_var_samp_fields"];
-    variance?: ValueTypes["cr_user_variance_fields"];
     __typename?: true;
   }>;
   ["cr_user_aggregate_order_by"]: {
-    avg?: ValueTypes["cr_user_avg_order_by"];
     count?: ValueTypes["order_by"];
     max?: ValueTypes["cr_user_max_order_by"];
     min?: ValueTypes["cr_user_min_order_by"];
-    stddev?: ValueTypes["cr_user_stddev_order_by"];
-    stddev_pop?: ValueTypes["cr_user_stddev_pop_order_by"];
-    stddev_samp?: ValueTypes["cr_user_stddev_samp_order_by"];
-    sum?: ValueTypes["cr_user_sum_order_by"];
-    var_pop?: ValueTypes["cr_user_var_pop_order_by"];
-    var_samp?: ValueTypes["cr_user_var_samp_order_by"];
-    variance?: ValueTypes["cr_user_variance_order_by"];
   };
   ["cr_user_arr_rel_insert_input"]: {
     data: ValueTypes["cr_user_insert_input"][];
     on_conflict?: ValueTypes["cr_user_on_conflict"];
   };
-  ["cr_user_avg_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_avg_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
   ["cr_user_bool_exp"]: {
     _and?: (ValueTypes["cr_user_bool_exp"] | undefined)[];
     _not?: ValueTypes["cr_user_bool_exp"];
     _or?: (ValueTypes["cr_user_bool_exp"] | undefined)[];
-    auth0_id?: ValueTypes["Int_comparison_exp"];
+    auth0_id?: ValueTypes["String_comparison_exp"];
     ch_helpers?: ValueTypes["ch_helper_bool_exp"];
-    ch_proposals?: ValueTypes["ch_proposal_bool_exp"];
     date_joined?: ValueTypes["timestamptz_comparison_exp"];
     email?: ValueTypes["String_comparison_exp"];
     first_name?: ValueTypes["String_comparison_exp"];
+    guilds?: ValueTypes["nb_guild_member_bool_exp"];
     is_active?: ValueTypes["Boolean_comparison_exp"];
     is_staff?: ValueTypes["Boolean_comparison_exp"];
     is_superuser?: ValueTypes["Boolean_comparison_exp"];
     last_login?: ValueTypes["timestamptz_comparison_exp"];
     last_name?: ValueTypes["String_comparison_exp"];
     locale?: ValueTypes["String_comparison_exp"];
-    nb_guild_members?: ValueTypes["nb_guild_member_bool_exp"];
-    nb_meeting_participants?: ValueTypes["nb_meeting_participants_bool_exp"];
-    nb_meetings?: ValueTypes["nb_meeting_bool_exp"];
-    nb_sphere_managers?: ValueTypes["nb_sphere_managers_bool_exp"];
+    managed_spheres?: ValueTypes["nb_sphere_managers_bool_exp"];
+    meetings?: ValueTypes["nb_meeting_participants_bool_exp"];
+    organized_meetings?: ValueTypes["nb_meeting_bool_exp"];
     password?: ValueTypes["String_comparison_exp"];
+    proposals?: ValueTypes["ch_proposal_bool_exp"];
     username?: ValueTypes["String_comparison_exp"];
     uuid?: ValueTypes["uuid_comparison_exp"];
   };
   ["cr_user_constraint"]: cr_user_constraint;
-  ["cr_user_inc_input"]: {
-    auth0_id?: number;
-  };
   ["cr_user_insert_input"]: {
-    auth0_id?: number;
+    auth0_id?: string;
     ch_helpers?: ValueTypes["ch_helper_arr_rel_insert_input"];
-    ch_proposals?: ValueTypes["ch_proposal_arr_rel_insert_input"];
     date_joined?: ValueTypes["timestamptz"];
     email?: string;
     first_name?: string;
+    guilds?: ValueTypes["nb_guild_member_arr_rel_insert_input"];
     is_active?: boolean;
     is_staff?: boolean;
     is_superuser?: boolean;
     last_login?: ValueTypes["timestamptz"];
     last_name?: string;
     locale?: string;
-    nb_guild_members?: ValueTypes["nb_guild_member_arr_rel_insert_input"];
-    nb_meeting_participants?: ValueTypes["nb_meeting_participants_arr_rel_insert_input"];
-    nb_meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
-    nb_sphere_managers?: ValueTypes["nb_sphere_managers_arr_rel_insert_input"];
+    managed_spheres?: ValueTypes["nb_sphere_managers_arr_rel_insert_input"];
+    meetings?: ValueTypes["nb_meeting_participants_arr_rel_insert_input"];
+    organized_meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
     password?: string;
+    proposals?: ValueTypes["ch_proposal_arr_rel_insert_input"];
     username?: string;
     uuid?: ValueTypes["uuid"];
   };
@@ -2517,21 +2491,21 @@ export type ValueTypes = {
   ["cr_user_order_by"]: {
     auth0_id?: ValueTypes["order_by"];
     ch_helpers_aggregate?: ValueTypes["ch_helper_aggregate_order_by"];
-    ch_proposals_aggregate?: ValueTypes["ch_proposal_aggregate_order_by"];
     date_joined?: ValueTypes["order_by"];
     email?: ValueTypes["order_by"];
     first_name?: ValueTypes["order_by"];
+    guilds_aggregate?: ValueTypes["nb_guild_member_aggregate_order_by"];
     is_active?: ValueTypes["order_by"];
     is_staff?: ValueTypes["order_by"];
     is_superuser?: ValueTypes["order_by"];
     last_login?: ValueTypes["order_by"];
     last_name?: ValueTypes["order_by"];
     locale?: ValueTypes["order_by"];
-    nb_guild_members_aggregate?: ValueTypes["nb_guild_member_aggregate_order_by"];
-    nb_meeting_participants_aggregate?: ValueTypes["nb_meeting_participants_aggregate_order_by"];
-    nb_meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
-    nb_sphere_managers_aggregate?: ValueTypes["nb_sphere_managers_aggregate_order_by"];
+    managed_spheres_aggregate?: ValueTypes["nb_sphere_managers_aggregate_order_by"];
+    meetings_aggregate?: ValueTypes["nb_meeting_participants_aggregate_order_by"];
+    organized_meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
     password?: ValueTypes["order_by"];
+    proposals_aggregate?: ValueTypes["ch_proposal_aggregate_order_by"];
     username?: ValueTypes["order_by"];
     uuid?: ValueTypes["order_by"];
   };
@@ -2540,7 +2514,7 @@ export type ValueTypes = {
   };
   ["cr_user_select_column"]: cr_user_select_column;
   ["cr_user_set_input"]: {
-    auth0_id?: number;
+    auth0_id?: string;
     date_joined?: ValueTypes["timestamptz"];
     email?: string;
     first_name?: string;
@@ -2554,56 +2528,7 @@ export type ValueTypes = {
     username?: string;
     uuid?: ValueTypes["uuid"];
   };
-  ["cr_user_stddev_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_stddev_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
-  ["cr_user_stddev_pop_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_stddev_pop_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
-  ["cr_user_stddev_samp_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_stddev_samp_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
-  ["cr_user_sum_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_sum_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
   ["cr_user_update_column"]: cr_user_update_column;
-  ["cr_user_var_pop_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_var_pop_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
-  ["cr_user_var_samp_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_var_samp_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
-  ["cr_user_variance_fields"]: AliasType<{
-    auth0_id?: true;
-    __typename?: true;
-  }>;
-  ["cr_user_variance_order_by"]: {
-    auth0_id?: ValueTypes["order_by"];
-  };
   ["django_site"]: AliasType<{
     domain?: true;
     id?: true;
@@ -3306,7 +3231,6 @@ export type ValueTypes = {
     ];
     update_cr_user?: [
       {
-        _inc?: ValueTypes["cr_user_inc_input"];
         _set?: ValueTypes["cr_user_set_input"];
         where: ValueTypes["cr_user_bool_exp"];
       },
@@ -3314,7 +3238,6 @@ export type ValueTypes = {
     ];
     update_cr_user_by_pk?: [
       {
-        _inc?: ValueTypes["cr_user_inc_input"];
         _set?: ValueTypes["cr_user_set_input"];
         pk_columns: ValueTypes["cr_user_pk_columns_input"];
       },
@@ -3898,19 +3821,19 @@ export type ValueTypes = {
     id?: ValueTypes["order_by"];
   };
   ["nb_meeting"]: AliasType<{
-    ch_time_table?: ValueTypes["ch_time_table"];
-    cr_user?: ValueTypes["cr_user"];
     created_at?: true;
     description?: true;
     end_time?: true;
+    guild?: ValueTypes["nb_guild"];
     guild_id?: true;
     id?: true;
     image?: true;
     location?: true;
     meeting_url?: true;
     name?: true;
-    nb_guild?: ValueTypes["nb_guild"];
-    nb_meeting_participants?: [
+    organizer?: ValueTypes["cr_user"];
+    organizer_id?: true;
+    participants?: [
       {
         distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
         limit?: number;
@@ -3920,7 +3843,7 @@ export type ValueTypes = {
       },
       ValueTypes["nb_meeting_participants"]
     ];
-    nb_meeting_participants_aggregate?: [
+    participants_aggregate?: [
       {
         distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
         limit?: number;
@@ -3930,12 +3853,12 @@ export type ValueTypes = {
       },
       ValueTypes["nb_meeting_participants_aggregate"]
     ];
-    nb_sphere?: ValueTypes["nb_sphere"];
-    organizer_id?: true;
     publication_time?: true;
     slug?: true;
+    sphere?: ValueTypes["nb_sphere"];
     sphere_id?: true;
     start_time?: true;
+    time_table?: ValueTypes["ch_time_table"];
     updated_at?: true;
     __typename?: true;
   }>;
@@ -3996,25 +3919,25 @@ export type ValueTypes = {
     _and?: (ValueTypes["nb_meeting_bool_exp"] | undefined)[];
     _not?: ValueTypes["nb_meeting_bool_exp"];
     _or?: (ValueTypes["nb_meeting_bool_exp"] | undefined)[];
-    ch_time_table?: ValueTypes["ch_time_table_bool_exp"];
-    cr_user?: ValueTypes["cr_user_bool_exp"];
     created_at?: ValueTypes["timestamptz_comparison_exp"];
     description?: ValueTypes["String_comparison_exp"];
     end_time?: ValueTypes["timestamptz_comparison_exp"];
+    guild?: ValueTypes["nb_guild_bool_exp"];
     guild_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     image?: ValueTypes["String_comparison_exp"];
     location?: ValueTypes["String_comparison_exp"];
     meeting_url?: ValueTypes["String_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
-    nb_guild?: ValueTypes["nb_guild_bool_exp"];
-    nb_meeting_participants?: ValueTypes["nb_meeting_participants_bool_exp"];
-    nb_sphere?: ValueTypes["nb_sphere_bool_exp"];
+    organizer?: ValueTypes["cr_user_bool_exp"];
     organizer_id?: ValueTypes["uuid_comparison_exp"];
+    participants?: ValueTypes["nb_meeting_participants_bool_exp"];
     publication_time?: ValueTypes["timestamptz_comparison_exp"];
     slug?: ValueTypes["String_comparison_exp"];
+    sphere?: ValueTypes["nb_sphere_bool_exp"];
     sphere_id?: ValueTypes["Int_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
+    time_table?: ValueTypes["ch_time_table_bool_exp"];
     updated_at?: ValueTypes["timestamptz_comparison_exp"];
   };
   ["nb_meeting_constraint"]: nb_meeting_constraint;
@@ -4024,25 +3947,25 @@ export type ValueTypes = {
     sphere_id?: number;
   };
   ["nb_meeting_insert_input"]: {
-    ch_time_table?: ValueTypes["ch_time_table_obj_rel_insert_input"];
-    cr_user?: ValueTypes["cr_user_obj_rel_insert_input"];
     created_at?: ValueTypes["timestamptz"];
     description?: string;
     end_time?: ValueTypes["timestamptz"];
+    guild?: ValueTypes["nb_guild_obj_rel_insert_input"];
     guild_id?: number;
     id?: number;
     image?: string;
     location?: string;
     meeting_url?: string;
     name?: string;
-    nb_guild?: ValueTypes["nb_guild_obj_rel_insert_input"];
-    nb_meeting_participants?: ValueTypes["nb_meeting_participants_arr_rel_insert_input"];
-    nb_sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
+    organizer?: ValueTypes["cr_user_obj_rel_insert_input"];
     organizer_id?: ValueTypes["uuid"];
+    participants?: ValueTypes["nb_meeting_participants_arr_rel_insert_input"];
     publication_time?: ValueTypes["timestamptz"];
     slug?: string;
+    sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_time?: ValueTypes["timestamptz"];
+    time_table?: ValueTypes["ch_time_table_obj_rel_insert_input"];
     updated_at?: ValueTypes["timestamptz"];
   };
   ["nb_meeting_max_fields"]: AliasType<{
@@ -4130,25 +4053,25 @@ export type ValueTypes = {
     where?: ValueTypes["nb_meeting_bool_exp"];
   };
   ["nb_meeting_order_by"]: {
-    ch_time_table?: ValueTypes["ch_time_table_order_by"];
-    cr_user?: ValueTypes["cr_user_order_by"];
     created_at?: ValueTypes["order_by"];
     description?: ValueTypes["order_by"];
     end_time?: ValueTypes["order_by"];
+    guild?: ValueTypes["nb_guild_order_by"];
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     image?: ValueTypes["order_by"];
     location?: ValueTypes["order_by"];
     meeting_url?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
-    nb_guild?: ValueTypes["nb_guild_order_by"];
-    nb_meeting_participants_aggregate?: ValueTypes["nb_meeting_participants_aggregate_order_by"];
-    nb_sphere?: ValueTypes["nb_sphere_order_by"];
+    organizer?: ValueTypes["cr_user_order_by"];
     organizer_id?: ValueTypes["order_by"];
+    participants_aggregate?: ValueTypes["nb_meeting_participants_aggregate_order_by"];
     publication_time?: ValueTypes["order_by"];
     slug?: ValueTypes["order_by"];
+    sphere?: ValueTypes["nb_sphere_order_by"];
     sphere_id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
+    time_table?: ValueTypes["ch_time_table_order_by"];
     updated_at?: ValueTypes["order_by"];
   };
   ["nb_meeting_participants"]: AliasType<{
@@ -7708,29 +7631,29 @@ export type PartialObjects = {
   };
   ["cr_user"]: {
     __typename?: "cr_user";
-    auth0_id?: number;
+    auth0_id?: string;
     ch_helpers?: PartialObjects["ch_helper"][];
     ch_helpers_aggregate?: PartialObjects["ch_helper_aggregate"];
-    ch_proposals?: PartialObjects["ch_proposal"][];
-    ch_proposals_aggregate?: PartialObjects["ch_proposal_aggregate"];
     date_joined?: PartialObjects["timestamptz"];
     email?: string;
     first_name?: string;
+    guilds?: PartialObjects["nb_guild_member"][];
+    guilds_aggregate?: PartialObjects["nb_guild_member_aggregate"];
     is_active?: boolean;
     is_staff?: boolean;
     is_superuser?: boolean;
     last_login?: PartialObjects["timestamptz"];
     last_name?: string;
     locale?: string;
-    nb_guild_members?: PartialObjects["nb_guild_member"][];
-    nb_guild_members_aggregate?: PartialObjects["nb_guild_member_aggregate"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants"][];
-    nb_meeting_participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
-    nb_meetings?: PartialObjects["nb_meeting"][];
-    nb_meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
-    nb_sphere_managers?: PartialObjects["nb_sphere_managers"][];
-    nb_sphere_managers_aggregate?: PartialObjects["nb_sphere_managers_aggregate"];
+    managed_spheres?: PartialObjects["nb_sphere_managers"][];
+    managed_spheres_aggregate?: PartialObjects["nb_sphere_managers_aggregate"];
+    meetings?: PartialObjects["nb_meeting_participants"][];
+    meetings_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
+    organized_meetings?: PartialObjects["nb_meeting"][];
+    organized_meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
     password?: string;
+    proposals?: PartialObjects["ch_proposal"][];
+    proposals_aggregate?: PartialObjects["ch_proposal_aggregate"];
     username?: string;
     uuid?: PartialObjects["uuid"];
   };
@@ -7741,94 +7664,68 @@ export type PartialObjects = {
   };
   ["cr_user_aggregate_fields"]: {
     __typename?: "cr_user_aggregate_fields";
-    avg?: PartialObjects["cr_user_avg_fields"];
     count?: number;
     max?: PartialObjects["cr_user_max_fields"];
     min?: PartialObjects["cr_user_min_fields"];
-    stddev?: PartialObjects["cr_user_stddev_fields"];
-    stddev_pop?: PartialObjects["cr_user_stddev_pop_fields"];
-    stddev_samp?: PartialObjects["cr_user_stddev_samp_fields"];
-    sum?: PartialObjects["cr_user_sum_fields"];
-    var_pop?: PartialObjects["cr_user_var_pop_fields"];
-    var_samp?: PartialObjects["cr_user_var_samp_fields"];
-    variance?: PartialObjects["cr_user_variance_fields"];
   };
   ["cr_user_aggregate_order_by"]: {
-    avg?: PartialObjects["cr_user_avg_order_by"];
     count?: PartialObjects["order_by"];
     max?: PartialObjects["cr_user_max_order_by"];
     min?: PartialObjects["cr_user_min_order_by"];
-    stddev?: PartialObjects["cr_user_stddev_order_by"];
-    stddev_pop?: PartialObjects["cr_user_stddev_pop_order_by"];
-    stddev_samp?: PartialObjects["cr_user_stddev_samp_order_by"];
-    sum?: PartialObjects["cr_user_sum_order_by"];
-    var_pop?: PartialObjects["cr_user_var_pop_order_by"];
-    var_samp?: PartialObjects["cr_user_var_samp_order_by"];
-    variance?: PartialObjects["cr_user_variance_order_by"];
   };
   ["cr_user_arr_rel_insert_input"]: {
     data: PartialObjects["cr_user_insert_input"][];
     on_conflict?: PartialObjects["cr_user_on_conflict"];
   };
-  ["cr_user_avg_fields"]: {
-    __typename?: "cr_user_avg_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_avg_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
   ["cr_user_bool_exp"]: {
     _and?: (PartialObjects["cr_user_bool_exp"] | undefined)[];
     _not?: PartialObjects["cr_user_bool_exp"];
     _or?: (PartialObjects["cr_user_bool_exp"] | undefined)[];
-    auth0_id?: PartialObjects["Int_comparison_exp"];
+    auth0_id?: PartialObjects["String_comparison_exp"];
     ch_helpers?: PartialObjects["ch_helper_bool_exp"];
-    ch_proposals?: PartialObjects["ch_proposal_bool_exp"];
     date_joined?: PartialObjects["timestamptz_comparison_exp"];
     email?: PartialObjects["String_comparison_exp"];
     first_name?: PartialObjects["String_comparison_exp"];
+    guilds?: PartialObjects["nb_guild_member_bool_exp"];
     is_active?: PartialObjects["Boolean_comparison_exp"];
     is_staff?: PartialObjects["Boolean_comparison_exp"];
     is_superuser?: PartialObjects["Boolean_comparison_exp"];
     last_login?: PartialObjects["timestamptz_comparison_exp"];
     last_name?: PartialObjects["String_comparison_exp"];
     locale?: PartialObjects["String_comparison_exp"];
-    nb_guild_members?: PartialObjects["nb_guild_member_bool_exp"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants_bool_exp"];
-    nb_meetings?: PartialObjects["nb_meeting_bool_exp"];
-    nb_sphere_managers?: PartialObjects["nb_sphere_managers_bool_exp"];
+    managed_spheres?: PartialObjects["nb_sphere_managers_bool_exp"];
+    meetings?: PartialObjects["nb_meeting_participants_bool_exp"];
+    organized_meetings?: PartialObjects["nb_meeting_bool_exp"];
     password?: PartialObjects["String_comparison_exp"];
+    proposals?: PartialObjects["ch_proposal_bool_exp"];
     username?: PartialObjects["String_comparison_exp"];
     uuid?: PartialObjects["uuid_comparison_exp"];
   };
   ["cr_user_constraint"]: cr_user_constraint;
-  ["cr_user_inc_input"]: {
-    auth0_id?: number;
-  };
   ["cr_user_insert_input"]: {
-    auth0_id?: number;
+    auth0_id?: string;
     ch_helpers?: PartialObjects["ch_helper_arr_rel_insert_input"];
-    ch_proposals?: PartialObjects["ch_proposal_arr_rel_insert_input"];
     date_joined?: PartialObjects["timestamptz"];
     email?: string;
     first_name?: string;
+    guilds?: PartialObjects["nb_guild_member_arr_rel_insert_input"];
     is_active?: boolean;
     is_staff?: boolean;
     is_superuser?: boolean;
     last_login?: PartialObjects["timestamptz"];
     last_name?: string;
     locale?: string;
-    nb_guild_members?: PartialObjects["nb_guild_member_arr_rel_insert_input"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants_arr_rel_insert_input"];
-    nb_meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
-    nb_sphere_managers?: PartialObjects["nb_sphere_managers_arr_rel_insert_input"];
+    managed_spheres?: PartialObjects["nb_sphere_managers_arr_rel_insert_input"];
+    meetings?: PartialObjects["nb_meeting_participants_arr_rel_insert_input"];
+    organized_meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
     password?: string;
+    proposals?: PartialObjects["ch_proposal_arr_rel_insert_input"];
     username?: string;
     uuid?: PartialObjects["uuid"];
   };
   ["cr_user_max_fields"]: {
     __typename?: "cr_user_max_fields";
-    auth0_id?: number;
+    auth0_id?: string;
     date_joined?: PartialObjects["timestamptz"];
     email?: string;
     first_name?: string;
@@ -7853,7 +7750,7 @@ export type PartialObjects = {
   };
   ["cr_user_min_fields"]: {
     __typename?: "cr_user_min_fields";
-    auth0_id?: number;
+    auth0_id?: string;
     date_joined?: PartialObjects["timestamptz"];
     email?: string;
     first_name?: string;
@@ -7893,21 +7790,21 @@ export type PartialObjects = {
   ["cr_user_order_by"]: {
     auth0_id?: PartialObjects["order_by"];
     ch_helpers_aggregate?: PartialObjects["ch_helper_aggregate_order_by"];
-    ch_proposals_aggregate?: PartialObjects["ch_proposal_aggregate_order_by"];
     date_joined?: PartialObjects["order_by"];
     email?: PartialObjects["order_by"];
     first_name?: PartialObjects["order_by"];
+    guilds_aggregate?: PartialObjects["nb_guild_member_aggregate_order_by"];
     is_active?: PartialObjects["order_by"];
     is_staff?: PartialObjects["order_by"];
     is_superuser?: PartialObjects["order_by"];
     last_login?: PartialObjects["order_by"];
     last_name?: PartialObjects["order_by"];
     locale?: PartialObjects["order_by"];
-    nb_guild_members_aggregate?: PartialObjects["nb_guild_member_aggregate_order_by"];
-    nb_meeting_participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate_order_by"];
-    nb_meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
-    nb_sphere_managers_aggregate?: PartialObjects["nb_sphere_managers_aggregate_order_by"];
+    managed_spheres_aggregate?: PartialObjects["nb_sphere_managers_aggregate_order_by"];
+    meetings_aggregate?: PartialObjects["nb_meeting_participants_aggregate_order_by"];
+    organized_meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
     password?: PartialObjects["order_by"];
+    proposals_aggregate?: PartialObjects["ch_proposal_aggregate_order_by"];
     username?: PartialObjects["order_by"];
     uuid?: PartialObjects["order_by"];
   };
@@ -7916,7 +7813,7 @@ export type PartialObjects = {
   };
   ["cr_user_select_column"]: cr_user_select_column;
   ["cr_user_set_input"]: {
-    auth0_id?: number;
+    auth0_id?: string;
     date_joined?: PartialObjects["timestamptz"];
     email?: string;
     first_name?: string;
@@ -7930,56 +7827,7 @@ export type PartialObjects = {
     username?: string;
     uuid?: PartialObjects["uuid"];
   };
-  ["cr_user_stddev_fields"]: {
-    __typename?: "cr_user_stddev_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_stddev_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
-  ["cr_user_stddev_pop_fields"]: {
-    __typename?: "cr_user_stddev_pop_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_stddev_pop_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
-  ["cr_user_stddev_samp_fields"]: {
-    __typename?: "cr_user_stddev_samp_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_stddev_samp_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
-  ["cr_user_sum_fields"]: {
-    __typename?: "cr_user_sum_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_sum_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
   ["cr_user_update_column"]: cr_user_update_column;
-  ["cr_user_var_pop_fields"]: {
-    __typename?: "cr_user_var_pop_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_var_pop_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
-  ["cr_user_var_samp_fields"]: {
-    __typename?: "cr_user_var_samp_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_var_samp_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
-  ["cr_user_variance_fields"]: {
-    __typename?: "cr_user_variance_fields";
-    auth0_id?: number;
-  };
-  ["cr_user_variance_order_by"]: {
-    auth0_id?: PartialObjects["order_by"];
-  };
   ["django_site"]: {
     __typename?: "django_site";
     domain?: string;
@@ -8693,26 +8541,26 @@ export type PartialObjects = {
   };
   ["nb_meeting"]: {
     __typename?: "nb_meeting";
-    ch_time_table?: PartialObjects["ch_time_table"];
-    cr_user?: PartialObjects["cr_user"];
     created_at?: PartialObjects["timestamptz"];
     description?: string;
     end_time?: PartialObjects["timestamptz"];
+    guild?: PartialObjects["nb_guild"];
     guild_id?: number;
     id?: number;
     image?: string;
     location?: string;
     meeting_url?: string;
     name?: string;
-    nb_guild?: PartialObjects["nb_guild"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants"][];
-    nb_meeting_participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
-    nb_sphere?: PartialObjects["nb_sphere"];
+    organizer?: PartialObjects["cr_user"];
     organizer_id?: PartialObjects["uuid"];
+    participants?: PartialObjects["nb_meeting_participants"][];
+    participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
+    sphere?: PartialObjects["nb_sphere"];
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
+    time_table?: PartialObjects["ch_time_table"];
     updated_at?: PartialObjects["timestamptz"];
   };
   ["nb_meeting_aggregate"]: {
@@ -8766,25 +8614,25 @@ export type PartialObjects = {
     _and?: (PartialObjects["nb_meeting_bool_exp"] | undefined)[];
     _not?: PartialObjects["nb_meeting_bool_exp"];
     _or?: (PartialObjects["nb_meeting_bool_exp"] | undefined)[];
-    ch_time_table?: PartialObjects["ch_time_table_bool_exp"];
-    cr_user?: PartialObjects["cr_user_bool_exp"];
     created_at?: PartialObjects["timestamptz_comparison_exp"];
     description?: PartialObjects["String_comparison_exp"];
     end_time?: PartialObjects["timestamptz_comparison_exp"];
+    guild?: PartialObjects["nb_guild_bool_exp"];
     guild_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     image?: PartialObjects["String_comparison_exp"];
     location?: PartialObjects["String_comparison_exp"];
     meeting_url?: PartialObjects["String_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
-    nb_guild?: PartialObjects["nb_guild_bool_exp"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants_bool_exp"];
-    nb_sphere?: PartialObjects["nb_sphere_bool_exp"];
+    organizer?: PartialObjects["cr_user_bool_exp"];
     organizer_id?: PartialObjects["uuid_comparison_exp"];
+    participants?: PartialObjects["nb_meeting_participants_bool_exp"];
     publication_time?: PartialObjects["timestamptz_comparison_exp"];
     slug?: PartialObjects["String_comparison_exp"];
+    sphere?: PartialObjects["nb_sphere_bool_exp"];
     sphere_id?: PartialObjects["Int_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
+    time_table?: PartialObjects["ch_time_table_bool_exp"];
     updated_at?: PartialObjects["timestamptz_comparison_exp"];
   };
   ["nb_meeting_constraint"]: nb_meeting_constraint;
@@ -8794,25 +8642,25 @@ export type PartialObjects = {
     sphere_id?: number;
   };
   ["nb_meeting_insert_input"]: {
-    ch_time_table?: PartialObjects["ch_time_table_obj_rel_insert_input"];
-    cr_user?: PartialObjects["cr_user_obj_rel_insert_input"];
     created_at?: PartialObjects["timestamptz"];
     description?: string;
     end_time?: PartialObjects["timestamptz"];
+    guild?: PartialObjects["nb_guild_obj_rel_insert_input"];
     guild_id?: number;
     id?: number;
     image?: string;
     location?: string;
     meeting_url?: string;
     name?: string;
-    nb_guild?: PartialObjects["nb_guild_obj_rel_insert_input"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants_arr_rel_insert_input"];
-    nb_sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
+    organizer?: PartialObjects["cr_user_obj_rel_insert_input"];
     organizer_id?: PartialObjects["uuid"];
+    participants?: PartialObjects["nb_meeting_participants_arr_rel_insert_input"];
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
+    sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
+    time_table?: PartialObjects["ch_time_table_obj_rel_insert_input"];
     updated_at?: PartialObjects["timestamptz"];
   };
   ["nb_meeting_max_fields"]: {
@@ -8900,25 +8748,25 @@ export type PartialObjects = {
     where?: PartialObjects["nb_meeting_bool_exp"];
   };
   ["nb_meeting_order_by"]: {
-    ch_time_table?: PartialObjects["ch_time_table_order_by"];
-    cr_user?: PartialObjects["cr_user_order_by"];
     created_at?: PartialObjects["order_by"];
     description?: PartialObjects["order_by"];
     end_time?: PartialObjects["order_by"];
+    guild?: PartialObjects["nb_guild_order_by"];
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     image?: PartialObjects["order_by"];
     location?: PartialObjects["order_by"];
     meeting_url?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
-    nb_guild?: PartialObjects["nb_guild_order_by"];
-    nb_meeting_participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate_order_by"];
-    nb_sphere?: PartialObjects["nb_sphere_order_by"];
+    organizer?: PartialObjects["cr_user_order_by"];
     organizer_id?: PartialObjects["order_by"];
+    participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate_order_by"];
     publication_time?: PartialObjects["order_by"];
     slug?: PartialObjects["order_by"];
+    sphere?: PartialObjects["nb_sphere_order_by"];
     sphere_id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
+    time_table?: PartialObjects["ch_time_table_order_by"];
     updated_at?: PartialObjects["order_by"];
   };
   ["nb_meeting_participants"]: {
@@ -10471,15 +10319,9 @@ export type PartialObjects = {
 
 // input type for inserting array relation for remote table "cr_user"
 
-// aggregate avg on columns
-
-// order by avg() on columns of table "cr_user"
-
 // Boolean expression to filter rows from the table "cr_user". All fields are combined with a logical 'AND'.
 
 // unique or primary key constraints on table "cr_user"
-
-// input type for incrementing integer column in table "cr_user"
 
 // input type for inserting data into table "cr_user"
 
@@ -10505,35 +10347,7 @@ export type PartialObjects = {
 
 // input type for updating data in table "cr_user"
 
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "cr_user"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "cr_user"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "cr_user"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "cr_user"
-
 // update columns of table "cr_user"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "cr_user"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "cr_user"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "cr_user"
 
 // columns and relationships of "django_site"
 
@@ -13544,29 +13358,29 @@ export type ch_wait_list_variance_order_by = {
 
 export type cr_user = {
   __typename?: "cr_user";
-  auth0_id?: number;
+  auth0_id: string;
   ch_helpers: ch_helper[];
   ch_helpers_aggregate: ch_helper_aggregate;
-  ch_proposals: ch_proposal[];
-  ch_proposals_aggregate: ch_proposal_aggregate;
   date_joined: timestamptz;
   email: string;
   first_name: string;
+  guilds: nb_guild_member[];
+  guilds_aggregate: nb_guild_member_aggregate;
   is_active: boolean;
   is_staff: boolean;
   is_superuser: boolean;
   last_login?: timestamptz;
   last_name: string;
   locale: string;
-  nb_guild_members: nb_guild_member[];
-  nb_guild_members_aggregate: nb_guild_member_aggregate;
-  nb_meeting_participants: nb_meeting_participants[];
-  nb_meeting_participants_aggregate: nb_meeting_participants_aggregate;
-  nb_meetings: nb_meeting[];
-  nb_meetings_aggregate: nb_meeting_aggregate;
-  nb_sphere_managers: nb_sphere_managers[];
-  nb_sphere_managers_aggregate: nb_sphere_managers_aggregate;
+  managed_spheres: nb_sphere_managers[];
+  managed_spheres_aggregate: nb_sphere_managers_aggregate;
+  meetings: nb_meeting_participants[];
+  meetings_aggregate: nb_meeting_participants_aggregate;
+  organized_meetings: nb_meeting[];
+  organized_meetings_aggregate: nb_meeting_aggregate;
   password: string;
+  proposals: ch_proposal[];
+  proposals_aggregate: ch_proposal_aggregate;
   username: string;
   uuid: uuid;
 };
@@ -13579,31 +13393,15 @@ export type cr_user_aggregate = {
 
 export type cr_user_aggregate_fields = {
   __typename?: "cr_user_aggregate_fields";
-  avg?: cr_user_avg_fields;
   count?: number;
   max?: cr_user_max_fields;
   min?: cr_user_min_fields;
-  stddev?: cr_user_stddev_fields;
-  stddev_pop?: cr_user_stddev_pop_fields;
-  stddev_samp?: cr_user_stddev_samp_fields;
-  sum?: cr_user_sum_fields;
-  var_pop?: cr_user_var_pop_fields;
-  var_samp?: cr_user_var_samp_fields;
-  variance?: cr_user_variance_fields;
 };
 
 export type cr_user_aggregate_order_by = {
-  avg?: cr_user_avg_order_by;
   count?: order_by;
   max?: cr_user_max_order_by;
   min?: cr_user_min_order_by;
-  stddev?: cr_user_stddev_order_by;
-  stddev_pop?: cr_user_stddev_pop_order_by;
-  stddev_samp?: cr_user_stddev_samp_order_by;
-  sum?: cr_user_sum_order_by;
-  var_pop?: cr_user_var_pop_order_by;
-  var_samp?: cr_user_var_samp_order_by;
-  variance?: cr_user_variance_order_by;
 };
 
 export type cr_user_arr_rel_insert_input = {
@@ -13611,36 +13409,27 @@ export type cr_user_arr_rel_insert_input = {
   on_conflict?: cr_user_on_conflict;
 };
 
-export type cr_user_avg_fields = {
-  __typename?: "cr_user_avg_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_avg_order_by = {
-  auth0_id?: order_by;
-};
-
 export type cr_user_bool_exp = {
   _and?: (cr_user_bool_exp | undefined)[];
   _not?: cr_user_bool_exp;
   _or?: (cr_user_bool_exp | undefined)[];
-  auth0_id?: Int_comparison_exp;
+  auth0_id?: String_comparison_exp;
   ch_helpers?: ch_helper_bool_exp;
-  ch_proposals?: ch_proposal_bool_exp;
   date_joined?: timestamptz_comparison_exp;
   email?: String_comparison_exp;
   first_name?: String_comparison_exp;
+  guilds?: nb_guild_member_bool_exp;
   is_active?: Boolean_comparison_exp;
   is_staff?: Boolean_comparison_exp;
   is_superuser?: Boolean_comparison_exp;
   last_login?: timestamptz_comparison_exp;
   last_name?: String_comparison_exp;
   locale?: String_comparison_exp;
-  nb_guild_members?: nb_guild_member_bool_exp;
-  nb_meeting_participants?: nb_meeting_participants_bool_exp;
-  nb_meetings?: nb_meeting_bool_exp;
-  nb_sphere_managers?: nb_sphere_managers_bool_exp;
+  managed_spheres?: nb_sphere_managers_bool_exp;
+  meetings?: nb_meeting_participants_bool_exp;
+  organized_meetings?: nb_meeting_bool_exp;
   password?: String_comparison_exp;
+  proposals?: ch_proposal_bool_exp;
   username?: String_comparison_exp;
   uuid?: uuid_comparison_exp;
 };
@@ -13650,35 +13439,31 @@ export enum cr_user_constraint {
   cr_user_username_key = "cr_user_username_key",
 }
 
-export type cr_user_inc_input = {
-  auth0_id?: number;
-};
-
 export type cr_user_insert_input = {
-  auth0_id?: number;
+  auth0_id?: string;
   ch_helpers?: ch_helper_arr_rel_insert_input;
-  ch_proposals?: ch_proposal_arr_rel_insert_input;
   date_joined?: timestamptz;
   email?: string;
   first_name?: string;
+  guilds?: nb_guild_member_arr_rel_insert_input;
   is_active?: boolean;
   is_staff?: boolean;
   is_superuser?: boolean;
   last_login?: timestamptz;
   last_name?: string;
   locale?: string;
-  nb_guild_members?: nb_guild_member_arr_rel_insert_input;
-  nb_meeting_participants?: nb_meeting_participants_arr_rel_insert_input;
-  nb_meetings?: nb_meeting_arr_rel_insert_input;
-  nb_sphere_managers?: nb_sphere_managers_arr_rel_insert_input;
+  managed_spheres?: nb_sphere_managers_arr_rel_insert_input;
+  meetings?: nb_meeting_participants_arr_rel_insert_input;
+  organized_meetings?: nb_meeting_arr_rel_insert_input;
   password?: string;
+  proposals?: ch_proposal_arr_rel_insert_input;
   username?: string;
   uuid?: uuid;
 };
 
 export type cr_user_max_fields = {
   __typename?: "cr_user_max_fields";
-  auth0_id?: number;
+  auth0_id?: string;
   date_joined?: timestamptz;
   email?: string;
   first_name?: string;
@@ -13705,7 +13490,7 @@ export type cr_user_max_order_by = {
 
 export type cr_user_min_fields = {
   __typename?: "cr_user_min_fields";
-  auth0_id?: number;
+  auth0_id?: string;
   date_joined?: timestamptz;
   email?: string;
   first_name?: string;
@@ -13750,21 +13535,21 @@ export type cr_user_on_conflict = {
 export type cr_user_order_by = {
   auth0_id?: order_by;
   ch_helpers_aggregate?: ch_helper_aggregate_order_by;
-  ch_proposals_aggregate?: ch_proposal_aggregate_order_by;
   date_joined?: order_by;
   email?: order_by;
   first_name?: order_by;
+  guilds_aggregate?: nb_guild_member_aggregate_order_by;
   is_active?: order_by;
   is_staff?: order_by;
   is_superuser?: order_by;
   last_login?: order_by;
   last_name?: order_by;
   locale?: order_by;
-  nb_guild_members_aggregate?: nb_guild_member_aggregate_order_by;
-  nb_meeting_participants_aggregate?: nb_meeting_participants_aggregate_order_by;
-  nb_meetings_aggregate?: nb_meeting_aggregate_order_by;
-  nb_sphere_managers_aggregate?: nb_sphere_managers_aggregate_order_by;
+  managed_spheres_aggregate?: nb_sphere_managers_aggregate_order_by;
+  meetings_aggregate?: nb_meeting_participants_aggregate_order_by;
+  organized_meetings_aggregate?: nb_meeting_aggregate_order_by;
   password?: order_by;
+  proposals_aggregate?: ch_proposal_aggregate_order_by;
   username?: order_by;
   uuid?: order_by;
 };
@@ -13790,7 +13575,7 @@ export enum cr_user_select_column {
 }
 
 export type cr_user_set_input = {
-  auth0_id?: number;
+  auth0_id?: string;
   date_joined?: timestamptz;
   email?: string;
   first_name?: string;
@@ -13803,42 +13588,6 @@ export type cr_user_set_input = {
   password?: string;
   username?: string;
   uuid?: uuid;
-};
-
-export type cr_user_stddev_fields = {
-  __typename?: "cr_user_stddev_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_stddev_order_by = {
-  auth0_id?: order_by;
-};
-
-export type cr_user_stddev_pop_fields = {
-  __typename?: "cr_user_stddev_pop_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_stddev_pop_order_by = {
-  auth0_id?: order_by;
-};
-
-export type cr_user_stddev_samp_fields = {
-  __typename?: "cr_user_stddev_samp_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_stddev_samp_order_by = {
-  auth0_id?: order_by;
-};
-
-export type cr_user_sum_fields = {
-  __typename?: "cr_user_sum_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_sum_order_by = {
-  auth0_id?: order_by;
 };
 
 export enum cr_user_update_column {
@@ -13856,33 +13605,6 @@ export enum cr_user_update_column {
   username = "username",
   uuid = "uuid",
 }
-
-export type cr_user_var_pop_fields = {
-  __typename?: "cr_user_var_pop_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_var_pop_order_by = {
-  auth0_id?: order_by;
-};
-
-export type cr_user_var_samp_fields = {
-  __typename?: "cr_user_var_samp_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_var_samp_order_by = {
-  auth0_id?: order_by;
-};
-
-export type cr_user_variance_fields = {
-  __typename?: "cr_user_variance_fields";
-  auth0_id?: number;
-};
-
-export type cr_user_variance_order_by = {
-  auth0_id?: order_by;
-};
 
 export type django_site = {
   __typename?: "django_site";
@@ -14753,26 +14475,26 @@ export type nb_guild_variance_order_by = {
 
 export type nb_meeting = {
   __typename?: "nb_meeting";
-  ch_time_table?: ch_time_table;
-  cr_user: cr_user;
   created_at: timestamptz;
   description: string;
   end_time?: timestamptz;
+  guild: nb_guild;
   guild_id: number;
   id: number;
   image?: string;
   location?: string;
   meeting_url: string;
   name: string;
-  nb_guild: nb_guild;
-  nb_meeting_participants: nb_meeting_participants[];
-  nb_meeting_participants_aggregate: nb_meeting_participants_aggregate;
-  nb_sphere: nb_sphere;
+  organizer: cr_user;
   organizer_id: uuid;
+  participants: nb_meeting_participants[];
+  participants_aggregate: nb_meeting_participants_aggregate;
   publication_time?: timestamptz;
   slug: string;
+  sphere: nb_sphere;
   sphere_id: number;
   start_time?: timestamptz;
+  time_table?: ch_time_table;
   updated_at: timestamptz;
 };
 
@@ -14833,25 +14555,25 @@ export type nb_meeting_bool_exp = {
   _and?: (nb_meeting_bool_exp | undefined)[];
   _not?: nb_meeting_bool_exp;
   _or?: (nb_meeting_bool_exp | undefined)[];
-  ch_time_table?: ch_time_table_bool_exp;
-  cr_user?: cr_user_bool_exp;
   created_at?: timestamptz_comparison_exp;
   description?: String_comparison_exp;
   end_time?: timestamptz_comparison_exp;
+  guild?: nb_guild_bool_exp;
   guild_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   image?: String_comparison_exp;
   location?: String_comparison_exp;
   meeting_url?: String_comparison_exp;
   name?: String_comparison_exp;
-  nb_guild?: nb_guild_bool_exp;
-  nb_meeting_participants?: nb_meeting_participants_bool_exp;
-  nb_sphere?: nb_sphere_bool_exp;
+  organizer?: cr_user_bool_exp;
   organizer_id?: uuid_comparison_exp;
+  participants?: nb_meeting_participants_bool_exp;
   publication_time?: timestamptz_comparison_exp;
   slug?: String_comparison_exp;
+  sphere?: nb_sphere_bool_exp;
   sphere_id?: Int_comparison_exp;
   start_time?: timestamptz_comparison_exp;
+  time_table?: ch_time_table_bool_exp;
   updated_at?: timestamptz_comparison_exp;
 };
 
@@ -14866,25 +14588,25 @@ export type nb_meeting_inc_input = {
 };
 
 export type nb_meeting_insert_input = {
-  ch_time_table?: ch_time_table_obj_rel_insert_input;
-  cr_user?: cr_user_obj_rel_insert_input;
   created_at?: timestamptz;
   description?: string;
   end_time?: timestamptz;
+  guild?: nb_guild_obj_rel_insert_input;
   guild_id?: number;
   id?: number;
   image?: string;
   location?: string;
   meeting_url?: string;
   name?: string;
-  nb_guild?: nb_guild_obj_rel_insert_input;
-  nb_meeting_participants?: nb_meeting_participants_arr_rel_insert_input;
-  nb_sphere?: nb_sphere_obj_rel_insert_input;
+  organizer?: cr_user_obj_rel_insert_input;
   organizer_id?: uuid;
+  participants?: nb_meeting_participants_arr_rel_insert_input;
   publication_time?: timestamptz;
   slug?: string;
+  sphere?: nb_sphere_obj_rel_insert_input;
   sphere_id?: number;
   start_time?: timestamptz;
+  time_table?: ch_time_table_obj_rel_insert_input;
   updated_at?: timestamptz;
 };
 
@@ -14980,25 +14702,25 @@ export type nb_meeting_on_conflict = {
 };
 
 export type nb_meeting_order_by = {
-  ch_time_table?: ch_time_table_order_by;
-  cr_user?: cr_user_order_by;
   created_at?: order_by;
   description?: order_by;
   end_time?: order_by;
+  guild?: nb_guild_order_by;
   guild_id?: order_by;
   id?: order_by;
   image?: order_by;
   location?: order_by;
   meeting_url?: order_by;
   name?: order_by;
-  nb_guild?: nb_guild_order_by;
-  nb_meeting_participants_aggregate?: nb_meeting_participants_aggregate_order_by;
-  nb_sphere?: nb_sphere_order_by;
+  organizer?: cr_user_order_by;
   organizer_id?: order_by;
+  participants_aggregate?: nb_meeting_participants_aggregate_order_by;
   publication_time?: order_by;
   slug?: order_by;
+  sphere?: nb_sphere_order_by;
   sphere_id?: order_by;
   start_time?: order_by;
+  time_table?: ch_time_table_order_by;
   updated_at?: order_by;
 };
 
@@ -21805,71 +21527,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_proposals: {
-      distinct_on: {
-        type: "ch_proposal_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_proposal_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_proposal_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_proposals_aggregate: {
-      distinct_on: {
-        type: "ch_proposal_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_proposal_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_proposal_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_guild_members: {
+    guilds: {
       distinct_on: {
         type: "nb_guild_member_select_column",
         array: true,
@@ -21901,7 +21559,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    nb_guild_members_aggregate: {
+    guilds_aggregate: {
       distinct_on: {
         type: "nb_guild_member_select_column",
         array: true,
@@ -21933,135 +21591,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    nb_meeting_participants: {
-      distinct_on: {
-        type: "nb_meeting_participants_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_participants_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_participants_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_meeting_participants_aggregate: {
-      distinct_on: {
-        type: "nb_meeting_participants_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_participants_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_participants_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_meetings: {
-      distinct_on: {
-        type: "nb_meeting_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_meetings_aggregate: {
-      distinct_on: {
-        type: "nb_meeting_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_sphere_managers: {
+    managed_spheres: {
       distinct_on: {
         type: "nb_sphere_managers_select_column",
         array: true,
@@ -22093,7 +21623,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    nb_sphere_managers_aggregate: {
+    managed_spheres_aggregate: {
       distinct_on: {
         type: "nb_sphere_managers_select_column",
         array: true,
@@ -22120,6 +21650,198 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "nb_sphere_managers_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    meetings: {
+      distinct_on: {
+        type: "nb_meeting_participants_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_participants_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_participants_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    meetings_aggregate: {
+      distinct_on: {
+        type: "nb_meeting_participants_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_participants_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_participants_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    organized_meetings: {
+      distinct_on: {
+        type: "nb_meeting_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    organized_meetings_aggregate: {
+      distinct_on: {
+        type: "nb_meeting_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    proposals: {
+      distinct_on: {
+        type: "ch_proposal_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_proposal_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_proposal_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    proposals_aggregate: {
+      distinct_on: {
+        type: "ch_proposal_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_proposal_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_proposal_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -22143,12 +21865,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   cr_user_aggregate_order_by: {
-    avg: {
-      type: "cr_user_avg_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     count: {
       type: "order_by",
       array: false,
@@ -22167,48 +21883,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    stddev: {
-      type: "cr_user_stddev_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    stddev_pop: {
-      type: "cr_user_stddev_pop_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    stddev_samp: {
-      type: "cr_user_stddev_samp_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    sum: {
-      type: "cr_user_sum_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    var_pop: {
-      type: "cr_user_var_pop_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    var_samp: {
-      type: "cr_user_var_samp_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    variance: {
-      type: "cr_user_variance_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
   },
   cr_user_arr_rel_insert_input: {
     data: {
@@ -22219,14 +21893,6 @@ export const AllTypesProps: Record<string, any> = {
     },
     on_conflict: {
       type: "cr_user_on_conflict",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  cr_user_avg_order_by: {
-    auth0_id: {
-      type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22252,19 +21918,13 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     auth0_id: {
-      type: "Int_comparison_exp",
+      type: "String_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
     ch_helpers: {
       type: "ch_helper_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposals: {
-      type: "ch_proposal_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22283,6 +21943,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     first_name: {
       type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    guilds: {
+      type: "nb_guild_member_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22323,32 +21989,32 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild_members: {
-      type: "nb_guild_member_bool_exp",
+    managed_spheres: {
+      type: "nb_sphere_managers_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meeting_participants: {
+    meetings: {
       type: "nb_meeting_participants_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings: {
+    organized_meetings: {
       type: "nb_meeting_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_sphere_managers: {
-      type: "nb_sphere_managers_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
     password: {
       type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22367,29 +22033,15 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   cr_user_constraint: "enum",
-  cr_user_inc_input: {
-    auth0_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
   cr_user_insert_input: {
     auth0_id: {
-      type: "Int",
+      type: "String",
       array: false,
       arrayRequired: false,
       required: false,
     },
     ch_helpers: {
       type: "ch_helper_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposals: {
-      type: "ch_proposal_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22408,6 +22060,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     first_name: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    guilds: {
+      type: "nb_guild_member_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22448,32 +22106,32 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild_members: {
-      type: "nb_guild_member_arr_rel_insert_input",
+    managed_spheres: {
+      type: "nb_sphere_managers_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meeting_participants: {
+    meetings: {
       type: "nb_meeting_participants_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings: {
+    organized_meetings: {
       type: "nb_meeting_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_sphere_managers: {
-      type: "nb_sphere_managers_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
     password: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22662,12 +22320,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_proposals_aggregate: {
-      type: "ch_proposal_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     date_joined: {
       type: "order_by",
       array: false,
@@ -22682,6 +22334,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     first_name: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    guilds_aggregate: {
+      type: "nb_guild_member_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22722,32 +22380,32 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild_members_aggregate: {
-      type: "nb_guild_member_aggregate_order_by",
+    managed_spheres_aggregate: {
+      type: "nb_sphere_managers_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meeting_participants_aggregate: {
+    meetings_aggregate: {
       type: "nb_meeting_participants_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings_aggregate: {
+    organized_meetings_aggregate: {
       type: "nb_meeting_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_sphere_managers_aggregate: {
-      type: "nb_sphere_managers_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     password: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals_aggregate: {
+      type: "ch_proposal_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22776,7 +22434,7 @@ export const AllTypesProps: Record<string, any> = {
   cr_user_select_column: "enum",
   cr_user_set_input: {
     auth0_id: {
-      type: "Int",
+      type: "String",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22854,63 +22512,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  cr_user_stddev_order_by: {
-    auth0_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  cr_user_stddev_pop_order_by: {
-    auth0_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  cr_user_stddev_samp_order_by: {
-    auth0_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  cr_user_sum_order_by: {
-    auth0_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
   cr_user_update_column: "enum",
-  cr_user_var_pop_order_by: {
-    auth0_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  cr_user_var_samp_order_by: {
-    auth0_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  cr_user_variance_order_by: {
-    auth0_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
   django_site_aggregate_fields: {
     count: {
       columns: {
@@ -24595,12 +24197,6 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
     update_cr_user: {
-      _inc: {
-        type: "cr_user_inc_input",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
       _set: {
         type: "cr_user_set_input",
         array: false,
@@ -24615,12 +24211,6 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
     update_cr_user_by_pk: {
-      _inc: {
-        type: "cr_user_inc_input",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
       _set: {
         type: "cr_user_set_input",
         array: false,
@@ -26106,7 +25696,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_meeting: {
-    nb_meeting_participants: {
+    participants: {
       distinct_on: {
         type: "nb_meeting_participants_select_column",
         array: true,
@@ -26138,7 +25728,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    nb_meeting_participants_aggregate: {
+    participants_aggregate: {
       distinct_on: {
         type: "nb_meeting_participants_select_column",
         array: true,
@@ -26308,18 +25898,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_time_table: {
-      type: "ch_time_table_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    cr_user: {
-      type: "cr_user_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     created_at: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -26334,6 +25912,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "timestamptz_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    guild: {
+      type: "nb_guild_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26374,26 +25958,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild: {
-      type: "nb_guild_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_meeting_participants: {
-      type: "nb_meeting_participants_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_sphere: {
-      type: "nb_sphere_bool_exp",
+    organizer: {
+      type: "cr_user_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
     organizer_id: {
       type: "uuid_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants: {
+      type: "nb_meeting_participants_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26410,6 +25988,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    sphere: {
+      type: "nb_sphere_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "Int_comparison_exp",
       array: false,
@@ -26418,6 +26002,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     start_time: {
       type: "timestamptz_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_table: {
+      type: "ch_time_table_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26451,18 +26041,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_meeting_insert_input: {
-    ch_time_table: {
-      type: "ch_time_table_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    cr_user: {
-      type: "cr_user_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     created_at: {
       type: "timestamptz",
       array: false,
@@ -26477,6 +26055,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    guild: {
+      type: "nb_guild_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26517,26 +26101,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild: {
-      type: "nb_guild_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_meeting_participants: {
-      type: "nb_meeting_participants_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_sphere: {
-      type: "nb_sphere_obj_rel_insert_input",
+    organizer: {
+      type: "cr_user_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
     organizer_id: {
       type: "uuid",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants: {
+      type: "nb_meeting_participants_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26553,6 +26131,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    sphere: {
+      type: "nb_sphere_obj_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "Int",
       array: false,
@@ -26561,6 +26145,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     start_time: {
       type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_table: {
+      type: "ch_time_table_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26791,18 +26381,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_meeting_order_by: {
-    ch_time_table: {
-      type: "ch_time_table_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    cr_user: {
-      type: "cr_user_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     created_at: {
       type: "order_by",
       array: false,
@@ -26817,6 +26395,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    guild: {
+      type: "nb_guild_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26857,26 +26441,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild: {
-      type: "nb_guild_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_meeting_participants_aggregate: {
-      type: "nb_meeting_participants_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_sphere: {
-      type: "nb_sphere_order_by",
+    organizer: {
+      type: "cr_user_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     organizer_id: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants_aggregate: {
+      type: "nb_meeting_participants_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26893,6 +26471,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    sphere: {
+      type: "nb_sphere_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "order_by",
       array: false,
@@ -26901,6 +26485,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     start_time: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_table: {
+      type: "ch_time_table_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -32193,29 +31783,29 @@ export const ReturnTypes: Record<string, any> = {
     id: "Float",
   },
   cr_user: {
-    auth0_id: "Int",
+    auth0_id: "String",
     ch_helpers: "ch_helper",
     ch_helpers_aggregate: "ch_helper_aggregate",
-    ch_proposals: "ch_proposal",
-    ch_proposals_aggregate: "ch_proposal_aggregate",
     date_joined: "timestamptz",
     email: "String",
     first_name: "String",
+    guilds: "nb_guild_member",
+    guilds_aggregate: "nb_guild_member_aggregate",
     is_active: "Boolean",
     is_staff: "Boolean",
     is_superuser: "Boolean",
     last_login: "timestamptz",
     last_name: "String",
     locale: "String",
-    nb_guild_members: "nb_guild_member",
-    nb_guild_members_aggregate: "nb_guild_member_aggregate",
-    nb_meeting_participants: "nb_meeting_participants",
-    nb_meeting_participants_aggregate: "nb_meeting_participants_aggregate",
-    nb_meetings: "nb_meeting",
-    nb_meetings_aggregate: "nb_meeting_aggregate",
-    nb_sphere_managers: "nb_sphere_managers",
-    nb_sphere_managers_aggregate: "nb_sphere_managers_aggregate",
+    managed_spheres: "nb_sphere_managers",
+    managed_spheres_aggregate: "nb_sphere_managers_aggregate",
+    meetings: "nb_meeting_participants",
+    meetings_aggregate: "nb_meeting_participants_aggregate",
+    organized_meetings: "nb_meeting",
+    organized_meetings_aggregate: "nb_meeting_aggregate",
     password: "String",
+    proposals: "ch_proposal",
+    proposals_aggregate: "ch_proposal_aggregate",
     username: "String",
     uuid: "uuid",
   },
@@ -32224,23 +31814,12 @@ export const ReturnTypes: Record<string, any> = {
     nodes: "cr_user",
   },
   cr_user_aggregate_fields: {
-    avg: "cr_user_avg_fields",
     count: "Int",
     max: "cr_user_max_fields",
     min: "cr_user_min_fields",
-    stddev: "cr_user_stddev_fields",
-    stddev_pop: "cr_user_stddev_pop_fields",
-    stddev_samp: "cr_user_stddev_samp_fields",
-    sum: "cr_user_sum_fields",
-    var_pop: "cr_user_var_pop_fields",
-    var_samp: "cr_user_var_samp_fields",
-    variance: "cr_user_variance_fields",
-  },
-  cr_user_avg_fields: {
-    auth0_id: "Float",
   },
   cr_user_max_fields: {
-    auth0_id: "Int",
+    auth0_id: "String",
     date_joined: "timestamptz",
     email: "String",
     first_name: "String",
@@ -32252,7 +31831,7 @@ export const ReturnTypes: Record<string, any> = {
     uuid: "uuid",
   },
   cr_user_min_fields: {
-    auth0_id: "Int",
+    auth0_id: "String",
     date_joined: "timestamptz",
     email: "String",
     first_name: "String",
@@ -32266,27 +31845,6 @@ export const ReturnTypes: Record<string, any> = {
   cr_user_mutation_response: {
     affected_rows: "Int",
     returning: "cr_user",
-  },
-  cr_user_stddev_fields: {
-    auth0_id: "Float",
-  },
-  cr_user_stddev_pop_fields: {
-    auth0_id: "Float",
-  },
-  cr_user_stddev_samp_fields: {
-    auth0_id: "Float",
-  },
-  cr_user_sum_fields: {
-    auth0_id: "Int",
-  },
-  cr_user_var_pop_fields: {
-    auth0_id: "Float",
-  },
-  cr_user_var_samp_fields: {
-    auth0_id: "Float",
-  },
-  cr_user_variance_fields: {
-    auth0_id: "Float",
   },
   django_site: {
     domain: "String",
@@ -32601,26 +32159,26 @@ export const ReturnTypes: Record<string, any> = {
     id: "Float",
   },
   nb_meeting: {
-    ch_time_table: "ch_time_table",
-    cr_user: "cr_user",
     created_at: "timestamptz",
     description: "String",
     end_time: "timestamptz",
+    guild: "nb_guild",
     guild_id: "Int",
     id: "Int",
     image: "String",
     location: "String",
     meeting_url: "String",
     name: "String",
-    nb_guild: "nb_guild",
-    nb_meeting_participants: "nb_meeting_participants",
-    nb_meeting_participants_aggregate: "nb_meeting_participants_aggregate",
-    nb_sphere: "nb_sphere",
+    organizer: "cr_user",
     organizer_id: "uuid",
+    participants: "nb_meeting_participants",
+    participants_aggregate: "nb_meeting_participants_aggregate",
     publication_time: "timestamptz",
     slug: "String",
+    sphere: "nb_sphere",
     sphere_id: "Int",
     start_time: "timestamptz",
+    time_table: "ch_time_table",
     updated_at: "timestamptz",
   },
   nb_meeting_aggregate: {

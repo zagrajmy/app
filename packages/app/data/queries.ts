@@ -11,4 +11,4 @@ export const queryUserByAuth0Id = <T extends ValueTypes["cr_user"]>(
 ) =>
   query({
     cr_user: [{ where: { auth0_id: { _eq: auth0Id } } }, properties],
-  }).then((res) => toUndefined(head(res.user || [])));
+  }).then((res) => toUndefined(head(res.cr_user || [])));
