@@ -1,7 +1,5 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-
-  "typescript.referencesCodeLens.enabled": false,
   "search.exclude": {
     "**/dist": true,
     "**/dist-ts": true
