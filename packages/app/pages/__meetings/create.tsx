@@ -10,11 +10,11 @@ import {
   Flex,
   Grid,
   Label as ThLabel,
-  LabelProps,
   Message,
   Select,
   Textarea,
 } from "theme-ui";
+import type { LabelProps } from "theme-ui";
 import { OmitByValue } from "utility-types";
 
 import { hasura } from "../../data";

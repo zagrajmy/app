@@ -27,8 +27,22 @@ export const Header = (props: { onOpen: () => void }) => {
 
   return (
     <div sx={styles.wrapper} data-testid="header">
-      <Box sx={styles.menuIcon}>
-        <button type="button" sx={styles.menuButton} onClick={onOpen}>
+      <Box
+        sx={{
+          ...styles.menuIcon,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <button
+          type="button"
+          sx={{
+            ...styles.menuButton,
+            display: "flex",
+          }}
+          onClick={onOpen}
+        >
           <Menu size={25} />
         </button>
       </Box>

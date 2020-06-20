@@ -1,4 +1,4 @@
-import { LabelProps } from "theme-ui";
+import type { LabelProps } from "theme-ui";
 
 export { Label } from "theme-ui";
 

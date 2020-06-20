@@ -6,9 +6,11 @@
   "author": "hasparus <hasparus@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
     "app": "yarn workspace @zagrajmy/app",
     "docs": "yarn workspace @zagrajmy/docs",

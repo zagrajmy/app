@@ -14,7 +14,7 @@ declare module "theme-ui" {
   }
 }
 
-// TODO Contribute
+// TODO Contribute // Can this be already removed?
 type BadlyTypedThemeUIThemeKeys =
   | "forms"
   | "buttons"
