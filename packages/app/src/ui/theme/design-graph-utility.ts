@@ -2,13 +2,11 @@
 // # Theme UI TypeScript Companion
 //
 
-import { SystemStyleObject } from "theme-ui";
+import { ThemeUIStyleObject } from "theme-ui";
 
-// brewing a PR to theme-ui
-// see https://jxnblk.com/blog/design-graph/
 export type Variants<Keys extends string = string> = Record<
   Keys,
-  SystemStyleObject
+  ThemeUIStyleObject
 >;
 
 /**

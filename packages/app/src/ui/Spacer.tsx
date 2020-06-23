@@ -1,5 +1,5 @@
-import { SystemCssProperties } from "theme-ui";
+import { ThemeUICSSProperties } from "theme-ui";
 
 export interface SpacerProps
-  extends Pick<SystemCssProperties, "width" | "height"> {}
+  extends Pick<ThemeUICSSProperties, "width" | "height"> {}
 export const Spacer = (props: SpacerProps) => <div sx={props} />;

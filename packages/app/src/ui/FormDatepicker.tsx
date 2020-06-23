@@ -14,7 +14,7 @@ import ReactDatePicker, {
   registerLocale,
 } from "react-datepicker";
 import { Controller, ControllerProps } from "react-hook-form";
-import { SystemStyleObject } from "theme-ui";
+import { ThemeUIStyleObject } from "theme-ui";
 
 import { Calendar } from "./icons";
 import { Input } from "./Input";
@@ -39,7 +39,7 @@ const excludedHoursOnMinDate = (min: Date) => {
   );
 };
 
-const reactDatePickerStyleOverride: SystemStyleObject = {
+const reactDatePickerStyleOverride: ThemeUIStyleObject = {
   ".react-datepicker-wrapper": {
     display: "unset",
     border: "unset",

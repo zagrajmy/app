@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { SystemStyleObject } from "theme-ui";
+import { ThemeUIStyleObject } from "theme-ui";
 
-export const link: SystemStyleObject = {
+export const link: ThemeUIStyleObject = {
   my: 1,
   display: "block",
   color: "sidebar.navGroup",
@@ -17,7 +17,7 @@ export const link: SystemStyleObject = {
   },
 };
 
-export const smallLink: SystemStyleObject = {
+export const smallLink: ThemeUIStyleObject = {
   ...link,
   ml: 3,
   fontSize: 1,

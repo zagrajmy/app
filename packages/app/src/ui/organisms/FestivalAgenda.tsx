@@ -1,9 +1,9 @@
-import { SystemStyleObject } from "theme-ui";
+import { ThemeUIStyleObject } from "theme-ui";
 
 import { slugify } from "../../lib/slugify";
 import { Heading } from "../Heading";
 
-const listStyles: SystemStyleObject = {
+const listStyles: ThemeUIStyleObject = {
   listStyle: "none",
   pl: 0,
 };
@@ -32,7 +32,7 @@ export interface FestivalAgendaProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  sx?: SystemStyleObject;
+  sx?: ThemeUIStyleObject;
 }
 export function FestivalAgenda({
   id,

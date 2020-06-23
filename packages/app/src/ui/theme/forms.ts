@@ -1,8 +1,8 @@
-import { SystemStyleObject } from "theme-ui";
+import { ThemeUIStyleObject } from "theme-ui";
 
 import { Variants } from "./design-graph-utility";
 
-const field: SystemStyleObject = {
+const field: ThemeUIStyleObject = {
   appearance: "none",
   fontSize: "inherit",
   lineHeight: "inherit",
