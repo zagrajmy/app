@@ -2,7 +2,7 @@
 
 import { Global } from "@emotion/core";
 import { media } from "gatsby-theme-docz/src/theme/breakpoints";
-import { useRef, useState, useLayoutEffect } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Box } from "theme-ui";
 
 import { globalStyles } from "../../theme/global";

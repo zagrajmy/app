@@ -54,37 +54,15 @@ interface PlaygroundProps {
     [key: string]: any;
   };
   language: Language;
-  useScoping?: boolean;
 }
-export const Playground = ({
-  code,
-  scope,
-  language,
-  useScoping = false,
-}: PlaygroundProps) => {
+export const Playground = ({ code, scope, language }: PlaygroundProps) => {
   const {
-    themeConfig: {
-      showPlaygroundEditor,
-      showLiveError,
-      showLivePreview,
-      useScopingInPlayground,
-    },
+    themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview },
   } = useConfig();
-  const [previewHeight, setPreviewHeight] = React.useState<number>();
-  const [editorHeight, setEditorHeight] = React.useState<number>();
-  const Wrapper = React.useCallback(
-    useScoping || useScopingInPlayground
-      ? (props) => <IframeWrapper {...props}>{props.children}</IframeWrapper>
-      : (props) => (
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          <div sx={styles.previewInner(showingCode)}>{props.children}</div>
-        ),
-    [useScoping]
-  ); // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
+  const [showingCode, setShowingCode] = React.useState(showPlaygroundEditor);
 
   const prismTheme = usePrismTheme();
   const [scopeOnMount] = React.useState(scope);
-  const [showingCode, setShowingCode] = React.useState(showPlaygroundEditor);
   const [width, setWidth] = React.useState("100%");
   const resizableProps = getResizableProps(width, setWidth);
 
@@ -109,17 +87,11 @@ export const Playground = ({
         theme={prismTheme}
       >
         <div sx={{ position: "relative" }}>
-          <Wrapper height={previewHeight}>
+          <div sx={styles.previewInner(showingCode)}>
             {showLivePreview && (
               <LivePreview sx={styles.preview} data-testid="live-preview" />
             )}
-            <ReactResizeDetector
-              handleHeight
-              onResize={(_: number, height: number) => {
-                setPreviewHeight(height);
-              }}
-            />
-          </Wrapper>
+          </div>
           <div sx={{ display: "flex", justifyContent: "flex-end" }}>
             <button type="button" sx={styles.button} onClick={copyCode}>
               <Icons.Clipboard size={12} />
@@ -130,17 +102,11 @@ export const Playground = ({
           </div>
         </div>
         {showingCode && (
-          <Wrapper height={editorHeight}>
+          <div sx={styles.previewInner(showingCode)}>
             <div sx={styles.editor}>
               <LiveEditor data-testid="live-editor" />
             </div>
-            <ReactResizeDetector
-              handleHeight
-              onResize={(_: number, height: number) => {
-                setEditorHeight(height);
-              }}
-            />
-          </Wrapper>
+          </div>
         )}
         {showLiveError && (
           <LiveError sx={styles.error} data-testid="live-error" />
