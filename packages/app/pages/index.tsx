@@ -64,14 +64,15 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
   );
 };
 
-const DEV_SPHERES = [
+// We should add `isHub` column to sphere probably.
+const HUBS = [
   { id: 1, domain: "zagrajmy.net" },
   { id: 2, domain: "zagrajmy.now.sh" },
 ];
 
 function isHub(url: string, devSphereId?: number) {
   return (
-    DEV_SPHERES.find(
+    HUBS.find(
       (sphere) =>
         url.includes(`https://${sphere.domain}`) || devSphereId === sphere.id
     ) !== undefined
