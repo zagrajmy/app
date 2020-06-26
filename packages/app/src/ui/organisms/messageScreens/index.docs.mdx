@@ -5,6 +5,7 @@ menu: Organisms
 ---
 
 import { EmailConfirmationScreen, NoPublishedMeetingsScreen } from "./index";
+import { Button } from "@zagrajmy/app";
 
 export const border = { border: "2px solid", borderColor: "gray.4" };
 
@@ -14,4 +15,6 @@ export const border = { border: "2px solid", borderColor: "gray.4" };
 
 ## No Published Meetings Screen
 
-<NoPublishedMeetingsScreen sx={border} />
+<NoPublishedMeetingsScreen sx={border}>
+  <Button>Create a meeting</Button>
+</NoPublishedMeetingsScreen>
