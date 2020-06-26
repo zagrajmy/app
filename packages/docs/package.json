@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "cd ../app && npm run build:lib",
+    "postinstall": "cd ../app && npm run build:lib",
     "build": "gatsby build",
     "dev": "gatsby develop -p 3001",
     "deploy": "npm run build && now --prod",
