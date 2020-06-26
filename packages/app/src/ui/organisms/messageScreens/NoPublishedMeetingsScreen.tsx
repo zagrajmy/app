@@ -3,15 +3,12 @@ import React, { ComponentPropsWithoutRef } from "react";
 import { Center } from "../../Center";
 import { MessageScreen } from "./MessageScreen";
 
-const CrossedArmsGuy = () => (
+const CrossedArmsGuy = (props: ComponentPropsWithoutRef<"svg">) => (
   <svg
     viewBox="0 0 240 324"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    sx={{
-      ".white": { fill: "gray.1" },
-      ".black": { fill: "text" },
-    }}
+    {...props}
   >
     <path
       className="white"
