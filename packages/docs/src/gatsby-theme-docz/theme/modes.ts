@@ -13,7 +13,7 @@ export const light = {
     navGroup: cx.gray[9],
     navLink: cx.text,
     navLinkActive: cx.primary,
-    tocLink: cx.gray[5],
+    tocLink: cx.gray[7],
     tocLinkActive: cx.gray[9],
   },
   header: {
