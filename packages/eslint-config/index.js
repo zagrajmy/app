@@ -19,5 +19,7 @@ module.exports = {
     "no-else-return": "off",
 
     "react/jsx-pascal-case": "off",
+
+    "prefer-destructuring": ["warn", { object: true, array: false }],
   },
 };
