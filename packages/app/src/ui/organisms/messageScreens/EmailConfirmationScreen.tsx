@@ -1,7 +1,8 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import { Flex, Grid, Heading } from "theme-ui";
 
-const Human = (props: ComponentPropsWithoutRef<"svg">) => (
+import { MessageScreen } from "./MessageScreen";
+
+const PointingGirl = (props: ComponentPropsWithoutRef<"svg">) => (
   <svg
     viewBox="0 0 240 324"
     fill="none"
@@ -54,28 +55,23 @@ export const EmailConfirmationScreen = ({
   ...rest
 }: EmailConfirmationProps) => {
   return (
-    <Grid
-      as="section"
-      columns={[1, 2]}
-      sx={{ px: [4, 5], alignItems: "center", position: "relative" }}
+    <MessageScreen
+      picture={PointingGirl}
+      heading="Verify Your Account"
       {...rest}
     >
-      <Human sx={{ flex: 1, maxHeight: "100%" }} />
-      <Flex sx={{ flexDirection: "column", fontSize: 4 }}>
-        <Heading as="h3">Verify Your Account</Heading>
-        <p sx={{ mb: 0 }}>
-          Howdy <strong>{username}</strong>!
-        </p>
+      <p sx={{ mb: 0 }}>
+        Howdy <strong>{username}</strong>!
+      </p>
 
-        <p id="email-confirmation">
-          One last thing! We've sent you an email{" "}
-          <span role="img" aria-labelledby="email-confirmation">
-            📬
-          </span>
-          <br />
-          Click the activation link there to finish the registration.
-        </p>
-      </Flex>
-    </Grid>
+      <p id="email-confirmation">
+        One last thing! We've sent you an email{" "}
+        <span role="img" aria-labelledby="email-confirmation">
+          📬
+        </span>
+        <br />
+        Click the activation link there to finish the registration.
+      </p>
+    </MessageScreen>
   );
 };

@@ -1,9 +1,9 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import { Flex, Grid, Heading } from "theme-ui";
 
 import { Center } from "../../Center";
+import { MessageScreen } from "./MessageScreen";
 
-const Human = () => (
+const CrossedArmsGuy = () => (
   <svg
     viewBox="0 0 240 324"
     fill="none"
@@ -54,21 +54,12 @@ export const NoPublishedMeetingsScreen = ({
   children,
   ...rest
 }: NoPublishedMeetingsScreenProps) => (
-  <Grid
-    as="section"
-    columns={[1, 2]}
-    sx={{ px: [4, 5], alignItems: "center" }}
-    {...rest}
-  >
-    <Human sx={{ flex: 1 }} />
-    <Flex sx={{ flexDirection: "column", fontSize: 4 }}>
-      <Heading as="h3">No meetings here.</Heading>
-      <p>
-        Null, zero, zilch, nada.
-        <br />
-        Be the first, it ain't hard.
-      </p>
-      <Center sx={{ pt: 4 }}>{children}</Center>
-    </Flex>
-  </Grid>
+  <MessageScreen picture={CrossedArmsGuy} heading="No meetings here" {...rest}>
+    <p>
+      Null, zero, zilch, nada.
+      <br />
+      Be the first, it ain't hard.
+    </p>
+    <Center sx={{ pt: 4 }}>{children}</Center>
+  </MessageScreen>
 );
