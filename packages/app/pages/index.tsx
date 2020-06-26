@@ -127,7 +127,7 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
                 {
                   ch_time_tables: [
                     {
-                      order_by: [{ start_time: order_by.asc }],
+                      order_by: [{ nb_meeting: { start_time: order_by.asc } }],
                       where: { meeting_confirmed: { _eq: true } },
                     },
                     {
@@ -138,7 +138,7 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
                         slug: true,
                         name: true,
                         description: true,
-                        cr_user: {
+                        organizer: {
                           username: true,
                         },
                       },

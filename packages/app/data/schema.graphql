@@ -1217,17 +1217,15 @@ type ch_proposal {
   ch_wait_list: ch_wait_list!
   city: String!
   club: String!
+  id: Int!
 
   # An object relationship
-  cr_user: cr_user!
-  description: String!
-  id: Int!
+  meeting: nb_meeting!
+  meeting_id: Int!
   needs: String!
   other_contact: String!
   other_data: String!
   phone: String!
-  title: String!
-  user_id: uuid!
   waitlist_id: Int!
 }
 
@@ -1276,12 +1274,14 @@ input ch_proposal_arr_rel_insert_input {
 # aggregate avg on columns
 type ch_proposal_avg_fields {
   id: Float
+  meeting_id: Float
   waitlist_id: Float
 }
 
 # order by avg() on columns of table "ch_proposal"
 input ch_proposal_avg_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
@@ -1294,20 +1294,21 @@ input ch_proposal_bool_exp {
   ch_wait_list: ch_wait_list_bool_exp
   city: String_comparison_exp
   club: String_comparison_exp
-  cr_user: cr_user_bool_exp
-  description: String_comparison_exp
   id: Int_comparison_exp
+  meeting: nb_meeting_bool_exp
+  meeting_id: Int_comparison_exp
   needs: String_comparison_exp
   other_contact: String_comparison_exp
   other_data: String_comparison_exp
   phone: String_comparison_exp
-  title: String_comparison_exp
-  user_id: uuid_comparison_exp
   waitlist_id: Int_comparison_exp
 }
 
 # unique or primary key constraints on table "ch_proposal"
 enum ch_proposal_constraint {
+  # unique or primary key constraint
+  ch_proposal_meeting_id_key
+
   # unique or primary key constraint
   ch_proposal_pkey
 }
@@ -1315,6 +1316,7 @@ enum ch_proposal_constraint {
 # input type for incrementing integer column in table "ch_proposal"
 input ch_proposal_inc_input {
   id: Int
+  meeting_id: Int
   waitlist_id: Int
 }
 
@@ -1324,15 +1326,13 @@ input ch_proposal_insert_input {
   ch_wait_list: ch_wait_list_obj_rel_insert_input
   city: String
   club: String
-  cr_user: cr_user_obj_rel_insert_input
-  description: String
   id: Int
+  meeting: nb_meeting_obj_rel_insert_input
+  meeting_id: Int
   needs: String
   other_contact: String
   other_data: String
   phone: String
-  title: String
-  user_id: uuid
   waitlist_id: Int
 }
 
@@ -1340,14 +1340,12 @@ input ch_proposal_insert_input {
 type ch_proposal_max_fields {
   city: String
   club: String
-  description: String
   id: Int
+  meeting_id: Int
   needs: String
   other_contact: String
   other_data: String
   phone: String
-  title: String
-  user_id: uuid
   waitlist_id: Int
 }
 
@@ -1355,14 +1353,12 @@ type ch_proposal_max_fields {
 input ch_proposal_max_order_by {
   city: order_by
   club: order_by
-  description: order_by
   id: order_by
+  meeting_id: order_by
   needs: order_by
   other_contact: order_by
   other_data: order_by
   phone: order_by
-  title: order_by
-  user_id: order_by
   waitlist_id: order_by
 }
 
@@ -1370,14 +1366,12 @@ input ch_proposal_max_order_by {
 type ch_proposal_min_fields {
   city: String
   club: String
-  description: String
   id: Int
+  meeting_id: Int
   needs: String
   other_contact: String
   other_data: String
   phone: String
-  title: String
-  user_id: uuid
   waitlist_id: Int
 }
 
@@ -1385,14 +1379,12 @@ type ch_proposal_min_fields {
 input ch_proposal_min_order_by {
   city: order_by
   club: order_by
-  description: order_by
   id: order_by
+  meeting_id: order_by
   needs: order_by
   other_contact: order_by
   other_data: order_by
   phone: order_by
-  title: order_by
-  user_id: order_by
   waitlist_id: order_by
 }
 
@@ -1424,15 +1416,13 @@ input ch_proposal_order_by {
   ch_wait_list: ch_wait_list_order_by
   city: order_by
   club: order_by
-  cr_user: cr_user_order_by
-  description: order_by
   id: order_by
+  meeting: nb_meeting_order_by
+  meeting_id: order_by
   needs: order_by
   other_contact: order_by
   other_data: order_by
   phone: order_by
-  title: order_by
-  user_id: order_by
   waitlist_id: order_by
 }
 
@@ -1450,10 +1440,10 @@ enum ch_proposal_select_column {
   club
 
   # column name
-  description
+  id
 
   # column name
-  id
+  meeting_id
 
   # column name
   needs
@@ -1468,12 +1458,6 @@ enum ch_proposal_select_column {
   phone
 
   # column name
-  title
-
-  # column name
-  user_id
-
-  # column name
   waitlist_id
 }
 
@@ -1481,62 +1465,68 @@ enum ch_proposal_select_column {
 input ch_proposal_set_input {
   city: String
   club: String
-  description: String
   id: Int
+  meeting_id: Int
   needs: String
   other_contact: String
   other_data: String
   phone: String
-  title: String
-  user_id: uuid
   waitlist_id: Int
 }
 
 # aggregate stddev on columns
 type ch_proposal_stddev_fields {
   id: Float
+  meeting_id: Float
   waitlist_id: Float
 }
 
 # order by stddev() on columns of table "ch_proposal"
 input ch_proposal_stddev_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
 # aggregate stddev_pop on columns
 type ch_proposal_stddev_pop_fields {
   id: Float
+  meeting_id: Float
   waitlist_id: Float
 }
 
 # order by stddev_pop() on columns of table "ch_proposal"
 input ch_proposal_stddev_pop_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
 # aggregate stddev_samp on columns
 type ch_proposal_stddev_samp_fields {
   id: Float
+  meeting_id: Float
   waitlist_id: Float
 }
 
 # order by stddev_samp() on columns of table "ch_proposal"
 input ch_proposal_stddev_samp_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
 # aggregate sum on columns
 type ch_proposal_sum_fields {
   id: Int
+  meeting_id: Int
   waitlist_id: Int
 }
 
 # order by sum() on columns of table "ch_proposal"
 input ch_proposal_sum_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
@@ -1850,10 +1840,10 @@ enum ch_proposal_update_column {
   club
 
   # column name
-  description
+  id
 
   # column name
-  id
+  meeting_id
 
   # column name
   needs
@@ -1868,48 +1858,48 @@ enum ch_proposal_update_column {
   phone
 
   # column name
-  title
-
-  # column name
-  user_id
-
-  # column name
   waitlist_id
 }
 
 # aggregate var_pop on columns
 type ch_proposal_var_pop_fields {
   id: Float
+  meeting_id: Float
   waitlist_id: Float
 }
 
 # order by var_pop() on columns of table "ch_proposal"
 input ch_proposal_var_pop_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
 # aggregate var_samp on columns
 type ch_proposal_var_samp_fields {
   id: Float
+  meeting_id: Float
   waitlist_id: Float
 }
 
 # order by var_samp() on columns of table "ch_proposal"
 input ch_proposal_var_samp_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
 # aggregate variance on columns
 type ch_proposal_variance_fields {
   id: Float
+  meeting_id: Float
   waitlist_id: Float
 }
 
 # order by variance() on columns of table "ch_proposal"
 input ch_proposal_variance_order_by {
   id: order_by
+  meeting_id: order_by
   waitlist_id: order_by
 }
 
@@ -2558,7 +2548,6 @@ type ch_time_table {
 
   # An object relationship
   ch_room: ch_room
-  end_time: timestamptz!
   helper_confirmed: Boolean!
   helper_id: Int
   id: Int!
@@ -2568,7 +2557,6 @@ type ch_time_table {
   # An object relationship
   nb_meeting: nb_meeting
   room_id: Int
-  start_time: timestamptz!
 }
 
 # aggregated selection of "ch_time_table"
@@ -2636,7 +2624,6 @@ input ch_time_table_bool_exp {
   _or: [ch_time_table_bool_exp]
   ch_helper: ch_helper_bool_exp
   ch_room: ch_room_bool_exp
-  end_time: timestamptz_comparison_exp
   helper_confirmed: Boolean_comparison_exp
   helper_id: Int_comparison_exp
   id: Int_comparison_exp
@@ -2644,7 +2631,6 @@ input ch_time_table_bool_exp {
   meeting_id: Int_comparison_exp
   nb_meeting: nb_meeting_bool_exp
   room_id: Int_comparison_exp
-  start_time: timestamptz_comparison_exp
 }
 
 # unique or primary key constraints on table "ch_time_table"
@@ -2668,7 +2654,6 @@ input ch_time_table_inc_input {
 input ch_time_table_insert_input {
   ch_helper: ch_helper_obj_rel_insert_input
   ch_room: ch_room_obj_rel_insert_input
-  end_time: timestamptz
   helper_confirmed: Boolean
   helper_id: Int
   id: Int
@@ -2676,47 +2661,38 @@ input ch_time_table_insert_input {
   meeting_id: Int
   nb_meeting: nb_meeting_obj_rel_insert_input
   room_id: Int
-  start_time: timestamptz
 }
 
 # aggregate max on columns
 type ch_time_table_max_fields {
-  end_time: timestamptz
   helper_id: Int
   id: Int
   meeting_id: Int
   room_id: Int
-  start_time: timestamptz
 }
 
 # order by max() on columns of table "ch_time_table"
 input ch_time_table_max_order_by {
-  end_time: order_by
   helper_id: order_by
   id: order_by
   meeting_id: order_by
   room_id: order_by
-  start_time: order_by
 }
 
 # aggregate min on columns
 type ch_time_table_min_fields {
-  end_time: timestamptz
   helper_id: Int
   id: Int
   meeting_id: Int
   room_id: Int
-  start_time: timestamptz
 }
 
 # order by min() on columns of table "ch_time_table"
 input ch_time_table_min_order_by {
-  end_time: order_by
   helper_id: order_by
   id: order_by
   meeting_id: order_by
   room_id: order_by
-  start_time: order_by
 }
 
 # response of any mutation on the table "ch_time_table"
@@ -2745,7 +2721,6 @@ input ch_time_table_on_conflict {
 input ch_time_table_order_by {
   ch_helper: ch_helper_order_by
   ch_room: ch_room_order_by
-  end_time: order_by
   helper_confirmed: order_by
   helper_id: order_by
   id: order_by
@@ -2753,7 +2728,6 @@ input ch_time_table_order_by {
   meeting_id: order_by
   nb_meeting: nb_meeting_order_by
   room_id: order_by
-  start_time: order_by
 }
 
 # primary key columns input for table: "ch_time_table"
@@ -2763,9 +2737,6 @@ input ch_time_table_pk_columns_input {
 
 # select columns of table "ch_time_table"
 enum ch_time_table_select_column {
-  # column name
-  end_time
-
   # column name
   helper_confirmed
 
@@ -2783,21 +2754,16 @@ enum ch_time_table_select_column {
 
   # column name
   room_id
-
-  # column name
-  start_time
 }
 
 # input type for updating data in table "ch_time_table"
 input ch_time_table_set_input {
-  end_time: timestamptz
   helper_confirmed: Boolean
   helper_id: Int
   id: Int
   meeting_confirmed: Boolean
   meeting_id: Int
   room_id: Int
-  start_time: timestamptz
 }
 
 # aggregate stddev on columns
@@ -2867,9 +2833,6 @@ input ch_time_table_sum_order_by {
 # update columns of table "ch_time_table"
 enum ch_time_table_update_column {
   # column name
-  end_time
-
-  # column name
   helper_confirmed
 
   # column name
@@ -2886,9 +2849,6 @@ enum ch_time_table_update_column {
 
   # column name
   room_id
-
-  # column name
-  start_time
 }
 
 # aggregate var_pop on columns
@@ -3443,42 +3403,6 @@ type cr_user {
     where: nb_meeting_bool_exp
   ): nb_meeting_aggregate!
   password: String!
-
-  # An array relationship
-  proposals(
-    # distinct select on columns
-    distinct_on: [ch_proposal_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_proposal_order_by!]
-
-    # filter the rows returned
-    where: ch_proposal_bool_exp
-  ): [ch_proposal!]!
-
-  # An aggregated array relationship
-  proposals_aggregate(
-    # distinct select on columns
-    distinct_on: [ch_proposal_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_proposal_order_by!]
-
-    # filter the rows returned
-    where: ch_proposal_bool_exp
-  ): ch_proposal_aggregate!
   username: String!
   uuid: uuid!
 }
@@ -3530,7 +3454,6 @@ input cr_user_bool_exp {
   meetings: nb_meeting_participants_bool_exp
   organized_meetings: nb_meeting_bool_exp
   password: String_comparison_exp
-  proposals: ch_proposal_bool_exp
   username: String_comparison_exp
   uuid: uuid_comparison_exp
 }
@@ -3562,7 +3485,6 @@ input cr_user_insert_input {
   meetings: nb_meeting_participants_arr_rel_insert_input
   organized_meetings: nb_meeting_arr_rel_insert_input
   password: String
-  proposals: ch_proposal_arr_rel_insert_input
   username: String
   uuid: uuid
 }
@@ -3663,7 +3585,6 @@ input cr_user_order_by {
   meetings_aggregate: nb_meeting_participants_aggregate_order_by
   organized_meetings_aggregate: nb_meeting_aggregate_order_by
   password: order_by
-  proposals_aggregate: ch_proposal_aggregate_order_by
   username: order_by
   uuid: order_by
 }
@@ -3850,7 +3771,7 @@ input django_site_bool_exp {
 # unique or primary key constraints on table "django_site"
 enum django_site_constraint {
   # unique or primary key constraint
-  django_site_domain_a2e37b91_uniq
+  django_site_domain_key
 
   # unique or primary key constraint
   django_site_pkey

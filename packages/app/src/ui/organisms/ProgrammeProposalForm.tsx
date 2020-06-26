@@ -9,16 +9,16 @@ import { FormInput, Input as BaseInput } from "../Input";
 import { FormLabelProps, Label as BaseLabel } from "../Label";
 
 export interface ProgrammeProposalFormFields {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
 
-    phone: string;
-    other_contact: string;
-    city: string;
-    club: string;
+  phone: string;
+  other_contact: string;
+  city: string;
+  club: string;
 
-    needs: string;
-    other_data: string;
+  needs: string;
+  other_data: string;
 }
 
 type Field = keyof ProgrammeProposalFormFields;

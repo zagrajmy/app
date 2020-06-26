@@ -3,5 +3,8 @@
   "search.exclude": {
     "**/dist": true,
     "**/dist-ts": true
-  }
+  },
+  "cSpell.enableFiletypes": [
+    "!typescriptreact"
+  ]
 }
