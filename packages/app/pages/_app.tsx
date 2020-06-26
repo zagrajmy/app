@@ -16,10 +16,11 @@ import { I18nextProvider } from "react-i18next";
 import { Styled, ThemeProvider as ThemeUiProvider } from "theme-ui";
 
 import { hasura } from "../data";
-import { queryUserByAuth0Id } from "../data/queries";
+import { sphereByIdOrDomainQueryArgs } from "../data/queries";
 import { auth, Session } from "../src/app/auth";
 import { NavHeader, Page } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
+import { detectSphere } from "../src/app/detectSphere";
 import { ApplicationState, AppStateProvider } from "../src/app/store";
 import {
   FALLBACK_LANG,
@@ -60,7 +61,7 @@ export type InjectedPageProps = {
   lang: SupportedLanguage;
 };
 
-const globalStyles: InterpolationWithTheme<any> = {
+const globalStyles: InterpolationWithTheme<{}> = {
   body: { margin: 0 },
 };
 
@@ -136,29 +137,56 @@ export default function MyApp({
 
 MyApp.getInitialProps = async (context: AppContext) => {
   const appProps = await App.getInitialProps(context);
-  const { ctx } = context;
+  const { req, query } = context.ctx;
 
-  const session = ctx.req && (await auth.getSession(ctx.req));
+  const session = req && (await auth.getSession(req));
 
-  let user: { uuid: string; locale: string } | undefined = undefined;
+  let initialData: {
+    sphere?: {
+      settings: any;
+    };
+    user?: {
+      uuid: string;
+      locale: string;
+    };
+  } = {};
 
-  if (session) {
-    user = await queryUserByAuth0Id(
-      hasura.fromCookies(ctx.req!).query,
-      session.user.sub,
-      { uuid: true, locale: true }
-    );
+  if (req) {
+    const sphere = detectSphere({ req, query });
+
+    const data = await hasura.fromCookies(req).query({
+      ...(session && {
+        cr_user: [
+          { where: { auth0_id: { _eq: session.user.sub } } },
+          { uuid: true, locale: true },
+        ],
+      }),
+      nb_sphere: [
+        sphereByIdOrDomainQueryArgs(sphere),
+        { settings: [{}, true] },
+      ],
+    });
+
+    initialData = {
+      sphere: data.nb_sphere[0],
+      user: "cr_user" in data ? data.cr_user[0] : undefined,
+    };
   }
 
   let lang = "en";
-  if (user) {
-    lang = user.locale;
-  } else if (ctx.req) {
-    lang = detectLanguage(ctx.req, parseCookies(ctx));
+  if (initialData.user) {
+    lang = initialData.user.locale;
+  } else if (req) {
+    lang = detectLanguage(req, parseCookies(context.ctx));
   }
 
-  const appState: ApplicationState =
-    session?.user && user ? { user: { ...session.user, ...user } } : {};
+  const appState: Partial<ApplicationState> = {
+    user:
+      session?.user && initialData.user
+        ? { ...session.user, ...initialData.user }
+        : undefined,
+    sphere: initialData.sphere,
+  };
 
   return {
     ...appProps,
