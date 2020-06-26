@@ -76,9 +76,9 @@ export const theme = makeTheme({
   },
   styles: {
     root: {
-      "*": {
+      "*:focus": {
         outlineColor: "secondary",
-        boxSizing: "border-box",
+        outlineStyle: "dashed",
       },
       fontSize: "16px",
       lineHeight: "body",

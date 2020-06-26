@@ -1,3 +1,5 @@
+import { format, formatRelative } from "date-fns";
+import { enUS, pl } from "date-fns/locale";
 import i18n, { ResourceLanguage } from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
 
@@ -55,3 +57,12 @@ export function useLanguage() {
   assertLanguageIsSupported(language);
   return language;
 }
+
+export const pickLocale = (language: SupportedLanguage) =>
+  language === "pl" ? pl : enUS;
+
+export const timeFromNow = (time: Date | string, language: SupportedLanguage) =>
+  formatRelative(new Date(time), new Date(), { locale: pickLocale(language) });
+
+export const formatHour = (time: Date | string, language: SupportedLanguage) =>
+  format(new Date(time), "hh:mm", { locale: pickLocale(language) });
