@@ -1,4 +1,3 @@
-import { get } from "@theme-ui/css";
 import { NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { useMemo, useRef, useState } from "react";
@@ -26,7 +25,6 @@ import {
   FormDatepicker,
   Link,
   LinkProps,
-  Theme,
 } from "../../../src/ui";
 import { CheckSquare, Edit } from "../../../src/ui/icons";
 

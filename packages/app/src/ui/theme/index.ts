@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { lighten, transparentize } from "@theme-ui/color";
+import { transparentize } from "@theme-ui/color";
 import { ContextValue } from "@theme-ui/core";
 import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 
