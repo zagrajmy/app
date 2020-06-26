@@ -24,5 +24,14 @@
   "log-in": "Zaloguj",
   "you-belong-to-no-guild": "Nie masz żadnej gildii",
   "is-required": "jest wymagany",
-  "search-meetings": "Szukaj spotkań..."
+  "field-is-required": "pole nie może być puste",
+  "search-meetings": "Szukaj spotkań...",
+  "proposal-form-city": "Miasto",
+  "proposal-form-club": "Klub",
+  "proposal-form-description": "Opis",
+  "proposal-form-needs": "Zapotrzebowanie",
+  "proposal-form-other_contact": "Dodatkowy Kontakt",
+  "proposal-form-other_data": "Dodatkowe Informacje",
+  "proposal-form-phone": "Telefon",
+  "proposal-form-title": "Tytuł"
 }

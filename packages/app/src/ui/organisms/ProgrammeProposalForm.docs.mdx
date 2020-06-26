@@ -1,0 +1,38 @@
+---
+name: ProgrammeProposalForm
+route: /organisms/ProgrammeProposalForm
+menu: Organisms
+---
+
+import { Playground, Props } from "docz";
+
+import { Heading } from "../Heading";
+
+import { ProgrammeProposalForm } from "./ProgrammeProposalForm";
+import { Demo, docsComponentProps } from "./ProgrammeProposalForm.docs.tsx";
+
+# ProgrammeProposalForm
+
+<ProgrammeProposalForm {...docsComponentProps} />
+
+## Settings
+
+Sphere managers can provide labels for the form in `festivalSettings.forms.proposal`.
+
+<Demo />
+
+Defaults come from a [localization file][locales]. <br/>
+_(Polish texts below)_
+
+```json
+"proposal-form-city": "Miasto",
+"proposal-form-club": "Klub",
+"proposal-form-description": "Opis",
+"proposal-form-needs": "Zapotrzebowanie",
+"proposal-form-other_contact": "Dodatkowy Kontakt",
+"proposal-form-other_data": "Dodatkowe Informacje",
+"proposal-form-phone": "Email",
+"proposal-form-title": "Tytuł"
+```
+
+[locales]: https://github.com/zagrajmy/frontend/blob/master/packages/app/public/locales

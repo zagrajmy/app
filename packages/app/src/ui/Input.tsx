@@ -30,6 +30,11 @@ export interface InputProps extends ThemeUiInputProps {
   inline?: boolean;
 }
 
+export interface FormInputProps<Name> extends Omit<InputProps, "name"> {
+  name: Name;
+}
+export type FormInput<Name> = (props: FormInputProps<Name>) => JSX.Element;
+
 /**
  * Input variants can be defined in `theme.forms`
  * and the component uses the `theme.forms.input` variant by default.
@@ -40,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     { className, icon, onClear, children, inline, variant: _, ...rest },
     forwardedRef
   ) => {
-    const defaultRef = useRef(null);
+    const defaultRef = useRef<HTMLInputElement>(null);
     const ref = forwardedRef || defaultRef;
 
     const handleClear = useCallback(() => {
@@ -67,12 +72,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       >
         {icon && <Center sx={overlayStyle}>{icon}</Center>}
         <ThemeUiInput
-          // TODO: Fix and test it in theme-ui?
-          ref={(ref as React.Ref<HTMLInputElement>) as any}
+          ref={ref as any /* fixme? */}
           sx={{
             height: "100%",
             width: "100%",
-            p: 2,
+            py: 2,
+            px: 3,
             font: "inherit",
             lineHeight: "inherit",
             border: "none",

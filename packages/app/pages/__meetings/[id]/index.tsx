@@ -17,9 +17,9 @@ import {
 } from "theme-ui";
 
 import { hasura } from "../../../data";
-import { Meeting, User } from "../../../data/types";
 import { AsyncReturnType } from "../../../src";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
+import { getAvatarUrl } from "../../../src/app/getAvatarUrl";
 import {
   Container,
   Dl,
@@ -30,6 +30,22 @@ import {
 } from "../../../src/ui";
 import { CheckSquare, Edit } from "../../../src/ui/icons";
 
+/**
+ * @deprecated
+ */
+type OldMeeting = {
+  id: number;
+  start_time: string | Date;
+  end_time: string | Date;
+  name: string;
+  image: string;
+  description: string;
+  organizer: {
+    username: string;
+    email: string;
+  };
+};
+
 function queryMeeting(ctx: {
   req?: NextPageContext["req"];
   query: NextPageContext["query"];
@@ -37,31 +53,32 @@ function queryMeeting(ctx: {
   return hasura
     .fromCookies(ctx.req)
     .query({
-      meeting_by_pk: [
+      nb_meeting_by_pk: [
         { id: Number(ctx.query.id) },
         {
           id: true,
-          organizer: { name: true, email: true },
+          organizer: { username: true, email: true },
           participants: [{}, { participant: { name: true, email: true } }],
-          title: true,
+          name: true,
           description: true,
-          image: [{}, true],
+          image: true,
           start_time: true,
           end_time: true,
           publication_time: true,
+          created_at: true,
         },
       ],
     })
-    .then((x) => ({ meeting: x.meeting_by_pk }));
+    .then((x) => ({ meeting: x.nb_meeting_by_pk }));
 }
 
 interface LinkToAuthorProps extends Omit<LinkProps, "href" | "as"> {
-  meeting: Meeting;
+  meeting: { organizer: { username: string } };
 }
 const LinkToAuthor = ({ children, meeting, ...rest }: LinkToAuthorProps) => (
   <Link
     href="/u/[username_slug]"
-    as={`/u/${meeting.organizer.slug}`}
+    as={`/u/${meeting.organizer.username}`}
     sx={{ display: "inline-flex" }}
     {...rest}
   >
@@ -118,7 +135,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<Meeting>({ defaultValues: data?.meeting || {} });
+  const form = useForm<OldMeeting>({ defaultValues: data?.meeting || {} });
 
   const onSubmit = form.handleSubmit((value) => {
     // eslint-disable-next-line no-console
@@ -129,9 +146,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
     setIsEditing(false);
   });
 
-  const meeting = useMemo(() => data?.meeting && Meeting.parse(data.meeting), [
-    data,
-  ]);
+  const meeting = useMemo(() => data?.meeting, [data]);
 
   if (!data) {
     return null; // TODO skeleton UI
@@ -142,13 +157,13 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
     return "404: Couldn't find meeting."; // OH SHIT IM NOT DISPLAYING THEM, I'LL DO IT NOW
   }
 
-  const { start_time, description, title } = form.watch({ nest: true });
+  const { start_time, description, name } = form.watch({ nest: true });
 
   return (
     <Page>
       {meeting.image ? (
         <>
-          <MeetingDetailsImage image={meeting.image} />
+          <MeetingDetailsImage src={meeting.image} />
           <Box pt={4} />
         </>
       ) : (
@@ -171,13 +186,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
         // as="form"
         ref={formRef as any /* as React.Ref<HTMLFormElement> */}
         onSubmit={onSubmit}
-        sx={{
-          mt:
-            meeting.image?.kind !== "background"
-              ? (th: Theme) => `-${get(th, "space.4")}px`
-              : 0,
-          mb: 4,
-        }}
+        sx={{ mt: 0, mb: 4 }}
       >
         <header>
           <Flex sx={{ alignItems: "center" }}>
@@ -244,14 +253,14 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
             />
           ) : (
             <Heading mt={1} mb={3}>
-              {title}
+              {name}
             </Heading>
           )}
 
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
             <LinkToAuthor meeting={meeting}>
               <Avatar
-                src={User.avatar(meeting.organizer) || ""}
+                src={getAvatarUrl(meeting.organizer) || ""}
                 bg="primaryDark"
                 sx={{
                   borderRadius: "50%",
@@ -261,19 +270,19 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
             <div sx={{ ml: 2, fontSize: 3 }}>
               <Text as="span">Hosted by </Text>
               <LinkToAuthor variant="underlined" meeting={meeting}>
-                {meeting.organizer.name}
+                {meeting.organizer.username}
               </LinkToAuthor>
             </div>
           </Flex>
         </header>
         <Dl sx={{ mt: 2 }}>
-          <dt>Opublikowano</dt>
+          <dt>{t("published-at")}</dt>
           <dd>
             {meeting.publication_time
               ? new Date(meeting.publication_time).toLocaleString("pl-PL")
               : t("not-published")}
           </dd>
-          <dt>Utworzono</dt>
+          <dt>{t("created-at")}</dt>
           <dd>
             {meeting.created_at &&
               new Date(meeting.created_at).toLocaleString("pl-PL")}

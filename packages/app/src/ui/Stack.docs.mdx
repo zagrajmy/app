@@ -1,0 +1,32 @@
+---
+name: Stack
+route: /ui/Stack
+menu: Atomic Components
+---
+
+import { jsx } from "theme-ui";
+import { Playground, Props } from "docz";
+
+import { Placeholder } from "./common.docs";
+import { Stack } from "./Stack";
+
+# Stack
+
+<Playground>
+  {() => {
+    return (
+      <Stack gap={4}>
+        <Stack gap={3}>
+          <Placeholder height={50} />
+          <Placeholder height={50} />
+          <Placeholder height={50} />
+        </Stack>
+        <Stack row gap={3} sx={{ height: 50 }}>
+          <Placeholder width={100} />
+          <Placeholder style={{ flexGrow: 1 }} />
+          <Placeholder style={{ flexGrow: 1 }} />
+        </Stack>
+      </Stack>
+    );
+  }}
+</Playground>

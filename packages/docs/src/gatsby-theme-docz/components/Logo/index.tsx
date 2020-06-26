@@ -1,6 +1,6 @@
-/** @jsx jsx */
 import { Link, useConfig } from "docz";
-import { Flex, jsx } from "theme-ui";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Flex } from "theme-ui";
 
 export const Logo = () => {
   const config = useConfig();

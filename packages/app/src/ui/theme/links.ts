@@ -1,10 +1,10 @@
 import { flow } from "fp-ts/lib/function";
 import { setSaturation, transparentize } from "polished";
-import { SystemStyleObject, Theme as ThemeUITheme } from "theme-ui";
+import { Theme as ThemeUITheme, ThemeUIStyleObject } from "theme-ui";
 
 import { parseColor } from "./util";
 
-const underlined: SystemStyleObject = {
+const underlined: ThemeUIStyleObject = {
   ...({
     "--transition": "250ms 33ms cubic-bezier(0.19, 1, 0.22, 1)",
   } as {}),

@@ -14,7 +14,7 @@ declare module "theme-ui" {
   }
 }
 
-// TODO Contribute
+// TODO Contribute // Can this be already removed?
 type BadlyTypedThemeUIThemeKeys =
   | "forms"
   | "buttons"
@@ -68,6 +68,7 @@ export const theme = makeTheme({
   },
   fontWeights: {
     heading: 700,
+    bold: 700,
   },
   lineHeights: {
     body: 1.5,
@@ -90,15 +91,19 @@ export const theme = makeTheme({
       textRendering: "optimizeLegibility",
       h1: {
         fontWeight: 800,
-        fontSize: 8,
+        fontSize: 5,
       },
       h2: {
         fontWeight: 700,
-        fontSize: 7,
+        fontSize: 4,
       },
       h3: {
         fontSize: 3,
       },
+      "h4, h5, h6": {
+        fontSize: 2,
+      },
+      p: { width: "70ch", maxWidth: "100%" },
     },
   },
   buttons,

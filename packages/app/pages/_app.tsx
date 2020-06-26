@@ -27,7 +27,7 @@ import {
   SUPPORTED_LANGUAGES,
   SupportedLanguage,
 } from "../src/i18n";
-import { EmailConfirmationScreen } from "../src/ui/messageScreens";
+import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
 import { theme } from "../src/ui/theme";
 
 function detectLanguage(
@@ -106,7 +106,10 @@ export default function MyApp({
   } else {
     root = (
       <Styled.root sx={theme.styles.root}>
-        <NavHeader claims={appState.user} links={["meetings"]} />
+        <NavHeader
+          claims={appState.user}
+          // links={["meetings"]}
+        />
         <Component {...pageProps} />
         <AppFooter />
       </Styled.root>

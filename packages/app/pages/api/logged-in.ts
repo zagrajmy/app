@@ -11,28 +11,28 @@ import { auth } from "../../src/app/auth";
 const queryUserByEmail = (db: Db) => (email: string) =>
   db
     .query({
-      user: [
+      cr_user: [
         { where: { email: { _eq: email } } },
         { uuid: true, auth0_id: true },
       ],
     })
     // I am assuming that there is only one user with this email for now.
-    .then((x) => head(x.user));
+    .then((x) => head(x.cr_user));
 
 interface CreateUserArg
   extends Required<
-      Pick<generated.user_insert_input, "auth0_id" | "name" | "email">
+      Pick<generated.cr_user_insert_input, "auth0_id" | "username" | "email">
     >,
-    Pick<generated.user_insert_input, "locale"> {}
+    Pick<generated.cr_user_insert_input, "locale"> {}
 
 const createUser = (db: Db) => (user: CreateUserArg) =>
   db
     .mutation({
-      insert_user: [{ objects: [user] }, { returning: { uuid: true } }],
+      insert_cr_user: [{ objects: [user] }, { returning: { uuid: true } }],
     })
     .then(
       flow(
-        (x) => x.insert_user,
+        (x) => x.insert_cr_user,
         O.fromNullable,
         O.chain((data) => head(data.returning.map((u) => u.uuid)))
       )
@@ -40,7 +40,7 @@ const createUser = (db: Db) => (user: CreateUserArg) =>
 
 const addAuth0Id = (db: Db, user: { uuid: string }, auth0Id: string) =>
   db.mutation({
-    update_user_by_pk: [
+    update_cr_user_by_pk: [
       { pk_columns: { uuid: user.uuid }, _set: { auth0_id: auth0Id } },
       { auth0_id: true },
     ],
@@ -90,7 +90,8 @@ export default async function loggedIn(
         await createUser(db)({
           auth0_id: auth0UserId,
           email,
-          name:
+          // TODO username, first_name and last_name
+          username:
             session.user.nickname ||
             `${session.user.given_name} ${session.user.family_name}`,
           locale: session.user.locale,

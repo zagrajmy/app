@@ -8,7 +8,7 @@ import { requestedMeetingFields } from "./__requestedMeetingFields";
 
 function queryRecentlyPublished(query: Db["query"], limit: number) {
   return query({
-    meeting: [
+    nb_meeting: [
       {
         where: {
           publication_time: { _lte: "now", _is_null: false },
@@ -24,7 +24,7 @@ function queryRecentlyPublished(query: Db["query"], limit: number) {
 
 export type RecentlyPublishedMeetingsResult = PromiseType<
   ReturnType<typeof queryRecentlyPublished>
->["meeting"];
+>["nb_meeting"];
 
 export default async function recentlyPublishedMeetings(
   req: NextApiRequest,
@@ -37,7 +37,7 @@ export default async function recentlyPublishedMeetings(
 
   const data: RecentlyPublishedMeetingsResult = (
     await queryRecentlyPublished(query, limit)
-  ).meeting;
+  ).nb_meeting;
 
   return res.status(200).send(data);
 }

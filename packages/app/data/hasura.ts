@@ -2,8 +2,8 @@ import { record } from "fp-ts/lib/Record";
 import { IncomingMessage } from "http";
 import { parseCookies } from "nookies";
 
-import { globals } from "../src/lib/summon";
 import { isDefined } from "../src/lib/isDefined";
+import { globals } from "../src/lib/summon";
 import { Chain } from "./graphql-zeus";
 
 if (typeof fetch === "undefined") {
@@ -12,7 +12,7 @@ if (typeof fetch === "undefined") {
 
 const { HASURA_URL } = process.env;
 
-type Instance = "localhost" | "development" | "production";
+type Instance = "localhost" | "production";
 
 /**
  * configured by `zm|db-env` cookie
@@ -26,12 +26,8 @@ const hasuraEnvs: Record<
   | undefined
 > = {
   localhost: {
-    url: "http://localhost:8080",
+    url: "http://localhost:8081",
     adminSecret: "dev_only_password",
-  },
-  development: {
-    url: "https://zagrajmy-db-dev.herokuapp.com",
-    adminSecret: undefined,
   },
   production: HASURA_URL
     ? {
@@ -62,7 +58,7 @@ export const hasura = (instance: Instance) => {
 
 hasura.fromCookies = (req?: IncomingMessage) => {
   return hasura(
-    (parseCookies({ req })["zm|db-env"] as Instance) || "development"
+    (parseCookies({ req })["zm|db-env"] as Instance) || "localhost"
   );
 };
 

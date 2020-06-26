@@ -6,7 +6,6 @@ import useSWR from "swr";
 import { Heading } from "theme-ui";
 import { assert } from "ts-essentials";
 
-import { Meeting } from "../../data/types";
 import {
   getMyMeetings,
   getRecentlyPublishedMeetings,
@@ -33,8 +32,8 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
 
   const { meetings, organizedMeetings } = useMemo(() => {
     return {
-      meetings: data?.meetings.map((x) => Meeting.parse(x.meeting)) || [],
-      organizedMeetings: data?.organized_meetings.map(Meeting.parse) || [],
+      meetings: data?.meetings.map((x) => x.nb_meeting) || [],
+      organizedMeetings: data?.organized_meetings || [],
     };
   }, [data]);
 
@@ -126,7 +125,7 @@ function RecentMeetings({ initialData }: RecentMeetingsProps) {
   }
 
   const meetings = useMemo(() => {
-    return data?.map(Meeting.parse) || [];
+    return data || [];
   }, [data]);
 
   return (

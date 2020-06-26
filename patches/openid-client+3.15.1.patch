@@ -1,8 +1,8 @@
 diff --git a/node_modules/openid-client/lib/client.js b/node_modules/openid-client/lib/client.js
-index e7a5716..708a89f 100644
+index 731daae..7fe4d0b 100644
 --- a/node_modules/openid-client/lib/client.js
 +++ b/node_modules/openid-client/lib/client.js
-@@ -734,12 +734,14 @@ module.exports = (issuer, aadIssValidation = false) => class Client extends Base
+@@ -737,12 +737,14 @@ module.exports = (issuer, aadIssValidation = false) => class Client extends Base
      }
  
      if (returnedBy === 'authorization') {

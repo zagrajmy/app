@@ -1,25 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/** @jsx jsx */
+
 import { Entry, useCurrentDoc, useDocs } from "docz";
 import { Link } from "gatsby";
 import { get } from "lodash/fp";
 import React, { ComponentProps } from "react";
-import { jsx } from "theme-ui";
 
+import { getCurrentHash } from "../../getCurrentHash";
 import * as styles from "./styles";
 
 const getHeadings = (route: string, docs: Entry[]) => {
-  const doc = docs.find((x) => x.route === route);
+  const doc = docs.find(x => x.route === route);
   const headings = get("headings", doc);
-  return headings ? headings.filter((x) => x.depth === 2) : [];
-};
-
-const getCurrentHash = () => {
-  if (typeof window === "undefined") {
-    return "";
-  }
-
-  return window.location ? decodeURI(window.location.hash) : "";
+  return headings ? headings.filter(x => x.depth === 2) : [];
 };
 
 export const NavLink = React.forwardRef(
@@ -44,7 +36,7 @@ export const NavLink = React.forwardRef(
           ref={ref}
         />
         {showHeadings &&
-          headings!.map((heading) => (
+          headings!.map(heading => (
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               key={heading.slug}

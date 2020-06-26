@@ -4,5 +4,12 @@ interface HeadingProps extends ThHeadingProps {
   size?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
 }
 export const Heading = ({ size, ...rest }: HeadingProps) => {
-  return <ThHeading sx={{ "&&": { fontSize: size } }} {...rest} />;
+  return (
+    <ThHeading
+      sx={{
+        ...(size && { "&&": { fontSize: size } }),
+      }}
+      {...rest}
+    />
+  );
 };

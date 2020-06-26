@@ -6,4 +6,3 @@ route: /contributing
 - To keep the components themable,
   favor using predefined tokens, scales and variants from the design graph.
 
-TODO (after brand sprint): Do | Don't table

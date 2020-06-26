@@ -10,12 +10,9 @@ import { queryUserByAuth0Id } from "../../../data/queries";
 import { formatValidationErrors, PromiseType } from "../../../src";
 import { auth } from "../../../src/app/auth";
 
-// TODO: Research how much performance improvement would we get from using
-// gql client on the frontend
-
 const MeetingInput = t.intersection([
   t.type({
-    title: t.string,
+    name: t.string,
     sphere_id: t.number,
   }),
   t.partial({
@@ -62,15 +59,15 @@ const runMutation = (
   organizer_id: string
 ) => {
   return mutation({
-    insert_meeting_one: [
+    insert_nb_meeting_one: [
       {
         object: {
           ...meeting,
           organizer_id,
         },
         on_conflict: {
-          constraint: g.meeting_constraint.meeting_pkey,
-          update_columns: Object.values(g.meeting_update_column),
+          constraint: g.nb_meeting_constraint.nb_meeting_pkey,
+          update_columns: Object.values(g.nb_meeting_update_column),
         },
       },
       { id: true },

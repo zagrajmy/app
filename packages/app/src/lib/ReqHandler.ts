@@ -55,7 +55,7 @@ export namespace ReqHandler {
               response.status(status).send(error.stack);
             }
           },
-          payload => {
+          (payload) => {
             response.json(payload);
           }
         )

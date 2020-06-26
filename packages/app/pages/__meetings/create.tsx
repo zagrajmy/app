@@ -10,15 +10,15 @@ import {
   Flex,
   Grid,
   Label as ThLabel,
-  LabelProps,
   Message,
   Select,
   Textarea,
 } from "theme-ui";
+import type { LabelProps } from "theme-ui";
 import { OmitByValue } from "utility-types";
 
 import { hasura } from "../../data";
-import { meeting as Meeting } from "../../data/graphql-zeus";
+import { nb_meeting as Meeting } from "../../data/graphql-zeus";
 import { makeError, summon } from "../../src";
 import { makeAuth } from "../../src/app/auth";
 import { Page } from "../../src/app/components";
@@ -34,9 +34,9 @@ import {
 } from "../api/meetings/insert";
 
 const extractGuilds = (data: {
-  guild_member: { guild: { id: number; name: string } }[];
+  nb_guild_member: { nb_guild: { id: number; name: string } }[];
 }) => ({
-  guilds: data.guild_member.map((gm) => gm.guild),
+  guilds: data.nb_guild_member.map((gm) => gm.nb_guild),
 });
 
 type MeetingProperty = keyof OmitByValue<Meeting, object>;
@@ -66,9 +66,9 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
       return hasura
         .fromCookies()
         .query({
-          guild_member: [
-            { where: { member_id: { _eq: props.user.uuid } } },
-            { guild: { id: true, name: true } },
+          nb_guild_member: [
+            { where: { user_id: { _eq: props.user.uuid } } },
+            { nb_guild: { id: true, name: true } },
           ],
         })
         .then(extractGuilds);
@@ -94,7 +94,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
         end_time: values.end_time,
         guild_id: values.guild_id,
         start_time: values.start_time,
-        title: values.title,
+        name: values.name,
         sphere_id: 2, // TODO (zagrajmy.now.sh)
       },
     };
@@ -106,13 +106,13 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
       json: body,
     })
       .then((res: InsertMeetingResultJson) => {
-        if (!res.insert_meeting_one?.id) {
+        if (!res.insert_nb_meeting_one?.id) {
           throw new Error("failed to insert meeting");
         }
 
         router.push(
           "/meetings/[id]",
-          `/meetings/${res.insert_meeting_one?.id}`
+          `/meetings/${res.insert_nb_meeting_one?.id}`
         );
 
         // TODO
@@ -143,14 +143,14 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
           display: "grid",
           // TODO: gridGap in theme-ui should accept number
           // export type GridGapProperty<TLength> = Globals | TLength | string;
-          gridGap: 3 as any,
+          gridGap: 3 as any, // TODO: Turn this into `gap`
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>
-          <Label htmlFor="title">{t("title")}</Label>
+          <Label htmlFor="name">{t("title")}</Label>
           <Input
-            name="title"
+            name="name"
             ref={register({ required: `${t("title")} ${t("is-required")}` })}
           />
           <ErrorMessage
@@ -165,13 +165,13 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
           <Label htmlFor="description">{t("description")}</Label>
           <Textarea
             name="description"
-            rows={5}
             ref={register}
+            rows={5}
             sx={{ resize: "none" }}
           />
         </div>
         <div>
-          <Label htmlFor="guild">
+          <Label htmlFor="guild_id">
             {t("guild")}{" "}
             <small sx={{ fontWeight: "normal" }}>({t("optional")})</small>
           </Label>
@@ -233,9 +233,9 @@ CreateMeetingPage.getInitialProps = async ({ req, res }) => {
     }
 
     return query({
-      guild_member: [
-        { where: { user: { auth0_id: { _eq: session.user.sub } } } },
-        { guild: { id: true, name: true } },
+      nb_guild_member: [
+        { where: { cr_user: { auth0_id: { _eq: session.user.sub } } } },
+        { nb_guild: { id: true, name: true } },
       ],
     })
       .then(extractGuilds)

@@ -12,7 +12,10 @@ import * as TE from "fp-ts/lib/TaskEither";
 
 import { failure } from "../../src/lib/failure";
 import { randomElement } from "../../src/lib/randomElement";
-import { meeting_constraint, meeting_update_column } from "../graphql-zeus";
+import {
+  nb_meeting_constraint,
+  nb_meeting_update_column,
+} from "../graphql-zeus";
 
 config();
 
@@ -24,7 +27,7 @@ import("../hasura")
     const getUsers = TE.tryCatch(
       () =>
         query({
-          user: [
+          cr_user: [
             {
               where: {
                 email: { _like: "zagrajmy.net+test-admiral.%@gmail.com" },
@@ -32,7 +35,7 @@ import("../hasura")
             },
             { uuid: true, username: true },
           ],
-        }).then((res) => res.user),
+        }).then((res) => res.cr_user),
       failure("failed to fetch admirals")
     );
 
@@ -40,13 +43,13 @@ import("../hasura")
       TE.tryCatch(
         () =>
           query({
-            guild: [
+            nb_guild: [
               {
                 where: { name: { _eq: "Star Wars Admirals Play Battleship" } },
               },
               { id: true },
             ],
-          }).then((res) => res.guild),
+          }).then((res) => res.nb_guild),
         failure("failed to fetch id")
       ),
       TE.map(head),
@@ -57,7 +60,7 @@ import("../hasura")
     // TODO: Add participants while creating meetings.
     const insertMeetings = (users: { uuid: string }[], testGuildId: number) =>
       mutation({
-        insert_meeting: [
+        insert_nb_meeting: [
           {
             objects: range(-50, 100).map((i) => {
               const date = subWeeks(new Date(), i);
@@ -79,8 +82,8 @@ import("../hasura")
               };
             }),
             on_conflict: {
-              constraint: meeting_constraint.meeting_pkey,
-              update_columns: Object.values(meeting_update_column),
+              constraint: nb_meeting_constraint.nb_meeting_pkey,
+              update_columns: Object.values(nb_meeting_update_column),
             },
           },
           {
@@ -105,7 +108,7 @@ import("../hasura")
   .then(
     flow(
       E.fold(console.error, (result) => {
-        console.log(result.insert_meeting);
+        console.log(result.insert_nb_meeting);
       })
     )
   );

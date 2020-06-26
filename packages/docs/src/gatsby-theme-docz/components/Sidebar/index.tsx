@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/** @jsx jsx */
 
 /** @jsxFrag React.Fragment */
 import { Global } from "@emotion/core";
@@ -8,7 +7,7 @@ import { NavGroup } from "gatsby-theme-docz/src/components/NavGroup";
 import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
 import * as styles from "gatsby-theme-docz/src/components/Sidebar/styles";
 import React, { useEffect, useRef, useState } from "react";
-import { Box, jsx } from "theme-ui";
+import { Box } from "theme-ui";
 
 import { NavSearch } from "../NavSearch";
 
@@ -48,31 +47,39 @@ export const Sidebar = React.forwardRef(
         >
           {props.open && <Global styles={styles.global} />}
         </Box>
-        <Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
+        <Box
+          ref={ref}
+          sx={{ ...styles.wrapper(props), flexShrink: 0 }}
+          data-testid="sidebar"
+        >
           <NavSearch
             placeholder="Type to search..."
             value={query}
             onChange={handleChange}
           />
           {menus &&
-            menus.map((menu) => {
-              if (!menu.route)
-                return <NavGroup key={menu.id} item={menu} sidebarRef={ref} />;
+            menus
+              .sort(({ order: a = 99999 }, { order: b = 99999 }) => a - b)
+              .map((menu) => {
+                if (!menu.route)
+                  return (
+                    <NavGroup key={menu.id} item={menu} sidebarRef={ref} />
+                  );
 
-              if (menu.route === currentDoc.route) {
+                if (menu.route === currentDoc.route) {
+                  return (
+                    <NavLink key={menu.id} item={menu} ref={currentDocRef}>
+                      {menu.name}
+                    </NavLink>
+                  );
+                }
+
                 return (
-                  <NavLink key={menu.id} item={menu} ref={currentDocRef}>
+                  <NavLink key={menu.id} item={menu}>
                     {menu.name}
                   </NavLink>
                 );
-              }
-
-              return (
-                <NavLink key={menu.id} item={menu}>
-                  {menu.name}
-                </NavLink>
-              );
-            })}
+              })}
         </Box>
       </>
     );

@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/** @jsx jsx */
+
 import { Global } from "@emotion/core";
 import { media } from "gatsby-theme-docz/src/theme/breakpoints";
-import { useRef, useState } from "react";
-import { Box, jsx } from "theme-ui";
+import { useLayoutEffect, useRef, useState } from "react";
+import { Box } from "theme-ui";
 
 import { globalStyles } from "../../theme/global";
 import { Header } from "../Header";
@@ -12,6 +12,11 @@ import { Sidebar } from "../Sidebar";
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
   const nav = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    document.documentElement.style.overflow = open ? "hidden" : "";
+  }, [open]);
+
   return (
     <Box sx={{ "& > div": { flex: "1 1 auto" } }} data-testid="layout">
       <Global styles={globalStyles} />

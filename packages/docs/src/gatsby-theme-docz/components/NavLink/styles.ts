@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { SystemStyleObject } from "theme-ui";
+import { ThemeUIStyleObject } from "theme-ui";
 
-export const link: SystemStyleObject = {
-  my: 2,
+export const link: ThemeUIStyleObject = {
+  my: 1,
   display: "block",
   color: "sidebar.navGroup",
   textDecoration: "none",
@@ -10,9 +10,14 @@ export const link: SystemStyleObject = {
   "&.active": {
     color: "sidebar.navLinkActive",
   },
+  transition: "all 0.2s",
+  "&:not(.active):hover": {
+    transform: "translateX(0.25em)",
+    filter: "brightness(0.75)",
+  },
 };
 
-export const smallLink: SystemStyleObject = {
+export const smallLink: ThemeUIStyleObject = {
   ...link,
   ml: 3,
   fontSize: 1,
@@ -26,7 +31,7 @@ export const smallLink: SystemStyleObject = {
     content: '""',
     position: "absolute",
     display: "block",
-    top: "2px",
+    top: "3px",
     left: -2,
     height: "calc(1em - 1px)",
     backgroundColor: "primary",

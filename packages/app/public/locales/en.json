@@ -25,5 +25,14 @@
   "log-in": "Log in",
   "you-belong-to-no-guild": "You belong to no guild",
   "is-required": "is required",
-  "search-meetings": "Search meetings..."
+  "field-is-required": "field is required",
+  "search-meetings": "Search meetings...",
+  "proposal-form-city": "City",
+  "proposal-form-club": "Club",
+  "proposal-form-description": "Description",
+  "proposal-form-needs": "Needs",
+  "proposal-form-other_contact": "Other Contact",
+  "proposal-form-other_data": "Additional Data",
+  "proposal-form-phone": "Phone",
+  "proposal-form-title": "Title"
 }
