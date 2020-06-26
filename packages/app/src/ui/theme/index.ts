@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+import { lighten, transparentize } from "@theme-ui/color";
 import { ContextValue } from "@theme-ui/core";
 import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 
@@ -76,6 +77,9 @@ export const theme = makeTheme({
   },
   styles: {
     root: {
+      "*::selection": {
+        backgroundColor: transparentize("secondary", 0.5),
+      },
       "*:focus": {
         outlineColor: "secondary",
         outlineStyle: "dashed",
