@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "noEmitOnError": false
+    "noErrorTruncation": true,
+    "noEmitOnError": false // <- remove this later
   },
   "exclude": ["node_modules", "./dist", "./dist-ts", "./test"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
