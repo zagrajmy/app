@@ -6,11 +6,13 @@ import "@testing-library/cypress/add-commands";
 import { getOrPanic } from "../../src/lib/validationErrorToError";
 import { decodeTestAccount } from "../support/util";
 
+const env =
+  process.env ?? new Proxy({}, { get: (_, key) => Cypress.env(String(key)) });
 const {
   AUTH0_DOMAIN: TEST_AUTH_DOMAIN,
   AUTH0_CLIENT_ID,
   AUTH0_CLIENT_SECRET,
-} = process.env;
+} = env;
 
 export { TEST_AUTH_DOMAIN };
 
@@ -20,7 +22,7 @@ Cypress.Commands.add(
   "login",
   (testAccountName: TestAccountName = "DEFAULT") => {
     const testAccount = getOrPanic(
-      decodeTestAccount(process.env[`TEST_ACCOUNT_${testAccountName}`])
+      decodeTestAccount(env[`TEST_ACCOUNT_${testAccountName}`])
     );
 
     cy.request({

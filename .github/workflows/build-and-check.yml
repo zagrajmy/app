@@ -21,6 +21,23 @@ jobs:
         run: yarn build
       - name: Check
         run: yarn ci
+      - name: Run end-to-end tests
+        uses: cypress-io/github-action@v2
+        with:
+          # todo: create another job and use jobs[id].strategy to parallelize
+          # I'm not doing this now, because transfering artifacts between
+          # jobs is a bother.
+          # record: true
+          # parallel: true
+          start: yarn start
+          working-directory: packages/app
+        env:
+          CYPRESS_AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+          CYPRESS_AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
+          CYPRESS_AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+          CYPRESS_TEST_ACCOUNT_UNVERIFIED: ${{ secrets.TEST_ACCOUNT_UNVERIFIED }}
+          CYPRESS_TEST_ACCOUNT_DEFAULT: ${{ secrets.TEST_ACCOUNT_DEFAULT }}
+
     env:
       CI: true
       AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
