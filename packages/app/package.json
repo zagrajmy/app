@@ -25,7 +25,7 @@
     "test:e2e": "yarn cypress open",
     "test:e2e:record": "concurrently --kill-others --names \"app,cy\" \"yarn build && yarn start\" \"yarn wait-on http://localhost:3000/ && yarn dotenv-load cypress run --record\"",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "yarn snyk-protect"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
