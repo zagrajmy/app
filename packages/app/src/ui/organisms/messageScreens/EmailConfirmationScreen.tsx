@@ -7,6 +7,10 @@ const PointingGirl = (props: ComponentPropsWithoutRef<"svg">) => (
     viewBox="0 0 240 324"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    sx={{
+      ".white": { fill: "gray.1" },
+      ".black": { fill: "text" },
+    }}
     preserveAspectRatio="xMidYMin meet"
     {...props}
   >
