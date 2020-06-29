@@ -10,11 +10,11 @@ describe("/", () => {
       .should("include", `/u/login`);
   });
 
-  it("enters index page, logins and goes to /meetings page", () => {
-    cy.login();
-    cy.findByText(/meetings/i).click();
-    cy.findByText(/organize meeting/i);
-    cy.findByText(/your next meeting/i);
-    cy.findByText(/meetings you organize/i);
-  });
+  // it("enters index page, logins and goes to /meetings page", () => {
+  //   cy.login();
+  //   cy.findByText(/meetings/i).click();
+  //   cy.findByText(/organize meeting/i);
+  //   cy.findByText(/your next meeting/i);
+  //   cy.findByText(/meetings you organize/i);
+  // });
 });
