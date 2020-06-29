@@ -6,6 +6,7 @@ import { UnreachableCaseError } from "ts-essentials";
 
 import * as g from "../../../data/graphql-zeus";
 import { Db, hasura } from "../../../data/hasura";
+import { queryUserByAuth0Id } from "../../../data/queries";
 import { formatValidationErrors, PromiseType } from "../../../src";
 import { auth } from "../../../src/app/auth";
 
@@ -90,22 +91,12 @@ export default auth.requireAuthentication(async function insertMeeting(
         return auth
           .getSession(req)
           .then((session) =>
-            query({
-              cr_user: [
-                { where: { auth0_id: { _eq: session!.user.sub } } },
-                { uuid: true },
-              ],
-            }).then((x) => x.cr_user[0]?.uuid as string | undefined)
+            queryUserByAuth0Id(query, session!.user!.sub, { uuid: true }).then(
+              (u) => u!.uuid as string
+            )
           )
-          .then((organizer_id) => {
-            if (!organizer_id) {
-              res.status(404).send({ message: "user not found" });
-            } else {
-              runMutation(mutation, meeting, organizer_id).then((data) =>
-                res.status(200).send(data)
-              );
-            }
-          })
+          .then((organizer_id) => runMutation(mutation, meeting, organizer_id))
+          .then((data) => res.status(200).send(data))
           .catch((reason) => res.status(500).send(reason));
       }
     )
