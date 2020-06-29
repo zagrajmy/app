@@ -58,7 +58,7 @@ export const hasura = (instance: Instance) => {
 
 hasura.fromCookies = (req?: IncomingMessage) => {
   return hasura(
-    (parseCookies({ req })["zm|db-env"] as Instance) || "production"
+    (parseCookies({ req })["zm|db-env"] as Instance) || "localhost"
   );
 };
 
