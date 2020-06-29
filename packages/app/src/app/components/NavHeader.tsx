@@ -127,7 +127,8 @@ export const NavHeader = ({
                   p: "0.35em 0.15em",
                   cursor: "pointer",
                   "& > div": {
-                    border: "1px solid rgba(255, 255, 255, 0.9)",
+                    border: "1px solid",
+                    borderColor: alpha("white", 0.2),
                     borderRadius: "rounded",
                     padding: "0.4em 0.6em",
                   },
