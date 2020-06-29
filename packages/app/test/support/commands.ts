@@ -35,7 +35,7 @@ Cypress.Commands.add(
         client_id: AUTH0_CLIENT_ID,
         client_secret: AUTH0_CLIENT_SECRET,
       },
-    }).then(res => {
+    }).then((res) => {
       const { access_token, expires_in, id_token } = res.body;
       const auth0State = "some-random-state";
       const callbackUrl = `/api/login-callback?access_token=${access_token}&scope=openid&id_token=${id_token}&expires_in=${expires_in}&token_type=Bearer&state=${auth0State}`;

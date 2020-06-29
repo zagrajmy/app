@@ -10,6 +10,7 @@ describe("/", () => {
       .should("include", `/u/login`);
   });
 
+  // todo: write something like this for open spheres
   // it("enters index page, logins and goes to /meetings page", () => {
   //   cy.login();
   //   cy.findByText(/meetings/i).click();
