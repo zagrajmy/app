@@ -49,11 +49,7 @@ export const Sidebar = React.forwardRef(
         </Box>
         <Box
           ref={ref}
-          sx={{
-            ...styles.wrapper(props),
-            flexShrink: 0,
-            "&& a, && div": { outline: "none" },
-          }}
+          sx={{ ...styles.wrapper(props), flexShrink: 0 }}
           data-testid="sidebar"
         >
           <NavSearch

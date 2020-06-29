@@ -8,4 +8,3 @@ export * from "./FormDatepicker";
 export * from "./Input";
 export * from "./Select";
 export * from "./Heading";
-export * from "./Button";
