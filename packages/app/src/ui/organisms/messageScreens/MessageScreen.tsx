@@ -23,14 +23,7 @@ export const MessageScreen = ({
       sx={{ px: [4, 5], alignItems: "center", position: "relative" }}
       {...rest}
     >
-      <Picture
-        sx={{
-          flex: 1,
-          maxHeight: "100%",
-          ".white": { fill: "gray.1" },
-          ".black": { fill: "gray.9" },
-        }}
-      />
+      <Picture sx={{ flex: 1, maxHeight: "100%" }} />
       <Flex sx={{ flexDirection: "column", fontSize: 4 }}>
         <Heading as="h3">{heading}</Heading>
         {children}
