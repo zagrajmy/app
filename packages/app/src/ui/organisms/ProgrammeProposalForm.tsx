@@ -1,5 +1,5 @@
 import { htmdx } from "htmdx";
-import { ErrorMessage, useForm } from "react-hook-form";
+import { ErrorMessage, OnSubmit, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Grid, jsx as h, Message, Styled, Textarea } from "theme-ui";
 
