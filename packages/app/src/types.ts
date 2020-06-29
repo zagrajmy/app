@@ -51,4 +51,4 @@ export declare namespace settings {
   export interface SphereSettings extends FormsSettings {
     theme: Theme;
   }
-} 
+}
