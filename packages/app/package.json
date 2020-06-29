@@ -60,7 +60,6 @@
     "babel-plugin-emotion": "^10.0.33",
     "babel-plugin-styled-components": "^1.10.7",
     "date-fns": "2.11.1",
-    "deepmerge": "^4.2.2",
     "docz": "^2.2.0",
     "dotenv": "^8.2.0",
     "fp-ts": "^2.6.1",

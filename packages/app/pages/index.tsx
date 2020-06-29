@@ -1,132 +1,30 @@
-import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { hasura } from "../data";
 import { order_by } from "../data/graphql-zeus";
-import { sphereByIdOrDomainQueryArgs } from "../data/queries";
 import { Page } from "../src/app/components";
 import { CommonHead } from "../src/app/components/CommonHead";
-import { detectSphere } from "../src/app/detectSphere";
-import { useSettings } from "../src/app/store/useSettings";
-import { formatHour, useLanguage } from "../src/i18n";
-import { head } from "../src/lib/head";
-import { AsyncReturnType } from "../src/lib/utilityTypes";
-import { Container, Heading } from "../src/ui";
-import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
+import { getUrl } from "../src/lib/getUrl";
+import { Container } from "../src/ui";
 
-function fetchSphereData(
-  ctx: GetServerSidePropsContext,
-  sphere: { id: number | undefined; domain: string }
-) {
-  return hasura
-    .fromCookies(ctx.req)
-    .query({
-      nb_sphere: [
-        sphereByIdOrDomainQueryArgs(sphere),
-        {
-          ch_festivals: [
-            {
-              order_by: [{ start_time: order_by.desc_nulls_last }],
-              where: { start_publication: { _lte: "now" } },
-              limit: 1,
-            },
-            {
-              settings: [{}, true],
-              ch_rooms: [
-                {},
-                {
-                  name: true,
-                  ch_time_tables: [
-                    {
-                      order_by: [{ nb_meeting: { start_time: order_by.asc } }],
-                      where: { meeting_confirmed: { _eq: true } },
-                    },
-                    {
-                      nb_meeting: {
-                        id: true,
-                        slug: true,
-                        name: true,
-                        description: true,
-                        start_time: true,
-                        end_time: true,
-                        organizer: {
-                          username: true,
-                        },
-                      },
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    })
-    .then((res) => head(res.nb_sphere));
+interface SphereNotFoundProps {
+  error: "sphere-not-found";
 }
 
-type Sphere = Exclude<AsyncReturnType<typeof fetchSphereData>, undefined>;
+interface SphereHomeProps {
+  sphereId: string;
+  festivalAgenda: unknown; // TODO
 
-interface SphereHomeProps extends Sphere {
   error?: never;
   spheres?: never;
 }
 
-function SphereHome({ ch_festivals }: SphereHomeProps) {
-  const { t } = useTranslation();
-  const lang = useLanguage();
-
-  const festival = head(ch_festivals);
-  const settings = useSettings(festival);
-
-  if (!festival) {
-    return (
-      <Container>
-        TODO: Hey! There is no festival in this sphere. How should we display
-        this?
-      </Container>
-    );
-  }
-
+function SphereHome({ sphereId, festivalAgenda }: SphereHomeProps) {
   return (
-    <Container py={4}>
-      <p>Lorem ipsum dolor sit amet, oto tekst na powitanie gości festiwalu.</p>
-      <Heading as="h1">{t("agenda")}</Heading>
-      <FestivalAgenda id="agenda">
-        {festival.ch_rooms.map((room, i) => (
-          <FestivalAgenda.Room name={room.name} key={i}>
-            {room.ch_time_tables.map(({ nb_meeting }) => {
-              if (!nb_meeting) {
-                return null;
-              }
-
-              const {
-                id,
-                name: title,
-                description,
-                // slug, // todo: meeting detail
-                organizer,
-                start_time,
-                end_time,
-              } = nb_meeting;
-
-              return (
-                <FestivalAgenda.Item
-                  key={id}
-                  time={`${formatHour(start_time, lang)} - ${formatHour(
-                    end_time,
-                    lang
-                  )}`}
-                  organizer={{ name: organizer.username }}
-                  title={title}
-                  description={description}
-                />
-              );
-            })}
-          </FestivalAgenda.Room>
-        ))}
-      </FestivalAgenda>
+    <Container>
+      {JSON.stringify({ sphereId, festivalAgenda }, null, 2)}
     </Container>
   );
 }
@@ -135,7 +33,7 @@ interface HubHomeProps {
   festivals: string[]; // TODO Festival[]
 
   error?: never;
-  ch_festivals?: never;
+  sphereId?: never;
 }
 
 function HubHome({ spheres, festivals }: HubHomeProps) {
@@ -149,26 +47,15 @@ function HubHome({ spheres, festivals }: HubHomeProps) {
   );
 }
 
-interface ErrorPageProps {
-  error: "sphere-not-found";
-}
-function ErrorPage(props: ErrorPageProps) {
-  return (
-    <Container sx={{ py: 4, px: 1 }}>
-      <Container variant="sheet">{props.error}</Container>
-    </Container>
-  );
-}
-
-type IndexPageProps = SphereHomeProps | HubHomeProps | ErrorPageProps;
+type IndexPageProps = SphereHomeProps | HubHomeProps | SphereNotFoundProps;
 
 const IndexPage: NextPage<IndexPageProps> = (props) => {
   return (
     <Page>
       <CommonHead />
       {props.error ? (
-        <ErrorPage {...props} />
-      ) : props.ch_festivals !== undefined ? (
+        props.error
+      ) : props.sphereId !== undefined ? (
         <SphereHome {...props} />
       ) : (
         <HubHome {...props} />
@@ -177,27 +64,102 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
   );
 };
 
+// We should add `isHub` column to sphere probably.
+const HUBS = [
+  { id: 1, domain: "zagrajmy.net" },
+  { id: 2, domain: "zagrajmy.now.sh" },
+];
+
+function isHub(url: string, devSphereId?: number) {
+  return (
+    HUBS.find(
+      (sphere) =>
+        url.includes(`https://${sphere.domain}`) || devSphereId === sphere.id
+    ) !== undefined
+  );
+}
+
 export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
   ctx
 ) => {
-  const sphere = detectSphere(ctx);
+  const devSphereId =
+    ctx.query.__dev_sphere_id === undefined
+      ? undefined
+      : Number(ctx.query.__dev_sphere_id);
+  const url = getUrl(ctx.req);
 
-  if (sphere.isHub) {
-    // TODO
+  if (isHub(url, devSphereId)) {
     const props: HubHomeProps = {
       festivals: [],
       spheres: [],
     };
 
-    return { props };
+    return {
+      props,
+    };
   }
 
-  const sphereData = await fetchSphereData(ctx, sphere);
+  const domain = ctx.query.__dev_sphere_domain
+    ? String(ctx.query.__dev_sphere_domain)
+    : new URL(url).hostname;
 
-  if (sphereData) {
+  const sphere = await hasura
+    .fromCookies(ctx.req)
+    .query({
+      nb_sphere: [
+        {
+          where: devSphereId
+            ? { id: { _eq: devSphereId } }
+            : { django_site: { domain: { _eq: domain } } },
+        },
+        {
+          name: true,
+          settings: [{}, true],
+          ch_festivals: [
+            {
+              order_by: [{ start_time: order_by.desc_nulls_last }],
+              where: { start_publication: { _lte: "now" } },
+              limit: 1,
+            },
+            {
+              ch_rooms: [
+                {},
+                {
+                  ch_time_tables: [
+                    {
+                      order_by: [{ nb_meeting: { start_time: order_by.asc } }],
+                      where: { meeting_confirmed: { _eq: true } },
+                    },
+                    {
+                      nb_meeting: {
+                        id: true,
+                        image: true,
+                        meeting_url: true,
+                        slug: true,
+                        name: true,
+                        description: true,
+                        organizer: {
+                          username: true,
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    })
+    .then((res) => res.nb_sphere);
+
+  if (domain) {
     // TODO Ask with url.
     return {
-      props: sphereData,
+      props: {
+        sphereId: `todo-sphere-id-for-${domain}`,
+        festivalAgenda: [],
+      },
     };
   }
 
