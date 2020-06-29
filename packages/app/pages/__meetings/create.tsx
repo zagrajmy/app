@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ErrorMessage, OnSubmit, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
-import type { LabelProps } from "theme-ui";
 import {
   Button,
   Container,
@@ -15,6 +14,7 @@ import {
   Select,
   Textarea,
 } from "theme-ui";
+import type { LabelProps } from "theme-ui";
 import { OmitByValue } from "utility-types";
 
 import { hasura } from "../../data";
