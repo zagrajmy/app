@@ -40,7 +40,10 @@ function fetchSphereData(
                   ch_time_tables: [
                     {
                       order_by: [{ nb_meeting: { start_time: order_by.asc } }],
-                      where: { meeting_confirmed: { _eq: true } },
+                      where: {
+                        meeting_confirmed: { _eq: true },
+                        nb_meeting: { publication_time: { _lte: "now" } },
+                      },
                     },
                     {
                       nb_meeting: {
@@ -82,7 +85,7 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
 
   if (!festival) {
     return (
-      <Container>
+      <Container py={4}>
         TODO: Hey! There is no festival in this sphere. How should we display
         this?
       </Container>
@@ -90,7 +93,7 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
   }
 
   return (
-    <Container py={4}>
+    <Container py={4} px={2} sx={{ width: "containerThin" }}>
       <p>Lorem ipsum dolor sit amet, oto tekst na powitanie gości festiwalu.</p>
       <Heading as="h1">{t("agenda")}</Heading>
       <FestivalAgenda id="agenda">
@@ -140,7 +143,7 @@ interface HubHomeProps {
 
 function HubHome({ spheres, festivals }: HubHomeProps) {
   return (
-    <Container>
+    <Container py={4} px={2}>
       {JSON.stringify({ spheres, festivals }, null, 2)}
       {spheres.map((s, i) => (
         <li key={i}>{s}</li>
