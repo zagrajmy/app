@@ -46,7 +46,7 @@
     "@theme-ui/core": "^0.4.0-alpha.3",
     "@theme-ui/css": "^0.4.0-alpha.3",
     "@types/auth0": "^2.20.2",
-    "@types/cookie": "^0.3.3",
+    "@types/cookie": "^0.4.0",
     "@types/node": "^13.9.5",
     "@types/node-fetch": "^2.5.5",
     "@types/react-datepicker": "^2.11.0",
