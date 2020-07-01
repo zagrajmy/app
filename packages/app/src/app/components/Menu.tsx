@@ -64,7 +64,7 @@ export const Menu = ({ claims, ...rest }: MenuProps) => {
           display: "inline-flex",
           cursor: "pointer",
           listStyle: "none",
-          outline: "none",
+          outlineWidth: "thin",
 
           "::-webkit-details-marker": {
             display: "none",
