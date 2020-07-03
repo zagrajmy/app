@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Card, Image } from "theme-ui";
 
 import { SupportedLanguage, timeFromNow, useLanguage } from "../../i18n";

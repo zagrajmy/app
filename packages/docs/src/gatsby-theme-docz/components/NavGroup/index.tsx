@@ -3,7 +3,7 @@
 import { useCurrentDoc } from "docz";
 import { ChevronDown } from "gatsby-theme-docz/src/components/Icons";
 import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
-import React from "react";
+import * as React from "react";
 
 export interface NavGroupProps {
   item: { name: string; menu: { name: string; route: string; id: string }[] };
