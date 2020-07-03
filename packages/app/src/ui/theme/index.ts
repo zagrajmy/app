@@ -107,6 +107,14 @@ export const theme = makeTheme({
       },
       p: { width: "70ch", maxWidth: "100%" },
     },
+    code: {
+      fontFamily: "monospace",
+      fontSize: 1,
+      bg: "gray.1",
+      color: "primaryDark",
+      p: "2px",
+      borderRadius: "rounded-sm",
+    },
   },
   buttons,
   forms,
@@ -141,6 +149,9 @@ export const theme = makeTheme({
     critical: {
       backgroundColor: "critical",
       borderLeftColor: "criticalDark",
+    },
+    default: {
+      backgroundColor: "gray.0",
     },
   },
 });
