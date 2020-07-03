@@ -21,7 +21,10 @@ const queryUserByEmail = (db: Db) => (email: string) =>
 
 interface CreateUserArg
   extends Required<
-      Pick<generated.cr_user_insert_input, "auth0_id" | "username" | "email">
+      Pick<
+        generated.cr_user_insert_input,
+        "auth0_id" | "username" | "email" | "first_name" | "last_name"
+      >
     >,
     Pick<generated.cr_user_insert_input, "locale"> {}
 
@@ -90,10 +93,11 @@ export default async function loggedIn(
         await createUser(db)({
           auth0_id: auth0UserId,
           email,
-          // TODO username, first_name and last_name
           username:
             session.user.nickname ||
             `${session.user.given_name} ${session.user.family_name}`,
+          first_name: session.user.given_name,
+          last_name: session.user.family_name,
           locale: session.user.locale,
           // avatar: session.user.picture.includes("cdn.auth0.com") ? null : session.user.picture
         })

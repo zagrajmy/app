@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 import { FunctionKeys } from "utility-types";
 
-import { Theme } from "./theme";
+import { ExactTheme } from "./theme";
 
 type OmitFunctions<T extends object> = Omit<T, FunctionKeys<T>>;
 
@@ -28,8 +28,9 @@ export const Stack = ({
       sx={{
         display: "flex",
         flexDirection: isRow ? "row" : "column",
-        "& > *:not(:first-child)": {
-          [marginOrientation]: (t: Theme) => t.space[gap] ?? gap,
+        // This is homogenous. Don't use different types of children.
+        "& > *:not(:first-of-type)": {
+          [marginOrientation]: (t: ExactTheme) => t.space[gap] ?? gap,
         },
         ...sx,
       }}

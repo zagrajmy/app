@@ -24,6 +24,8 @@ type BadlyTypedThemeUIThemeKeys =
   | "links"
   | "layout";
 
+const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
+
 const makeTheme = <
   T extends Assign<ThemeUITheme, Record<BadlyTypedThemeUIThemeKeys, unknown>>
 >(
@@ -32,11 +34,12 @@ const makeTheme = <
 
 export const theme = makeTheme({
   useCustomProperties: true,
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  space,
   fontSizes: [0.75, 0.875, 1, 1.25, 1.5, 2, 3, 4, 4.5, 5.25].map(
     (x) => `${x}em`
   ),
   sizes: {
+    ...space,
     container: 1100,
     containerThin: 720,
   },
@@ -156,9 +159,9 @@ export const theme = makeTheme({
   },
 });
 
-export type Theme = typeof theme;
+export type ExactTheme = typeof theme;
 interface ThemeCtx extends Omit<ContextValue, "theme"> {
-  theme: Theme;
+  theme: ExactTheme;
 }
 
 // TODO: Make sure we deepmerge our base theme with user theme in the future

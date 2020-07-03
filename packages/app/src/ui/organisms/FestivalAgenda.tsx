@@ -46,7 +46,7 @@ export function FestivalAgenda({
       sx={{
         ...listStyles,
         // TODO: Stack?
-        "> li:not(:first-child)": { mt: 4 },
+        "> li:not(:first-of-type)": { mt: 4 },
         ...sx,
       }}
       {...rest}

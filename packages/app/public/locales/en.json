@@ -35,5 +35,7 @@
   "proposal-form-other_data": "Additional Data",
   "proposal-form-phone": "Phone",
   "proposal-form-title": "Title",
-  "agenda": "Agenda"
+  "agenda": "Agenda",
+  "sphere-home-intro-text": "Hi! This is __{{sphereName}}__. Wanna join one of our events?",
+  "sphere-home-not-found": "Oopsie! We couldn't find a sphere for this domain. This is awkward. We've already reported this error, but don't be shy if you want to send an angry email to us."
 }

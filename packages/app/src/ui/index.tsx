@@ -11,4 +11,6 @@ export * from "./Message";
 export * from "./Select";
 export * from "./Spacer";
 
+export * from "./mdx";
+
 export * from "./theme";

@@ -1,5 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
-import React from "react";
+import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { hasura } from "../data";
@@ -12,7 +12,8 @@ import { useSettings } from "../src/app/store/useSettings";
 import { formatHour, useLanguage } from "../src/i18n";
 import { head } from "../src/lib/head";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
-import { Container, Heading } from "../src/ui";
+import { Code, Container, Heading, Message, Spacer } from "../src/ui";
+import { mdx } from "../src/ui/mdx";
 import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
 
 function fetchSphereData(
@@ -83,6 +84,14 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
   const festival = head(ch_festivals);
   const settings = useSettings(festival);
 
+  const introText = useMemo(() => {
+    return mdx(
+      t("sphere-home-intro-text", {
+        sphereName: settings.sphereName,
+      })
+    );
+  }, [settings.sphereName, t]);
+
   if (!festival) {
     return (
       <Container py={4}>
@@ -94,8 +103,10 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
 
   return (
     <Container py={4} px={2} sx={{ width: "containerThin" }}>
-      <p>Lorem ipsum dolor sit amet, oto tekst na powitanie gości festiwalu.</p>
-      <Heading as="h1">{t("agenda")}</Heading>
+      {introText}
+      <Heading as="h1" sx={{ my: 4 }}>
+        {t("agenda")}
+      </Heading>
       <FestivalAgenda id="agenda">
         {festival.ch_rooms.map((room, i) => (
           <FestivalAgenda.Room name={room.name} key={i}>
@@ -155,10 +166,28 @@ function HubHome({ spheres, festivals }: HubHomeProps) {
 interface ErrorPageProps {
   error: "sphere-not-found";
 }
-function ErrorPage(props: ErrorPageProps) {
+function ErrorPage({ error }: ErrorPageProps) {
+  const { t } = useTranslation();
   return (
     <Container sx={{ py: 4, px: 1 }}>
-      <Container variant="sheet">{props.error}</Container>
+      <Container variant="sheet">
+        {error === "sphere-not-found" ? (
+          <Fragment>
+            {/* todo: add a cute "oopsie" message screen */}
+            <p>{t("sphere-home-not-found")}</p>
+            {process.env.NODE_ENV === "development" && (
+              <Message>
+                Dodaj parametr <Code>__dev_sphere_id</Code> lub{" "}
+                <Code>__dev_sphere_domain</Code> do URLa.
+                <br />
+                <small>
+                  Ta wiadomość nie znajdzie się w produkcyjnym buildzie.
+                </small>
+              </Message>
+            )}
+          </Fragment>
+        ) : null}
+      </Container>
     </Container>
   );
 }

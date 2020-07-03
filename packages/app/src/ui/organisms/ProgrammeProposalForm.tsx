@@ -1,12 +1,12 @@
-import { htmdx } from "htmdx";
 import { ErrorMessage, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Grid, jsx as h, Message, Styled, Textarea } from "theme-ui";
+import { Grid, Message, Textarea } from "theme-ui";
 
 import { Container } from "../Container";
 import { Fieldset } from "../Fieldset";
 import { FormInput, Input as BaseInput } from "../Input";
 import { FormLabelProps, Label as BaseLabel } from "../Label";
+import { mdx } from "../mdx";
 
 export interface ProgrammeProposalFormFields {
   title: string;
@@ -39,8 +39,6 @@ const Label = ({ fieldLabels, htmlFor, ...rest }: LabelProps) => {
   );
 };
 //#endregion
-
-const mdx = (s: string) => htmdx(s, h, { components: Styled });
 
 const errorMessageProps = {
   as: Message,
