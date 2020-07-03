@@ -1,9 +1,9 @@
 import { Link as BaseLink, LinkProps as BaseLinkProps } from "next-next-link";
 
-import { Theme, useTheme } from "./theme";
+import { ExactTheme, useTheme } from "./theme";
 
 export interface LinkProps extends BaseLinkProps {
-  variant?: "button" | "buttons.secondary" | keyof Theme["links"];
+  variant?: "button" | "buttons.secondary" | keyof ExactTheme["links"];
 }
 export const Link = ({ variant, ...rest }: LinkProps) => {
   const { theme } = useTheme();

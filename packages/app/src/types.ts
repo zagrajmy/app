@@ -1,5 +1,7 @@
 import { Theme } from "theme-ui";
 
+import type { SupportedLanguage, TranslationTexts } from "./i18n";
+
 export declare namespace settings {
   //#region generated types
   /**
@@ -50,5 +52,6 @@ export declare namespace settings {
 
   export interface SphereSettings extends FormsSettings {
     theme: Theme;
+    locale?: Record<SupportedLanguage, TranslationTexts>;
   }
 }

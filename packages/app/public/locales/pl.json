@@ -34,5 +34,7 @@
   "proposal-form-other_data": "Dodatkowe Informacje",
   "proposal-form-phone": "Telefon",
   "proposal-form-title": "Tytuł",
-  "agenda": "Plan Wydarzenia"
+  "agenda": "Plan Wydarzenia",
+  "sphere-home-intro-text": "Cześć! To jest __{{sphereName}}__. Chcesz wziąć udział w jednym z naszych wydarzeń?",
+  "sphere-home-not-found": "Jejku! Nie mogliśmy znaleźć sfery dla tej domeny. Niezręczna sytuacja. Wysłaliśmy już raport o tym błędzie, ale nie krępuj się jeśli chcesz wysłać nam gniewnego maila."
 }

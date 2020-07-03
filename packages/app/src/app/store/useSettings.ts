@@ -19,12 +19,12 @@ interface MergedSettings
 const byTitle = <T extends { title: string }>(xs: T[]) =>
   Object.fromEntries(xs.map((x) => [x.title, x]));
 
+type Settings = MergedSettings & { sphereName?: string };
+
 export function useSettings(festival?: { settings: unknown }) {
   const { sphere } = useAppState();
 
-  // todo: respect sphere's theme
-
-  return useMemo((): MergedSettings => {
+  return useMemo((): Settings => {
     const sphereSettings = sphere.settings;
     const festivalSettings = parseFestivalSettings(festival?.settings);
 
@@ -34,6 +34,7 @@ export function useSettings(festival?: { settings: unknown }) {
     );
 
     return {
+      sphereName: sphere.name,
       theme: sphereSettings.theme,
       forms: Object.values(forms),
     };

@@ -21,6 +21,7 @@ interface LanguagePickerProps
 const LanguagePicker = (props: LanguagePickerProps) => {
   const { i18n } = useTranslation();
   const lang = useLanguage();
+  const { user } = useAppState();
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const { value } = event.target;
@@ -28,16 +29,18 @@ const LanguagePicker = (props: LanguagePickerProps) => {
     assertLanguageIsSupported(value);
 
     i18n.changeLanguage(value);
-    summon("/api/u/me", {
-      method: "PATCH",
-      json: {
-        locale: value,
-      },
-    }).catch((err) => {
-      console.error(err);
-      // TODO: Rollback application if it failed
-      // TODO: Display error toast
-    });
+
+    if (user) {
+      summon("/api/u/me", {
+        method: "PATCH",
+        json: {
+          locale: value,
+        },
+      }).catch((err) => {
+        console.error(err);
+        // TODO: Display error toast and retry on fail
+      });
+    }
   };
 
   return (

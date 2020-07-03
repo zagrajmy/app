@@ -6,6 +6,8 @@ import { initReactI18next, useTranslation } from "react-i18next";
 import translationEN from "../public/locales/en.json";
 import translationPL from "../public/locales/pl.json";
 
+export type TranslationTexts = typeof translationEN;
+
 export const SUPPORTED_LANGUAGES = ["pl", "en"] as const;
 export type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
 export const FALLBACK_LANG: SupportedLanguage = "en";
@@ -42,6 +44,9 @@ i18n.use(initReactI18next).init({
 
   partialBundledLanguages: true,
   keySeparator: false,
+  defaultNS: "translation",
+  ns: "translation",
+  
 
   // debug: process.env.NODE_ENV !== "production",
 

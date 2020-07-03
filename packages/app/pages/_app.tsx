@@ -66,7 +66,7 @@ const globalStyles: InterpolationWithTheme<{}> = {
 };
 
 interface MyAppInitialProps extends AppInitialProps, AppProps {
-  appState: ApplicationState;
+  appState: Partial<ApplicationState>;
   lang: string;
   session?: Session | null;
 }
@@ -85,6 +85,11 @@ export default function MyApp({
     if (lang !== i18n.language) {
       // we need this in first render
       i18n.changeLanguage(lang);
+    }
+    if (appState.sphere?.settings.locale) {
+      Object.entries(appState.sphere!.settings.locale).forEach(([k, v]) => {
+        i18n.addResources(k, "translation", v);
+      });
     }
   });
 
@@ -163,7 +168,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
       }),
       nb_sphere: [
         sphereByIdOrDomainQueryArgs(sphere),
-        { settings: [{}, true] },
+        { name: true, settings: [{}, true] },
       ],
     });
 
