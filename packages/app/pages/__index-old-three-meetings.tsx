@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import React from "react";
+import * as React from "react";
 import { useTranslation } from "react-i18next";
 
 import { getRecentlyPublishedMeetings } from "../src/app/api-helpers";

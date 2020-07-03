@@ -1,6 +1,6 @@
 import { Link, LinkProps } from "next-next-link";
 import { useRouter } from "next/router";
-import React from "react";
+import * as React from "react";
 
 export const NavLink = (props: LinkProps) => {
   const { pathname } = useRouter();

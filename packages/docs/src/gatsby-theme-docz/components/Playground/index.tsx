@@ -5,7 +5,7 @@ import * as Icons from "gatsby-theme-docz/src/components/Icons";
 import { IframeWrapper } from "gatsby-theme-docz/src/components/Playground/IframeWrapper";
 import { Language } from "prism-react-renderer";
 import { Resizable } from "re-resizable";
-import React from "react";
+import * as React from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
 import ReactResizeDetector from "react-resize-detector";
 
