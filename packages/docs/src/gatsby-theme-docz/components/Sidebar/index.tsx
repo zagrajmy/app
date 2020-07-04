@@ -52,7 +52,6 @@ export const Sidebar = React.forwardRef(
           sx={{
             ...styles.wrapper(props),
             flexShrink: 0,
-            "&& a, && div": { outline: "none" },
           }}
           data-testid="sidebar"
         >

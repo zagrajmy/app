@@ -33,11 +33,13 @@ export const NavSearch = (props: ComponentProps<"input">) => {
         sx={{
           px: 1,
           py: 2,
-          outline: "none",
           background: "none",
           border: "none",
           color: "text",
           fontSize: 1,
+          ":focus": {
+            outline: "none",
+          },
         }}
       />
     </div>
