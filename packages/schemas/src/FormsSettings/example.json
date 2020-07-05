@@ -1,0 +1,116 @@
+{
+  "$schema": "./schema.json",
+  "forms": [
+    {
+      "title": "Zgłoś program na Kapitularz 2020!",
+      "waitlist": "prelekcje",
+      "introText": "Witaj! Dziękujemy Ci za Twój udział w naszym wydarzeniu i prosimy o wypełnienie poniższej ankiety.",
+      "footerText": "## Uwaga!\nSesje konwentowe rządzą się swoimi prawami. Może nie być dobrych warunków na utrzymanie ciężkiego klimatu, mogą przyjść niedoświadczeni gracze, dla których lepiej mieć gotowe postacie. Zachęcamy do zgłaszania niewymagających sesji, w których wziąć udział będzie mogła każda osoba \"z ulicy\". Jeśli zaś wymagasz doświadczonych graczy, proszę zaznacz odpowiednią opcję w opisie swojej sesji.",
+      "fieldsets": [
+        {
+          "description": "O Twoim punkcie programu",
+          "fields": [
+            {
+              "label": "Tytuł",
+              "type": "line",
+              "name": "proposal.title",
+              "required": true,
+              "description": "Tytuł twojego punktu programu"
+            },
+            {
+              "label": "Opis",
+              "type": "text",
+              "required": true,
+              "name": "proposal.description",
+              "description": "Opisz swój punkt programu"
+            },
+            {
+              "type": "single-choice",
+              "label": "Czas trwania",
+              "required": true,
+              "name": "proposal.duration",
+              "choices": {
+                "25 minut": 25,
+                "55 minut": 55,
+                "1h i 25 minut": 85,
+                "1h i 55 minut": 115
+              }
+            },
+            {
+              "label": "Kiedy masz czas?",
+              "required": true,
+              "name": "proposal.time_slots",
+              "type": "multiple-choice",
+              "choices": {
+                "Piątek 18-22": 21,
+                "Sobota 10-14": 22,
+                "Sobota 14-18": 23,
+                "Sobota 18-22": 24,
+                "Niedziela 10-14": 25
+              }
+            }
+          ]
+        },
+        {
+          "description": "O Tobie",
+          "fields": [
+            {
+              "label": "Imię i nazwisko",
+              "type": "line",
+              "required": true,
+              "description": "Do wiadomości organizatorów",
+              "name": "user.first_name,user.last_name"
+            },
+            {
+              "label": "Prowadzący",
+              "type": "line",
+              "required": true,
+              "description": "Nazwa prowadzącego do opisu wydarzenia",
+              "name": "proposal.name"
+            },
+            {
+              "label": "Adres email",
+              "type": "email",
+              "required": true,
+              "name": "user.email"
+            },
+            {
+              "label": "Nick na Discordzie",
+              "type": "discord",
+              "required": true,
+              "description": "Do kontaktu z prowadzącym.",
+              "name": "proposal.other_contact"
+            },
+            {
+              "label": "Numer telefonu",
+              "type": "phone",
+              "required": false,
+              "name": "proposal.phone"
+            },
+            {
+              "label": "Organizacja",
+              "type": "line",
+              "required": false,
+              "description": "Nazwa Twojej organizacji, klubu, bloga etc.",
+              "name": "proposal.club"
+            },
+            {
+              "label": "Zapoznałem się z informacją o przetwarzaniu danych osobowych",
+              "type": "checkbox",
+              "name": "dane_osobowe",
+              "required": true,
+              "description": "https://drive.google.com/open?id=1LyPNIex_nU6Q1gRk0JYx1fJWq4BNI3_rp7scUCFigvo"
+            },
+            {
+              "label": "Zapoznałem się i akceptuję regulamin Kapitularza 2020",
+              "type": "checkbox",
+              "name": "accepted_terms_and_conditions",
+              "required": true,
+              "description": "https://drive.google.com/open?id=19IN6ndmCthLLk-sOsqWzHUwlLbDUeOfU2jR7lwrjRII"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

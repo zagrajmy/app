@@ -1,0 +1,9 @@
+{
+  "name": "@zagrajmy/schemas",
+  "license": "MIT",
+  "version": "0.0.1",
+  "scripts": {},
+  "dependencies": {
+    "ts-json-validator": "^0.6.0"
+  }
+}
