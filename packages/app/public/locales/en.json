@@ -25,7 +25,7 @@
   "log-in": "Log in",
   "you-belong-to-no-guild": "You belong to no guild",
   "is-required": "is required",
-  "field-is-required": "field is required",
+  "field-is-required": "Hey, this field is required.",
   "search-meetings": "Search meetings...",
   "proposal-form-city": "City",
   "proposal-form-club": "Club",
@@ -37,5 +37,8 @@
   "proposal-form-title": "Title",
   "agenda": "Agenda",
   "sphere-home-intro-text": "Hi! This is __{{sphereName}}__. Wanna join one of our events?",
-  "sphere-home-not-found": "Oopsie! We couldn't find a sphere for this domain. This is awkward. We've already reported this error, but don't be shy if you want to send an angry email to us."
+  "sphere-home-not-found": "Oopsie! We couldn't find a sphere for this domain. This is awkward. We've already reported this error, but don't be shy if you want to send an angry email to us.",
+  "yes": "Yes",
+  "no": "No",
+  "submit": "Submit"
 }

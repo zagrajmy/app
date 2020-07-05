@@ -6,6 +6,7 @@ export * from "./Dl";
 export * from "./FormDatepicker";
 export * from "./Heading";
 export * from "./Input";
+export * from "./Label";
 export * from "./Link";
 export * from "./Message";
 export * from "./Select";

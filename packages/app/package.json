@@ -1,7 +1,7 @@
 {
   "name": "@zagrajmy/app",
   "license": "MIT",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -27,9 +27,9 @@
     "snyk-protect": "snyk protect",
     "prepublish": "timeout 60s yarn snyk-protect || echo '⏰ snyk protect timed out.'"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.esm.js",
+  "types": "dist/src/index.d.ts",
   "source": "src/index.ts",
   "files": [
     "dist"

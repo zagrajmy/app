@@ -24,7 +24,7 @@
   "log-in": "Zaloguj",
   "you-belong-to-no-guild": "Nie masz żadnej gildii",
   "is-required": "jest wymagany",
-  "field-is-required": "pole nie może być puste",
+  "field-is-required": "Hej, to pole nie może być puste.",
   "search-meetings": "Szukaj spotkań...",
   "proposal-form-city": "Miasto",
   "proposal-form-club": "Klub",
@@ -36,5 +36,8 @@
   "proposal-form-title": "Tytuł",
   "agenda": "Plan Wydarzenia",
   "sphere-home-intro-text": "Cześć! To jest __{{sphereName}}__. Chcesz wziąć udział w jednym z naszych wydarzeń?",
-  "sphere-home-not-found": "Jejku! Nie mogliśmy znaleźć sfery dla tej domeny. Niezręczna sytuacja. Wysłaliśmy już raport o tym błędzie, ale nie krępuj się jeśli chcesz wysłać nam gniewnego maila."
+  "sphere-home-not-found": "Jejku! Nie mogliśmy znaleźć sfery dla tej domeny. Niezręczna sytuacja. Wysłaliśmy już raport o tym błędzie, ale nie krępuj się jeśli chcesz wysłać nam gniewnego maila.",
+  "yes": "Tak",
+  "no": "Nie",
+  "submit": "Wyślij"
 }

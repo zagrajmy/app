@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable import/no-extraneous-dependencies */
 import { theme as appTheme } from "@zagrajmy/app";
+import { forms } from "@zagrajmy/app/dist/src/ui/theme/forms";
 import {
   ComponentsProvider,
   theme as makeThemeProvider,

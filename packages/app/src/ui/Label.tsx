@@ -1,10 +1,37 @@
-import type { LabelProps } from "theme-ui";
+import { useTranslation } from "react-i18next";
+import { Label as BaseLabel, LabelProps as BaseLabelProps } from "theme-ui";
 
-export { Label } from "theme-ui";
+const OptionalMark = ({ value }: { value?: boolean }) => {
+  const { t } = useTranslation();
 
-export interface FormLabelProps<Name> extends Omit<LabelProps, "htmlFor"> {
-  htmlFor: Name;
+  return value ? (
+    <small sx={{ fontWeight: "normal", order: -1, px: 1 }}>
+      ({t("optional")})
+    </small>
+  ) : null;
+};
+
+export type FormLabel<Name extends string> = (
+  props: LabelProps<Name>
+) => JSX.Element;
+
+export interface LabelProps<Name extends string>
+  extends Omit<BaseLabelProps, "ref" | "htmlFor"> {
+  optional?: boolean;
+  htmlFor?: Name;
 }
-export type FormLabel<Name> = (props: FormLabelProps<Name>) => JSX.Element;
 
-export type { LabelProps };
+export const Label = <Name extends string = string>({
+  children,
+  optional,
+  ...rest
+}: LabelProps<Name>) => {
+  return (
+    <BaseLabel {...rest}>
+      <OptionalMark value={optional} />
+      {children}
+    </BaseLabel>
+  );
+};
+
+Label.OptionalMark = OptionalMark;

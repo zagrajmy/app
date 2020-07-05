@@ -6,9 +6,10 @@ import { Theme as ThemeUITheme, useThemeUI } from "theme-ui";
 import { Assign } from "../../lib";
 import { buttons } from "./buttons";
 import { colors } from "./colors";
-import { focusStyles } from "./focusStyles";
 import { forms } from "./forms";
 import { links } from "./links";
+
+export * from "./globalStyles";
 
 declare module "theme-ui" {
   export interface Theme {
@@ -81,7 +82,6 @@ export const theme = makeTheme({
   },
   styles: {
     root: {
-      ...focusStyles,
       "*::selection": {
         backgroundColor: transparentize("secondary", 0.5),
       },

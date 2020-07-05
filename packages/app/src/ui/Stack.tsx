@@ -19,9 +19,7 @@ export const Stack = ({
   sx,
   ...rest
 }: StackProps) => {
-  const marginOrientation = isRow
-    ? "margin-inline-start"
-    : "margin-block-start";
+  const marginOrientation = isRow ? "marginInlineStart" : "marginBlockStart";
 
   return (
     <Root

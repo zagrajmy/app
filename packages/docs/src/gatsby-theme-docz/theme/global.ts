@@ -1,38 +1,18 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { InterpolationWithTheme } from "@emotion/core";
-import { Theme } from "@zagrajmy/app/dist/ui";
+/* eslint-disable import/no-extraneous-dependencies */
+import { globalStyles as commonGlobalStyles } from "@zagrajmy/app/dist/src/ui";
+import { css } from "theme-ui";
 
-const scrollbarStyles = {
-  "::-webkit-scrollbar": {
-    width: "13px",
-  },
-  "::-webkit-scrollbar-thumb": {
-    backgroundColor: "rgba(0, 0, 0, 0.16)",
-    backgroundClip: "padding-box",
-    border: "3px solid rgba(0, 0, 0, 0)",
-    borderRadius: "100px",
-    "&:hover": {
-      borderWidth: "3px",
-      backgroundColor: "rgba(0, 0, 0, 0.34)",
-    },
-  },
-  "::-webkit-scrollbar-corner": {
-    backgroundColor: "rgba(0, 0, 0, 0)",
-  },
-};
-
-export const globalStyles: InterpolationWithTheme<Theme> = {
+export const globalStyles = css({
   html: {
     scrollBehavior: "smooth",
-    "overflow-x": "hidden",
-    "overflow-y": "overlay",
-  },
+    overflowY: "overlay",
+    overflowX: "hidden",
+  } as {}, // TODO: Why doesn't it work? Debug in Theme UI.
   body: {
     margin: 0,
     padding: 0,
   },
-  // scrollbar
-  "*": scrollbarStyles,
+  ...commonGlobalStyles,
   // docs overrides
   "gatsby-theme-docz/src/theme/.icon-link": {
     display: "none",
@@ -40,4 +20,4 @@ export const globalStyles: InterpolationWithTheme<Theme> = {
   "gatsby-theme-docz/src/theme/.with-overlay": {
     overflow: "hidden",
   },
-};
+});

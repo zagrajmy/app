@@ -13,7 +13,7 @@ import {
 import { parseCookies } from "nookies";
 import React, { useRef } from "react";
 import { I18nextProvider } from "react-i18next";
-import { Styled, ThemeProvider as ThemeUiProvider } from "theme-ui";
+import { css, Styled, ThemeProvider as ThemeUiProvider } from "theme-ui";
 
 import { hasura } from "../data";
 import { sphereByIdOrDomainQueryArgs } from "../data/queries";
@@ -29,7 +29,7 @@ import {
   SupportedLanguage,
 } from "../src/i18n";
 import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
-import { theme } from "../src/ui/theme";
+import { globalStyles, theme } from "../src/ui/theme";
 
 function detectLanguage(
   req: Exclude<NextPageContext["req"], undefined>,
@@ -61,9 +61,10 @@ export type InjectedPageProps = {
   lang: SupportedLanguage;
 };
 
-const globalStyles: InterpolationWithTheme<{}> = {
+const global: InterpolationWithTheme<{}> = css({
   body: { margin: 0 },
-};
+  ...globalStyles,
+});
 
 interface MyAppInitialProps extends AppInitialProps, AppProps {
   appState: Partial<ApplicationState>;
@@ -125,7 +126,7 @@ export default function MyApp({
   return (
     <I18nextProvider i18n={i18n}>
       <ThemeUiProvider theme={theme}>
-        <Global styles={globalStyles} />
+        <Global styles={global} />
         <AppStateProvider stateFromInitialProps={appState}>
           {root}
         </AppStateProvider>

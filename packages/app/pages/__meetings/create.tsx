@@ -10,7 +10,6 @@ import {
   Container,
   Flex,
   Grid,
-  Label as ThLabel,
   Message,
   Select,
   Textarea,
@@ -25,8 +24,10 @@ import { Page } from "../../src/app/components";
 import { withUser } from "../../src/app/withUser";
 import {
   FormDatepicker,
-  Input as ThInput,
-  InputProps as ThInputProps,
+  FormInput,
+  FormLabel,
+  Input as BaseInput,
+  Label as BaseLabel,
 } from "../../src/ui";
 import {
   InsertMeetingBody,
@@ -41,14 +42,9 @@ const extractGuilds = (data: {
 
 type MeetingProperty = keyof OmitByValue<Meeting, object>;
 
-interface InputProps extends Omit<ThInputProps, "name"> {
-  name: MeetingProperty;
-}
-const Input = ThInput as (props: InputProps) => JSX.Element;
+const Input = BaseInput as FormInput<MeetingProperty>;
 
-const Label = ThLabel as (
-  props: Omit<LabelProps, "htmlFor"> & { htmlFor: MeetingProperty }
-) => JSX.Element;
+const Label = BaseLabel as FormLabel<MeetingProperty>;
 
 interface CreateMeetingPageProps {
   initialData?: { guilds: { id: number; name: string }[] };
@@ -171,9 +167,8 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
           />
         </div>
         <div>
-          <Label htmlFor="guild_id">
+          <Label htmlFor="guild_id" optional>
             {t("guild")}{" "}
-            <small sx={{ fontWeight: "normal" }}>({t("optional")})</small>
           </Label>
           <Select name="guild" disabled={!data || data.guilds.length === 0}>
             {data &&
