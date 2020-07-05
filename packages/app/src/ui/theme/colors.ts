@@ -32,8 +32,8 @@ export const light = {
   primaryDark: "#d34e4d",
   secondary: "#5654e8",
   accent: "#5654e8", // blue in triad of primary
-  muted: "rgba(0, 0, 0, 0.6)",
-
+  highlight: "hsla(0, 76%, 62%, 0.2)", // same as primary with 0.2 opacity; needed for Theme UI form components
+  muted: "hsla(0, 0%, 0%, 0.6)",
   // functional colors, usually used as background
   critical: "#fad9d9",
   caution: "#f2f29f",

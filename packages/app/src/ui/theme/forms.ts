@@ -2,15 +2,27 @@ import { ThemeUIStyleObject } from "theme-ui";
 
 import { Variants } from "./design-graph-utility";
 
+const borderStyles: ThemeUIStyleObject = {
+  border: "1px solid",
+  borderRadius: "rounded",
+  borderColor: "gray.3",
+};
+
+const boldMutedFont: ThemeUIStyleObject = {
+  fontWeight: "bold",
+  color: "muted",
+};
+
 const field: ThemeUIStyleObject = {
+  ...borderStyles,
   appearance: "none",
   fontSize: "inherit",
   lineHeight: "inherit",
   color: "inherit",
-  border: "1px solid",
-  borderRadius: "rounded",
-  borderColor: "gray.3",
   bg: "gray.1",
+  ":focus.focus-visible, & > *:focus.focus-visible": {
+    outlineStyle: "auto !important", // fixme?
+  },
 };
 
 export const forms: Variants = {
@@ -35,9 +47,20 @@ export const forms: Variants = {
     },
   },
   label: {
-    fontWeight: "bold",
-    color: "muted",
+    ...boldMutedFont,
     whiteSpace: "pre",
-    alignItems: "center",
+    display: "block",
+    "& > *, input, textarea": {
+      fontWeight: "normal",
+      color: "text",
+    },
+  },
+  choiceGroup: {
+    ...borderStyles,
+    "> legend": boldMutedFont,
+    label: {
+      fontWeight: "normal",
+      color: "text",
+    },
   },
 };

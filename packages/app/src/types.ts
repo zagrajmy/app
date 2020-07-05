@@ -8,6 +8,7 @@ export declare namespace settings {
    * generated from JSON Schema
    * @see https://gist.github.com/hasparus/1f13a6d64d9799f468cd004939ad2239
    */
+
   export interface FormsSettings {
     forms: Form[];
     [k: string]: unknown;
@@ -15,17 +16,18 @@ export declare namespace settings {
 
   export interface Form {
     title: string;
-    description: string;
+    introText: string;
+    footerText: string;
     waitlist: string;
     fieldsets: Fieldset[];
   }
 
   export interface Fieldset {
     description: string;
-    fields: (Field & (SingleValueField | ChoiceField))[];
+    fields: (BaseField & (SingleValueField | ChoiceField))[];
   }
 
-  export interface Field {
+  export interface BaseField {
     label: string;
     name: string;
     required: boolean;
@@ -47,6 +49,8 @@ export declare namespace settings {
   }
 
   //#endregion generated types
+
+  export type Field = Fieldset["fields"][number];
 
   export interface FestivalSettings extends FormsSettings {}
 

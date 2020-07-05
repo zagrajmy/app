@@ -1,44 +1,91 @@
+import { absurd } from "fp-ts/lib/function";
+import { forwardRef } from "react";
 import { ErrorMessage, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Grid, Message, Textarea } from "theme-ui";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Grid,
+  Heading,
+  Label as SimpleLabel,
+  Message,
+  Radio,
+  Textarea,
+} from "theme-ui";
 
+import { settings } from "../../types";
 import { Container } from "../Container";
 import { Fieldset } from "../Fieldset";
-import { FormInput, Input as BaseInput } from "../Input";
-import { FormLabelProps, Label as BaseLabel } from "../Label";
+import { Input } from "../Input";
+import { Label as BaseLabel, LabelProps as BaseLabelProps } from "../Label";
 import { mdx } from "../mdx";
+import { Spacer } from "../Spacer";
 
-export interface ProgrammeProposalFormFields {
-  title: string;
-  description: string;
+const rowStyles = { display: "flex", alignItems: "center" };
 
-  phone: string;
-  other_contact: string;
-  city: string;
-  club: string;
+type FieldName = string;
+export type ProgrammeProposalFormResult = {
+  [K in FieldName]: string | number;
+};
 
-  needs: string;
-  other_data: string;
+const FieldDescription = ({ children }: { children?: string }) =>
+  children ? (
+    <div sx={{ fontSize: 1, fontStyle: "italic", p: { m: 0 } }}>
+      {mdx(children)}
+    </div>
+  ) : null;
+
+interface LabelProps extends Omit<BaseLabelProps<FieldName>, "ref"> {
+  /**
+   * field label
+   */
+  labelText: string;
+  /**
+   * additional description
+   */
+  description?: string;
 }
-
-type Field = keyof ProgrammeProposalFormFields;
-type FieldLabels = { [K in Field]?: string };
-
-//#region form components: Input, Label
-const Input = BaseInput as FormInput<Field>;
-
-interface LabelProps extends Omit<FormLabelProps<Field>, "ref"> {
-  fieldLabels: FieldLabels;
-}
-const Label = ({ fieldLabels, htmlFor, ...rest }: LabelProps) => {
+// Consider moving it out to `Label.tsx`. It might be useful in other forms.
+const Label = ({
+  htmlFor,
+  labelText,
+  children,
+  optional,
+  description,
+  ...rest
+}: LabelProps) => {
   const { t } = useTranslation();
   return (
     <BaseLabel {...rest} htmlFor={htmlFor}>
-      {fieldLabels[htmlFor] || t(`proposal-form-${htmlFor}`)}
+      <Box variant="forms.label">
+        {labelText || t(`proposal-form-${htmlFor}`)}
+        <BaseLabel.OptionalMark value={optional} />
+      </Box>
+      <FieldDescription>{description}</FieldDescription>
+      {children}
     </BaseLabel>
   );
 };
-//#endregion
+
+const YesOrNoText = () => {
+  const { t } = useTranslation();
+
+  return (
+    <span
+      sx={{
+        color: "text",
+        fontWeight: "normal",
+        ":before": {
+          content: `"${t("yes")}"`,
+        },
+        "input:checked ~ &:before": {
+          content: `"${t("no")}"`,
+        },
+      }}
+    />
+  );
+};
 
 const errorMessageProps = {
   as: Message,
@@ -46,23 +93,105 @@ const errorMessageProps = {
   sx: { mt: 1 },
 } as const;
 
-export interface ProgrammeProposalFestivalSettings extends FieldLabels {
-  introText: string;
-  footerText: string;
+interface FieldControlProps {
+  field: settings.Field;
 }
+const FieldControl = forwardRef<any, FieldControlProps>(({ field }, ref) => {
+  const labelProps: LabelProps = {
+    htmlFor: field.name,
+    optional: !field.required,
+    labelText: field.label,
+    description: field.description,
+  };
+
+  switch (field.type) {
+    case "discord":
+    case "line":
+      return (
+        <Label {...labelProps}>
+          <Input name={field.name} id={field.name} ref={ref} />
+        </Label>
+      );
+    case "text":
+      return (
+        <Label {...labelProps}>
+          <Textarea
+            name="description"
+            rows={5}
+            ref={ref}
+            sx={{ resize: "none" }}
+          />
+        </Label>
+      );
+    case "single-choice":
+      return (
+        <Box as="fieldset" variant="forms.choiceGroup">
+          <legend>{field.label}</legend>
+          <FieldDescription>{field.description}</FieldDescription>
+          {Object.entries(field.choices).map(([label, value]) => (
+            <SimpleLabel key={value} sx={rowStyles}>
+              <Radio name={field.name} value={value} ref={ref} />
+              {label}
+            </SimpleLabel>
+          ))}
+        </Box>
+      );
+    case "multiple-choice":
+      return (
+        <div>
+          <Box as="fieldset" variant="forms.choiceGroup">
+            <legend>{field.label}</legend>
+            <FieldDescription>{field.description}</FieldDescription>
+            {Object.entries(field.choices).map(([label, value]) => (
+              <SimpleLabel key={value} sx={rowStyles}>
+                <Checkbox name={field.name} value={value} ref={ref} />
+                {label}
+              </SimpleLabel>
+            ))}
+          </Box>
+        </div>
+      );
+    case "phone":
+      return (
+        <Label {...labelProps}>
+          <Input name={field.name} id={field.name} type="tel" ref={ref} />
+        </Label>
+      );
+    case "email":
+      return (
+        <Label {...labelProps}>
+          <Input name={field.name} id={field.name} type="email" ref={ref} />
+        </Label>
+      );
+    case "checkbox":
+      // User can agree or disagree to something.
+      return (
+        <Label {...labelProps}>
+          <div sx={{ "> div": rowStyles, py: 1 }}>
+            <Checkbox name={field.name} id={field.name} ref={ref}>
+              <YesOrNoText />
+            </Checkbox>
+          </div>
+        </Label>
+      );
+    default:
+      absurd(field);
+      return null;
+  }
+});
 
 export interface ProgrammeProposalFormProps {
-  settings: ProgrammeProposalFestivalSettings;
-  onSubmit: (values: ProgrammeProposalFormFields) => void;
+  settings: settings.Form;
+  onSubmit: (values: ProgrammeProposalFormResult) => void;
 }
 
 export function ProgrammeProposalForm({
-  settings: { introText, footerText, ...labels },
+  settings: { introText, footerText, title, waitlist, fieldsets },
   onSubmit,
 }: ProgrammeProposalFormProps) {
   const { t } = useTranslation();
   const { register, handleSubmit, errors } = useForm<
-    ProgrammeProposalFormFields
+    ProgrammeProposalFormResult
   >();
 
   return (
@@ -72,74 +201,61 @@ export function ProgrammeProposalForm({
       sx={{
         width: "containerThin",
 
-        px: 5,
-        pb: 5,
-        pt: 4,
+        p: 5,
         mt: 4,
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {mdx(introText)}
+      <header>
+        <Heading as="h1">{title}</Heading>
+        <div sx={{ pt: 2, pb: 4 }}>{mdx(introText)}</div>
+      </header>
       <Grid gap={3}>
-        <Fieldset>
-          <div>
-            <Label fieldLabels={labels} htmlFor="title" />
-            <Input
-              name="title"
-              ref={register({ required: `${t("field-is-required")}` })}
-            />
-            <ErrorMessage errors={errors} name="title" {...errorMessageProps} />
-          </div>
-          <div>
-            <Label fieldLabels={labels} htmlFor="description" />
-            <Textarea
-              name="description"
-              rows={5}
-              ref={register}
-              sx={{ resize: "none" }}
-            />
-          </div>
-        </Fieldset>
-        <Fieldset>
-          <div>
-            <Label fieldLabels={labels} htmlFor="phone" />
-            <Input name="phone" />
-            <ErrorMessage errors={errors} name="phone" {...errorMessageProps} />
-          </div>
-          <div>
-            <Label fieldLabels={labels} htmlFor="other_contact" />
-            <Input name="phone" />
-            <ErrorMessage errors={errors} name="phone" {...errorMessageProps} />
-          </div>
-          <div>
-            <Label fieldLabels={labels} htmlFor="city" />
-            <Input name="city" />
-            <ErrorMessage errors={errors} name="city" {...errorMessageProps} />
-          </div>
-          <div>
-            <Label fieldLabels={labels} htmlFor="club" />
-            <Input name="city" />
-            <ErrorMessage errors={errors} name="club" {...errorMessageProps} />
-          </div>
-        </Fieldset>
-        <Fieldset>
-          <div>
-            <Label fieldLabels={labels} htmlFor="needs" />
-            <Input name="needs" />
-            <ErrorMessage errors={errors} name="needs" {...errorMessageProps} />
-          </div>
-          <div>
-            <Label fieldLabels={labels} htmlFor="other_data" />
-            <Textarea
-              name="other_data"
-              rows={5}
-              ref={register}
-              sx={{ resize: "none" }}
-            />
-          </div>
-        </Fieldset>
+        {fieldsets.map(({ description, fields }, i) => {
+          return (
+            <Box key={i}>
+              <Heading
+                as="h3"
+                sx={{
+                  color: "gray.9",
+                  borderBottom: "2px solid",
+                  borderBottomColor: "gray.1",
+                }}
+              >
+                {description}
+              </Heading>
+              <Fieldset>
+                {fields.map((field, j) => {
+                  return (
+                    <div key={j}>
+                      <FieldControl
+                        field={field}
+                        ref={register({
+                          required: field.required
+                            ? `${t("field-is-required")}`
+                            : undefined,
+                        })}
+                      />
+                      <ErrorMessage
+                        errors={errors}
+                        name={field.name}
+                        {...errorMessageProps}
+                      />
+                    </div>
+                  );
+                })}
+              </Fieldset>
+            </Box>
+          );
+        })}
       </Grid>
-      {mdx(footerText)}
+      <footer>
+        {mdx(footerText)}
+        <Spacer height={3} />
+        <Button type="submit" sx={{ fontWeight: "bold", marginLeft: "auto" }}>
+          {t("submit")}
+        </Button>
+      </footer>
     </Container>
   );
 }

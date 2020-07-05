@@ -99,7 +99,6 @@ export default async function loggedIn(
           first_name: session.user.given_name,
           last_name: session.user.family_name,
           locale: session.user.locale,
-          // avatar: session.user.picture.includes("cdn.auth0.com") ? null : session.user.picture
         })
       );
       console.log(`User ${uuid} successfuly created.`);
