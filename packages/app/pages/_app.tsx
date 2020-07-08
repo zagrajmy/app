@@ -169,7 +169,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
       }),
       nb_sphere: [
         sphereByIdOrDomainQueryArgs(sphere),
-        { name: true, settings: [{}, true] },
+        { name: true, settings: [{}, true], is_open: true },
       ],
     });
 

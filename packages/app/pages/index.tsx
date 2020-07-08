@@ -29,10 +29,14 @@ function fetchSphereData(
           ch_festivals: [
             {
               order_by: [{ start_time: order_by.desc_nulls_last }],
-              where: { start_publication: { _lte: "now" } },
+              where: { start_proposal: { _lte: "now" } },
               limit: 1,
             },
             {
+              start_time: true, // for display only
+              start_publication: true, // we show the agenda after this time
+              start_proposal: true, // show forms after this
+              end_time: true, // stop showing forms after this
               settings: [{}, true],
               ch_rooms: [
                 {},

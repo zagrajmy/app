@@ -29,8 +29,8 @@ export function useSettings(festival?: { settings: unknown }) {
     const festivalSettings = parseFestivalSettings(festival?.settings);
 
     const forms = merge(
-      byTitle(sphereSettings.forms),
-      byTitle(festivalSettings.forms)
+      byTitle(sphereSettings.forms || []),
+      byTitle(festivalSettings.forms || [])
     );
 
     return {
