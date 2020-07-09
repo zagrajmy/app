@@ -25,6 +25,7 @@
     "@theme-ui/style-guide": "^0.3.0",
     "@zagrajmy/app": "^0.1.0-alpha.1",
     "babel-preset-gatsby": "^0.4.10",
+    "copy-text-to-clipboard": "^2.2.0",
     "docz": "^2.3.1",
     "gatsby": "^2.23.7",
     "gatsby-plugin-typescript": "^2.4.6",

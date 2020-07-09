@@ -71,3 +71,6 @@ export const timeFromNow = (time: Date | string, language: SupportedLanguage) =>
 
 export const formatHour = (time: Date | string, language: SupportedLanguage) =>
   format(new Date(time), "hh:mm", { locale: pickLocale(language) });
+
+export const formatDate = (time: Date | string, language: SupportedLanguage) =>
+  new Date(time).toLocaleDateString(language)

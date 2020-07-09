@@ -129,7 +129,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
         as="form"
         variant="sheet"
         sx={{
-          width: "containerThin",
+          maxWidth: "containerThin",
 
           px: 5,
           pb: 5,

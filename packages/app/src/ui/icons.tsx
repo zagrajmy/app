@@ -6,4 +6,5 @@ export {
   Search,
   CheckSquare,
   Edit,
+  Clock,
 } from "react-feather";

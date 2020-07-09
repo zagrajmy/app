@@ -199,7 +199,7 @@ export function ProgrammeProposalForm({
       as="form"
       variant="sheet"
       sx={{
-        width: "containerThin",
+        maxWidth: "containerThin",
 
         p: 5,
         mt: 4,

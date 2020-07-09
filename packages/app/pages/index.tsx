@@ -1,6 +1,8 @@
+import { isPast } from "date-fns";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { Flex } from "theme-ui";
 
 import { hasura } from "../data";
 import { order_by } from "../data/graphql-zeus";
@@ -9,10 +11,16 @@ import { Page } from "../src/app/components";
 import { CommonHead } from "../src/app/components/CommonHead";
 import { detectSphere } from "../src/app/detectSphere";
 import { useSettings } from "../src/app/store/useSettings";
-import { formatHour, useLanguage } from "../src/i18n";
+import {
+  formatDate,
+  formatHour,
+  SupportedLanguage,
+  useLanguage,
+} from "../src/i18n";
 import { head } from "../src/lib/head";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
-import { Code, Container, Heading, Message, Spacer } from "../src/ui";
+import { Code, Container, Heading, Message, Spacer, Stack } from "../src/ui";
+import * as icons from "../src/ui/icons";
 import { mdx } from "../src/ui/mdx";
 import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
 
@@ -33,6 +41,7 @@ function fetchSphereData(
               limit: 1,
             },
             {
+              name: true,
               start_time: true, // for display only
               start_publication: true, // we show the agenda after this time
               start_proposal: true, // show forms after this
@@ -76,6 +85,39 @@ function fetchSphereData(
 
 type Sphere = Exclude<AsyncReturnType<typeof fetchSphereData>, undefined>;
 
+type Festival = Sphere["ch_festivals"][number];
+interface FestivalDateTimeProps {
+  lang: SupportedLanguage;
+  startTime: Festival["start_time"];
+  endTime: Festival["end_time"];
+}
+const FestivalDateTime = ({
+  startTime,
+  endTime,
+  lang,
+}: FestivalDateTimeProps) => {
+  return (
+    <Stack row gap={4} sx={{ fontWeight: "bold", color: "gray.8" }}>
+      <Stack row gap={2} align="center">
+        <Flex>
+          <icons.Calendar size={18} />
+        </Flex>
+        <Flex sx={{ transform: "translateY(0.5px)" }}>
+          {formatDate(startTime, lang)}
+        </Flex>
+      </Stack>
+      <Stack row gap={2} align="center">
+        <Flex>
+          <icons.Clock size={18} />
+        </Flex>
+        <Flex sx={{ transform: "translateY(0.5px)" }}>
+          {formatDate(endTime, lang)}
+        </Flex>
+      </Stack>
+    </Stack>
+  );
+};
+
 interface SphereHomeProps extends Sphere {
   error?: never;
   spheres?: never;
@@ -106,9 +148,16 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
   }
 
   return (
-    <Container py={4} px={2} sx={{ width: "containerThin" }}>
+    <Container py={4} px={2} sx={{ maxWidth: "containerThin" }}>
+      <Heading as="h1">{festival.name}</Heading>
+      <Spacer height={3} />
+      <FestivalDateTime
+        startTime={festival.start_time}
+        endTime={festival.end_time}
+        lang={lang}
+      />
       {introText}
-      <Heading as="h1" sx={{ my: 4 }}>
+      <Heading as="h2" sx={{ my: 4 }}>
         {t("agenda")}
       </Heading>
       <FestivalAgenda id="agenda">
@@ -181,12 +230,10 @@ function ErrorPage({ error }: ErrorPageProps) {
             <p>{t("sphere-home-not-found")}</p>
             {process.env.NODE_ENV === "development" && (
               <Message>
-                Dodaj parametr <Code>__dev_sphere_id</Code> lub{" "}
-                <Code>__dev_sphere_domain</Code> do URLa.
+                Add <Code>__dev_sphere_id</Code> or{" "}
+                <Code>__dev_sphere_domain</Code> query parameter to the URL.
                 <br />
-                <small>
-                  Ta wiadomość nie znajdzie się w produkcyjnym buildzie.
-                </small>
+                <small>This message won't land in the production build.</small>
               </Message>
             )}
           </Fragment>
