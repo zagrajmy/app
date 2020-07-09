@@ -157,43 +157,47 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
         lang={lang}
       />
       {introText}
-      <Heading as="h2" sx={{ my: 4 }}>
-        {t("agenda")}
-      </Heading>
-      <FestivalAgenda id="agenda">
-        {festival.ch_rooms.map((room, i) => (
-          <FestivalAgenda.Room name={room.name} key={i}>
-            {room.ch_time_tables.map(({ nb_meeting }) => {
-              if (!nb_meeting) {
-                return null;
-              }
+      {isPast(new Date(festival.start_publication)) && (
+        <Fragment>
+          <Heading as="h2" sx={{ my: 4 }}>
+            {t("agenda")}
+          </Heading>
+          <FestivalAgenda id="agenda">
+            {festival.ch_rooms.map((room, i) => (
+              <FestivalAgenda.Room name={room.name} key={i}>
+                {room.ch_time_tables.map(({ nb_meeting }) => {
+                  if (!nb_meeting) {
+                    return null;
+                  }
 
-              const {
-                id,
-                name: title,
-                description,
-                // slug, // todo: meeting detail
-                organizer,
-                start_time,
-                end_time,
-              } = nb_meeting;
-
-              return (
-                <FestivalAgenda.Item
-                  key={id}
-                  time={`${formatHour(start_time, lang)} - ${formatHour(
+                  const {
+                    id,
+                    name: title,
+                    description,
+                    // slug, // todo: meeting detail
+                    organizer,
+                    start_time,
                     end_time,
-                    lang
-                  )}`}
-                  organizer={{ name: organizer.username }}
-                  title={title}
-                  description={description}
-                />
-              );
-            })}
-          </FestivalAgenda.Room>
-        ))}
-      </FestivalAgenda>
+                  } = nb_meeting;
+
+                  return (
+                    <FestivalAgenda.Item
+                      key={id}
+                      time={`${formatHour(start_time, lang)} - ${formatHour(
+                        end_time,
+                        lang
+                      )}`}
+                      organizer={{ name: organizer.username }}
+                      title={title}
+                      description={description}
+                    />
+                  );
+                })}
+              </FestivalAgenda.Room>
+            ))}
+          </FestivalAgenda>
+        </Fragment>
+      )}
     </Container>
   );
 }
