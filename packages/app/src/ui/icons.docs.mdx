@@ -1,0 +1,85 @@
+---
+name: Icons
+route: /ui/Icons
+order: 2
+---
+
+<!-- @jsx jsx -->
+
+import { useState } from "react";
+import { attempt } from "lodash-es";
+import { jsx } from "theme-ui";
+import copy from "copy-text-to-clipboard";
+
+import * as icons from "./icons";
+import { Input, Spacer, Heading } from "./index";
+
+# Icons
+
+A collection of icons used in Zagrajmy application, imported from the
+[Feather Icons](https://feathericons.com/).
+
+export const IconsGallery = (input) => {
+  const [inputValue, setInputValue] = useState("");
+  const arr = Object.entries(icons);
+  return (
+    <article
+      sx={{
+        borderRadius: "rounded",
+        p: 2,
+      }}
+    >
+      <Input
+        icon={<icons.Search size={18} />}
+        placeholder={`Search ${arr.length} icons (string or RegExp)`}
+        onChange={(e) => setInputValue(e.target.value)}
+        value={inputValue}
+      />
+      <Spacer height={3} />
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+          gridGap: "1em",
+        }}
+      >
+        {arr
+          .filter(([iconName]) => attempt(() => iconName.match(inputValue)))
+          .map(([iconName, Icon]) => (
+            <button
+              key={iconName}
+              sx={{
+                p: 3,
+                border: "1px solid transparent",
+                borderRadius: "rounded-lg",
+                maxWidth: "50vw",
+                cursor: "copy",
+                bg: "gray.2",
+                textAlign: "left",
+                transition: "all 150ms linear",
+                ":hover": {
+                  bg: "gray.3",
+                  borderColor: "gray.4",
+                },
+              }}
+              onClick={() => {
+                const text = `<${iconName} />`;
+                copy(text);
+                window.alert(`Copied "${text}" to clipboard!`);
+              }}
+            >
+              <Heading as="strong" size={3}>
+                {iconName}
+              </Heading>
+              <Spacer height={3} />
+              <Icon size={18} />
+            </button>
+          ))}
+      </section>
+    </article>
+  );
+};
+
+<!--  -->
+
+<IconsGallery />

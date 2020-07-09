@@ -44,10 +44,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <Box
             sx={{
               position: "relative",
-              maxWidth: 960,
               py: 5,
               px: 4,
               variant: "styles.Container",
+              flex: 1,
               [media.tablet]: {
                 py: 4,
                 px: 4,

@@ -11,6 +11,7 @@ export * from "./Link";
 export * from "./Message";
 export * from "./Select";
 export * from "./Spacer";
+export * from "./Stack";
 
 export * from "./mdx";
 
