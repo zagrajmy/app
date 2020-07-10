@@ -87,6 +87,8 @@ export const NavHeader = ({
 
   const claims = state.user || propsClaims;
 
+  const appName = state.sphere.name || t("page-title");
+
   return (
     <header {...rest}>
       <nav
@@ -109,7 +111,7 @@ export const NavHeader = ({
           }}
         >
           <HeaderFooterListItem sx={{ flex: 1, textAlign: "left" }}>
-            <Link href="/">{t("page-title")}</Link>
+            <Link href="/">{appName}</Link>
           </HeaderFooterListItem>
           <HeaderFooterListItem>
             <LanguagePicker />
