@@ -2,7 +2,7 @@ import { isPast } from "date-fns";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Flex } from "theme-ui";
+import { Flex, get, Grid, Theme } from "theme-ui";
 
 import { hasura } from "../data";
 import { order_by } from "../data/graphql-zeus";
@@ -11,15 +11,18 @@ import { Page } from "../src/app/components";
 import { CommonHead } from "../src/app/components/CommonHead";
 import { detectSphere } from "../src/app/detectSphere";
 import { useSettings } from "../src/app/store/useSettings";
-import {
-  formatDate,
-  formatHour,
-  SupportedLanguage,
-  useLanguage,
-} from "../src/i18n";
+import { formatDate, formatHour, useLanguage } from "../src/i18n";
 import { head } from "../src/lib/head";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
-import { Code, Container, Heading, Message, Spacer, Stack } from "../src/ui";
+import {
+  Code,
+  Container,
+  Heading,
+  Message,
+  Spacer,
+  Stack,
+  Text,
+} from "../src/ui";
 import * as icons from "../src/ui/icons";
 import { mdx } from "../src/ui/mdx";
 import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
@@ -87,33 +90,35 @@ type Sphere = Exclude<AsyncReturnType<typeof fetchSphereData>, undefined>;
 
 type Festival = Sphere["ch_festivals"][number];
 interface FestivalDateTimeProps {
-  lang: SupportedLanguage;
   startTime: Festival["start_time"];
   endTime: Festival["end_time"];
 }
-const FestivalDateTime = ({
-  startTime,
-  endTime,
-  lang,
-}: FestivalDateTimeProps) => {
+const FestivalDateTime = ({ startTime, endTime }: FestivalDateTimeProps) => {
+  const lang = useLanguage();
+  const { t } = useTranslation();
   return (
-    <Stack row gap={4} sx={{ fontWeight: "bold", color: "gray.8" }}>
-      <Stack row gap={2} align="center">
-        <Flex>
-          <icons.Calendar size={18} />
-        </Flex>
-        <Flex sx={{ transform: "translateY(0.5px)" }}>
-          {formatDate(startTime, lang)}
-        </Flex>
-      </Stack>
-      <Stack row gap={2} align="center">
-        <Flex>
-          <icons.Clock size={18} />
-        </Flex>
-        <Flex sx={{ transform: "translateY(0.5px)" }}>
+    <Stack row gap={2} align="center">
+      <Flex>
+        <icons.Calendar size={18} sx={{ color: "gray.8" }} />
+      </Flex>
+      <Flex
+        sx={{
+          transform: "translateY(0.5px)",
+          whiteSpace: "pre",
+          color: "gray.9",
+        }}
+      >
+        {t("from")}
+        <Text as="strong" variant="bold">
+          {" "}
+          {formatDate(startTime, lang)}{" "}
+        </Text>
+        {t("to")}
+        <Text as="strong" variant="bold">
+          {" "}
           {formatDate(endTime, lang)}
-        </Flex>
-      </Stack>
+        </Text>
+      </Flex>
     </Stack>
   );
 };
@@ -139,6 +144,7 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
   }, [settings.sphereName, t]);
 
   if (!festival) {
+    // TODO
     return (
       <Container py={4}>
         TODO: Hey! There is no festival in this sphere. How should we display
@@ -154,7 +160,6 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
       <FestivalDateTime
         startTime={festival.start_time}
         endTime={festival.end_time}
-        lang={lang}
       />
       {introText}
       {isPast(new Date(festival.start_publication)) && (

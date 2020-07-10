@@ -157,6 +157,13 @@ export const theme = makeTheme({
       backgroundColor: "gray.0",
     },
   },
+  text: {
+    default: {},
+    bold: {
+      fontWeight: "bold",
+      color: "gray.8",
+    },
+  },
 });
 
 export type ExactTheme = typeof theme;

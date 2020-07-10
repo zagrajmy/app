@@ -46,7 +46,6 @@ i18n.use(initReactI18next).init({
   keySeparator: false,
   defaultNS: "translation",
   ns: "translation",
-  
 
   // debug: process.env.NODE_ENV !== "production",
 
@@ -73,4 +72,4 @@ export const formatHour = (time: Date | string, language: SupportedLanguage) =>
   format(new Date(time), "hh:mm", { locale: pickLocale(language) });
 
 export const formatDate = (time: Date | string, language: SupportedLanguage) =>
-  new Date(time).toLocaleDateString(language)
+  new Date(time).toLocaleDateString(language);

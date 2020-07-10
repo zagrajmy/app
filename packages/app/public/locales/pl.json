@@ -39,5 +39,7 @@
   "sphere-home-not-found": "Jejku! Nie mogliśmy znaleźć sfery dla tej domeny. Niezręczna sytuacja. Wysłaliśmy już raport o tym błędzie, ale nie krępuj się jeśli chcesz wysłać nam gniewnego maila.",
   "yes": "Tak",
   "no": "Nie",
-  "submit": "Wyślij"
+  "submit": "Wyślij",
+  "from": "od",
+  "to": "do"
 }

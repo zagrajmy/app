@@ -40,5 +40,7 @@
   "sphere-home-not-found": "Oopsie! We couldn't find a sphere for this domain. This is awkward. We've already reported this error, but don't be shy if you want to send an angry email to us.",
   "yes": "Yes",
   "no": "No",
-  "submit": "Submit"
+  "submit": "Submit",
+  "from": "from",
+  "to": "to"
 }
