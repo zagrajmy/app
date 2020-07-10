@@ -12,6 +12,7 @@ export * from "./Message";
 export * from "./Select";
 export * from "./Spacer";
 export * from "./Stack";
+export * from "./Text";
 
 export * from "./mdx";
 
