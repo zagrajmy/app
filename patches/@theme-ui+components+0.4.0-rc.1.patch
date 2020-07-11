@@ -21,6 +21,52 @@ index 8f3fefa..d4b2bed 100644
      );
  });
  
+diff --git a/node_modules/@theme-ui/components/dist/index.js b/node_modules/@theme-ui/components/dist/index.js
+index 8cf25ce..e675edf 100644
+--- a/node_modules/@theme-ui/components/dist/index.js
++++ b/node_modules/@theme-ui/components/dist/index.js
+@@ -252,7 +252,7 @@ var Checkbox = React.forwardRef(function (ref$1, ref) {
+   var className = ref$1.className;
+   var sx = ref$1.sx;
+   var variant = ref$1.variant; if ( variant === void 0 ) variant = 'checkbox';
+-  var rest = objectWithoutProperties$3( ref$1, ["className", "sx", "variant"] );
++  var rest = objectWithoutProperties$3( ref$1, ["className", "children", "sx", "variant"] );
+   var props = rest;
+ 
+   return React.createElement( Box, null,
+@@ -275,7 +275,8 @@ var Checkbox = React.forwardRef(function (ref$1, ref) {
+       color: 'primary',
+       bg: 'highlight'
+     }
+-  } })
++  } }),
++    ref$1.children
+     );
+ });
+ 
+diff --git a/node_modules/@theme-ui/components/dist/index.umd.js b/node_modules/@theme-ui/components/dist/index.umd.js
+index 54c7c20..e869e4f 100644
+--- a/node_modules/@theme-ui/components/dist/index.umd.js
++++ b/node_modules/@theme-ui/components/dist/index.umd.js
+@@ -252,7 +252,7 @@
+     var className = ref$1.className;
+     var sx = ref$1.sx;
+     var variant = ref$1.variant; if ( variant === void 0 ) variant = 'checkbox';
+-    var rest = objectWithoutProperties$3( ref$1, ["className", "sx", "variant"] );
++    var rest = objectWithoutProperties$3( ref$1, ["className", "children", "sx", "variant"] );
+     var props = rest;
+ 
+     return React.createElement( Box, null,
+@@ -275,7 +275,8 @@
+         color: 'primary',
+         bg: 'highlight'
+       }
+-    } })
++    } }),
++    ref$1.children
+       );
+   });
+ 
 diff --git a/node_modules/@theme-ui/components/src/Checkbox.js b/node_modules/@theme-ui/components/src/Checkbox.js
 index 65803c6..99da7f4 100644
 --- a/node_modules/@theme-ui/components/src/Checkbox.js

@@ -16,12 +16,12 @@ interface MergedSettings
   extends settings.FestivalSettings,
     settings.SphereSettings {}
 
-const byTitle = <T extends { title: string }>(xs: T[]) =>
-  Object.fromEntries(xs.map((x) => [x.title, x]));
+const byWaitlist = <T extends { waitlist: string | number }>(xs: T[]) =>
+  Object.fromEntries(xs.map((x) => [x.waitlist, x]));
 
 type Settings = MergedSettings & { sphereName?: string };
 
-export function useSettings(festival?: { settings: unknown }) {
+export function useSettings(festival?: { settings: unknown } | null) {
   const { sphere } = useAppState();
 
   return useMemo((): Settings => {
@@ -29,8 +29,8 @@ export function useSettings(festival?: { settings: unknown }) {
     const festivalSettings = parseFestivalSettings(festival?.settings);
 
     const forms = merge(
-      byTitle(sphereSettings.forms || []),
-      byTitle(festivalSettings.forms || [])
+      byWaitlist(sphereSettings.forms || []),
+      byWaitlist(festivalSettings.forms || [])
     );
 
     return {

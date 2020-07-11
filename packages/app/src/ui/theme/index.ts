@@ -109,6 +109,10 @@ export const theme = makeTheme({
         fontSize: 2,
       },
       p: { width: "70ch", maxWidth: "100%" },
+
+      overflowWrap: "break-word",
+      wordWrap: "break-word",
+      hyphens: "auto",
     },
     code: {
       fontFamily: "monospace",
@@ -142,7 +146,7 @@ export const theme = makeTheme({
       width: "container",
       maxWidth: "100%",
       bg: "white",
-      borderRadius: "rounded-lg",
+      borderRadius: ["none", "rounded-lg"],
       boxShadow: "md",
       p: 3,
       zIndex: 1,
