@@ -25,7 +25,8 @@
     "test:e2e": "yarn cypress open",
     "test:e2e:run": "concurrently --success first --kill-others --names \"app,cy\" \"yarn start\" \"yarn wait-on http://localhost:3000/ && yarn dotenv-load cypress run\"",
     "snyk-protect": "snyk protect",
-    "prepublish": "timeout 60s yarn snyk-protect || echo '⏰ snyk protect timed out.'"
+    "prepublish": "timeout 60s yarn snyk-protect || echo '⏰ snyk protect timed out.'",
+    "postinstall": "ls . && cd ../.. && ls ."
   },
   "main": "dist/src/index.js",
   "module": "dist/src/index.esm.js",
