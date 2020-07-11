@@ -48,7 +48,7 @@ export const forms: Variants = {
   },
   label: {
     ...boldMutedFont,
-    whiteSpace: "pre",
+    whiteSpace: "pre-wrap",
     display: "block",
     "& > *, input, textarea": {
       fontWeight: "normal",

@@ -87,7 +87,7 @@ export const NavHeader = ({
 
   const claims = state.user || propsClaims;
 
-  const appName = state.sphere.name || t("page-title");
+  const appName = t("page-title") || state.sphere.name;
 
   return (
     <header {...rest}>

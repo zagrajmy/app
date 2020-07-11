@@ -1,8 +1,8 @@
-import { isPast } from "date-fns";
+import { isFuture, isPast } from "date-fns";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Flex, get, Grid, Theme } from "theme-ui";
+import { Flex } from "theme-ui";
 
 import { hasura } from "../data";
 import { order_by } from "../data/graphql-zeus";
@@ -18,6 +18,7 @@ import {
   Code,
   Container,
   Heading,
+  Link,
   Message,
   Spacer,
   Stack,
@@ -29,7 +30,7 @@ import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
 
 function fetchSphereData(
   ctx: GetServerSidePropsContext,
-  sphere: { id: number | undefined; domain: string }
+  sphere: { domain: string }
 ) {
   return hasura
     .fromCookies(ctx.req)
@@ -50,6 +51,8 @@ function fetchSphereData(
               start_proposal: true, // show forms after this
               end_time: true, // stop showing forms after this
               settings: [{}, true],
+              slug: true,
+              ch_wait_lists: [{}, { id: true, name: true }],
               ch_rooms: [
                 {},
                 {
@@ -162,6 +165,29 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
         endTime={festival.end_time}
       />
       {introText}
+      {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
+      {isPast(new Date(festival.start_proposal)) &&
+        isFuture(new Date(festival.end_time)) && (
+          <section sx={{ my: 3 }}>
+            <Heading as="h2" size={3}>
+              {t("propose-program")}
+            </Heading>
+            <ul>
+              {festival.ch_wait_lists.map((waitlist) => (
+                <li key={waitlist.id}>
+                  <Link
+                    href="/festival/[slug]/[waitlist]"
+                    as={`/festival/${festival.slug}/${waitlist.id}`}
+                    variant="underlined"
+                    sx={{ fontWeight: "bold" }}
+                  >
+                    {waitlist.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       {isPast(new Date(festival.start_publication)) && (
         <Fragment>
           <Heading as="h2" sx={{ my: 4 }}>
@@ -239,8 +265,7 @@ function ErrorPage({ error }: ErrorPageProps) {
             <p>{t("sphere-home-not-found")}</p>
             {process.env.NODE_ENV === "development" && (
               <Message>
-                Add <Code>__dev_sphere_id</Code> or{" "}
-                <Code>__dev_sphere_domain</Code> query parameter to the URL.
+                Add <Code>__dev_sphere_domain</Code> query parameter to the URL.
                 <br />
                 <small>This message won't land in the production build.</small>
               </Message>

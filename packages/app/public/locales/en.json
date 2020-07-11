@@ -1,5 +1,5 @@
 {
-  "page-title": "zagrajmy",
+  "page-title": "",
   "meetings": "Meetings",
   "see-more": "See more",
   "title": "Title",
@@ -42,5 +42,6 @@
   "no": "No",
   "submit": "Submit",
   "from": "from",
-  "to": "to"
+  "to": "to",
+  "propose-program": "Submit a program event"
 }

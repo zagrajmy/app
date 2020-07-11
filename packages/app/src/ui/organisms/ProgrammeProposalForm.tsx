@@ -77,10 +77,10 @@ const YesOrNoText = () => {
         color: "text",
         fontWeight: "normal",
         ":before": {
-          content: `"${t("yes")}"`,
+          content: `"${t("no")}"`,
         },
         "input:checked ~ &:before": {
-          content: `"${t("no")}"`,
+          content: `"${t("yes")}"`,
         },
       }}
     />
@@ -169,7 +169,7 @@ const FieldControl = forwardRef<any, FieldControlProps>(({ field }, ref) => {
         <Label {...labelProps}>
           <div sx={{ "> div": rowStyles, py: 1 }}>
             <Checkbox name={field.name} id={field.name} ref={ref}>
-              <YesOrNoText />
+              {/* <YesOrNoText /> uncomment it after Theme UI update */}
             </Checkbox>
           </div>
         </Label>
@@ -199,10 +199,10 @@ export function ProgrammeProposalForm({
       as="form"
       variant="sheet"
       sx={{
-        maxWidth: "containerThin",
+        width: "containerThin",
 
-        p: 5,
-        mt: 4,
+        py: [3, 5],
+        px: [2, 5],
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -250,6 +250,7 @@ export function ProgrammeProposalForm({
         })}
       </Grid>
       <footer>
+        {/* triggers missing unique key warning */}
         {mdx(footerText)}
         <Spacer height={3} />
         <Button type="submit" sx={{ fontWeight: "bold", marginLeft: "auto" }}>

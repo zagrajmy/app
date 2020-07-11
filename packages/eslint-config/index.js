@@ -15,7 +15,7 @@ module.exports = {
 
     "sort-imports": "off",
     "import/order": "off",
-    "simple-import-sort/sort": "error",
+    "simple-import-sort/sort": "warn",
     "no-else-return": "off",
 
     "react/jsx-pascal-case": "off",
