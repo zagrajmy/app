@@ -57,7 +57,7 @@ function fetchSphereData(
                 {},
                 {
                   name: true,
-                  ch_time_tables: [
+                  ch_agenda_items: [
                     {
                       order_by: [{ nb_meeting: { start_time: order_by.asc } }],
                       where: {
@@ -196,7 +196,7 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
           <FestivalAgenda id="agenda">
             {festival.ch_rooms.map((room, i) => (
               <FestivalAgenda.Room name={room.name} key={i}>
-                {room.ch_time_tables.map(({ nb_meeting }) => {
+                {room.ch_agenda_items.map(({ nb_meeting }) => {
                   if (!nb_meeting) {
                     return null;
                   }

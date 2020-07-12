@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "eslint {src,pages,test}/**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
-    "typecheck": "yarn cross-env NODE_OPTIONS=--max_old_space_size=4096 tsc --noEmit --skipLibCheck",
+    "typecheck": "tsc --noEmit --skipLibCheck",
     "typecheck:tests": "yarn tsc --noEmit --skipLibCheck -p ./test",
     "ci": "yarn typecheck && yarn lint",
     "ts-node": "ts-node -P scripts/tsconfig.json",

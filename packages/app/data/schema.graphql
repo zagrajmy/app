@@ -17,6 +17,364 @@ input Boolean_comparison_exp {
   _nin: [Boolean!]
 }
 
+# columns and relationships of "ch_agenda_item"
+type ch_agenda_item {
+  # An object relationship
+  ch_helper: ch_helper
+
+  # An object relationship
+  ch_room: ch_room
+  helper_confirmed: Boolean!
+  helper_id: Int
+  id: Int!
+  meeting_confirmed: Boolean!
+  meeting_id: Int
+
+  # An object relationship
+  nb_meeting: nb_meeting
+  room_id: Int
+}
+
+# aggregated selection of "ch_agenda_item"
+type ch_agenda_item_aggregate {
+  aggregate: ch_agenda_item_aggregate_fields
+  nodes: [ch_agenda_item!]!
+}
+
+# aggregate fields of "ch_agenda_item"
+type ch_agenda_item_aggregate_fields {
+  avg: ch_agenda_item_avg_fields
+  count(columns: [ch_agenda_item_select_column!], distinct: Boolean): Int
+  max: ch_agenda_item_max_fields
+  min: ch_agenda_item_min_fields
+  stddev: ch_agenda_item_stddev_fields
+  stddev_pop: ch_agenda_item_stddev_pop_fields
+  stddev_samp: ch_agenda_item_stddev_samp_fields
+  sum: ch_agenda_item_sum_fields
+  var_pop: ch_agenda_item_var_pop_fields
+  var_samp: ch_agenda_item_var_samp_fields
+  variance: ch_agenda_item_variance_fields
+}
+
+# order by aggregate values of table "ch_agenda_item"
+input ch_agenda_item_aggregate_order_by {
+  avg: ch_agenda_item_avg_order_by
+  count: order_by
+  max: ch_agenda_item_max_order_by
+  min: ch_agenda_item_min_order_by
+  stddev: ch_agenda_item_stddev_order_by
+  stddev_pop: ch_agenda_item_stddev_pop_order_by
+  stddev_samp: ch_agenda_item_stddev_samp_order_by
+  sum: ch_agenda_item_sum_order_by
+  var_pop: ch_agenda_item_var_pop_order_by
+  var_samp: ch_agenda_item_var_samp_order_by
+  variance: ch_agenda_item_variance_order_by
+}
+
+# input type for inserting array relation for remote table "ch_agenda_item"
+input ch_agenda_item_arr_rel_insert_input {
+  data: [ch_agenda_item_insert_input!]!
+  on_conflict: ch_agenda_item_on_conflict
+}
+
+# aggregate avg on columns
+type ch_agenda_item_avg_fields {
+  helper_id: Float
+  id: Float
+  meeting_id: Float
+  room_id: Float
+}
+
+# order by avg() on columns of table "ch_agenda_item"
+input ch_agenda_item_avg_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# Boolean expression to filter rows from the table "ch_agenda_item". All fields are combined with a logical 'AND'.
+input ch_agenda_item_bool_exp {
+  _and: [ch_agenda_item_bool_exp]
+  _not: ch_agenda_item_bool_exp
+  _or: [ch_agenda_item_bool_exp]
+  ch_helper: ch_helper_bool_exp
+  ch_room: ch_room_bool_exp
+  helper_confirmed: Boolean_comparison_exp
+  helper_id: Int_comparison_exp
+  id: Int_comparison_exp
+  meeting_confirmed: Boolean_comparison_exp
+  meeting_id: Int_comparison_exp
+  nb_meeting: nb_meeting_bool_exp
+  room_id: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "ch_agenda_item"
+enum ch_agenda_item_constraint {
+  # unique or primary key constraint
+  ch_time_table_meeting_id_key
+
+  # unique or primary key constraint
+  ch_time_table_pkey
+}
+
+# input type for incrementing integer column in table "ch_agenda_item"
+input ch_agenda_item_inc_input {
+  helper_id: Int
+  id: Int
+  meeting_id: Int
+  room_id: Int
+}
+
+# input type for inserting data into table "ch_agenda_item"
+input ch_agenda_item_insert_input {
+  ch_helper: ch_helper_obj_rel_insert_input
+  ch_room: ch_room_obj_rel_insert_input
+  helper_confirmed: Boolean
+  helper_id: Int
+  id: Int
+  meeting_confirmed: Boolean
+  meeting_id: Int
+  nb_meeting: nb_meeting_obj_rel_insert_input
+  room_id: Int
+}
+
+# aggregate max on columns
+type ch_agenda_item_max_fields {
+  helper_id: Int
+  id: Int
+  meeting_id: Int
+  room_id: Int
+}
+
+# order by max() on columns of table "ch_agenda_item"
+input ch_agenda_item_max_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# aggregate min on columns
+type ch_agenda_item_min_fields {
+  helper_id: Int
+  id: Int
+  meeting_id: Int
+  room_id: Int
+}
+
+# order by min() on columns of table "ch_agenda_item"
+input ch_agenda_item_min_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# response of any mutation on the table "ch_agenda_item"
+type ch_agenda_item_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [ch_agenda_item!]!
+}
+
+# input type for inserting object relation for remote table "ch_agenda_item"
+input ch_agenda_item_obj_rel_insert_input {
+  data: ch_agenda_item_insert_input!
+  on_conflict: ch_agenda_item_on_conflict
+}
+
+# on conflict condition type for table "ch_agenda_item"
+input ch_agenda_item_on_conflict {
+  constraint: ch_agenda_item_constraint!
+  update_columns: [ch_agenda_item_update_column!]!
+  where: ch_agenda_item_bool_exp
+}
+
+# ordering options when selecting data from "ch_agenda_item"
+input ch_agenda_item_order_by {
+  ch_helper: ch_helper_order_by
+  ch_room: ch_room_order_by
+  helper_confirmed: order_by
+  helper_id: order_by
+  id: order_by
+  meeting_confirmed: order_by
+  meeting_id: order_by
+  nb_meeting: nb_meeting_order_by
+  room_id: order_by
+}
+
+# primary key columns input for table: "ch_agenda_item"
+input ch_agenda_item_pk_columns_input {
+  id: Int!
+}
+
+# select columns of table "ch_agenda_item"
+enum ch_agenda_item_select_column {
+  # column name
+  helper_confirmed
+
+  # column name
+  helper_id
+
+  # column name
+  id
+
+  # column name
+  meeting_confirmed
+
+  # column name
+  meeting_id
+
+  # column name
+  room_id
+}
+
+# input type for updating data in table "ch_agenda_item"
+input ch_agenda_item_set_input {
+  helper_confirmed: Boolean
+  helper_id: Int
+  id: Int
+  meeting_confirmed: Boolean
+  meeting_id: Int
+  room_id: Int
+}
+
+# aggregate stddev on columns
+type ch_agenda_item_stddev_fields {
+  helper_id: Float
+  id: Float
+  meeting_id: Float
+  room_id: Float
+}
+
+# order by stddev() on columns of table "ch_agenda_item"
+input ch_agenda_item_stddev_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# aggregate stddev_pop on columns
+type ch_agenda_item_stddev_pop_fields {
+  helper_id: Float
+  id: Float
+  meeting_id: Float
+  room_id: Float
+}
+
+# order by stddev_pop() on columns of table "ch_agenda_item"
+input ch_agenda_item_stddev_pop_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# aggregate stddev_samp on columns
+type ch_agenda_item_stddev_samp_fields {
+  helper_id: Float
+  id: Float
+  meeting_id: Float
+  room_id: Float
+}
+
+# order by stddev_samp() on columns of table "ch_agenda_item"
+input ch_agenda_item_stddev_samp_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# aggregate sum on columns
+type ch_agenda_item_sum_fields {
+  helper_id: Int
+  id: Int
+  meeting_id: Int
+  room_id: Int
+}
+
+# order by sum() on columns of table "ch_agenda_item"
+input ch_agenda_item_sum_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# update columns of table "ch_agenda_item"
+enum ch_agenda_item_update_column {
+  # column name
+  helper_confirmed
+
+  # column name
+  helper_id
+
+  # column name
+  id
+
+  # column name
+  meeting_confirmed
+
+  # column name
+  meeting_id
+
+  # column name
+  room_id
+}
+
+# aggregate var_pop on columns
+type ch_agenda_item_var_pop_fields {
+  helper_id: Float
+  id: Float
+  meeting_id: Float
+  room_id: Float
+}
+
+# order by var_pop() on columns of table "ch_agenda_item"
+input ch_agenda_item_var_pop_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# aggregate var_samp on columns
+type ch_agenda_item_var_samp_fields {
+  helper_id: Float
+  id: Float
+  meeting_id: Float
+  room_id: Float
+}
+
+# order by var_samp() on columns of table "ch_agenda_item"
+input ch_agenda_item_var_samp_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
+# aggregate variance on columns
+type ch_agenda_item_variance_fields {
+  helper_id: Float
+  id: Float
+  meeting_id: Float
+  room_id: Float
+}
+
+# order by variance() on columns of table "ch_agenda_item"
+input ch_agenda_item_variance_order_by {
+  helper_id: order_by
+  id: order_by
+  meeting_id: order_by
+  room_id: order_by
+}
+
 # columns and relationships of "ch_festival"
 type ch_festival {
   # An array relationship
@@ -135,7 +493,7 @@ type ch_festival {
   settings(
     # JSON select path
     path: String
-  ): jsonb
+  ): jsonb!
   slug: String!
   sphere_id: Int!
   start_proposal: timestamptz!
@@ -523,6 +881,42 @@ input ch_festival_variance_order_by {
 
 # columns and relationships of "ch_helper"
 type ch_helper {
+  # An array relationship
+  ch_agenda_items(
+    # distinct select on columns
+    distinct_on: [ch_agenda_item_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_agenda_item_order_by!]
+
+    # filter the rows returned
+    where: ch_agenda_item_bool_exp
+  ): [ch_agenda_item!]!
+
+  # An aggregated array relationship
+  ch_agenda_items_aggregate(
+    # distinct select on columns
+    distinct_on: [ch_agenda_item_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_agenda_item_order_by!]
+
+    # filter the rows returned
+    where: ch_agenda_item_bool_exp
+  ): ch_agenda_item_aggregate!
+
   # An object relationship
   ch_festival: ch_festival!
 
@@ -561,42 +955,6 @@ type ch_helper {
     # filter the rows returned
     where: ch_helper_time_slots_bool_exp
   ): ch_helper_time_slots_aggregate!
-
-  # An array relationship
-  ch_time_tables(
-    # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
-
-    # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): [ch_time_table!]!
-
-  # An aggregated array relationship
-  ch_time_tables_aggregate(
-    # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
-
-    # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): ch_time_table_aggregate!
 
   # An object relationship
   cr_user: cr_user!
@@ -664,9 +1022,9 @@ input ch_helper_bool_exp {
   _and: [ch_helper_bool_exp]
   _not: ch_helper_bool_exp
   _or: [ch_helper_bool_exp]
+  ch_agenda_items: ch_agenda_item_bool_exp
   ch_festival: ch_festival_bool_exp
   ch_helper_time_slots: ch_helper_time_slots_bool_exp
-  ch_time_tables: ch_time_table_bool_exp
   cr_user: cr_user_bool_exp
   festival_id: Int_comparison_exp
   id: Int_comparison_exp
@@ -687,9 +1045,9 @@ input ch_helper_inc_input {
 
 # input type for inserting data into table "ch_helper"
 input ch_helper_insert_input {
+  ch_agenda_items: ch_agenda_item_arr_rel_insert_input
   ch_festival: ch_festival_obj_rel_insert_input
   ch_helper_time_slots: ch_helper_time_slots_arr_rel_insert_input
-  ch_time_tables: ch_time_table_arr_rel_insert_input
   cr_user: cr_user_obj_rel_insert_input
   festival_id: Int
   id: Int
@@ -748,9 +1106,9 @@ input ch_helper_on_conflict {
 
 # ordering options when selecting data from "ch_helper"
 input ch_helper_order_by {
+  ch_agenda_items_aggregate: ch_agenda_item_aggregate_order_by
   ch_festival: ch_festival_order_by
   ch_helper_time_slots_aggregate: ch_helper_time_slots_aggregate_order_by
-  ch_time_tables_aggregate: ch_time_table_aggregate_order_by
   cr_user: cr_user_order_by
   festival_id: order_by
   id: order_by
@@ -1217,15 +1575,29 @@ type ch_proposal {
   ch_wait_list: ch_wait_list!
   city: String!
   club: String!
+  contact_info: String!
+  created_at: timestamptz
+  description: String!
+  duration_minutes: Int!
   id: Int!
 
   # An object relationship
-  meeting: nb_meeting!
-  meeting_id: Int!
+  meeting: nb_meeting
+  meeting_id: Int
+  name: String!
   needs: String!
-  other_contact: String!
-  other_data: String!
+  other_contact(
+    # JSON select path
+    path: String
+  ): jsonb
+  other_data(
+    # JSON select path
+    path: String
+  ): jsonb
   phone: String!
+  speaker_name: String!
+  speaker_user_id: uuid
+  status: String!
   waitlist_id: Int!
 }
 
@@ -1265,6 +1637,12 @@ input ch_proposal_aggregate_order_by {
   variance: ch_proposal_variance_order_by
 }
 
+# append existing jsonb value of filtered columns with new jsonb value
+input ch_proposal_append_input {
+  other_contact: jsonb
+  other_data: jsonb
+}
+
 # input type for inserting array relation for remote table "ch_proposal"
 input ch_proposal_arr_rel_insert_input {
   data: [ch_proposal_insert_input!]!
@@ -1273,6 +1651,7 @@ input ch_proposal_arr_rel_insert_input {
 
 # aggregate avg on columns
 type ch_proposal_avg_fields {
+  duration_minutes: Float
   id: Float
   meeting_id: Float
   waitlist_id: Float
@@ -1280,6 +1659,7 @@ type ch_proposal_avg_fields {
 
 # order by avg() on columns of table "ch_proposal"
 input ch_proposal_avg_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1294,13 +1674,21 @@ input ch_proposal_bool_exp {
   ch_wait_list: ch_wait_list_bool_exp
   city: String_comparison_exp
   club: String_comparison_exp
+  contact_info: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  duration_minutes: Int_comparison_exp
   id: Int_comparison_exp
   meeting: nb_meeting_bool_exp
   meeting_id: Int_comparison_exp
+  name: String_comparison_exp
   needs: String_comparison_exp
-  other_contact: String_comparison_exp
-  other_data: String_comparison_exp
+  other_contact: jsonb_comparison_exp
+  other_data: jsonb_comparison_exp
   phone: String_comparison_exp
+  speaker_name: String_comparison_exp
+  speaker_user_id: uuid_comparison_exp
+  status: String_comparison_exp
   waitlist_id: Int_comparison_exp
 }
 
@@ -1313,8 +1701,28 @@ enum ch_proposal_constraint {
   ch_proposal_pkey
 }
 
+# delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+input ch_proposal_delete_at_path_input {
+  other_contact: [String]
+  other_data: [String]
+}
+
+# delete the array element with specified index (negative integers count from the
+# end). throws an error if top level container is not an array
+input ch_proposal_delete_elem_input {
+  other_contact: Int
+  other_data: Int
+}
+
+# delete key/value pair or string element. key/value pairs are matched based on their key value
+input ch_proposal_delete_key_input {
+  other_contact: String
+  other_data: String
+}
+
 # input type for incrementing integer column in table "ch_proposal"
 input ch_proposal_inc_input {
+  duration_minutes: Int
   id: Int
   meeting_id: Int
   waitlist_id: Int
@@ -1326,13 +1734,21 @@ input ch_proposal_insert_input {
   ch_wait_list: ch_wait_list_obj_rel_insert_input
   city: String
   club: String
+  contact_info: String
+  created_at: timestamptz
+  description: String
+  duration_minutes: Int
   id: Int
   meeting: nb_meeting_obj_rel_insert_input
   meeting_id: Int
+  name: String
   needs: String
-  other_contact: String
-  other_data: String
+  other_contact: jsonb
+  other_data: jsonb
   phone: String
+  speaker_name: String
+  speaker_user_id: uuid
+  status: String
   waitlist_id: Int
 }
 
@@ -1340,12 +1756,18 @@ input ch_proposal_insert_input {
 type ch_proposal_max_fields {
   city: String
   club: String
+  contact_info: String
+  created_at: timestamptz
+  description: String
+  duration_minutes: Int
   id: Int
   meeting_id: Int
+  name: String
   needs: String
-  other_contact: String
-  other_data: String
   phone: String
+  speaker_name: String
+  speaker_user_id: uuid
+  status: String
   waitlist_id: Int
 }
 
@@ -1353,12 +1775,18 @@ type ch_proposal_max_fields {
 input ch_proposal_max_order_by {
   city: order_by
   club: order_by
+  contact_info: order_by
+  created_at: order_by
+  description: order_by
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
+  name: order_by
   needs: order_by
-  other_contact: order_by
-  other_data: order_by
   phone: order_by
+  speaker_name: order_by
+  speaker_user_id: order_by
+  status: order_by
   waitlist_id: order_by
 }
 
@@ -1366,12 +1794,18 @@ input ch_proposal_max_order_by {
 type ch_proposal_min_fields {
   city: String
   club: String
+  contact_info: String
+  created_at: timestamptz
+  description: String
+  duration_minutes: Int
   id: Int
   meeting_id: Int
+  name: String
   needs: String
-  other_contact: String
-  other_data: String
   phone: String
+  speaker_name: String
+  speaker_user_id: uuid
+  status: String
   waitlist_id: Int
 }
 
@@ -1379,12 +1813,18 @@ type ch_proposal_min_fields {
 input ch_proposal_min_order_by {
   city: order_by
   club: order_by
+  contact_info: order_by
+  created_at: order_by
+  description: order_by
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
+  name: order_by
   needs: order_by
-  other_contact: order_by
-  other_data: order_by
   phone: order_by
+  speaker_name: order_by
+  speaker_user_id: order_by
+  status: order_by
   waitlist_id: order_by
 }
 
@@ -1416,19 +1856,33 @@ input ch_proposal_order_by {
   ch_wait_list: ch_wait_list_order_by
   city: order_by
   club: order_by
+  contact_info: order_by
+  created_at: order_by
+  description: order_by
+  duration_minutes: order_by
   id: order_by
   meeting: nb_meeting_order_by
   meeting_id: order_by
+  name: order_by
   needs: order_by
   other_contact: order_by
   other_data: order_by
   phone: order_by
+  speaker_name: order_by
+  speaker_user_id: order_by
+  status: order_by
   waitlist_id: order_by
 }
 
 # primary key columns input for table: "ch_proposal"
 input ch_proposal_pk_columns_input {
   id: Int!
+}
+
+# prepend existing jsonb value of filtered columns with new jsonb value
+input ch_proposal_prepend_input {
+  other_contact: jsonb
+  other_data: jsonb
 }
 
 # select columns of table "ch_proposal"
@@ -1440,10 +1894,25 @@ enum ch_proposal_select_column {
   club
 
   # column name
+  contact_info
+
+  # column name
+  created_at
+
+  # column name
+  description
+
+  # column name
+  duration_minutes
+
+  # column name
   id
 
   # column name
   meeting_id
+
+  # column name
+  name
 
   # column name
   needs
@@ -1458,6 +1927,15 @@ enum ch_proposal_select_column {
   phone
 
   # column name
+  speaker_name
+
+  # column name
+  speaker_user_id
+
+  # column name
+  status
+
+  # column name
   waitlist_id
 }
 
@@ -1465,17 +1943,26 @@ enum ch_proposal_select_column {
 input ch_proposal_set_input {
   city: String
   club: String
+  contact_info: String
+  created_at: timestamptz
+  description: String
+  duration_minutes: Int
   id: Int
   meeting_id: Int
+  name: String
   needs: String
-  other_contact: String
-  other_data: String
+  other_contact: jsonb
+  other_data: jsonb
   phone: String
+  speaker_name: String
+  speaker_user_id: uuid
+  status: String
   waitlist_id: Int
 }
 
 # aggregate stddev on columns
 type ch_proposal_stddev_fields {
+  duration_minutes: Float
   id: Float
   meeting_id: Float
   waitlist_id: Float
@@ -1483,6 +1970,7 @@ type ch_proposal_stddev_fields {
 
 # order by stddev() on columns of table "ch_proposal"
 input ch_proposal_stddev_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1490,6 +1978,7 @@ input ch_proposal_stddev_order_by {
 
 # aggregate stddev_pop on columns
 type ch_proposal_stddev_pop_fields {
+  duration_minutes: Float
   id: Float
   meeting_id: Float
   waitlist_id: Float
@@ -1497,6 +1986,7 @@ type ch_proposal_stddev_pop_fields {
 
 # order by stddev_pop() on columns of table "ch_proposal"
 input ch_proposal_stddev_pop_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1504,6 +1994,7 @@ input ch_proposal_stddev_pop_order_by {
 
 # aggregate stddev_samp on columns
 type ch_proposal_stddev_samp_fields {
+  duration_minutes: Float
   id: Float
   meeting_id: Float
   waitlist_id: Float
@@ -1511,6 +2002,7 @@ type ch_proposal_stddev_samp_fields {
 
 # order by stddev_samp() on columns of table "ch_proposal"
 input ch_proposal_stddev_samp_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1518,6 +2010,7 @@ input ch_proposal_stddev_samp_order_by {
 
 # aggregate sum on columns
 type ch_proposal_sum_fields {
+  duration_minutes: Int
   id: Int
   meeting_id: Int
   waitlist_id: Int
@@ -1525,6 +2018,7 @@ type ch_proposal_sum_fields {
 
 # order by sum() on columns of table "ch_proposal"
 input ch_proposal_sum_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1840,10 +2334,25 @@ enum ch_proposal_update_column {
   club
 
   # column name
+  contact_info
+
+  # column name
+  created_at
+
+  # column name
+  description
+
+  # column name
+  duration_minutes
+
+  # column name
   id
 
   # column name
   meeting_id
+
+  # column name
+  name
 
   # column name
   needs
@@ -1858,11 +2367,21 @@ enum ch_proposal_update_column {
   phone
 
   # column name
+  speaker_name
+
+  # column name
+  speaker_user_id
+
+  # column name
+  status
+
+  # column name
   waitlist_id
 }
 
 # aggregate var_pop on columns
 type ch_proposal_var_pop_fields {
+  duration_minutes: Float
   id: Float
   meeting_id: Float
   waitlist_id: Float
@@ -1870,6 +2389,7 @@ type ch_proposal_var_pop_fields {
 
 # order by var_pop() on columns of table "ch_proposal"
 input ch_proposal_var_pop_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1877,6 +2397,7 @@ input ch_proposal_var_pop_order_by {
 
 # aggregate var_samp on columns
 type ch_proposal_var_samp_fields {
+  duration_minutes: Float
   id: Float
   meeting_id: Float
   waitlist_id: Float
@@ -1884,6 +2405,7 @@ type ch_proposal_var_samp_fields {
 
 # order by var_samp() on columns of table "ch_proposal"
 input ch_proposal_var_samp_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1891,6 +2413,7 @@ input ch_proposal_var_samp_order_by {
 
 # aggregate variance on columns
 type ch_proposal_variance_fields {
+  duration_minutes: Float
   id: Float
   meeting_id: Float
   waitlist_id: Float
@@ -1898,6 +2421,7 @@ type ch_proposal_variance_fields {
 
 # order by variance() on columns of table "ch_proposal"
 input ch_proposal_variance_order_by {
+  duration_minutes: order_by
   id: order_by
   meeting_id: order_by
   waitlist_id: order_by
@@ -1905,13 +2429,10 @@ input ch_proposal_variance_order_by {
 
 # columns and relationships of "ch_room"
 type ch_room {
-  # An object relationship
-  ch_festival: ch_festival!
-
   # An array relationship
-  ch_time_tables(
+  ch_agenda_items(
     # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
+    distinct_on: [ch_agenda_item_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -1920,16 +2441,16 @@ type ch_room {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
+    order_by: [ch_agenda_item_order_by!]
 
     # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): [ch_time_table!]!
+    where: ch_agenda_item_bool_exp
+  ): [ch_agenda_item!]!
 
   # An aggregated array relationship
-  ch_time_tables_aggregate(
+  ch_agenda_items_aggregate(
     # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
+    distinct_on: [ch_agenda_item_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -1938,11 +2459,14 @@ type ch_room {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
+    order_by: [ch_agenda_item_order_by!]
 
     # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): ch_time_table_aggregate!
+    where: ch_agenda_item_bool_exp
+  ): ch_agenda_item_aggregate!
+
+  # An object relationship
+  ch_festival: ch_festival!
   festival_id: Int!
   id: Int!
   name: String!
@@ -2007,8 +2531,8 @@ input ch_room_bool_exp {
   _and: [ch_room_bool_exp]
   _not: ch_room_bool_exp
   _or: [ch_room_bool_exp]
+  ch_agenda_items: ch_agenda_item_bool_exp
   ch_festival: ch_festival_bool_exp
-  ch_time_tables: ch_time_table_bool_exp
   festival_id: Int_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
@@ -2028,8 +2552,8 @@ input ch_room_inc_input {
 
 # input type for inserting data into table "ch_room"
 input ch_room_insert_input {
+  ch_agenda_items: ch_agenda_item_arr_rel_insert_input
   ch_festival: ch_festival_obj_rel_insert_input
-  ch_time_tables: ch_time_table_arr_rel_insert_input
   festival_id: Int
   id: Int
   name: String
@@ -2087,8 +2611,8 @@ input ch_room_on_conflict {
 
 # ordering options when selecting data from "ch_room"
 input ch_room_order_by {
+  ch_agenda_items_aggregate: ch_agenda_item_aggregate_order_by
   ch_festival: ch_festival_order_by
-  ch_time_tables_aggregate: ch_time_table_aggregate_order_by
   festival_id: order_by
   id: order_by
   name: order_by
@@ -2288,6 +2812,7 @@ type ch_time_slot {
     where: ch_proposal_time_slots_bool_exp
   ): ch_proposal_time_slots_aggregate!
   end_time: timestamptz!
+  festival_id: Int!
   id: Int!
   start_time: timestamptz!
 }
@@ -2336,11 +2861,13 @@ input ch_time_slot_arr_rel_insert_input {
 
 # aggregate avg on columns
 type ch_time_slot_avg_fields {
+  festival_id: Float
   id: Float
 }
 
 # order by avg() on columns of table "ch_time_slot"
 input ch_time_slot_avg_order_by {
+  festival_id: order_by
   id: order_by
 }
 
@@ -2352,6 +2879,7 @@ input ch_time_slot_bool_exp {
   ch_helper_time_slots: ch_helper_time_slots_bool_exp
   ch_proposal_time_slots: ch_proposal_time_slots_bool_exp
   end_time: timestamptz_comparison_exp
+  festival_id: Int_comparison_exp
   id: Int_comparison_exp
   start_time: timestamptz_comparison_exp
 }
@@ -2364,6 +2892,7 @@ enum ch_time_slot_constraint {
 
 # input type for incrementing integer column in table "ch_time_slot"
 input ch_time_slot_inc_input {
+  festival_id: Int
   id: Int
 }
 
@@ -2372,6 +2901,7 @@ input ch_time_slot_insert_input {
   ch_helper_time_slots: ch_helper_time_slots_arr_rel_insert_input
   ch_proposal_time_slots: ch_proposal_time_slots_arr_rel_insert_input
   end_time: timestamptz
+  festival_id: Int
   id: Int
   start_time: timestamptz
 }
@@ -2379,6 +2909,7 @@ input ch_time_slot_insert_input {
 # aggregate max on columns
 type ch_time_slot_max_fields {
   end_time: timestamptz
+  festival_id: Int
   id: Int
   start_time: timestamptz
 }
@@ -2386,6 +2917,7 @@ type ch_time_slot_max_fields {
 # order by max() on columns of table "ch_time_slot"
 input ch_time_slot_max_order_by {
   end_time: order_by
+  festival_id: order_by
   id: order_by
   start_time: order_by
 }
@@ -2393,6 +2925,7 @@ input ch_time_slot_max_order_by {
 # aggregate min on columns
 type ch_time_slot_min_fields {
   end_time: timestamptz
+  festival_id: Int
   id: Int
   start_time: timestamptz
 }
@@ -2400,6 +2933,7 @@ type ch_time_slot_min_fields {
 # order by min() on columns of table "ch_time_slot"
 input ch_time_slot_min_order_by {
   end_time: order_by
+  festival_id: order_by
   id: order_by
   start_time: order_by
 }
@@ -2431,6 +2965,7 @@ input ch_time_slot_order_by {
   ch_helper_time_slots_aggregate: ch_helper_time_slots_aggregate_order_by
   ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate_order_by
   end_time: order_by
+  festival_id: order_by
   id: order_by
   start_time: order_by
 }
@@ -2446,6 +2981,9 @@ enum ch_time_slot_select_column {
   end_time
 
   # column name
+  festival_id
+
+  # column name
   id
 
   # column name
@@ -2455,47 +2993,56 @@ enum ch_time_slot_select_column {
 # input type for updating data in table "ch_time_slot"
 input ch_time_slot_set_input {
   end_time: timestamptz
+  festival_id: Int
   id: Int
   start_time: timestamptz
 }
 
 # aggregate stddev on columns
 type ch_time_slot_stddev_fields {
+  festival_id: Float
   id: Float
 }
 
 # order by stddev() on columns of table "ch_time_slot"
 input ch_time_slot_stddev_order_by {
+  festival_id: order_by
   id: order_by
 }
 
 # aggregate stddev_pop on columns
 type ch_time_slot_stddev_pop_fields {
+  festival_id: Float
   id: Float
 }
 
 # order by stddev_pop() on columns of table "ch_time_slot"
 input ch_time_slot_stddev_pop_order_by {
+  festival_id: order_by
   id: order_by
 }
 
 # aggregate stddev_samp on columns
 type ch_time_slot_stddev_samp_fields {
+  festival_id: Float
   id: Float
 }
 
 # order by stddev_samp() on columns of table "ch_time_slot"
 input ch_time_slot_stddev_samp_order_by {
+  festival_id: order_by
   id: order_by
 }
 
 # aggregate sum on columns
 type ch_time_slot_sum_fields {
+  festival_id: Int
   id: Int
 }
 
 # order by sum() on columns of table "ch_time_slot"
 input ch_time_slot_sum_order_by {
+  festival_id: order_by
   id: order_by
 }
 
@@ -2503,6 +3050,9 @@ input ch_time_slot_sum_order_by {
 enum ch_time_slot_update_column {
   # column name
   end_time
+
+  # column name
+  festival_id
 
   # column name
   id
@@ -2513,390 +3063,38 @@ enum ch_time_slot_update_column {
 
 # aggregate var_pop on columns
 type ch_time_slot_var_pop_fields {
+  festival_id: Float
   id: Float
 }
 
 # order by var_pop() on columns of table "ch_time_slot"
 input ch_time_slot_var_pop_order_by {
+  festival_id: order_by
   id: order_by
 }
 
 # aggregate var_samp on columns
 type ch_time_slot_var_samp_fields {
+  festival_id: Float
   id: Float
 }
 
 # order by var_samp() on columns of table "ch_time_slot"
 input ch_time_slot_var_samp_order_by {
+  festival_id: order_by
   id: order_by
 }
 
 # aggregate variance on columns
 type ch_time_slot_variance_fields {
+  festival_id: Float
   id: Float
 }
 
 # order by variance() on columns of table "ch_time_slot"
 input ch_time_slot_variance_order_by {
+  festival_id: order_by
   id: order_by
-}
-
-# columns and relationships of "ch_time_table"
-type ch_time_table {
-  # An object relationship
-  ch_helper: ch_helper
-
-  # An object relationship
-  ch_room: ch_room
-  helper_confirmed: Boolean!
-  helper_id: Int
-  id: Int!
-  meeting_confirmed: Boolean!
-  meeting_id: Int
-
-  # An object relationship
-  nb_meeting: nb_meeting
-  room_id: Int
-}
-
-# aggregated selection of "ch_time_table"
-type ch_time_table_aggregate {
-  aggregate: ch_time_table_aggregate_fields
-  nodes: [ch_time_table!]!
-}
-
-# aggregate fields of "ch_time_table"
-type ch_time_table_aggregate_fields {
-  avg: ch_time_table_avg_fields
-  count(columns: [ch_time_table_select_column!], distinct: Boolean): Int
-  max: ch_time_table_max_fields
-  min: ch_time_table_min_fields
-  stddev: ch_time_table_stddev_fields
-  stddev_pop: ch_time_table_stddev_pop_fields
-  stddev_samp: ch_time_table_stddev_samp_fields
-  sum: ch_time_table_sum_fields
-  var_pop: ch_time_table_var_pop_fields
-  var_samp: ch_time_table_var_samp_fields
-  variance: ch_time_table_variance_fields
-}
-
-# order by aggregate values of table "ch_time_table"
-input ch_time_table_aggregate_order_by {
-  avg: ch_time_table_avg_order_by
-  count: order_by
-  max: ch_time_table_max_order_by
-  min: ch_time_table_min_order_by
-  stddev: ch_time_table_stddev_order_by
-  stddev_pop: ch_time_table_stddev_pop_order_by
-  stddev_samp: ch_time_table_stddev_samp_order_by
-  sum: ch_time_table_sum_order_by
-  var_pop: ch_time_table_var_pop_order_by
-  var_samp: ch_time_table_var_samp_order_by
-  variance: ch_time_table_variance_order_by
-}
-
-# input type for inserting array relation for remote table "ch_time_table"
-input ch_time_table_arr_rel_insert_input {
-  data: [ch_time_table_insert_input!]!
-  on_conflict: ch_time_table_on_conflict
-}
-
-# aggregate avg on columns
-type ch_time_table_avg_fields {
-  helper_id: Float
-  id: Float
-  meeting_id: Float
-  room_id: Float
-}
-
-# order by avg() on columns of table "ch_time_table"
-input ch_time_table_avg_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# Boolean expression to filter rows from the table "ch_time_table". All fields are combined with a logical 'AND'.
-input ch_time_table_bool_exp {
-  _and: [ch_time_table_bool_exp]
-  _not: ch_time_table_bool_exp
-  _or: [ch_time_table_bool_exp]
-  ch_helper: ch_helper_bool_exp
-  ch_room: ch_room_bool_exp
-  helper_confirmed: Boolean_comparison_exp
-  helper_id: Int_comparison_exp
-  id: Int_comparison_exp
-  meeting_confirmed: Boolean_comparison_exp
-  meeting_id: Int_comparison_exp
-  nb_meeting: nb_meeting_bool_exp
-  room_id: Int_comparison_exp
-}
-
-# unique or primary key constraints on table "ch_time_table"
-enum ch_time_table_constraint {
-  # unique or primary key constraint
-  ch_time_table_meeting_id_key
-
-  # unique or primary key constraint
-  ch_time_table_pkey
-}
-
-# input type for incrementing integer column in table "ch_time_table"
-input ch_time_table_inc_input {
-  helper_id: Int
-  id: Int
-  meeting_id: Int
-  room_id: Int
-}
-
-# input type for inserting data into table "ch_time_table"
-input ch_time_table_insert_input {
-  ch_helper: ch_helper_obj_rel_insert_input
-  ch_room: ch_room_obj_rel_insert_input
-  helper_confirmed: Boolean
-  helper_id: Int
-  id: Int
-  meeting_confirmed: Boolean
-  meeting_id: Int
-  nb_meeting: nb_meeting_obj_rel_insert_input
-  room_id: Int
-}
-
-# aggregate max on columns
-type ch_time_table_max_fields {
-  helper_id: Int
-  id: Int
-  meeting_id: Int
-  room_id: Int
-}
-
-# order by max() on columns of table "ch_time_table"
-input ch_time_table_max_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# aggregate min on columns
-type ch_time_table_min_fields {
-  helper_id: Int
-  id: Int
-  meeting_id: Int
-  room_id: Int
-}
-
-# order by min() on columns of table "ch_time_table"
-input ch_time_table_min_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# response of any mutation on the table "ch_time_table"
-type ch_time_table_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [ch_time_table!]!
-}
-
-# input type for inserting object relation for remote table "ch_time_table"
-input ch_time_table_obj_rel_insert_input {
-  data: ch_time_table_insert_input!
-  on_conflict: ch_time_table_on_conflict
-}
-
-# on conflict condition type for table "ch_time_table"
-input ch_time_table_on_conflict {
-  constraint: ch_time_table_constraint!
-  update_columns: [ch_time_table_update_column!]!
-  where: ch_time_table_bool_exp
-}
-
-# ordering options when selecting data from "ch_time_table"
-input ch_time_table_order_by {
-  ch_helper: ch_helper_order_by
-  ch_room: ch_room_order_by
-  helper_confirmed: order_by
-  helper_id: order_by
-  id: order_by
-  meeting_confirmed: order_by
-  meeting_id: order_by
-  nb_meeting: nb_meeting_order_by
-  room_id: order_by
-}
-
-# primary key columns input for table: "ch_time_table"
-input ch_time_table_pk_columns_input {
-  id: Int!
-}
-
-# select columns of table "ch_time_table"
-enum ch_time_table_select_column {
-  # column name
-  helper_confirmed
-
-  # column name
-  helper_id
-
-  # column name
-  id
-
-  # column name
-  meeting_confirmed
-
-  # column name
-  meeting_id
-
-  # column name
-  room_id
-}
-
-# input type for updating data in table "ch_time_table"
-input ch_time_table_set_input {
-  helper_confirmed: Boolean
-  helper_id: Int
-  id: Int
-  meeting_confirmed: Boolean
-  meeting_id: Int
-  room_id: Int
-}
-
-# aggregate stddev on columns
-type ch_time_table_stddev_fields {
-  helper_id: Float
-  id: Float
-  meeting_id: Float
-  room_id: Float
-}
-
-# order by stddev() on columns of table "ch_time_table"
-input ch_time_table_stddev_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# aggregate stddev_pop on columns
-type ch_time_table_stddev_pop_fields {
-  helper_id: Float
-  id: Float
-  meeting_id: Float
-  room_id: Float
-}
-
-# order by stddev_pop() on columns of table "ch_time_table"
-input ch_time_table_stddev_pop_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# aggregate stddev_samp on columns
-type ch_time_table_stddev_samp_fields {
-  helper_id: Float
-  id: Float
-  meeting_id: Float
-  room_id: Float
-}
-
-# order by stddev_samp() on columns of table "ch_time_table"
-input ch_time_table_stddev_samp_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# aggregate sum on columns
-type ch_time_table_sum_fields {
-  helper_id: Int
-  id: Int
-  meeting_id: Int
-  room_id: Int
-}
-
-# order by sum() on columns of table "ch_time_table"
-input ch_time_table_sum_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# update columns of table "ch_time_table"
-enum ch_time_table_update_column {
-  # column name
-  helper_confirmed
-
-  # column name
-  helper_id
-
-  # column name
-  id
-
-  # column name
-  meeting_confirmed
-
-  # column name
-  meeting_id
-
-  # column name
-  room_id
-}
-
-# aggregate var_pop on columns
-type ch_time_table_var_pop_fields {
-  helper_id: Float
-  id: Float
-  meeting_id: Float
-  room_id: Float
-}
-
-# order by var_pop() on columns of table "ch_time_table"
-input ch_time_table_var_pop_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# aggregate var_samp on columns
-type ch_time_table_var_samp_fields {
-  helper_id: Float
-  id: Float
-  meeting_id: Float
-  room_id: Float
-}
-
-# order by var_samp() on columns of table "ch_time_table"
-input ch_time_table_var_samp_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
-}
-
-# aggregate variance on columns
-type ch_time_table_variance_fields {
-  helper_id: Float
-  id: Float
-  meeting_id: Float
-  room_id: Float
-}
-
-# order by variance() on columns of table "ch_time_table"
-input ch_time_table_variance_order_by {
-  helper_id: order_by
-  id: order_by
-  meeting_id: order_by
-  room_id: order_by
 }
 
 # columns and relationships of "ch_wait_list"
@@ -3998,6 +4196,15 @@ input jsonb_comparison_exp {
 
 # mutation root
 type mutation_root {
+  # delete data from the table: "ch_agenda_item"
+  delete_ch_agenda_item(
+    # filter the rows which have to be deleted
+    where: ch_agenda_item_bool_exp!
+  ): ch_agenda_item_mutation_response
+
+  # delete single row from the table: "ch_agenda_item"
+  delete_ch_agenda_item_by_pk(id: Int!): ch_agenda_item
+
   # delete data from the table: "ch_festival"
   delete_ch_festival(
     # filter the rows which have to be deleted
@@ -4060,15 +4267,6 @@ type mutation_root {
 
   # delete single row from the table: "ch_time_slot"
   delete_ch_time_slot_by_pk(id: Int!): ch_time_slot
-
-  # delete data from the table: "ch_time_table"
-  delete_ch_time_table(
-    # filter the rows which have to be deleted
-    where: ch_time_table_bool_exp!
-  ): ch_time_table_mutation_response
-
-  # delete single row from the table: "ch_time_table"
-  delete_ch_time_table_by_pk(id: Int!): ch_time_table
 
   # delete data from the table: "ch_wait_list"
   delete_ch_wait_list(
@@ -4150,6 +4348,24 @@ type mutation_root {
 
   # delete single row from the table: "nb_sphere_managers"
   delete_nb_sphere_managers_by_pk(id: Int!): nb_sphere_managers
+
+  # insert data into the table: "ch_agenda_item"
+  insert_ch_agenda_item(
+    # the rows to be inserted
+    objects: [ch_agenda_item_insert_input!]!
+
+    # on conflict condition
+    on_conflict: ch_agenda_item_on_conflict
+  ): ch_agenda_item_mutation_response
+
+  # insert a single row into the table: "ch_agenda_item"
+  insert_ch_agenda_item_one(
+    # the row to be inserted
+    object: ch_agenda_item_insert_input!
+
+    # on conflict condition
+    on_conflict: ch_agenda_item_on_conflict
+  ): ch_agenda_item
 
   # insert data into the table: "ch_festival"
   insert_ch_festival(
@@ -4276,24 +4492,6 @@ type mutation_root {
     # on conflict condition
     on_conflict: ch_time_slot_on_conflict
   ): ch_time_slot
-
-  # insert data into the table: "ch_time_table"
-  insert_ch_time_table(
-    # the rows to be inserted
-    objects: [ch_time_table_insert_input!]!
-
-    # on conflict condition
-    on_conflict: ch_time_table_on_conflict
-  ): ch_time_table_mutation_response
-
-  # insert a single row into the table: "ch_time_table"
-  insert_ch_time_table_one(
-    # the row to be inserted
-    object: ch_time_table_insert_input!
-
-    # on conflict condition
-    on_conflict: ch_time_table_on_conflict
-  ): ch_time_table
 
   # insert data into the table: "ch_wait_list"
   insert_ch_wait_list(
@@ -4457,6 +4655,28 @@ type mutation_root {
     on_conflict: nb_sphere_on_conflict
   ): nb_sphere
 
+  # update data of the table: "ch_agenda_item"
+  update_ch_agenda_item(
+    # increments the integer columns with given value of the filtered values
+    _inc: ch_agenda_item_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: ch_agenda_item_set_input
+
+    # filter the rows which have to be updated
+    where: ch_agenda_item_bool_exp!
+  ): ch_agenda_item_mutation_response
+
+  # update single row of the table: "ch_agenda_item"
+  update_ch_agenda_item_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: ch_agenda_item_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: ch_agenda_item_set_input
+    pk_columns: ch_agenda_item_pk_columns_input!
+  ): ch_agenda_item
+
   # update data of the table: "ch_festival"
   update_ch_festival(
     # append existing jsonb value of filtered columns with new jsonb value
@@ -4557,8 +4777,24 @@ type mutation_root {
 
   # update data of the table: "ch_proposal"
   update_ch_proposal(
+    # append existing jsonb value of filtered columns with new jsonb value
+    _append: ch_proposal_append_input
+
+    # delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    _delete_at_path: ch_proposal_delete_at_path_input
+
+    # delete the array element with specified index (negative integers count from
+    # the end). throws an error if top level container is not an array
+    _delete_elem: ch_proposal_delete_elem_input
+
+    # delete key/value pair or string element. key/value pairs are matched based on their key value
+    _delete_key: ch_proposal_delete_key_input
+
     # increments the integer columns with given value of the filtered values
     _inc: ch_proposal_inc_input
+
+    # prepend existing jsonb value of filtered columns with new jsonb value
+    _prepend: ch_proposal_prepend_input
 
     # sets the columns of the filtered rows to the given values
     _set: ch_proposal_set_input
@@ -4569,8 +4805,24 @@ type mutation_root {
 
   # update single row of the table: "ch_proposal"
   update_ch_proposal_by_pk(
+    # append existing jsonb value of filtered columns with new jsonb value
+    _append: ch_proposal_append_input
+
+    # delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    _delete_at_path: ch_proposal_delete_at_path_input
+
+    # delete the array element with specified index (negative integers count from
+    # the end). throws an error if top level container is not an array
+    _delete_elem: ch_proposal_delete_elem_input
+
+    # delete key/value pair or string element. key/value pairs are matched based on their key value
+    _delete_key: ch_proposal_delete_key_input
+
     # increments the integer columns with given value of the filtered values
     _inc: ch_proposal_inc_input
+
+    # prepend existing jsonb value of filtered columns with new jsonb value
+    _prepend: ch_proposal_prepend_input
 
     # sets the columns of the filtered rows to the given values
     _set: ch_proposal_set_input
@@ -4642,28 +4894,6 @@ type mutation_root {
     _set: ch_time_slot_set_input
     pk_columns: ch_time_slot_pk_columns_input!
   ): ch_time_slot
-
-  # update data of the table: "ch_time_table"
-  update_ch_time_table(
-    # increments the integer columns with given value of the filtered values
-    _inc: ch_time_table_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: ch_time_table_set_input
-
-    # filter the rows which have to be updated
-    where: ch_time_table_bool_exp!
-  ): ch_time_table_mutation_response
-
-  # update single row of the table: "ch_time_table"
-  update_ch_time_table_by_pk(
-    # increments the integer columns with given value of the filtered values
-    _inc: ch_time_table_inc_input
-
-    # sets the columns of the filtered rows to the given values
-    _set: ch_time_table_set_input
-    pk_columns: ch_time_table_pk_columns_input!
-  ): ch_time_table
 
   # update data of the table: "ch_wait_list"
   update_ch_wait_list(
@@ -5574,8 +5804,8 @@ type nb_meeting {
   end_time: timestamptz
 
   # An object relationship
-  guild: nb_guild!
-  guild_id: Int!
+  guild: nb_guild
+  guild_id: Int
   id: Int!
   image: String
   location: String
@@ -5630,7 +5860,7 @@ type nb_meeting {
   start_time: timestamptz
 
   # An object relationship
-  time_table: ch_time_table
+  time_table: ch_agenda_item
   updated_at: timestamptz!
 }
 
@@ -5713,7 +5943,7 @@ input nb_meeting_bool_exp {
   sphere: nb_sphere_bool_exp
   sphere_id: Int_comparison_exp
   start_time: timestamptz_comparison_exp
-  time_table: ch_time_table_bool_exp
+  time_table: ch_agenda_item_bool_exp
   updated_at: timestamptz_comparison_exp
 }
 
@@ -5750,7 +5980,7 @@ input nb_meeting_insert_input {
   sphere: nb_sphere_obj_rel_insert_input
   sphere_id: Int
   start_time: timestamptz
-  time_table: ch_time_table_obj_rel_insert_input
+  time_table: ch_agenda_item_obj_rel_insert_input
   updated_at: timestamptz
 }
 
@@ -5872,7 +6102,7 @@ input nb_meeting_order_by {
   sphere: nb_sphere_order_by
   sphere_id: order_by
   start_time: order_by
-  time_table: ch_time_table_order_by
+  time_table: ch_agenda_item_order_by
   updated_at: order_by
 }
 
@@ -6496,7 +6726,7 @@ type nb_sphere {
   settings(
     # JSON select path
     path: String
-  ): jsonb
+  ): jsonb!
   site_id: Int
 }
 
@@ -7125,6 +7355,45 @@ enum order_by {
 
 # query root
 type query_root {
+  # fetch data from the table: "ch_agenda_item"
+  ch_agenda_item(
+    # distinct select on columns
+    distinct_on: [ch_agenda_item_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_agenda_item_order_by!]
+
+    # filter the rows returned
+    where: ch_agenda_item_bool_exp
+  ): [ch_agenda_item!]!
+
+  # fetch aggregated fields from the table: "ch_agenda_item"
+  ch_agenda_item_aggregate(
+    # distinct select on columns
+    distinct_on: [ch_agenda_item_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_agenda_item_order_by!]
+
+    # filter the rows returned
+    where: ch_agenda_item_bool_exp
+  ): ch_agenda_item_aggregate!
+
+  # fetch data from the table: "ch_agenda_item" using primary key columns
+  ch_agenda_item_by_pk(id: Int!): ch_agenda_item
+
   # fetch data from the table: "ch_festival"
   ch_festival(
     # distinct select on columns
@@ -7397,45 +7666,6 @@ type query_root {
 
   # fetch data from the table: "ch_time_slot" using primary key columns
   ch_time_slot_by_pk(id: Int!): ch_time_slot
-
-  # fetch data from the table: "ch_time_table"
-  ch_time_table(
-    # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
-
-    # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): [ch_time_table!]!
-
-  # fetch aggregated fields from the table: "ch_time_table"
-  ch_time_table_aggregate(
-    # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
-
-    # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): ch_time_table_aggregate!
-
-  # fetch data from the table: "ch_time_table" using primary key columns
-  ch_time_table_by_pk(id: Int!): ch_time_table
 
   # fetch data from the table: "ch_wait_list"
   ch_wait_list(
@@ -7810,6 +8040,45 @@ input String_comparison_exp {
 
 # subscription root
 type subscription_root {
+  # fetch data from the table: "ch_agenda_item"
+  ch_agenda_item(
+    # distinct select on columns
+    distinct_on: [ch_agenda_item_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_agenda_item_order_by!]
+
+    # filter the rows returned
+    where: ch_agenda_item_bool_exp
+  ): [ch_agenda_item!]!
+
+  # fetch aggregated fields from the table: "ch_agenda_item"
+  ch_agenda_item_aggregate(
+    # distinct select on columns
+    distinct_on: [ch_agenda_item_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_agenda_item_order_by!]
+
+    # filter the rows returned
+    where: ch_agenda_item_bool_exp
+  ): ch_agenda_item_aggregate!
+
+  # fetch data from the table: "ch_agenda_item" using primary key columns
+  ch_agenda_item_by_pk(id: Int!): ch_agenda_item
+
   # fetch data from the table: "ch_festival"
   ch_festival(
     # distinct select on columns
@@ -8082,45 +8351,6 @@ type subscription_root {
 
   # fetch data from the table: "ch_time_slot" using primary key columns
   ch_time_slot_by_pk(id: Int!): ch_time_slot
-
-  # fetch data from the table: "ch_time_table"
-  ch_time_table(
-    # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
-
-    # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): [ch_time_table!]!
-
-  # fetch aggregated fields from the table: "ch_time_table"
-  ch_time_table_aggregate(
-    # distinct select on columns
-    distinct_on: [ch_time_table_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_time_table_order_by!]
-
-    # filter the rows returned
-    where: ch_time_table_bool_exp
-  ): ch_time_table_aggregate!
-
-  # fetch data from the table: "ch_time_table" using primary key columns
-  ch_time_table_by_pk(id: Int!): ch_time_table
 
   # fetch data from the table: "ch_wait_list"
   ch_wait_list(
