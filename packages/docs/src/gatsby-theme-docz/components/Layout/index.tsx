@@ -53,6 +53,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 px: 4,
                 pt: 5,
               },
+              "> h1:first-child": {
+                mt: 0,
+              },
             }}
             data-testid="main-container"
           >
