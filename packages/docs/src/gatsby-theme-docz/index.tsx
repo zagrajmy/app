@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable import/no-extraneous-dependencies */
 import { theme as appTheme } from "@zagrajmy/app";
-import { forms } from "@zagrajmy/app/dist/src/ui/theme/forms";
 import {
   ComponentsProvider,
   theme as makeThemeProvider,
@@ -11,20 +10,10 @@ import baseComponents from "gatsby-theme-docz/src/components";
 import * as modes from "gatsby-theme-docz/src/theme/modes";
 import prism from "gatsby-theme-docz/src/theme/prism";
 import styles from "gatsby-theme-docz/src/theme/styles";
-import Router from "next/router";
 import { Styled, ThemeProvider } from "theme-ui";
 
 import { PropDoc } from "../components/PropDoc";
-
-// mock for next/link
-/* eslint-disable @typescript-eslint/no-empty-function */
-Router.router = {
-  push: () => {},
-  replace: () => {},
-  prefetch: () => Promise.resolve(),
-} as any;
-/* eslint-disable @typescript-eslint/no-empty-function */
-// ---
+import { MockedNextRouter } from "../MockedNextRouter";
 
 const componentsMap = { ...baseComponents, PropDoc };
 
@@ -76,7 +65,9 @@ const Theme = ({ children }: { children?: React.ReactNode }) => {
   return (
     <ThemeProvider theme={config.themeConfig}>
       <ComponentsProvider components={componentsMap}>
-        <Styled.root>{children}</Styled.root>
+        <MockedNextRouter pathname="">
+          <Styled.root>{children}</Styled.root>
+        </MockedNextRouter>
       </ComponentsProvider>
     </ThemeProvider>
   );
