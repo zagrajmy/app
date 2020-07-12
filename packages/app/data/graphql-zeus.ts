@@ -13,6 +13,260 @@ export type ValueTypes = {
     _neq?: boolean;
     _nin?: boolean[];
   };
+  ["ch_agenda_item"]: AliasType<{
+    ch_helper?: ValueTypes["ch_helper"];
+    ch_room?: ValueTypes["ch_room"];
+    helper_confirmed?: true;
+    helper_id?: true;
+    id?: true;
+    meeting_confirmed?: true;
+    meeting_id?: true;
+    nb_meeting?: ValueTypes["nb_meeting"];
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["ch_agenda_item_aggregate_fields"];
+    nodes?: ValueTypes["ch_agenda_item"];
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_aggregate_fields"]: AliasType<{
+    avg?: ValueTypes["ch_agenda_item_avg_fields"];
+    count?: [
+      {
+        columns?: ValueTypes["ch_agenda_item_select_column"][];
+        distinct?: boolean;
+      },
+      true
+    ];
+    max?: ValueTypes["ch_agenda_item_max_fields"];
+    min?: ValueTypes["ch_agenda_item_min_fields"];
+    stddev?: ValueTypes["ch_agenda_item_stddev_fields"];
+    stddev_pop?: ValueTypes["ch_agenda_item_stddev_pop_fields"];
+    stddev_samp?: ValueTypes["ch_agenda_item_stddev_samp_fields"];
+    sum?: ValueTypes["ch_agenda_item_sum_fields"];
+    var_pop?: ValueTypes["ch_agenda_item_var_pop_fields"];
+    var_samp?: ValueTypes["ch_agenda_item_var_samp_fields"];
+    variance?: ValueTypes["ch_agenda_item_variance_fields"];
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_aggregate_order_by"]: {
+    avg?: ValueTypes["ch_agenda_item_avg_order_by"];
+    count?: ValueTypes["order_by"];
+    max?: ValueTypes["ch_agenda_item_max_order_by"];
+    min?: ValueTypes["ch_agenda_item_min_order_by"];
+    stddev?: ValueTypes["ch_agenda_item_stddev_order_by"];
+    stddev_pop?: ValueTypes["ch_agenda_item_stddev_pop_order_by"];
+    stddev_samp?: ValueTypes["ch_agenda_item_stddev_samp_order_by"];
+    sum?: ValueTypes["ch_agenda_item_sum_order_by"];
+    var_pop?: ValueTypes["ch_agenda_item_var_pop_order_by"];
+    var_samp?: ValueTypes["ch_agenda_item_var_samp_order_by"];
+    variance?: ValueTypes["ch_agenda_item_variance_order_by"];
+  };
+  ["ch_agenda_item_arr_rel_insert_input"]: {
+    data: ValueTypes["ch_agenda_item_insert_input"][];
+    on_conflict?: ValueTypes["ch_agenda_item_on_conflict"];
+  };
+  ["ch_agenda_item_avg_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_avg_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_bool_exp"]: {
+    _and?: (ValueTypes["ch_agenda_item_bool_exp"] | undefined)[];
+    _not?: ValueTypes["ch_agenda_item_bool_exp"];
+    _or?: (ValueTypes["ch_agenda_item_bool_exp"] | undefined)[];
+    ch_helper?: ValueTypes["ch_helper_bool_exp"];
+    ch_room?: ValueTypes["ch_room_bool_exp"];
+    helper_confirmed?: ValueTypes["Boolean_comparison_exp"];
+    helper_id?: ValueTypes["Int_comparison_exp"];
+    id?: ValueTypes["Int_comparison_exp"];
+    meeting_confirmed?: ValueTypes["Boolean_comparison_exp"];
+    meeting_id?: ValueTypes["Int_comparison_exp"];
+    nb_meeting?: ValueTypes["nb_meeting_bool_exp"];
+    room_id?: ValueTypes["Int_comparison_exp"];
+  };
+  ["ch_agenda_item_constraint"]: ch_agenda_item_constraint;
+  ["ch_agenda_item_inc_input"]: {
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_insert_input"]: {
+    ch_helper?: ValueTypes["ch_helper_obj_rel_insert_input"];
+    ch_room?: ValueTypes["ch_room_obj_rel_insert_input"];
+    helper_confirmed?: boolean;
+    helper_id?: number;
+    id?: number;
+    meeting_confirmed?: boolean;
+    meeting_id?: number;
+    nb_meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
+    room_id?: number;
+  };
+  ["ch_agenda_item_max_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_max_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_min_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_min_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_mutation_response"]: AliasType<{
+    affected_rows?: true;
+    returning?: ValueTypes["ch_agenda_item"];
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_obj_rel_insert_input"]: {
+    data: ValueTypes["ch_agenda_item_insert_input"];
+    on_conflict?: ValueTypes["ch_agenda_item_on_conflict"];
+  };
+  ["ch_agenda_item_on_conflict"]: {
+    constraint: ValueTypes["ch_agenda_item_constraint"];
+    update_columns: ValueTypes["ch_agenda_item_update_column"][];
+    where?: ValueTypes["ch_agenda_item_bool_exp"];
+  };
+  ["ch_agenda_item_order_by"]: {
+    ch_helper?: ValueTypes["ch_helper_order_by"];
+    ch_room?: ValueTypes["ch_room_order_by"];
+    helper_confirmed?: ValueTypes["order_by"];
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_confirmed?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    nb_meeting?: ValueTypes["nb_meeting_order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_pk_columns_input"]: {
+    id: number;
+  };
+  ["ch_agenda_item_select_column"]: ch_agenda_item_select_column;
+  ["ch_agenda_item_set_input"]: {
+    helper_confirmed?: boolean;
+    helper_id?: number;
+    id?: number;
+    meeting_confirmed?: boolean;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_stddev_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_stddev_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_stddev_pop_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_stddev_pop_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_stddev_samp_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_stddev_samp_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_sum_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_sum_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_update_column"]: ch_agenda_item_update_column;
+  ["ch_agenda_item_var_pop_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_var_pop_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_var_samp_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_var_samp_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
+  ["ch_agenda_item_variance_fields"]: AliasType<{
+    helper_id?: true;
+    id?: true;
+    meeting_id?: true;
+    room_id?: true;
+    __typename?: true;
+  }>;
+  ["ch_agenda_item_variance_order_by"]: {
+    helper_id?: ValueTypes["order_by"];
+    id?: ValueTypes["order_by"];
+    meeting_id?: ValueTypes["order_by"];
+    room_id?: ValueTypes["order_by"];
+  };
   ["ch_festival"]: AliasType<{
     ch_helpers?: [
       {
@@ -341,6 +595,26 @@ export type ValueTypes = {
     sphere_id?: ValueTypes["order_by"];
   };
   ["ch_helper"]: AliasType<{
+    ch_agenda_items?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item"]
+    ];
+    ch_agenda_items_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item_aggregate"]
+    ];
     ch_festival?: ValueTypes["ch_festival"];
     ch_helper_time_slots?: [
       {
@@ -361,26 +635,6 @@ export type ValueTypes = {
         where?: ValueTypes["ch_helper_time_slots_bool_exp"];
       },
       ValueTypes["ch_helper_time_slots_aggregate"]
-    ];
-    ch_time_tables?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table"]
-    ];
-    ch_time_tables_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table_aggregate"]
     ];
     cr_user?: ValueTypes["cr_user"];
     festival_id?: true;
@@ -440,9 +694,9 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_helper_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_helper_bool_exp"];
     _or?: (ValueTypes["ch_helper_bool_exp"] | undefined)[];
+    ch_agenda_items?: ValueTypes["ch_agenda_item_bool_exp"];
     ch_festival?: ValueTypes["ch_festival_bool_exp"];
     ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_bool_exp"];
-    ch_time_tables?: ValueTypes["ch_time_table_bool_exp"];
     cr_user?: ValueTypes["cr_user_bool_exp"];
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
@@ -454,9 +708,9 @@ export type ValueTypes = {
     id?: number;
   };
   ["ch_helper_insert_input"]: {
+    ch_agenda_items?: ValueTypes["ch_agenda_item_arr_rel_insert_input"];
     ch_festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
     ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_arr_rel_insert_input"];
-    ch_time_tables?: ValueTypes["ch_time_table_arr_rel_insert_input"];
     cr_user?: ValueTypes["cr_user_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
@@ -499,9 +753,9 @@ export type ValueTypes = {
     where?: ValueTypes["ch_helper_bool_exp"];
   };
   ["ch_helper_order_by"]: {
+    ch_agenda_items_aggregate?: ValueTypes["ch_agenda_item_aggregate_order_by"];
     ch_festival?: ValueTypes["ch_festival_order_by"];
     ch_helper_time_slots_aggregate?: ValueTypes["ch_helper_time_slots_aggregate_order_by"];
-    ch_time_tables_aggregate?: ValueTypes["ch_time_table_aggregate_order_by"];
     cr_user?: ValueTypes["cr_user_order_by"];
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
@@ -818,13 +1072,21 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list"];
     city?: true;
     club?: true;
+    contact_info?: true;
+    created_at?: true;
+    description?: true;
+    duration_minutes?: true;
     id?: true;
     meeting?: ValueTypes["nb_meeting"];
     meeting_id?: true;
+    name?: true;
     needs?: true;
-    other_contact?: true;
-    other_data?: true;
+    other_contact?: [{ path?: string }, true];
+    other_data?: [{ path?: string }, true];
     phone?: true;
+    speaker_name?: true;
+    speaker_user_id?: true;
+    status?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
@@ -866,17 +1128,23 @@ export type ValueTypes = {
     var_samp?: ValueTypes["ch_proposal_var_samp_order_by"];
     variance?: ValueTypes["ch_proposal_variance_order_by"];
   };
+  ["ch_proposal_append_input"]: {
+    other_contact?: ValueTypes["jsonb"];
+    other_data?: ValueTypes["jsonb"];
+  };
   ["ch_proposal_arr_rel_insert_input"]: {
     data: ValueTypes["ch_proposal_insert_input"][];
     on_conflict?: ValueTypes["ch_proposal_on_conflict"];
   };
   ["ch_proposal_avg_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_avg_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
@@ -889,17 +1157,38 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list_bool_exp"];
     city?: ValueTypes["String_comparison_exp"];
     club?: ValueTypes["String_comparison_exp"];
+    contact_info?: ValueTypes["String_comparison_exp"];
+    created_at?: ValueTypes["timestamptz_comparison_exp"];
+    description?: ValueTypes["String_comparison_exp"];
+    duration_minutes?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     meeting?: ValueTypes["nb_meeting_bool_exp"];
     meeting_id?: ValueTypes["Int_comparison_exp"];
+    name?: ValueTypes["String_comparison_exp"];
     needs?: ValueTypes["String_comparison_exp"];
-    other_contact?: ValueTypes["String_comparison_exp"];
-    other_data?: ValueTypes["String_comparison_exp"];
+    other_contact?: ValueTypes["jsonb_comparison_exp"];
+    other_data?: ValueTypes["jsonb_comparison_exp"];
     phone?: ValueTypes["String_comparison_exp"];
+    speaker_name?: ValueTypes["String_comparison_exp"];
+    speaker_user_id?: ValueTypes["uuid_comparison_exp"];
+    status?: ValueTypes["String_comparison_exp"];
     waitlist_id?: ValueTypes["Int_comparison_exp"];
   };
   ["ch_proposal_constraint"]: ch_proposal_constraint;
+  ["ch_proposal_delete_at_path_input"]: {
+    other_contact?: (string | undefined)[];
+    other_data?: (string | undefined)[];
+  };
+  ["ch_proposal_delete_elem_input"]: {
+    other_contact?: number;
+    other_data?: number;
+  };
+  ["ch_proposal_delete_key_input"]: {
+    other_contact?: string;
+    other_data?: string;
+  };
   ["ch_proposal_inc_input"]: {
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
@@ -909,59 +1198,91 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list_obj_rel_insert_input"];
     city?: string;
     club?: string;
+    contact_info?: string;
+    created_at?: ValueTypes["timestamptz"];
+    description?: string;
+    duration_minutes?: number;
     id?: number;
     meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
     meeting_id?: number;
+    name?: string;
     needs?: string;
-    other_contact?: string;
-    other_data?: string;
+    other_contact?: ValueTypes["jsonb"];
+    other_data?: ValueTypes["jsonb"];
     phone?: string;
+    speaker_name?: string;
+    speaker_user_id?: ValueTypes["uuid"];
+    status?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_max_fields"]: AliasType<{
     city?: true;
     club?: true;
+    contact_info?: true;
+    created_at?: true;
+    description?: true;
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
+    name?: true;
     needs?: true;
-    other_contact?: true;
-    other_data?: true;
     phone?: true;
+    speaker_name?: true;
+    speaker_user_id?: true;
+    status?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_max_order_by"]: {
     city?: ValueTypes["order_by"];
     club?: ValueTypes["order_by"];
+    contact_info?: ValueTypes["order_by"];
+    created_at?: ValueTypes["order_by"];
+    description?: ValueTypes["order_by"];
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
+    name?: ValueTypes["order_by"];
     needs?: ValueTypes["order_by"];
-    other_contact?: ValueTypes["order_by"];
-    other_data?: ValueTypes["order_by"];
     phone?: ValueTypes["order_by"];
+    speaker_name?: ValueTypes["order_by"];
+    speaker_user_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_min_fields"]: AliasType<{
     city?: true;
     club?: true;
+    contact_info?: true;
+    created_at?: true;
+    description?: true;
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
+    name?: true;
     needs?: true;
-    other_contact?: true;
-    other_data?: true;
     phone?: true;
+    speaker_name?: true;
+    speaker_user_id?: true;
+    status?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_min_order_by"]: {
     city?: ValueTypes["order_by"];
     club?: ValueTypes["order_by"];
+    contact_info?: ValueTypes["order_by"];
+    created_at?: ValueTypes["order_by"];
+    description?: ValueTypes["order_by"];
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
+    name?: ValueTypes["order_by"];
     needs?: ValueTypes["order_by"];
-    other_contact?: ValueTypes["order_by"];
-    other_data?: ValueTypes["order_by"];
     phone?: ValueTypes["order_by"];
+    speaker_name?: ValueTypes["order_by"];
+    speaker_user_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_mutation_response"]: AliasType<{
@@ -983,70 +1304,98 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list_order_by"];
     city?: ValueTypes["order_by"];
     club?: ValueTypes["order_by"];
+    contact_info?: ValueTypes["order_by"];
+    created_at?: ValueTypes["order_by"];
+    description?: ValueTypes["order_by"];
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting?: ValueTypes["nb_meeting_order_by"];
     meeting_id?: ValueTypes["order_by"];
+    name?: ValueTypes["order_by"];
     needs?: ValueTypes["order_by"];
     other_contact?: ValueTypes["order_by"];
     other_data?: ValueTypes["order_by"];
     phone?: ValueTypes["order_by"];
+    speaker_name?: ValueTypes["order_by"];
+    speaker_user_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_pk_columns_input"]: {
     id: number;
   };
+  ["ch_proposal_prepend_input"]: {
+    other_contact?: ValueTypes["jsonb"];
+    other_data?: ValueTypes["jsonb"];
+  };
   ["ch_proposal_select_column"]: ch_proposal_select_column;
   ["ch_proposal_set_input"]: {
     city?: string;
     club?: string;
+    contact_info?: string;
+    created_at?: ValueTypes["timestamptz"];
+    description?: string;
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
+    name?: string;
     needs?: string;
-    other_contact?: string;
-    other_data?: string;
+    other_contact?: ValueTypes["jsonb"];
+    other_data?: ValueTypes["jsonb"];
     phone?: string;
+    speaker_name?: string;
+    speaker_user_id?: ValueTypes["uuid"];
+    status?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_stddev_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_stddev_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_stddev_pop_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_stddev_pop_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_stddev_samp_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_stddev_samp_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_sum_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_sum_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
@@ -1267,60 +1616,66 @@ export type ValueTypes = {
   };
   ["ch_proposal_update_column"]: ch_proposal_update_column;
   ["ch_proposal_var_pop_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_var_pop_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_var_samp_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_var_samp_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_variance_fields"]: AliasType<{
+    duration_minutes?: true;
     id?: true;
     meeting_id?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_variance_order_by"]: {
+    duration_minutes?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_room"]: AliasType<{
+    ch_agenda_items?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item"]
+    ];
+    ch_agenda_items_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item_aggregate"]
+    ];
     ch_festival?: ValueTypes["ch_festival"];
-    ch_time_tables?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table"]
-    ];
-    ch_time_tables_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table_aggregate"]
-    ];
     festival_id?: true;
     id?: true;
     name?: true;
@@ -1378,8 +1733,8 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_room_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_room_bool_exp"];
     _or?: (ValueTypes["ch_room_bool_exp"] | undefined)[];
+    ch_agenda_items?: ValueTypes["ch_agenda_item_bool_exp"];
     ch_festival?: ValueTypes["ch_festival_bool_exp"];
-    ch_time_tables?: ValueTypes["ch_time_table_bool_exp"];
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
@@ -1390,8 +1745,8 @@ export type ValueTypes = {
     id?: number;
   };
   ["ch_room_insert_input"]: {
+    ch_agenda_items?: ValueTypes["ch_agenda_item_arr_rel_insert_input"];
     ch_festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
-    ch_time_tables?: ValueTypes["ch_time_table_arr_rel_insert_input"];
     festival_id?: number;
     id?: number;
     name?: string;
@@ -1433,8 +1788,8 @@ export type ValueTypes = {
     where?: ValueTypes["ch_room_bool_exp"];
   };
   ["ch_room_order_by"]: {
+    ch_agenda_items_aggregate?: ValueTypes["ch_agenda_item_aggregate_order_by"];
     ch_festival?: ValueTypes["ch_festival_order_by"];
-    ch_time_tables_aggregate?: ValueTypes["ch_time_table_aggregate_order_by"];
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
@@ -1554,6 +1909,7 @@ export type ValueTypes = {
       ValueTypes["ch_proposal_time_slots_aggregate"]
     ];
     end_time?: true;
+    festival_id?: true;
     id?: true;
     start_time?: true;
     __typename?: true;
@@ -1601,10 +1957,12 @@ export type ValueTypes = {
     on_conflict?: ValueTypes["ch_time_slot_on_conflict"];
   };
   ["ch_time_slot_avg_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_avg_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot_bool_exp"]: {
@@ -1614,39 +1972,46 @@ export type ValueTypes = {
     ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_bool_exp"];
     ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_bool_exp"];
     end_time?: ValueTypes["timestamptz_comparison_exp"];
+    festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
   };
   ["ch_time_slot_constraint"]: ch_time_slot_constraint;
   ["ch_time_slot_inc_input"]: {
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_insert_input"]: {
     ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_arr_rel_insert_input"];
     ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_arr_rel_insert_input"];
     end_time?: ValueTypes["timestamptz"];
+    festival_id?: number;
     id?: number;
     start_time?: ValueTypes["timestamptz"];
   };
   ["ch_time_slot_max_fields"]: AliasType<{
     end_time?: true;
+    festival_id?: true;
     id?: true;
     start_time?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_max_order_by"]: {
     end_time?: ValueTypes["order_by"];
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
   };
   ["ch_time_slot_min_fields"]: AliasType<{
     end_time?: true;
+    festival_id?: true;
     id?: true;
     start_time?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_min_order_by"]: {
     end_time?: ValueTypes["order_by"];
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
   };
@@ -1668,6 +2033,7 @@ export type ValueTypes = {
     ch_helper_time_slots_aggregate?: ValueTypes["ch_helper_time_slots_aggregate_order_by"];
     ch_proposal_time_slots_aggregate?: ValueTypes["ch_proposal_time_slots_aggregate_order_by"];
     end_time?: ValueTypes["order_by"];
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
   };
@@ -1677,312 +2043,73 @@ export type ValueTypes = {
   ["ch_time_slot_select_column"]: ch_time_slot_select_column;
   ["ch_time_slot_set_input"]: {
     end_time?: ValueTypes["timestamptz"];
+    festival_id?: number;
     id?: number;
     start_time?: ValueTypes["timestamptz"];
   };
   ["ch_time_slot_stddev_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_stddev_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot_stddev_pop_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_stddev_pop_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot_stddev_samp_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_stddev_samp_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot_sum_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_sum_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot_update_column"]: ch_time_slot_update_column;
   ["ch_time_slot_var_pop_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_var_pop_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot_var_samp_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_var_samp_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot_variance_fields"]: AliasType<{
+    festival_id?: true;
     id?: true;
     __typename?: true;
   }>;
   ["ch_time_slot_variance_order_by"]: {
+    festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table"]: AliasType<{
-    ch_helper?: ValueTypes["ch_helper"];
-    ch_room?: ValueTypes["ch_room"];
-    helper_confirmed?: true;
-    helper_id?: true;
-    id?: true;
-    meeting_confirmed?: true;
-    meeting_id?: true;
-    nb_meeting?: ValueTypes["nb_meeting"];
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_aggregate"]: AliasType<{
-    aggregate?: ValueTypes["ch_time_table_aggregate_fields"];
-    nodes?: ValueTypes["ch_time_table"];
-    __typename?: true;
-  }>;
-  ["ch_time_table_aggregate_fields"]: AliasType<{
-    avg?: ValueTypes["ch_time_table_avg_fields"];
-    count?: [
-      {
-        columns?: ValueTypes["ch_time_table_select_column"][];
-        distinct?: boolean;
-      },
-      true
-    ];
-    max?: ValueTypes["ch_time_table_max_fields"];
-    min?: ValueTypes["ch_time_table_min_fields"];
-    stddev?: ValueTypes["ch_time_table_stddev_fields"];
-    stddev_pop?: ValueTypes["ch_time_table_stddev_pop_fields"];
-    stddev_samp?: ValueTypes["ch_time_table_stddev_samp_fields"];
-    sum?: ValueTypes["ch_time_table_sum_fields"];
-    var_pop?: ValueTypes["ch_time_table_var_pop_fields"];
-    var_samp?: ValueTypes["ch_time_table_var_samp_fields"];
-    variance?: ValueTypes["ch_time_table_variance_fields"];
-    __typename?: true;
-  }>;
-  ["ch_time_table_aggregate_order_by"]: {
-    avg?: ValueTypes["ch_time_table_avg_order_by"];
-    count?: ValueTypes["order_by"];
-    max?: ValueTypes["ch_time_table_max_order_by"];
-    min?: ValueTypes["ch_time_table_min_order_by"];
-    stddev?: ValueTypes["ch_time_table_stddev_order_by"];
-    stddev_pop?: ValueTypes["ch_time_table_stddev_pop_order_by"];
-    stddev_samp?: ValueTypes["ch_time_table_stddev_samp_order_by"];
-    sum?: ValueTypes["ch_time_table_sum_order_by"];
-    var_pop?: ValueTypes["ch_time_table_var_pop_order_by"];
-    var_samp?: ValueTypes["ch_time_table_var_samp_order_by"];
-    variance?: ValueTypes["ch_time_table_variance_order_by"];
-  };
-  ["ch_time_table_arr_rel_insert_input"]: {
-    data: ValueTypes["ch_time_table_insert_input"][];
-    on_conflict?: ValueTypes["ch_time_table_on_conflict"];
-  };
-  ["ch_time_table_avg_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_avg_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_bool_exp"]: {
-    _and?: (ValueTypes["ch_time_table_bool_exp"] | undefined)[];
-    _not?: ValueTypes["ch_time_table_bool_exp"];
-    _or?: (ValueTypes["ch_time_table_bool_exp"] | undefined)[];
-    ch_helper?: ValueTypes["ch_helper_bool_exp"];
-    ch_room?: ValueTypes["ch_room_bool_exp"];
-    helper_confirmed?: ValueTypes["Boolean_comparison_exp"];
-    helper_id?: ValueTypes["Int_comparison_exp"];
-    id?: ValueTypes["Int_comparison_exp"];
-    meeting_confirmed?: ValueTypes["Boolean_comparison_exp"];
-    meeting_id?: ValueTypes["Int_comparison_exp"];
-    nb_meeting?: ValueTypes["nb_meeting_bool_exp"];
-    room_id?: ValueTypes["Int_comparison_exp"];
-  };
-  ["ch_time_table_constraint"]: ch_time_table_constraint;
-  ["ch_time_table_inc_input"]: {
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_insert_input"]: {
-    ch_helper?: ValueTypes["ch_helper_obj_rel_insert_input"];
-    ch_room?: ValueTypes["ch_room_obj_rel_insert_input"];
-    helper_confirmed?: boolean;
-    helper_id?: number;
-    id?: number;
-    meeting_confirmed?: boolean;
-    meeting_id?: number;
-    nb_meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
-    room_id?: number;
-  };
-  ["ch_time_table_max_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_max_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_min_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_min_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_mutation_response"]: AliasType<{
-    affected_rows?: true;
-    returning?: ValueTypes["ch_time_table"];
-    __typename?: true;
-  }>;
-  ["ch_time_table_obj_rel_insert_input"]: {
-    data: ValueTypes["ch_time_table_insert_input"];
-    on_conflict?: ValueTypes["ch_time_table_on_conflict"];
-  };
-  ["ch_time_table_on_conflict"]: {
-    constraint: ValueTypes["ch_time_table_constraint"];
-    update_columns: ValueTypes["ch_time_table_update_column"][];
-    where?: ValueTypes["ch_time_table_bool_exp"];
-  };
-  ["ch_time_table_order_by"]: {
-    ch_helper?: ValueTypes["ch_helper_order_by"];
-    ch_room?: ValueTypes["ch_room_order_by"];
-    helper_confirmed?: ValueTypes["order_by"];
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_confirmed?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    nb_meeting?: ValueTypes["nb_meeting_order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_pk_columns_input"]: {
-    id: number;
-  };
-  ["ch_time_table_select_column"]: ch_time_table_select_column;
-  ["ch_time_table_set_input"]: {
-    helper_confirmed?: boolean;
-    helper_id?: number;
-    id?: number;
-    meeting_confirmed?: boolean;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_stddev_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_stddev_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_stddev_pop_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_stddev_pop_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_stddev_samp_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_stddev_samp_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_sum_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_sum_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_update_column"]: ch_time_table_update_column;
-  ["ch_time_table_var_pop_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_var_pop_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_var_samp_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_var_samp_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
-  };
-  ["ch_time_table_variance_fields"]: AliasType<{
-    helper_id?: true;
-    id?: true;
-    meeting_id?: true;
-    room_id?: true;
-    __typename?: true;
-  }>;
-  ["ch_time_table_variance_order_by"]: {
-    helper_id?: ValueTypes["order_by"];
-    id?: ValueTypes["order_by"];
-    meeting_id?: ValueTypes["order_by"];
-    room_id?: ValueTypes["order_by"];
   };
   ["ch_wait_list"]: AliasType<{
     ch_festival?: ValueTypes["ch_festival"];
@@ -2692,6 +2819,14 @@ export type ValueTypes = {
     _nin?: ValueTypes["jsonb"][];
   };
   ["mutation_root"]: AliasType<{
+    delete_ch_agenda_item?: [
+      { where: ValueTypes["ch_agenda_item_bool_exp"] },
+      ValueTypes["ch_agenda_item_mutation_response"]
+    ];
+    delete_ch_agenda_item_by_pk?: [
+      { id: number },
+      ValueTypes["ch_agenda_item"]
+    ];
     delete_ch_festival?: [
       { where: ValueTypes["ch_festival_bool_exp"] },
       ValueTypes["ch_festival_mutation_response"]
@@ -2733,11 +2868,6 @@ export type ValueTypes = {
       ValueTypes["ch_time_slot_mutation_response"]
     ];
     delete_ch_time_slot_by_pk?: [{ id: number }, ValueTypes["ch_time_slot"]];
-    delete_ch_time_table?: [
-      { where: ValueTypes["ch_time_table_bool_exp"] },
-      ValueTypes["ch_time_table_mutation_response"]
-    ];
-    delete_ch_time_table_by_pk?: [{ id: number }, ValueTypes["ch_time_table"]];
     delete_ch_wait_list?: [
       { where: ValueTypes["ch_wait_list_bool_exp"] },
       ValueTypes["ch_wait_list_mutation_response"]
@@ -2794,6 +2924,20 @@ export type ValueTypes = {
     delete_nb_sphere_managers_by_pk?: [
       { id: number },
       ValueTypes["nb_sphere_managers"]
+    ];
+    insert_ch_agenda_item?: [
+      {
+        objects: ValueTypes["ch_agenda_item_insert_input"][];
+        on_conflict?: ValueTypes["ch_agenda_item_on_conflict"];
+      },
+      ValueTypes["ch_agenda_item_mutation_response"]
+    ];
+    insert_ch_agenda_item_one?: [
+      {
+        object: ValueTypes["ch_agenda_item_insert_input"];
+        on_conflict?: ValueTypes["ch_agenda_item_on_conflict"];
+      },
+      ValueTypes["ch_agenda_item"]
     ];
     insert_ch_festival?: [
       {
@@ -2892,20 +3036,6 @@ export type ValueTypes = {
         on_conflict?: ValueTypes["ch_time_slot_on_conflict"];
       },
       ValueTypes["ch_time_slot"]
-    ];
-    insert_ch_time_table?: [
-      {
-        objects: ValueTypes["ch_time_table_insert_input"][];
-        on_conflict?: ValueTypes["ch_time_table_on_conflict"];
-      },
-      ValueTypes["ch_time_table_mutation_response"]
-    ];
-    insert_ch_time_table_one?: [
-      {
-        object: ValueTypes["ch_time_table_insert_input"];
-        on_conflict?: ValueTypes["ch_time_table_on_conflict"];
-      },
-      ValueTypes["ch_time_table"]
     ];
     insert_ch_wait_list?: [
       {
@@ -3033,6 +3163,22 @@ export type ValueTypes = {
       },
       ValueTypes["nb_sphere"]
     ];
+    update_ch_agenda_item?: [
+      {
+        _inc?: ValueTypes["ch_agenda_item_inc_input"];
+        _set?: ValueTypes["ch_agenda_item_set_input"];
+        where: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item_mutation_response"]
+    ];
+    update_ch_agenda_item_by_pk?: [
+      {
+        _inc?: ValueTypes["ch_agenda_item_inc_input"];
+        _set?: ValueTypes["ch_agenda_item_set_input"];
+        pk_columns: ValueTypes["ch_agenda_item_pk_columns_input"];
+      },
+      ValueTypes["ch_agenda_item"]
+    ];
     update_ch_festival?: [
       {
         _append?: ValueTypes["ch_festival_append_input"];
@@ -3093,7 +3239,12 @@ export type ValueTypes = {
     ];
     update_ch_proposal?: [
       {
+        _append?: ValueTypes["ch_proposal_append_input"];
+        _delete_at_path?: ValueTypes["ch_proposal_delete_at_path_input"];
+        _delete_elem?: ValueTypes["ch_proposal_delete_elem_input"];
+        _delete_key?: ValueTypes["ch_proposal_delete_key_input"];
         _inc?: ValueTypes["ch_proposal_inc_input"];
+        _prepend?: ValueTypes["ch_proposal_prepend_input"];
         _set?: ValueTypes["ch_proposal_set_input"];
         where: ValueTypes["ch_proposal_bool_exp"];
       },
@@ -3101,7 +3252,12 @@ export type ValueTypes = {
     ];
     update_ch_proposal_by_pk?: [
       {
+        _append?: ValueTypes["ch_proposal_append_input"];
+        _delete_at_path?: ValueTypes["ch_proposal_delete_at_path_input"];
+        _delete_elem?: ValueTypes["ch_proposal_delete_elem_input"];
+        _delete_key?: ValueTypes["ch_proposal_delete_key_input"];
         _inc?: ValueTypes["ch_proposal_inc_input"];
+        _prepend?: ValueTypes["ch_proposal_prepend_input"];
         _set?: ValueTypes["ch_proposal_set_input"];
         pk_columns: ValueTypes["ch_proposal_pk_columns_input"];
       },
@@ -3154,22 +3310,6 @@ export type ValueTypes = {
         pk_columns: ValueTypes["ch_time_slot_pk_columns_input"];
       },
       ValueTypes["ch_time_slot"]
-    ];
-    update_ch_time_table?: [
-      {
-        _inc?: ValueTypes["ch_time_table_inc_input"];
-        _set?: ValueTypes["ch_time_table_set_input"];
-        where: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table_mutation_response"]
-    ];
-    update_ch_time_table_by_pk?: [
-      {
-        _inc?: ValueTypes["ch_time_table_inc_input"];
-        _set?: ValueTypes["ch_time_table_set_input"];
-        pk_columns: ValueTypes["ch_time_table_pk_columns_input"];
-      },
-      ValueTypes["ch_time_table"]
     ];
     update_ch_wait_list?: [
       {
@@ -3816,7 +3956,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere"];
     sphere_id?: true;
     start_time?: true;
-    time_table?: ValueTypes["ch_time_table"];
+    time_table?: ValueTypes["ch_agenda_item"];
     updated_at?: true;
     __typename?: true;
   }>;
@@ -3895,7 +4035,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere_bool_exp"];
     sphere_id?: ValueTypes["Int_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
-    time_table?: ValueTypes["ch_time_table_bool_exp"];
+    time_table?: ValueTypes["ch_agenda_item_bool_exp"];
     updated_at?: ValueTypes["timestamptz_comparison_exp"];
   };
   ["nb_meeting_constraint"]: nb_meeting_constraint;
@@ -3923,7 +4063,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_time?: ValueTypes["timestamptz"];
-    time_table?: ValueTypes["ch_time_table_obj_rel_insert_input"];
+    time_table?: ValueTypes["ch_agenda_item_obj_rel_insert_input"];
     updated_at?: ValueTypes["timestamptz"];
   };
   ["nb_meeting_max_fields"]: AliasType<{
@@ -4029,7 +4169,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere_order_by"];
     sphere_id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
-    time_table?: ValueTypes["ch_time_table_order_by"];
+    time_table?: ValueTypes["ch_agenda_item_order_by"];
     updated_at?: ValueTypes["order_by"];
   };
   ["nb_meeting_participants"]: AliasType<{
@@ -4811,6 +4951,27 @@ export type ValueTypes = {
   };
   ["order_by"]: order_by;
   ["query_root"]: AliasType<{
+    ch_agenda_item?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item"]
+    ];
+    ch_agenda_item_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item_aggregate"]
+    ];
+    ch_agenda_item_by_pk?: [{ id: number }, ValueTypes["ch_agenda_item"]];
     ch_festival?: [
       {
         distinct_on?: ValueTypes["ch_festival_select_column"][];
@@ -4964,27 +5125,6 @@ export type ValueTypes = {
       ValueTypes["ch_time_slot_aggregate"]
     ];
     ch_time_slot_by_pk?: [{ id: number }, ValueTypes["ch_time_slot"]];
-    ch_time_table?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table"]
-    ];
-    ch_time_table_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table_aggregate"]
-    ];
-    ch_time_table_by_pk?: [{ id: number }, ValueTypes["ch_time_table"]];
     ch_wait_list?: [
       {
         distinct_on?: ValueTypes["ch_wait_list_select_column"][];
@@ -5200,6 +5340,27 @@ export type ValueTypes = {
     _similar?: string;
   };
   ["subscription_root"]: AliasType<{
+    ch_agenda_item?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item"]
+    ];
+    ch_agenda_item_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_agenda_item_order_by"][];
+        where?: ValueTypes["ch_agenda_item_bool_exp"];
+      },
+      ValueTypes["ch_agenda_item_aggregate"]
+    ];
+    ch_agenda_item_by_pk?: [{ id: number }, ValueTypes["ch_agenda_item"]];
     ch_festival?: [
       {
         distinct_on?: ValueTypes["ch_festival_select_column"][];
@@ -5353,27 +5514,6 @@ export type ValueTypes = {
       ValueTypes["ch_time_slot_aggregate"]
     ];
     ch_time_slot_by_pk?: [{ id: number }, ValueTypes["ch_time_slot"]];
-    ch_time_table?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table"]
-    ];
-    ch_time_table_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_time_table_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_time_table_order_by"][];
-        where?: ValueTypes["ch_time_table_bool_exp"];
-      },
-      ValueTypes["ch_time_table_aggregate"]
-    ];
-    ch_time_table_by_pk?: [{ id: number }, ValueTypes["ch_time_table"]];
     ch_wait_list?: [
       {
         distinct_on?: ValueTypes["ch_wait_list_select_column"][];
@@ -5608,6 +5748,254 @@ export type PartialObjects = {
     _lte?: boolean;
     _neq?: boolean;
     _nin?: boolean[];
+  };
+  ["ch_agenda_item"]: {
+    __typename?: "ch_agenda_item";
+    ch_helper?: PartialObjects["ch_helper"];
+    ch_room?: PartialObjects["ch_room"];
+    helper_confirmed?: boolean;
+    helper_id?: number;
+    id?: number;
+    meeting_confirmed?: boolean;
+    meeting_id?: number;
+    nb_meeting?: PartialObjects["nb_meeting"];
+    room_id?: number;
+  };
+  ["ch_agenda_item_aggregate"]: {
+    __typename?: "ch_agenda_item_aggregate";
+    aggregate?: PartialObjects["ch_agenda_item_aggregate_fields"];
+    nodes?: PartialObjects["ch_agenda_item"][];
+  };
+  ["ch_agenda_item_aggregate_fields"]: {
+    __typename?: "ch_agenda_item_aggregate_fields";
+    avg?: PartialObjects["ch_agenda_item_avg_fields"];
+    count?: number;
+    max?: PartialObjects["ch_agenda_item_max_fields"];
+    min?: PartialObjects["ch_agenda_item_min_fields"];
+    stddev?: PartialObjects["ch_agenda_item_stddev_fields"];
+    stddev_pop?: PartialObjects["ch_agenda_item_stddev_pop_fields"];
+    stddev_samp?: PartialObjects["ch_agenda_item_stddev_samp_fields"];
+    sum?: PartialObjects["ch_agenda_item_sum_fields"];
+    var_pop?: PartialObjects["ch_agenda_item_var_pop_fields"];
+    var_samp?: PartialObjects["ch_agenda_item_var_samp_fields"];
+    variance?: PartialObjects["ch_agenda_item_variance_fields"];
+  };
+  ["ch_agenda_item_aggregate_order_by"]: {
+    avg?: PartialObjects["ch_agenda_item_avg_order_by"];
+    count?: PartialObjects["order_by"];
+    max?: PartialObjects["ch_agenda_item_max_order_by"];
+    min?: PartialObjects["ch_agenda_item_min_order_by"];
+    stddev?: PartialObjects["ch_agenda_item_stddev_order_by"];
+    stddev_pop?: PartialObjects["ch_agenda_item_stddev_pop_order_by"];
+    stddev_samp?: PartialObjects["ch_agenda_item_stddev_samp_order_by"];
+    sum?: PartialObjects["ch_agenda_item_sum_order_by"];
+    var_pop?: PartialObjects["ch_agenda_item_var_pop_order_by"];
+    var_samp?: PartialObjects["ch_agenda_item_var_samp_order_by"];
+    variance?: PartialObjects["ch_agenda_item_variance_order_by"];
+  };
+  ["ch_agenda_item_arr_rel_insert_input"]: {
+    data: PartialObjects["ch_agenda_item_insert_input"][];
+    on_conflict?: PartialObjects["ch_agenda_item_on_conflict"];
+  };
+  ["ch_agenda_item_avg_fields"]: {
+    __typename?: "ch_agenda_item_avg_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_avg_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_bool_exp"]: {
+    _and?: (PartialObjects["ch_agenda_item_bool_exp"] | undefined)[];
+    _not?: PartialObjects["ch_agenda_item_bool_exp"];
+    _or?: (PartialObjects["ch_agenda_item_bool_exp"] | undefined)[];
+    ch_helper?: PartialObjects["ch_helper_bool_exp"];
+    ch_room?: PartialObjects["ch_room_bool_exp"];
+    helper_confirmed?: PartialObjects["Boolean_comparison_exp"];
+    helper_id?: PartialObjects["Int_comparison_exp"];
+    id?: PartialObjects["Int_comparison_exp"];
+    meeting_confirmed?: PartialObjects["Boolean_comparison_exp"];
+    meeting_id?: PartialObjects["Int_comparison_exp"];
+    nb_meeting?: PartialObjects["nb_meeting_bool_exp"];
+    room_id?: PartialObjects["Int_comparison_exp"];
+  };
+  ["ch_agenda_item_constraint"]: ch_agenda_item_constraint;
+  ["ch_agenda_item_inc_input"]: {
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_insert_input"]: {
+    ch_helper?: PartialObjects["ch_helper_obj_rel_insert_input"];
+    ch_room?: PartialObjects["ch_room_obj_rel_insert_input"];
+    helper_confirmed?: boolean;
+    helper_id?: number;
+    id?: number;
+    meeting_confirmed?: boolean;
+    meeting_id?: number;
+    nb_meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
+    room_id?: number;
+  };
+  ["ch_agenda_item_max_fields"]: {
+    __typename?: "ch_agenda_item_max_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_max_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_min_fields"]: {
+    __typename?: "ch_agenda_item_min_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_min_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_mutation_response"]: {
+    __typename?: "ch_agenda_item_mutation_response";
+    affected_rows?: number;
+    returning?: PartialObjects["ch_agenda_item"][];
+  };
+  ["ch_agenda_item_obj_rel_insert_input"]: {
+    data: PartialObjects["ch_agenda_item_insert_input"];
+    on_conflict?: PartialObjects["ch_agenda_item_on_conflict"];
+  };
+  ["ch_agenda_item_on_conflict"]: {
+    constraint: PartialObjects["ch_agenda_item_constraint"];
+    update_columns: PartialObjects["ch_agenda_item_update_column"][];
+    where?: PartialObjects["ch_agenda_item_bool_exp"];
+  };
+  ["ch_agenda_item_order_by"]: {
+    ch_helper?: PartialObjects["ch_helper_order_by"];
+    ch_room?: PartialObjects["ch_room_order_by"];
+    helper_confirmed?: PartialObjects["order_by"];
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_confirmed?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    nb_meeting?: PartialObjects["nb_meeting_order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_pk_columns_input"]: {
+    id: number;
+  };
+  ["ch_agenda_item_select_column"]: ch_agenda_item_select_column;
+  ["ch_agenda_item_set_input"]: {
+    helper_confirmed?: boolean;
+    helper_id?: number;
+    id?: number;
+    meeting_confirmed?: boolean;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_stddev_fields"]: {
+    __typename?: "ch_agenda_item_stddev_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_stddev_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_stddev_pop_fields"]: {
+    __typename?: "ch_agenda_item_stddev_pop_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_stddev_pop_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_stddev_samp_fields"]: {
+    __typename?: "ch_agenda_item_stddev_samp_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_stddev_samp_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_sum_fields"]: {
+    __typename?: "ch_agenda_item_sum_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_sum_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_update_column"]: ch_agenda_item_update_column;
+  ["ch_agenda_item_var_pop_fields"]: {
+    __typename?: "ch_agenda_item_var_pop_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_var_pop_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_var_samp_fields"]: {
+    __typename?: "ch_agenda_item_var_samp_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_var_samp_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
+  };
+  ["ch_agenda_item_variance_fields"]: {
+    __typename?: "ch_agenda_item_variance_fields";
+    helper_id?: number;
+    id?: number;
+    meeting_id?: number;
+    room_id?: number;
+  };
+  ["ch_agenda_item_variance_order_by"]: {
+    helper_id?: PartialObjects["order_by"];
+    id?: PartialObjects["order_by"];
+    meeting_id?: PartialObjects["order_by"];
+    room_id?: PartialObjects["order_by"];
   };
   ["ch_festival"]: {
     __typename?: "ch_festival";
@@ -5878,11 +6266,11 @@ export type PartialObjects = {
   };
   ["ch_helper"]: {
     __typename?: "ch_helper";
+    ch_agenda_items?: PartialObjects["ch_agenda_item"][];
+    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
     ch_festival?: PartialObjects["ch_festival"];
     ch_helper_time_slots?: PartialObjects["ch_helper_time_slots"][];
     ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate"];
-    ch_time_tables?: PartialObjects["ch_time_table"][];
-    ch_time_tables_aggregate?: PartialObjects["ch_time_table_aggregate"];
     cr_user?: PartialObjects["cr_user"];
     festival_id?: number;
     id?: number;
@@ -5937,9 +6325,9 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_helper_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_helper_bool_exp"];
     _or?: (PartialObjects["ch_helper_bool_exp"] | undefined)[];
+    ch_agenda_items?: PartialObjects["ch_agenda_item_bool_exp"];
     ch_festival?: PartialObjects["ch_festival_bool_exp"];
     ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_bool_exp"];
-    ch_time_tables?: PartialObjects["ch_time_table_bool_exp"];
     cr_user?: PartialObjects["cr_user_bool_exp"];
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
@@ -5951,9 +6339,9 @@ export type PartialObjects = {
     id?: number;
   };
   ["ch_helper_insert_input"]: {
+    ch_agenda_items?: PartialObjects["ch_agenda_item_arr_rel_insert_input"];
     ch_festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
     ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_arr_rel_insert_input"];
-    ch_time_tables?: PartialObjects["ch_time_table_arr_rel_insert_input"];
     cr_user?: PartialObjects["cr_user_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
@@ -5996,9 +6384,9 @@ export type PartialObjects = {
     where?: PartialObjects["ch_helper_bool_exp"];
   };
   ["ch_helper_order_by"]: {
+    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate_order_by"];
     ch_festival?: PartialObjects["ch_festival_order_by"];
     ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate_order_by"];
-    ch_time_tables_aggregate?: PartialObjects["ch_time_table_aggregate_order_by"];
     cr_user?: PartialObjects["cr_user_order_by"];
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
@@ -6292,13 +6680,21 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list"];
     city?: string;
     club?: string;
+    contact_info?: string;
+    created_at?: PartialObjects["timestamptz"];
+    description?: string;
+    duration_minutes?: number;
     id?: number;
     meeting?: PartialObjects["nb_meeting"];
     meeting_id?: number;
+    name?: string;
     needs?: string;
-    other_contact?: string;
-    other_data?: string;
+    other_contact?: PartialObjects["jsonb"];
+    other_data?: PartialObjects["jsonb"];
     phone?: string;
+    speaker_name?: string;
+    speaker_user_id?: PartialObjects["uuid"];
+    status?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_aggregate"]: {
@@ -6333,17 +6729,23 @@ export type PartialObjects = {
     var_samp?: PartialObjects["ch_proposal_var_samp_order_by"];
     variance?: PartialObjects["ch_proposal_variance_order_by"];
   };
+  ["ch_proposal_append_input"]: {
+    other_contact?: PartialObjects["jsonb"];
+    other_data?: PartialObjects["jsonb"];
+  };
   ["ch_proposal_arr_rel_insert_input"]: {
     data: PartialObjects["ch_proposal_insert_input"][];
     on_conflict?: PartialObjects["ch_proposal_on_conflict"];
   };
   ["ch_proposal_avg_fields"]: {
     __typename?: "ch_proposal_avg_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_avg_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
@@ -6356,17 +6758,38 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list_bool_exp"];
     city?: PartialObjects["String_comparison_exp"];
     club?: PartialObjects["String_comparison_exp"];
+    contact_info?: PartialObjects["String_comparison_exp"];
+    created_at?: PartialObjects["timestamptz_comparison_exp"];
+    description?: PartialObjects["String_comparison_exp"];
+    duration_minutes?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     meeting?: PartialObjects["nb_meeting_bool_exp"];
     meeting_id?: PartialObjects["Int_comparison_exp"];
+    name?: PartialObjects["String_comparison_exp"];
     needs?: PartialObjects["String_comparison_exp"];
-    other_contact?: PartialObjects["String_comparison_exp"];
-    other_data?: PartialObjects["String_comparison_exp"];
+    other_contact?: PartialObjects["jsonb_comparison_exp"];
+    other_data?: PartialObjects["jsonb_comparison_exp"];
     phone?: PartialObjects["String_comparison_exp"];
+    speaker_name?: PartialObjects["String_comparison_exp"];
+    speaker_user_id?: PartialObjects["uuid_comparison_exp"];
+    status?: PartialObjects["String_comparison_exp"];
     waitlist_id?: PartialObjects["Int_comparison_exp"];
   };
   ["ch_proposal_constraint"]: ch_proposal_constraint;
+  ["ch_proposal_delete_at_path_input"]: {
+    other_contact?: (string | undefined)[];
+    other_data?: (string | undefined)[];
+  };
+  ["ch_proposal_delete_elem_input"]: {
+    other_contact?: number;
+    other_data?: number;
+  };
+  ["ch_proposal_delete_key_input"]: {
+    other_contact?: string;
+    other_data?: string;
+  };
   ["ch_proposal_inc_input"]: {
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
@@ -6376,59 +6799,91 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list_obj_rel_insert_input"];
     city?: string;
     club?: string;
+    contact_info?: string;
+    created_at?: PartialObjects["timestamptz"];
+    description?: string;
+    duration_minutes?: number;
     id?: number;
     meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
     meeting_id?: number;
+    name?: string;
     needs?: string;
-    other_contact?: string;
-    other_data?: string;
+    other_contact?: PartialObjects["jsonb"];
+    other_data?: PartialObjects["jsonb"];
     phone?: string;
+    speaker_name?: string;
+    speaker_user_id?: PartialObjects["uuid"];
+    status?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_max_fields"]: {
     __typename?: "ch_proposal_max_fields";
     city?: string;
     club?: string;
+    contact_info?: string;
+    created_at?: PartialObjects["timestamptz"];
+    description?: string;
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
+    name?: string;
     needs?: string;
-    other_contact?: string;
-    other_data?: string;
     phone?: string;
+    speaker_name?: string;
+    speaker_user_id?: PartialObjects["uuid"];
+    status?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_max_order_by"]: {
     city?: PartialObjects["order_by"];
     club?: PartialObjects["order_by"];
+    contact_info?: PartialObjects["order_by"];
+    created_at?: PartialObjects["order_by"];
+    description?: PartialObjects["order_by"];
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
+    name?: PartialObjects["order_by"];
     needs?: PartialObjects["order_by"];
-    other_contact?: PartialObjects["order_by"];
-    other_data?: PartialObjects["order_by"];
     phone?: PartialObjects["order_by"];
+    speaker_name?: PartialObjects["order_by"];
+    speaker_user_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_min_fields"]: {
     __typename?: "ch_proposal_min_fields";
     city?: string;
     club?: string;
+    contact_info?: string;
+    created_at?: PartialObjects["timestamptz"];
+    description?: string;
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
+    name?: string;
     needs?: string;
-    other_contact?: string;
-    other_data?: string;
     phone?: string;
+    speaker_name?: string;
+    speaker_user_id?: PartialObjects["uuid"];
+    status?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_min_order_by"]: {
     city?: PartialObjects["order_by"];
     club?: PartialObjects["order_by"];
+    contact_info?: PartialObjects["order_by"];
+    created_at?: PartialObjects["order_by"];
+    description?: PartialObjects["order_by"];
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
+    name?: PartialObjects["order_by"];
     needs?: PartialObjects["order_by"];
-    other_contact?: PartialObjects["order_by"];
-    other_data?: PartialObjects["order_by"];
     phone?: PartialObjects["order_by"];
+    speaker_name?: PartialObjects["order_by"];
+    speaker_user_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_mutation_response"]: {
@@ -6450,70 +6905,98 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list_order_by"];
     city?: PartialObjects["order_by"];
     club?: PartialObjects["order_by"];
+    contact_info?: PartialObjects["order_by"];
+    created_at?: PartialObjects["order_by"];
+    description?: PartialObjects["order_by"];
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting?: PartialObjects["nb_meeting_order_by"];
     meeting_id?: PartialObjects["order_by"];
+    name?: PartialObjects["order_by"];
     needs?: PartialObjects["order_by"];
     other_contact?: PartialObjects["order_by"];
     other_data?: PartialObjects["order_by"];
     phone?: PartialObjects["order_by"];
+    speaker_name?: PartialObjects["order_by"];
+    speaker_user_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_pk_columns_input"]: {
     id: number;
   };
+  ["ch_proposal_prepend_input"]: {
+    other_contact?: PartialObjects["jsonb"];
+    other_data?: PartialObjects["jsonb"];
+  };
   ["ch_proposal_select_column"]: ch_proposal_select_column;
   ["ch_proposal_set_input"]: {
     city?: string;
     club?: string;
+    contact_info?: string;
+    created_at?: PartialObjects["timestamptz"];
+    description?: string;
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
+    name?: string;
     needs?: string;
-    other_contact?: string;
-    other_data?: string;
+    other_contact?: PartialObjects["jsonb"];
+    other_data?: PartialObjects["jsonb"];
     phone?: string;
+    speaker_name?: string;
+    speaker_user_id?: PartialObjects["uuid"];
+    status?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_stddev_fields"]: {
     __typename?: "ch_proposal_stddev_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_stddev_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_stddev_pop_fields"]: {
     __typename?: "ch_proposal_stddev_pop_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_stddev_pop_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_stddev_samp_fields"]: {
     __typename?: "ch_proposal_stddev_samp_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_stddev_samp_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_sum_fields"]: {
     __typename?: "ch_proposal_sum_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_sum_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
@@ -6729,42 +7212,48 @@ export type PartialObjects = {
   ["ch_proposal_update_column"]: ch_proposal_update_column;
   ["ch_proposal_var_pop_fields"]: {
     __typename?: "ch_proposal_var_pop_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_var_pop_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_var_samp_fields"]: {
     __typename?: "ch_proposal_var_samp_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_var_samp_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_variance_fields"]: {
     __typename?: "ch_proposal_variance_fields";
+    duration_minutes?: number;
     id?: number;
     meeting_id?: number;
     waitlist_id?: number;
   };
   ["ch_proposal_variance_order_by"]: {
+    duration_minutes?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_room"]: {
     __typename?: "ch_room";
+    ch_agenda_items?: PartialObjects["ch_agenda_item"][];
+    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
     ch_festival?: PartialObjects["ch_festival"];
-    ch_time_tables?: PartialObjects["ch_time_table"][];
-    ch_time_tables_aggregate?: PartialObjects["ch_time_table_aggregate"];
     festival_id?: number;
     id?: number;
     name?: string;
@@ -6818,8 +7307,8 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_room_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_room_bool_exp"];
     _or?: (PartialObjects["ch_room_bool_exp"] | undefined)[];
+    ch_agenda_items?: PartialObjects["ch_agenda_item_bool_exp"];
     ch_festival?: PartialObjects["ch_festival_bool_exp"];
-    ch_time_tables?: PartialObjects["ch_time_table_bool_exp"];
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
@@ -6830,8 +7319,8 @@ export type PartialObjects = {
     id?: number;
   };
   ["ch_room_insert_input"]: {
+    ch_agenda_items?: PartialObjects["ch_agenda_item_arr_rel_insert_input"];
     ch_festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
-    ch_time_tables?: PartialObjects["ch_time_table_arr_rel_insert_input"];
     festival_id?: number;
     id?: number;
     name?: string;
@@ -6873,8 +7362,8 @@ export type PartialObjects = {
     where?: PartialObjects["ch_room_bool_exp"];
   };
   ["ch_room_order_by"]: {
+    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate_order_by"];
     ch_festival?: PartialObjects["ch_festival_order_by"];
-    ch_time_tables_aggregate?: PartialObjects["ch_time_table_aggregate_order_by"];
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
@@ -6959,6 +7448,7 @@ export type PartialObjects = {
     ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots"][];
     ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate"];
     end_time?: PartialObjects["timestamptz"];
+    festival_id?: number;
     id?: number;
     start_time?: PartialObjects["timestamptz"];
   };
@@ -7000,9 +7490,11 @@ export type PartialObjects = {
   };
   ["ch_time_slot_avg_fields"]: {
     __typename?: "ch_time_slot_avg_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_avg_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
   };
   ["ch_time_slot_bool_exp"]: {
@@ -7012,39 +7504,46 @@ export type PartialObjects = {
     ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_bool_exp"];
     ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_bool_exp"];
     end_time?: PartialObjects["timestamptz_comparison_exp"];
+    festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
   };
   ["ch_time_slot_constraint"]: ch_time_slot_constraint;
   ["ch_time_slot_inc_input"]: {
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_insert_input"]: {
     ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_arr_rel_insert_input"];
     ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_arr_rel_insert_input"];
     end_time?: PartialObjects["timestamptz"];
+    festival_id?: number;
     id?: number;
     start_time?: PartialObjects["timestamptz"];
   };
   ["ch_time_slot_max_fields"]: {
     __typename?: "ch_time_slot_max_fields";
     end_time?: PartialObjects["timestamptz"];
+    festival_id?: number;
     id?: number;
     start_time?: PartialObjects["timestamptz"];
   };
   ["ch_time_slot_max_order_by"]: {
     end_time?: PartialObjects["order_by"];
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
   };
   ["ch_time_slot_min_fields"]: {
     __typename?: "ch_time_slot_min_fields";
     end_time?: PartialObjects["timestamptz"];
+    festival_id?: number;
     id?: number;
     start_time?: PartialObjects["timestamptz"];
   };
   ["ch_time_slot_min_order_by"]: {
     end_time?: PartialObjects["order_by"];
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
   };
@@ -7066,6 +7565,7 @@ export type PartialObjects = {
     ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate_order_by"];
     ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate_order_by"];
     end_time?: PartialObjects["order_by"];
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
   };
@@ -7075,306 +7575,73 @@ export type PartialObjects = {
   ["ch_time_slot_select_column"]: ch_time_slot_select_column;
   ["ch_time_slot_set_input"]: {
     end_time?: PartialObjects["timestamptz"];
+    festival_id?: number;
     id?: number;
     start_time?: PartialObjects["timestamptz"];
   };
   ["ch_time_slot_stddev_fields"]: {
     __typename?: "ch_time_slot_stddev_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_stddev_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
   };
   ["ch_time_slot_stddev_pop_fields"]: {
     __typename?: "ch_time_slot_stddev_pop_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_stddev_pop_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
   };
   ["ch_time_slot_stddev_samp_fields"]: {
     __typename?: "ch_time_slot_stddev_samp_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_stddev_samp_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
   };
   ["ch_time_slot_sum_fields"]: {
     __typename?: "ch_time_slot_sum_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_sum_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
   };
   ["ch_time_slot_update_column"]: ch_time_slot_update_column;
   ["ch_time_slot_var_pop_fields"]: {
     __typename?: "ch_time_slot_var_pop_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_var_pop_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
   };
   ["ch_time_slot_var_samp_fields"]: {
     __typename?: "ch_time_slot_var_samp_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_var_samp_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
   };
   ["ch_time_slot_variance_fields"]: {
     __typename?: "ch_time_slot_variance_fields";
+    festival_id?: number;
     id?: number;
   };
   ["ch_time_slot_variance_order_by"]: {
+    festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table"]: {
-    __typename?: "ch_time_table";
-    ch_helper?: PartialObjects["ch_helper"];
-    ch_room?: PartialObjects["ch_room"];
-    helper_confirmed?: boolean;
-    helper_id?: number;
-    id?: number;
-    meeting_confirmed?: boolean;
-    meeting_id?: number;
-    nb_meeting?: PartialObjects["nb_meeting"];
-    room_id?: number;
-  };
-  ["ch_time_table_aggregate"]: {
-    __typename?: "ch_time_table_aggregate";
-    aggregate?: PartialObjects["ch_time_table_aggregate_fields"];
-    nodes?: PartialObjects["ch_time_table"][];
-  };
-  ["ch_time_table_aggregate_fields"]: {
-    __typename?: "ch_time_table_aggregate_fields";
-    avg?: PartialObjects["ch_time_table_avg_fields"];
-    count?: number;
-    max?: PartialObjects["ch_time_table_max_fields"];
-    min?: PartialObjects["ch_time_table_min_fields"];
-    stddev?: PartialObjects["ch_time_table_stddev_fields"];
-    stddev_pop?: PartialObjects["ch_time_table_stddev_pop_fields"];
-    stddev_samp?: PartialObjects["ch_time_table_stddev_samp_fields"];
-    sum?: PartialObjects["ch_time_table_sum_fields"];
-    var_pop?: PartialObjects["ch_time_table_var_pop_fields"];
-    var_samp?: PartialObjects["ch_time_table_var_samp_fields"];
-    variance?: PartialObjects["ch_time_table_variance_fields"];
-  };
-  ["ch_time_table_aggregate_order_by"]: {
-    avg?: PartialObjects["ch_time_table_avg_order_by"];
-    count?: PartialObjects["order_by"];
-    max?: PartialObjects["ch_time_table_max_order_by"];
-    min?: PartialObjects["ch_time_table_min_order_by"];
-    stddev?: PartialObjects["ch_time_table_stddev_order_by"];
-    stddev_pop?: PartialObjects["ch_time_table_stddev_pop_order_by"];
-    stddev_samp?: PartialObjects["ch_time_table_stddev_samp_order_by"];
-    sum?: PartialObjects["ch_time_table_sum_order_by"];
-    var_pop?: PartialObjects["ch_time_table_var_pop_order_by"];
-    var_samp?: PartialObjects["ch_time_table_var_samp_order_by"];
-    variance?: PartialObjects["ch_time_table_variance_order_by"];
-  };
-  ["ch_time_table_arr_rel_insert_input"]: {
-    data: PartialObjects["ch_time_table_insert_input"][];
-    on_conflict?: PartialObjects["ch_time_table_on_conflict"];
-  };
-  ["ch_time_table_avg_fields"]: {
-    __typename?: "ch_time_table_avg_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_avg_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_bool_exp"]: {
-    _and?: (PartialObjects["ch_time_table_bool_exp"] | undefined)[];
-    _not?: PartialObjects["ch_time_table_bool_exp"];
-    _or?: (PartialObjects["ch_time_table_bool_exp"] | undefined)[];
-    ch_helper?: PartialObjects["ch_helper_bool_exp"];
-    ch_room?: PartialObjects["ch_room_bool_exp"];
-    helper_confirmed?: PartialObjects["Boolean_comparison_exp"];
-    helper_id?: PartialObjects["Int_comparison_exp"];
-    id?: PartialObjects["Int_comparison_exp"];
-    meeting_confirmed?: PartialObjects["Boolean_comparison_exp"];
-    meeting_id?: PartialObjects["Int_comparison_exp"];
-    nb_meeting?: PartialObjects["nb_meeting_bool_exp"];
-    room_id?: PartialObjects["Int_comparison_exp"];
-  };
-  ["ch_time_table_constraint"]: ch_time_table_constraint;
-  ["ch_time_table_inc_input"]: {
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_insert_input"]: {
-    ch_helper?: PartialObjects["ch_helper_obj_rel_insert_input"];
-    ch_room?: PartialObjects["ch_room_obj_rel_insert_input"];
-    helper_confirmed?: boolean;
-    helper_id?: number;
-    id?: number;
-    meeting_confirmed?: boolean;
-    meeting_id?: number;
-    nb_meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
-    room_id?: number;
-  };
-  ["ch_time_table_max_fields"]: {
-    __typename?: "ch_time_table_max_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_max_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_min_fields"]: {
-    __typename?: "ch_time_table_min_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_min_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_mutation_response"]: {
-    __typename?: "ch_time_table_mutation_response";
-    affected_rows?: number;
-    returning?: PartialObjects["ch_time_table"][];
-  };
-  ["ch_time_table_obj_rel_insert_input"]: {
-    data: PartialObjects["ch_time_table_insert_input"];
-    on_conflict?: PartialObjects["ch_time_table_on_conflict"];
-  };
-  ["ch_time_table_on_conflict"]: {
-    constraint: PartialObjects["ch_time_table_constraint"];
-    update_columns: PartialObjects["ch_time_table_update_column"][];
-    where?: PartialObjects["ch_time_table_bool_exp"];
-  };
-  ["ch_time_table_order_by"]: {
-    ch_helper?: PartialObjects["ch_helper_order_by"];
-    ch_room?: PartialObjects["ch_room_order_by"];
-    helper_confirmed?: PartialObjects["order_by"];
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_confirmed?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    nb_meeting?: PartialObjects["nb_meeting_order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_pk_columns_input"]: {
-    id: number;
-  };
-  ["ch_time_table_select_column"]: ch_time_table_select_column;
-  ["ch_time_table_set_input"]: {
-    helper_confirmed?: boolean;
-    helper_id?: number;
-    id?: number;
-    meeting_confirmed?: boolean;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_stddev_fields"]: {
-    __typename?: "ch_time_table_stddev_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_stddev_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_stddev_pop_fields"]: {
-    __typename?: "ch_time_table_stddev_pop_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_stddev_pop_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_stddev_samp_fields"]: {
-    __typename?: "ch_time_table_stddev_samp_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_stddev_samp_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_sum_fields"]: {
-    __typename?: "ch_time_table_sum_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_sum_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_update_column"]: ch_time_table_update_column;
-  ["ch_time_table_var_pop_fields"]: {
-    __typename?: "ch_time_table_var_pop_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_var_pop_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_var_samp_fields"]: {
-    __typename?: "ch_time_table_var_samp_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_var_samp_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
-  };
-  ["ch_time_table_variance_fields"]: {
-    __typename?: "ch_time_table_variance_fields";
-    helper_id?: number;
-    id?: number;
-    meeting_id?: number;
-    room_id?: number;
-  };
-  ["ch_time_table_variance_order_by"]: {
-    helper_id?: PartialObjects["order_by"];
-    id?: PartialObjects["order_by"];
-    meeting_id?: PartialObjects["order_by"];
-    room_id?: PartialObjects["order_by"];
   };
   ["ch_wait_list"]: {
     __typename?: "ch_wait_list";
@@ -7962,6 +8229,8 @@ export type PartialObjects = {
   };
   ["mutation_root"]: {
     __typename?: "mutation_root";
+    delete_ch_agenda_item?: PartialObjects["ch_agenda_item_mutation_response"];
+    delete_ch_agenda_item_by_pk?: PartialObjects["ch_agenda_item"];
     delete_ch_festival?: PartialObjects["ch_festival_mutation_response"];
     delete_ch_festival_by_pk?: PartialObjects["ch_festival"];
     delete_ch_helper?: PartialObjects["ch_helper_mutation_response"];
@@ -7976,8 +8245,6 @@ export type PartialObjects = {
     delete_ch_room_by_pk?: PartialObjects["ch_room"];
     delete_ch_time_slot?: PartialObjects["ch_time_slot_mutation_response"];
     delete_ch_time_slot_by_pk?: PartialObjects["ch_time_slot"];
-    delete_ch_time_table?: PartialObjects["ch_time_table_mutation_response"];
-    delete_ch_time_table_by_pk?: PartialObjects["ch_time_table"];
     delete_ch_wait_list?: PartialObjects["ch_wait_list_mutation_response"];
     delete_ch_wait_list_by_pk?: PartialObjects["ch_wait_list"];
     delete_cr_user?: PartialObjects["cr_user_mutation_response"];
@@ -7996,6 +8263,8 @@ export type PartialObjects = {
     delete_nb_sphere_by_pk?: PartialObjects["nb_sphere"];
     delete_nb_sphere_managers?: PartialObjects["nb_sphere_managers_mutation_response"];
     delete_nb_sphere_managers_by_pk?: PartialObjects["nb_sphere_managers"];
+    insert_ch_agenda_item?: PartialObjects["ch_agenda_item_mutation_response"];
+    insert_ch_agenda_item_one?: PartialObjects["ch_agenda_item"];
     insert_ch_festival?: PartialObjects["ch_festival_mutation_response"];
     insert_ch_festival_one?: PartialObjects["ch_festival"];
     insert_ch_helper?: PartialObjects["ch_helper_mutation_response"];
@@ -8010,8 +8279,6 @@ export type PartialObjects = {
     insert_ch_room_one?: PartialObjects["ch_room"];
     insert_ch_time_slot?: PartialObjects["ch_time_slot_mutation_response"];
     insert_ch_time_slot_one?: PartialObjects["ch_time_slot"];
-    insert_ch_time_table?: PartialObjects["ch_time_table_mutation_response"];
-    insert_ch_time_table_one?: PartialObjects["ch_time_table"];
     insert_ch_wait_list?: PartialObjects["ch_wait_list_mutation_response"];
     insert_ch_wait_list_one?: PartialObjects["ch_wait_list"];
     insert_cr_user?: PartialObjects["cr_user_mutation_response"];
@@ -8030,6 +8297,8 @@ export type PartialObjects = {
     insert_nb_sphere_managers?: PartialObjects["nb_sphere_managers_mutation_response"];
     insert_nb_sphere_managers_one?: PartialObjects["nb_sphere_managers"];
     insert_nb_sphere_one?: PartialObjects["nb_sphere"];
+    update_ch_agenda_item?: PartialObjects["ch_agenda_item_mutation_response"];
+    update_ch_agenda_item_by_pk?: PartialObjects["ch_agenda_item"];
     update_ch_festival?: PartialObjects["ch_festival_mutation_response"];
     update_ch_festival_by_pk?: PartialObjects["ch_festival"];
     update_ch_helper?: PartialObjects["ch_helper_mutation_response"];
@@ -8044,8 +8313,6 @@ export type PartialObjects = {
     update_ch_room_by_pk?: PartialObjects["ch_room"];
     update_ch_time_slot?: PartialObjects["ch_time_slot_mutation_response"];
     update_ch_time_slot_by_pk?: PartialObjects["ch_time_slot"];
-    update_ch_time_table?: PartialObjects["ch_time_table_mutation_response"];
-    update_ch_time_table_by_pk?: PartialObjects["ch_time_table"];
     update_ch_wait_list?: PartialObjects["ch_wait_list_mutation_response"];
     update_ch_wait_list_by_pk?: PartialObjects["ch_wait_list"];
     update_cr_user?: PartialObjects["cr_user_mutation_response"];
@@ -8494,7 +8761,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere"];
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
-    time_table?: PartialObjects["ch_time_table"];
+    time_table?: PartialObjects["ch_agenda_item"];
     updated_at?: PartialObjects["timestamptz"];
   };
   ["nb_meeting_aggregate"]: {
@@ -8566,7 +8833,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere_bool_exp"];
     sphere_id?: PartialObjects["Int_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
-    time_table?: PartialObjects["ch_time_table_bool_exp"];
+    time_table?: PartialObjects["ch_agenda_item_bool_exp"];
     updated_at?: PartialObjects["timestamptz_comparison_exp"];
   };
   ["nb_meeting_constraint"]: nb_meeting_constraint;
@@ -8594,7 +8861,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
-    time_table?: PartialObjects["ch_time_table_obj_rel_insert_input"];
+    time_table?: PartialObjects["ch_agenda_item_obj_rel_insert_input"];
     updated_at?: PartialObjects["timestamptz"];
   };
   ["nb_meeting_max_fields"]: {
@@ -8700,7 +8967,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere_order_by"];
     sphere_id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
-    time_table?: PartialObjects["ch_time_table_order_by"];
+    time_table?: PartialObjects["ch_agenda_item_order_by"];
     updated_at?: PartialObjects["order_by"];
   };
   ["nb_meeting_participants"]: {
@@ -9414,6 +9681,9 @@ export type PartialObjects = {
   ["order_by"]: order_by;
   ["query_root"]: {
     __typename?: "query_root";
+    ch_agenda_item?: PartialObjects["ch_agenda_item"][];
+    ch_agenda_item_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
+    ch_agenda_item_by_pk?: PartialObjects["ch_agenda_item"];
     ch_festival?: PartialObjects["ch_festival"][];
     ch_festival_aggregate?: PartialObjects["ch_festival_aggregate"];
     ch_festival_by_pk?: PartialObjects["ch_festival"];
@@ -9435,9 +9705,6 @@ export type PartialObjects = {
     ch_time_slot?: PartialObjects["ch_time_slot"][];
     ch_time_slot_aggregate?: PartialObjects["ch_time_slot_aggregate"];
     ch_time_slot_by_pk?: PartialObjects["ch_time_slot"];
-    ch_time_table?: PartialObjects["ch_time_table"][];
-    ch_time_table_aggregate?: PartialObjects["ch_time_table_aggregate"];
-    ch_time_table_by_pk?: PartialObjects["ch_time_table"];
     ch_wait_list?: PartialObjects["ch_wait_list"][];
     ch_wait_list_aggregate?: PartialObjects["ch_wait_list_aggregate"];
     ch_wait_list_by_pk?: PartialObjects["ch_wait_list"];
@@ -9485,6 +9752,9 @@ export type PartialObjects = {
   };
   ["subscription_root"]: {
     __typename?: "subscription_root";
+    ch_agenda_item?: PartialObjects["ch_agenda_item"][];
+    ch_agenda_item_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
+    ch_agenda_item_by_pk?: PartialObjects["ch_agenda_item"];
     ch_festival?: PartialObjects["ch_festival"][];
     ch_festival_aggregate?: PartialObjects["ch_festival_aggregate"];
     ch_festival_by_pk?: PartialObjects["ch_festival"];
@@ -9506,9 +9776,6 @@ export type PartialObjects = {
     ch_time_slot?: PartialObjects["ch_time_slot"][];
     ch_time_slot_aggregate?: PartialObjects["ch_time_slot_aggregate"];
     ch_time_slot_by_pk?: PartialObjects["ch_time_slot"];
-    ch_time_table?: PartialObjects["ch_time_table"][];
-    ch_time_table_aggregate?: PartialObjects["ch_time_table_aggregate"];
-    ch_time_table_by_pk?: PartialObjects["ch_time_table"];
     ch_wait_list?: PartialObjects["ch_wait_list"][];
     ch_wait_list_aggregate?: PartialObjects["ch_wait_list_aggregate"];
     ch_wait_list_by_pk?: PartialObjects["ch_wait_list"];
@@ -9564,6 +9831,80 @@ export type PartialObjects = {
 };
 
 // expression to compare columns of type Boolean. All fields are combined with logical 'AND'.
+
+// columns and relationships of "ch_agenda_item"
+
+// aggregated selection of "ch_agenda_item"
+
+// aggregate fields of "ch_agenda_item"
+
+// order by aggregate values of table "ch_agenda_item"
+
+// input type for inserting array relation for remote table "ch_agenda_item"
+
+// aggregate avg on columns
+
+// order by avg() on columns of table "ch_agenda_item"
+
+// Boolean expression to filter rows from the table "ch_agenda_item". All fields are combined with a logical 'AND'.
+
+// unique or primary key constraints on table "ch_agenda_item"
+
+// input type for incrementing integer column in table "ch_agenda_item"
+
+// input type for inserting data into table "ch_agenda_item"
+
+// aggregate max on columns
+
+// order by max() on columns of table "ch_agenda_item"
+
+// aggregate min on columns
+
+// order by min() on columns of table "ch_agenda_item"
+
+// response of any mutation on the table "ch_agenda_item"
+
+// input type for inserting object relation for remote table "ch_agenda_item"
+
+// on conflict condition type for table "ch_agenda_item"
+
+// ordering options when selecting data from "ch_agenda_item"
+
+// primary key columns input for table: "ch_agenda_item"
+
+// select columns of table "ch_agenda_item"
+
+// input type for updating data in table "ch_agenda_item"
+
+// aggregate stddev on columns
+
+// order by stddev() on columns of table "ch_agenda_item"
+
+// aggregate stddev_pop on columns
+
+// order by stddev_pop() on columns of table "ch_agenda_item"
+
+// aggregate stddev_samp on columns
+
+// order by stddev_samp() on columns of table "ch_agenda_item"
+
+// aggregate sum on columns
+
+// order by sum() on columns of table "ch_agenda_item"
+
+// update columns of table "ch_agenda_item"
+
+// aggregate var_pop on columns
+
+// order by var_pop() on columns of table "ch_agenda_item"
+
+// aggregate var_samp on columns
+
+// order by var_samp() on columns of table "ch_agenda_item"
+
+// aggregate variance on columns
+
+// order by variance() on columns of table "ch_agenda_item"
 
 // columns and relationships of "ch_festival"
 
@@ -9807,6 +10148,8 @@ export type PartialObjects = {
 
 // order by aggregate values of table "ch_proposal"
 
+// append existing jsonb value of filtered columns with new jsonb value
+
 // input type for inserting array relation for remote table "ch_proposal"
 
 // aggregate avg on columns
@@ -9816,6 +10159,14 @@ export type PartialObjects = {
 // Boolean expression to filter rows from the table "ch_proposal". All fields are combined with a logical 'AND'.
 
 // unique or primary key constraints on table "ch_proposal"
+
+// delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+
+// delete the array element with specified index (negative integers count from the
+
+// end). throws an error if top level container is not an array
+
+// delete key/value pair or string element. key/value pairs are matched based on their key value
 
 // input type for incrementing integer column in table "ch_proposal"
 
@@ -9838,6 +10189,8 @@ export type PartialObjects = {
 // ordering options when selecting data from "ch_proposal"
 
 // primary key columns input for table: "ch_proposal"
+
+// prepend existing jsonb value of filtered columns with new jsonb value
 
 // select columns of table "ch_proposal"
 
@@ -10094,80 +10447,6 @@ export type PartialObjects = {
 // aggregate variance on columns
 
 // order by variance() on columns of table "ch_time_slot"
-
-// columns and relationships of "ch_time_table"
-
-// aggregated selection of "ch_time_table"
-
-// aggregate fields of "ch_time_table"
-
-// order by aggregate values of table "ch_time_table"
-
-// input type for inserting array relation for remote table "ch_time_table"
-
-// aggregate avg on columns
-
-// order by avg() on columns of table "ch_time_table"
-
-// Boolean expression to filter rows from the table "ch_time_table". All fields are combined with a logical 'AND'.
-
-// unique or primary key constraints on table "ch_time_table"
-
-// input type for incrementing integer column in table "ch_time_table"
-
-// input type for inserting data into table "ch_time_table"
-
-// aggregate max on columns
-
-// order by max() on columns of table "ch_time_table"
-
-// aggregate min on columns
-
-// order by min() on columns of table "ch_time_table"
-
-// response of any mutation on the table "ch_time_table"
-
-// input type for inserting object relation for remote table "ch_time_table"
-
-// on conflict condition type for table "ch_time_table"
-
-// ordering options when selecting data from "ch_time_table"
-
-// primary key columns input for table: "ch_time_table"
-
-// select columns of table "ch_time_table"
-
-// input type for updating data in table "ch_time_table"
-
-// aggregate stddev on columns
-
-// order by stddev() on columns of table "ch_time_table"
-
-// aggregate stddev_pop on columns
-
-// order by stddev_pop() on columns of table "ch_time_table"
-
-// aggregate stddev_samp on columns
-
-// order by stddev_samp() on columns of table "ch_time_table"
-
-// aggregate sum on columns
-
-// order by sum() on columns of table "ch_time_table"
-
-// update columns of table "ch_time_table"
-
-// aggregate var_pop on columns
-
-// order by var_pop() on columns of table "ch_time_table"
-
-// aggregate var_samp on columns
-
-// order by var_samp() on columns of table "ch_time_table"
-
-// aggregate variance on columns
-
-// order by variance() on columns of table "ch_time_table"
 
 // columns and relationships of "ch_wait_list"
 
@@ -10843,6 +11122,308 @@ export type Boolean_comparison_exp = {
   _nin?: boolean[];
 };
 
+export type ch_agenda_item = {
+  __typename?: "ch_agenda_item";
+  ch_helper?: ch_helper;
+  ch_room?: ch_room;
+  helper_confirmed: boolean;
+  helper_id?: number;
+  id: number;
+  meeting_confirmed: boolean;
+  meeting_id?: number;
+  nb_meeting?: nb_meeting;
+  room_id?: number;
+};
+
+export type ch_agenda_item_aggregate = {
+  __typename?: "ch_agenda_item_aggregate";
+  aggregate?: ch_agenda_item_aggregate_fields;
+  nodes: ch_agenda_item[];
+};
+
+export type ch_agenda_item_aggregate_fields = {
+  __typename?: "ch_agenda_item_aggregate_fields";
+  avg?: ch_agenda_item_avg_fields;
+  count?: number;
+  max?: ch_agenda_item_max_fields;
+  min?: ch_agenda_item_min_fields;
+  stddev?: ch_agenda_item_stddev_fields;
+  stddev_pop?: ch_agenda_item_stddev_pop_fields;
+  stddev_samp?: ch_agenda_item_stddev_samp_fields;
+  sum?: ch_agenda_item_sum_fields;
+  var_pop?: ch_agenda_item_var_pop_fields;
+  var_samp?: ch_agenda_item_var_samp_fields;
+  variance?: ch_agenda_item_variance_fields;
+};
+
+export type ch_agenda_item_aggregate_order_by = {
+  avg?: ch_agenda_item_avg_order_by;
+  count?: order_by;
+  max?: ch_agenda_item_max_order_by;
+  min?: ch_agenda_item_min_order_by;
+  stddev?: ch_agenda_item_stddev_order_by;
+  stddev_pop?: ch_agenda_item_stddev_pop_order_by;
+  stddev_samp?: ch_agenda_item_stddev_samp_order_by;
+  sum?: ch_agenda_item_sum_order_by;
+  var_pop?: ch_agenda_item_var_pop_order_by;
+  var_samp?: ch_agenda_item_var_samp_order_by;
+  variance?: ch_agenda_item_variance_order_by;
+};
+
+export type ch_agenda_item_arr_rel_insert_input = {
+  data: ch_agenda_item_insert_input[];
+  on_conflict?: ch_agenda_item_on_conflict;
+};
+
+export type ch_agenda_item_avg_fields = {
+  __typename?: "ch_agenda_item_avg_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_avg_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_bool_exp = {
+  _and?: (ch_agenda_item_bool_exp | undefined)[];
+  _not?: ch_agenda_item_bool_exp;
+  _or?: (ch_agenda_item_bool_exp | undefined)[];
+  ch_helper?: ch_helper_bool_exp;
+  ch_room?: ch_room_bool_exp;
+  helper_confirmed?: Boolean_comparison_exp;
+  helper_id?: Int_comparison_exp;
+  id?: Int_comparison_exp;
+  meeting_confirmed?: Boolean_comparison_exp;
+  meeting_id?: Int_comparison_exp;
+  nb_meeting?: nb_meeting_bool_exp;
+  room_id?: Int_comparison_exp;
+};
+
+export enum ch_agenda_item_constraint {
+  ch_time_table_meeting_id_key = "ch_time_table_meeting_id_key",
+  ch_time_table_pkey = "ch_time_table_pkey",
+}
+
+export type ch_agenda_item_inc_input = {
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_insert_input = {
+  ch_helper?: ch_helper_obj_rel_insert_input;
+  ch_room?: ch_room_obj_rel_insert_input;
+  helper_confirmed?: boolean;
+  helper_id?: number;
+  id?: number;
+  meeting_confirmed?: boolean;
+  meeting_id?: number;
+  nb_meeting?: nb_meeting_obj_rel_insert_input;
+  room_id?: number;
+};
+
+export type ch_agenda_item_max_fields = {
+  __typename?: "ch_agenda_item_max_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_max_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_min_fields = {
+  __typename?: "ch_agenda_item_min_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_min_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_mutation_response = {
+  __typename?: "ch_agenda_item_mutation_response";
+  affected_rows: number;
+  returning: ch_agenda_item[];
+};
+
+export type ch_agenda_item_obj_rel_insert_input = {
+  data: ch_agenda_item_insert_input;
+  on_conflict?: ch_agenda_item_on_conflict;
+};
+
+export type ch_agenda_item_on_conflict = {
+  constraint: ch_agenda_item_constraint;
+  update_columns: ch_agenda_item_update_column[];
+  where?: ch_agenda_item_bool_exp;
+};
+
+export type ch_agenda_item_order_by = {
+  ch_helper?: ch_helper_order_by;
+  ch_room?: ch_room_order_by;
+  helper_confirmed?: order_by;
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_confirmed?: order_by;
+  meeting_id?: order_by;
+  nb_meeting?: nb_meeting_order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_pk_columns_input = {
+  id: number;
+};
+
+export enum ch_agenda_item_select_column {
+  helper_confirmed = "helper_confirmed",
+  helper_id = "helper_id",
+  id = "id",
+  meeting_confirmed = "meeting_confirmed",
+  meeting_id = "meeting_id",
+  room_id = "room_id",
+}
+
+export type ch_agenda_item_set_input = {
+  helper_confirmed?: boolean;
+  helper_id?: number;
+  id?: number;
+  meeting_confirmed?: boolean;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_stddev_fields = {
+  __typename?: "ch_agenda_item_stddev_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_stddev_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_stddev_pop_fields = {
+  __typename?: "ch_agenda_item_stddev_pop_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_stddev_pop_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_stddev_samp_fields = {
+  __typename?: "ch_agenda_item_stddev_samp_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_stddev_samp_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_sum_fields = {
+  __typename?: "ch_agenda_item_sum_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_sum_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export enum ch_agenda_item_update_column {
+  helper_confirmed = "helper_confirmed",
+  helper_id = "helper_id",
+  id = "id",
+  meeting_confirmed = "meeting_confirmed",
+  meeting_id = "meeting_id",
+  room_id = "room_id",
+}
+
+export type ch_agenda_item_var_pop_fields = {
+  __typename?: "ch_agenda_item_var_pop_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_var_pop_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_var_samp_fields = {
+  __typename?: "ch_agenda_item_var_samp_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_var_samp_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
+export type ch_agenda_item_variance_fields = {
+  __typename?: "ch_agenda_item_variance_fields";
+  helper_id?: number;
+  id?: number;
+  meeting_id?: number;
+  room_id?: number;
+};
+
+export type ch_agenda_item_variance_order_by = {
+  helper_id?: order_by;
+  id?: order_by;
+  meeting_id?: order_by;
+  room_id?: order_by;
+};
+
 export type ch_festival = {
   __typename?: "ch_festival";
   ch_helpers: ch_helper[];
@@ -10855,7 +11436,7 @@ export type ch_festival = {
   id: number;
   name: string;
   nb_sphere: nb_sphere;
-  settings?: jsonb;
+  settings: jsonb;
   slug: string;
   sphere_id: number;
   start_proposal: timestamptz;
@@ -11176,11 +11757,11 @@ export type ch_festival_variance_order_by = {
 
 export type ch_helper = {
   __typename?: "ch_helper";
+  ch_agenda_items: ch_agenda_item[];
+  ch_agenda_items_aggregate: ch_agenda_item_aggregate;
   ch_festival: ch_festival;
   ch_helper_time_slots: ch_helper_time_slots[];
   ch_helper_time_slots_aggregate: ch_helper_time_slots_aggregate;
-  ch_time_tables: ch_time_table[];
-  ch_time_tables_aggregate: ch_time_table_aggregate;
   cr_user: cr_user;
   festival_id: number;
   id: number;
@@ -11242,9 +11823,9 @@ export type ch_helper_bool_exp = {
   _and?: (ch_helper_bool_exp | undefined)[];
   _not?: ch_helper_bool_exp;
   _or?: (ch_helper_bool_exp | undefined)[];
+  ch_agenda_items?: ch_agenda_item_bool_exp;
   ch_festival?: ch_festival_bool_exp;
   ch_helper_time_slots?: ch_helper_time_slots_bool_exp;
-  ch_time_tables?: ch_time_table_bool_exp;
   cr_user?: cr_user_bool_exp;
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
@@ -11261,9 +11842,9 @@ export type ch_helper_inc_input = {
 };
 
 export type ch_helper_insert_input = {
+  ch_agenda_items?: ch_agenda_item_arr_rel_insert_input;
   ch_festival?: ch_festival_obj_rel_insert_input;
   ch_helper_time_slots?: ch_helper_time_slots_arr_rel_insert_input;
-  ch_time_tables?: ch_time_table_arr_rel_insert_input;
   cr_user?: cr_user_obj_rel_insert_input;
   festival_id?: number;
   id?: number;
@@ -11314,9 +11895,9 @@ export type ch_helper_on_conflict = {
 };
 
 export type ch_helper_order_by = {
+  ch_agenda_items_aggregate?: ch_agenda_item_aggregate_order_by;
   ch_festival?: ch_festival_order_by;
   ch_helper_time_slots_aggregate?: ch_helper_time_slots_aggregate_order_by;
-  ch_time_tables_aggregate?: ch_time_table_aggregate_order_by;
   cr_user?: cr_user_order_by;
   festival_id?: order_by;
   id?: order_by;
@@ -11685,13 +12266,21 @@ export type ch_proposal = {
   ch_wait_list: ch_wait_list;
   city: string;
   club: string;
+  contact_info: string;
+  created_at?: timestamptz;
+  description: string;
+  duration_minutes: number;
   id: number;
-  meeting: nb_meeting;
-  meeting_id: number;
+  meeting?: nb_meeting;
+  meeting_id?: number;
+  name: string;
   needs: string;
-  other_contact: string;
-  other_data: string;
+  other_contact?: jsonb;
+  other_data?: jsonb;
   phone: string;
+  speaker_name: string;
+  speaker_user_id?: uuid;
+  status: string;
   waitlist_id: number;
 };
 
@@ -11730,6 +12319,11 @@ export type ch_proposal_aggregate_order_by = {
   variance?: ch_proposal_variance_order_by;
 };
 
+export type ch_proposal_append_input = {
+  other_contact?: jsonb;
+  other_data?: jsonb;
+};
+
 export type ch_proposal_arr_rel_insert_input = {
   data: ch_proposal_insert_input[];
   on_conflict?: ch_proposal_on_conflict;
@@ -11737,12 +12331,14 @@ export type ch_proposal_arr_rel_insert_input = {
 
 export type ch_proposal_avg_fields = {
   __typename?: "ch_proposal_avg_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_avg_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -11756,13 +12352,21 @@ export type ch_proposal_bool_exp = {
   ch_wait_list?: ch_wait_list_bool_exp;
   city?: String_comparison_exp;
   club?: String_comparison_exp;
+  contact_info?: String_comparison_exp;
+  created_at?: timestamptz_comparison_exp;
+  description?: String_comparison_exp;
+  duration_minutes?: Int_comparison_exp;
   id?: Int_comparison_exp;
   meeting?: nb_meeting_bool_exp;
   meeting_id?: Int_comparison_exp;
+  name?: String_comparison_exp;
   needs?: String_comparison_exp;
-  other_contact?: String_comparison_exp;
-  other_data?: String_comparison_exp;
+  other_contact?: jsonb_comparison_exp;
+  other_data?: jsonb_comparison_exp;
   phone?: String_comparison_exp;
+  speaker_name?: String_comparison_exp;
+  speaker_user_id?: uuid_comparison_exp;
+  status?: String_comparison_exp;
   waitlist_id?: Int_comparison_exp;
 };
 
@@ -11771,7 +12375,23 @@ export enum ch_proposal_constraint {
   ch_proposal_pkey = "ch_proposal_pkey",
 }
 
+export type ch_proposal_delete_at_path_input = {
+  other_contact?: (string | undefined)[];
+  other_data?: (string | undefined)[];
+};
+
+export type ch_proposal_delete_elem_input = {
+  other_contact?: number;
+  other_data?: number;
+};
+
+export type ch_proposal_delete_key_input = {
+  other_contact?: string;
+  other_data?: string;
+};
+
 export type ch_proposal_inc_input = {
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
@@ -11782,13 +12402,21 @@ export type ch_proposal_insert_input = {
   ch_wait_list?: ch_wait_list_obj_rel_insert_input;
   city?: string;
   club?: string;
+  contact_info?: string;
+  created_at?: timestamptz;
+  description?: string;
+  duration_minutes?: number;
   id?: number;
   meeting?: nb_meeting_obj_rel_insert_input;
   meeting_id?: number;
+  name?: string;
   needs?: string;
-  other_contact?: string;
-  other_data?: string;
+  other_contact?: jsonb;
+  other_data?: jsonb;
   phone?: string;
+  speaker_name?: string;
+  speaker_user_id?: uuid;
+  status?: string;
   waitlist_id?: number;
 };
 
@@ -11796,24 +12424,36 @@ export type ch_proposal_max_fields = {
   __typename?: "ch_proposal_max_fields";
   city?: string;
   club?: string;
+  contact_info?: string;
+  created_at?: timestamptz;
+  description?: string;
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
+  name?: string;
   needs?: string;
-  other_contact?: string;
-  other_data?: string;
   phone?: string;
+  speaker_name?: string;
+  speaker_user_id?: uuid;
+  status?: string;
   waitlist_id?: number;
 };
 
 export type ch_proposal_max_order_by = {
   city?: order_by;
   club?: order_by;
+  contact_info?: order_by;
+  created_at?: order_by;
+  description?: order_by;
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
+  name?: order_by;
   needs?: order_by;
-  other_contact?: order_by;
-  other_data?: order_by;
   phone?: order_by;
+  speaker_name?: order_by;
+  speaker_user_id?: order_by;
+  status?: order_by;
   waitlist_id?: order_by;
 };
 
@@ -11821,24 +12461,36 @@ export type ch_proposal_min_fields = {
   __typename?: "ch_proposal_min_fields";
   city?: string;
   club?: string;
+  contact_info?: string;
+  created_at?: timestamptz;
+  description?: string;
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
+  name?: string;
   needs?: string;
-  other_contact?: string;
-  other_data?: string;
   phone?: string;
+  speaker_name?: string;
+  speaker_user_id?: uuid;
+  status?: string;
   waitlist_id?: number;
 };
 
 export type ch_proposal_min_order_by = {
   city?: order_by;
   club?: order_by;
+  contact_info?: order_by;
+  created_at?: order_by;
+  description?: order_by;
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
+  name?: order_by;
   needs?: order_by;
-  other_contact?: order_by;
-  other_data?: order_by;
   phone?: order_by;
+  speaker_name?: order_by;
+  speaker_user_id?: order_by;
+  status?: order_by;
   waitlist_id?: order_by;
 };
 
@@ -11864,13 +12516,21 @@ export type ch_proposal_order_by = {
   ch_wait_list?: ch_wait_list_order_by;
   city?: order_by;
   club?: order_by;
+  contact_info?: order_by;
+  created_at?: order_by;
+  description?: order_by;
+  duration_minutes?: order_by;
   id?: order_by;
   meeting?: nb_meeting_order_by;
   meeting_id?: order_by;
+  name?: order_by;
   needs?: order_by;
   other_contact?: order_by;
   other_data?: order_by;
   phone?: order_by;
+  speaker_name?: order_by;
+  speaker_user_id?: order_by;
+  status?: order_by;
   waitlist_id?: order_by;
 };
 
@@ -11878,38 +12538,61 @@ export type ch_proposal_pk_columns_input = {
   id: number;
 };
 
+export type ch_proposal_prepend_input = {
+  other_contact?: jsonb;
+  other_data?: jsonb;
+};
+
 export enum ch_proposal_select_column {
   city = "city",
   club = "club",
+  contact_info = "contact_info",
+  created_at = "created_at",
+  description = "description",
+  duration_minutes = "duration_minutes",
   id = "id",
   meeting_id = "meeting_id",
+  name = "name",
   needs = "needs",
   other_contact = "other_contact",
   other_data = "other_data",
   phone = "phone",
+  speaker_name = "speaker_name",
+  speaker_user_id = "speaker_user_id",
+  status = "status",
   waitlist_id = "waitlist_id",
 }
 
 export type ch_proposal_set_input = {
   city?: string;
   club?: string;
+  contact_info?: string;
+  created_at?: timestamptz;
+  description?: string;
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
+  name?: string;
   needs?: string;
-  other_contact?: string;
-  other_data?: string;
+  other_contact?: jsonb;
+  other_data?: jsonb;
   phone?: string;
+  speaker_name?: string;
+  speaker_user_id?: uuid;
+  status?: string;
   waitlist_id?: number;
 };
 
 export type ch_proposal_stddev_fields = {
   __typename?: "ch_proposal_stddev_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_stddev_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -11917,12 +12600,14 @@ export type ch_proposal_stddev_order_by = {
 
 export type ch_proposal_stddev_pop_fields = {
   __typename?: "ch_proposal_stddev_pop_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_stddev_pop_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -11930,12 +12615,14 @@ export type ch_proposal_stddev_pop_order_by = {
 
 export type ch_proposal_stddev_samp_fields = {
   __typename?: "ch_proposal_stddev_samp_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_stddev_samp_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -11943,12 +12630,14 @@ export type ch_proposal_stddev_samp_order_by = {
 
 export type ch_proposal_sum_fields = {
   __typename?: "ch_proposal_sum_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_sum_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -12213,23 +12902,33 @@ export type ch_proposal_time_slots_variance_order_by = {
 export enum ch_proposal_update_column {
   city = "city",
   club = "club",
+  contact_info = "contact_info",
+  created_at = "created_at",
+  description = "description",
+  duration_minutes = "duration_minutes",
   id = "id",
   meeting_id = "meeting_id",
+  name = "name",
   needs = "needs",
   other_contact = "other_contact",
   other_data = "other_data",
   phone = "phone",
+  speaker_name = "speaker_name",
+  speaker_user_id = "speaker_user_id",
+  status = "status",
   waitlist_id = "waitlist_id",
 }
 
 export type ch_proposal_var_pop_fields = {
   __typename?: "ch_proposal_var_pop_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_var_pop_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -12237,12 +12936,14 @@ export type ch_proposal_var_pop_order_by = {
 
 export type ch_proposal_var_samp_fields = {
   __typename?: "ch_proposal_var_samp_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_var_samp_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -12250,12 +12951,14 @@ export type ch_proposal_var_samp_order_by = {
 
 export type ch_proposal_variance_fields = {
   __typename?: "ch_proposal_variance_fields";
+  duration_minutes?: number;
   id?: number;
   meeting_id?: number;
   waitlist_id?: number;
 };
 
 export type ch_proposal_variance_order_by = {
+  duration_minutes?: order_by;
   id?: order_by;
   meeting_id?: order_by;
   waitlist_id?: order_by;
@@ -12263,9 +12966,9 @@ export type ch_proposal_variance_order_by = {
 
 export type ch_room = {
   __typename?: "ch_room";
+  ch_agenda_items: ch_agenda_item[];
+  ch_agenda_items_aggregate: ch_agenda_item_aggregate;
   ch_festival: ch_festival;
-  ch_time_tables: ch_time_table[];
-  ch_time_tables_aggregate: ch_time_table_aggregate;
   festival_id: number;
   id: number;
   name: string;
@@ -12326,8 +13029,8 @@ export type ch_room_bool_exp = {
   _and?: (ch_room_bool_exp | undefined)[];
   _not?: ch_room_bool_exp;
   _or?: (ch_room_bool_exp | undefined)[];
+  ch_agenda_items?: ch_agenda_item_bool_exp;
   ch_festival?: ch_festival_bool_exp;
-  ch_time_tables?: ch_time_table_bool_exp;
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
@@ -12343,8 +13046,8 @@ export type ch_room_inc_input = {
 };
 
 export type ch_room_insert_input = {
+  ch_agenda_items?: ch_agenda_item_arr_rel_insert_input;
   ch_festival?: ch_festival_obj_rel_insert_input;
-  ch_time_tables?: ch_time_table_arr_rel_insert_input;
   festival_id?: number;
   id?: number;
   name?: string;
@@ -12394,8 +13097,8 @@ export type ch_room_on_conflict = {
 };
 
 export type ch_room_order_by = {
+  ch_agenda_items_aggregate?: ch_agenda_item_aggregate_order_by;
   ch_festival?: ch_festival_order_by;
-  ch_time_tables_aggregate?: ch_time_table_aggregate_order_by;
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
@@ -12507,6 +13210,7 @@ export type ch_time_slot = {
   ch_proposal_time_slots: ch_proposal_time_slots[];
   ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate;
   end_time: timestamptz;
+  festival_id: number;
   id: number;
   start_time: timestamptz;
 };
@@ -12553,10 +13257,12 @@ export type ch_time_slot_arr_rel_insert_input = {
 
 export type ch_time_slot_avg_fields = {
   __typename?: "ch_time_slot_avg_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_avg_order_by = {
+  festival_id?: order_by;
   id?: order_by;
 };
 
@@ -12567,6 +13273,7 @@ export type ch_time_slot_bool_exp = {
   ch_helper_time_slots?: ch_helper_time_slots_bool_exp;
   ch_proposal_time_slots?: ch_proposal_time_slots_bool_exp;
   end_time?: timestamptz_comparison_exp;
+  festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   start_time?: timestamptz_comparison_exp;
 };
@@ -12576,6 +13283,7 @@ export enum ch_time_slot_constraint {
 }
 
 export type ch_time_slot_inc_input = {
+  festival_id?: number;
   id?: number;
 };
 
@@ -12583,6 +13291,7 @@ export type ch_time_slot_insert_input = {
   ch_helper_time_slots?: ch_helper_time_slots_arr_rel_insert_input;
   ch_proposal_time_slots?: ch_proposal_time_slots_arr_rel_insert_input;
   end_time?: timestamptz;
+  festival_id?: number;
   id?: number;
   start_time?: timestamptz;
 };
@@ -12590,12 +13299,14 @@ export type ch_time_slot_insert_input = {
 export type ch_time_slot_max_fields = {
   __typename?: "ch_time_slot_max_fields";
   end_time?: timestamptz;
+  festival_id?: number;
   id?: number;
   start_time?: timestamptz;
 };
 
 export type ch_time_slot_max_order_by = {
   end_time?: order_by;
+  festival_id?: order_by;
   id?: order_by;
   start_time?: order_by;
 };
@@ -12603,12 +13314,14 @@ export type ch_time_slot_max_order_by = {
 export type ch_time_slot_min_fields = {
   __typename?: "ch_time_slot_min_fields";
   end_time?: timestamptz;
+  festival_id?: number;
   id?: number;
   start_time?: timestamptz;
 };
 
 export type ch_time_slot_min_order_by = {
   end_time?: order_by;
+  festival_id?: order_by;
   id?: order_by;
   start_time?: order_by;
 };
@@ -12634,6 +13347,7 @@ export type ch_time_slot_order_by = {
   ch_helper_time_slots_aggregate?: ch_helper_time_slots_aggregate_order_by;
   ch_proposal_time_slots_aggregate?: ch_proposal_time_slots_aggregate_order_by;
   end_time?: order_by;
+  festival_id?: order_by;
   id?: order_by;
   start_time?: order_by;
 };
@@ -12644,385 +13358,100 @@ export type ch_time_slot_pk_columns_input = {
 
 export enum ch_time_slot_select_column {
   end_time = "end_time",
+  festival_id = "festival_id",
   id = "id",
   start_time = "start_time",
 }
 
 export type ch_time_slot_set_input = {
   end_time?: timestamptz;
+  festival_id?: number;
   id?: number;
   start_time?: timestamptz;
 };
 
 export type ch_time_slot_stddev_fields = {
   __typename?: "ch_time_slot_stddev_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_stddev_order_by = {
+  festival_id?: order_by;
   id?: order_by;
 };
 
 export type ch_time_slot_stddev_pop_fields = {
   __typename?: "ch_time_slot_stddev_pop_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_stddev_pop_order_by = {
+  festival_id?: order_by;
   id?: order_by;
 };
 
 export type ch_time_slot_stddev_samp_fields = {
   __typename?: "ch_time_slot_stddev_samp_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_stddev_samp_order_by = {
+  festival_id?: order_by;
   id?: order_by;
 };
 
 export type ch_time_slot_sum_fields = {
   __typename?: "ch_time_slot_sum_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_sum_order_by = {
+  festival_id?: order_by;
   id?: order_by;
 };
 
 export enum ch_time_slot_update_column {
   end_time = "end_time",
+  festival_id = "festival_id",
   id = "id",
   start_time = "start_time",
 }
 
 export type ch_time_slot_var_pop_fields = {
   __typename?: "ch_time_slot_var_pop_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_var_pop_order_by = {
+  festival_id?: order_by;
   id?: order_by;
 };
 
 export type ch_time_slot_var_samp_fields = {
   __typename?: "ch_time_slot_var_samp_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_var_samp_order_by = {
+  festival_id?: order_by;
   id?: order_by;
 };
 
 export type ch_time_slot_variance_fields = {
   __typename?: "ch_time_slot_variance_fields";
+  festival_id?: number;
   id?: number;
 };
 
 export type ch_time_slot_variance_order_by = {
+  festival_id?: order_by;
   id?: order_by;
-};
-
-export type ch_time_table = {
-  __typename?: "ch_time_table";
-  ch_helper?: ch_helper;
-  ch_room?: ch_room;
-  helper_confirmed: boolean;
-  helper_id?: number;
-  id: number;
-  meeting_confirmed: boolean;
-  meeting_id?: number;
-  nb_meeting?: nb_meeting;
-  room_id?: number;
-};
-
-export type ch_time_table_aggregate = {
-  __typename?: "ch_time_table_aggregate";
-  aggregate?: ch_time_table_aggregate_fields;
-  nodes: ch_time_table[];
-};
-
-export type ch_time_table_aggregate_fields = {
-  __typename?: "ch_time_table_aggregate_fields";
-  avg?: ch_time_table_avg_fields;
-  count?: number;
-  max?: ch_time_table_max_fields;
-  min?: ch_time_table_min_fields;
-  stddev?: ch_time_table_stddev_fields;
-  stddev_pop?: ch_time_table_stddev_pop_fields;
-  stddev_samp?: ch_time_table_stddev_samp_fields;
-  sum?: ch_time_table_sum_fields;
-  var_pop?: ch_time_table_var_pop_fields;
-  var_samp?: ch_time_table_var_samp_fields;
-  variance?: ch_time_table_variance_fields;
-};
-
-export type ch_time_table_aggregate_order_by = {
-  avg?: ch_time_table_avg_order_by;
-  count?: order_by;
-  max?: ch_time_table_max_order_by;
-  min?: ch_time_table_min_order_by;
-  stddev?: ch_time_table_stddev_order_by;
-  stddev_pop?: ch_time_table_stddev_pop_order_by;
-  stddev_samp?: ch_time_table_stddev_samp_order_by;
-  sum?: ch_time_table_sum_order_by;
-  var_pop?: ch_time_table_var_pop_order_by;
-  var_samp?: ch_time_table_var_samp_order_by;
-  variance?: ch_time_table_variance_order_by;
-};
-
-export type ch_time_table_arr_rel_insert_input = {
-  data: ch_time_table_insert_input[];
-  on_conflict?: ch_time_table_on_conflict;
-};
-
-export type ch_time_table_avg_fields = {
-  __typename?: "ch_time_table_avg_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_avg_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_bool_exp = {
-  _and?: (ch_time_table_bool_exp | undefined)[];
-  _not?: ch_time_table_bool_exp;
-  _or?: (ch_time_table_bool_exp | undefined)[];
-  ch_helper?: ch_helper_bool_exp;
-  ch_room?: ch_room_bool_exp;
-  helper_confirmed?: Boolean_comparison_exp;
-  helper_id?: Int_comparison_exp;
-  id?: Int_comparison_exp;
-  meeting_confirmed?: Boolean_comparison_exp;
-  meeting_id?: Int_comparison_exp;
-  nb_meeting?: nb_meeting_bool_exp;
-  room_id?: Int_comparison_exp;
-};
-
-export enum ch_time_table_constraint {
-  ch_time_table_meeting_id_key = "ch_time_table_meeting_id_key",
-  ch_time_table_pkey = "ch_time_table_pkey",
-}
-
-export type ch_time_table_inc_input = {
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_insert_input = {
-  ch_helper?: ch_helper_obj_rel_insert_input;
-  ch_room?: ch_room_obj_rel_insert_input;
-  helper_confirmed?: boolean;
-  helper_id?: number;
-  id?: number;
-  meeting_confirmed?: boolean;
-  meeting_id?: number;
-  nb_meeting?: nb_meeting_obj_rel_insert_input;
-  room_id?: number;
-};
-
-export type ch_time_table_max_fields = {
-  __typename?: "ch_time_table_max_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_max_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_min_fields = {
-  __typename?: "ch_time_table_min_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_min_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_mutation_response = {
-  __typename?: "ch_time_table_mutation_response";
-  affected_rows: number;
-  returning: ch_time_table[];
-};
-
-export type ch_time_table_obj_rel_insert_input = {
-  data: ch_time_table_insert_input;
-  on_conflict?: ch_time_table_on_conflict;
-};
-
-export type ch_time_table_on_conflict = {
-  constraint: ch_time_table_constraint;
-  update_columns: ch_time_table_update_column[];
-  where?: ch_time_table_bool_exp;
-};
-
-export type ch_time_table_order_by = {
-  ch_helper?: ch_helper_order_by;
-  ch_room?: ch_room_order_by;
-  helper_confirmed?: order_by;
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_confirmed?: order_by;
-  meeting_id?: order_by;
-  nb_meeting?: nb_meeting_order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_pk_columns_input = {
-  id: number;
-};
-
-export enum ch_time_table_select_column {
-  helper_confirmed = "helper_confirmed",
-  helper_id = "helper_id",
-  id = "id",
-  meeting_confirmed = "meeting_confirmed",
-  meeting_id = "meeting_id",
-  room_id = "room_id",
-}
-
-export type ch_time_table_set_input = {
-  helper_confirmed?: boolean;
-  helper_id?: number;
-  id?: number;
-  meeting_confirmed?: boolean;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_stddev_fields = {
-  __typename?: "ch_time_table_stddev_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_stddev_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_stddev_pop_fields = {
-  __typename?: "ch_time_table_stddev_pop_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_stddev_pop_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_stddev_samp_fields = {
-  __typename?: "ch_time_table_stddev_samp_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_stddev_samp_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_sum_fields = {
-  __typename?: "ch_time_table_sum_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_sum_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export enum ch_time_table_update_column {
-  helper_confirmed = "helper_confirmed",
-  helper_id = "helper_id",
-  id = "id",
-  meeting_confirmed = "meeting_confirmed",
-  meeting_id = "meeting_id",
-  room_id = "room_id",
-}
-
-export type ch_time_table_var_pop_fields = {
-  __typename?: "ch_time_table_var_pop_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_var_pop_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_var_samp_fields = {
-  __typename?: "ch_time_table_var_samp_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_var_samp_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
-};
-
-export type ch_time_table_variance_fields = {
-  __typename?: "ch_time_table_variance_fields";
-  helper_id?: number;
-  id?: number;
-  meeting_id?: number;
-  room_id?: number;
-};
-
-export type ch_time_table_variance_order_by = {
-  helper_id?: order_by;
-  id?: order_by;
-  meeting_id?: order_by;
-  room_id?: order_by;
 };
 
 export type ch_wait_list = {
@@ -13760,6 +14189,8 @@ export type jsonb_comparison_exp = {
 
 export type mutation_root = {
   __typename?: "mutation_root";
+  delete_ch_agenda_item?: ch_agenda_item_mutation_response;
+  delete_ch_agenda_item_by_pk?: ch_agenda_item;
   delete_ch_festival?: ch_festival_mutation_response;
   delete_ch_festival_by_pk?: ch_festival;
   delete_ch_helper?: ch_helper_mutation_response;
@@ -13774,8 +14205,6 @@ export type mutation_root = {
   delete_ch_room_by_pk?: ch_room;
   delete_ch_time_slot?: ch_time_slot_mutation_response;
   delete_ch_time_slot_by_pk?: ch_time_slot;
-  delete_ch_time_table?: ch_time_table_mutation_response;
-  delete_ch_time_table_by_pk?: ch_time_table;
   delete_ch_wait_list?: ch_wait_list_mutation_response;
   delete_ch_wait_list_by_pk?: ch_wait_list;
   delete_cr_user?: cr_user_mutation_response;
@@ -13794,6 +14223,8 @@ export type mutation_root = {
   delete_nb_sphere_by_pk?: nb_sphere;
   delete_nb_sphere_managers?: nb_sphere_managers_mutation_response;
   delete_nb_sphere_managers_by_pk?: nb_sphere_managers;
+  insert_ch_agenda_item?: ch_agenda_item_mutation_response;
+  insert_ch_agenda_item_one?: ch_agenda_item;
   insert_ch_festival?: ch_festival_mutation_response;
   insert_ch_festival_one?: ch_festival;
   insert_ch_helper?: ch_helper_mutation_response;
@@ -13808,8 +14239,6 @@ export type mutation_root = {
   insert_ch_room_one?: ch_room;
   insert_ch_time_slot?: ch_time_slot_mutation_response;
   insert_ch_time_slot_one?: ch_time_slot;
-  insert_ch_time_table?: ch_time_table_mutation_response;
-  insert_ch_time_table_one?: ch_time_table;
   insert_ch_wait_list?: ch_wait_list_mutation_response;
   insert_ch_wait_list_one?: ch_wait_list;
   insert_cr_user?: cr_user_mutation_response;
@@ -13828,6 +14257,8 @@ export type mutation_root = {
   insert_nb_sphere_managers?: nb_sphere_managers_mutation_response;
   insert_nb_sphere_managers_one?: nb_sphere_managers;
   insert_nb_sphere_one?: nb_sphere;
+  update_ch_agenda_item?: ch_agenda_item_mutation_response;
+  update_ch_agenda_item_by_pk?: ch_agenda_item;
   update_ch_festival?: ch_festival_mutation_response;
   update_ch_festival_by_pk?: ch_festival;
   update_ch_helper?: ch_helper_mutation_response;
@@ -13842,8 +14273,6 @@ export type mutation_root = {
   update_ch_room_by_pk?: ch_room;
   update_ch_time_slot?: ch_time_slot_mutation_response;
   update_ch_time_slot_by_pk?: ch_time_slot;
-  update_ch_time_table?: ch_time_table_mutation_response;
-  update_ch_time_table_by_pk?: ch_time_table;
   update_ch_wait_list?: ch_wait_list_mutation_response;
   update_ch_wait_list_by_pk?: ch_wait_list;
   update_cr_user?: cr_user_mutation_response;
@@ -14381,8 +14810,8 @@ export type nb_meeting = {
   created_at: timestamptz;
   description: string;
   end_time?: timestamptz;
-  guild: nb_guild;
-  guild_id: number;
+  guild?: nb_guild;
+  guild_id?: number;
   id: number;
   image?: string;
   location?: string;
@@ -14397,7 +14826,7 @@ export type nb_meeting = {
   sphere: nb_sphere;
   sphere_id: number;
   start_time?: timestamptz;
-  time_table?: ch_time_table;
+  time_table?: ch_agenda_item;
   updated_at: timestamptz;
 };
 
@@ -14476,7 +14905,7 @@ export type nb_meeting_bool_exp = {
   sphere?: nb_sphere_bool_exp;
   sphere_id?: Int_comparison_exp;
   start_time?: timestamptz_comparison_exp;
-  time_table?: ch_time_table_bool_exp;
+  time_table?: ch_agenda_item_bool_exp;
   updated_at?: timestamptz_comparison_exp;
 };
 
@@ -14509,7 +14938,7 @@ export type nb_meeting_insert_input = {
   sphere?: nb_sphere_obj_rel_insert_input;
   sphere_id?: number;
   start_time?: timestamptz;
-  time_table?: ch_time_table_obj_rel_insert_input;
+  time_table?: ch_agenda_item_obj_rel_insert_input;
   updated_at?: timestamptz;
 };
 
@@ -14623,7 +15052,7 @@ export type nb_meeting_order_by = {
   sphere?: nb_sphere_order_by;
   sphere_id?: order_by;
   start_time?: order_by;
-  time_table?: ch_time_table_order_by;
+  time_table?: ch_agenda_item_order_by;
   updated_at?: order_by;
 };
 
@@ -15027,7 +15456,7 @@ export type nb_sphere = {
   nb_meetings_aggregate: nb_meeting_aggregate;
   nb_sphere_managers: nb_sphere_managers[];
   nb_sphere_managers_aggregate: nb_sphere_managers_aggregate;
-  settings?: jsonb;
+  settings: jsonb;
   site_id?: number;
 };
 
@@ -15549,6 +15978,9 @@ export enum order_by {
 
 export type query_root = {
   __typename?: "query_root";
+  ch_agenda_item: ch_agenda_item[];
+  ch_agenda_item_aggregate: ch_agenda_item_aggregate;
+  ch_agenda_item_by_pk?: ch_agenda_item;
   ch_festival: ch_festival[];
   ch_festival_aggregate: ch_festival_aggregate;
   ch_festival_by_pk?: ch_festival;
@@ -15570,9 +16002,6 @@ export type query_root = {
   ch_time_slot: ch_time_slot[];
   ch_time_slot_aggregate: ch_time_slot_aggregate;
   ch_time_slot_by_pk?: ch_time_slot;
-  ch_time_table: ch_time_table[];
-  ch_time_table_aggregate: ch_time_table_aggregate;
-  ch_time_table_by_pk?: ch_time_table;
   ch_wait_list: ch_wait_list[];
   ch_wait_list_aggregate: ch_wait_list_aggregate;
   ch_wait_list_by_pk?: ch_wait_list;
@@ -15622,6 +16051,9 @@ export type String_comparison_exp = {
 
 export type subscription_root = {
   __typename?: "subscription_root";
+  ch_agenda_item: ch_agenda_item[];
+  ch_agenda_item_aggregate: ch_agenda_item_aggregate;
+  ch_agenda_item_by_pk?: ch_agenda_item;
   ch_festival: ch_festival[];
   ch_festival_aggregate: ch_festival_aggregate;
   ch_festival_by_pk?: ch_festival;
@@ -15643,9 +16075,6 @@ export type subscription_root = {
   ch_time_slot: ch_time_slot[];
   ch_time_slot_aggregate: ch_time_slot_aggregate;
   ch_time_slot_by_pk?: ch_time_slot;
-  ch_time_table: ch_time_table[];
-  ch_time_table_aggregate: ch_time_table_aggregate;
-  ch_time_table_by_pk?: ch_time_table;
   ch_wait_list: ch_wait_list[];
   ch_wait_list_aggregate: ch_wait_list_aggregate;
   ch_wait_list_by_pk?: ch_wait_list;
@@ -15758,6 +16187,659 @@ export const AllTypesProps: Record<string, any> = {
       array: true,
       arrayRequired: false,
       required: true,
+    },
+  },
+  ch_agenda_item_aggregate_fields: {
+    count: {
+      columns: {
+        type: "ch_agenda_item_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      distinct: {
+        type: "Boolean",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+  },
+  ch_agenda_item_aggregate_order_by: {
+    avg: {
+      type: "ch_agenda_item_avg_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    count: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    max: {
+      type: "ch_agenda_item_max_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    min: {
+      type: "ch_agenda_item_min_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    stddev: {
+      type: "ch_agenda_item_stddev_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    stddev_pop: {
+      type: "ch_agenda_item_stddev_pop_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    stddev_samp: {
+      type: "ch_agenda_item_stddev_samp_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    sum: {
+      type: "ch_agenda_item_sum_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    var_pop: {
+      type: "ch_agenda_item_var_pop_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    var_samp: {
+      type: "ch_agenda_item_var_samp_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    variance: {
+      type: "ch_agenda_item_variance_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_arr_rel_insert_input: {
+    data: {
+      type: "ch_agenda_item_insert_input",
+      array: true,
+      arrayRequired: true,
+      required: true,
+    },
+    on_conflict: {
+      type: "ch_agenda_item_on_conflict",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_avg_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_bool_exp: {
+    _and: {
+      type: "ch_agenda_item_bool_exp",
+      array: true,
+      arrayRequired: false,
+      required: false,
+    },
+    _not: {
+      type: "ch_agenda_item_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    _or: {
+      type: "ch_agenda_item_bool_exp",
+      array: true,
+      arrayRequired: false,
+      required: false,
+    },
+    ch_helper: {
+      type: "ch_helper_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    ch_room: {
+      type: "ch_room_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helper_confirmed: {
+      type: "Boolean_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helper_id: {
+      type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_confirmed: {
+      type: "Boolean_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    nb_meeting: {
+      type: "nb_meeting_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_constraint: "enum",
+  ch_agenda_item_inc_input: {
+    helper_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_insert_input: {
+    ch_helper: {
+      type: "ch_helper_obj_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    ch_room: {
+      type: "ch_room_obj_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helper_confirmed: {
+      type: "Boolean",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helper_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_confirmed: {
+      type: "Boolean",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    nb_meeting: {
+      type: "nb_meeting_obj_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_max_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_min_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_obj_rel_insert_input: {
+    data: {
+      type: "ch_agenda_item_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: true,
+    },
+    on_conflict: {
+      type: "ch_agenda_item_on_conflict",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_on_conflict: {
+    constraint: {
+      type: "ch_agenda_item_constraint",
+      array: false,
+      arrayRequired: false,
+      required: true,
+    },
+    update_columns: {
+      type: "ch_agenda_item_update_column",
+      array: true,
+      arrayRequired: true,
+      required: true,
+    },
+    where: {
+      type: "ch_agenda_item_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_order_by: {
+    ch_helper: {
+      type: "ch_helper_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    ch_room: {
+      type: "ch_room_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helper_confirmed: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_confirmed: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    nb_meeting: {
+      type: "nb_meeting_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_pk_columns_input: {
+    id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: true,
+    },
+  },
+  ch_agenda_item_select_column: "enum",
+  ch_agenda_item_set_input: {
+    helper_confirmed: {
+      type: "Boolean",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helper_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_confirmed: {
+      type: "Boolean",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_stddev_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_stddev_pop_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_stddev_samp_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_sum_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_update_column: "enum",
+  ch_agenda_item_var_pop_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_var_samp_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_agenda_item_variance_order_by: {
+    helper_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
     },
   },
   ch_festival: {
@@ -16686,6 +17768,70 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper: {
+    ch_agenda_items: {
+      distinct_on: {
+        type: "ch_agenda_item_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_agenda_item_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    ch_agenda_items_aggregate: {
+      distinct_on: {
+        type: "ch_agenda_item_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_agenda_item_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
     ch_helper_time_slots: {
       distinct_on: {
         type: "ch_helper_time_slots_select_column",
@@ -16745,70 +17891,6 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "ch_helper_time_slots_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_time_tables: {
-      distinct_on: {
-        type: "ch_time_table_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_time_table_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_time_table_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_time_tables_aggregate: {
-      distinct_on: {
-        type: "ch_time_table_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_time_table_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_time_table_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -16946,6 +18028,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    ch_agenda_items: {
+      type: "ch_agenda_item_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     ch_festival: {
       type: "ch_festival_bool_exp",
       array: false,
@@ -16954,12 +18042,6 @@ export const AllTypesProps: Record<string, any> = {
     },
     ch_helper_time_slots: {
       type: "ch_helper_time_slots_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_tables: {
-      type: "ch_time_table_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17005,6 +18087,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper_insert_input: {
+    ch_agenda_items: {
+      type: "ch_agenda_item_arr_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     ch_festival: {
       type: "ch_festival_obj_rel_insert_input",
       array: false,
@@ -17013,12 +18101,6 @@ export const AllTypesProps: Record<string, any> = {
     },
     ch_helper_time_slots: {
       type: "ch_helper_time_slots_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_tables: {
-      type: "ch_time_table_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17123,6 +18205,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper_order_by: {
+    ch_agenda_items_aggregate: {
+      type: "ch_agenda_item_aggregate_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     ch_festival: {
       type: "ch_festival_order_by",
       array: false,
@@ -17131,12 +18219,6 @@ export const AllTypesProps: Record<string, any> = {
     },
     ch_helper_time_slots_aggregate: {
       type: "ch_helper_time_slots_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_tables_aggregate: {
-      type: "ch_time_table_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17856,6 +18938,22 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
+    other_contact: {
+      path: {
+        type: "String",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    other_data: {
+      path: {
+        type: "String",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
   },
   ch_proposal_aggregate_fields: {
     count: {
@@ -17941,6 +19039,20 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
+  ch_proposal_append_input: {
+    other_contact: {
+      type: "jsonb",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    other_data: {
+      type: "jsonb",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
   ch_proposal_arr_rel_insert_input: {
     data: {
       type: "ch_proposal_insert_input",
@@ -17956,6 +19068,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_avg_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -18018,6 +19136,30 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    contact_info: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    created_at: {
+      type: "timestamptz_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    description: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    duration_minutes: {
+      type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int_comparison_exp",
       array: false,
@@ -18036,6 +19178,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    name: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     needs: {
       type: "String_comparison_exp",
       array: false,
@@ -18043,18 +19191,36 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     other_contact: {
-      type: "String_comparison_exp",
+      type: "jsonb_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
     other_data: {
-      type: "String_comparison_exp",
+      type: "jsonb_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
     phone: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_name: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_user_id: {
+      type: "uuid_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "String_comparison_exp",
       array: false,
       arrayRequired: false,
@@ -18068,7 +19234,55 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_constraint: "enum",
+  ch_proposal_delete_at_path_input: {
+    other_contact: {
+      type: "String",
+      array: true,
+      arrayRequired: false,
+      required: false,
+    },
+    other_data: {
+      type: "String",
+      array: true,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_proposal_delete_elem_input: {
+    other_contact: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    other_data: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
+  ch_proposal_delete_key_input: {
+    other_contact: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    other_data: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
   ch_proposal_inc_input: {
+    duration_minutes: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int",
       array: false,
@@ -18113,6 +19327,30 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    contact_info: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    created_at: {
+      type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    description: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    duration_minutes: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int",
       array: false,
@@ -18131,6 +19369,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    name: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     needs: {
       type: "String",
       array: false,
@@ -18138,18 +19382,36 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     other_contact: {
-      type: "String",
+      type: "jsonb",
       array: false,
       arrayRequired: false,
       required: false,
     },
     other_data: {
-      type: "String",
+      type: "jsonb",
       array: false,
       arrayRequired: false,
       required: false,
     },
     phone: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_name: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_user_id: {
+      type: "uuid",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "String",
       array: false,
       arrayRequired: false,
@@ -18175,6 +19437,30 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    contact_info: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    created_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    description: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -18187,25 +19473,37 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    name: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     needs: {
       type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    other_contact: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    other_data: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     phone: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_name: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_user_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -18231,6 +19529,30 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    contact_info: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    created_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    description: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -18243,25 +19565,37 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    name: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     needs: {
       type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    other_contact: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    other_data: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     phone: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_name: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_user_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -18333,6 +19667,30 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    contact_info: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    created_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    description: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -18346,6 +19704,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     meeting_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    name: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -18370,6 +19734,24 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     phone: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_name: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_user_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -18390,6 +19772,20 @@ export const AllTypesProps: Record<string, any> = {
       required: true,
     },
   },
+  ch_proposal_prepend_input: {
+    other_contact: {
+      type: "jsonb",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    other_data: {
+      type: "jsonb",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+  },
   ch_proposal_select_column: "enum",
   ch_proposal_set_input: {
     city: {
@@ -18400,6 +19796,30 @@ export const AllTypesProps: Record<string, any> = {
     },
     club: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    contact_info: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    created_at: {
+      type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    description: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    duration_minutes: {
+      type: "Int",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18416,6 +19836,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    name: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     needs: {
       type: "String",
       array: false,
@@ -18423,18 +19849,36 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     other_contact: {
-      type: "String",
+      type: "jsonb",
       array: false,
       arrayRequired: false,
       required: false,
     },
     other_data: {
-      type: "String",
+      type: "jsonb",
       array: false,
       arrayRequired: false,
       required: false,
     },
     phone: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_name: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker_user_id: {
+      type: "uuid",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "String",
       array: false,
       arrayRequired: false,
@@ -18448,6 +19892,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_stddev_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -18468,6 +19918,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_stddev_pop_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -18488,6 +19944,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_stddev_samp_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -18508,6 +19970,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_sum_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -19026,6 +20494,12 @@ export const AllTypesProps: Record<string, any> = {
   },
   ch_proposal_update_column: "enum",
   ch_proposal_var_pop_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -19046,6 +20520,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_var_samp_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -19066,6 +20546,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_variance_order_by: {
+    duration_minutes: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -19086,9 +20572,9 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_room: {
-    ch_time_tables: {
+    ch_agenda_items: {
       distinct_on: {
-        type: "ch_time_table_select_column",
+        type: "ch_agenda_item_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -19106,21 +20592,21 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "ch_time_table_order_by",
+        type: "ch_agenda_item_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "ch_time_table_bool_exp",
+        type: "ch_agenda_item_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
       },
     },
-    ch_time_tables_aggregate: {
+    ch_agenda_items_aggregate: {
       distinct_on: {
-        type: "ch_time_table_select_column",
+        type: "ch_agenda_item_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -19138,13 +20624,13 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "ch_time_table_order_by",
+        type: "ch_agenda_item_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "ch_time_table_bool_exp",
+        type: "ch_agenda_item_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -19282,14 +20768,14 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
-      type: "ch_festival_bool_exp",
+    ch_agenda_items: {
+      type: "ch_agenda_item_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_time_tables: {
-      type: "ch_time_table_bool_exp",
+    ch_festival: {
+      type: "ch_festival_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19329,14 +20815,14 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_room_insert_input: {
-    ch_festival: {
-      type: "ch_festival_obj_rel_insert_input",
+    ch_agenda_items: {
+      type: "ch_agenda_item_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_time_tables: {
-      type: "ch_time_table_arr_rel_insert_input",
+    ch_festival: {
+      type: "ch_festival_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19435,14 +20921,14 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_room_order_by: {
-    ch_festival: {
-      type: "ch_festival_order_by",
+    ch_agenda_items_aggregate: {
+      type: "ch_agenda_item_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_time_tables_aggregate: {
-      type: "ch_time_table_aggregate_order_by",
+    ch_festival: {
+      type: "ch_festival_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19823,6 +21309,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_avg_order_by: {
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -19867,6 +21359,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    festival_id: {
+      type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int_comparison_exp",
       array: false,
@@ -19882,6 +21380,12 @@ export const AllTypesProps: Record<string, any> = {
   },
   ch_time_slot_constraint: "enum",
   ch_time_slot_inc_input: {
+    festival_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int",
       array: false,
@@ -19908,6 +21412,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    festival_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int",
       array: false,
@@ -19928,6 +21438,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -19943,6 +21459,12 @@ export const AllTypesProps: Record<string, any> = {
   },
   ch_time_slot_min_order_by: {
     end_time: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    festival_id: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -20014,6 +21536,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -20043,6 +21571,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    festival_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int",
       array: false,
@@ -20057,6 +21591,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_stddev_order_by: {
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -20065,6 +21605,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_stddev_pop_order_by: {
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -20073,6 +21619,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_stddev_samp_order_by: {
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -20081,6 +21633,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_sum_order_by: {
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -20090,6 +21648,12 @@ export const AllTypesProps: Record<string, any> = {
   },
   ch_time_slot_update_column: "enum",
   ch_time_slot_var_pop_order_by: {
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -20098,6 +21662,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_var_samp_order_by: {
+    festival_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -20106,660 +21676,13 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_variance_order_by: {
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_aggregate_fields: {
-    count: {
-      columns: {
-        type: "ch_time_table_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      distinct: {
-        type: "Boolean",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-  },
-  ch_time_table_aggregate_order_by: {
-    avg: {
-      type: "ch_time_table_avg_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    count: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    max: {
-      type: "ch_time_table_max_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    min: {
-      type: "ch_time_table_min_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    stddev: {
-      type: "ch_time_table_stddev_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    stddev_pop: {
-      type: "ch_time_table_stddev_pop_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    stddev_samp: {
-      type: "ch_time_table_stddev_samp_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    sum: {
-      type: "ch_time_table_sum_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    var_pop: {
-      type: "ch_time_table_var_pop_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    var_samp: {
-      type: "ch_time_table_var_samp_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    variance: {
-      type: "ch_time_table_variance_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_arr_rel_insert_input: {
-    data: {
-      type: "ch_time_table_insert_input",
-      array: true,
-      arrayRequired: true,
-      required: true,
-    },
-    on_conflict: {
-      type: "ch_time_table_on_conflict",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_avg_order_by: {
-    helper_id: {
+    festival_id: {
       type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_bool_exp: {
-    _and: {
-      type: "ch_time_table_bool_exp",
-      array: true,
-      arrayRequired: false,
-      required: false,
-    },
-    _not: {
-      type: "ch_time_table_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    _or: {
-      type: "ch_time_table_bool_exp",
-      array: true,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_helper: {
-      type: "ch_helper_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_room: {
-      type: "ch_room_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    helper_confirmed: {
-      type: "Boolean_comparison_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    helper_id: {
-      type: "Int_comparison_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "Int_comparison_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_confirmed: {
-      type: "Boolean_comparison_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "Int_comparison_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_meeting: {
-      type: "nb_meeting_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "Int_comparison_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_constraint: "enum",
-  ch_time_table_inc_input: {
-    helper_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_insert_input: {
-    ch_helper: {
-      type: "ch_helper_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_room: {
-      type: "ch_room_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    helper_confirmed: {
-      type: "Boolean",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    helper_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_confirmed: {
-      type: "Boolean",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_meeting: {
-      type: "nb_meeting_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_max_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_min_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_obj_rel_insert_input: {
-    data: {
-      type: "ch_time_table_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: true,
-    },
-    on_conflict: {
-      type: "ch_time_table_on_conflict",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_on_conflict: {
-    constraint: {
-      type: "ch_time_table_constraint",
-      array: false,
-      arrayRequired: false,
-      required: true,
-    },
-    update_columns: {
-      type: "ch_time_table_update_column",
-      array: true,
-      arrayRequired: true,
-      required: true,
-    },
-    where: {
-      type: "ch_time_table_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_order_by: {
-    ch_helper: {
-      type: "ch_helper_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_room: {
-      type: "ch_room_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    helper_confirmed: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_confirmed: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_meeting: {
-      type: "nb_meeting_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_pk_columns_input: {
-    id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: true,
-    },
-  },
-  ch_time_table_select_column: "enum",
-  ch_time_table_set_input: {
-    helper_confirmed: {
-      type: "Boolean",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    helper_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_confirmed: {
-      type: "Boolean",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_stddev_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_stddev_pop_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_stddev_samp_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_sum_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_update_column: "enum",
-  ch_time_table_var_pop_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_var_samp_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-  },
-  ch_time_table_variance_order_by: {
-    helper_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    meeting_id: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    room_id: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -22759,6 +23682,22 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   mutation_root: {
+    delete_ch_agenda_item: {
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: true,
+      },
+    },
+    delete_ch_agenda_item_by_pk: {
+      id: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: true,
+      },
+    },
     delete_ch_festival: {
       where: {
         type: "ch_festival_bool_exp",
@@ -22864,22 +23803,6 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
     delete_ch_time_slot_by_pk: {
-      id: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: true,
-      },
-    },
-    delete_ch_time_table: {
-      where: {
-        type: "ch_time_table_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: true,
-      },
-    },
-    delete_ch_time_table_by_pk: {
       id: {
         type: "Int",
         array: false,
@@ -23029,6 +23952,34 @@ export const AllTypesProps: Record<string, any> = {
         array: false,
         arrayRequired: false,
         required: true,
+      },
+    },
+    insert_ch_agenda_item: {
+      objects: {
+        type: "ch_agenda_item_insert_input",
+        array: true,
+        arrayRequired: true,
+        required: true,
+      },
+      on_conflict: {
+        type: "ch_agenda_item_on_conflict",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    insert_ch_agenda_item_one: {
+      object: {
+        type: "ch_agenda_item_insert_input",
+        array: false,
+        arrayRequired: false,
+        required: true,
+      },
+      on_conflict: {
+        type: "ch_agenda_item_on_conflict",
+        array: false,
+        arrayRequired: false,
+        required: false,
       },
     },
     insert_ch_festival: {
@@ -23222,34 +24173,6 @@ export const AllTypesProps: Record<string, any> = {
       },
       on_conflict: {
         type: "ch_time_slot_on_conflict",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    insert_ch_time_table: {
-      objects: {
-        type: "ch_time_table_insert_input",
-        array: true,
-        arrayRequired: true,
-        required: true,
-      },
-      on_conflict: {
-        type: "ch_time_table_on_conflict",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    insert_ch_time_table_one: {
-      object: {
-        type: "ch_time_table_insert_input",
-        array: false,
-        arrayRequired: false,
-        required: true,
-      },
-      on_conflict: {
-        type: "ch_time_table_on_conflict",
         array: false,
         arrayRequired: false,
         required: false,
@@ -23507,6 +24430,46 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
+    update_ch_agenda_item: {
+      _inc: {
+        type: "ch_agenda_item_inc_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _set: {
+        type: "ch_agenda_item_set_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: true,
+      },
+    },
+    update_ch_agenda_item_by_pk: {
+      _inc: {
+        type: "ch_agenda_item_inc_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _set: {
+        type: "ch_agenda_item_set_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      pk_columns: {
+        type: "ch_agenda_item_pk_columns_input",
+        array: false,
+        arrayRequired: false,
+        required: true,
+      },
+    },
     update_ch_festival: {
       _append: {
         type: "ch_festival_append_input",
@@ -23688,8 +24651,38 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
     update_ch_proposal: {
+      _append: {
+        type: "ch_proposal_append_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _delete_at_path: {
+        type: "ch_proposal_delete_at_path_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _delete_elem: {
+        type: "ch_proposal_delete_elem_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _delete_key: {
+        type: "ch_proposal_delete_key_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
       _inc: {
         type: "ch_proposal_inc_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _prepend: {
+        type: "ch_proposal_prepend_input",
         array: false,
         arrayRequired: false,
         required: false,
@@ -23708,8 +24701,38 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
     update_ch_proposal_by_pk: {
+      _append: {
+        type: "ch_proposal_append_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _delete_at_path: {
+        type: "ch_proposal_delete_at_path_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _delete_elem: {
+        type: "ch_proposal_delete_elem_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _delete_key: {
+        type: "ch_proposal_delete_key_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
       _inc: {
         type: "ch_proposal_inc_input",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      _prepend: {
+        type: "ch_proposal_prepend_input",
         array: false,
         arrayRequired: false,
         required: false,
@@ -23842,46 +24865,6 @@ export const AllTypesProps: Record<string, any> = {
       },
       pk_columns: {
         type: "ch_time_slot_pk_columns_input",
-        array: false,
-        arrayRequired: false,
-        required: true,
-      },
-    },
-    update_ch_time_table: {
-      _inc: {
-        type: "ch_time_table_inc_input",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      _set: {
-        type: "ch_time_table_set_input",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      where: {
-        type: "ch_time_table_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: true,
-      },
-    },
-    update_ch_time_table_by_pk: {
-      _inc: {
-        type: "ch_time_table_inc_input",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      _set: {
-        type: "ch_time_table_set_input",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      pk_columns: {
-        type: "ch_time_table_pk_columns_input",
         array: false,
         arrayRequired: false,
         required: true,
@@ -25738,7 +26721,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     time_table: {
-      type: "ch_time_table_bool_exp",
+      type: "ch_agenda_item_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -25881,7 +26864,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     time_table: {
-      type: "ch_time_table_obj_rel_insert_input",
+      type: "ch_agenda_item_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26221,7 +27204,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     time_table: {
-      type: "ch_time_table_order_by",
+      type: "ch_agenda_item_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -28132,6 +29115,78 @@ export const AllTypesProps: Record<string, any> = {
   },
   order_by: "enum",
   query_root: {
+    ch_agenda_item: {
+      distinct_on: {
+        type: "ch_agenda_item_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_agenda_item_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    ch_agenda_item_aggregate: {
+      distinct_on: {
+        type: "ch_agenda_item_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_agenda_item_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    ch_agenda_item_by_pk: {
+      id: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: true,
+      },
+    },
     ch_festival: {
       distinct_on: {
         type: "ch_festival_select_column",
@@ -28629,78 +29684,6 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
     ch_time_slot_by_pk: {
-      id: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: true,
-      },
-    },
-    ch_time_table: {
-      distinct_on: {
-        type: "ch_time_table_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_time_table_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_time_table_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_time_table_aggregate: {
-      distinct_on: {
-        type: "ch_time_table_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_time_table_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_time_table_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_time_table_by_pk: {
       id: {
         type: "Int",
         array: false,
@@ -29450,6 +30433,78 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   subscription_root: {
+    ch_agenda_item: {
+      distinct_on: {
+        type: "ch_agenda_item_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_agenda_item_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    ch_agenda_item_aggregate: {
+      distinct_on: {
+        type: "ch_agenda_item_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_agenda_item_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_agenda_item_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    ch_agenda_item_by_pk: {
+      id: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: true,
+      },
+    },
     ch_festival: {
       distinct_on: {
         type: "ch_festival_select_column",
@@ -29947,78 +31002,6 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
     ch_time_slot_by_pk: {
-      id: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: true,
-      },
-    },
-    ch_time_table: {
-      distinct_on: {
-        type: "ch_time_table_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_time_table_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_time_table_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_time_table_aggregate: {
-      distinct_on: {
-        type: "ch_time_table_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_time_table_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_time_table_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_time_table_by_pk: {
       id: {
         type: "Int",
         array: false,
@@ -30792,6 +31775,98 @@ export const AllTypesProps: Record<string, any> = {
 };
 
 export const ReturnTypes: Record<string, any> = {
+  ch_agenda_item: {
+    ch_helper: "ch_helper",
+    ch_room: "ch_room",
+    helper_confirmed: "Boolean",
+    helper_id: "Int",
+    id: "Int",
+    meeting_confirmed: "Boolean",
+    meeting_id: "Int",
+    nb_meeting: "nb_meeting",
+    room_id: "Int",
+  },
+  ch_agenda_item_aggregate: {
+    aggregate: "ch_agenda_item_aggregate_fields",
+    nodes: "ch_agenda_item",
+  },
+  ch_agenda_item_aggregate_fields: {
+    avg: "ch_agenda_item_avg_fields",
+    count: "Int",
+    max: "ch_agenda_item_max_fields",
+    min: "ch_agenda_item_min_fields",
+    stddev: "ch_agenda_item_stddev_fields",
+    stddev_pop: "ch_agenda_item_stddev_pop_fields",
+    stddev_samp: "ch_agenda_item_stddev_samp_fields",
+    sum: "ch_agenda_item_sum_fields",
+    var_pop: "ch_agenda_item_var_pop_fields",
+    var_samp: "ch_agenda_item_var_samp_fields",
+    variance: "ch_agenda_item_variance_fields",
+  },
+  ch_agenda_item_avg_fields: {
+    helper_id: "Float",
+    id: "Float",
+    meeting_id: "Float",
+    room_id: "Float",
+  },
+  ch_agenda_item_max_fields: {
+    helper_id: "Int",
+    id: "Int",
+    meeting_id: "Int",
+    room_id: "Int",
+  },
+  ch_agenda_item_min_fields: {
+    helper_id: "Int",
+    id: "Int",
+    meeting_id: "Int",
+    room_id: "Int",
+  },
+  ch_agenda_item_mutation_response: {
+    affected_rows: "Int",
+    returning: "ch_agenda_item",
+  },
+  ch_agenda_item_stddev_fields: {
+    helper_id: "Float",
+    id: "Float",
+    meeting_id: "Float",
+    room_id: "Float",
+  },
+  ch_agenda_item_stddev_pop_fields: {
+    helper_id: "Float",
+    id: "Float",
+    meeting_id: "Float",
+    room_id: "Float",
+  },
+  ch_agenda_item_stddev_samp_fields: {
+    helper_id: "Float",
+    id: "Float",
+    meeting_id: "Float",
+    room_id: "Float",
+  },
+  ch_agenda_item_sum_fields: {
+    helper_id: "Int",
+    id: "Int",
+    meeting_id: "Int",
+    room_id: "Int",
+  },
+  ch_agenda_item_var_pop_fields: {
+    helper_id: "Float",
+    id: "Float",
+    meeting_id: "Float",
+    room_id: "Float",
+  },
+  ch_agenda_item_var_samp_fields: {
+    helper_id: "Float",
+    id: "Float",
+    meeting_id: "Float",
+    room_id: "Float",
+  },
+  ch_agenda_item_variance_fields: {
+    helper_id: "Float",
+    id: "Float",
+    meeting_id: "Float",
+    room_id: "Float",
+  },
   ch_festival: {
     ch_helpers: "ch_helper",
     ch_helpers_aggregate: "ch_helper_aggregate",
@@ -30884,11 +31959,11 @@ export const ReturnTypes: Record<string, any> = {
     sphere_id: "Float",
   },
   ch_helper: {
+    ch_agenda_items: "ch_agenda_item",
+    ch_agenda_items_aggregate: "ch_agenda_item_aggregate",
     ch_festival: "ch_festival",
     ch_helper_time_slots: "ch_helper_time_slots",
     ch_helper_time_slots_aggregate: "ch_helper_time_slots_aggregate",
-    ch_time_tables: "ch_time_table",
-    ch_time_tables_aggregate: "ch_time_table_aggregate",
     cr_user: "cr_user",
     festival_id: "Int",
     id: "Int",
@@ -31041,13 +32116,21 @@ export const ReturnTypes: Record<string, any> = {
     ch_wait_list: "ch_wait_list",
     city: "String",
     club: "String",
+    contact_info: "String",
+    created_at: "timestamptz",
+    description: "String",
+    duration_minutes: "Int",
     id: "Int",
     meeting: "nb_meeting",
     meeting_id: "Int",
+    name: "String",
     needs: "String",
-    other_contact: "String",
-    other_data: "String",
+    other_contact: "jsonb",
+    other_data: "jsonb",
     phone: "String",
+    speaker_name: "String",
+    speaker_user_id: "uuid",
+    status: "String",
     waitlist_id: "Int",
   },
   ch_proposal_aggregate: {
@@ -31068,6 +32151,7 @@ export const ReturnTypes: Record<string, any> = {
     variance: "ch_proposal_variance_fields",
   },
   ch_proposal_avg_fields: {
+    duration_minutes: "Float",
     id: "Float",
     meeting_id: "Float",
     waitlist_id: "Float",
@@ -31075,23 +32159,35 @@ export const ReturnTypes: Record<string, any> = {
   ch_proposal_max_fields: {
     city: "String",
     club: "String",
+    contact_info: "String",
+    created_at: "timestamptz",
+    description: "String",
+    duration_minutes: "Int",
     id: "Int",
     meeting_id: "Int",
+    name: "String",
     needs: "String",
-    other_contact: "String",
-    other_data: "String",
     phone: "String",
+    speaker_name: "String",
+    speaker_user_id: "uuid",
+    status: "String",
     waitlist_id: "Int",
   },
   ch_proposal_min_fields: {
     city: "String",
     club: "String",
+    contact_info: "String",
+    created_at: "timestamptz",
+    description: "String",
+    duration_minutes: "Int",
     id: "Int",
     meeting_id: "Int",
+    name: "String",
     needs: "String",
-    other_contact: "String",
-    other_data: "String",
     phone: "String",
+    speaker_name: "String",
+    speaker_user_id: "uuid",
+    status: "String",
     waitlist_id: "Int",
   },
   ch_proposal_mutation_response: {
@@ -31099,21 +32195,25 @@ export const ReturnTypes: Record<string, any> = {
     returning: "ch_proposal",
   },
   ch_proposal_stddev_fields: {
+    duration_minutes: "Float",
     id: "Float",
     meeting_id: "Float",
     waitlist_id: "Float",
   },
   ch_proposal_stddev_pop_fields: {
+    duration_minutes: "Float",
     id: "Float",
     meeting_id: "Float",
     waitlist_id: "Float",
   },
   ch_proposal_stddev_samp_fields: {
+    duration_minutes: "Float",
     id: "Float",
     meeting_id: "Float",
     waitlist_id: "Float",
   },
   ch_proposal_sum_fields: {
+    duration_minutes: "Int",
     id: "Int",
     meeting_id: "Int",
     waitlist_id: "Int",
@@ -31197,24 +32297,27 @@ export const ReturnTypes: Record<string, any> = {
     timeslot_id: "Float",
   },
   ch_proposal_var_pop_fields: {
+    duration_minutes: "Float",
     id: "Float",
     meeting_id: "Float",
     waitlist_id: "Float",
   },
   ch_proposal_var_samp_fields: {
+    duration_minutes: "Float",
     id: "Float",
     meeting_id: "Float",
     waitlist_id: "Float",
   },
   ch_proposal_variance_fields: {
+    duration_minutes: "Float",
     id: "Float",
     meeting_id: "Float",
     waitlist_id: "Float",
   },
   ch_room: {
+    ch_agenda_items: "ch_agenda_item",
+    ch_agenda_items_aggregate: "ch_agenda_item_aggregate",
     ch_festival: "ch_festival",
-    ch_time_tables: "ch_time_table",
-    ch_time_tables_aggregate: "ch_time_table_aggregate",
     festival_id: "Int",
     id: "Int",
     name: "String",
@@ -31288,6 +32391,7 @@ export const ReturnTypes: Record<string, any> = {
     ch_proposal_time_slots: "ch_proposal_time_slots",
     ch_proposal_time_slots_aggregate: "ch_proposal_time_slots_aggregate",
     end_time: "timestamptz",
+    festival_id: "Int",
     id: "Int",
     start_time: "timestamptz",
   },
@@ -31309,15 +32413,18 @@ export const ReturnTypes: Record<string, any> = {
     variance: "ch_time_slot_variance_fields",
   },
   ch_time_slot_avg_fields: {
+    festival_id: "Float",
     id: "Float",
   },
   ch_time_slot_max_fields: {
     end_time: "timestamptz",
+    festival_id: "Int",
     id: "Int",
     start_time: "timestamptz",
   },
   ch_time_slot_min_fields: {
     end_time: "timestamptz",
+    festival_id: "Int",
     id: "Int",
     start_time: "timestamptz",
   },
@@ -31326,117 +32433,32 @@ export const ReturnTypes: Record<string, any> = {
     returning: "ch_time_slot",
   },
   ch_time_slot_stddev_fields: {
+    festival_id: "Float",
     id: "Float",
   },
   ch_time_slot_stddev_pop_fields: {
+    festival_id: "Float",
     id: "Float",
   },
   ch_time_slot_stddev_samp_fields: {
+    festival_id: "Float",
     id: "Float",
   },
   ch_time_slot_sum_fields: {
+    festival_id: "Int",
     id: "Int",
   },
   ch_time_slot_var_pop_fields: {
+    festival_id: "Float",
     id: "Float",
   },
   ch_time_slot_var_samp_fields: {
+    festival_id: "Float",
     id: "Float",
   },
   ch_time_slot_variance_fields: {
+    festival_id: "Float",
     id: "Float",
-  },
-  ch_time_table: {
-    ch_helper: "ch_helper",
-    ch_room: "ch_room",
-    helper_confirmed: "Boolean",
-    helper_id: "Int",
-    id: "Int",
-    meeting_confirmed: "Boolean",
-    meeting_id: "Int",
-    nb_meeting: "nb_meeting",
-    room_id: "Int",
-  },
-  ch_time_table_aggregate: {
-    aggregate: "ch_time_table_aggregate_fields",
-    nodes: "ch_time_table",
-  },
-  ch_time_table_aggregate_fields: {
-    avg: "ch_time_table_avg_fields",
-    count: "Int",
-    max: "ch_time_table_max_fields",
-    min: "ch_time_table_min_fields",
-    stddev: "ch_time_table_stddev_fields",
-    stddev_pop: "ch_time_table_stddev_pop_fields",
-    stddev_samp: "ch_time_table_stddev_samp_fields",
-    sum: "ch_time_table_sum_fields",
-    var_pop: "ch_time_table_var_pop_fields",
-    var_samp: "ch_time_table_var_samp_fields",
-    variance: "ch_time_table_variance_fields",
-  },
-  ch_time_table_avg_fields: {
-    helper_id: "Float",
-    id: "Float",
-    meeting_id: "Float",
-    room_id: "Float",
-  },
-  ch_time_table_max_fields: {
-    helper_id: "Int",
-    id: "Int",
-    meeting_id: "Int",
-    room_id: "Int",
-  },
-  ch_time_table_min_fields: {
-    helper_id: "Int",
-    id: "Int",
-    meeting_id: "Int",
-    room_id: "Int",
-  },
-  ch_time_table_mutation_response: {
-    affected_rows: "Int",
-    returning: "ch_time_table",
-  },
-  ch_time_table_stddev_fields: {
-    helper_id: "Float",
-    id: "Float",
-    meeting_id: "Float",
-    room_id: "Float",
-  },
-  ch_time_table_stddev_pop_fields: {
-    helper_id: "Float",
-    id: "Float",
-    meeting_id: "Float",
-    room_id: "Float",
-  },
-  ch_time_table_stddev_samp_fields: {
-    helper_id: "Float",
-    id: "Float",
-    meeting_id: "Float",
-    room_id: "Float",
-  },
-  ch_time_table_sum_fields: {
-    helper_id: "Int",
-    id: "Int",
-    meeting_id: "Int",
-    room_id: "Int",
-  },
-  ch_time_table_var_pop_fields: {
-    helper_id: "Float",
-    id: "Float",
-    meeting_id: "Float",
-    room_id: "Float",
-  },
-  ch_time_table_var_samp_fields: {
-    helper_id: "Float",
-    id: "Float",
-    meeting_id: "Float",
-    room_id: "Float",
-  },
-  ch_time_table_variance_fields: {
-    helper_id: "Float",
-    id: "Float",
-    meeting_id: "Float",
-    room_id: "Float",
   },
   ch_wait_list: {
     ch_festival: "ch_festival",
@@ -31633,6 +32655,8 @@ export const ReturnTypes: Record<string, any> = {
     id: "Float",
   },
   mutation_root: {
+    delete_ch_agenda_item: "ch_agenda_item_mutation_response",
+    delete_ch_agenda_item_by_pk: "ch_agenda_item",
     delete_ch_festival: "ch_festival_mutation_response",
     delete_ch_festival_by_pk: "ch_festival",
     delete_ch_helper: "ch_helper_mutation_response",
@@ -31647,8 +32671,6 @@ export const ReturnTypes: Record<string, any> = {
     delete_ch_room_by_pk: "ch_room",
     delete_ch_time_slot: "ch_time_slot_mutation_response",
     delete_ch_time_slot_by_pk: "ch_time_slot",
-    delete_ch_time_table: "ch_time_table_mutation_response",
-    delete_ch_time_table_by_pk: "ch_time_table",
     delete_ch_wait_list: "ch_wait_list_mutation_response",
     delete_ch_wait_list_by_pk: "ch_wait_list",
     delete_cr_user: "cr_user_mutation_response",
@@ -31667,6 +32689,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_nb_sphere_by_pk: "nb_sphere",
     delete_nb_sphere_managers: "nb_sphere_managers_mutation_response",
     delete_nb_sphere_managers_by_pk: "nb_sphere_managers",
+    insert_ch_agenda_item: "ch_agenda_item_mutation_response",
+    insert_ch_agenda_item_one: "ch_agenda_item",
     insert_ch_festival: "ch_festival_mutation_response",
     insert_ch_festival_one: "ch_festival",
     insert_ch_helper: "ch_helper_mutation_response",
@@ -31681,8 +32705,6 @@ export const ReturnTypes: Record<string, any> = {
     insert_ch_room_one: "ch_room",
     insert_ch_time_slot: "ch_time_slot_mutation_response",
     insert_ch_time_slot_one: "ch_time_slot",
-    insert_ch_time_table: "ch_time_table_mutation_response",
-    insert_ch_time_table_one: "ch_time_table",
     insert_ch_wait_list: "ch_wait_list_mutation_response",
     insert_ch_wait_list_one: "ch_wait_list",
     insert_cr_user: "cr_user_mutation_response",
@@ -31701,6 +32723,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_nb_sphere_managers: "nb_sphere_managers_mutation_response",
     insert_nb_sphere_managers_one: "nb_sphere_managers",
     insert_nb_sphere_one: "nb_sphere",
+    update_ch_agenda_item: "ch_agenda_item_mutation_response",
+    update_ch_agenda_item_by_pk: "ch_agenda_item",
     update_ch_festival: "ch_festival_mutation_response",
     update_ch_festival_by_pk: "ch_festival",
     update_ch_helper: "ch_helper_mutation_response",
@@ -31715,8 +32739,6 @@ export const ReturnTypes: Record<string, any> = {
     update_ch_room_by_pk: "ch_room",
     update_ch_time_slot: "ch_time_slot_mutation_response",
     update_ch_time_slot_by_pk: "ch_time_slot",
-    update_ch_time_table: "ch_time_table_mutation_response",
-    update_ch_time_table_by_pk: "ch_time_table",
     update_ch_wait_list: "ch_wait_list_mutation_response",
     update_ch_wait_list_by_pk: "ch_wait_list",
     update_cr_user: "cr_user_mutation_response",
@@ -31903,7 +32925,7 @@ export const ReturnTypes: Record<string, any> = {
     sphere: "nb_sphere",
     sphere_id: "Int",
     start_time: "timestamptz",
-    time_table: "ch_time_table",
+    time_table: "ch_agenda_item",
     updated_at: "timestamptz",
   },
   nb_meeting_aggregate: {
@@ -32219,6 +33241,9 @@ export const ReturnTypes: Record<string, any> = {
     site_id: "Float",
   },
   query_root: {
+    ch_agenda_item: "ch_agenda_item",
+    ch_agenda_item_aggregate: "ch_agenda_item_aggregate",
+    ch_agenda_item_by_pk: "ch_agenda_item",
     ch_festival: "ch_festival",
     ch_festival_aggregate: "ch_festival_aggregate",
     ch_festival_by_pk: "ch_festival",
@@ -32240,9 +33265,6 @@ export const ReturnTypes: Record<string, any> = {
     ch_time_slot: "ch_time_slot",
     ch_time_slot_aggregate: "ch_time_slot_aggregate",
     ch_time_slot_by_pk: "ch_time_slot",
-    ch_time_table: "ch_time_table",
-    ch_time_table_aggregate: "ch_time_table_aggregate",
-    ch_time_table_by_pk: "ch_time_table",
     ch_wait_list: "ch_wait_list",
     ch_wait_list_aggregate: "ch_wait_list_aggregate",
     ch_wait_list_by_pk: "ch_wait_list",
@@ -32272,6 +33294,9 @@ export const ReturnTypes: Record<string, any> = {
     nb_sphere_managers_by_pk: "nb_sphere_managers",
   },
   subscription_root: {
+    ch_agenda_item: "ch_agenda_item",
+    ch_agenda_item_aggregate: "ch_agenda_item_aggregate",
+    ch_agenda_item_by_pk: "ch_agenda_item",
     ch_festival: "ch_festival",
     ch_festival_aggregate: "ch_festival_aggregate",
     ch_festival_by_pk: "ch_festival",
@@ -32293,9 +33318,6 @@ export const ReturnTypes: Record<string, any> = {
     ch_time_slot: "ch_time_slot",
     ch_time_slot_aggregate: "ch_time_slot_aggregate",
     ch_time_slot_by_pk: "ch_time_slot",
-    ch_time_table: "ch_time_table",
-    ch_time_table_aggregate: "ch_time_table_aggregate",
-    ch_time_table_by_pk: "ch_time_table",
     ch_wait_list: "ch_wait_list",
     ch_wait_list_aggregate: "ch_wait_list_aggregate",
     ch_wait_list_by_pk: "ch_wait_list",
