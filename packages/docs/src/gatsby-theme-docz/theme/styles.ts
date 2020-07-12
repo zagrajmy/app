@@ -8,14 +8,6 @@ const styles = {
     color: "text",
     bg: "background",
   },
-  a: {
-    color: "primary",
-    textDecoration: "none",
-    "&:hover": {
-      color: "secondary",
-      textDecoration: "underline",
-    },
-  },
   h1: {
     fontSize: 6,
   },
