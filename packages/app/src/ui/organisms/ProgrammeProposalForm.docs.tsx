@@ -109,6 +109,12 @@ export const docsComponentProps: ProgrammeProposalFormProps = {
             required: true,
           },
           {
+            name: "other_contact.discord",
+            type: "discord",
+            label: "Discord",
+            required: true,
+          },
+          {
             name: "accepted_terms_and_conditions",
             type: "checkbox",
             label:
