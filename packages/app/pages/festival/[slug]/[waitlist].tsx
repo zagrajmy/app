@@ -41,7 +41,7 @@ function fetchFestival(ctx: GetServerSidePropsContext<Params>) {
 }
 
 function postForm(form: ProgrammeProposalFormResult) {
-  return summon("https://wiezamaga.net/v1/chronology/proposals", {
+  return summon("https://wiezamaga.net/v1/chronology/proposals/", {
     json: form,
   });
 }
