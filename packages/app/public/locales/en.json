@@ -43,5 +43,6 @@
   "submit": "Submit",
   "from": "from",
   "to": "to",
-  "propose-program": "Submit a program event"
+  "propose-program": "Submit a program event",
+  "does-not-match-discord-username-pattern": "Discord usernames must contain a hash (#) and four digits (e.g. geralt#1337)"
 }

@@ -1,6 +1,7 @@
 import { absurd } from "fp-ts/lib/function";
+import { TFunction } from "i18next";
 import { forwardRef, useMemo } from "react";
-import { ErrorMessage, useForm } from "react-hook-form";
+import { ErrorMessage, useForm, ValidationOptions } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
   Box,
@@ -42,6 +43,16 @@ function unsafeMod(obj: object, path: string, f: (x: unknown) => unknown) {
 
   cur[p[p.length - 1]] = f(cur[p[p.length - 1]]);
 }
+function unsafeGet(obj: object, path: string) {
+  let cur = obj as any;
+  for (const key of path.split(".")) {
+    if (!cur) {
+      return cur;
+    }
+    cur = cur[key];
+  }
+  return cur;
+}
 
 function coerceNumberFieldValuesToNumber(
   fieldsets: settings.Fieldset[],
@@ -82,6 +93,29 @@ function coerceNumberFieldValuesToNumber(
         }
       }
     }
+  }
+}
+
+function fieldRef(
+  register: (
+    validationOptions: ValidationOptions
+  ) => (ref: Element | null) => void,
+  field: settings.Field,
+  t: TFunction
+) {
+  switch (field.type) {
+    case "discord":
+      return register({
+        required: field.required ? `${t("field-is-required")}` : undefined,
+        pattern: {
+          value: /(.*)#(\d{4})/,
+          message: t("does-not-match-discord-username-pattern"),
+        },
+      });
+    default:
+      return register({
+        required: field.required ? `${t("field-is-required")}` : undefined,
+      });
   }
 }
 
@@ -354,18 +388,17 @@ export function ProgrammeProposalForm({
               </Heading>
               <Fieldset>
                 {fields.map((field, j) => {
+                  const error =
+                    errors[field.name] || unsafeGet(errors, field.name);
+
                   return (
                     <div key={j}>
                       <FieldControl
                         field={field}
-                        ref={register({
-                          required: field.required
-                            ? `${t("field-is-required")}`
-                            : undefined,
-                        })}
-                        isInvalid={Boolean(errors[field.name])}
+                        ref={fieldRef(register, field, t)}
+                        isInvalid={Boolean(error)}
                       />
-                      {errors[field.name] && (
+                      {error && (
                         <ErrorMessage
                           errors={errors}
                           name={field.name}
