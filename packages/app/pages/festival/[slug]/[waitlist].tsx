@@ -1,14 +1,19 @@
+import { absurd } from "fp-ts/lib/function";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import { Reducer, useEffect, useReducer } from "react";
 
 import { hasura } from "../../../data";
 import { CommonHead } from "../../../src/app/components/CommonHead";
 import { Page } from "../../../src/app/components/Page";
 import { detectSphere } from "../../../src/app/detectSphere";
 import { useSettings } from "../../../src/app/store/useSettings";
-import { AsyncReturnType } from "../../../src/lib";
+import { AsyncReturnType, makeError, summon } from "../../../src/lib";
 import { head } from "../../../src/lib/head";
-import { Code, Container } from "../../../src/ui";
-import { ProgrammeProposalForm } from "../../../src/ui/organisms/ProgrammeProposalForm";
+import { Code, Container, Message } from "../../../src/ui";
+import {
+  ProgrammeProposalForm,
+  ProgrammeProposalFormResult,
+} from "../../../src/ui/organisms/ProgrammeProposalForm";
 
 // should always match filepath
 type Params = {
@@ -35,6 +40,57 @@ function fetchFestival(ctx: GetServerSidePropsContext<Params>) {
     .then((res) => head(res.ch_festival));
 }
 
+function postForm(form: ProgrammeProposalFormResult) {
+  return summon("https://wiezamaga.net/v1/chronology/proposals", {
+    json: form,
+  });
+}
+
+type State =
+  | {
+      type: "submitting";
+      formValue: ProgrammeProposalFormResult;
+    }
+  | {
+      type: "standby";
+    }
+  | {
+      type: "error";
+      error: Error;
+    };
+type Action =
+  | {
+      type: "submit";
+      payload: ProgrammeProposalFormResult;
+    }
+  | {
+      type: "fail";
+      payload: { error: unknown };
+    }
+  | {
+      type: "success";
+    };
+const reducer: Reducer<State, Action> = (state, action) => {
+  switch (action.type) {
+    case "submit":
+      return {
+        type: "submitting",
+        formValue: action.payload,
+      };
+    case "fail":
+      return {
+        type: "error",
+        error: makeError(action.payload),
+      };
+    case "success":
+      return {
+        type: "standby",
+      };
+    default:
+      throw absurd(action);
+  }
+};
+
 type Festival = Exclude<AsyncReturnType<typeof fetchFestival>, undefined>;
 
 interface Props {
@@ -43,8 +99,27 @@ interface Props {
 }
 
 const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
-  // eslint-disable-next-line no-console
-  const handleSubmit = console.log;
+  const [state, dispatch] = useReducer<Reducer<State, Action>>(reducer, {
+    type: "standby",
+  });
+  useEffect(() => {
+    if (state.type === "submitting") {
+      postForm(state.formValue)
+        .then((_res) => {
+          dispatch({
+            type: "success",
+          });
+        })
+        .catch((err) => {
+          dispatch({
+            type: "fail",
+            payload: err,
+          });
+        });
+    }
+  }, [state]);
+
+  const handleSubmit = postForm;
 
   const settings = useSettings(festival);
 
@@ -89,9 +164,15 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
     <Page>
       <CommonHead />
       <Container py={[0, 4]}>
+        {state.type === "error" && (
+          <Message as="p" variant="critical">
+            {state.error.message}
+          </Message>
+        )}
         <ProgrammeProposalForm
           onSubmit={handleSubmit}
           settings={formSettings}
+          isSubmitting={state.type === "submitting"}
         />
       </Container>
     </Page>

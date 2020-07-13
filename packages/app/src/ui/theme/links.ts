@@ -8,9 +8,9 @@ const underlined: ThemeUIStyleObject = {
   ...({
     "--transition": "250ms 33ms cubic-bezier(0.19, 1, 0.22, 1)",
   } as {}),
+  color: "text",
   position: "relative",
   zIndex: 0,
-  color: "currentColor",
   textDecoration: "none",
   outline: "none",
   transition: "color var(--transition)",

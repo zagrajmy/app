@@ -249,12 +249,14 @@ export interface ProgrammeProposalFormProps {
   settings: settings.Form;
   onSubmit: (values: ProgrammeProposalFormResult) => void;
   defaultValues?: DeepPartial<ProgrammeProposalFormResult>;
+  isSubmitting?: boolean;
 }
 
 export function ProgrammeProposalForm({
   settings: { introText, footerText, title, fieldsets },
   onSubmit: propsOnSubmit,
   defaultValues,
+  isSubmitting,
 }: ProgrammeProposalFormProps) {
   const { t } = useTranslation();
   const { register, handleSubmit, errors } = useForm<
@@ -371,7 +373,11 @@ export function ProgrammeProposalForm({
         {/* triggers missing unique key warning */}
         {mdx(footerText)}
         <Spacer height={3} />
-        <Button type="submit" sx={{ fontWeight: "bold", marginLeft: "auto" }}>
+        <Button
+          type="submit"
+          sx={{ fontWeight: "bold", marginLeft: "auto" }}
+          disabled={isSubmitting}
+        >
           {t("submit")}
         </Button>
       </footer>
