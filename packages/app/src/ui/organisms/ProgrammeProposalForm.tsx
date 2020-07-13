@@ -160,7 +160,7 @@ const FieldControl = forwardRef<any, FieldControlProps>(
           <Box as="fieldset" variant="forms.choiceGroup">
             <legend>{field.label}</legend>
             <FieldDescription>{field.description}</FieldDescription>
-            {Object.entries(field.choices).map(([label, value]) => (
+            {field.choices.map(([label, value]) => (
               <SimpleLabel key={value} sx={rowStyles}>
                 <Radio name={field.name} value={value} ref={ref} />
                 {label}
@@ -174,7 +174,7 @@ const FieldControl = forwardRef<any, FieldControlProps>(
             <Box as="fieldset" variant="forms.choiceGroup">
               <legend>{field.label}</legend>
               <FieldDescription>{field.description}</FieldDescription>
-              {Object.entries(field.choices).map(([label, value]) => (
+              {field.choices.map(([label, value]) => (
                 <SimpleLabel key={value} sx={rowStyles}>
                   <Checkbox name={field.name} value={value} ref={ref} />
                   {label}
@@ -281,7 +281,7 @@ export function ProgrammeProposalForm({
               field.type === "multiple-choice" ||
               field.type === "single-choice"
             ) {
-              const values = new Set(Object.values(field.choices));
+              const values = new Set(field.choices.map((x) => x[1]));
               try {
                 unsafeMod(result, field.name, (chosen) => {
                   if (Array.isArray(chosen)) {

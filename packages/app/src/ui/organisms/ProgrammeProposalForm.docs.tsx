@@ -143,13 +143,13 @@ export const docsComponentProps: ProgrammeProposalFormProps = {
             label: "Time slots",
             description: "Pick one or more",
             required: true,
-            choices: {
-              "Friday 18-22": 21,
-              "Saturday 10-14": 22,
-              "Saturday 14-18": 23,
-              "Saturday 18-22": 24,
-              "Sunday 10-14": 25,
-            },
+            choices: [
+              ["Friday 18-22", 21],
+              ["Saturday 10-14", 22],
+              ["Saturday 14-18", 23],
+              ["Saturday 18-22", 24],
+              ["Sunday 10-14", 25],
+            ],
           },
           {
             name: "other_data.max_players",
