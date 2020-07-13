@@ -32,7 +32,11 @@ export function makeSummon(f: typeof fetch) {
     const baseUrl = req ? new URL(getUrl(req)).origin : "";
 
     const headers = record.filter(
-      { ...req?.headers, ...init?.headers },
+      {
+        ...req?.headers,
+        "Content-Type": "application/json",
+        ...init?.headers,
+      },
       (s): s is string => s !== undefined
     );
 
