@@ -21,7 +21,7 @@
             "type": "string"
           },
           "waitlist": {
-            "type": "string"
+            "anyOf": [{ "type": "string" }, { "type": "number" }]
           },
           "fieldsets": {
             "type": "array",
@@ -54,7 +54,7 @@
                             "type": "string"
                           }
                         },
-                        "required": ["label", "type", "name", "required"]
+                        "required": ["label", "type", "name"]
                       },
                       {
                         "anyOf": [

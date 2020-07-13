@@ -48,6 +48,13 @@
                 "Sobota 18-22": 24,
                 "Niedziela 10-14": 25
               }
+            },
+            {
+              "label": "Maksymalna graczy",
+              "type": "number",
+              "max": 8,
+              "min": 1,
+              "name": "other_data.max_players"
             }
           ]
         },
@@ -79,7 +86,7 @@
               "type": "discord",
               "required": true,
               "description": "Do kontaktu z prowadzącym.",
-              "name": "proposal.other_contact"
+              "name": "proposal.other_contact.discord"
             },
             {
               "label": "Numer telefonu",
@@ -93,13 +100,6 @@
               "required": false,
               "description": "Nazwa Twojej organizacji, klubu, bloga etc.",
               "name": "proposal.club"
-            },
-            {
-              "label": "Maksymalna graczy",
-              "type": "number",
-              "max": 8,
-              "min": 1,
-              "name": "other_data.max_players"
             },
             {
               "label": "Zapoznałem się z informacją o przetwarzaniu danych osobowych",

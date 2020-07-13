@@ -1,5 +1,5 @@
 import { absurd } from "fp-ts/lib/function";
-import { forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 import { ErrorMessage, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,6 +14,7 @@ import {
   Textarea,
 } from "theme-ui";
 
+import { DeepPartial } from "../../lib/utilityTypes";
 import { settings } from "../../types";
 import { Container } from "../Container";
 import { Fieldset } from "../Fieldset";
@@ -21,6 +22,26 @@ import { Input } from "../Input";
 import { Label as BaseLabel, LabelProps as BaseLabelProps } from "../Label";
 import { mdx } from "../mdx";
 import { Spacer } from "../Spacer";
+
+/**
+ * Type unsafe and impure 💩
+ *
+ * Don't use this function anywhere outside forms and use it only in places
+ * which are thoroughly tested.
+ *
+ * react-hook-form doesn't coerce values from number fields into numbers so we
+ * need to do this on submit. As we don't know the shape of the form value and
+ * it can be deeply nested, we use this dirty piece of code.
+ */
+function unsafeMod(obj: object, path: string, f: (x: unknown) => unknown) {
+  let cur = obj as any;
+  const p = path.split(".");
+  for (const key of p.slice(0, -1)) {
+    cur = cur[key];
+  }
+
+  cur[p[p.length - 1]] = f(cur[p[p.length - 1]]);
+}
 
 const rowStyles = { display: "flex", alignItems: "center" };
 
@@ -91,137 +112,217 @@ const errorMessageProps = {
   as: Message,
   variant: "critical",
   sx: { mt: 1 },
+  role: "alert",
 } as const;
 
 interface FieldControlProps {
   field: settings.Field;
+  isInvalid: boolean;
 }
-const FieldControl = forwardRef<any, FieldControlProps>(({ field }, ref) => {
-  const labelProps: LabelProps = {
-    htmlFor: field.name,
-    optional: !field.required,
-    labelText: field.label,
-    description: field.description,
-  };
+const FieldControl = forwardRef<any, FieldControlProps>(
+  ({ field, isInvalid }, ref) => {
+    const labelProps: LabelProps = {
+      htmlFor: field.name,
+      optional: !field.required,
+      labelText: field.label,
+      description: field.description,
+    };
 
-  switch (field.type) {
-    case "discord":
-    case "line":
-      return (
-        <Label {...labelProps}>
-          <Input name={field.name} id={field.name} ref={ref} />
-        </Label>
-      );
-    case "text":
-      return (
-        <Label {...labelProps}>
-          <Textarea
-            name="description"
-            rows={5}
-            ref={ref}
-            sx={{ resize: "none" }}
-          />
-        </Label>
-      );
-    case "single-choice":
-      return (
-        <Box as="fieldset" variant="forms.choiceGroup">
-          <legend>{field.label}</legend>
-          <FieldDescription>{field.description}</FieldDescription>
-          {Object.entries(field.choices).map(([label, value]) => (
-            <SimpleLabel key={value} sx={rowStyles}>
-              <Radio name={field.name} value={value} ref={ref} />
-              {label}
-            </SimpleLabel>
-          ))}
-        </Box>
-      );
-    case "multiple-choice":
-      return (
-        <div>
+    const ariaInvalid = isInvalid ? "true" : "false";
+
+    switch (field.type) {
+      case "discord":
+      case "line":
+        return (
+          <Label {...labelProps}>
+            <Input
+              name={field.name}
+              id={field.name}
+              aria-invalid={ariaInvalid}
+              ref={ref}
+            />
+          </Label>
+        );
+      case "text":
+        return (
+          <Label {...labelProps}>
+            <Textarea
+              name="description"
+              rows={5}
+              ref={ref}
+              aria-invalid={ariaInvalid}
+              sx={{ resize: "none" }}
+            />
+          </Label>
+        );
+      case "single-choice":
+        return (
           <Box as="fieldset" variant="forms.choiceGroup">
             <legend>{field.label}</legend>
             <FieldDescription>{field.description}</FieldDescription>
             {Object.entries(field.choices).map(([label, value]) => (
               <SimpleLabel key={value} sx={rowStyles}>
-                <Checkbox name={field.name} value={value} ref={ref} />
+                <Radio name={field.name} value={value} ref={ref} />
                 {label}
               </SimpleLabel>
             ))}
           </Box>
-        </div>
-      );
-    case "phone":
-      return (
-        <Label {...labelProps}>
-          <Input name={field.name} id={field.name} type="tel" ref={ref} />
-        </Label>
-      );
-    case "email":
-      return (
-        <Label {...labelProps}>
-          <Input name={field.name} id={field.name} type="email" ref={ref} />
-        </Label>
-      );
-    case "checkbox":
-      // User can agree or disagree to something.
-      return (
-        <Label {...labelProps}>
-          <div sx={{ "> div": rowStyles, py: 1 }}>
-            <Checkbox name={field.name} id={field.name} ref={ref}>
-              {/* <YesOrNoText /> uncomment it after Theme UI update */}
-            </Checkbox>
+        );
+      case "multiple-choice":
+        return (
+          <div>
+            <Box as="fieldset" variant="forms.choiceGroup">
+              <legend>{field.label}</legend>
+              <FieldDescription>{field.description}</FieldDescription>
+              {Object.entries(field.choices).map(([label, value]) => (
+                <SimpleLabel key={value} sx={rowStyles}>
+                  <Checkbox name={field.name} value={value} ref={ref} />
+                  {label}
+                </SimpleLabel>
+              ))}
+            </Box>
           </div>
-        </Label>
-      );
-    case "number":
-      return (
-        <Label {...labelProps}>
-          <Input
-            type="number"
-            name={field.name}
-            id={field.name}
-            max={field.max}
-            min={field.min}
-            step={field.step}
-            ref={ref}
-          />
-        </Label>
-      );
-    default:
-      absurd(field);
-      return null;
+        );
+      case "phone":
+        return (
+          <Label {...labelProps}>
+            <Input
+              name={field.name}
+              id={field.name}
+              type="tel"
+              aria-invalid={ariaInvalid}
+              ref={ref}
+            />
+          </Label>
+        );
+      case "email":
+        return (
+          <Label {...labelProps}>
+            <Input
+              name={field.name}
+              id={field.name}
+              type="email"
+              aria-invalid={ariaInvalid}
+              ref={ref}
+            />
+          </Label>
+        );
+      case "checkbox":
+        // User can agree or disagree to something.
+        return (
+          <Label {...labelProps}>
+            <div sx={{ "> div": rowStyles, py: 1 }}>
+              <Checkbox
+                name={field.name}
+                id={field.name}
+                aria-invalid={ariaInvalid}
+                ref={ref}
+              >
+                {/* <YesOrNoText /> uncomment it after Theme UI update */}
+              </Checkbox>
+            </div>
+          </Label>
+        );
+      case "number":
+        return (
+          <Label {...labelProps}>
+            <Input
+              type="number"
+              name={field.name}
+              id={field.name}
+              max={field.max}
+              min={field.min}
+              step={field.step}
+              aria-invalid={ariaInvalid}
+              ref={ref}
+            />
+          </Label>
+        );
+      default:
+        absurd(field);
+        return null;
+    }
   }
-});
+);
 
 export interface ProgrammeProposalFormProps {
   settings: settings.Form;
   onSubmit: (values: ProgrammeProposalFormResult) => void;
+  defaultValues?: DeepPartial<ProgrammeProposalFormResult>;
 }
 
 export function ProgrammeProposalForm({
   settings: { introText, footerText, title, fieldsets },
-  onSubmit,
+  onSubmit: propsOnSubmit,
+  defaultValues,
 }: ProgrammeProposalFormProps) {
   const { t } = useTranslation();
   const { register, handleSubmit, errors } = useForm<
     ProgrammeProposalFormResult
-  >();
+  >({ defaultValues });
+
+  const id = title;
+
+  const onSubmit = useMemo(
+    () =>
+      handleSubmit((result: ProgrammeProposalFormResult) => {
+        for (const fieldset of fieldsets) {
+          for (const field of fieldset.fields) {
+            if (field.type === "number") {
+              // beware: 💩 code
+              try {
+                unsafeMod(result, field.name, Number);
+              } catch (err) {
+                console.error(err);
+              }
+            } else if (
+              field.type === "multiple-choice" ||
+              field.type === "single-choice"
+            ) {
+              const values = new Set(Object.values(field.choices));
+              try {
+                unsafeMod(result, field.name, (chosen) => {
+                  if (Array.isArray(chosen)) {
+                    return chosen.map((x) => {
+                      if (values.has(x)) {
+                        return x;
+                      }
+                      if (values.has(Number(x))) {
+                        return Number(x);
+                      }
+                      console.error(`values does not contain ${x}`, { values });
+                      return x;
+                    });
+                  }
+                });
+              } catch (err) {
+                console.error(err);
+              }
+            }
+          }
+        }
+        propsOnSubmit(result);
+      }),
+    [fieldsets, handleSubmit, propsOnSubmit]
+  );
 
   return (
     <Container
       as="form"
       variant="sheet"
+      aria-labelledby={id}
       sx={{
         width: "containerThin",
 
         py: [3, 5],
         px: [2, 5],
       }}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
     >
       <header>
-        <Heading as="h1">{title}</Heading>
+        <Heading as="h1" id={id}>
+          {title}
+        </Heading>
         <div sx={{ pt: 2, pb: 4 }}>{mdx(introText)}</div>
       </header>
       <Grid gap={3}>
@@ -249,12 +350,15 @@ export function ProgrammeProposalForm({
                             ? `${t("field-is-required")}`
                             : undefined,
                         })}
+                        isInvalid={Boolean(errors[field.name])}
                       />
-                      <ErrorMessage
-                        errors={errors}
-                        name={field.name}
-                        {...errorMessageProps}
-                      />
+                      {errors[field.name] && (
+                        <ErrorMessage
+                          errors={errors}
+                          name={field.name}
+                          {...errorMessageProps}
+                        />
+                      )}
                     </div>
                   );
                 })}
