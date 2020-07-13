@@ -43,6 +43,48 @@ function unsafeMod(obj: object, path: string, f: (x: unknown) => unknown) {
   cur[p[p.length - 1]] = f(cur[p[p.length - 1]]);
 }
 
+function coerceNumberFieldValuesToNumber(
+  fieldsets: settings.Fieldset[],
+  result: ProgrammeProposalFormResult
+) {
+  for (const fieldset of fieldsets) {
+    for (const field of fieldset.fields) {
+      if (field.type === "number") {
+        // beware: 💩 code
+        try {
+          unsafeMod(result, field.name, Number);
+        } catch (err) {
+          console.error(err);
+        }
+      } else if (
+        field.type === "multiple-choice" ||
+        field.type === "single-choice"
+      ) {
+        const values = new Set(field.choices.map((x) => x[1]));
+        try {
+          unsafeMod(result, field.name, (chosen) => {
+            if (Array.isArray(chosen)) {
+              return chosen.map((x) => {
+                if (values.has(x)) {
+                  return x;
+                }
+                if (values.has(Number(x))) {
+                  return Number(x);
+                }
+                console.error(`values does not contain ${x}`, { values });
+                return x;
+              });
+            }
+            return chosen;
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+  }
+}
+
 const rowStyles = { display: "flex", alignItems: "center" };
 
 type FieldName = string;
@@ -89,24 +131,25 @@ const Label = ({
   );
 };
 
-const YesOrNoText = () => {
-  const { t } = useTranslation();
+// todo: uncomment this and use after new Theme UI version is published
+// const YesOrNoText = () => {
+//   const { t } = useTranslation();
 
-  return (
-    <span
-      sx={{
-        color: "text",
-        fontWeight: "normal",
-        ":before": {
-          content: `"${t("no")}"`,
-        },
-        "input:checked ~ &:before": {
-          content: `"${t("yes")}"`,
-        },
-      }}
-    />
-  );
-};
+//   return (
+//     <span
+//       sx={{
+//         color: "text",
+//         fontWeight: "normal",
+//         ":before": {
+//           content: `"${t("no")}"`,
+//         },
+//         "input:checked ~ &:before": {
+//           content: `"${t("yes")}"`,
+//         },
+//       }}
+//     />
+//   );
+// };
 
 const errorMessageProps = {
   as: Message,
@@ -268,41 +311,7 @@ export function ProgrammeProposalForm({
   const onSubmit = useMemo(
     () =>
       handleSubmit((result: ProgrammeProposalFormResult) => {
-        for (const fieldset of fieldsets) {
-          for (const field of fieldset.fields) {
-            if (field.type === "number") {
-              // beware: 💩 code
-              try {
-                unsafeMod(result, field.name, Number);
-              } catch (err) {
-                console.error(err);
-              }
-            } else if (
-              field.type === "multiple-choice" ||
-              field.type === "single-choice"
-            ) {
-              const values = new Set(field.choices.map((x) => x[1]));
-              try {
-                unsafeMod(result, field.name, (chosen) => {
-                  if (Array.isArray(chosen)) {
-                    return chosen.map((x) => {
-                      if (values.has(x)) {
-                        return x;
-                      }
-                      if (values.has(Number(x))) {
-                        return Number(x);
-                      }
-                      console.error(`values does not contain ${x}`, { values });
-                      return x;
-                    });
-                  }
-                });
-              } catch (err) {
-                console.error(err);
-              }
-            }
-          }
-        }
+        coerceNumberFieldValuesToNumber(fieldsets, result);
         propsOnSubmit(result);
       }),
     [fieldsets, handleSubmit, propsOnSubmit]

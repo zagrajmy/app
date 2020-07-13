@@ -13,7 +13,7 @@ import { Select, SelectProps } from "../../ui";
 import type { Claims } from "../auth";
 import { useAppState } from "../store";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
-import { Menu } from "./Menu";
+// import { Menu } from "./Menu";
 import { NavLink } from "./NavLink";
 
 interface LanguagePickerProps
