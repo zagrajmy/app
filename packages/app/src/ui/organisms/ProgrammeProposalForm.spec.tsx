@@ -11,6 +11,10 @@ import { i18n } from "../../i18n";
 import { settings } from "../../types";
 import { ProgrammeProposalForm } from "./ProgrammeProposalForm";
 
+// todo: move this to a test setup file?
+// react-i18next in `cimode` will always return the key
+i18n.changeLanguage("cimode");
+
 describe(ProgrammeProposalForm.name, () => {
   it("can be filled and submitted", async () => {
     const form: settings.Form = {
@@ -128,7 +132,7 @@ describe(ProgrammeProposalForm.name, () => {
 
       // there is a submit button
       const submitButton = getByRole("button");
-      expect(submitButton.innerHTML).toBe("Submit");
+      expect(submitButton.innerHTML).toBe("submit");
 
       // it can be clicked
       fireEvent.click(submitButton);
@@ -182,5 +186,70 @@ describe(ProgrammeProposalForm.name, () => {
         max_players: 4,
       },
     });
+  });
+
+  it("can have required nested field", async () => {
+    const form: settings.Form = {
+      title: "Run a game on Testcon 2050",
+      waitlist: "100210",
+      introText: "",
+      footerText: "",
+      fieldsets: [
+        {
+          description: "",
+          fields: [
+            {
+              type: "discord",
+              label: "Discord",
+              name: "other_contact.discord",
+              required: true,
+            },
+          ],
+        },
+      ],
+    };
+
+    const onSubmit = jest.fn();
+    const { getByLabelText, getByRole } = render(
+      <ProgrammeProposalForm settings={form} onSubmit={onSubmit} />
+    );
+
+    await act(async () => {
+      fireEvent.click(getByRole("button"));
+    });
+
+    expect(onSubmit).not.toBeCalled();
+
+    let errorMessage = await waitFor(() => getByRole("alert"));
+    expect(errorMessage.innerHTML).toBe("field-is-required");
+
+    await act(async () => {
+      fireEvent.change(getByLabelText("Discord"), {
+        target: { value: "mike" },
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByRole("button"));
+    });
+
+    expect(onSubmit).not.toBeCalled();
+
+    errorMessage = await waitFor(() => getByRole("alert"));
+    expect(errorMessage.innerHTML).toBe(
+      "does-not-match-discord-username-pattern"
+    );
+
+    await act(async () => {
+      fireEvent.change(getByLabelText("Discord"), {
+        target: { value: "mike#4441" },
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(getByRole("button"));
+    });
+
+    expect(onSubmit).toBeCalled();
   });
 });
