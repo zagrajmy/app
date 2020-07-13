@@ -42,9 +42,7 @@ export declare namespace settings {
 
   export interface ChoiceField {
     type: "single-choice" | "multiple-choice";
-    choices: {
-      [k: string]: string | number;
-    };
+    choices: [string, string | number][];
     [k: string]: unknown;
   }
   export interface NumberField {

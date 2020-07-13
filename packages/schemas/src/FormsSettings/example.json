@@ -29,25 +29,25 @@
               "label": "Czas trwania",
               "required": true,
               "name": "proposal.duration",
-              "choices": {
-                "25 minut": 25,
-                "55 minut": 55,
-                "1h i 25 minut": 85,
-                "1h i 55 minut": 115
-              }
+              "choices": [
+                ["25 minut", 25],
+                ["55 minut", 55],
+                ["1h i 25 minut", 85],
+                ["1h i 55 minut", 115]
+              ]
             },
             {
               "label": "Kiedy masz czas?",
               "required": true,
               "name": "proposal.time_slots",
               "type": "multiple-choice",
-              "choices": {
-                "Piątek 18-22": 21,
-                "Sobota 10-14": 22,
-                "Sobota 14-18": 23,
-                "Sobota 18-22": 24,
-                "Niedziela 10-14": 25
-              }
+              "choices": [
+                ["Piątek 18-22", 21],
+                ["Sobota 10-14", 22],
+                ["Sobota 14-18", 23],
+                ["Sobota 18-22", 24],
+                ["Niedziela 10-14", 25]
+              ]
             },
             {
               "label": "Maksymalna graczy",

@@ -10,6 +10,7 @@ import {
   AppInitialProps,
   NextPageContext,
 } from "next/dist/next-server/lib/utils";
+import dynamic from "next/dynamic";
 import { parseCookies } from "nookies";
 import React, { useRef } from "react";
 import { I18nextProvider } from "react-i18next";
@@ -30,6 +31,8 @@ import {
 } from "../src/i18n";
 import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
 import { globalStyles, theme } from "../src/ui/theme";
+
+// const NProgress = dynamic(() => import("next-nprogress/component"));
 
 function detectLanguage(
   req: Exclude<NextPageContext["req"], undefined>,
