@@ -47,11 +47,13 @@ i18n.use(initReactI18next).init({
   defaultNS: "translation",
   ns: "translation",
 
-  // debug: process.env.NODE_ENV !== "production",
-
   interpolation: {
     escapeValue: false,
   },
+
+  // see https://github.com/i18next/react-i18next/issues/923
+  ...(process.env.NODE_ENV === "test" && { lng: "en" }),
+  // debug: process.env.NODE_ENV !== "production",
 });
 
 export { i18n };

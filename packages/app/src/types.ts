@@ -18,7 +18,7 @@ export declare namespace settings {
     title: string;
     introText: string;
     footerText: string;
-    waitlist: string;
+    waitlist: string | number;
     fieldsets: Fieldset[];
   }
 
@@ -30,7 +30,7 @@ export declare namespace settings {
   export interface BaseField {
     label: string;
     name: string;
-    required: boolean;
+    required?: boolean;
     description?: string;
     [k: string]: unknown;
   }
