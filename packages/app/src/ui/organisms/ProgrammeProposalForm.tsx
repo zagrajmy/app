@@ -296,7 +296,7 @@ export interface ProgrammeProposalFormProps {
 }
 
 export function ProgrammeProposalForm({
-  settings: { introText, footerText, title, fieldsets },
+  settings: { introText, footerText, title, fieldsets, waitlist },
   onSubmit: propsOnSubmit,
   defaultValues,
   isSubmitting,
@@ -312,9 +312,11 @@ export function ProgrammeProposalForm({
     () =>
       handleSubmit((result: ProgrammeProposalFormResult) => {
         coerceNumberFieldValuesToNumber(fieldsets, result);
+        // eslint-disable-next-line no-param-reassign
+        result.waitlist = waitlist;
         propsOnSubmit(result);
       }),
-    [fieldsets, handleSubmit, propsOnSubmit]
+    [fieldsets, handleSubmit, propsOnSubmit, waitlist]
   );
 
   return (
