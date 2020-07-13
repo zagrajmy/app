@@ -121,7 +121,7 @@ export const NavHeader = ({
               <NavLink href={`/${s}`}>{t(s)}</NavLink>
             </HeaderFooterListItem>
           ))}
-          <HeaderFooterListItem>
+          {/* <HeaderFooterListItem>
             {claims ? (
               <Menu claims={claims} />
             ) : (
@@ -146,7 +146,7 @@ export const NavHeader = ({
                 <div>{t("log-in")}</div>
               </Link>
             )}
-          </HeaderFooterListItem>
+          </HeaderFooterListItem> */}
         </ul>
       </nav>
     </header>
