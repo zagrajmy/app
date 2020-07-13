@@ -1,8 +1,4 @@
 const styles = {
-  Container: {
-    p: 4,
-    maxWidth: 1280,
-  },
   root: {
     fontSize: 3,
     color: "text",

@@ -44,6 +44,7 @@ export const Demo = () => {
             mt: 3,
             mb: 4,
             maxWidth: "80ch",
+            overflow: "hidden",
 
             ".copy-to-clipboard-container": {
               position: "absolute",
