@@ -95,6 +95,13 @@
               "name": "proposal.club"
             },
             {
+              "label": "Maksymalna graczy",
+              "type": "number",
+              "max": 8,
+              "min": 1,
+              "name": "other_data.max_players"
+            },
+            {
               "label": "Zapoznałem się z informacją o przetwarzaniu danych osobowych",
               "type": "checkbox",
               "name": "dane_osobowe",

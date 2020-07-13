@@ -174,6 +174,20 @@ const FieldControl = forwardRef<any, FieldControlProps>(({ field }, ref) => {
           </div>
         </Label>
       );
+    case "number":
+      return (
+        <Label {...labelProps}>
+          <Input
+            type="number"
+            name={field.name}
+            id={field.name}
+            max={field.max}
+            min={field.min}
+            step={field.step}
+            ref={ref}
+          />
+        </Label>
+      );
     default:
       absurd(field);
       return null;
@@ -186,7 +200,7 @@ export interface ProgrammeProposalFormProps {
 }
 
 export function ProgrammeProposalForm({
-  settings: { introText, footerText, title, waitlist, fieldsets },
+  settings: { introText, footerText, title, fieldsets },
   onSubmit,
 }: ProgrammeProposalFormProps) {
   const { t } = useTranslation();

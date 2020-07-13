@@ -93,6 +93,25 @@
                               }
                             },
                             "required": ["type", "choices"]
+                          },
+                          {
+                            "title": "NumberField",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": ["number"]
+                              },
+                              "max": {
+                                "type": "number"
+                              },
+                              "min": {
+                                "type": "number"
+                              },
+                              "step": {
+                                "type": "number"
+                              }
+                            },
+                            "required": ["type"]
                           }
                         ]
                       }

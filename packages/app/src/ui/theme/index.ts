@@ -108,14 +108,6 @@ export const theme = makeTheme({
       "h4, h5, h6": {
         fontSize: 2,
       },
-      a: {
-        color: "primary",
-        textDecoration: "none",
-        "&:hover": {
-          color: "secondary",
-          textDecoration: "underline",
-        },
-      },
       p: { width: "70ch", maxWidth: "100%" },
 
       overflowWrap: "break-word",
@@ -129,6 +121,14 @@ export const theme = makeTheme({
       color: "primaryDark",
       p: "2px",
       borderRadius: "rounded-sm",
+    },
+    a: {
+      color: "primary",
+      textDecoration: "none",
+      "&:hover": {
+        color: "secondary",
+        textDecoration: "underline",
+      },
     },
   },
   buttons,

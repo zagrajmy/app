@@ -24,7 +24,7 @@ export declare namespace settings {
 
   export interface Fieldset {
     description: string;
-    fields: (BaseField & (SingleValueField | ChoiceField))[];
+    fields: (BaseField & (SingleValueField | ChoiceField | NumberField))[];
   }
 
   export interface BaseField {
@@ -45,6 +45,13 @@ export declare namespace settings {
     choices: {
       [k: string]: string | number;
     };
+    [k: string]: unknown;
+  }
+  export interface NumberField {
+    type: "number";
+    max?: number;
+    min?: number;
+    step?: number;
     [k: string]: unknown;
   }
 
