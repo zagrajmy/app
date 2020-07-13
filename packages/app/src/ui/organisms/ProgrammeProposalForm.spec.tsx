@@ -84,7 +84,7 @@ describe(ProgrammeProposalForm.name, () => {
                 ["Saturday 10-14", 22],
                 ["Saturday 14-18", 23],
                 ["Saturday 18-22", 24],
-                ["Sunday 10-14", 25],
+                ["Sunday 10-14", "SUNDAY"],
               ],
             },
             {
@@ -171,12 +171,13 @@ describe(ProgrammeProposalForm.name, () => {
 
     const submittedValue = onSubmit.mock.calls[0][0];
     expect(submittedValue).toStrictEqual({
+      waitlist: "100210",
       name: "Piotr Monwid-Olechnowicz",
       email: "piotr@zagrajmy.net",
       accepted_terms_and_conditions: true,
       title: "The Coolest Game",
       description: "This is going to be cool.",
-      time_slots: [21, 22, "25"],
+      time_slots: [21, 22, "SUNDAY"],
       other_data: {
         max_players: 4,
       },

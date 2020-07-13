@@ -47,6 +47,9 @@ describe("summon", () => {
     const req = new Request("/test", {
       method: "POST",
       body: JSON.stringify({ a: 1 }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     await summon(req);
     expect(fetchMock).toBeCalledWith(req);
@@ -59,6 +62,9 @@ describe("summon", () => {
     expect(fetchMock).toBeCalledWith("/test", {
       method: "POST",
       body: '{"foo":{"bar":"qux"}}',
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   });
 
@@ -95,6 +101,9 @@ describe("summon", () => {
     expect(fetchMock).toBeCalledWith("/test", {
       method: "PATCH",
       body: '{"foo":{"bar":"qux"}}',
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   });
 });
