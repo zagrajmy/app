@@ -34,7 +34,7 @@ const underlined: ThemeUIStyleObject = {
       "background-color var(--transition), transform var(--transition)",
   },
   ":hover, :focus": {
-    color: "white",
+    color: "white !important",
     ":before": {
       backgroundColor: "accent",
       transform: "translateY(-50%) rotateZ(0.35deg) scaleY(2)",
