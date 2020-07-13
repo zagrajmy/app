@@ -24,6 +24,7 @@
   "exclude": [
     "src/ui/**/*.docs.tsx",
     "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
     "src/i18n.ts",
     "node_modules"
   ]
