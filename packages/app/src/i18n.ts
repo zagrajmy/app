@@ -64,6 +64,14 @@ export function useLanguage() {
   return language;
 }
 
+export function mergeLocale(
+  locales: Record<SupportedLanguage, Partial<TranslationTexts>>
+) {
+  Object.entries(locales).forEach(([k, v]) => {
+    i18n.addResources(k, "translation", v);
+  });
+}
+
 export const pickLocale = (language: SupportedLanguage) =>
   language === "pl" ? pl : enUS;
 
