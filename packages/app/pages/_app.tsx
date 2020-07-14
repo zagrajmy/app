@@ -30,18 +30,11 @@ import {
   SupportedLanguage,
 } from "../src/i18n";
 import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
-import { globalStyles, theme, useTheme } from "../src/ui/theme";
+import { globalStyles, theme } from "../src/ui/theme";
 
-const NextJsProgressBar = dynamic(() => import("nextjs-progressbar"));
-const progressBarOptions = { showSpinner: false };
-const ProgressBar = () => {
-  const {
-    theme: { colors },
-  } = useTheme();
-  return (
-    <NextJsProgressBar color={colors.primary} options={progressBarOptions} />
-  );
-};
+const ProgressBar = dynamic(() => import("../src/app/components/ProgressBar"), {
+  ssr: false,
+});
 
 function detectLanguage(
   req: Exclude<NextPageContext["req"], undefined>,
