@@ -1,6 +1,7 @@
 import merge from "deepmerge";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 
+import { mergeLocale } from "../../i18n";
 import { settings } from "../../types";
 import { useAppState } from "./index";
 
@@ -21,8 +22,26 @@ const byWaitlist = <T extends { waitlist: string | number }>(xs: T[]) =>
 
 type Settings = MergedSettings & { sphereName?: string };
 
-export function useSettings(festival?: { settings: unknown } | null) {
+export function useSettings(
+  festival?: { name: string; settings: unknown } | null
+) {
   const { sphere } = useAppState();
+
+  // ugly side effect, but I'm not sure how to do it nicer
+  // while preserving SSR result
+  const festivalName = useRef<string | null | undefined>();
+  if (festivalName.current !== festival?.name) {
+    const festivalLocale =
+      typeof festival?.settings === "object" &&
+      festival.settings &&
+      // todo: validate me
+      (festival.settings as any).locale;
+    if (festivalLocale && typeof festivalLocale === "object") {
+      mergeLocale(festivalLocale);
+    }
+
+    festivalName.current = festival?.name;
+  }
 
   return useMemo((): Settings => {
     const sphereSettings = sphere.settings;

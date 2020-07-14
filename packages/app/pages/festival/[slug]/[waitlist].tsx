@@ -36,7 +36,10 @@ function fetchFestival(ctx: GetServerSidePropsContext<Params>) {
             nb_sphere: { django_site: { domain: { _eq: sphere.domain } } },
           },
         },
-        { settings: [{}, true] },
+        {
+          name: true,
+          settings: [{}, true],
+        },
       ],
     })
     .then((res) => head(res.ch_festival));
