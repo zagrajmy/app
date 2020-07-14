@@ -28,6 +28,7 @@ import {
   i18n,
   SUPPORTED_LANGUAGES,
   SupportedLanguage,
+  mergeLocale,
 } from "../src/i18n";
 import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
 import { globalStyles, theme } from "../src/ui/theme";
@@ -94,9 +95,7 @@ export default function MyApp({
       i18n.changeLanguage(lang);
     }
     if (appState.sphere?.settings.locale) {
-      Object.entries(appState.sphere!.settings.locale).forEach(([k, v]) => {
-        i18n.addResources(k, "translation", v);
-      });
+      mergeLocale(appState.sphere!.settings.locale)
     }
   });
 
