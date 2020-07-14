@@ -32,6 +32,7 @@ const scrollbarStyles = {
 };
 
 export const globalStyles = {
+  body: { margin: 0, overflowY: "overlay" as any },
   ...focusStyles,
   ...scrollbarStyles,
 };
