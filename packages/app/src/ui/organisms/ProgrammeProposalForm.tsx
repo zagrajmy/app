@@ -1,6 +1,6 @@
 import { absurd } from "fp-ts/lib/function";
 import { TFunction } from "i18next";
-import { forwardRef, useMemo } from "react";
+import { forwardRef, useEffect, useMemo } from "react";
 import { ErrorMessage, useForm, ValidationOptions } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
@@ -327,6 +327,7 @@ export interface ProgrammeProposalFormProps {
   onSubmit: (values: ProgrammeProposalFormResult) => void;
   defaultValues?: DeepPartial<ProgrammeProposalFormResult>;
   isSubmitting?: boolean;
+  errors?: Record<string, string[]>;
 }
 
 export function ProgrammeProposalForm({
@@ -334,13 +335,26 @@ export function ProgrammeProposalForm({
   onSubmit: propsOnSubmit,
   defaultValues,
   isSubmitting,
+  errors: externalErrors,
 }: ProgrammeProposalFormProps) {
   const { t } = useTranslation();
-  const { register, handleSubmit, errors } = useForm<
+  const { register, handleSubmit, errors, setError } = useForm<
     ProgrammeProposalFormResult
   >({ defaultValues });
 
   const id = title;
+
+  useEffect(() => {
+    if (externalErrors) {
+      setError(
+        Object.entries(externalErrors).map(([name, messages]) => ({
+          name,
+          type: "manual",
+          message: messages.join("\n"),
+        }))
+      );
+    }
+  }, [externalErrors, setError]);
 
   const onSubmit = useMemo(
     () =>
