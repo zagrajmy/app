@@ -50,7 +50,7 @@
               }
             },
             {
-              "label": "Maksymalna graczy",
+              "label": "Maksymalna liczba graczy",
               "type": "number",
               "max": 8,
               "min": 1,
