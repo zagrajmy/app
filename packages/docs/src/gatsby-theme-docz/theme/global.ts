@@ -8,11 +8,12 @@ export const globalStyles = css({
     overflowY: "overlay",
     overflowX: "hidden",
   } as {}, // TODO: Why doesn't it work? Debug in Theme UI.
+  ...commonGlobalStyles,
   body: {
+    ...commonGlobalStyles.body,
     margin: 0,
     padding: 0,
   },
-  ...commonGlobalStyles,
   // docs overrides
   "gatsby-theme-docz/src/theme/.icon-link": {
     display: "none",
