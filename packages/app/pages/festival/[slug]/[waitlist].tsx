@@ -1,15 +1,17 @@
 import { absurd } from "fp-ts/lib/function";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { Reducer, useEffect, useReducer } from "react";
+import { useTranslation } from "react-i18next";
 
 import { hasura } from "../../../data";
 import { CommonHead } from "../../../src/app/components/CommonHead";
 import { Page } from "../../../src/app/components/Page";
 import { detectSphere } from "../../../src/app/detectSphere";
 import { useSettings } from "../../../src/app/store/useSettings";
-import { AsyncReturnType, makeError, summon } from "../../../src/lib";
+import { AsyncReturnType, summon } from "../../../src/lib";
 import { head } from "../../../src/lib/head";
-import { Code, Container, Message } from "../../../src/ui";
+import type { HttpError } from "../../../src/lib/HttpError";
+import { Code, Container, Heading } from "../../../src/ui";
 import {
   ProgrammeProposalForm,
   ProgrammeProposalFormResult,
@@ -46,6 +48,8 @@ function postForm(form: ProgrammeProposalFormResult) {
   });
 }
 
+type FieldErrors = Record<string, string[]>;
+
 type State =
   | {
       type: "submitting";
@@ -55,8 +59,11 @@ type State =
       type: "standby";
     }
   | {
+      type: "succeeded";
+    }
+  | {
       type: "error";
-      error: Error;
+      errors: FieldErrors;
     };
 type Action =
   | {
@@ -65,7 +72,7 @@ type Action =
     }
   | {
       type: "fail";
-      payload: { error: unknown };
+      payload: FieldErrors;
     }
   | {
       type: "success";
@@ -80,16 +87,35 @@ const reducer: Reducer<State, Action> = (state, action) => {
     case "fail":
       return {
         type: "error",
-        error: makeError(action.payload),
+        errors: action.payload,
       };
     case "success":
       return {
-        type: "standby",
+        type: "succeeded",
       };
     default:
       throw absurd(action);
   }
 };
+
+function SuccessMessage() {
+  const { t } = useTranslation();
+
+  return (
+    <Container
+      variant="sheet"
+      sx={{
+        width: "containerThin",
+
+        py: [3, 5],
+        px: [2, 5],
+      }}
+    >
+      <Heading as="h1">{t("program-submitted-heading")}</Heading>
+      <p>{t("program-submitted-message")}</p>
+    </Container>
+  );
+}
 
 type Festival = Exclude<AsyncReturnType<typeof fetchFestival>, undefined>;
 
@@ -111,15 +137,23 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
           });
         })
         .catch((err) => {
-          dispatch({
-            type: "fail",
-            payload: err,
-          });
+          const { response } = err as HttpError;
+          if (response) {
+            response.json().then((json) => {
+              // todo: validate that this json is of type FieldErrors
+              if (typeof json === "object") {
+                dispatch({
+                  type: "fail",
+                  payload: json,
+                });
+              }
+            });
+          } else {
+            throw err;
+          }
         });
     }
   }, [state]);
-
-  const handleSubmit = postForm;
 
   const settings = useSettings(festival);
 
@@ -164,16 +198,16 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
     <Page>
       <CommonHead />
       <Container py={[0, 4]}>
-        {state.type === "error" && (
-          <Message as="p" variant="critical">
-            {state.error.message}
-          </Message>
+        {state.type === "succeeded" ? (
+          <SuccessMessage />
+        ) : (
+          <ProgrammeProposalForm
+            onSubmit={(value) => dispatch({ type: "submit", payload: value })}
+            settings={formSettings}
+            isSubmitting={state.type === "submitting"}
+            errors={state.type === "error" ? state.errors : undefined}
+          />
         )}
-        <ProgrammeProposalForm
-          onSubmit={handleSubmit}
-          settings={formSettings}
-          isSubmitting={state.type === "submitting"}
-        />
       </Container>
     </Page>
   );
