@@ -33,7 +33,8 @@ import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
 import { globalStyles, theme } from "../src/ui/theme";
 
 const ProgressBar = dynamic(() => import("../src/app/components/ProgressBar"), {
-  ssr: false,
+  // ssr: false <- can't be there.
+  // It doesn't work after build if we pass ssr: false.
 });
 
 function detectLanguage(
