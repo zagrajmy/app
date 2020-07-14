@@ -1,10 +1,10 @@
 import { GetServerSideProps, NextPage } from "next";
-import Head from "next/head";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 
 import { getRecentlyPublishedMeetings } from "../src/app/api-helpers";
 import { MeetingCard, Page } from "../src/app/components";
+import { CommonHead } from "../src/app/components/CommonHead";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
 import { Container, Link } from "../src/ui";
 import { NoPublishedMeetingsScreen } from "../src/ui/organisms/messageScreens";
@@ -31,10 +31,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ meetings }) => {
 
   return (
     <Page>
-      <Head>
-        <title>{t("page-title")}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CommonHead />
 
       {meetings.length ? (
         <Container sx={{ flex: 1, width: 800 }}>
