@@ -26,9 +26,9 @@ import { ApplicationState, AppStateProvider } from "../src/app/store";
 import {
   FALLBACK_LANG,
   i18n,
+  mergeLocale,
   SUPPORTED_LANGUAGES,
   SupportedLanguage,
-  mergeLocale,
 } from "../src/i18n";
 import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
 import { globalStyles, theme } from "../src/ui/theme";
@@ -68,10 +68,7 @@ export type InjectedPageProps = {
   lang: SupportedLanguage;
 };
 
-const global: InterpolationWithTheme<{}> = css({
-  body: { margin: 0 },
-  ...globalStyles,
-});
+const global: InterpolationWithTheme<{}> = css(globalStyles);
 
 interface MyAppInitialProps extends AppInitialProps, AppProps {
   appState: Partial<ApplicationState>;
@@ -95,7 +92,7 @@ export default function MyApp({
       i18n.changeLanguage(lang);
     }
     if (appState.sphere?.settings.locale) {
-      mergeLocale(appState.sphere!.settings.locale)
+      mergeLocale(appState.sphere!.settings.locale);
     }
   });
 
