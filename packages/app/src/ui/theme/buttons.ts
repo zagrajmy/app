@@ -1,4 +1,5 @@
 import { Variants } from "./design-graph-utility";
+import { links } from "./links";
 
 const primarySecondaryCommon = {
   cursor: "pointer",
@@ -59,5 +60,12 @@ export const buttons: Variants = {
         bg: "gray.2",
       },
     },
+  },
+  link: {
+    ...links.underlined,
+    background: "none",
+    display: "inline",
+    p: 0,
+    cursor: "pointer",
   },
 };

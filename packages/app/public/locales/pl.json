@@ -45,5 +45,7 @@
   "propose-program": "Zaproponuj punkt programu",
   "does-not-match-discord-username-pattern": "Nazwy użytkowników na Discordzie składają się z napisu, kratki (#) i czterech cyfr (np. geralt#1337)",
   "program-submitted-heading": "Świetnie!",
-  "program-submitted-message": "Dziękujemy za zgłoszenie programu na nasze wydarzenie! Odezwiemy się do Ciebie."
+  "program-submitted-message": "Dziękujemy za zgłoszenie programu na nasze wydarzenie! Odezwiemy się do Ciebie.",
+  "program-submitted-go-back": "Wróć do strony głównej",
+  "program-submitted-another-one": "Zgłoś kolejny punkt programu"
 }

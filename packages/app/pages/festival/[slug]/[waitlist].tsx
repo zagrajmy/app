@@ -11,7 +11,15 @@ import { useSettings } from "../../../src/app/store/useSettings";
 import { AsyncReturnType, summon } from "../../../src/lib";
 import { head } from "../../../src/lib/head";
 import type { HttpError } from "../../../src/lib/HttpError";
-import { Code, Container, Heading } from "../../../src/ui";
+import {
+  Button,
+  Code,
+  Container,
+  Heading,
+  Link,
+  Spacer,
+  Stack,
+} from "../../../src/ui";
 import {
   ProgrammeProposalForm,
   ProgrammeProposalFormResult,
@@ -79,6 +87,9 @@ type Action =
     }
   | {
       type: "success";
+    }
+  | {
+      type: "restart";
     };
 const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
@@ -96,12 +107,19 @@ const reducer: Reducer<State, Action> = (state, action) => {
       return {
         type: "succeeded",
       };
+    case "restart":
+      return {
+        type: "standby",
+      };
     default:
       throw absurd(action);
   }
 };
 
-function SuccessMessage() {
+interface SuccessMessageProps {
+  children: React.ReactNode;
+}
+function SuccessMessage({ children }: SuccessMessageProps) {
   const { t } = useTranslation();
 
   return (
@@ -116,6 +134,15 @@ function SuccessMessage() {
     >
       <Heading as="h1">{t("program-submitted-heading")}</Heading>
       <p>{t("program-submitted-message")}</p>
+      <Spacer height={3} />
+      <Stack>
+        <div>
+          <Link variant="underlined" href="/">
+            {t("program-submitted-go-back")}
+          </Link>
+        </div>
+        <div>{children}</div>
+      </Stack>
     </Container>
   );
 }
@@ -159,6 +186,7 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
   }, [state]);
 
   const settings = useSettings(festival);
+  const { t } = useTranslation();
 
   if (!festival) {
     // TODO
@@ -202,7 +230,14 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
       <CommonHead />
       <Container py={[0, 4]}>
         {state.type === "succeeded" ? (
-          <SuccessMessage />
+          <SuccessMessage>
+            <Button
+              variant="link"
+              onClick={() => dispatch({ type: "restart" })}
+            >
+              {t("program-submitted-another-one")}
+            </Button>
+          </SuccessMessage>
         ) : (
           <ProgrammeProposalForm
             onSubmit={(value) => dispatch({ type: "submit", payload: value })}
