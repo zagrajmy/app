@@ -1,6 +1,7 @@
 {
   "fixturesFolder": "test/fixtures",
   "integrationFolder": "test/e2e",
+  "ignoreTestFiles": "{**/*.hot-update.js,**/*.spec.ts.disabled}",
   "pluginsFile": "test/plugins/index.js",
   "screenshotsFolder": "test/screenshots",
   "videosFolder": "test/videos",
