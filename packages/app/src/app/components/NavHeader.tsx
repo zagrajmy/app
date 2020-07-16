@@ -109,9 +109,11 @@ export const NavHeader = ({
           <HeaderFooterListItem sx={{ flex: 1, textAlign: "left" }}>
             <Link href="/">{appName}</Link>
           </HeaderFooterListItem>
-          <HeaderFooterListItem>
-            <LanguagePicker />
-          </HeaderFooterListItem>
+          {claims && (
+            <HeaderFooterListItem>
+              <LanguagePicker />
+            </HeaderFooterListItem>
+          )}
           {links.map((s) => (
             <HeaderFooterListItem key={s}>
               <NavLink href={`/${s}`}>{t(s)}</NavLink>
