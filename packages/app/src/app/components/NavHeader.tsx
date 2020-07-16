@@ -9,7 +9,7 @@ import {
   useLanguage,
 } from "../../i18n";
 import { summon } from "../../lib";
-import { Select, SelectProps } from "../../ui";
+import { Select, SelectProps, useTheme } from "../../ui";
 import type { Claims } from "../auth";
 import { useAppState } from "../store";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
@@ -84,6 +84,7 @@ export const NavHeader = ({
 }: NavHeaderProps) => {
   const { t } = useTranslation();
   const state = useAppState();
+  const { theme } = useTheme();
 
   const claims = state.user || propsClaims;
 
@@ -91,12 +92,7 @@ export const NavHeader = ({
 
   return (
     <header {...rest}>
-      <nav
-        sx={{
-          bg: "gray.9",
-          boxShadow: "inset 0 -1px 0 0 rgba(255, 255, 255, 0.08)",
-        }}
-      >
+      <nav sx={theme.styles.navHeader}>
         <ul
           sx={{
             height: "68px",

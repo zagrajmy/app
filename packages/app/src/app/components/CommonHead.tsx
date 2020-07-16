@@ -8,7 +8,7 @@ export function CommonHead() {
   const { t } = useTranslation();
   const { sphere } = useAppState();
 
-  const appName = t("page-title") || sphere.name;
+  const appName = t("page-title") || sphere.name || "zagrajmy";
 
   return (
     <Head>
