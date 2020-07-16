@@ -122,7 +122,6 @@ export default function MyApp({
     }
   });
 
-  // todo: use theme from festival. MergedThemeProvider
   const theme = themeRef.current;
 
   let root: React.ReactNode = null;
@@ -156,7 +155,7 @@ export default function MyApp({
 
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeUiProvider theme={theme}>
+      <ThemeUiProvider theme={theme as Theme}>
         <ProgressBar />
         <Global styles={global} />
         <AppStateProvider stateFromInitialProps={appState}>

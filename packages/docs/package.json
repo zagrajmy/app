@@ -21,8 +21,8 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.9.4",
     "@loadable/component": "^5.12.0",
-    "@theme-ui/prism": "^0.3.0",
-    "@theme-ui/style-guide": "^0.3.0",
+    "@theme-ui/prism": "^0.4.0-rc.1",
+    "@theme-ui/style-guide": "^0.4.0-rc.1",
     "@zagrajmy/app": "^0.1.0-alpha.1",
     "babel-preset-gatsby": "^0.4.10",
     "copy-text-to-clipboard": "^2.2.0",
