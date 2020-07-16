@@ -236,14 +236,7 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
         <CommonHead />
         <Container py={[0, 4]}>
           {state.type === "succeeded" ? (
-            <SuccessMessage>
-              <Button
-                variant="link"
-                onClick={() => dispatch({ type: "restart" })}
-              >
-                {t("program-submitted-another-one")}
-              </Button>
-            </SuccessMessage>
+            <SuccessMessage />
           ) : (
             <ProgrammeProposalForm
               onSubmit={(value) => dispatch({ type: "submit", payload: value })}
