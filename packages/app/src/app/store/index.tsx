@@ -23,12 +23,18 @@ export type ApplicationState = {
    * Similarly, sphere settings allow to customize the display
    * and texts.
    */
-  sphere: { name?: string; settings: settings.SphereSettings };
+  sphere: {
+    id?: string | number;
+    name?: string;
+    settings: settings.SphereSettings;
+  };
 };
+
+export const emptySphere = { settings: { theme: {}, forms: [] } };
 
 export const initialState: ApplicationState = {
   user: null,
-  sphere: { settings: { theme: {}, forms: [] } },
+  sphere: emptySphere,
 };
 
 const ctx = createContext(initialState);
@@ -58,8 +64,17 @@ export const AppStateProvider: React.FC<AppStateProviderProps> = ({
 
   const cached = useRef<ApplicationState>(initialState);
 
+  // `stateFromInitialProps` is empty during clientside navigation
+  // and in this case, we want to ignore its falsy values and only overwrite
+  // if they are truthy.
+  // However, we can also navigate from a non-empty sphere to one which doesn't
+  // have all properties. In this case, we overwrite every property.
+  const shouldOverwrite =
+    typeof window === "undefined" &&
+    stateFromInitialProps.sphere?.id !== cached.current.sphere.id;
+
   for (const [k, v] of Object.entries(stateFromInitialProps)) {
-    if (v) {
+    if (v || shouldOverwrite) {
       (cached.current[k as keyof ApplicationState] as any) = v;
     }
   }

@@ -28,7 +28,11 @@ import { auth, Session } from "../src/app/auth";
 import { NavHeader, Page } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
 import { detectSphere } from "../src/app/detectSphere";
-import { ApplicationState, AppStateProvider } from "../src/app/store";
+import {
+  ApplicationState,
+  AppStateProvider,
+  emptySphere,
+} from "../src/app/store";
 import {
   FALLBACK_LANG,
   i18n,
@@ -108,6 +112,8 @@ export default function MyApp({
         mergeLocale(appState.sphere!.settings.locale);
       }
 
+      // we merge sphere theme as soon as possible to limit the number of
+      // theme providers in React three
       themeRef.current = merge(
         defaultTheme as Theme,
         appState.sphere?.settings.theme
@@ -116,6 +122,7 @@ export default function MyApp({
     }
   });
 
+  // todo: use theme from festival. MergedThemeProvider
   const theme = themeRef.current;
 
   let root: React.ReactNode = null;
@@ -194,7 +201,12 @@ MyApp.getInitialProps = async (context: AppContext) => {
       }),
       nb_sphere: [
         sphereByIdOrDomainQueryArgs(sphere),
-        { name: true, settings: [{}, true], is_open: true },
+        {
+          id: true,
+          name: true,
+          settings: [{}, true],
+          is_open: true,
+        },
       ],
     });
 
@@ -216,7 +228,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
       session?.user && initialData.user
         ? { ...session.user, ...initialData.user }
         : undefined,
-    sphere: initialData.sphere,
+    sphere: initialData.sphere || emptySphere,
   };
 
   return {
