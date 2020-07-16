@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@theme-ui/core";
 import { absurd } from "fp-ts/lib/function";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { Reducer, useEffect, useReducer } from "react";
@@ -191,10 +192,12 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
   if (!festival) {
     // TODO
     return (
-      <Page>
-        <CommonHead />
-        <Container>Ouch. We couldn't find a festival here.</Container>
-      </Page>
+      <ThemeProvider theme={settings.theme}>
+        <Page>
+          <CommonHead />
+          <Container>Ouch. We couldn't find a festival here.</Container>
+        </Page>
+      </ThemeProvider>
     );
   }
 
@@ -207,47 +210,51 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
 
   if (!formSettings) {
     return (
-      <Page>
-        <CommonHead />
-        <Container py={4} px={2} sx={{ maxWidth: "containerThin" }}>
-          <p>Ouch. We couldn't find the form here.</p>
+      <ThemeProvider theme={settings.theme}>
+        <Page>
+          <CommonHead />
+          <Container py={4} px={2} sx={{ maxWidth: "containerThin" }}>
+            <p>Ouch. We couldn't find the form here.</p>
 
-          {/* todo: show this also to sphere admins */}
-          {process.env.NODE_ENV === "development" && (
-            <p>
-              Check <Code>"forms"</Code> property in festival and sphere
-              settings. There should be one with <Code>"waitlist"</Code> equal
-              to <Code sx={{ fontWeight: "bold" }}>{params.waitlist}</Code>.
-            </p>
-          )}
-        </Container>
-      </Page>
+            {/* todo: show this also to sphere admins */}
+            {process.env.NODE_ENV === "development" && (
+              <p>
+                Check <Code>"forms"</Code> property in festival and sphere
+                settings. There should be one with <Code>"waitlist"</Code> equal
+                to <Code sx={{ fontWeight: "bold" }}>{params.waitlist}</Code>.
+              </p>
+            )}
+          </Container>
+        </Page>
+      </ThemeProvider>
     );
   }
 
   return (
-    <Page>
-      <CommonHead />
-      <Container py={[0, 4]}>
-        {state.type === "succeeded" ? (
-          <SuccessMessage>
-            <Button
-              variant="link"
-              onClick={() => dispatch({ type: "restart" })}
-            >
-              {t("program-submitted-another-one")}
-            </Button>
-          </SuccessMessage>
-        ) : (
-          <ProgrammeProposalForm
-            onSubmit={(value) => dispatch({ type: "submit", payload: value })}
-            settings={formSettings}
-            isSubmitting={state.type === "submitting"}
-            errors={state.type === "error" ? state.errors : undefined}
-          />
-        )}
-      </Container>
-    </Page>
+    <ThemeProvider theme={settings.theme}>
+      <Page>
+        <CommonHead />
+        <Container py={[0, 4]}>
+          {state.type === "succeeded" ? (
+            <SuccessMessage>
+              <Button
+                variant="link"
+                onClick={() => dispatch({ type: "restart" })}
+              >
+                {t("program-submitted-another-one")}
+              </Button>
+            </SuccessMessage>
+          ) : (
+            <ProgrammeProposalForm
+              onSubmit={(value) => dispatch({ type: "submit", payload: value })}
+              settings={formSettings}
+              isSubmitting={state.type === "submitting"}
+              errors={state.type === "error" ? state.errors : undefined}
+            />
+          )}
+        </Container>
+      </Page>
+    </ThemeProvider>
   );
 };
 
