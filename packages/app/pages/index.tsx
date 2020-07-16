@@ -2,7 +2,7 @@ import { isFuture, isPast } from "date-fns";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Flex } from "theme-ui";
+import { Flex, ThemeProvider } from "theme-ui";
 
 import { hasura } from "../data";
 import { order_by } from "../data/graphql-zeus";
@@ -157,79 +157,81 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
   }
 
   return (
-    <Container py={4} px={2} sx={{ maxWidth: "containerThin" }}>
-      <Heading as="h1">{festival.name}</Heading>
-      <Spacer height={3} />
-      <FestivalDateTime
-        startTime={festival.start_time}
-        endTime={festival.end_time}
-      />
-      {introText}
-      {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
-      {isPast(new Date(festival.start_proposal)) &&
-        isFuture(new Date(festival.end_time)) && (
-          <section sx={{ my: 3 }}>
-            <Heading as="h2" size={3}>
-              {t("propose-program")}
+    <ThemeProvider theme={settings.theme}>
+      <Container py={4} px={2} sx={{ maxWidth: "containerThin" }}>
+        <Heading as="h1">{festival.name}</Heading>
+        <Spacer height={3} />
+        <FestivalDateTime
+          startTime={festival.start_time}
+          endTime={festival.end_time}
+        />
+        {introText}
+        {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
+        {isPast(new Date(festival.start_proposal)) &&
+          isFuture(new Date(festival.end_time)) && (
+            <section sx={{ my: 3 }}>
+              <Heading as="h2" size={3}>
+                {t("propose-program")}
+              </Heading>
+              <ul>
+                {festival.ch_wait_lists.map((waitlist) => (
+                  <li key={waitlist.id}>
+                    <Link
+                      href="/festival/[slug]/[waitlist]"
+                      as={`/festival/${festival.slug}/${waitlist.id}`}
+                      variant="underlined"
+                      sx={{ fontWeight: "bold" }}
+                    >
+                      {waitlist.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        {isPast(new Date(festival.start_publication)) && (
+          <Fragment>
+            <Heading as="h2" sx={{ my: 4 }}>
+              {t("agenda")}
             </Heading>
-            <ul>
-              {festival.ch_wait_lists.map((waitlist) => (
-                <li key={waitlist.id}>
-                  <Link
-                    href="/festival/[slug]/[waitlist]"
-                    as={`/festival/${festival.slug}/${waitlist.id}`}
-                    variant="underlined"
-                    sx={{ fontWeight: "bold" }}
-                  >
-                    {waitlist.name}
-                  </Link>
-                </li>
+            <FestivalAgenda id="agenda">
+              {festival.ch_rooms.map((room, i) => (
+                <FestivalAgenda.Room name={room.name} key={i}>
+                  {room.ch_agenda_items.map(({ nb_meeting }) => {
+                    if (!nb_meeting) {
+                      return null;
+                    }
+
+                    const {
+                      id,
+                      name: title,
+                      description,
+                      // slug, // todo: meeting detail
+                      organizer,
+                      start_time,
+                      end_time,
+                    } = nb_meeting;
+
+                    return (
+                      <FestivalAgenda.Item
+                        key={id}
+                        time={`${formatHour(start_time, lang)} - ${formatHour(
+                          end_time,
+                          lang
+                        )}`}
+                        organizer={{ name: organizer.username }}
+                        title={title}
+                        description={description}
+                      />
+                    );
+                  })}
+                </FestivalAgenda.Room>
               ))}
-            </ul>
-          </section>
+            </FestivalAgenda>
+          </Fragment>
         )}
-      {isPast(new Date(festival.start_publication)) && (
-        <Fragment>
-          <Heading as="h2" sx={{ my: 4 }}>
-            {t("agenda")}
-          </Heading>
-          <FestivalAgenda id="agenda">
-            {festival.ch_rooms.map((room, i) => (
-              <FestivalAgenda.Room name={room.name} key={i}>
-                {room.ch_agenda_items.map(({ nb_meeting }) => {
-                  if (!nb_meeting) {
-                    return null;
-                  }
-
-                  const {
-                    id,
-                    name: title,
-                    description,
-                    // slug, // todo: meeting detail
-                    organizer,
-                    start_time,
-                    end_time,
-                  } = nb_meeting;
-
-                  return (
-                    <FestivalAgenda.Item
-                      key={id}
-                      time={`${formatHour(start_time, lang)} - ${formatHour(
-                        end_time,
-                        lang
-                      )}`}
-                      organizer={{ name: organizer.username }}
-                      title={title}
-                      description={description}
-                    />
-                  );
-                })}
-              </FestivalAgenda.Room>
-            ))}
-          </FestivalAgenda>
-        </Fragment>
-      )}
-    </Container>
+      </Container>
+    </ThemeProvider>
   );
 }
 interface HubHomeProps {

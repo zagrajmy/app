@@ -1,5 +1,6 @@
 import merge from "deepmerge";
 import { useMemo, useRef } from "react";
+import { merge as mergeTheme, Theme } from "theme-ui";
 
 import { mergeLocale } from "../../i18n";
 import { settings } from "../../types";
@@ -23,7 +24,7 @@ const byWaitlist = <T extends { waitlist: string | number }>(xs: T[]) =>
 type Settings = MergedSettings & { sphereName?: string };
 
 export function useSettings(
-  festival?: { name: string; settings: unknown } | null
+  festival?: { name: string; settings: { theme?: Theme } } | null
 ) {
   const { sphere } = useAppState();
 
@@ -52,10 +53,16 @@ export function useSettings(
       byWaitlist(festivalSettings.forms || [])
     );
 
+    const theme = mergeTheme(
+      sphereSettings.theme,
+      festival?.settings.theme || {}
+    );
+
     return {
       sphereName: sphere.name,
-      theme: sphereSettings.theme,
+      theme,
       forms: Object.values(forms),
     };
+    // todo: use festival.id? instead of festival?
   }, [festival, sphere]);
 }
