@@ -14,7 +14,13 @@ import dynamic from "next/dynamic";
 import { parseCookies } from "nookies";
 import React, { useRef } from "react";
 import { I18nextProvider } from "react-i18next";
-import { css, Styled, ThemeProvider as ThemeUiProvider } from "theme-ui";
+import {
+  css,
+  merge,
+  Styled,
+  Theme,
+  ThemeProvider as ThemeUiProvider,
+} from "theme-ui";
 
 import { hasura } from "../data";
 import { sphereByIdOrDomainQueryArgs } from "../data/queries";
@@ -31,7 +37,11 @@ import {
   SupportedLanguage,
 } from "../src/i18n";
 import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
-import { globalStyles, theme } from "../src/ui/theme";
+import {
+  ExactTheme,
+  globalStyles,
+  theme as defaultTheme,
+} from "../src/ui/theme";
 
 const ProgressBar = dynamic(() => import("../src/app/components/ProgressBar"), {
   // ssr: false <- can't be there.
@@ -86,15 +96,27 @@ export default function MyApp({
   const session = useRef<Session | undefined | null>();
   session.current = propsSession || session.current;
 
+  const themeRef = useRef(defaultTheme);
+
   useOnceImmediately(() => {
     if (lang !== i18n.language) {
       // we need this in first render
       i18n.changeLanguage(lang);
     }
-    if (appState.sphere?.settings.locale) {
-      mergeLocale(appState.sphere!.settings.locale);
+    if (appState.sphere) {
+      if (appState.sphere.settings.locale) {
+        mergeLocale(appState.sphere!.settings.locale);
+      }
+
+      themeRef.current = merge(
+        defaultTheme as Theme,
+        appState.sphere?.settings.theme
+        // this is quite unsafe until we validate the themes during editing
+      ) as ExactTheme;
     }
   });
+
+  const theme = themeRef.current;
 
   let root: React.ReactNode = null;
   if (session.current && !session.current.user.email_verified) {
