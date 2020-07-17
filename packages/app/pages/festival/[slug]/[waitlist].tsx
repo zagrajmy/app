@@ -12,7 +12,15 @@ import { useSettings } from "../../../src/app/store/useSettings";
 import { AsyncReturnType, summon } from "../../../src/lib";
 import { head } from "../../../src/lib/head";
 import type { HttpError } from "../../../src/lib/HttpError";
-import { Code, Container, Heading, Link, Spacer, Stack } from "../../../src/ui";
+import {
+  Code,
+  Container,
+  Heading,
+  Link,
+  mdx,
+  Spacer,
+  Stack,
+} from "../../../src/ui";
 import {
   ProgrammeProposalForm,
   ProgrammeProposalFormResult,
@@ -126,7 +134,7 @@ function SuccessMessage({ children }: SuccessMessageProps) {
       }}
     >
       <Heading as="h1">{t("program-submitted-heading")}</Heading>
-      <p>{t("program-submitted-message")}</p>
+      {mdx(t("program-submitted-message"))}
       <Spacer height={3} />
       <Stack>
         <div>
