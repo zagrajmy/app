@@ -25,11 +25,7 @@ module.exports = withMDX(
       return config;
     },
     typescript: {
-      // Dangerously allow production builds to successfully complete even if
-      // your project has type errors.
-      // We'll get rid of it some day after cleaning up collateral damage from
-      // database migration.
-      ignoreBuildErrors: true,
+      // ignoreBuildErrors: true,
     },
   })
 );
