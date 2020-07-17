@@ -12,15 +12,7 @@ import { useSettings } from "../../../src/app/store/useSettings";
 import { AsyncReturnType, summon } from "../../../src/lib";
 import { head } from "../../../src/lib/head";
 import type { HttpError } from "../../../src/lib/HttpError";
-import {
-  Button,
-  Code,
-  Container,
-  Heading,
-  Link,
-  Spacer,
-  Stack,
-} from "../../../src/ui";
+import { Code, Container, Heading, Link, Spacer, Stack } from "../../../src/ui";
 import {
   ProgrammeProposalForm,
   ProgrammeProposalFormResult,
@@ -118,7 +110,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
 };
 
 interface SuccessMessageProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 function SuccessMessage({ children }: SuccessMessageProps) {
   const { t } = useTranslation();
