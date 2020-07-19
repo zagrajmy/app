@@ -43,7 +43,10 @@ export const Sidebar = React.forwardRef(
       <>
         <Box
           onClick={props.onClick}
-          sx={{ ...styles.overlay(props), minHeight: "100vh" }}
+          sx={{
+            ...styles.overlay(props),
+            minHeight: "100vh",
+          }}
         >
           {props.open && <Global styles={styles.global} />}
         </Box>
@@ -52,6 +55,7 @@ export const Sidebar = React.forwardRef(
           sx={{
             ...styles.wrapper(props),
             flexShrink: 0,
+            maxHeight: "unset",
           }}
           data-testid="sidebar"
         >
