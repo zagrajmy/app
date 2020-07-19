@@ -28,9 +28,9 @@ export const AppFooter = () => {
         <HeaderFooterListItem sx={{ flex: 1, textAlign: "left" }}>
           <Link href="/">{appName}</Link>
         </HeaderFooterListItem>
-        <HeaderFooterListItem>
+        {/* <HeaderFooterListItem>
           <a href="https://github.com/zagrajmy/">GitHub</a>
-        </HeaderFooterListItem>
+        </HeaderFooterListItem> */}
       </ul>
     </footer>
   );
