@@ -26,7 +26,7 @@ export type ApplicationState = {
   sphere: {
     id?: string | number;
     name?: string;
-    settings: settings.SphereSettings;
+    settings: settings.SphereAndFestivalSettings;
   };
 };
 

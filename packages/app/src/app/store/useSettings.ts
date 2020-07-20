@@ -7,21 +7,28 @@ import { settings } from "../../types";
 import { useAppState } from "./index";
 
 // todo: json schema validator or io-ts
-// this function isn't exactly safe at this moment
-const parseFestivalSettings = (s: unknown): settings.FestivalSettings => {
+// this function isn't safe at this moment
+const parseFestivalSettings = (
+  s: unknown
+): settings.SphereAndFestivalSettings => {
+  if (typeof s === "object" && s) {
+    return {
+      forms:
+        "forms" in s ? (s as settings.SphereAndFestivalSettings).forms : [],
+      theme:
+        "theme" in s ? (s as settings.SphereAndFestivalSettings).theme : {},
+    };
+  }
   return {
-    forms: typeof s === "object" && s && "forms" in s ? (s as any).forms : [],
+    forms: [],
+    theme: {},
   };
 };
-
-interface MergedSettings
-  extends settings.FestivalSettings,
-    settings.SphereSettings {}
 
 const byWaitlist = <T extends { waitlist: string | number }>(xs: T[]) =>
   Object.fromEntries(xs.map((x) => [x.waitlist, x]));
 
-type Settings = MergedSettings & { sphereName?: string };
+type Settings = settings.SphereAndFestivalSettings & { sphereName?: string };
 
 export function useSettings(
   festival?: { name: string; settings: { theme?: Theme } } | null
@@ -62,6 +69,7 @@ export function useSettings(
       sphereName: sphere.name,
       theme,
       forms: Object.values(forms),
+      locale: merge(sphereSettings.locale || {}, festivalSettings.locale || {}),
     };
     // todo: use festival.id? instead of festival?
   }, [festival, sphere]);

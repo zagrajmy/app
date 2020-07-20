@@ -1,14 +1,10 @@
 import { Link } from "next-next-link";
-import { useTranslation } from "react-i18next";
 
-import { useAppState } from "../store";
+import { useAppName } from "../store/useAppName";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 
 export const AppFooter = () => {
-  const { t } = useTranslation();
-  const { sphere } = useAppState();
-
-  const appName = t("page-title") || sphere.name;
+  const appName = useAppName();
 
   return (
     <footer sx={{ bg: "gray.9", mt: "auto" }}>

@@ -1,5 +1,4 @@
 import { alpha } from "@theme-ui/color";
-import { Link } from "next-next-link";
 import React, { ComponentProps } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -9,9 +8,10 @@ import {
   useLanguage,
 } from "../../i18n";
 import { summon } from "../../lib";
-import { Select, SelectProps, useTheme } from "../../ui";
+import { Link, Select, SelectProps, useTheme } from "../../ui";
 import type { Claims } from "../auth";
 import { useAppState } from "../store";
+import { useAppName } from "../store/useAppName";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 // import { Menu } from "./Menu";
 import { NavLink } from "./NavLink";
@@ -85,10 +85,9 @@ export const NavHeader = ({
   const { t } = useTranslation();
   const state = useAppState();
   const { theme } = useTheme();
+  const appName = useAppName();
 
   const claims = state.user || propsClaims;
-
-  const appName = t("page-title") || state.sphere.name;
 
   return (
     <header {...rest}>
