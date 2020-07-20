@@ -4,7 +4,11 @@ route: /organisms/messageScreens
 menu: Organisms
 ---
 
-import { EmailConfirmationScreen, NoPublishedMeetingsScreen } from "./index";
+import {
+  EmailConfirmationScreen,
+  NoPublishedMeetingsScreen,
+  ItWasntSupposedToHappen,
+} from "./index";
 import { Button } from "@zagrajmy/app";
 
 export const border = { border: "2px solid", borderColor: "gray.4" };
@@ -18,3 +22,9 @@ export const border = { border: "2px solid", borderColor: "gray.4" };
 <NoPublishedMeetingsScreen sx={border}>
   <Button>Create a meeting</Button>
 </NoPublishedMeetingsScreen>
+
+## It Wasn't Supposed To Happen
+
+<ItWasntSupposedToHappen sx={border}>
+  <Button>Reload</Button>
+</ItWasntSupposedToHappen>
