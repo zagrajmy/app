@@ -10,14 +10,16 @@ import { sphereByIdOrDomainQueryArgs } from "../data/queries";
 import { CommonHead } from "../src/app/components/CommonHead";
 import { Page } from "../src/app/components/Page";
 import { detectSphere } from "../src/app/detectSphere";
-import { useSettings } from "../src/app/store/useSettings";
+import { MergedSettings, useSettings } from "../src/app/store/useSettings";
 import { formatDate, formatHour, useLanguage } from "../src/i18n";
 import { head } from "../src/lib/head";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
+import { settings as st } from "../src/types";
 import {
   Code,
   Container,
   Heading,
+  Image,
   Link,
   Message,
   Spacer,
@@ -27,6 +29,16 @@ import {
 import * as icons from "../src/ui/icons";
 import { mdx } from "../src/ui/mdx";
 import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
+
+const HomepageBanner = ({
+  settings: { content },
+}: {
+  settings: MergedSettings;
+}) => {
+  return content.homepageBanner ? (
+    <Image src={content.homepageBanner.src} sx={content.homepageBanner.style} />
+  ) : null;
+};
 
 function fetchSphereData(
   ctx: GetServerSidePropsContext,
@@ -140,11 +152,15 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
 
   const introText = useMemo(() => {
     return mdx(
-      t("sphere-home-intro-text", {
-        sphereName: settings.sphereName,
-      })
+      settings.locale?.[lang]?.["sphere-home-intro-text"]?.replace(
+        "{{sphereName}}",
+        settings.sphereName || ""
+      ) ||
+        t("sphere-home-intro-text", {
+          sphereName: settings.sphereName,
+        })
     );
-  }, [settings.sphereName, t]);
+  }, [lang, settings.locale, settings.sphereName, t]);
 
   if (!festival) {
     // TODO
@@ -158,79 +174,87 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
 
   return (
     <ThemeProvider theme={settings.theme}>
-      <Container py={4} px={2} sx={{ maxWidth: "containerThin" }}>
-        <Heading as="h1">{festival.name}</Heading>
-        <Spacer height={3} />
-        <FestivalDateTime
-          startTime={festival.start_time}
-          endTime={festival.end_time}
-        />
-        {introText}
-        {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
-        {isPast(new Date(festival.start_proposal)) &&
-          isFuture(new Date(festival.end_time)) && (
-            <section sx={{ my: 3 }}>
-              <Heading as="h2" size={3}>
-                {t("propose-program")}
+      <Fragment>
+        <HomepageBanner settings={settings} />
+        <Container
+          mt={[0, -4]}
+          mb={[0, 5]}
+          variant="sheet"
+          sx={{ width: "containerThin", py: [3, 5], px: [2, 5] }}
+        >
+          <Heading as="h1">{festival.name}</Heading>
+          <Spacer height={3} />
+          <FestivalDateTime
+            startTime={festival.start_time}
+            endTime={festival.end_time}
+          />
+          {introText}
+          {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
+          {isPast(new Date(festival.start_proposal)) &&
+            isFuture(new Date(festival.end_time)) && (
+              <section sx={{ my: 3 }}>
+                <Heading as="h2" size={3}>
+                  {t("propose-program")}
+                </Heading>
+                <ul>
+                  {festival.ch_wait_lists.map((waitlist) => (
+                    <li key={waitlist.id}>
+                      <Link
+                        href="/festival/[slug]/[waitlist]"
+                        as={`/festival/${festival.slug}/${waitlist.id}`}
+                        variant="underlined"
+                        sx={{ fontWeight: "bold" }}
+                      >
+                        {waitlist.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          {isPast(new Date(festival.start_publication)) && (
+            <Fragment>
+              <Heading as="h2" sx={{ my: 4 }}>
+                {t("agenda")}
               </Heading>
-              <ul>
-                {festival.ch_wait_lists.map((waitlist) => (
-                  <li key={waitlist.id}>
-                    <Link
-                      href="/festival/[slug]/[waitlist]"
-                      as={`/festival/${festival.slug}/${waitlist.id}`}
-                      variant="underlined"
-                      sx={{ fontWeight: "bold" }}
-                    >
-                      {waitlist.name}
-                    </Link>
-                  </li>
+              <FestivalAgenda id="agenda">
+                {festival.ch_rooms.map((room, i) => (
+                  <FestivalAgenda.Room name={room.name} key={i}>
+                    {room.ch_agenda_items.map(({ nb_meeting }) => {
+                      if (!nb_meeting) {
+                        return null;
+                      }
+
+                      const {
+                        id,
+                        name: title,
+                        description,
+                        // slug, // todo: meeting detail
+                        organizer,
+                        start_time,
+                        end_time,
+                      } = nb_meeting;
+
+                      return (
+                        <FestivalAgenda.Item
+                          key={id}
+                          time={`${formatHour(start_time, lang)} - ${formatHour(
+                            end_time,
+                            lang
+                          )}`}
+                          organizer={{ name: organizer.username }}
+                          title={title}
+                          description={description}
+                        />
+                      );
+                    })}
+                  </FestivalAgenda.Room>
                 ))}
-              </ul>
-            </section>
+              </FestivalAgenda>
+            </Fragment>
           )}
-        {isPast(new Date(festival.start_publication)) && (
-          <Fragment>
-            <Heading as="h2" sx={{ my: 4 }}>
-              {t("agenda")}
-            </Heading>
-            <FestivalAgenda id="agenda">
-              {festival.ch_rooms.map((room, i) => (
-                <FestivalAgenda.Room name={room.name} key={i}>
-                  {room.ch_agenda_items.map(({ nb_meeting }) => {
-                    if (!nb_meeting) {
-                      return null;
-                    }
-
-                    const {
-                      id,
-                      name: title,
-                      description,
-                      // slug, // todo: meeting detail
-                      organizer,
-                      start_time,
-                      end_time,
-                    } = nb_meeting;
-
-                    return (
-                      <FestivalAgenda.Item
-                        key={id}
-                        time={`${formatHour(start_time, lang)} - ${formatHour(
-                          end_time,
-                          lang
-                        )}`}
-                        organizer={{ name: organizer.username }}
-                        title={title}
-                        description={description}
-                      />
-                    );
-                  })}
-                </FestivalAgenda.Room>
-              ))}
-            </FestivalAgenda>
-          </Fragment>
-        )}
-      </Container>
+        </Container>
+      </Fragment>
     </ThemeProvider>
   );
 }

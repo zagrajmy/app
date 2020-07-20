@@ -28,6 +28,12 @@ const field: ThemeUIStyleObject = {
 export const forms: Variants = {
   textarea: field,
   input: { ...field, height: "48px" },
+  radio: {
+    cursor: "pointer",
+  },
+  checkbox: {
+    cursor: "pointer",
+  },
   select: {
     ...field,
     ":disabled": {

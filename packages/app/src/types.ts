@@ -1,4 +1,4 @@
-import { Theme } from "theme-ui";
+import { Theme, ThemeUIStyleObject } from "theme-ui";
 
 import type { SupportedLanguage, TranslationTexts } from "./i18n";
 
@@ -61,7 +61,10 @@ export declare namespace settings {
     theme: Theme;
     locale?: Record<SupportedLanguage, TranslationTexts>;
     content?: {
-      homepageBanner?: string;
+      homepageBanner?: {
+        src: string;
+        style: ThemeUIStyleObject;
+      };
     };
   }
 }
