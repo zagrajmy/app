@@ -46,5 +46,7 @@
   "does-not-match-discord-username-pattern": "Discord usernames must contain a hash (#) and four digits (e.g. geralt#1337)",
   "program-submitted-heading": "Sweet!",
   "program-submitted-message": "Thanks for submitting this. We'll reach you soon!",
-  "program-submitted-go-back": "Go back to the homepage"
+  "program-submitted-go-back": "Go back to the homepage",
+  "it-wasnt-supposed-to-happen": "It wasn't supposed to happen!",
+  "it-wasnt-supposed-to-happen-error-message": "Pretty awkward, huh? <br />We've already tracked this error and will get right on it."
 }
