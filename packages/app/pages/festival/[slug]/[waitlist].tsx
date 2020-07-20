@@ -14,6 +14,7 @@ import { ProgrammeProposalForm } from "../../../src/ui/organisms/ProgrammePropos
 type Params = {
   slug: string;
   waitlist: string;
+  query: string;
 };
 
 function fetchFestival(ctx: GetServerSidePropsContext<Params>) {
@@ -53,7 +54,7 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
     return (
       <Page>
         <CommonHead />
-        <Container>Ouch. We couldn't find a festival here.</Container>
+        <Container>Ouch. We couldn't find a   .</Container>
       </Page>
     );
   }
