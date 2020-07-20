@@ -13,6 +13,7 @@ const parseFestivalSettings = (
 ): settings.SphereAndFestivalSettings => {
   if (typeof s === "object" && s) {
     return {
+      ...s,
       forms:
         "forms" in s ? (s as settings.SphereAndFestivalSettings).forms : [],
       theme:
@@ -28,11 +29,13 @@ const parseFestivalSettings = (
 const byWaitlist = <T extends { waitlist: string | number }>(xs: T[]) =>
   Object.fromEntries(xs.map((x) => [x.waitlist, x]));
 
-type Settings = settings.SphereAndFestivalSettings & { sphereName?: string };
+export type MergedSettings = Required<settings.SphereAndFestivalSettings> & {
+  sphereName?: string;
+};
 
 export function useSettings(
   festival?: { name: string; settings: { theme?: Theme } } | null
-) {
+): MergedSettings {
   const { sphere } = useAppState();
 
   // ugly side effect, but I'm not sure how to do it nicer
@@ -51,7 +54,7 @@ export function useSettings(
     festivalName.current = festival?.name;
   }
 
-  return useMemo((): Settings => {
+  return useMemo((): MergedSettings => {
     const sphereSettings = sphere.settings;
     const festivalSettings = parseFestivalSettings(festival?.settings);
 
@@ -70,6 +73,10 @@ export function useSettings(
       theme,
       forms: Object.values(forms),
       locale: merge(sphereSettings.locale || {}, festivalSettings.locale || {}),
+      content: {
+        ...sphereSettings.content,
+        ...festivalSettings.content,
+      },
     };
     // todo: use festival.id? instead of festival?
   }, [festival, sphere]);
