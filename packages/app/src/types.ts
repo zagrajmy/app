@@ -57,10 +57,11 @@ export declare namespace settings {
 
   export type Field = Fieldset["fields"][number];
 
-  export interface FestivalSettings extends FormsSettings {}
-
-  export interface SphereSettings extends FormsSettings {
+  export interface SphereAndFestivalSettings extends FormsSettings {
     theme: Theme;
     locale?: Record<SupportedLanguage, TranslationTexts>;
+    content?: {
+      homepageBanner?: string;
+    };
   }
 }

@@ -6,6 +6,7 @@ import { getRecentlyPublishedMeetings } from "../src/app/api-helpers";
 import { MeetingCard, Page } from "../src/app/components";
 import { CommonHead } from "../src/app/components/CommonHead";
 import { MeetingCardsList } from "../src/app/components/MeetingCardsList";
+import { useAppName } from "../src/app/store/useAppName";
 import { Container, Link } from "../src/ui";
 import { NoPublishedMeetingsScreen } from "../src/ui/organisms/messageScreens";
 
@@ -28,6 +29,7 @@ type IndexPageProps = { meetings: OldMeeting[] };
 
 const IndexPage: NextPage<IndexPageProps> = ({ meetings }) => {
   const { t } = useTranslation();
+  const appName = useAppName();
 
   return (
     <Page>
@@ -51,7 +53,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ meetings }) => {
                 lineHeight: "heading",
               }}
             >
-              {t("page-title")}
+              {appName}
             </h1>
             <p sx={{ fontSize: 4 }}>{t("sphere-subtitle-prompt")}</p>
           </header>
