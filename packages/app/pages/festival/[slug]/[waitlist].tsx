@@ -136,7 +136,7 @@ function SuccessMessage({ children }: SuccessMessageProps) {
       <Heading as="h1">{t("program-submitted-heading")}</Heading>
       {mdx(t("program-submitted-message"))}
       <Spacer height={3} />
-      <Stack>
+      <Stack gap={1}>
         <div>
           <Link variant="underlined" href="/">
             {t("program-submitted-go-back")}

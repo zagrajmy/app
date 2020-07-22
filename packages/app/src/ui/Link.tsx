@@ -66,6 +66,12 @@ export const Link = ({ variant, ...rest }: LinkProps) => {
     rest.as ? rest.as : rest.href,
     "__dev_sphere_domain"
   );
+
+  // external URLs are mapped to `a` instead of Next `Link`
+  if (typeof rest.href === "string" && rest.href.match(/^https?:\/\//)) {
+    return <a sx={variantStyles} {...rest} href={rest.href as string} />;
+  }
+
   /* eslint-disable no-param-reassign */
   if (rest.as) {
     rest.as = newUrl;
