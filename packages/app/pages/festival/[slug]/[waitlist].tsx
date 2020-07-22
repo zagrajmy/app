@@ -238,7 +238,7 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
   return (
     <ThemeProvider theme={settings.theme}>
       <Page>
-        <CommonHead />
+        <CommonHead titlePrefix={formSettings.title} />
         <Container py={[0, 4]}>
           {state.type === "succeeded" ? (
             <SuccessMessage />
