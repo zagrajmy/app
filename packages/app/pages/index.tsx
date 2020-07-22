@@ -1,5 +1,6 @@
 import { isFuture, isPast } from "date-fns";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import dynamic from "next/dynamic";
 import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Flex, ThemeProvider } from "theme-ui";
@@ -28,6 +29,8 @@ import {
 import * as icons from "../src/ui/icons";
 import { mdx } from "../src/ui/mdx";
 import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
+
+const HubHome = dynamic(() => import("../src/app/components/HubHome"));
 
 const HomepageBanner = ({
   settings: { content },
@@ -257,23 +260,12 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
     </ThemeProvider>
   );
 }
-interface HubHomeProps {
+export interface HubHomeProps {
   spheres: string[]; // TODO: Sphere[]
   festivals: string[]; // TODO Festival[]
 
   error?: never;
   ch_festivals?: never;
-}
-
-function HubHome({ spheres, festivals }: HubHomeProps) {
-  return (
-    <Container py={4} px={2}>
-      {JSON.stringify({ spheres, festivals }, null, 2)}
-      {spheres.map((s, i) => (
-        <li key={i}>{s}</li>
-      ))}
-    </Container>
-  );
 }
 
 interface ErrorPageProps {

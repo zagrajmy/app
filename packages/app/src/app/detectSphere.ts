@@ -5,11 +5,8 @@ import { getUrl } from "../lib/getUrl";
 // We should add `isHub` column to sphere probably.
 const HUBS = [{ domain: "zagrajmy.net" }, { domain: "zagrajmy.now.sh" }];
 
-function isHub(url: string) {
-  return (
-    HUBS.find((sphere) => url.includes(`https://${sphere.domain}`)) !==
-    undefined
-  );
+function isHub(domain: string) {
+  return HUBS.find((sphere) => domain === sphere.domain) !== undefined;
 }
 
 /**
@@ -26,7 +23,7 @@ export function detectSphere({
     : new URL(url).hostname;
 
   return {
-    isHub: isHub(url),
+    isHub: isHub(domain),
     domain,
   };
 }
