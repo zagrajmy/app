@@ -142,7 +142,10 @@ function SuccessMessage({ children }: SuccessMessageProps) {
             {t("program-submitted-go-back")}
           </Link>
         </div>
-        <div>{children}</div>
+        {t("program-submitted-actions")
+          ? mdx(t("program-submitted-actions"))
+          : null}
+        {children}
       </Stack>
     </Container>
   );
@@ -155,10 +158,13 @@ interface Props {
   params: Params;
 }
 
+const initialState: State = { type: "standby" };
+
 const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
-  const [state, dispatch] = useReducer<Reducer<State, Action>>(reducer, {
-    type: "standby",
-  });
+  const [state, dispatch] = useReducer<Reducer<State, Action>>(
+    reducer,
+    initialState
+  );
   useEffect(() => {
     if (state.type === "submitting") {
       postForm(state.formValue)
