@@ -3,8 +3,8 @@
 
 import "@testing-library/cypress/add-commands";
 
-import { getOrPanic } from "../../src/lib/validationErrorToError";
-import { decodeTestAccount } from "../support/util";
+import { getOrPanic } from "../../../src/lib/validationErrorToError";
+import { decodeTestAccount } from "./util";
 
 const env =
   process.env ?? new Proxy({}, { get: (_, key) => Cypress.env(String(key)) });

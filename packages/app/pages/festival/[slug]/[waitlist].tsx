@@ -193,7 +193,6 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
   }, [state]);
 
   const settings = useSettings(festival);
-  const { t } = useTranslation();
 
   if (!festival) {
     // TODO
