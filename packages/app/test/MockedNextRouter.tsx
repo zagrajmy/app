@@ -1,8 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { noop } from "@zagrajmy/app";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import Router, { createRouter } from "next/router";
 import { useMemo } from "react";
+
+import { noop } from "../src/lib/noop";
 
 // SIDE EFFECT ON IMPORT
 // mock for next/link

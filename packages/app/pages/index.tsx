@@ -14,7 +14,6 @@ import { MergedSettings, useSettings } from "../src/app/store/useSettings";
 import { formatDate, formatHour, useLanguage } from "../src/i18n";
 import { head } from "../src/lib/head";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
-import { settings as st } from "../src/types";
 import {
   Code,
   Container,

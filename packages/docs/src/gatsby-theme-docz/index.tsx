@@ -12,8 +12,8 @@ import prism from "gatsby-theme-docz/src/theme/prism";
 import styles from "gatsby-theme-docz/src/theme/styles";
 import { Styled, ThemeProvider } from "theme-ui";
 
+import { MockedNextRouter } from "../../../app/test/MockedNextRouter";
 import { PropDoc } from "../components/PropDoc";
-import { MockedNextRouter } from "../MockedNextRouter";
 
 const componentsMap = { ...baseComponents, PropDoc };
 
