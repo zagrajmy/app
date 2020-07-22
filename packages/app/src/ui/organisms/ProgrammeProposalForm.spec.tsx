@@ -8,6 +8,7 @@ import { I18nextProvider } from "react-i18next";
 import { dedent } from "ts-dedent";
 
 import { i18n } from "../../i18n";
+import { noop } from "../../lib";
 import { settings } from "../../types";
 import { ProgrammeProposalForm } from "./ProgrammeProposalForm";
 
@@ -251,5 +252,28 @@ describe(ProgrammeProposalForm.name, () => {
     });
 
     expect(onSubmit).toBeCalled();
+  });
+
+  it("shows t('submitting') text and the submit button is disabled", () => {
+    // eslint-disable-next-line no-shadow
+    const { getByRole, getByText } = render(
+      <I18nextProvider i18n={i18n}>
+        <ProgrammeProposalForm
+          settings={{
+            title: "",
+            introText: "",
+            footerText: "",
+            fieldsets: [],
+            waitlist: "",
+          }}
+          onSubmit={noop}
+          isSubmitting
+        />
+      </I18nextProvider>
+    );
+
+    getByText("submitting");
+    const button = getByRole("button") as HTMLButtonElement;
+    expect(button.disabled).toBe(true);
   });
 });

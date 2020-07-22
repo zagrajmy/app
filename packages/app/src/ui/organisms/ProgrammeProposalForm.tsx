@@ -436,7 +436,7 @@ export function ProgrammeProposalForm({
           sx={{ fontWeight: "bold", marginLeft: "auto" }}
           disabled={isSubmitting}
         >
-          {t("submit")}
+          {isSubmitting ? t("submitting") : t("submit")}
         </Button>
       </footer>
     </Container>

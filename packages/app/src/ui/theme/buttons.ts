@@ -23,11 +23,15 @@ export const buttons: Variants = {
     bg: "primary",
     borderColor: "primary",
     color: "white",
-    ":hover": {
+    ":hover:enabled, :focus:enabled": {
       ...primarySecondaryCommon[":hover"],
       bg: "primaryLight",
       borderColor: "primaryLight",
       boxShadow: "lg",
+    },
+    ":disabled": {
+      cursor: "unset",
+      opacity: 0.75,
     },
   },
   secondary: {
