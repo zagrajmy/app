@@ -2,7 +2,7 @@ import { array, either } from "fp-ts";
 import { flow } from "fp-ts/lib/function";
 import * as t from "io-ts";
 
-import { failure, validationErrorToError } from "../../src/lib";
+import { failure, validationErrorToError } from "../../../src/lib";
 
 const ERROR_MSG = "Failed to read test account credentials JSON:";
 
