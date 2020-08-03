@@ -1573,9 +1573,8 @@ type ch_proposal {
 
   # An object relationship
   ch_wait_list: ch_wait_list!
-  city: String!
-  club: String!
-  contact_info: String!
+  city: String
+  club: String
   created_at: timestamptz
   description: String!
   duration_minutes: Int!
@@ -1585,7 +1584,7 @@ type ch_proposal {
   meeting: nb_meeting
   meeting_id: Int
   name: String!
-  needs: String!
+  needs: String
   other_contact(
     # JSON select path
     path: String
@@ -1594,10 +1593,11 @@ type ch_proposal {
     # JSON select path
     path: String
   ): jsonb
-  phone: String!
+  phone: String
   speaker_name: String!
   speaker_user_id: uuid
   status: String!
+  topic: String!
   waitlist_id: Int!
 }
 
@@ -1674,7 +1674,6 @@ input ch_proposal_bool_exp {
   ch_wait_list: ch_wait_list_bool_exp
   city: String_comparison_exp
   club: String_comparison_exp
-  contact_info: String_comparison_exp
   created_at: timestamptz_comparison_exp
   description: String_comparison_exp
   duration_minutes: Int_comparison_exp
@@ -1689,6 +1688,7 @@ input ch_proposal_bool_exp {
   speaker_name: String_comparison_exp
   speaker_user_id: uuid_comparison_exp
   status: String_comparison_exp
+  topic: String_comparison_exp
   waitlist_id: Int_comparison_exp
 }
 
@@ -1734,7 +1734,6 @@ input ch_proposal_insert_input {
   ch_wait_list: ch_wait_list_obj_rel_insert_input
   city: String
   club: String
-  contact_info: String
   created_at: timestamptz
   description: String
   duration_minutes: Int
@@ -1749,6 +1748,7 @@ input ch_proposal_insert_input {
   speaker_name: String
   speaker_user_id: uuid
   status: String
+  topic: String
   waitlist_id: Int
 }
 
@@ -1756,7 +1756,6 @@ input ch_proposal_insert_input {
 type ch_proposal_max_fields {
   city: String
   club: String
-  contact_info: String
   created_at: timestamptz
   description: String
   duration_minutes: Int
@@ -1768,6 +1767,7 @@ type ch_proposal_max_fields {
   speaker_name: String
   speaker_user_id: uuid
   status: String
+  topic: String
   waitlist_id: Int
 }
 
@@ -1775,7 +1775,6 @@ type ch_proposal_max_fields {
 input ch_proposal_max_order_by {
   city: order_by
   club: order_by
-  contact_info: order_by
   created_at: order_by
   description: order_by
   duration_minutes: order_by
@@ -1787,6 +1786,7 @@ input ch_proposal_max_order_by {
   speaker_name: order_by
   speaker_user_id: order_by
   status: order_by
+  topic: order_by
   waitlist_id: order_by
 }
 
@@ -1794,7 +1794,6 @@ input ch_proposal_max_order_by {
 type ch_proposal_min_fields {
   city: String
   club: String
-  contact_info: String
   created_at: timestamptz
   description: String
   duration_minutes: Int
@@ -1806,6 +1805,7 @@ type ch_proposal_min_fields {
   speaker_name: String
   speaker_user_id: uuid
   status: String
+  topic: String
   waitlist_id: Int
 }
 
@@ -1813,7 +1813,6 @@ type ch_proposal_min_fields {
 input ch_proposal_min_order_by {
   city: order_by
   club: order_by
-  contact_info: order_by
   created_at: order_by
   description: order_by
   duration_minutes: order_by
@@ -1825,6 +1824,7 @@ input ch_proposal_min_order_by {
   speaker_name: order_by
   speaker_user_id: order_by
   status: order_by
+  topic: order_by
   waitlist_id: order_by
 }
 
@@ -1856,7 +1856,6 @@ input ch_proposal_order_by {
   ch_wait_list: ch_wait_list_order_by
   city: order_by
   club: order_by
-  contact_info: order_by
   created_at: order_by
   description: order_by
   duration_minutes: order_by
@@ -1871,6 +1870,7 @@ input ch_proposal_order_by {
   speaker_name: order_by
   speaker_user_id: order_by
   status: order_by
+  topic: order_by
   waitlist_id: order_by
 }
 
@@ -1892,9 +1892,6 @@ enum ch_proposal_select_column {
 
   # column name
   club
-
-  # column name
-  contact_info
 
   # column name
   created_at
@@ -1936,6 +1933,9 @@ enum ch_proposal_select_column {
   status
 
   # column name
+  topic
+
+  # column name
   waitlist_id
 }
 
@@ -1943,7 +1943,6 @@ enum ch_proposal_select_column {
 input ch_proposal_set_input {
   city: String
   club: String
-  contact_info: String
   created_at: timestamptz
   description: String
   duration_minutes: Int
@@ -1957,6 +1956,7 @@ input ch_proposal_set_input {
   speaker_name: String
   speaker_user_id: uuid
   status: String
+  topic: String
   waitlist_id: Int
 }
 
@@ -2334,9 +2334,6 @@ enum ch_proposal_update_column {
   club
 
   # column name
-  contact_info
-
-  # column name
   created_at
 
   # column name
@@ -2374,6 +2371,9 @@ enum ch_proposal_update_column {
 
   # column name
   status
+
+  # column name
+  topic
 
   # column name
   waitlist_id

@@ -1072,7 +1072,6 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list"];
     city?: true;
     club?: true;
-    contact_info?: true;
     created_at?: true;
     description?: true;
     duration_minutes?: true;
@@ -1087,6 +1086,7 @@ export type ValueTypes = {
     speaker_name?: true;
     speaker_user_id?: true;
     status?: true;
+    topic?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
@@ -1157,7 +1157,6 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list_bool_exp"];
     city?: ValueTypes["String_comparison_exp"];
     club?: ValueTypes["String_comparison_exp"];
-    contact_info?: ValueTypes["String_comparison_exp"];
     created_at?: ValueTypes["timestamptz_comparison_exp"];
     description?: ValueTypes["String_comparison_exp"];
     duration_minutes?: ValueTypes["Int_comparison_exp"];
@@ -1172,6 +1171,7 @@ export type ValueTypes = {
     speaker_name?: ValueTypes["String_comparison_exp"];
     speaker_user_id?: ValueTypes["uuid_comparison_exp"];
     status?: ValueTypes["String_comparison_exp"];
+    topic?: ValueTypes["String_comparison_exp"];
     waitlist_id?: ValueTypes["Int_comparison_exp"];
   };
   ["ch_proposal_constraint"]: ch_proposal_constraint;
@@ -1198,7 +1198,6 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list_obj_rel_insert_input"];
     city?: string;
     club?: string;
-    contact_info?: string;
     created_at?: ValueTypes["timestamptz"];
     description?: string;
     duration_minutes?: number;
@@ -1213,12 +1212,12 @@ export type ValueTypes = {
     speaker_name?: string;
     speaker_user_id?: ValueTypes["uuid"];
     status?: string;
+    topic?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_max_fields"]: AliasType<{
     city?: true;
     club?: true;
-    contact_info?: true;
     created_at?: true;
     description?: true;
     duration_minutes?: true;
@@ -1230,13 +1229,13 @@ export type ValueTypes = {
     speaker_name?: true;
     speaker_user_id?: true;
     status?: true;
+    topic?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_max_order_by"]: {
     city?: ValueTypes["order_by"];
     club?: ValueTypes["order_by"];
-    contact_info?: ValueTypes["order_by"];
     created_at?: ValueTypes["order_by"];
     description?: ValueTypes["order_by"];
     duration_minutes?: ValueTypes["order_by"];
@@ -1248,12 +1247,12 @@ export type ValueTypes = {
     speaker_name?: ValueTypes["order_by"];
     speaker_user_id?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
+    topic?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_min_fields"]: AliasType<{
     city?: true;
     club?: true;
-    contact_info?: true;
     created_at?: true;
     description?: true;
     duration_minutes?: true;
@@ -1265,13 +1264,13 @@ export type ValueTypes = {
     speaker_name?: true;
     speaker_user_id?: true;
     status?: true;
+    topic?: true;
     waitlist_id?: true;
     __typename?: true;
   }>;
   ["ch_proposal_min_order_by"]: {
     city?: ValueTypes["order_by"];
     club?: ValueTypes["order_by"];
-    contact_info?: ValueTypes["order_by"];
     created_at?: ValueTypes["order_by"];
     description?: ValueTypes["order_by"];
     duration_minutes?: ValueTypes["order_by"];
@@ -1283,6 +1282,7 @@ export type ValueTypes = {
     speaker_name?: ValueTypes["order_by"];
     speaker_user_id?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
+    topic?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_mutation_response"]: AliasType<{
@@ -1304,7 +1304,6 @@ export type ValueTypes = {
     ch_wait_list?: ValueTypes["ch_wait_list_order_by"];
     city?: ValueTypes["order_by"];
     club?: ValueTypes["order_by"];
-    contact_info?: ValueTypes["order_by"];
     created_at?: ValueTypes["order_by"];
     description?: ValueTypes["order_by"];
     duration_minutes?: ValueTypes["order_by"];
@@ -1319,6 +1318,7 @@ export type ValueTypes = {
     speaker_name?: ValueTypes["order_by"];
     speaker_user_id?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
+    topic?: ValueTypes["order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_pk_columns_input"]: {
@@ -1332,7 +1332,6 @@ export type ValueTypes = {
   ["ch_proposal_set_input"]: {
     city?: string;
     club?: string;
-    contact_info?: string;
     created_at?: ValueTypes["timestamptz"];
     description?: string;
     duration_minutes?: number;
@@ -1346,6 +1345,7 @@ export type ValueTypes = {
     speaker_name?: string;
     speaker_user_id?: ValueTypes["uuid"];
     status?: string;
+    topic?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_stddev_fields"]: AliasType<{
@@ -6680,7 +6680,6 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list"];
     city?: string;
     club?: string;
-    contact_info?: string;
     created_at?: PartialObjects["timestamptz"];
     description?: string;
     duration_minutes?: number;
@@ -6695,6 +6694,7 @@ export type PartialObjects = {
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
+    topic?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_aggregate"]: {
@@ -6758,7 +6758,6 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list_bool_exp"];
     city?: PartialObjects["String_comparison_exp"];
     club?: PartialObjects["String_comparison_exp"];
-    contact_info?: PartialObjects["String_comparison_exp"];
     created_at?: PartialObjects["timestamptz_comparison_exp"];
     description?: PartialObjects["String_comparison_exp"];
     duration_minutes?: PartialObjects["Int_comparison_exp"];
@@ -6773,6 +6772,7 @@ export type PartialObjects = {
     speaker_name?: PartialObjects["String_comparison_exp"];
     speaker_user_id?: PartialObjects["uuid_comparison_exp"];
     status?: PartialObjects["String_comparison_exp"];
+    topic?: PartialObjects["String_comparison_exp"];
     waitlist_id?: PartialObjects["Int_comparison_exp"];
   };
   ["ch_proposal_constraint"]: ch_proposal_constraint;
@@ -6799,7 +6799,6 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list_obj_rel_insert_input"];
     city?: string;
     club?: string;
-    contact_info?: string;
     created_at?: PartialObjects["timestamptz"];
     description?: string;
     duration_minutes?: number;
@@ -6814,13 +6813,13 @@ export type PartialObjects = {
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
+    topic?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_max_fields"]: {
     __typename?: "ch_proposal_max_fields";
     city?: string;
     club?: string;
-    contact_info?: string;
     created_at?: PartialObjects["timestamptz"];
     description?: string;
     duration_minutes?: number;
@@ -6832,12 +6831,12 @@ export type PartialObjects = {
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
+    topic?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_max_order_by"]: {
     city?: PartialObjects["order_by"];
     club?: PartialObjects["order_by"];
-    contact_info?: PartialObjects["order_by"];
     created_at?: PartialObjects["order_by"];
     description?: PartialObjects["order_by"];
     duration_minutes?: PartialObjects["order_by"];
@@ -6849,13 +6848,13 @@ export type PartialObjects = {
     speaker_name?: PartialObjects["order_by"];
     speaker_user_id?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
+    topic?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_min_fields"]: {
     __typename?: "ch_proposal_min_fields";
     city?: string;
     club?: string;
-    contact_info?: string;
     created_at?: PartialObjects["timestamptz"];
     description?: string;
     duration_minutes?: number;
@@ -6867,12 +6866,12 @@ export type PartialObjects = {
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
+    topic?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_min_order_by"]: {
     city?: PartialObjects["order_by"];
     club?: PartialObjects["order_by"];
-    contact_info?: PartialObjects["order_by"];
     created_at?: PartialObjects["order_by"];
     description?: PartialObjects["order_by"];
     duration_minutes?: PartialObjects["order_by"];
@@ -6884,6 +6883,7 @@ export type PartialObjects = {
     speaker_name?: PartialObjects["order_by"];
     speaker_user_id?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
+    topic?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_mutation_response"]: {
@@ -6905,7 +6905,6 @@ export type PartialObjects = {
     ch_wait_list?: PartialObjects["ch_wait_list_order_by"];
     city?: PartialObjects["order_by"];
     club?: PartialObjects["order_by"];
-    contact_info?: PartialObjects["order_by"];
     created_at?: PartialObjects["order_by"];
     description?: PartialObjects["order_by"];
     duration_minutes?: PartialObjects["order_by"];
@@ -6920,6 +6919,7 @@ export type PartialObjects = {
     speaker_name?: PartialObjects["order_by"];
     speaker_user_id?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
+    topic?: PartialObjects["order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_pk_columns_input"]: {
@@ -6933,7 +6933,6 @@ export type PartialObjects = {
   ["ch_proposal_set_input"]: {
     city?: string;
     club?: string;
-    contact_info?: string;
     created_at?: PartialObjects["timestamptz"];
     description?: string;
     duration_minutes?: number;
@@ -6947,6 +6946,7 @@ export type PartialObjects = {
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
+    topic?: string;
     waitlist_id?: number;
   };
   ["ch_proposal_stddev_fields"]: {
@@ -12264,9 +12264,8 @@ export type ch_proposal = {
   ch_proposal_time_slots: ch_proposal_time_slots[];
   ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate;
   ch_wait_list: ch_wait_list;
-  city: string;
-  club: string;
-  contact_info: string;
+  city?: string;
+  club?: string;
   created_at?: timestamptz;
   description: string;
   duration_minutes: number;
@@ -12274,13 +12273,14 @@ export type ch_proposal = {
   meeting?: nb_meeting;
   meeting_id?: number;
   name: string;
-  needs: string;
+  needs?: string;
   other_contact?: jsonb;
   other_data?: jsonb;
-  phone: string;
+  phone?: string;
   speaker_name: string;
   speaker_user_id?: uuid;
   status: string;
+  topic: string;
   waitlist_id: number;
 };
 
@@ -12352,7 +12352,6 @@ export type ch_proposal_bool_exp = {
   ch_wait_list?: ch_wait_list_bool_exp;
   city?: String_comparison_exp;
   club?: String_comparison_exp;
-  contact_info?: String_comparison_exp;
   created_at?: timestamptz_comparison_exp;
   description?: String_comparison_exp;
   duration_minutes?: Int_comparison_exp;
@@ -12367,6 +12366,7 @@ export type ch_proposal_bool_exp = {
   speaker_name?: String_comparison_exp;
   speaker_user_id?: uuid_comparison_exp;
   status?: String_comparison_exp;
+  topic?: String_comparison_exp;
   waitlist_id?: Int_comparison_exp;
 };
 
@@ -12402,7 +12402,6 @@ export type ch_proposal_insert_input = {
   ch_wait_list?: ch_wait_list_obj_rel_insert_input;
   city?: string;
   club?: string;
-  contact_info?: string;
   created_at?: timestamptz;
   description?: string;
   duration_minutes?: number;
@@ -12417,6 +12416,7 @@ export type ch_proposal_insert_input = {
   speaker_name?: string;
   speaker_user_id?: uuid;
   status?: string;
+  topic?: string;
   waitlist_id?: number;
 };
 
@@ -12424,7 +12424,6 @@ export type ch_proposal_max_fields = {
   __typename?: "ch_proposal_max_fields";
   city?: string;
   club?: string;
-  contact_info?: string;
   created_at?: timestamptz;
   description?: string;
   duration_minutes?: number;
@@ -12436,13 +12435,13 @@ export type ch_proposal_max_fields = {
   speaker_name?: string;
   speaker_user_id?: uuid;
   status?: string;
+  topic?: string;
   waitlist_id?: number;
 };
 
 export type ch_proposal_max_order_by = {
   city?: order_by;
   club?: order_by;
-  contact_info?: order_by;
   created_at?: order_by;
   description?: order_by;
   duration_minutes?: order_by;
@@ -12454,6 +12453,7 @@ export type ch_proposal_max_order_by = {
   speaker_name?: order_by;
   speaker_user_id?: order_by;
   status?: order_by;
+  topic?: order_by;
   waitlist_id?: order_by;
 };
 
@@ -12461,7 +12461,6 @@ export type ch_proposal_min_fields = {
   __typename?: "ch_proposal_min_fields";
   city?: string;
   club?: string;
-  contact_info?: string;
   created_at?: timestamptz;
   description?: string;
   duration_minutes?: number;
@@ -12473,13 +12472,13 @@ export type ch_proposal_min_fields = {
   speaker_name?: string;
   speaker_user_id?: uuid;
   status?: string;
+  topic?: string;
   waitlist_id?: number;
 };
 
 export type ch_proposal_min_order_by = {
   city?: order_by;
   club?: order_by;
-  contact_info?: order_by;
   created_at?: order_by;
   description?: order_by;
   duration_minutes?: order_by;
@@ -12491,6 +12490,7 @@ export type ch_proposal_min_order_by = {
   speaker_name?: order_by;
   speaker_user_id?: order_by;
   status?: order_by;
+  topic?: order_by;
   waitlist_id?: order_by;
 };
 
@@ -12516,7 +12516,6 @@ export type ch_proposal_order_by = {
   ch_wait_list?: ch_wait_list_order_by;
   city?: order_by;
   club?: order_by;
-  contact_info?: order_by;
   created_at?: order_by;
   description?: order_by;
   duration_minutes?: order_by;
@@ -12531,6 +12530,7 @@ export type ch_proposal_order_by = {
   speaker_name?: order_by;
   speaker_user_id?: order_by;
   status?: order_by;
+  topic?: order_by;
   waitlist_id?: order_by;
 };
 
@@ -12546,7 +12546,6 @@ export type ch_proposal_prepend_input = {
 export enum ch_proposal_select_column {
   city = "city",
   club = "club",
-  contact_info = "contact_info",
   created_at = "created_at",
   description = "description",
   duration_minutes = "duration_minutes",
@@ -12560,13 +12559,13 @@ export enum ch_proposal_select_column {
   speaker_name = "speaker_name",
   speaker_user_id = "speaker_user_id",
   status = "status",
+  topic = "topic",
   waitlist_id = "waitlist_id",
 }
 
 export type ch_proposal_set_input = {
   city?: string;
   club?: string;
-  contact_info?: string;
   created_at?: timestamptz;
   description?: string;
   duration_minutes?: number;
@@ -12580,6 +12579,7 @@ export type ch_proposal_set_input = {
   speaker_name?: string;
   speaker_user_id?: uuid;
   status?: string;
+  topic?: string;
   waitlist_id?: number;
 };
 
@@ -12902,7 +12902,6 @@ export type ch_proposal_time_slots_variance_order_by = {
 export enum ch_proposal_update_column {
   city = "city",
   club = "club",
-  contact_info = "contact_info",
   created_at = "created_at",
   description = "description",
   duration_minutes = "duration_minutes",
@@ -12916,6 +12915,7 @@ export enum ch_proposal_update_column {
   speaker_name = "speaker_name",
   speaker_user_id = "speaker_user_id",
   status = "status",
+  topic = "topic",
   waitlist_id = "waitlist_id",
 }
 
@@ -19136,12 +19136,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    contact_info: {
-      type: "String_comparison_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     created_at: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -19221,6 +19215,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     status: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    topic: {
       type: "String_comparison_exp",
       array: false,
       arrayRequired: false,
@@ -19327,12 +19327,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    contact_info: {
-      type: "String",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     created_at: {
       type: "timestamptz",
       array: false,
@@ -19417,6 +19411,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    topic: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     waitlist_id: {
       type: "Int",
       array: false,
@@ -19432,12 +19432,6 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     club: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    contact_info: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -19504,6 +19498,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    topic: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -19529,12 +19529,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    contact_info: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     created_at: {
       type: "order_by",
       array: false,
@@ -19596,6 +19590,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    topic: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -19662,12 +19662,6 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     club: {
-      type: "order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    contact_info: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -19757,6 +19751,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    topic: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     waitlist_id: {
       type: "order_by",
       array: false,
@@ -19795,12 +19795,6 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     club: {
-      type: "String",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    contact_info: {
       type: "String",
       array: false,
       arrayRequired: false,
@@ -19879,6 +19873,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     status: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    topic: {
       type: "String",
       array: false,
       arrayRequired: false,
@@ -32116,7 +32116,6 @@ export const ReturnTypes: Record<string, any> = {
     ch_wait_list: "ch_wait_list",
     city: "String",
     club: "String",
-    contact_info: "String",
     created_at: "timestamptz",
     description: "String",
     duration_minutes: "Int",
@@ -32131,6 +32130,7 @@ export const ReturnTypes: Record<string, any> = {
     speaker_name: "String",
     speaker_user_id: "uuid",
     status: "String",
+    topic: "String",
     waitlist_id: "Int",
   },
   ch_proposal_aggregate: {
@@ -32159,7 +32159,6 @@ export const ReturnTypes: Record<string, any> = {
   ch_proposal_max_fields: {
     city: "String",
     club: "String",
-    contact_info: "String",
     created_at: "timestamptz",
     description: "String",
     duration_minutes: "Int",
@@ -32171,12 +32170,12 @@ export const ReturnTypes: Record<string, any> = {
     speaker_name: "String",
     speaker_user_id: "uuid",
     status: "String",
+    topic: "String",
     waitlist_id: "Int",
   },
   ch_proposal_min_fields: {
     city: "String",
     club: "String",
-    contact_info: "String",
     created_at: "timestamptz",
     description: "String",
     duration_minutes: "Int",
@@ -32188,6 +32187,7 @@ export const ReturnTypes: Record<string, any> = {
     speaker_name: "String",
     speaker_user_id: "uuid",
     status: "String",
+    topic: "String",
     waitlist_id: "Int",
   },
   ch_proposal_mutation_response: {
