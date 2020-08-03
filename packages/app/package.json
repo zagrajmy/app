@@ -60,6 +60,7 @@
     "@zeit/next-css": "^1.0.1",
     "auth0": "^2.24.0",
     "babel-plugin-emotion": "^10.0.33",
+    "babel-plugin-macros": "^2.8.0",
     "babel-plugin-styled-components": "^1.10.7",
     "date-fns": "2.14.0",
     "deepmerge": "^4.2.2",
@@ -95,6 +96,7 @@
     "ts-dedent": "^1.1.1",
     "ts-essentials": "^6.0.5",
     "ts-node": "^8.8.0",
+    "typecheck.macro": "^0.7.1",
     "use-auth0-hooks": "^0.7.0",
     "use-onclickoutside": "^0.3.1",
     "utility-types": "^3.10.0"

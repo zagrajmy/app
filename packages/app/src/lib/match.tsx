@@ -4,13 +4,13 @@ type Sigil<K extends Key, T extends string = string> = {
   [_ in K]: T;
 };
 
-type TypeOf<K extends Key, T extends Sigil<K>> = T[K];
+export type TypeOf<K extends Key, T extends Sigil<K>> = T[K];
 
-type Cases<K extends Key, T extends Record<K, any>, R> = {
+export type Cases<K extends Key, T extends Record<K, any>, R> = {
   [P in TypeOf<K, T>]: (val: Extract<T, Record<K, P>>) => R;
 };
 
-function match<K extends Key>(key: K) {
+export function match<K extends Key>(key: K) {
   return function match1<T extends Sigil<K>, C extends Cases<K, T, any>>(
     value: T,
     cases: C
