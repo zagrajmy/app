@@ -23,6 +23,7 @@ export type ValueTypes = {
     meeting_id?: true;
     nb_meeting?: ValueTypes["nb_meeting"];
     room_id?: true;
+    status?: true;
     __typename?: true;
   }>;
   ["ch_agenda_item_aggregate"]: AliasType<{
@@ -93,6 +94,7 @@ export type ValueTypes = {
     meeting_id?: ValueTypes["Int_comparison_exp"];
     nb_meeting?: ValueTypes["nb_meeting_bool_exp"];
     room_id?: ValueTypes["Int_comparison_exp"];
+    status?: ValueTypes["String_comparison_exp"];
   };
   ["ch_agenda_item_constraint"]: ch_agenda_item_constraint;
   ["ch_agenda_item_inc_input"]: {
@@ -111,12 +113,14 @@ export type ValueTypes = {
     meeting_id?: number;
     nb_meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
     room_id?: number;
+    status?: string;
   };
   ["ch_agenda_item_max_fields"]: AliasType<{
     helper_id?: true;
     id?: true;
     meeting_id?: true;
     room_id?: true;
+    status?: true;
     __typename?: true;
   }>;
   ["ch_agenda_item_max_order_by"]: {
@@ -124,12 +128,14 @@ export type ValueTypes = {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     room_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
   };
   ["ch_agenda_item_min_fields"]: AliasType<{
     helper_id?: true;
     id?: true;
     meeting_id?: true;
     room_id?: true;
+    status?: true;
     __typename?: true;
   }>;
   ["ch_agenda_item_min_order_by"]: {
@@ -137,6 +143,7 @@ export type ValueTypes = {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
     room_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
   };
   ["ch_agenda_item_mutation_response"]: AliasType<{
     affected_rows?: true;
@@ -162,6 +169,7 @@ export type ValueTypes = {
     meeting_id?: ValueTypes["order_by"];
     nb_meeting?: ValueTypes["nb_meeting_order_by"];
     room_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
   };
   ["ch_agenda_item_pk_columns_input"]: {
     id: number;
@@ -174,6 +182,7 @@ export type ValueTypes = {
     meeting_confirmed?: boolean;
     meeting_id?: number;
     room_id?: number;
+    status?: string;
   };
   ["ch_agenda_item_stddev_fields"]: AliasType<{
     helper_id?: true;
@@ -338,6 +347,7 @@ export type ValueTypes = {
     start_proposal?: true;
     start_publication?: true;
     start_time?: true;
+    status?: true;
     __typename?: true;
   }>;
   ["ch_festival_aggregate"]: AliasType<{
@@ -411,6 +421,7 @@ export type ValueTypes = {
     start_proposal?: ValueTypes["timestamptz_comparison_exp"];
     start_publication?: ValueTypes["timestamptz_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
+    status?: ValueTypes["String_comparison_exp"];
   };
   ["ch_festival_constraint"]: ch_festival_constraint;
   ["ch_festival_delete_at_path_input"]: {
@@ -440,6 +451,7 @@ export type ValueTypes = {
     start_proposal?: ValueTypes["timestamptz"];
     start_publication?: ValueTypes["timestamptz"];
     start_time?: ValueTypes["timestamptz"];
+    status?: string;
   };
   ["ch_festival_max_fields"]: AliasType<{
     end_time?: true;
@@ -450,6 +462,7 @@ export type ValueTypes = {
     start_proposal?: true;
     start_publication?: true;
     start_time?: true;
+    status?: true;
     __typename?: true;
   }>;
   ["ch_festival_max_order_by"]: {
@@ -461,6 +474,7 @@ export type ValueTypes = {
     start_proposal?: ValueTypes["order_by"];
     start_publication?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
   };
   ["ch_festival_min_fields"]: AliasType<{
     end_time?: true;
@@ -471,6 +485,7 @@ export type ValueTypes = {
     start_proposal?: true;
     start_publication?: true;
     start_time?: true;
+    status?: true;
     __typename?: true;
   }>;
   ["ch_festival_min_order_by"]: {
@@ -482,6 +497,7 @@ export type ValueTypes = {
     start_proposal?: ValueTypes["order_by"];
     start_publication?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
   };
   ["ch_festival_mutation_response"]: AliasType<{
     affected_rows?: true;
@@ -511,6 +527,7 @@ export type ValueTypes = {
     start_proposal?: ValueTypes["order_by"];
     start_publication?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
   };
   ["ch_festival_pk_columns_input"]: {
     id: number;
@@ -529,6 +546,7 @@ export type ValueTypes = {
     start_proposal?: ValueTypes["timestamptz"];
     start_publication?: ValueTypes["timestamptz"];
     start_time?: ValueTypes["timestamptz"];
+    status?: string;
   };
   ["ch_festival_stddev_fields"]: AliasType<{
     id?: true;
@@ -1679,6 +1697,7 @@ export type ValueTypes = {
     festival_id?: true;
     id?: true;
     name?: true;
+    slug?: true;
     __typename?: true;
   }>;
   ["ch_room_aggregate"]: AliasType<{
@@ -1738,6 +1757,7 @@ export type ValueTypes = {
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
+    slug?: ValueTypes["String_comparison_exp"];
   };
   ["ch_room_constraint"]: ch_room_constraint;
   ["ch_room_inc_input"]: {
@@ -1750,28 +1770,33 @@ export type ValueTypes = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_room_max_fields"]: AliasType<{
     festival_id?: true;
     id?: true;
     name?: true;
+    slug?: true;
     __typename?: true;
   }>;
   ["ch_room_max_order_by"]: {
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
+    slug?: ValueTypes["order_by"];
   };
   ["ch_room_min_fields"]: AliasType<{
     festival_id?: true;
     id?: true;
     name?: true;
+    slug?: true;
     __typename?: true;
   }>;
   ["ch_room_min_order_by"]: {
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
+    slug?: ValueTypes["order_by"];
   };
   ["ch_room_mutation_response"]: AliasType<{
     affected_rows?: true;
@@ -1793,6 +1818,7 @@ export type ValueTypes = {
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
+    slug?: ValueTypes["order_by"];
   };
   ["ch_room_pk_columns_input"]: {
     id: number;
@@ -1802,6 +1828,7 @@ export type ValueTypes = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_room_stddev_fields"]: AliasType<{
     festival_id?: true;
@@ -2136,6 +2163,7 @@ export type ValueTypes = {
     festival_id?: true;
     id?: true;
     name?: true;
+    slug?: true;
     __typename?: true;
   }>;
   ["ch_wait_list_aggregate"]: AliasType<{
@@ -2198,6 +2226,7 @@ export type ValueTypes = {
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
+    slug?: ValueTypes["String_comparison_exp"];
   };
   ["ch_wait_list_constraint"]: ch_wait_list_constraint;
   ["ch_wait_list_inc_input"]: {
@@ -2210,28 +2239,33 @@ export type ValueTypes = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_wait_list_max_fields"]: AliasType<{
     festival_id?: true;
     id?: true;
     name?: true;
+    slug?: true;
     __typename?: true;
   }>;
   ["ch_wait_list_max_order_by"]: {
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
+    slug?: ValueTypes["order_by"];
   };
   ["ch_wait_list_min_fields"]: AliasType<{
     festival_id?: true;
     id?: true;
     name?: true;
+    slug?: true;
     __typename?: true;
   }>;
   ["ch_wait_list_min_order_by"]: {
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
+    slug?: ValueTypes["order_by"];
   };
   ["ch_wait_list_mutation_response"]: AliasType<{
     affected_rows?: true;
@@ -2253,6 +2287,7 @@ export type ValueTypes = {
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
+    slug?: ValueTypes["order_by"];
   };
   ["ch_wait_list_pk_columns_input"]: {
     id: number;
@@ -2262,6 +2297,7 @@ export type ValueTypes = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_wait_list_stddev_fields"]: AliasType<{
     festival_id?: true;
@@ -3956,6 +3992,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere"];
     sphere_id?: true;
     start_time?: true;
+    status?: true;
     time_table?: ValueTypes["ch_agenda_item"];
     updated_at?: true;
     __typename?: true;
@@ -4035,6 +4072,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere_bool_exp"];
     sphere_id?: ValueTypes["Int_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
+    status?: ValueTypes["String_comparison_exp"];
     time_table?: ValueTypes["ch_agenda_item_bool_exp"];
     updated_at?: ValueTypes["timestamptz_comparison_exp"];
   };
@@ -4063,6 +4101,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_time?: ValueTypes["timestamptz"];
+    status?: string;
     time_table?: ValueTypes["ch_agenda_item_obj_rel_insert_input"];
     updated_at?: ValueTypes["timestamptz"];
   };
@@ -4081,6 +4120,7 @@ export type ValueTypes = {
     slug?: true;
     sphere_id?: true;
     start_time?: true;
+    status?: true;
     updated_at?: true;
     __typename?: true;
   }>;
@@ -4099,6 +4139,7 @@ export type ValueTypes = {
     slug?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
     updated_at?: ValueTypes["order_by"];
   };
   ["nb_meeting_min_fields"]: AliasType<{
@@ -4116,6 +4157,7 @@ export type ValueTypes = {
     slug?: true;
     sphere_id?: true;
     start_time?: true;
+    status?: true;
     updated_at?: true;
     __typename?: true;
   }>;
@@ -4134,6 +4176,7 @@ export type ValueTypes = {
     slug?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
     updated_at?: ValueTypes["order_by"];
   };
   ["nb_meeting_mutation_response"]: AliasType<{
@@ -4169,6 +4212,7 @@ export type ValueTypes = {
     sphere?: ValueTypes["nb_sphere_order_by"];
     sphere_id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
     time_table?: ValueTypes["ch_agenda_item_order_by"];
     updated_at?: ValueTypes["order_by"];
   };
@@ -4388,6 +4432,7 @@ export type ValueTypes = {
     slug?: string;
     sphere_id?: number;
     start_time?: ValueTypes["timestamptz"];
+    status?: string;
     updated_at?: ValueTypes["timestamptz"];
   };
   ["nb_meeting_stddev_fields"]: AliasType<{
@@ -5760,6 +5805,7 @@ export type PartialObjects = {
     meeting_id?: number;
     nb_meeting?: PartialObjects["nb_meeting"];
     room_id?: number;
+    status?: string;
   };
   ["ch_agenda_item_aggregate"]: {
     __typename?: "ch_agenda_item_aggregate";
@@ -5823,6 +5869,7 @@ export type PartialObjects = {
     meeting_id?: PartialObjects["Int_comparison_exp"];
     nb_meeting?: PartialObjects["nb_meeting_bool_exp"];
     room_id?: PartialObjects["Int_comparison_exp"];
+    status?: PartialObjects["String_comparison_exp"];
   };
   ["ch_agenda_item_constraint"]: ch_agenda_item_constraint;
   ["ch_agenda_item_inc_input"]: {
@@ -5841,6 +5888,7 @@ export type PartialObjects = {
     meeting_id?: number;
     nb_meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
     room_id?: number;
+    status?: string;
   };
   ["ch_agenda_item_max_fields"]: {
     __typename?: "ch_agenda_item_max_fields";
@@ -5848,12 +5896,14 @@ export type PartialObjects = {
     id?: number;
     meeting_id?: number;
     room_id?: number;
+    status?: string;
   };
   ["ch_agenda_item_max_order_by"]: {
     helper_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     room_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
   };
   ["ch_agenda_item_min_fields"]: {
     __typename?: "ch_agenda_item_min_fields";
@@ -5861,12 +5911,14 @@ export type PartialObjects = {
     id?: number;
     meeting_id?: number;
     room_id?: number;
+    status?: string;
   };
   ["ch_agenda_item_min_order_by"]: {
     helper_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
     room_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
   };
   ["ch_agenda_item_mutation_response"]: {
     __typename?: "ch_agenda_item_mutation_response";
@@ -5892,6 +5944,7 @@ export type PartialObjects = {
     meeting_id?: PartialObjects["order_by"];
     nb_meeting?: PartialObjects["nb_meeting_order_by"];
     room_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
   };
   ["ch_agenda_item_pk_columns_input"]: {
     id: number;
@@ -5904,6 +5957,7 @@ export type PartialObjects = {
     meeting_confirmed?: boolean;
     meeting_id?: number;
     room_id?: number;
+    status?: string;
   };
   ["ch_agenda_item_stddev_fields"]: {
     __typename?: "ch_agenda_item_stddev_fields";
@@ -6015,6 +6069,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["timestamptz"];
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
   };
   ["ch_festival_aggregate"]: {
     __typename?: "ch_festival_aggregate";
@@ -6081,6 +6136,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["timestamptz_comparison_exp"];
     start_publication?: PartialObjects["timestamptz_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
+    status?: PartialObjects["String_comparison_exp"];
   };
   ["ch_festival_constraint"]: ch_festival_constraint;
   ["ch_festival_delete_at_path_input"]: {
@@ -6110,6 +6166,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["timestamptz"];
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
   };
   ["ch_festival_max_fields"]: {
     __typename?: "ch_festival_max_fields";
@@ -6121,6 +6178,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["timestamptz"];
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
   };
   ["ch_festival_max_order_by"]: {
     end_time?: PartialObjects["order_by"];
@@ -6131,6 +6189,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["order_by"];
     start_publication?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
   };
   ["ch_festival_min_fields"]: {
     __typename?: "ch_festival_min_fields";
@@ -6142,6 +6201,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["timestamptz"];
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
   };
   ["ch_festival_min_order_by"]: {
     end_time?: PartialObjects["order_by"];
@@ -6152,6 +6212,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["order_by"];
     start_publication?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
   };
   ["ch_festival_mutation_response"]: {
     __typename?: "ch_festival_mutation_response";
@@ -6181,6 +6242,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["order_by"];
     start_publication?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
   };
   ["ch_festival_pk_columns_input"]: {
     id: number;
@@ -6199,6 +6261,7 @@ export type PartialObjects = {
     start_proposal?: PartialObjects["timestamptz"];
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
   };
   ["ch_festival_stddev_fields"]: {
     __typename?: "ch_festival_stddev_fields";
@@ -7257,6 +7320,7 @@ export type PartialObjects = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_room_aggregate"]: {
     __typename?: "ch_room_aggregate";
@@ -7312,6 +7376,7 @@ export type PartialObjects = {
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
+    slug?: PartialObjects["String_comparison_exp"];
   };
   ["ch_room_constraint"]: ch_room_constraint;
   ["ch_room_inc_input"]: {
@@ -7324,28 +7389,33 @@ export type PartialObjects = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_room_max_fields"]: {
     __typename?: "ch_room_max_fields";
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_room_max_order_by"]: {
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
+    slug?: PartialObjects["order_by"];
   };
   ["ch_room_min_fields"]: {
     __typename?: "ch_room_min_fields";
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_room_min_order_by"]: {
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
+    slug?: PartialObjects["order_by"];
   };
   ["ch_room_mutation_response"]: {
     __typename?: "ch_room_mutation_response";
@@ -7367,6 +7437,7 @@ export type PartialObjects = {
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
+    slug?: PartialObjects["order_by"];
   };
   ["ch_room_pk_columns_input"]: {
     id: number;
@@ -7376,6 +7447,7 @@ export type PartialObjects = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_room_stddev_fields"]: {
     __typename?: "ch_room_stddev_fields";
@@ -7651,6 +7723,7 @@ export type PartialObjects = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_wait_list_aggregate"]: {
     __typename?: "ch_wait_list_aggregate";
@@ -7706,6 +7779,7 @@ export type PartialObjects = {
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
+    slug?: PartialObjects["String_comparison_exp"];
   };
   ["ch_wait_list_constraint"]: ch_wait_list_constraint;
   ["ch_wait_list_inc_input"]: {
@@ -7718,28 +7792,33 @@ export type PartialObjects = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_wait_list_max_fields"]: {
     __typename?: "ch_wait_list_max_fields";
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_wait_list_max_order_by"]: {
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
+    slug?: PartialObjects["order_by"];
   };
   ["ch_wait_list_min_fields"]: {
     __typename?: "ch_wait_list_min_fields";
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_wait_list_min_order_by"]: {
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
+    slug?: PartialObjects["order_by"];
   };
   ["ch_wait_list_mutation_response"]: {
     __typename?: "ch_wait_list_mutation_response";
@@ -7761,6 +7840,7 @@ export type PartialObjects = {
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
+    slug?: PartialObjects["order_by"];
   };
   ["ch_wait_list_pk_columns_input"]: {
     id: number;
@@ -7770,6 +7850,7 @@ export type PartialObjects = {
     festival_id?: number;
     id?: number;
     name?: string;
+    slug?: string;
   };
   ["ch_wait_list_stddev_fields"]: {
     __typename?: "ch_wait_list_stddev_fields";
@@ -8761,6 +8842,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere"];
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
     time_table?: PartialObjects["ch_agenda_item"];
     updated_at?: PartialObjects["timestamptz"];
   };
@@ -8833,6 +8915,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere_bool_exp"];
     sphere_id?: PartialObjects["Int_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
+    status?: PartialObjects["String_comparison_exp"];
     time_table?: PartialObjects["ch_agenda_item_bool_exp"];
     updated_at?: PartialObjects["timestamptz_comparison_exp"];
   };
@@ -8861,6 +8944,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
     time_table?: PartialObjects["ch_agenda_item_obj_rel_insert_input"];
     updated_at?: PartialObjects["timestamptz"];
   };
@@ -8880,6 +8964,7 @@ export type PartialObjects = {
     slug?: string;
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
     updated_at?: PartialObjects["timestamptz"];
   };
   ["nb_meeting_max_order_by"]: {
@@ -8897,6 +8982,7 @@ export type PartialObjects = {
     slug?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
     updated_at?: PartialObjects["order_by"];
   };
   ["nb_meeting_min_fields"]: {
@@ -8915,6 +9001,7 @@ export type PartialObjects = {
     slug?: string;
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
     updated_at?: PartialObjects["timestamptz"];
   };
   ["nb_meeting_min_order_by"]: {
@@ -8932,6 +9019,7 @@ export type PartialObjects = {
     slug?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
     updated_at?: PartialObjects["order_by"];
   };
   ["nb_meeting_mutation_response"]: {
@@ -8967,6 +9055,7 @@ export type PartialObjects = {
     sphere?: PartialObjects["nb_sphere_order_by"];
     sphere_id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
     time_table?: PartialObjects["ch_agenda_item_order_by"];
     updated_at?: PartialObjects["order_by"];
   };
@@ -9180,6 +9269,7 @@ export type PartialObjects = {
     slug?: string;
     sphere_id?: number;
     start_time?: PartialObjects["timestamptz"];
+    status?: string;
     updated_at?: PartialObjects["timestamptz"];
   };
   ["nb_meeting_stddev_fields"]: {
@@ -11133,6 +11223,7 @@ export type ch_agenda_item = {
   meeting_id?: number;
   nb_meeting?: nb_meeting;
   room_id?: number;
+  status: string;
 };
 
 export type ch_agenda_item_aggregate = {
@@ -11203,6 +11294,7 @@ export type ch_agenda_item_bool_exp = {
   meeting_id?: Int_comparison_exp;
   nb_meeting?: nb_meeting_bool_exp;
   room_id?: Int_comparison_exp;
+  status?: String_comparison_exp;
 };
 
 export enum ch_agenda_item_constraint {
@@ -11227,6 +11319,7 @@ export type ch_agenda_item_insert_input = {
   meeting_id?: number;
   nb_meeting?: nb_meeting_obj_rel_insert_input;
   room_id?: number;
+  status?: string;
 };
 
 export type ch_agenda_item_max_fields = {
@@ -11235,6 +11328,7 @@ export type ch_agenda_item_max_fields = {
   id?: number;
   meeting_id?: number;
   room_id?: number;
+  status?: string;
 };
 
 export type ch_agenda_item_max_order_by = {
@@ -11242,6 +11336,7 @@ export type ch_agenda_item_max_order_by = {
   id?: order_by;
   meeting_id?: order_by;
   room_id?: order_by;
+  status?: order_by;
 };
 
 export type ch_agenda_item_min_fields = {
@@ -11250,6 +11345,7 @@ export type ch_agenda_item_min_fields = {
   id?: number;
   meeting_id?: number;
   room_id?: number;
+  status?: string;
 };
 
 export type ch_agenda_item_min_order_by = {
@@ -11257,6 +11353,7 @@ export type ch_agenda_item_min_order_by = {
   id?: order_by;
   meeting_id?: order_by;
   room_id?: order_by;
+  status?: order_by;
 };
 
 export type ch_agenda_item_mutation_response = {
@@ -11286,6 +11383,7 @@ export type ch_agenda_item_order_by = {
   meeting_id?: order_by;
   nb_meeting?: nb_meeting_order_by;
   room_id?: order_by;
+  status?: order_by;
 };
 
 export type ch_agenda_item_pk_columns_input = {
@@ -11299,6 +11397,7 @@ export enum ch_agenda_item_select_column {
   meeting_confirmed = "meeting_confirmed",
   meeting_id = "meeting_id",
   room_id = "room_id",
+  status = "status",
 }
 
 export type ch_agenda_item_set_input = {
@@ -11308,6 +11407,7 @@ export type ch_agenda_item_set_input = {
   meeting_confirmed?: boolean;
   meeting_id?: number;
   room_id?: number;
+  status?: string;
 };
 
 export type ch_agenda_item_stddev_fields = {
@@ -11377,6 +11477,7 @@ export enum ch_agenda_item_update_column {
   meeting_confirmed = "meeting_confirmed",
   meeting_id = "meeting_id",
   room_id = "room_id",
+  status = "status",
 }
 
 export type ch_agenda_item_var_pop_fields = {
@@ -11432,16 +11533,17 @@ export type ch_festival = {
   ch_rooms_aggregate: ch_room_aggregate;
   ch_wait_lists: ch_wait_list[];
   ch_wait_lists_aggregate: ch_wait_list_aggregate;
-  end_time: timestamptz;
+  end_time?: timestamptz;
   id: number;
   name: string;
   nb_sphere: nb_sphere;
   settings: jsonb;
   slug: string;
   sphere_id: number;
-  start_proposal: timestamptz;
-  start_publication: timestamptz;
-  start_time: timestamptz;
+  start_proposal?: timestamptz;
+  start_publication?: timestamptz;
+  start_time?: timestamptz;
+  status: string;
 };
 
 export type ch_festival_aggregate = {
@@ -11516,10 +11618,12 @@ export type ch_festival_bool_exp = {
   start_proposal?: timestamptz_comparison_exp;
   start_publication?: timestamptz_comparison_exp;
   start_time?: timestamptz_comparison_exp;
+  status?: String_comparison_exp;
 };
 
 export enum ch_festival_constraint {
   ch_festival_pkey = "ch_festival_pkey",
+  festival_has_unique_slug_and_sphere = "festival_has_unique_slug_and_sphere",
 }
 
 export type ch_festival_delete_at_path_input = {
@@ -11553,6 +11657,7 @@ export type ch_festival_insert_input = {
   start_proposal?: timestamptz;
   start_publication?: timestamptz;
   start_time?: timestamptz;
+  status?: string;
 };
 
 export type ch_festival_max_fields = {
@@ -11565,6 +11670,7 @@ export type ch_festival_max_fields = {
   start_proposal?: timestamptz;
   start_publication?: timestamptz;
   start_time?: timestamptz;
+  status?: string;
 };
 
 export type ch_festival_max_order_by = {
@@ -11576,6 +11682,7 @@ export type ch_festival_max_order_by = {
   start_proposal?: order_by;
   start_publication?: order_by;
   start_time?: order_by;
+  status?: order_by;
 };
 
 export type ch_festival_min_fields = {
@@ -11588,6 +11695,7 @@ export type ch_festival_min_fields = {
   start_proposal?: timestamptz;
   start_publication?: timestamptz;
   start_time?: timestamptz;
+  status?: string;
 };
 
 export type ch_festival_min_order_by = {
@@ -11599,6 +11707,7 @@ export type ch_festival_min_order_by = {
   start_proposal?: order_by;
   start_publication?: order_by;
   start_time?: order_by;
+  status?: order_by;
 };
 
 export type ch_festival_mutation_response = {
@@ -11632,6 +11741,7 @@ export type ch_festival_order_by = {
   start_proposal?: order_by;
   start_publication?: order_by;
   start_time?: order_by;
+  status?: order_by;
 };
 
 export type ch_festival_pk_columns_input = {
@@ -11652,6 +11762,7 @@ export enum ch_festival_select_column {
   start_proposal = "start_proposal",
   start_publication = "start_publication",
   start_time = "start_time",
+  status = "status",
 }
 
 export type ch_festival_set_input = {
@@ -11664,6 +11775,7 @@ export type ch_festival_set_input = {
   start_proposal?: timestamptz;
   start_publication?: timestamptz;
   start_time?: timestamptz;
+  status?: string;
 };
 
 export type ch_festival_stddev_fields = {
@@ -11720,6 +11832,7 @@ export enum ch_festival_update_column {
   start_proposal = "start_proposal",
   start_publication = "start_publication",
   start_time = "start_time",
+  status = "status",
 }
 
 export type ch_festival_var_pop_fields = {
@@ -11834,6 +11947,7 @@ export type ch_helper_bool_exp = {
 
 export enum ch_helper_constraint {
   ch_helper_pkey = "ch_helper_pkey",
+  helper_has_unique_user_and_festival = "helper_has_unique_user_and_festival",
 }
 
 export type ch_helper_inc_input = {
@@ -12264,19 +12378,19 @@ export type ch_proposal = {
   ch_proposal_time_slots: ch_proposal_time_slots[];
   ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate;
   ch_wait_list: ch_wait_list;
-  city?: string;
-  club?: string;
-  created_at?: timestamptz;
+  city: string;
+  club: string;
+  created_at: timestamptz;
   description: string;
   duration_minutes: number;
   id: number;
   meeting?: nb_meeting;
   meeting_id?: number;
   name: string;
-  needs?: string;
-  other_contact?: jsonb;
-  other_data?: jsonb;
-  phone?: string;
+  needs: string;
+  other_contact: jsonb;
+  other_data: jsonb;
+  phone: string;
   speaker_name: string;
   speaker_user_id?: uuid;
   status: string;
@@ -12972,6 +13086,7 @@ export type ch_room = {
   festival_id: number;
   id: number;
   name: string;
+  slug: string;
 };
 
 export type ch_room_aggregate = {
@@ -13034,10 +13149,12 @@ export type ch_room_bool_exp = {
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
+  slug?: String_comparison_exp;
 };
 
 export enum ch_room_constraint {
   ch_room_pkey = "ch_room_pkey",
+  room_has_unique_slug_and_festival = "room_has_unique_slug_and_festival",
 }
 
 export type ch_room_inc_input = {
@@ -13051,6 +13168,7 @@ export type ch_room_insert_input = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_room_max_fields = {
@@ -13058,12 +13176,14 @@ export type ch_room_max_fields = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_room_max_order_by = {
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
+  slug?: order_by;
 };
 
 export type ch_room_min_fields = {
@@ -13071,12 +13191,14 @@ export type ch_room_min_fields = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_room_min_order_by = {
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
+  slug?: order_by;
 };
 
 export type ch_room_mutation_response = {
@@ -13102,6 +13224,7 @@ export type ch_room_order_by = {
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
+  slug?: order_by;
 };
 
 export type ch_room_pk_columns_input = {
@@ -13112,12 +13235,14 @@ export enum ch_room_select_column {
   festival_id = "festival_id",
   id = "id",
   name = "name",
+  slug = "slug",
 }
 
 export type ch_room_set_input = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_room_stddev_fields = {
@@ -13168,6 +13293,7 @@ export enum ch_room_update_column {
   festival_id = "festival_id",
   id = "id",
   name = "name",
+  slug = "slug",
 }
 
 export type ch_room_var_pop_fields = {
@@ -13280,6 +13406,7 @@ export type ch_time_slot_bool_exp = {
 
 export enum ch_time_slot_constraint {
   ch_time_slot_pkey = "ch_time_slot_pkey",
+  timeslot_has_unique_times_for_festival = "timeslot_has_unique_times_for_festival",
 }
 
 export type ch_time_slot_inc_input = {
@@ -13462,6 +13589,7 @@ export type ch_wait_list = {
   festival_id: number;
   id: number;
   name: string;
+  slug: string;
 };
 
 export type ch_wait_list_aggregate = {
@@ -13524,10 +13652,12 @@ export type ch_wait_list_bool_exp = {
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
+  slug?: String_comparison_exp;
 };
 
 export enum ch_wait_list_constraint {
   ch_wait_list_pkey = "ch_wait_list_pkey",
+  waitlist_has_unique_slug_and_festival = "waitlist_has_unique_slug_and_festival",
 }
 
 export type ch_wait_list_inc_input = {
@@ -13541,6 +13671,7 @@ export type ch_wait_list_insert_input = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_wait_list_max_fields = {
@@ -13548,12 +13679,14 @@ export type ch_wait_list_max_fields = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_wait_list_max_order_by = {
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
+  slug?: order_by;
 };
 
 export type ch_wait_list_min_fields = {
@@ -13561,12 +13694,14 @@ export type ch_wait_list_min_fields = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_wait_list_min_order_by = {
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
+  slug?: order_by;
 };
 
 export type ch_wait_list_mutation_response = {
@@ -13592,6 +13727,7 @@ export type ch_wait_list_order_by = {
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
+  slug?: order_by;
 };
 
 export type ch_wait_list_pk_columns_input = {
@@ -13602,12 +13738,14 @@ export enum ch_wait_list_select_column {
   festival_id = "festival_id",
   id = "id",
   name = "name",
+  slug = "slug",
 }
 
 export type ch_wait_list_set_input = {
   festival_id?: number;
   id?: number;
   name?: string;
+  slug?: string;
 };
 
 export type ch_wait_list_stddev_fields = {
@@ -13658,6 +13796,7 @@ export enum ch_wait_list_update_column {
   festival_id = "festival_id",
   id = "id",
   name = "name",
+  slug = "slug",
 }
 
 export type ch_wait_list_var_pop_fields = {
@@ -13771,6 +13910,7 @@ export type cr_user_bool_exp = {
 export enum cr_user_constraint {
   cr_user_pkey = "cr_user_pkey",
   cr_user_username_key = "cr_user_username_key",
+  unique_nonempty_auth0_id = "unique_nonempty_auth0_id",
 }
 
 export type cr_user_insert_input = {
@@ -14006,7 +14146,7 @@ export type django_site_bool_exp = {
 };
 
 export enum django_site_constraint {
-  django_site_domain_key = "django_site_domain_key",
+  django_site_domain_a2e37b91_uniq = "django_site_domain_a2e37b91_uniq",
   django_site_pkey = "django_site_pkey",
 }
 
@@ -14373,6 +14513,7 @@ export type nb_guild_bool_exp = {
 };
 
 export enum nb_guild_constraint {
+  guild_unique_slug = "guild_unique_slug",
   nb_guild_pkey = "nb_guild_pkey",
 }
 
@@ -14485,6 +14626,7 @@ export type nb_guild_member_bool_exp = {
 };
 
 export enum nb_guild_member_constraint {
+  guildmember_unique_guild_and_user = "guildmember_unique_guild_and_user",
   nb_guild_member_pkey = "nb_guild_member_pkey",
 }
 
@@ -14814,7 +14956,7 @@ export type nb_meeting = {
   guild_id?: number;
   id: number;
   image?: string;
-  location?: string;
+  location: string;
   meeting_url: string;
   name: string;
   organizer: cr_user;
@@ -14826,6 +14968,7 @@ export type nb_meeting = {
   sphere: nb_sphere;
   sphere_id: number;
   start_time?: timestamptz;
+  status: string;
   time_table?: ch_agenda_item;
   updated_at: timestamptz;
 };
@@ -14905,11 +15048,14 @@ export type nb_meeting_bool_exp = {
   sphere?: nb_sphere_bool_exp;
   sphere_id?: Int_comparison_exp;
   start_time?: timestamptz_comparison_exp;
+  status?: String_comparison_exp;
   time_table?: ch_agenda_item_bool_exp;
   updated_at?: timestamptz_comparison_exp;
 };
 
 export enum nb_meeting_constraint {
+  meeting_unique_slug_in_guild = "meeting_unique_slug_in_guild",
+  meeting_unique_slug_in_sphere = "meeting_unique_slug_in_sphere",
   nb_meeting_pkey = "nb_meeting_pkey",
 }
 
@@ -14938,6 +15084,7 @@ export type nb_meeting_insert_input = {
   sphere?: nb_sphere_obj_rel_insert_input;
   sphere_id?: number;
   start_time?: timestamptz;
+  status?: string;
   time_table?: ch_agenda_item_obj_rel_insert_input;
   updated_at?: timestamptz;
 };
@@ -14958,6 +15105,7 @@ export type nb_meeting_max_fields = {
   slug?: string;
   sphere_id?: number;
   start_time?: timestamptz;
+  status?: string;
   updated_at?: timestamptz;
 };
 
@@ -14976,6 +15124,7 @@ export type nb_meeting_max_order_by = {
   slug?: order_by;
   sphere_id?: order_by;
   start_time?: order_by;
+  status?: order_by;
   updated_at?: order_by;
 };
 
@@ -14995,6 +15144,7 @@ export type nb_meeting_min_fields = {
   slug?: string;
   sphere_id?: number;
   start_time?: timestamptz;
+  status?: string;
   updated_at?: timestamptz;
 };
 
@@ -15013,6 +15163,7 @@ export type nb_meeting_min_order_by = {
   slug?: order_by;
   sphere_id?: order_by;
   start_time?: order_by;
+  status?: order_by;
   updated_at?: order_by;
 };
 
@@ -15052,6 +15203,7 @@ export type nb_meeting_order_by = {
   sphere?: nb_sphere_order_by;
   sphere_id?: order_by;
   start_time?: order_by;
+  status?: order_by;
   time_table?: ch_agenda_item_order_by;
   updated_at?: order_by;
 };
@@ -15314,6 +15466,7 @@ export enum nb_meeting_select_column {
   slug = "slug",
   sphere_id = "sphere_id",
   start_time = "start_time",
+  status = "status",
   updated_at = "updated_at",
 }
 
@@ -15332,6 +15485,7 @@ export type nb_meeting_set_input = {
   slug?: string;
   sphere_id?: number;
   start_time?: timestamptz;
+  status?: string;
   updated_at?: timestamptz;
 };
 
@@ -15402,6 +15556,7 @@ export enum nb_meeting_update_column {
   slug = "slug",
   sphere_id = "sphere_id",
   start_time = "start_time",
+  status = "status",
   updated_at = "updated_at",
 }
 
@@ -15448,7 +15603,7 @@ export type nb_sphere = {
   __typename?: "nb_sphere";
   ch_festivals: ch_festival[];
   ch_festivals_aggregate: ch_festival_aggregate;
-  django_site?: django_site;
+  django_site: django_site;
   id: number;
   is_open: boolean;
   name: string;
@@ -15457,7 +15612,7 @@ export type nb_sphere = {
   nb_sphere_managers: nb_sphere_managers[];
   nb_sphere_managers_aggregate: nb_sphere_managers_aggregate;
   settings: jsonb;
-  site_id?: number;
+  site_id: number;
 };
 
 export type nb_sphere_aggregate = {
@@ -16386,6 +16541,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_agenda_item_constraint: "enum",
   ch_agenda_item_inc_input: {
@@ -16469,6 +16630,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_agenda_item_max_order_by: {
     helper_id: {
@@ -16495,6 +16662,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_agenda_item_min_order_by: {
     helper_id: {
@@ -16516,6 +16689,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     room_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -16611,6 +16790,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_agenda_item_pk_columns_input: {
     id: {
@@ -16654,6 +16839,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     room_id: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
+      type: "String",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17261,6 +17452,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_festival_constraint: "enum",
   ch_festival_delete_at_path_input: {
@@ -17380,6 +17577,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_festival_max_order_by: {
     end_time: {
@@ -17430,6 +17633,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_festival_min_order_by: {
     end_time: {
@@ -17475,6 +17684,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     start_time: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -17594,6 +17809,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_festival_pk_columns_input: {
     id: {
@@ -17663,6 +17884,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     start_time: {
       type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
+      type: "String",
       array: false,
       arrayRequired: false,
       required: false,
@@ -20798,6 +21025,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_room_constraint: "enum",
   ch_room_inc_input: {
@@ -20845,6 +21078,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_room_max_order_by: {
     festival_id: {
@@ -20865,6 +21104,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_room_min_order_by: {
     festival_id: {
@@ -20880,6 +21125,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     name: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    slug: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -20951,6 +21202,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_room_pk_columns_input: {
     id: {
@@ -20975,6 +21232,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     name: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    slug: {
       type: "String",
       array: false,
       arrayRequired: false,
@@ -21916,6 +22179,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_wait_list_constraint: "enum",
   ch_wait_list_inc_input: {
@@ -21963,6 +22232,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_wait_list_max_order_by: {
     festival_id: {
@@ -21983,6 +22258,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_wait_list_min_order_by: {
     festival_id: {
@@ -21998,6 +22279,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     name: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    slug: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -22069,6 +22356,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    slug: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_wait_list_pk_columns_input: {
     id: {
@@ -22093,6 +22386,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     name: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    slug: {
       type: "String",
       array: false,
       arrayRequired: false,
@@ -26720,6 +27019,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     time_table: {
       type: "ch_agenda_item_bool_exp",
       array: false,
@@ -26863,6 +27168,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     time_table: {
       type: "ch_agenda_item_obj_rel_insert_input",
       array: false,
@@ -26961,6 +27272,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     updated_at: {
       type: "order_by",
       array: false,
@@ -27048,6 +27365,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     start_time: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -27198,6 +27521,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     start_time: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -27749,6 +28078,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     start_time: {
       type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
+      type: "String",
       array: false,
       arrayRequired: false,
       required: false,
@@ -31785,6 +32120,7 @@ export const ReturnTypes: Record<string, any> = {
     meeting_id: "Int",
     nb_meeting: "nb_meeting",
     room_id: "Int",
+    status: "String",
   },
   ch_agenda_item_aggregate: {
     aggregate: "ch_agenda_item_aggregate_fields",
@@ -31814,12 +32150,14 @@ export const ReturnTypes: Record<string, any> = {
     id: "Int",
     meeting_id: "Int",
     room_id: "Int",
+    status: "String",
   },
   ch_agenda_item_min_fields: {
     helper_id: "Int",
     id: "Int",
     meeting_id: "Int",
     room_id: "Int",
+    status: "String",
   },
   ch_agenda_item_mutation_response: {
     affected_rows: "Int",
@@ -31884,6 +32222,7 @@ export const ReturnTypes: Record<string, any> = {
     start_proposal: "timestamptz",
     start_publication: "timestamptz",
     start_time: "timestamptz",
+    status: "String",
   },
   ch_festival_aggregate: {
     aggregate: "ch_festival_aggregate_fields",
@@ -31915,6 +32254,7 @@ export const ReturnTypes: Record<string, any> = {
     start_proposal: "timestamptz",
     start_publication: "timestamptz",
     start_time: "timestamptz",
+    status: "String",
   },
   ch_festival_min_fields: {
     end_time: "timestamptz",
@@ -31925,6 +32265,7 @@ export const ReturnTypes: Record<string, any> = {
     start_proposal: "timestamptz",
     start_publication: "timestamptz",
     start_time: "timestamptz",
+    status: "String",
   },
   ch_festival_mutation_response: {
     affected_rows: "Int",
@@ -32321,6 +32662,7 @@ export const ReturnTypes: Record<string, any> = {
     festival_id: "Int",
     id: "Int",
     name: "String",
+    slug: "String",
   },
   ch_room_aggregate: {
     aggregate: "ch_room_aggregate_fields",
@@ -32347,11 +32689,13 @@ export const ReturnTypes: Record<string, any> = {
     festival_id: "Int",
     id: "Int",
     name: "String",
+    slug: "String",
   },
   ch_room_min_fields: {
     festival_id: "Int",
     id: "Int",
     name: "String",
+    slug: "String",
   },
   ch_room_mutation_response: {
     affected_rows: "Int",
@@ -32467,6 +32811,7 @@ export const ReturnTypes: Record<string, any> = {
     festival_id: "Int",
     id: "Int",
     name: "String",
+    slug: "String",
   },
   ch_wait_list_aggregate: {
     aggregate: "ch_wait_list_aggregate_fields",
@@ -32493,11 +32838,13 @@ export const ReturnTypes: Record<string, any> = {
     festival_id: "Int",
     id: "Int",
     name: "String",
+    slug: "String",
   },
   ch_wait_list_min_fields: {
     festival_id: "Int",
     id: "Int",
     name: "String",
+    slug: "String",
   },
   ch_wait_list_mutation_response: {
     affected_rows: "Int",
@@ -32925,6 +33272,7 @@ export const ReturnTypes: Record<string, any> = {
     sphere: "nb_sphere",
     sphere_id: "Int",
     start_time: "timestamptz",
+    status: "String",
     time_table: "ch_agenda_item",
     updated_at: "timestamptz",
   },
@@ -32965,6 +33313,7 @@ export const ReturnTypes: Record<string, any> = {
     slug: "String",
     sphere_id: "Int",
     start_time: "timestamptz",
+    status: "String",
     updated_at: "timestamptz",
   },
   nb_meeting_min_fields: {
@@ -32982,6 +33331,7 @@ export const ReturnTypes: Record<string, any> = {
     slug: "String",
     sphere_id: "Int",
     start_time: "timestamptz",
+    status: "String",
     updated_at: "timestamptz",
   },
   nb_meeting_mutation_response: {

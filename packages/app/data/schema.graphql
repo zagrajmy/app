@@ -33,6 +33,7 @@ type ch_agenda_item {
   # An object relationship
   nb_meeting: nb_meeting
   room_id: Int
+  status: String!
 }
 
 # aggregated selection of "ch_agenda_item"
@@ -107,6 +108,7 @@ input ch_agenda_item_bool_exp {
   meeting_id: Int_comparison_exp
   nb_meeting: nb_meeting_bool_exp
   room_id: Int_comparison_exp
+  status: String_comparison_exp
 }
 
 # unique or primary key constraints on table "ch_agenda_item"
@@ -137,6 +139,7 @@ input ch_agenda_item_insert_input {
   meeting_id: Int
   nb_meeting: nb_meeting_obj_rel_insert_input
   room_id: Int
+  status: String
 }
 
 # aggregate max on columns
@@ -145,6 +148,7 @@ type ch_agenda_item_max_fields {
   id: Int
   meeting_id: Int
   room_id: Int
+  status: String
 }
 
 # order by max() on columns of table "ch_agenda_item"
@@ -153,6 +157,7 @@ input ch_agenda_item_max_order_by {
   id: order_by
   meeting_id: order_by
   room_id: order_by
+  status: order_by
 }
 
 # aggregate min on columns
@@ -161,6 +166,7 @@ type ch_agenda_item_min_fields {
   id: Int
   meeting_id: Int
   room_id: Int
+  status: String
 }
 
 # order by min() on columns of table "ch_agenda_item"
@@ -169,6 +175,7 @@ input ch_agenda_item_min_order_by {
   id: order_by
   meeting_id: order_by
   room_id: order_by
+  status: order_by
 }
 
 # response of any mutation on the table "ch_agenda_item"
@@ -204,6 +211,7 @@ input ch_agenda_item_order_by {
   meeting_id: order_by
   nb_meeting: nb_meeting_order_by
   room_id: order_by
+  status: order_by
 }
 
 # primary key columns input for table: "ch_agenda_item"
@@ -230,6 +238,9 @@ enum ch_agenda_item_select_column {
 
   # column name
   room_id
+
+  # column name
+  status
 }
 
 # input type for updating data in table "ch_agenda_item"
@@ -240,6 +251,7 @@ input ch_agenda_item_set_input {
   meeting_confirmed: Boolean
   meeting_id: Int
   room_id: Int
+  status: String
 }
 
 # aggregate stddev on columns
@@ -325,6 +337,9 @@ enum ch_agenda_item_update_column {
 
   # column name
   room_id
+
+  # column name
+  status
 }
 
 # aggregate var_pop on columns
@@ -484,7 +499,7 @@ type ch_festival {
     # filter the rows returned
     where: ch_wait_list_bool_exp
   ): ch_wait_list_aggregate!
-  end_time: timestamptz!
+  end_time: timestamptz
   id: Int!
   name: String!
 
@@ -496,9 +511,10 @@ type ch_festival {
   ): jsonb!
   slug: String!
   sphere_id: Int!
-  start_proposal: timestamptz!
-  start_publication: timestamptz!
-  start_time: timestamptz!
+  start_proposal: timestamptz
+  start_publication: timestamptz
+  start_time: timestamptz
+  status: String!
 }
 
 # aggregated selection of "ch_festival"
@@ -578,12 +594,16 @@ input ch_festival_bool_exp {
   start_proposal: timestamptz_comparison_exp
   start_publication: timestamptz_comparison_exp
   start_time: timestamptz_comparison_exp
+  status: String_comparison_exp
 }
 
 # unique or primary key constraints on table "ch_festival"
 enum ch_festival_constraint {
   # unique or primary key constraint
   ch_festival_pkey
+
+  # unique or primary key constraint
+  festival_has_unique_slug_and_sphere
 }
 
 # delete the field or element with specified path (for JSON arrays, negative integers count from the end)
@@ -623,6 +643,7 @@ input ch_festival_insert_input {
   start_proposal: timestamptz
   start_publication: timestamptz
   start_time: timestamptz
+  status: String
 }
 
 # aggregate max on columns
@@ -635,6 +656,7 @@ type ch_festival_max_fields {
   start_proposal: timestamptz
   start_publication: timestamptz
   start_time: timestamptz
+  status: String
 }
 
 # order by max() on columns of table "ch_festival"
@@ -647,6 +669,7 @@ input ch_festival_max_order_by {
   start_proposal: order_by
   start_publication: order_by
   start_time: order_by
+  status: order_by
 }
 
 # aggregate min on columns
@@ -659,6 +682,7 @@ type ch_festival_min_fields {
   start_proposal: timestamptz
   start_publication: timestamptz
   start_time: timestamptz
+  status: String
 }
 
 # order by min() on columns of table "ch_festival"
@@ -671,6 +695,7 @@ input ch_festival_min_order_by {
   start_proposal: order_by
   start_publication: order_by
   start_time: order_by
+  status: order_by
 }
 
 # response of any mutation on the table "ch_festival"
@@ -710,6 +735,7 @@ input ch_festival_order_by {
   start_proposal: order_by
   start_publication: order_by
   start_time: order_by
+  status: order_by
 }
 
 # primary key columns input for table: "ch_festival"
@@ -750,6 +776,9 @@ enum ch_festival_select_column {
 
   # column name
   start_time
+
+  # column name
+  status
 }
 
 # input type for updating data in table "ch_festival"
@@ -763,6 +792,7 @@ input ch_festival_set_input {
   start_proposal: timestamptz
   start_publication: timestamptz
   start_time: timestamptz
+  status: String
 }
 
 # aggregate stddev on columns
@@ -841,6 +871,9 @@ enum ch_festival_update_column {
 
   # column name
   start_time
+
+  # column name
+  status
 }
 
 # aggregate var_pop on columns
@@ -1035,6 +1068,9 @@ input ch_helper_bool_exp {
 enum ch_helper_constraint {
   # unique or primary key constraint
   ch_helper_pkey
+
+  # unique or primary key constraint
+  helper_has_unique_user_and_festival
 }
 
 # input type for incrementing integer column in table "ch_helper"
@@ -1573,9 +1609,9 @@ type ch_proposal {
 
   # An object relationship
   ch_wait_list: ch_wait_list!
-  city: String
-  club: String
-  created_at: timestamptz
+  city: String!
+  club: String!
+  created_at: timestamptz!
   description: String!
   duration_minutes: Int!
   id: Int!
@@ -1584,16 +1620,16 @@ type ch_proposal {
   meeting: nb_meeting
   meeting_id: Int
   name: String!
-  needs: String
+  needs: String!
   other_contact(
     # JSON select path
     path: String
-  ): jsonb
+  ): jsonb!
   other_data(
     # JSON select path
     path: String
-  ): jsonb
-  phone: String
+  ): jsonb!
+  phone: String!
   speaker_name: String!
   speaker_user_id: uuid
   status: String!
@@ -2470,6 +2506,7 @@ type ch_room {
   festival_id: Int!
   id: Int!
   name: String!
+  slug: String!
 }
 
 # aggregated selection of "ch_room"
@@ -2536,12 +2573,16 @@ input ch_room_bool_exp {
   festival_id: Int_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
+  slug: String_comparison_exp
 }
 
 # unique or primary key constraints on table "ch_room"
 enum ch_room_constraint {
   # unique or primary key constraint
   ch_room_pkey
+
+  # unique or primary key constraint
+  room_has_unique_slug_and_festival
 }
 
 # input type for incrementing integer column in table "ch_room"
@@ -2557,6 +2598,7 @@ input ch_room_insert_input {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # aggregate max on columns
@@ -2564,6 +2606,7 @@ type ch_room_max_fields {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # order by max() on columns of table "ch_room"
@@ -2571,6 +2614,7 @@ input ch_room_max_order_by {
   festival_id: order_by
   id: order_by
   name: order_by
+  slug: order_by
 }
 
 # aggregate min on columns
@@ -2578,6 +2622,7 @@ type ch_room_min_fields {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # order by min() on columns of table "ch_room"
@@ -2585,6 +2630,7 @@ input ch_room_min_order_by {
   festival_id: order_by
   id: order_by
   name: order_by
+  slug: order_by
 }
 
 # response of any mutation on the table "ch_room"
@@ -2616,6 +2662,7 @@ input ch_room_order_by {
   festival_id: order_by
   id: order_by
   name: order_by
+  slug: order_by
 }
 
 # primary key columns input for table: "ch_room"
@@ -2633,6 +2680,9 @@ enum ch_room_select_column {
 
   # column name
   name
+
+  # column name
+  slug
 }
 
 # input type for updating data in table "ch_room"
@@ -2640,6 +2690,7 @@ input ch_room_set_input {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # aggregate stddev on columns
@@ -2700,6 +2751,9 @@ enum ch_room_update_column {
 
   # column name
   name
+
+  # column name
+  slug
 }
 
 # aggregate var_pop on columns
@@ -2888,6 +2942,9 @@ input ch_time_slot_bool_exp {
 enum ch_time_slot_constraint {
   # unique or primary key constraint
   ch_time_slot_pkey
+
+  # unique or primary key constraint
+  timeslot_has_unique_times_for_festival
 }
 
 # input type for incrementing integer column in table "ch_time_slot"
@@ -3140,6 +3197,7 @@ type ch_wait_list {
   festival_id: Int!
   id: Int!
   name: String!
+  slug: String!
 }
 
 # aggregated selection of "ch_wait_list"
@@ -3206,12 +3264,16 @@ input ch_wait_list_bool_exp {
   festival_id: Int_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
+  slug: String_comparison_exp
 }
 
 # unique or primary key constraints on table "ch_wait_list"
 enum ch_wait_list_constraint {
   # unique or primary key constraint
   ch_wait_list_pkey
+
+  # unique or primary key constraint
+  waitlist_has_unique_slug_and_festival
 }
 
 # input type for incrementing integer column in table "ch_wait_list"
@@ -3227,6 +3289,7 @@ input ch_wait_list_insert_input {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # aggregate max on columns
@@ -3234,6 +3297,7 @@ type ch_wait_list_max_fields {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # order by max() on columns of table "ch_wait_list"
@@ -3241,6 +3305,7 @@ input ch_wait_list_max_order_by {
   festival_id: order_by
   id: order_by
   name: order_by
+  slug: order_by
 }
 
 # aggregate min on columns
@@ -3248,6 +3313,7 @@ type ch_wait_list_min_fields {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # order by min() on columns of table "ch_wait_list"
@@ -3255,6 +3321,7 @@ input ch_wait_list_min_order_by {
   festival_id: order_by
   id: order_by
   name: order_by
+  slug: order_by
 }
 
 # response of any mutation on the table "ch_wait_list"
@@ -3286,6 +3353,7 @@ input ch_wait_list_order_by {
   festival_id: order_by
   id: order_by
   name: order_by
+  slug: order_by
 }
 
 # primary key columns input for table: "ch_wait_list"
@@ -3303,6 +3371,9 @@ enum ch_wait_list_select_column {
 
   # column name
   name
+
+  # column name
+  slug
 }
 
 # input type for updating data in table "ch_wait_list"
@@ -3310,6 +3381,7 @@ input ch_wait_list_set_input {
   festival_id: Int
   id: Int
   name: String
+  slug: String
 }
 
 # aggregate stddev on columns
@@ -3370,6 +3442,9 @@ enum ch_wait_list_update_column {
 
   # column name
   name
+
+  # column name
+  slug
 }
 
 # aggregate var_pop on columns
@@ -3663,6 +3738,9 @@ enum cr_user_constraint {
 
   # unique or primary key constraint
   cr_user_username_key
+
+  # unique or primary key constraint
+  unique_nonempty_auth0_id
 }
 
 # input type for inserting data into table "cr_user"
@@ -3969,7 +4047,7 @@ input django_site_bool_exp {
 # unique or primary key constraints on table "django_site"
 enum django_site_constraint {
   # unique or primary key constraint
-  django_site_domain_key
+  django_site_domain_a2e37b91_uniq
 
   # unique or primary key constraint
   django_site_pkey
@@ -5274,6 +5352,9 @@ input nb_guild_bool_exp {
 # unique or primary key constraints on table "nb_guild"
 enum nb_guild_constraint {
   # unique or primary key constraint
+  guild_unique_slug
+
+  # unique or primary key constraint
   nb_guild_pkey
 }
 
@@ -5397,6 +5478,9 @@ input nb_guild_member_bool_exp {
 
 # unique or primary key constraints on table "nb_guild_member"
 enum nb_guild_member_constraint {
+  # unique or primary key constraint
+  guildmember_unique_guild_and_user
+
   # unique or primary key constraint
   nb_guild_member_pkey
 }
@@ -5808,7 +5892,7 @@ type nb_meeting {
   guild_id: Int
   id: Int!
   image: String
-  location: String
+  location: String!
   meeting_url: String!
   name: String!
 
@@ -5858,6 +5942,7 @@ type nb_meeting {
   sphere: nb_sphere!
   sphere_id: Int!
   start_time: timestamptz
+  status: String!
 
   # An object relationship
   time_table: ch_agenda_item
@@ -5943,12 +6028,19 @@ input nb_meeting_bool_exp {
   sphere: nb_sphere_bool_exp
   sphere_id: Int_comparison_exp
   start_time: timestamptz_comparison_exp
+  status: String_comparison_exp
   time_table: ch_agenda_item_bool_exp
   updated_at: timestamptz_comparison_exp
 }
 
 # unique or primary key constraints on table "nb_meeting"
 enum nb_meeting_constraint {
+  # unique or primary key constraint
+  meeting_unique_slug_in_guild
+
+  # unique or primary key constraint
+  meeting_unique_slug_in_sphere
+
   # unique or primary key constraint
   nb_meeting_pkey
 }
@@ -5980,6 +6072,7 @@ input nb_meeting_insert_input {
   sphere: nb_sphere_obj_rel_insert_input
   sphere_id: Int
   start_time: timestamptz
+  status: String
   time_table: ch_agenda_item_obj_rel_insert_input
   updated_at: timestamptz
 }
@@ -6000,6 +6093,7 @@ type nb_meeting_max_fields {
   slug: String
   sphere_id: Int
   start_time: timestamptz
+  status: String
   updated_at: timestamptz
 }
 
@@ -6019,6 +6113,7 @@ input nb_meeting_max_order_by {
   slug: order_by
   sphere_id: order_by
   start_time: order_by
+  status: order_by
   updated_at: order_by
 }
 
@@ -6038,6 +6133,7 @@ type nb_meeting_min_fields {
   slug: String
   sphere_id: Int
   start_time: timestamptz
+  status: String
   updated_at: timestamptz
 }
 
@@ -6057,6 +6153,7 @@ input nb_meeting_min_order_by {
   slug: order_by
   sphere_id: order_by
   start_time: order_by
+  status: order_by
   updated_at: order_by
 }
 
@@ -6102,6 +6199,7 @@ input nb_meeting_order_by {
   sphere: nb_sphere_order_by
   sphere_id: order_by
   start_time: order_by
+  status: order_by
   time_table: ch_agenda_item_order_by
   updated_at: order_by
 }
@@ -6440,6 +6538,9 @@ enum nb_meeting_select_column {
   start_time
 
   # column name
+  status
+
+  # column name
   updated_at
 }
 
@@ -6459,6 +6560,7 @@ input nb_meeting_set_input {
   slug: String
   sphere_id: Int
   start_time: timestamptz
+  status: String
   updated_at: timestamptz
 }
 
@@ -6563,6 +6665,9 @@ enum nb_meeting_update_column {
   start_time
 
   # column name
+  status
+
+  # column name
   updated_at
 }
 
@@ -6647,7 +6752,7 @@ type nb_sphere {
   ): ch_festival_aggregate!
 
   # An object relationship
-  django_site: django_site
+  django_site: django_site!
   id: Int!
   is_open: Boolean!
   name: String!
@@ -6727,7 +6832,7 @@ type nb_sphere {
     # JSON select path
     path: String
   ): jsonb!
-  site_id: Int
+  site_id: Int!
 }
 
 # aggregated selection of "nb_sphere"
