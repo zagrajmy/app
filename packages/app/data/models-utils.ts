@@ -5,6 +5,7 @@
 import createValidator, { registerType } from "typecheck.macro";
 
 import { TypeOf } from "../src/lib/match";
+import { DeepPartial } from "../src/lib/utilityTypes";
 import { ch_agenda_item, ch_festival } from "./graphql-zeus";
 
 type Cases<T extends Record<"status", string>, R> = {
@@ -40,13 +41,12 @@ export namespace AgendaItem {
   const DEFAULT_STATUS: Status = "unassigned";
 
   export const matchStatus = <
-    K extends keyof ch_agenda_item,
-    C extends Cases<
-      WithKnownStatus<Pick<ch_agenda_item, K | "status">, Status>,
-      any
-    >
+    T extends DeepPartial<ch_agenda_item> & {
+      status: ch_agenda_item["status"];
+    },
+    C extends Cases<WithKnownStatus<T, Status>, any>
   >(
-    agendaItem: Pick<ch_agenda_item, K | "status">,
+    agendaItem: T,
     cases: C
   ) => {
     const { status } = agendaItem;
@@ -78,20 +78,17 @@ export namespace Festival {
   const DEFAULT_STATUS: Status = "draft";
 
   export const matchStatus = <
-    K extends keyof ch_festival,
-    C extends Cases<
-      WithKnownStatus<Pick<ch_festival, K | "status">, Status>,
-      any
-    >
+    T extends DeepPartial<ch_festival> & { status: ch_festival["status"] },
+    C extends Cases<WithKnownStatus<T, Status>, any>
   >(
-    agendaItem: Pick<ch_festival, K | "status">,
+    festival: T,
     cases: C
     // types are different and this is pretty small anyway
     // eslint-disable-next-line sonarjs/no-identical-functions
   ) => {
-    const { status } = agendaItem;
+    const { status } = festival;
     return _matchStatus(
-      { ...agendaItem, status: isStatus(status) ? status : DEFAULT_STATUS },
+      { ...festival, status: isStatus(status) ? status : DEFAULT_STATUS },
       cases
     );
   };

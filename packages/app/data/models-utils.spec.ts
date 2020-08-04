@@ -1,6 +1,7 @@
 import { expecter } from "ts-snippet";
 
-import { AgendaItem } from "./models-utils";
+import { noop } from "../src";
+import { AgendaItem, Festival } from "./models-utils";
 
 const expectSnippet = expecter(
   (code) => /* ts */ `
@@ -61,6 +62,54 @@ describe("Festival", () => {
       expected.toSucceed();
       expected.toInfer("inferredStatus", '"ready"');
       expected.toInfer("inferredName", "string");
+    });
+
+    it("accepts subsets of Festival object properties", () => {
+      const expected = expectSnippet(/* ts */ `
+        const festival = {
+          name: "Online Boardgames Night",
+          status: "agenda",
+          ch_rooms: [
+            {
+              name: "Common Room",
+              ch_agenda_items: [
+                { id: 1, helper_confirmed: true },
+                { id: 2, helper_confirmed: true },
+              ],
+            },
+            {
+              name: "Tournament Room",
+              ch_agenda_items: [
+                { id: 3, helper_confirmed: true },
+                { id: 4, helper_confirmed: true },
+              ],
+            },
+          ],
+        };
+
+        Festival.matchStatus(festival, {
+          agenda: () => {},
+          draft: f => f.ch_rooms.map(r => {
+            const room = r;
+          }),
+          ongoing: () => {},
+          past: () => {},
+          proposal: () => {},
+          ready: () => {},
+        });
+      `);
+
+      expected.toSucceed();
+      expected.toInfer(
+        "room",
+        `{
+           name: string;
+           ch_agenda_items: {
+             id: number;
+             helper_confirmed: boolean;
+           }[];
+         }`
+      );
     });
   });
 });
