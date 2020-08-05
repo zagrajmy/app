@@ -8,7 +8,9 @@ import {
   useLanguage,
 } from "../../i18n";
 import { summon } from "../../lib";
-import { Link, Select, SelectProps, useTheme } from "../../ui";
+import { Link } from "../../ui/Link";
+import { Select, SelectProps } from "../../ui/Select";
+import { useTheme } from "../../ui/theme";
 import type { Claims } from "../auth";
 import { useAppState } from "../store";
 import { useAppName } from "../store/useAppName";
