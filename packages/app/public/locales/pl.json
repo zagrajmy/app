@@ -49,5 +49,7 @@
   "program-submitted-go-back": "Wróć do strony głównej",
   "program-submitted-actions": "",
   "it-wasnt-supposed-to-happen": "To nie miało się wydarzyć.",
-  "it-wasnt-supposed-to-happen-error-message": "Trochę słabo. Przepraszamy!<br />Zarejestrowaliśmy już ten błąd i zaraz się za niego zabierzemy."
+  "it-wasnt-supposed-to-happen-error-message": "Trochę słabo. Przepraszamy!<br />Zarejestrowaliśmy już ten błąd i zaraz się za niego zabierzemy.",
+  "brb-down-for-maintenance": "Zaraz wracam 🚧",
+  "brb-down-for-maintenance-error-message": "Przeprowadzamy krótkie prace konserwacyjne. To nie powinno trwać dłużej niż 5 minut."
 }

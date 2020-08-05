@@ -29,9 +29,10 @@ export const MessageScreen = ({
           maxHeight: "100%",
           ".white": { fill: "transparent" },
           ".black": { fill: "gray.9" },
+          m: [1, 3],
         }}
       />
-      <Flex sx={{ flexDirection: "column", fontSize: 4 }}>
+      <Flex sx={{ flexDirection: "column", fontSize: 3 }}>
         <Heading as="h3">{heading}</Heading>
         {children}
       </Flex>
