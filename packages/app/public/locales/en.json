@@ -50,5 +50,7 @@
   "program-submitted-go-back": "Go back to the homepage",
   "program-submitted-actions": "",
   "it-wasnt-supposed-to-happen": "It wasn't supposed to happen!",
-  "it-wasnt-supposed-to-happen-error-message": "Pretty awkward, huh? <br />We've already tracked this error and will get right on it."
+  "it-wasnt-supposed-to-happen-error-message": "Pretty awkward, huh? <br />We've already tracked this error and will get right on it.",
+  "brb-down-for-maintenance": "BRB Down for maintenance 🚧",
+  "brb-down-for-maintenance-error-message": "Coming back in five minutes!"
 }

@@ -39,7 +39,6 @@ import {
   i18n,
   mergeLocale,
   SUPPORTED_LANGUAGES,
-  SupportedLanguage,
 } from "../src/i18n";
 import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens/EmailConfirmationScreen";
 import {
@@ -77,19 +76,16 @@ const useOnceImmediately = (f: () => void) => {
   }
 };
 
-export type InjectedPageProps = {
-  // is this needed?
-  cookies: { [key: string]: string | undefined };
-  lang: SupportedLanguage;
-};
-
 const global: InterpolationWithTheme<{}> = css(globalStyles);
 
-interface MyAppInitialProps extends AppInitialProps, AppProps {
+interface MyAppInitialProps extends AppInitialProps {
   appState: Partial<ApplicationState>;
   lang: string;
   session?: Session | null;
+  error?: Error;
 }
+
+interface MyAppProps extends MyAppInitialProps, AppProps {}
 
 export default function MyApp({
   Component,
@@ -97,7 +93,7 @@ export default function MyApp({
   appState,
   session: propsSession,
   lang,
-}: MyAppInitialProps) {
+}: MyAppProps) {
   const session = useRef<Session | undefined | null>();
   session.current = propsSession || session.current;
 
@@ -173,68 +169,88 @@ export default function MyApp({
  * https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
  */
 
-MyApp.getInitialProps = async (context: AppContext) => {
+MyApp.getInitialProps = async (
+  context: AppContext
+): Promise<MyAppInitialProps> => {
   const appProps = await App.getInitialProps(context);
   const { req, query } = context.ctx;
 
-  const session = req && (await auth.getSession(req));
+  try {
+    const session = req && (await auth.getSession(req));
 
-  let initialData: {
-    sphere?: {
-      settings: any;
-    };
-    user?: {
-      uuid: string;
-      locale: string;
-    };
-  } = {};
+    let initialData: {
+      sphere?: {
+        settings: any;
+      };
+      user?: {
+        uuid: string;
+        locale: string;
+      };
+    } = {};
 
-  if (req) {
-    const sphere = detectSphere({ req, query });
+    if (req) {
+      const sphere = detectSphere({ req, query });
 
-    const data = await hasura.fromCookies(req).query({
-      ...(session && {
-        cr_user: [
-          { where: { auth0_id: { _eq: session.user.sub } } },
-          { uuid: true, locale: true },
+      const data = await hasura.fromCookies(req).query({
+        ...(session && {
+          cr_user: [
+            { where: { auth0_id: { _eq: session.user.sub } } },
+            { uuid: true, locale: true },
+          ],
+        }),
+        nb_sphere: [
+          sphereByIdOrDomainQueryArgs(sphere),
+          {
+            id: true,
+            name: true,
+            settings: [{}, true],
+            is_open: true,
+          },
         ],
-      }),
-      nb_sphere: [
-        sphereByIdOrDomainQueryArgs(sphere),
-        {
-          id: true,
-          name: true,
-          settings: [{}, true],
-          is_open: true,
-        },
-      ],
-    });
+      });
 
-    initialData = {
-      sphere: data.nb_sphere[0],
-      user: "cr_user" in data ? data.cr_user[0] : undefined,
+      initialData = {
+        sphere: data.nb_sphere[0],
+        user: "cr_user" in data ? data.cr_user[0] : undefined,
+      };
+    }
+
+    let lang = "en";
+    if (initialData.user) {
+      lang = initialData.user.locale;
+    } else if (req) {
+      lang = detectLanguage(req, parseCookies(context.ctx));
+    }
+
+    const appState: Partial<ApplicationState> = {
+      user:
+        session?.user && initialData.user
+          ? { ...session.user, ...initialData.user }
+          : undefined,
+      sphere: initialData.sphere || emptySphere,
+    };
+
+    return {
+      ...appProps,
+      appState,
+      session,
+      lang,
+    };
+  } catch (error) {
+    let lang = "en";
+    if (req) {
+      try {
+        lang = detectLanguage(req, parseCookies(context.ctx));
+      } catch {
+        console.error("failed to detect language");
+      }
+    }
+
+    return {
+      ...appProps,
+      appState: {},
+      error,
+      lang,
     };
   }
-
-  let lang = "en";
-  if (initialData.user) {
-    lang = initialData.user.locale;
-  } else if (req) {
-    lang = detectLanguage(req, parseCookies(context.ctx));
-  }
-
-  const appState: Partial<ApplicationState> = {
-    user:
-      session?.user && initialData.user
-        ? { ...session.user, ...initialData.user }
-        : undefined,
-    sphere: initialData.sphere || emptySphere,
-  };
-
-  return {
-    ...appProps,
-    appState,
-    session,
-    lang,
-  };
 };
