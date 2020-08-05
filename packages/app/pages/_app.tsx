@@ -22,11 +22,12 @@ import {
   ThemeProvider as ThemeUiProvider,
 } from "theme-ui";
 
-import { hasura } from "../data";
+import { hasura } from "../data/hasura";
 import { sphereByIdOrDomainQueryArgs } from "../data/queries";
 import { auth, Session } from "../src/app/auth";
-import { NavHeader, Page } from "../src/app/components";
 import { AppFooter } from "../src/app/components/AppFooter";
+import { NavHeader } from "../src/app/components/NavHeader";
+import { Page } from "../src/app/components/Page";
 import { detectSphere } from "../src/app/detectSphere";
 import {
   ApplicationState,
@@ -40,7 +41,7 @@ import {
   SUPPORTED_LANGUAGES,
   SupportedLanguage,
 } from "../src/i18n";
-import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens";
+import { EmailConfirmationScreen } from "../src/ui/organisms/messageScreens/EmailConfirmationScreen";
 import {
   ExactTheme,
   globalStyles,
