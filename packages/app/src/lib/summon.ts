@@ -25,10 +25,18 @@ export function makeSummon(f: typeof fetch, baseUrl = "") {
         json?: JsonWithUndefined;
         searchParams?: Record<string, string> | URLSearchParams;
       }
-    >
+    >,
+    /** request to extract own URL from */
+    req?: Pick<IncomingMessage, "headers">
   ) {
+    const baseUrl =
+      req && !(typeof info === "string" && info.startsWith("http"))
+        ? new URL(getUrl(req)).origin
+        : "";
+
     const headers = record.filter(
       {
+        ...req?.headers,
         "Content-Type": "application/json",
         ...init?.headers,
       },
