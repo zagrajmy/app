@@ -3,6 +3,7 @@ import fetchMock from "jest-fetch-mock";
 import { makeSummon } from "./summon";
 
 const summon = makeSummon(fetchMock);
+const dogsApi = makeSummon(fetchMock, "https://api.dogs.test");
 
 beforeEach(() => {
   fetchMock.resetMocks();
@@ -96,5 +97,13 @@ describe("summon", () => {
         "Content-Type": "application/json",
       },
     });
+  });
+
+  it("prepends baseUrl", async () => {
+    fetchMock.mockResponseOnce("{}");
+
+    await dogsApi("/breeds");
+
+    expect(fetchMock).toBeCalledWith("https://api.dogs.test/breeds");
   });
 });
