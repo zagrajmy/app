@@ -14,11 +14,10 @@ module.exports = {
     "babel-plugin-macros",
     "emotion",
     [
-      "@emotion/babel-plugin-jsx-pragmatic",
+      "babel-plugin-jsx-imports",
       {
-        module: "theme-ui",
-        import: "jsx",
-        export: "jsx",
+        pragma: "{ jsx } from theme-ui",
+        pragmaFrag: "{ Fragment } from react",
       },
     ],
     "@babel/plugin-proposal-optional-chaining",
