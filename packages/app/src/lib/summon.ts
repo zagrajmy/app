@@ -15,7 +15,7 @@ export const globals =
       }
     : window;
 
-export function makeSummon(f: typeof fetch) {
+export function makeSummon(f: typeof fetch, baseUrl = "") {
   return function summon(
     info: RequestInfo,
     init?: Assign<
@@ -35,7 +35,12 @@ export function makeSummon(f: typeof fetch) {
       (s): s is string => s !== undefined
     );
 
-    let newInfo: RequestInfo = info;
+    let newInfo: RequestInfo;
+    if (typeof info === "string") {
+      newInfo = baseUrl + info;
+    } else {
+      newInfo = new globals.Request(baseUrl + info.url, info);
+    }
 
     const newInit = init && { ...init, headers };
     if (newInit) {
