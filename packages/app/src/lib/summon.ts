@@ -15,7 +15,7 @@ export const globals =
       }
     : window;
 
-export function makeSummon(f: typeof fetch, baseUrl = "") {
+export function makeSummon(f: typeof fetch, apiBaseUrl = "") {
   return function summon(
     info: RequestInfo,
     init?: Assign<
@@ -29,10 +29,18 @@ export function makeSummon(f: typeof fetch, baseUrl = "") {
     /** request to extract own URL from */
     req?: Pick<IncomingMessage, "headers">
   ) {
-    const baseUrl =
-      req && !(typeof info === "string" && info.startsWith("http"))
-        ? new URL(getUrl(req)).origin
-        : "";
+    if (
+      process.env.NODE_ENV !== "production" &&
+      typeof info === "string" &&
+      info.startsWith("http") &&
+      req
+    ) {
+      throw new Error(
+        "`req` argument cannot be passed when request URL is external"
+      );
+    }
+
+    const baseUrl = apiBaseUrl || (req ? new URL(getUrl(req)).origin : "");
 
     const headers = record.filter(
       {
