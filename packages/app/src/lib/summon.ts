@@ -29,7 +29,10 @@ export function makeSummon(f: typeof fetch) {
     /** request to extract own URL from */
     req?: Pick<IncomingMessage, "headers">
   ) {
-    const baseUrl = req ? new URL(getUrl(req)).origin : "";
+    const baseUrl =
+      req && !(typeof info === "string" && info.startsWith("http"))
+        ? new URL(getUrl(req)).origin
+        : "";
 
     const headers = record.filter(
       {
