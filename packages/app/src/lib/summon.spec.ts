@@ -100,19 +100,19 @@ describe("summon", () => {
   it("doesn't prepend baseUrl when info starts with 'http'", async () => {
     fetchMock.mockResponseOnce("{}");
 
-    await summon(
-      `https://zagrajmy-rest-api.test/v1/test/`,
-      {},
-      { headers: { host: "zagrajmy-app-next.test" } }
-    );
-    expect(fetchMock).toBeCalledWith(
-      "https://zagrajmy-rest-api.test/v1/test/",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          host: "zagrajmy-app-next.test",
-        },
-      }
+    let error: Error;
+    try {
+      await summon(
+        `https://zagrajmy-rest-api.test/v1/test/`,
+        {},
+        { headers: { host: "zagrajmy-app-next.test" } }
+      );
+    } catch (err) {
+      error = err;
+    }
+
+    expect(error!.message).toBe(
+      "`req` argument cannot be passed when request URL is external"
     );
   });
 
@@ -146,7 +146,7 @@ describe("summon", () => {
     });
   });
 
-  it("prepends baseUrl", async () => {
+  it("prepends explicitly given baseUrl", async () => {
     fetchMock.mockResponseOnce("{}");
 
     await dogsApi("/breeds");
