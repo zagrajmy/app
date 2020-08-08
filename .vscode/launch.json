@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "(app) Attach",
+      "type": "node",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
       "name": "(app) Debug Jest Tests",
       "type": "node",
       "request": "launch",
