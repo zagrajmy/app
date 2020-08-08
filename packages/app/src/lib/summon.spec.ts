@@ -68,53 +68,6 @@ describe("summon", () => {
     });
   });
 
-  it("prepends baseUrl from external request headers.referer", async () => {
-    fetchMock.mockResponseOnce("{}");
-
-    await summon("/test", undefined, {
-      headers: { referer: "https://example.com:1234" },
-    });
-    expect(fetchMock).toBeCalledWith("https://example.com:1234/test");
-  });
-
-  it("prepends baseUrl from external request headers.host", async () => {
-    fetchMock.mockResponseOnce("{}");
-
-    await summon(
-      `/v1/test/`,
-      {},
-      { headers: { host: "zagrajmy-app-next.test" } }
-    );
-    expect(fetchMock).toBeCalledWith(
-      "https://zagrajmy-app-next.test/v1/test/",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          host: "zagrajmy-app-next.test",
-        },
-      }
-    );
-  });
-
-  it("doesn't prepend baseUrl when info starts with 'http'", async () => {
-    fetchMock.mockResponseOnce("{}");
-
-    await summon(
-      `https://zagrajmy-rest-api.test/v1/test/`,
-      {},
-      { headers: { host: "zagrajmy-app-next.test" } }
-    );
-    expect(fetchMock).toBeCalledWith(
-      "https://zagrajmy-rest-api.test/v1/test/",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          host: "zagrajmy-app-next.test",
-        },
-      }
-    );
-  });
-
   it("stringifies init.searchParams", async () => {
     let req: Request | string | undefined;
     fetchMock.mockImplementation((request) => {
