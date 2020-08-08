@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Fragment, useMemo } from "react";
+import { useMemo } from "react";
 import { Search } from "react-feather";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
@@ -42,7 +42,7 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
   }
 
   return (
-    <Fragment>
+    <>
       <header
         sx={{
           py: 3,
@@ -71,7 +71,7 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
         </span>
       </section>
       <article sx={{ mt: 3 }}>
-        <Fragment>
+        <>
           <section>
             <Heading as="h3">{t("organized-meetings")}</Heading>
             {organizedMeetings && (
@@ -100,9 +100,9 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
               </MeetingCardsList>
             )}
           </section>
-        </Fragment>
+        </>
       </article>
-    </Fragment>
+    </>
   );
 }
 

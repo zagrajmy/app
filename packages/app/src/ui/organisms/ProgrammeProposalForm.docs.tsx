@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import loadable from "@loadable/component";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { I18nextProvider } from "react-i18next";
 import { dedent } from "ts-dedent";
 
@@ -38,7 +38,7 @@ export const Demo = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <Fragment>
+      <>
         <div
           sx={{
             mt: 3,
@@ -71,7 +71,7 @@ export const Demo = () => {
           />
         </div>
         <ProgrammeProposalForm settings={form} onSubmit={console.log} />
-      </Fragment>
+      </>
     </I18nextProvider>
   );
 };

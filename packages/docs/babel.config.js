@@ -1,20 +1,18 @@
 module.exports = {
   presets: ["babel-preset-gatsby"],
   plugins: [
-    // "emotion",
     [
       "@babel/plugin-transform-react-jsx",
       {
-        pragma: "JSX",
+        pragma: "jsx",
         pragmaFrag: "React.Fragment",
       },
     ],
     [
-      "@emotion/babel-plugin-jsx-pragmatic",
+      "babel-plugin-jsx-imports",
       {
-        module: "theme-ui",
-        import: "JSX",
-        export: "jsx",
+        pragma: "{ jsx } from theme-ui",
+        pragmaFrag: "{ Fragment } from react",
       },
     ],
     "@babel/plugin-proposal-export-namespace-from",
