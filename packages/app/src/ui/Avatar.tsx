@@ -64,6 +64,9 @@ export const Avatar = forwardRef(function Avatar(
         sx={{
           position: "absolute",
           display: state === "ok" ? "block" : "none",
+          opacity: 0.97,
+          transition: "opacity 150ms linear",
+          ":hover": { opacity: 0.9 },
         }}
         {...rest}
       />

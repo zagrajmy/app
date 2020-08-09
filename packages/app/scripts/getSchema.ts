@@ -4,7 +4,7 @@ import { assert } from "ts-essentials";
 
 config();
 
-const { HASURA_URL, HASURA_ADMIN_SECRET } = process.env;
+const { NEXT_PUBLIC_HASURA_URL: HASURA_URL, HASURA_ADMIN_SECRET } = process.env;
 assert(HASURA_URL);
 
 exec(`

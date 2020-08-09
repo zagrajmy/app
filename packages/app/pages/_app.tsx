@@ -23,7 +23,6 @@ import {
 } from "theme-ui";
 
 import { hasura } from "../data/hasura";
-import { sphereByIdOrDomainQueryArgs } from "../data/queries";
 import { auth, Session } from "../src/app/auth";
 import { AppFooter } from "../src/app/components/AppFooter";
 import { NavHeader } from "../src/app/components/NavHeader";
@@ -199,7 +198,7 @@ MyApp.getInitialProps = async (
           ],
         }),
         nb_sphere: [
-          sphereByIdOrDomainQueryArgs(sphere),
+          { where: { django_site: { domain: { _eq: sphere.domain } } } },
           {
             id: true,
             name: true,

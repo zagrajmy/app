@@ -6,6 +6,7 @@ import { parseCookies } from "nookies";
 
 import * as generated from "../../data/graphql-zeus";
 import { Db, hasura } from "../../data/hasura";
+import { zagrajmyRestApi } from "../../src/app/api-helpers/zagrajmyRestApi";
 import { auth } from "../../src/app/auth";
 
 const queryUserByEmail = (db: Db) => (email: string) =>
@@ -19,17 +20,32 @@ const queryUserByEmail = (db: Db) => (email: string) =>
     // I am assuming that there is only one user with this email for now.
     .then((x) => head(x.cr_user));
 
-interface CreateUserArg
-  extends Required<
-      Pick<
-        generated.cr_user_insert_input,
-        "auth0_id" | "username" | "email" | "first_name" | "last_name"
-      >
-    >,
-    Pick<generated.cr_user_insert_input, "locale"> {}
+type CreateUserArg = Required<
+  Pick<
+    generated.cr_user_insert_input,
+    "auth0_id" | "username" | "email" | "first_name" | "last_name"
+  >
+> &
+  Pick<generated.cr_user_insert_input, "locale">;
 
-const createUser = (db: Db) => (user: CreateUserArg) =>
-  db
+// Todo: uncomment this after the rest API accepts email
+// interface CreateUserResponseJson
+//   extends Pick<
+//     generated.cr_user,
+//     | "auth0_id"
+//     | "username"
+//     | "date_joined"
+//     | "email"
+//     | "first_name"
+//     | "last_name"
+//     | "locale"
+//     | "uuid"
+//   > {}
+// const createUser = (user: CreateUserArg): Promise<CreateUserResponseJson> =>
+//   zagrajmyRestApi("crowd/users/", { json: user });
+
+const createUser = (db: Db) => (user: CreateUserArg) => {
+  return db
     .mutation({
       insert_cr_user: [{ objects: [user] }, { returning: { uuid: true } }],
     })
@@ -40,6 +56,7 @@ const createUser = (db: Db) => (user: CreateUserArg) =>
         O.chain((data) => head(data.returning.map((u) => u.uuid)))
       )
     );
+};
 
 const addAuth0Id = (db: Db, user: { uuid: string }, auth0Id: string) =>
   db.mutation({
