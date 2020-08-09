@@ -35,6 +35,8 @@ export default auth.requireAuthentication(async function myMeetings(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  res.setHeader("Cache-Control", "no-store");
+
   const { query } = hasura.fromCookies(req);
   const session = await makeAuth(req)!.getSession(req);
 

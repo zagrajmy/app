@@ -5,11 +5,12 @@ import { Reducer, useEffect, useReducer } from "react";
 import { useTranslation } from "react-i18next";
 
 import { hasura } from "../../../data";
+import { zagrajmyRestApi } from "../../../src/app/api-helpers/zagrajmyRestApi";
 import { CommonHead } from "../../../src/app/components/CommonHead";
 import { Page } from "../../../src/app/components/Page";
 import { detectSphere } from "../../../src/app/detectSphere";
 import { useSettings } from "../../../src/app/store/useSettings";
-import { AsyncReturnType, summon } from "../../../src/lib";
+import { AsyncReturnType } from "../../../src/lib";
 import { head } from "../../../src/lib/head";
 import type { HttpError } from "../../../src/lib/HttpError";
 import {
@@ -52,12 +53,6 @@ function fetchFestival(ctx: GetServerSidePropsContext<Params>) {
       ],
     })
     .then((res) => head(res.ch_festival));
-}
-
-function postForm(form: ProgrammeProposalFormResult) {
-  return summon("https://wiezamaga.net/v1/chronology/proposals/", {
-    json: form,
-  });
 }
 
 type FieldErrors = Record<string, string[]>;
@@ -167,7 +162,9 @@ const ProgrammeProposalPage: NextPage<Props> = ({ festival, params }) => {
   );
   useEffect(() => {
     if (state.type === "submitting") {
-      postForm(state.formValue)
+      zagrajmyRestApi(`chronology/proposals/`, {
+        json: state.formValue,
+      })
         .then((_res) => {
           dispatch({
             type: "success",

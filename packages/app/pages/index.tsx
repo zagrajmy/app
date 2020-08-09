@@ -1,18 +1,24 @@
 import { isFuture, isPast } from "date-fns";
+import { TFunction } from "i18next";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import dynamic from "next/dynamic";
-import React, { Fragment, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Flex, ThemeProvider } from "theme-ui";
 
 import { hasura } from "../data";
 import { order_by } from "../data/graphql-zeus";
-import { sphereByIdOrDomainQueryArgs } from "../data/queries";
+import { zagrajmyRestApi } from "../src/app/api-helpers/zagrajmyRestApi";
 import { CommonHead } from "../src/app/components/CommonHead";
 import { Page } from "../src/app/components/Page";
 import { detectSphere } from "../src/app/detectSphere";
 import { MergedSettings, useSettings } from "../src/app/store/useSettings";
-import { formatDate, formatHour, useLanguage } from "../src/i18n";
+import {
+  formatDate,
+  formatHour,
+  SupportedLanguage,
+  useLanguage,
+} from "../src/i18n";
 import { head } from "../src/lib/head";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
 import {
@@ -50,7 +56,7 @@ function fetchSphereData(
     .fromCookies(ctx.req)
     .query({
       nb_sphere: [
-        sphereByIdOrDomainQueryArgs(sphere),
+        { where: { django_site: { domain: { _eq: sphere.domain } } } },
         {
           ch_festivals: [
             {
@@ -140,6 +146,99 @@ const FestivalDateTime = ({ startTime, endTime }: FestivalDateTimeProps) => {
   );
 };
 
+interface FestivalPageProps {
+  festival: Festival;
+  introText: React.ReactNode;
+  t: TFunction;
+  lang: SupportedLanguage;
+}
+const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
+  const canProposeProgram =
+    isPast(new Date(festival.start_proposal)) &&
+    isFuture(new Date(festival.end_time)); // todo: use `festival.end_proposal`
+
+  // @ts-expect-error
+  globalThis.django = zagrajmyRestApi;
+  globalThis.ZAGRAJMY_REST_API_URL =
+    process.env.NEXT_PUBLIC_ZAGRAJMY_REST_API_URL;
+
+  return (
+    <>
+      <Heading as="h1">{festival.name}</Heading>
+      <Spacer height={3} />
+      <FestivalDateTime
+        startTime={festival.start_time}
+        endTime={festival.end_time}
+      />
+      {introText}
+      {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
+      {canProposeProgram && (
+        <section sx={{ my: 3 }}>
+          <Heading as="h2" size={3}>
+            {t("propose-program")}
+          </Heading>
+          {/* todo: if there are no waitlists and the user is sphere manager, prompt them to add a waitlist */}
+          <ul>
+            {festival.ch_wait_lists.map((waitlist) => (
+              <li key={waitlist.id}>
+                <Link
+                  href="/festival/[slug]/[waitlist]"
+                  as={`/festival/${festival.slug}/${waitlist.id}`}
+                  variant="underlined"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {waitlist.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {isPast(new Date(festival.start_publication)) && (
+        <>
+          <Heading as="h2" sx={{ my: 4 }}>
+            {t("agenda")}
+          </Heading>
+          <FestivalAgenda id="agenda">
+            {festival.ch_rooms.map((room, i) => (
+              <FestivalAgenda.Room name={room.name} key={i}>
+                {room.ch_agenda_items.map(({ nb_meeting }) => {
+                  if (!nb_meeting) {
+                    return null;
+                  }
+
+                  const {
+                    id,
+                    name: title,
+                    description,
+                    // slug, // todo: meeting detail
+                    organizer,
+                    start_time,
+                    end_time,
+                  } = nb_meeting;
+
+                  return (
+                    <FestivalAgenda.Item
+                      key={id}
+                      time={`${formatHour(start_time, lang)} - ${formatHour(
+                        end_time,
+                        lang
+                      )}`}
+                      organizer={{ name: organizer.username }}
+                      title={title}
+                      description={description}
+                    />
+                  );
+                })}
+              </FestivalAgenda.Room>
+            ))}
+          </FestivalAgenda>
+        </>
+      )}
+    </>
+  );
+};
+
 interface SphereHomeProps extends Sphere {
   error?: never;
   spheres?: never;
@@ -164,99 +263,29 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
     );
   }, [lang, settings.locale, settings.sphereName, t]);
 
-  if (!festival) {
-    // TODO
-    return (
-      <Container py={4}>
-        TODO: Hey! There is no festival in this sphere. How should we display
-        this?
-      </Container>
-    );
-  }
-
   return (
     <ThemeProvider theme={settings.theme}>
-      <Fragment>
+      <>
         <HomepageBanner settings={settings} />
         <Container
-          mt={[0, -4]}
+          mt={[0, settings.content?.homepageBanner ? -4 : 4]}
           mb={[0, 5]}
           variant="sheet"
           sx={{ width: "containerThin", py: [3, 5], px: [2, 5] }}
         >
-          <Heading as="h1">{festival.name}</Heading>
-          <Spacer height={3} />
-          <FestivalDateTime
-            startTime={festival.start_time}
-            endTime={festival.end_time}
-          />
-          {introText}
-          {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
-          {isPast(new Date(festival.start_proposal)) &&
-            isFuture(new Date(festival.end_time)) && (
-              <section sx={{ my: 3 }}>
-                <Heading as="h2" size={3}>
-                  {t("propose-program")}
-                </Heading>
-                <ul>
-                  {festival.ch_wait_lists.map((waitlist) => (
-                    <li key={waitlist.id}>
-                      <Link
-                        href="/festival/[slug]/[waitlist]"
-                        as={`/festival/${festival.slug}/${waitlist.id}`}
-                        variant="underlined"
-                        sx={{ fontWeight: "bold" }}
-                      >
-                        {waitlist.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-          {isPast(new Date(festival.start_publication)) && (
-            <Fragment>
-              <Heading as="h2" sx={{ my: 4 }}>
-                {t("agenda")}
-              </Heading>
-              <FestivalAgenda id="agenda">
-                {festival.ch_rooms.map((room, i) => (
-                  <FestivalAgenda.Room name={room.name} key={i}>
-                    {room.ch_agenda_items.map(({ nb_meeting }) => {
-                      if (!nb_meeting) {
-                        return null;
-                      }
-
-                      const {
-                        id,
-                        name: title,
-                        description,
-                        // slug, // todo: meeting detail
-                        organizer,
-                        start_time,
-                        end_time,
-                      } = nb_meeting;
-
-                      return (
-                        <FestivalAgenda.Item
-                          key={id}
-                          time={`${formatHour(start_time, lang)} - ${formatHour(
-                            end_time,
-                            lang
-                          )}`}
-                          organizer={{ name: organizer.username }}
-                          title={title}
-                          description={description}
-                        />
-                      );
-                    })}
-                  </FestivalAgenda.Room>
-                ))}
-              </FestivalAgenda>
-            </Fragment>
+          {festival ? (
+            <FestivalPage
+              festival={festival}
+              introText={introText}
+              t={t}
+              lang={lang}
+            />
+          ) : (
+            // todo: sphere's "landing page"? a list of previous festivals if there are any?
+            introText
           )}
         </Container>
-      </Fragment>
+      </>
     </ThemeProvider>
   );
 }
@@ -277,7 +306,7 @@ function ErrorPage({ error }: ErrorPageProps) {
     <Container sx={{ py: 4, px: 1 }}>
       <Container variant="sheet">
         {error === "sphere-not-found" ? (
-          <Fragment>
+          <>
             {/* todo: add a cute "oopsie" message screen */}
             <p>{t("sphere-home-not-found")}</p>
             {process.env.NODE_ENV === "development" && (
@@ -287,7 +316,7 @@ function ErrorPage({ error }: ErrorPageProps) {
                 <small>This message won't land in the production build.</small>
               </Message>
             )}
-          </Fragment>
+          </>
         ) : null}
       </Container>
     </Container>

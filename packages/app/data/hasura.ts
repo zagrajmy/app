@@ -10,7 +10,7 @@ if (typeof fetch === "undefined") {
   Object.assign(globalThis, { fetch: globals.fetch });
 }
 
-const { HASURA_URL } = process.env;
+const HASURA_URL = process.env.NEXT_PUBLIC_HASURA_URL;
 
 type Instance = "localhost" | "production";
 

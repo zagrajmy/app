@@ -15,7 +15,7 @@ import type { Claims } from "../auth";
 import { useAppState } from "../store";
 import { useAppName } from "../store/useAppName";
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
-// import { Menu } from "./Menu";
+import { Menu } from "./Menu";
 import { NavLink } from "./NavLink";
 
 interface LanguagePickerProps
@@ -120,7 +120,7 @@ export const NavHeader = ({
               <NavLink href={`/${s}`}>{t(s)}</NavLink>
             </HeaderFooterListItem>
           ))}
-          {/* <HeaderFooterListItem>
+          <HeaderFooterListItem>
             {claims ? (
               <Menu claims={claims} />
             ) : (
@@ -145,7 +145,7 @@ export const NavHeader = ({
                 <div>{t("log-in")}</div>
               </Link>
             )}
-          </HeaderFooterListItem> */}
+          </HeaderFooterListItem>
         </ul>
       </nav>
     </header>
