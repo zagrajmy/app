@@ -1,5 +1,4 @@
 import * as E from "fp-ts/lib/Either";
-import { flow } from "fp-ts/lib/function";
 import { pipe } from "fp-ts/lib/pipeable";
 import * as TE from "fp-ts/lib/TaskEither";
 import * as t from "io-ts";
@@ -81,16 +80,12 @@ export default async function me(req: NextApiRequest, res: NextApiResponse) {
       case "PATCH":
         return ReqHandler.respond(
           pipe(
-            E.parseJSON(req.body, ReqHandler.Err(400)),
-            E.chain(
-              flow(
-                PatchMeRequestBody.decode,
-                E.mapLeft<t.Errors, ReqHandler.Err>((validationErrors) => ({
-                  status: 400,
-                  error: makeError(formatValidationErrors(validationErrors)),
-                }))
-              )
-            ),
+            req.body,
+            PatchMeRequestBody.decode,
+            E.mapLeft<t.Errors, ReqHandler.Err>((validationErrors) => ({
+              status: 400,
+              error: makeError(formatValidationErrors(validationErrors)),
+            })),
             TE.fromEither,
             TE.chain(({ locale }) => {
               if (locale) {
