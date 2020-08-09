@@ -153,14 +153,14 @@ interface FestivalPageProps {
   lang: SupportedLanguage;
 }
 const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
-  const canProposeProgram =
-    isPast(new Date(festival.start_proposal)) &&
-    isFuture(new Date(festival.end_time)); // todo: use `festival.end_proposal`
+  const startProposal = new Date(festival.start_proposal);
+  const endTime = new Date(festival.end_time);
+  const proposalEnd = endTime; // todo: use `festival.end_proposal`
+  const startPublication = new Date(festival.start_publication);
 
-  // @ts-expect-error
-  globalThis.django = zagrajmyRestApi;
-  globalThis.ZAGRAJMY_REST_API_URL =
-    process.env.NEXT_PUBLIC_ZAGRAJMY_REST_API_URL;
+  const canProposeProgram = isPast(startProposal) && isFuture(proposalEnd);
+  const canSeeAgenda = isPast(startPublication);
+  const agendaIsBeingPrepared = isPast(proposalEnd) && !canSeeAgenda;
 
   return (
     <>
@@ -171,7 +171,6 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
         endTime={festival.end_time}
       />
       {introText}
-      {/* todo: "zgłaszanie punktów programu otwarte od `start_proposal`" */}
       {canProposeProgram && (
         <section sx={{ my: 3 }}>
           <Heading as="h2" size={3}>
@@ -194,7 +193,7 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
           </ul>
         </section>
       )}
-      {isPast(new Date(festival.start_publication)) && (
+      {canSeeAgenda && (
         <>
           <Heading as="h2" sx={{ my: 4 }}>
             {t("agenda")}
@@ -233,6 +232,15 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
               </FestivalAgenda.Room>
             ))}
           </FestivalAgenda>
+        </>
+      )}
+      {agendaIsBeingPrepared && (
+        <>
+          {mdx(
+            t("festival-agenda-is-being-prepared", {
+              publicationStartDate: formatDate(startPublication, lang),
+            })
+          )}
         </>
       )}
     </>
