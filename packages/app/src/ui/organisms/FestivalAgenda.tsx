@@ -17,7 +17,7 @@ function FestivalAgendaItemTime({ children }: { children: string }) {
         flexShrink: 0,
         fontSize: 3,
         fontWeight: "bold",
-        color: ["gray.4", "gray.6"],
+        color: ["gray.4", "gray.5"],
         mb: 1,
         lineHeight: 1,
       }}
@@ -63,7 +63,7 @@ export interface FestivalAgendaRoomProps {
 FestivalAgenda.Room = ({ name, children }: FestivalAgendaRoomProps) => {
   return (
     <li id={slugify(name)}>
-      <Heading as="h3" sx={{ mb: 3, color: "gray.7" }}>
+      <Heading as="h3" sx={{ mb: 3, color: "gray.6" }}>
         {name}
       </Heading>
       <ol
@@ -100,11 +100,11 @@ FestivalAgenda.Item = ({
     <li sx={{ display: "flex", flexDirection: ["column", "row"] }}>
       <FestivalAgendaItemTime>{time}</FestivalAgendaItemTime>
       <div sx={{ overflowX: "hidden" }}>
-        <Heading as="h4" size={3} sx={{ color: "gray.6", mb: 2 }}>
+        <Heading as="h4" size={3} sx={{ color: "gray.5", mb: 2 }}>
           {title}
         </Heading>
         {organizer && (
-          <strong sx={{ color: "gray.9" }}>
+          <strong sx={{ color: "gray.8" }}>
             {organizer.name}
             {organizer.organization && ` · ${organizer.organization}`}
           </strong>

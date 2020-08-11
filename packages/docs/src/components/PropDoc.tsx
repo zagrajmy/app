@@ -14,7 +14,7 @@ export function PropDoc({ heading, description }: PropDocProps) {
   return (
     <>
       <components.h4 sx={{ fontFamily: "monospace" }}>
-        {name}:<span sx={{ color: "gray.7" }}>{annotation}</span>
+        {name}:<span sx={{ color: "gray.6" }}>{annotation}</span>
       </components.h4>
       {description && <p>{description}</p>}
     </>

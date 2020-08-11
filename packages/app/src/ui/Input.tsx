@@ -20,7 +20,7 @@ const overlayStyle = {
   minHeight: ICON_SIZE,
   width: ICON_SIZE,
   svg: {
-    stroke: "gray.7",
+    stroke: "gray.6",
   },
 } as const;
 

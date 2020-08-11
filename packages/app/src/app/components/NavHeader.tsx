@@ -138,7 +138,7 @@ export const NavHeader = ({
                   },
                   "&:hover > div": {
                     bg: "white",
-                    color: "gray.9",
+                    color: "gray.8",
                   },
                 }}
               >

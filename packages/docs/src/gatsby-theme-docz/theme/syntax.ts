@@ -10,9 +10,9 @@ export const syntaxStyles = {
     color: "primary",
   },
   ".selector, .attr-name, .builtin, .inserted": {
-    color: "gray.9",
+    color: "gray.8",
   },
   ".string,.char,.attr-value,.comment,.prolog,.doctype,.cdata,.punctuation,.operator,.entity,.url": {
-    color: "gray.7",
+    color: "gray.6",
   },
 };

@@ -24,7 +24,7 @@ export const NavSearch = (props: ComponentProps<"input">) => {
       <Search
         size={20}
         sx={{
-          color: "gray.5",
+          color: "gray.4",
           mr: 2,
         }}
       />
