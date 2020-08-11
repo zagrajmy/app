@@ -8,7 +8,7 @@ import { Flex, ThemeProvider } from "theme-ui";
 
 import { hasura } from "../data";
 import { order_by } from "../data/graphql-zeus";
-import { zagrajmyRestApi } from "../src/app/api-helpers/zagrajmyRestApi";
+// import { zagrajmyRestApi } from "../src/app/api-helpers/zagrajmyRestApi";
 import { CommonHead } from "../src/app/components/CommonHead";
 import { Page } from "../src/app/components/Page";
 import { detectSphere } from "../src/app/detectSphere";
@@ -122,13 +122,13 @@ const FestivalDateTime = ({ startTime, endTime }: FestivalDateTimeProps) => {
   return (
     <Stack row gap={2} align="center">
       <Flex>
-        <icons.Calendar size={18} sx={{ color: "gray.8" }} />
+        <icons.Calendar size={18} sx={{ color: "gray.7" }} />
       </Flex>
       <Flex
         sx={{
           transform: "translateY(0.5px)",
           whiteSpace: "pre",
-          color: "gray.9",
+          color: "gray.8",
         }}
       >
         {t("from")}

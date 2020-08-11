@@ -20,7 +20,6 @@ export const light = {
     "#f1eded",
     "#e6dfdf",
     "#dbd1d1",
-    "#cec1c1",
     "#c1afaf",
     "#b19b9b",
     "#9a8484",
@@ -42,13 +41,42 @@ export const light = {
 
 export type ColorScheme = typeof light;
 
+const dark: ColorScheme = {
+  text: "#fefefe",
+  background: "#202026",
+  primary: "#7f5af0",
+  primaryLight: "#7f5af0", // todo
+  primaryDark: "#7f5af0", // todo
+  secondary: "#2cb67d",
+  accent: "#2cb67d",
+  highlight: "#7f5af0", // TODO: 0.2 opacity
+  muted: "#fafafa",
+  gray: [
+    "#010101",
+    "#16161a",
+    "#202026",
+    "#2c2c34",
+    "#2c2c34",
+    "#2c2c34",
+    "#2c2c34",
+    "#2c2c34",
+    "#2c2c34",
+  ],
+  white: "#fefefe",
+  critical: "#fad9d9",
+  caution: "#f2f29f",
+  positive: "#50dc96",
+};
+
 export const colors = {
   ...light,
   ...deriveAdditionalColors(light),
+  // ...dark,
+  // ...deriveAdditionalColors(dark),
   modes: {
     dark: {
-      text: "#fff",
-      background: "#222",
+      ...dark,
+      ...deriveAdditionalColors(dark),
     },
   },
 };

@@ -28,7 +28,7 @@ export const MessageScreen = ({
           flex: 1,
           maxHeight: "100%",
           ".white": { fill: "transparent" },
-          ".black": { fill: "gray.9" },
+          ".black": { fill: "gray.8" },
           m: [1, 3],
         }}
       />

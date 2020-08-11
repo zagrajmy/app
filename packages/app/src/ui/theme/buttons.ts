@@ -51,7 +51,7 @@ export const buttons: Variants = {
       borderRadius: "round",
       width: "1.25em",
       height: "1.25em",
-      color: "gray.9",
+      color: "gray.8",
     },
     ":hover, :focus": {
       color: "text",

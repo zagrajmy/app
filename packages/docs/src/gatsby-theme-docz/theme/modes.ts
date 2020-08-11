@@ -10,15 +10,15 @@ export const light = {
   border: cx.gray[3],
   sidebar: {
     bg: cx.gray[2],
-    navGroup: cx.gray[9],
+    navGroup: cx.gray[8],
     navLink: cx.text,
     navLinkActive: cx.primary,
-    tocLink: cx.gray[7],
-    tocLinkActive: cx.gray[9],
+    tocLink: cx.gray[6],
+    tocLinkActive: cx.gray[8],
   },
   header: {
     bg: cx.gray[3],
-    text: cx.gray[8],
+    text: cx.gray[7],
     border: cx.gray[1],
     button: {
       bg: cx.primary,
@@ -27,10 +27,10 @@ export const light = {
   },
   props: {
     bg: cx.gray[1],
-    text: cx.gray[9],
+    text: cx.gray[8],
     highlight: cx.primary,
-    defaultValue: cx.gray[5],
-    descriptionText: cx.gray[8],
+    defaultValue: cx.gray[4],
+    descriptionText: cx.gray[7],
     descriptionBg: cx.white,
   },
   playground: {

@@ -393,7 +393,7 @@ export function ProgrammeProposalForm({
               <Heading
                 as="h3"
                 sx={{
-                  color: "gray.9",
+                  color: "gray.8",
                   borderBottom: "2px solid",
                   borderBottomColor: "gray.1",
                 }}

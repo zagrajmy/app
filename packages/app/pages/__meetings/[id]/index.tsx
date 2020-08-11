@@ -191,7 +191,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
             <Flex
               sx={{
                 alignItems: "center",
-                color: "gray.9",
+                color: "gray.8",
                 "@media (hover: hover)": {
                   "> button": {
                     opacity: 0.2,

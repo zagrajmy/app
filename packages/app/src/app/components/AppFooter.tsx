@@ -7,7 +7,7 @@ export const AppFooter = () => {
   const appName = useAppName();
 
   return (
-    <footer sx={{ bg: "gray.9", mt: "auto" }}>
+    <footer sx={{ bg: "gray.8", mt: "auto" }}>
       <ul
         sx={{
           height: "68px",
