@@ -337,6 +337,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_wait_list_aggregate"]
     ];
+    end_proposal?: true;
     end_time?: true;
     id?: true;
     name?: true;
@@ -411,6 +412,7 @@ export type ValueTypes = {
     ch_helpers?: ValueTypes["ch_helper_bool_exp"];
     ch_rooms?: ValueTypes["ch_room_bool_exp"];
     ch_wait_lists?: ValueTypes["ch_wait_list_bool_exp"];
+    end_proposal?: ValueTypes["timestamptz_comparison_exp"];
     end_time?: ValueTypes["timestamptz_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
@@ -441,6 +443,7 @@ export type ValueTypes = {
     ch_helpers?: ValueTypes["ch_helper_arr_rel_insert_input"];
     ch_rooms?: ValueTypes["ch_room_arr_rel_insert_input"];
     ch_wait_lists?: ValueTypes["ch_wait_list_arr_rel_insert_input"];
+    end_proposal?: ValueTypes["timestamptz"];
     end_time?: ValueTypes["timestamptz"];
     id?: number;
     name?: string;
@@ -454,6 +457,7 @@ export type ValueTypes = {
     status?: string;
   };
   ["ch_festival_max_fields"]: AliasType<{
+    end_proposal?: true;
     end_time?: true;
     id?: true;
     name?: true;
@@ -466,6 +470,7 @@ export type ValueTypes = {
     __typename?: true;
   }>;
   ["ch_festival_max_order_by"]: {
+    end_proposal?: ValueTypes["order_by"];
     end_time?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
@@ -477,6 +482,7 @@ export type ValueTypes = {
     status?: ValueTypes["order_by"];
   };
   ["ch_festival_min_fields"]: AliasType<{
+    end_proposal?: true;
     end_time?: true;
     id?: true;
     name?: true;
@@ -489,6 +495,7 @@ export type ValueTypes = {
     __typename?: true;
   }>;
   ["ch_festival_min_order_by"]: {
+    end_proposal?: ValueTypes["order_by"];
     end_time?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
@@ -517,6 +524,7 @@ export type ValueTypes = {
     ch_helpers_aggregate?: ValueTypes["ch_helper_aggregate_order_by"];
     ch_rooms_aggregate?: ValueTypes["ch_room_aggregate_order_by"];
     ch_wait_lists_aggregate?: ValueTypes["ch_wait_list_aggregate_order_by"];
+    end_proposal?: ValueTypes["order_by"];
     end_time?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
@@ -537,6 +545,7 @@ export type ValueTypes = {
   };
   ["ch_festival_select_column"]: ch_festival_select_column;
   ["ch_festival_set_input"]: {
+    end_proposal?: ValueTypes["timestamptz"];
     end_time?: ValueTypes["timestamptz"];
     id?: number;
     name?: string;
@@ -6059,6 +6068,7 @@ export type PartialObjects = {
     ch_rooms_aggregate?: PartialObjects["ch_room_aggregate"];
     ch_wait_lists?: PartialObjects["ch_wait_list"][];
     ch_wait_lists_aggregate?: PartialObjects["ch_wait_list_aggregate"];
+    end_proposal?: PartialObjects["timestamptz"];
     end_time?: PartialObjects["timestamptz"];
     id?: number;
     name?: string;
@@ -6126,6 +6136,7 @@ export type PartialObjects = {
     ch_helpers?: PartialObjects["ch_helper_bool_exp"];
     ch_rooms?: PartialObjects["ch_room_bool_exp"];
     ch_wait_lists?: PartialObjects["ch_wait_list_bool_exp"];
+    end_proposal?: PartialObjects["timestamptz_comparison_exp"];
     end_time?: PartialObjects["timestamptz_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
@@ -6156,6 +6167,7 @@ export type PartialObjects = {
     ch_helpers?: PartialObjects["ch_helper_arr_rel_insert_input"];
     ch_rooms?: PartialObjects["ch_room_arr_rel_insert_input"];
     ch_wait_lists?: PartialObjects["ch_wait_list_arr_rel_insert_input"];
+    end_proposal?: PartialObjects["timestamptz"];
     end_time?: PartialObjects["timestamptz"];
     id?: number;
     name?: string;
@@ -6170,6 +6182,7 @@ export type PartialObjects = {
   };
   ["ch_festival_max_fields"]: {
     __typename?: "ch_festival_max_fields";
+    end_proposal?: PartialObjects["timestamptz"];
     end_time?: PartialObjects["timestamptz"];
     id?: number;
     name?: string;
@@ -6181,6 +6194,7 @@ export type PartialObjects = {
     status?: string;
   };
   ["ch_festival_max_order_by"]: {
+    end_proposal?: PartialObjects["order_by"];
     end_time?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
@@ -6193,6 +6207,7 @@ export type PartialObjects = {
   };
   ["ch_festival_min_fields"]: {
     __typename?: "ch_festival_min_fields";
+    end_proposal?: PartialObjects["timestamptz"];
     end_time?: PartialObjects["timestamptz"];
     id?: number;
     name?: string;
@@ -6204,6 +6219,7 @@ export type PartialObjects = {
     status?: string;
   };
   ["ch_festival_min_order_by"]: {
+    end_proposal?: PartialObjects["order_by"];
     end_time?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
@@ -6232,6 +6248,7 @@ export type PartialObjects = {
     ch_helpers_aggregate?: PartialObjects["ch_helper_aggregate_order_by"];
     ch_rooms_aggregate?: PartialObjects["ch_room_aggregate_order_by"];
     ch_wait_lists_aggregate?: PartialObjects["ch_wait_list_aggregate_order_by"];
+    end_proposal?: PartialObjects["order_by"];
     end_time?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
@@ -6252,6 +6269,7 @@ export type PartialObjects = {
   };
   ["ch_festival_select_column"]: ch_festival_select_column;
   ["ch_festival_set_input"]: {
+    end_proposal?: PartialObjects["timestamptz"];
     end_time?: PartialObjects["timestamptz"];
     id?: number;
     name?: string;
@@ -11533,6 +11551,7 @@ export type ch_festival = {
   ch_rooms_aggregate: ch_room_aggregate;
   ch_wait_lists: ch_wait_list[];
   ch_wait_lists_aggregate: ch_wait_list_aggregate;
+  end_proposal?: timestamptz;
   end_time?: timestamptz;
   id: number;
   name: string;
@@ -11608,6 +11627,7 @@ export type ch_festival_bool_exp = {
   ch_helpers?: ch_helper_bool_exp;
   ch_rooms?: ch_room_bool_exp;
   ch_wait_lists?: ch_wait_list_bool_exp;
+  end_proposal?: timestamptz_comparison_exp;
   end_time?: timestamptz_comparison_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
@@ -11647,6 +11667,7 @@ export type ch_festival_insert_input = {
   ch_helpers?: ch_helper_arr_rel_insert_input;
   ch_rooms?: ch_room_arr_rel_insert_input;
   ch_wait_lists?: ch_wait_list_arr_rel_insert_input;
+  end_proposal?: timestamptz;
   end_time?: timestamptz;
   id?: number;
   name?: string;
@@ -11662,6 +11683,7 @@ export type ch_festival_insert_input = {
 
 export type ch_festival_max_fields = {
   __typename?: "ch_festival_max_fields";
+  end_proposal?: timestamptz;
   end_time?: timestamptz;
   id?: number;
   name?: string;
@@ -11674,6 +11696,7 @@ export type ch_festival_max_fields = {
 };
 
 export type ch_festival_max_order_by = {
+  end_proposal?: order_by;
   end_time?: order_by;
   id?: order_by;
   name?: order_by;
@@ -11687,6 +11710,7 @@ export type ch_festival_max_order_by = {
 
 export type ch_festival_min_fields = {
   __typename?: "ch_festival_min_fields";
+  end_proposal?: timestamptz;
   end_time?: timestamptz;
   id?: number;
   name?: string;
@@ -11699,6 +11723,7 @@ export type ch_festival_min_fields = {
 };
 
 export type ch_festival_min_order_by = {
+  end_proposal?: order_by;
   end_time?: order_by;
   id?: order_by;
   name?: order_by;
@@ -11731,6 +11756,7 @@ export type ch_festival_order_by = {
   ch_helpers_aggregate?: ch_helper_aggregate_order_by;
   ch_rooms_aggregate?: ch_room_aggregate_order_by;
   ch_wait_lists_aggregate?: ch_wait_list_aggregate_order_by;
+  end_proposal?: order_by;
   end_time?: order_by;
   id?: order_by;
   name?: order_by;
@@ -11753,6 +11779,7 @@ export type ch_festival_prepend_input = {
 };
 
 export enum ch_festival_select_column {
+  end_proposal = "end_proposal",
   end_time = "end_time",
   id = "id",
   name = "name",
@@ -11766,6 +11793,7 @@ export enum ch_festival_select_column {
 }
 
 export type ch_festival_set_input = {
+  end_proposal?: timestamptz;
   end_time?: timestamptz;
   id?: number;
   name?: string;
@@ -11823,6 +11851,7 @@ export type ch_festival_sum_order_by = {
 };
 
 export enum ch_festival_update_column {
+  end_proposal = "end_proposal",
   end_time = "end_time",
   id = "id",
   name = "name",
@@ -14146,7 +14175,7 @@ export type django_site_bool_exp = {
 };
 
 export enum django_site_constraint {
-  django_site_domain_a2e37b91_uniq = "django_site_domain_a2e37b91_uniq",
+  django_site_domain_key = "django_site_domain_key",
   django_site_pkey = "django_site_pkey",
 }
 
@@ -14513,7 +14542,6 @@ export type nb_guild_bool_exp = {
 };
 
 export enum nb_guild_constraint {
-  guild_unique_slug = "guild_unique_slug",
   nb_guild_pkey = "nb_guild_pkey",
 }
 
@@ -14626,7 +14654,6 @@ export type nb_guild_member_bool_exp = {
 };
 
 export enum nb_guild_member_constraint {
-  guildmember_unique_guild_and_user = "guildmember_unique_guild_and_user",
   nb_guild_member_pkey = "nb_guild_member_pkey",
 }
 
@@ -15054,8 +15081,6 @@ export type nb_meeting_bool_exp = {
 };
 
 export enum nb_meeting_constraint {
-  meeting_unique_slug_in_guild = "meeting_unique_slug_in_guild",
-  meeting_unique_slug_in_sphere = "meeting_unique_slug_in_sphere",
   nb_meeting_pkey = "nb_meeting_pkey",
 }
 
@@ -17392,6 +17417,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    end_proposal: {
+      type: "timestamptz_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     end_time: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -17517,6 +17548,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    end_proposal: {
+      type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     end_time: {
       type: "timestamptz",
       array: false,
@@ -17585,6 +17622,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_festival_max_order_by: {
+    end_proposal: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     end_time: {
       type: "order_by",
       array: false,
@@ -17641,6 +17684,12 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_festival_min_order_by: {
+    end_proposal: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     end_time: {
       type: "order_by",
       array: false,
@@ -17749,6 +17798,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    end_proposal: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     end_time: {
       type: "order_by",
       array: false,
@@ -17834,6 +17889,12 @@ export const AllTypesProps: Record<string, any> = {
   },
   ch_festival_select_column: "enum",
   ch_festival_set_input: {
+    end_proposal: {
+      type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     end_time: {
       type: "timestamptz",
       array: false,
@@ -32212,6 +32273,7 @@ export const ReturnTypes: Record<string, any> = {
     ch_rooms_aggregate: "ch_room_aggregate",
     ch_wait_lists: "ch_wait_list",
     ch_wait_lists_aggregate: "ch_wait_list_aggregate",
+    end_proposal: "timestamptz",
     end_time: "timestamptz",
     id: "Int",
     name: "String",
@@ -32246,6 +32308,7 @@ export const ReturnTypes: Record<string, any> = {
     sphere_id: "Float",
   },
   ch_festival_max_fields: {
+    end_proposal: "timestamptz",
     end_time: "timestamptz",
     id: "Int",
     name: "String",
@@ -32257,6 +32320,7 @@ export const ReturnTypes: Record<string, any> = {
     status: "String",
   },
   ch_festival_min_fields: {
+    end_proposal: "timestamptz",
     end_time: "timestamptz",
     id: "Int",
     name: "String",

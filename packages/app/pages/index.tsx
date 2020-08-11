@@ -69,6 +69,7 @@ function fetchSphereData(
               start_time: true, // for display only
               start_publication: true, // we show the agenda after this time
               start_proposal: true, // show forms after this
+              end_proposal: true,
               end_time: true, // stop showing forms after this
               settings: [{}, true],
               slug: true,
@@ -153,13 +154,12 @@ interface FestivalPageProps {
   lang: SupportedLanguage;
 }
 const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
-  const startProposal = new Date(festival.start_proposal);
-  const endTime = new Date(festival.end_time);
-  const proposalEnd = endTime; // todo: use `festival.end_proposal`
-  const startPublication = new Date(festival.start_publication);
+  const proposalStart = new Date(festival.start_proposal);
+  const proposalEnd = new Date(festival.end_proposal);
+  const publicationStart = new Date(festival.start_publication);
 
-  const canProposeProgram = isPast(startProposal) && isFuture(proposalEnd);
-  const canSeeAgenda = isPast(startPublication);
+  const canProposeProgram = isPast(proposalStart) && isFuture(proposalEnd);
+  const canSeeAgenda = isPast(publicationStart);
   const agendaIsBeingPrepared = isPast(proposalEnd) && !canSeeAgenda;
 
   return (
@@ -238,7 +238,7 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
         <>
           {mdx(
             t("festival-agenda-is-being-prepared", {
-              publicationStartDate: formatDate(startPublication, lang),
+              publicationStartDate: formatDate(publicationStart, lang),
             })
           )}
         </>

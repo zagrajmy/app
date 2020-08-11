@@ -499,6 +499,7 @@ type ch_festival {
     # filter the rows returned
     where: ch_wait_list_bool_exp
   ): ch_wait_list_aggregate!
+  end_proposal: timestamptz
   end_time: timestamptz
   id: Int!
   name: String!
@@ -584,6 +585,7 @@ input ch_festival_bool_exp {
   ch_helpers: ch_helper_bool_exp
   ch_rooms: ch_room_bool_exp
   ch_wait_lists: ch_wait_list_bool_exp
+  end_proposal: timestamptz_comparison_exp
   end_time: timestamptz_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
@@ -633,6 +635,7 @@ input ch_festival_insert_input {
   ch_helpers: ch_helper_arr_rel_insert_input
   ch_rooms: ch_room_arr_rel_insert_input
   ch_wait_lists: ch_wait_list_arr_rel_insert_input
+  end_proposal: timestamptz
   end_time: timestamptz
   id: Int
   name: String
@@ -648,6 +651,7 @@ input ch_festival_insert_input {
 
 # aggregate max on columns
 type ch_festival_max_fields {
+  end_proposal: timestamptz
   end_time: timestamptz
   id: Int
   name: String
@@ -661,6 +665,7 @@ type ch_festival_max_fields {
 
 # order by max() on columns of table "ch_festival"
 input ch_festival_max_order_by {
+  end_proposal: order_by
   end_time: order_by
   id: order_by
   name: order_by
@@ -674,6 +679,7 @@ input ch_festival_max_order_by {
 
 # aggregate min on columns
 type ch_festival_min_fields {
+  end_proposal: timestamptz
   end_time: timestamptz
   id: Int
   name: String
@@ -687,6 +693,7 @@ type ch_festival_min_fields {
 
 # order by min() on columns of table "ch_festival"
 input ch_festival_min_order_by {
+  end_proposal: order_by
   end_time: order_by
   id: order_by
   name: order_by
@@ -725,6 +732,7 @@ input ch_festival_order_by {
   ch_helpers_aggregate: ch_helper_aggregate_order_by
   ch_rooms_aggregate: ch_room_aggregate_order_by
   ch_wait_lists_aggregate: ch_wait_list_aggregate_order_by
+  end_proposal: order_by
   end_time: order_by
   id: order_by
   name: order_by
@@ -750,6 +758,9 @@ input ch_festival_prepend_input {
 
 # select columns of table "ch_festival"
 enum ch_festival_select_column {
+  # column name
+  end_proposal
+
   # column name
   end_time
 
@@ -783,6 +794,7 @@ enum ch_festival_select_column {
 
 # input type for updating data in table "ch_festival"
 input ch_festival_set_input {
+  end_proposal: timestamptz
   end_time: timestamptz
   id: Int
   name: String
@@ -845,6 +857,9 @@ input ch_festival_sum_order_by {
 
 # update columns of table "ch_festival"
 enum ch_festival_update_column {
+  # column name
+  end_proposal
+
   # column name
   end_time
 
@@ -4047,7 +4062,7 @@ input django_site_bool_exp {
 # unique or primary key constraints on table "django_site"
 enum django_site_constraint {
   # unique or primary key constraint
-  django_site_domain_a2e37b91_uniq
+  django_site_domain_key
 
   # unique or primary key constraint
   django_site_pkey
@@ -5352,9 +5367,6 @@ input nb_guild_bool_exp {
 # unique or primary key constraints on table "nb_guild"
 enum nb_guild_constraint {
   # unique or primary key constraint
-  guild_unique_slug
-
-  # unique or primary key constraint
   nb_guild_pkey
 }
 
@@ -5478,9 +5490,6 @@ input nb_guild_member_bool_exp {
 
 # unique or primary key constraints on table "nb_guild_member"
 enum nb_guild_member_constraint {
-  # unique or primary key constraint
-  guildmember_unique_guild_and_user
-
   # unique or primary key constraint
   nb_guild_member_pkey
 }
@@ -6035,12 +6044,6 @@ input nb_meeting_bool_exp {
 
 # unique or primary key constraints on table "nb_meeting"
 enum nb_meeting_constraint {
-  # unique or primary key constraint
-  meeting_unique_slug_in_guild
-
-  # unique or primary key constraint
-  meeting_unique_slug_in_sphere
-
   # unique or primary key constraint
   nb_meeting_pkey
 }
