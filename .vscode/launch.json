@@ -26,11 +26,12 @@
       "type": "node",
       "request": "launch",
       "protocol": "inspector",
-      "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby",
+      "program": "${workspaceRoot}/node_modules/.bin/gatsby",
       "cwd": "${workspaceFolder}/packages/docs",
       "args": ["develop"],
-      "stopOnEntry": false,
       "runtimeArgs": ["--nolazy", "--inspect-brk"],
+      "autoAttachChildProcesses": true,
+      "stopOnEntry": false,
       "sourceMaps": false
     },
     {
@@ -38,12 +39,12 @@
       "type": "node",
       "request": "launch",
       "protocol": "inspector",
-      "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby",
+      "program": "${workspaceRoot}/node_modules/.bin/gatsby",
       "cwd": "${workspaceFolder}/packages/docs",
       "args": ["build"],
       "stopOnEntry": false,
       "runtimeArgs": ["--nolazy"],
-      "sourceMaps": false
+      "sourceMaps": false,
     }
   ]
 }
