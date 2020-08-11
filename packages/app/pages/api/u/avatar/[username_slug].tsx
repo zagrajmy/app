@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
+// TODO: Gravatar?
 export default async function avatar(
   req: NextApiRequest,
   res: NextApiResponse
@@ -12,11 +13,11 @@ export default async function avatar(
     "https://www.tinygraphs.com/spaceinvaders/" +
     `${username_slug}?theme=heatwave&numcolors=4&size=220&fmt=svg`;
   try {
-    const gravatarResponse = await fetch(
+    const unavatarResponse = await fetch(
       `https://unavatar.now.sh/facebook/${username_slug}?json&fallback=false`
     ).then((r) => r.json());
 
-    userAvatar = gravatarResponse.url || userAvatar;
+    userAvatar = unavatarResponse.url || userAvatar;
   } catch {
     // nah, we don't care
   }
