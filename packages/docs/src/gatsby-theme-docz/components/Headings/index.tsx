@@ -1,10 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import { Heading } from "@zagrajmy/app";
 import { ComponentPropsWithoutRef } from "react";
 import { useThemeUI } from "theme-ui";
 
 import { getCurrentHash } from "../../getCurrentHash";
+
+const activeStyle = { backgroundColor: "gray.2", borderRadius: "rounded" };
 
 const heading = (Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") => {
   const Component = (props: ComponentPropsWithoutRef<"h1">) => {
@@ -21,12 +22,8 @@ const heading = (Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") => {
           sx={{
             color: "inherit",
             textDecoration: "none",
-            ":hover": {
-              textDecoration: "underline",
-            },
-            ...(hash === getCurrentHash()
-              ? { backgroundColor: "gray.2", borderRadius: "rounded" }
-              : {}),
+            ":hover": activeStyle,
+            ...(hash === getCurrentHash() ? activeStyle : {}),
           }}
         >
           {props.children}

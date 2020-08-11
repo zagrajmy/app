@@ -49,7 +49,7 @@ function usePersistedQueryParameter(
 export interface LinkProps extends BaseLinkProps {
   variant?: "button" | "buttons.secondary" | keyof ExactTheme["links"];
 }
-export const Link = ({ variant, ...rest }: LinkProps) => {
+export const Link = ({ variant, sx, ...rest }: LinkProps) => {
   // links can use variants from `theme.links`, "button" and "buttons.secondary"
   const { theme } = useTheme();
   const variantStyles =
@@ -60,6 +60,12 @@ export const Link = ({ variant, ...rest }: LinkProps) => {
       : variant === "buttons.secondary"
       ? theme.buttons.secondary
       : theme.links[variant];
+  const styles = sx
+    ? {
+        ...variantStyles,
+        ...sx,
+      }
+    : variantStyles;
 
   // if query params contain `__dev_sphere_domain`, we pass it further
   const newUrl = usePersistedQueryParameter(
@@ -69,7 +75,7 @@ export const Link = ({ variant, ...rest }: LinkProps) => {
 
   // external URLs are mapped to `a` instead of Next `Link`
   if (typeof rest.href === "string" && rest.href.match(/^https?:\/\//)) {
-    return <a sx={variantStyles} {...rest} href={rest.href as string} />;
+    return <a sx={styles} {...rest} href={rest.href as string} />;
   }
 
   /* eslint-disable no-param-reassign */
@@ -79,5 +85,5 @@ export const Link = ({ variant, ...rest }: LinkProps) => {
     rest.href = newUrl;
   }
 
-  return <BaseLink sx={variantStyles} {...rest} />;
+  return <BaseLink sx={styles} {...rest} />;
 };

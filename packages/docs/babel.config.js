@@ -5,7 +5,7 @@ module.exports = {
       "@babel/plugin-transform-react-jsx",
       {
         pragma: "jsx",
-        pragmaFrag: "React.Fragment",
+        pragmaFrag: "Fragment",
       },
     ],
     [

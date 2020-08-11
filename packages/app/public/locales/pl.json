@@ -52,5 +52,8 @@
   "it-wasnt-supposed-to-happen-error-message": "Trochę słabo. Przepraszamy!<br />Zarejestrowaliśmy już ten błąd i zaraz się za niego zabierzemy.",
   "brb-down-for-maintenance": "Zaraz wracam 🚧",
   "brb-down-for-maintenance-error-message": "Przeprowadzamy krótkie prace konserwacyjne. To nie powinno trwać dłużej niż 5 minut.",
-  "festival-agenda-is-being-prepared": "## Już wkrótce!\n\nOtrzymaliśmy masę świetnych propozycji programu i potrzebujemy chwilki żeby dopracować szczegóły.\n\nProgram wydarzenia zostanie ogłoszony <Text as='strong' variant='bold'>{{publicationStartDate}}</Text>."
+  "festival-agenda-is-being-prepared": "## Już wkrótce!\n\nOtrzymaliśmy masę świetnych propozycji programu i potrzebujemy chwilki żeby dopracować szczegóły.\n\nProgram wydarzenia zostanie ogłoszony <Text as='strong' variant='bold'>{{publicationStartDate}}</Text>.",
+  "meeting-participant_2": "uczestników spotkania",
+  "meeting-participant_0": "uczestnik spotkania",
+  "meeting-participant_1": "uczestnicy spotkania"
 }
