@@ -4,6 +4,7 @@ route: /ui/Avatar
 menu: Atomic Components
 ---
 
+import { Box } from "theme-ui";
 import { Playground, Props } from "docz";
 import { Avatar } from "./Avatar";
 
@@ -15,6 +16,18 @@ import { Avatar } from "./Avatar";
     title="hasparus"
     src="http://zagrajmy.net/api/u/avatar/hasparus"
   />
+</Playground>
+
+## Bordered
+
+<Playground>
+  <Box sx={{ bg: "gray.5", display: "inline-flex", p: 2 }}>
+    <Avatar
+      title="hasparus"
+      src="http://zagrajmy.net/api/u/avatar/hasparus"
+      bordered
+    />
+  </Box>
 </Playground>
 
 ## Invalid `src`
