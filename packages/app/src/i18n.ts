@@ -1,3 +1,19 @@
+/**
+ * # Plurals:
+ *
+ * @see https://www.i18next.com/translation-function/plurals#languages-with-multiple-plurals
+ * @see https://jsfiddle.net/sm9wgLze
+ *
+ * pl:
+ *  "goat_2": "{{count}} kóz" // 0 kóz, 5 kóz, 9 kóz
+ *  "goat_0": "{{count}} koza" // 1 koza
+ *  "goat_1": "{{count}} kozy" // 2 kozy
+ *
+ * en:
+ *  "goat": "{{count}} goat" // 1 goat
+ *  "goat_plural": "{{count}} goats" // 0 goats, 2 goats
+ */
+
 import { format, formatRelative } from "date-fns";
 import { enUS, pl } from "date-fns/locale";
 import i18n, { ResourceLanguage } from "i18next";
