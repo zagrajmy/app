@@ -124,26 +124,27 @@ export const NavHeader = ({
             {claims ? (
               <Menu claims={claims} />
             ) : (
-              <Link
-                href="/api/login"
-                sx={{
-                  display: "block",
-                  p: "0.35em 0.15em",
-                  cursor: "pointer",
-                  "& > div": {
-                    border: "1px solid",
-                    borderColor: alpha("white", 0.2),
-                    borderRadius: "rounded",
-                    padding: "0.4em 0.6em",
-                  },
-                  "&:hover > div": {
-                    bg: "white",
-                    color: "gray.8",
-                  },
-                }}
-              >
-                <div>{t("log-in")}</div>
-              </Link>
+              <></>
+              // <Link
+              //   href="/api/login"
+              //   sx={{
+              //     display: "block",
+              //     p: "0.35em 0.15em",
+              //     cursor: "pointer",
+              //     "& > div": {
+              //       border: "1px solid",
+              //       borderColor: alpha("white", 0.2),
+              //       borderRadius: "rounded",
+              //       padding: "0.4em 0.6em",
+              //     },
+              //     "&:hover > div": {
+              //       bg: "white",
+              //       color: "gray.8",
+              //     },
+              //   }}
+              // >
+              //   <div>{t("log-in")}</div>
+              // </Link>
             )}
           </HeaderFooterListItem>
         </ul>
