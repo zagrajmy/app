@@ -4,6 +4,7 @@ import {
   AvatarProps as ThemeUIAvatarProps,
   Box,
   BoxProps,
+  ThemeUIStyleObject,
 } from "theme-ui";
 
 import { noop } from "../lib";
