@@ -6,7 +6,7 @@ import { parseCookies } from "nookies";
 
 import * as generated from "../../data/graphql-zeus";
 import { Db, hasura } from "../../data/hasura";
-import { zagrajmyRestApi } from "../../src/app/api-helpers/zagrajmyRestApi";
+// import { zagrajmyRestApi } from "../../src/app/api-helpers/zagrajmyRestApi";
 import { auth } from "../../src/app/auth";
 
 const queryUserByEmail = (db: Db) => (email: string) =>
