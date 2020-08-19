@@ -1,32 +1,19 @@
-import { NextPageContext } from "next";
-import { useRouter } from "next/router";
+import { GetServerSideProps, NextPageContext } from "next";
 import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import useSWR from "swr";
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Input,
-  Text,
-  Textarea,
-} from "theme-ui";
+import { Box, Button, Flex, Heading, Input, Text, Textarea } from "theme-ui";
 
 import { hasura } from "../../../data";
 import { AsyncReturnType } from "../../../src";
 import { MeetingDetailsImage, Page } from "../../../src/app/components";
 import { getAvatarUrl } from "../../../src/app/getAvatarUrl";
-import {
-  Container,
-  Dl,
-  FormDatepicker,
-  Link,
-  LinkProps,
-} from "../../../src/ui";
-import { CheckSquare, Edit } from "../../../src/ui/icons";
+import { Avatar } from "../../../src/ui/Avatar";
+import { Container } from "../../../src/ui/Container";
+import { FormDatepicker } from "../../../src/ui/FormDatepicker";
+import { Link, LinkProps } from "../../../src/ui/Link";
+
+// import { CheckSquare, Edit } from "../../../src/ui/icons";
 
 /**
  * @deprecated
@@ -56,7 +43,7 @@ function queryMeeting(ctx: {
         {
           id: true,
           organizer: { username: true, email: true },
-          participants: [{}, { participant: { name: true, email: true } }],
+          participants: [{}, { cr_user: { username: true, email: true } }],
           name: true,
           description: true,
           image: true,
@@ -84,40 +71,40 @@ const LinkToAuthor = ({ children, meeting, ...rest }: LinkToAuthorProps) => (
   </Link>
 );
 
-interface EditMeetingButtonProps {
-  isEditing: boolean;
-  onStartEdit: React.ReactEventHandler;
-  onFinishEdit: React.ReactEventHandler;
-}
-const EditMeetingButton = ({
-  isEditing,
-  onStartEdit,
-  onFinishEdit,
-  ...rest
-}: EditMeetingButtonProps) => {
-  const props = {
-    title: "Edit meeting",
-    ...rest,
-  };
+// interface EditMeetingButtonProps {
+//   isEditing: boolean;
+//   onStartEdit: React.ReactEventHandler;
+//   onFinishEdit: React.ReactEventHandler;
+// }
+// const EditMeetingButton = ({
+//   isEditing,
+//   onStartEdit,
+//   onFinishEdit,
+//   ...rest
+// }: EditMeetingButtonProps) => {
+//   const props = {
+//     title: "Edit meeting",
+//     ...rest,
+//   };
 
-  return isEditing ? (
-    <Button type="button" onClick={onFinishEdit} {...props}>
-      Confirm
-      <CheckSquare
-        size={18}
-        sx={{
-          ml: 2,
-          verticalAlign: "text-bottom",
-        }}
-      />
-    </Button>
-  ) : (
-    <Button type="button" onClick={onStartEdit} {...props}>
-      Edit
-      <Edit size={18} sx={{ ml: 2, verticalAlign: "text-bottom" }} />
-    </Button>
-  );
-};
+//   return isEditing ? (
+//     <Button type="button" onClick={onFinishEdit} {...props}>
+//       Confirm
+//       <CheckSquare
+//         size={18}
+//         sx={{
+//           ml: 2,
+//           verticalAlign: "text-bottom",
+//         }}
+//       />
+//     </Button>
+//   ) : (
+//     <Button type="button" onClick={onStartEdit} {...props}>
+//       Edit
+//       <Edit size={18} sx={{ ml: 2, verticalAlign: "text-bottom" }} />
+//     </Button>
+//   );
+// };
 
 type QueriedData = AsyncReturnType<typeof queryMeeting>;
 interface InitialProps {
@@ -125,10 +112,12 @@ interface InitialProps {
 }
 
 export function MeetingDetailsPage({ initialData }: InitialProps) {
-  const { query } = useRouter();
+  // const { query } = useRouter();
   const { t } = useTranslation();
 
-  const { data } = useSWR([{ query }], queryMeeting, { initialData });
+  // TODO: https://trello.com/c/4L5vkkSI/38-zapisywanie-si%C4%99-na-sesje
+  // const { data } = useSWR([{ query }], queryMeeting, { initialData });
+  const data = initialData;
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -161,7 +150,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
     <Page>
       {meeting.image ? (
         <>
-          <MeetingDetailsImage src={meeting.image} />
+          <MeetingDetailsImage image={meeting.image} />
           <Box pt={4} />
         </>
       ) : (
@@ -181,10 +170,9 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
       <Container
         variant="sheet"
         as={isEditing ? "form" : "article"}
-        // as="form"
         ref={formRef as any /* as React.Ref<HTMLFormElement> */}
         onSubmit={onSubmit}
-        sx={{ mt: 0, mb: 4 }}
+        sx={{ mt: meeting.image ? -4 : 0, mb: 4, width: "containerThin" }}
       >
         <header>
           <Flex sx={{ alignItems: "center" }}>
@@ -215,7 +203,8 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
               )}
             </Flex>
             <div role="group" sx={{ marginLeft: "auto" }}>
-              <EditMeetingButton
+              {/* TODO: https://trello.com/c/4L5vkkSI/38-zapisywanie-si%C4%99-na-sesje */}
+              {/* <EditMeetingButton
                 isEditing={isEditing}
                 onStartEdit={() => setIsEditing(true)}
                 onFinishEdit={() => {
@@ -223,7 +212,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
                     formRef.current.dispatchEvent(new Event("submit"));
                   }
                 }}
-              />
+              /> */}
             </div>
           </Flex>
           {isEditing ? (
@@ -256,23 +245,24 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
           )}
 
           <Flex mb={3} sx={{ flexDirection: "row", alignItems: "center" }}>
-            <LinkToAuthor meeting={meeting}>
-              <Avatar
-                src={getAvatarUrl(meeting.organizer) || ""}
-                bg="primaryDark"
-                sx={{
-                  borderRadius: "50%",
-                }}
-              />
-            </LinkToAuthor>
-            <div sx={{ ml: 2, fontSize: 3 }}>
+            {/* <LinkToAuthor meeting={meeting}> */}
+            <Avatar
+              src={getAvatarUrl(meeting.organizer) || ""}
+              bg="primaryDark"
+              size={40}
+            />
+            {/* </LinkToAuthor> */}
+            <div sx={{ m: 3 }}>
               <Text as="span">Hosted by </Text>
-              <LinkToAuthor variant="underlined" meeting={meeting}>
-                {meeting.organizer.username}
-              </LinkToAuthor>
+              {/* <LinkToAuthor variant="underlined" meeting={meeting}> */}
+              {meeting.organizer.username}
+              {/* </LinkToAuthor> */}
             </div>
           </Flex>
         </header>
+        {/* 
+        TODO: Show metadata only to organizer, admin and helpers.
+              Maybe in a disclosure or <details> element?
         <Dl sx={{ mt: 2 }}>
           <dt>{t("published-at")}</dt>
           <dd>
@@ -285,11 +275,9 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
             {meeting.created_at &&
               new Date(meeting.created_at).toLocaleString("pl-PL")}
           </dd>
-        </Dl>
+        </Dl> 
+        */}
         <section sx={{ mt: 3 }}>
-          <Heading as="h3" sx={{ fontSize: 3, mb: 2 }}>
-            {t("meeting-description")}
-          </Heading>
           {isEditing ? (
             <Textarea
               rows={5}
@@ -298,7 +286,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
               ref={form.register()}
             />
           ) : (
-            <p sx={{ mt: 0 }}>{description}</p>
+            <p sx={{ mt: 0, whiteSpace: "pre-line" }}>{description}</p>
           )}
         </section>
       </Container>
@@ -306,11 +294,13 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
   );
 }
 
-MeetingDetailsPage.getInitialProps = async (
-  ctx: NextPageContext
-): Promise<InitialProps> => {
+export const getServerSideProps: GetServerSideProps<InitialProps> = async (
+  ctx
+) => {
   return queryMeeting(ctx).then(({ meeting }) => ({
-    initialData: meeting && { meeting },
+    props: {
+      initialData: meeting && { meeting },
+    },
   }));
 };
 
