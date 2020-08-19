@@ -24,6 +24,7 @@ import { AsyncReturnType } from "../src/lib/utilityTypes";
 import {
   Code,
   Container,
+  ContainerProps,
   Heading,
   Image,
   Link,
@@ -147,13 +148,19 @@ const FestivalDateTime = ({ startTime, endTime }: FestivalDateTimeProps) => {
   );
 };
 
-interface FestivalPageProps {
+interface FestivalPageProps extends ContainerProps {
   festival: Festival;
   introText: React.ReactNode;
   t: TFunction;
   lang: SupportedLanguage;
 }
-const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
+const FestivalPage = ({
+  festival,
+  introText,
+  t,
+  lang,
+  ...rest
+}: FestivalPageProps) => {
   const proposalStart = new Date(festival.start_proposal);
   const proposalEnd = new Date(festival.end_proposal);
   const publicationStart = new Date(festival.start_publication);
@@ -163,7 +170,7 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
   const agendaIsBeingPrepared = isPast(proposalEnd) && !canSeeAgenda;
 
   return (
-    <>
+    <Container {...rest} sx={{ width: "container" }}>
       <Heading as="h1">{festival.name}</Heading>
       <Spacer height={3} />
       <FestivalDateTime
@@ -226,6 +233,13 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
                       organizer={{ name: organizer.username }}
                       title={title}
                       description={description}
+                      renderLink={(props) => (
+                        <Link
+                          href="/meetings/[id]"
+                          as={`/meetings/${id}`}
+                          {...props}
+                        />
+                      )}
                     />
                   );
                 })}
@@ -243,7 +257,7 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
           )}
         </>
       )}
-    </>
+    </Container>
   );
 };
 
@@ -271,28 +285,32 @@ function SphereHome({ ch_festivals }: SphereHomeProps) {
     );
   }, [lang, settings.locale, settings.sphereName, t]);
 
+  const containerProps: ContainerProps = {
+    mt: [0, settings.content?.homepageBanner ? -4 : 4],
+    mb: [0, 5],
+    py: [3, 5],
+    px: [2, 5],
+    variant: "sheet",
+  };
+
   return (
     <ThemeProvider theme={settings.theme}>
       <>
         <HomepageBanner settings={settings} />
-        <Container
-          mt={[0, settings.content?.homepageBanner ? -4 : 4]}
-          mb={[0, 5]}
-          variant="sheet"
-          sx={{ width: "containerThin", py: [3, 5], px: [2, 5] }}
-        >
-          {festival ? (
-            <FestivalPage
-              festival={festival}
-              introText={introText}
-              t={t}
-              lang={lang}
-            />
-          ) : (
-            // todo: sphere's "landing page"? a list of previous festivals if there are any?
-            introText
-          )}
-        </Container>
+        {festival ? (
+          <FestivalPage
+            {...containerProps}
+            festival={festival}
+            introText={introText}
+            t={t}
+            lang={lang}
+          />
+        ) : (
+          // todo: sphere's "landing page"? a list of previous festivals if there are any?
+          <Container {...containerProps} sx={{ width: "containerThin" }}>
+            {introText}
+          </Container>
+        )}
       </>
     </ThemeProvider>
   );

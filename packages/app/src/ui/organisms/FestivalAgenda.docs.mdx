@@ -6,6 +6,7 @@ menu: Organisms
 
 import { Playground, Props } from "docz";
 import { Heading } from "../Heading";
+import { Link } from "../Link";
 
 import { FestivalAgenda } from "./FestivalAgenda";
 
@@ -20,11 +21,13 @@ import { FestivalAgenda } from "./FestivalAgenda";
         organizer={{ name: "Paul Kubrick" }}
         title="Agenda & Principles in PbtA Games"
         description={`Apocalypse World szturmem wbił się na arenę niezależnych gier RPG prezentując nowe podejście do grania narracyjnego. Od tego czasu powstało wiele gier bazując na jego podstawowych założeniach. Przyjrzymy się zasadom dla Mistrza Ceremonii z najbardziej popularnych gier na licencji Apocalypse World.`}
+        renderLink={(props) => <Link href="#" {...props} />}
       />
       <FestivalAgenda.Item
         time="15:00 - 16:00"
         organizer={{ name: "Dirk 'Draco' Dunkins" }}
         title="Mechs vs Kaiju, a new setting for FATE Core"
+        renderLink={(props) => <Link href="#" {...props} />}
       />
       <FestivalAgenda.Item time="16:00 - 17:30" title="Networking Break" />
       <FestivalAgenda.Item
@@ -37,6 +40,7 @@ import { FestivalAgenda } from "./FestivalAgenda";
           Motywy, metafory, przenośnie, memy - są dla nas pomocą nie tylko przy opisach, ale również przy wymyślaniu scenariuszy i sięganiu po niesztampowe rozwiązania, które wyprowadzą graczy i MG z utartych torów ich myślenia.
           
           Gdzie je znaleźć, jak je wykorzystać i na co przy tym uważać? O tym opowiem na mojej prelekcji.`}
+        renderLink={(props) => <Link href="#" {...props} />}
       />
     </FestivalAgenda.Room>
     <FestivalAgenda.Room name="Manga Room">
@@ -44,6 +48,7 @@ import { FestivalAgenda } from "./FestivalAgenda";
         time="14:00 - 15:00"
         organizer={{ name: "Dirk 'Draco' Dunkins" }}
         title="Character arcs in Naruto"
+        renderLink={(props) => <Link href="#" {...props} />}
       />
     </FestivalAgenda.Room>
     <FestivalAgenda.Room name="Game Room">
@@ -58,6 +63,7 @@ import { FestivalAgenda } from "./FestivalAgenda";
                       Gracze: 5, mogą być początkujący, PEGI 12
                       Opis: Dungeon World Little Prep One Shot
                       Uwagi: Można przynieść postacie, ja też przyniosę kilka dla graczy do wzięcia/zmutowania.`}
+        renderLink={(props) => <Link href="#" {...props} />}
       />
     </FestivalAgenda.Room>
   </FestivalAgenda>

@@ -2,6 +2,12 @@ import { ThemeUIStyleObject } from "theme-ui";
 
 import { slugify } from "../../lib/slugify";
 import { Heading } from "../Heading";
+import { Link, LinkProps } from "../Link";
+
+type LinkStylingProps = Pick<
+  LinkProps,
+  "variant" | "className" | "sx" | "children"
+>;
 
 const listStyles: ThemeUIStyleObject = {
   listStyle: "none",
@@ -89,19 +95,27 @@ export interface FestivalAgendaItemProps {
     organization?: string;
   };
   description?: string;
+  renderLink?: (props: LinkStylingProps) => JSX.Element;
 }
 FestivalAgenda.Item = ({
   time,
   organizer,
   title,
   description,
+  renderLink,
 }: FestivalAgendaItemProps) => {
   return (
     <li sx={{ display: "flex", flexDirection: ["column", "row"] }}>
       <FestivalAgendaItemTime>{time}</FestivalAgendaItemTime>
       <div sx={{ overflowX: "hidden" }}>
-        <Heading as="h4" size={3} sx={{ color: "gray.5", mb: 2 }}>
-          {title}
+        <Heading as="h4" size={3} sx={{ mb: 2, color: "gray.9" }}>
+          {renderLink
+            ? renderLink({
+                variant: "underlined",
+                sx: { color: "gray.9" },
+                children: title,
+              })
+            : title}
         </Heading>
         {organizer && (
           <strong sx={{ color: "gray.8" }}>
