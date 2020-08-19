@@ -53,7 +53,7 @@
   "it-wasnt-supposed-to-happen-error-message": "Pretty awkward, huh? <br />We've already tracked this error and will get right on it.",
   "brb-down-for-maintenance": "BRB Down for maintenance 🚧",
   "brb-down-for-maintenance-error-message": "Coming back in five minutes!",
-  "festival-agenda-is-being-prepared": "## Soon!\n\nWe've received a lot of amazing program proposals, and we need some time sort out the details.\n\n We'll announce the agenda on <Text as='strong' variant='bold'>{{publicationStartDate}}</Text>.",
+  "festival-agenda-is-being-prepared": "## Soon!\n\nWe've received a lot of amazing program proposals, and we need some time to sort out the details.\n\n We'll announce the agenda on <Text as='strong' variant='bold'>{{publicationStartDate}}</Text>.",
   "meeting-participant": "meeting participant",
   "meeting-participant_plural": "meeting participants"
 }
