@@ -77,7 +77,7 @@ export function makeSummon(f: typeof fetch, apiBaseUrl = "") {
       }
 
       if (Object.keys(newInit.headers).length === 0) {
-        delete newInit.headers;
+        delete (newInit as Partial<typeof newInit>).headers;
       }
     }
 

@@ -151,11 +151,11 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
   }
 
   if (!meeting) {
-    // THIS SHOULD NOT HAPPEN HERE
+    // this should not happen here
     return "404: Couldn't find meeting.";
   }
 
-  const { start_time, description, name } = form.watch({ nest: true });
+  const { start_time, description, name } = form.watch();
 
   return (
     <Page>

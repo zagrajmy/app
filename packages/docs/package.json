@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "cd ../app && npm run build:lib",
-    "postinstall": "cd ../app && npm run build:lib",
+    "postinstall": "cd ../app && npm run build:lib || true",
     "build": "gatsby build",
     "dev": "gatsby develop -p 3001",
     "deploy": "npm run build && now --prod",
@@ -36,9 +36,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-json-view": "^1.19.1"
-  },
-  "resolutions": {
-    "theme-ui": "^0.4.0-alpha.3"
   },
   "bugs": {
     "url": "https://github.com/zagrajmy/frontend/issues"

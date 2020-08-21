@@ -1,7 +1,8 @@
+import { ErrorMessage } from "@hookform/error-message";
 import { absurd } from "fp-ts/lib/function";
 import { TFunction } from "i18next";
 import { forwardRef, useEffect, useMemo } from "react";
-import { ErrorMessage, useForm, ValidationOptions } from "react-hook-form";
+import { useForm, ValidationRules } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import {
   Box,
@@ -98,7 +99,7 @@ function coerceNumberFieldValuesToNumber(
 
 function fieldRef(
   register: (
-    validationOptions: ValidationOptions
+    validationOptions: ValidationRules
   ) => (ref: Element | null) => void,
   field: settings.Field,
   t: TFunction
@@ -346,13 +347,12 @@ export function ProgrammeProposalForm({
 
   useEffect(() => {
     if (externalErrors) {
-      setError(
-        Object.entries(externalErrors).map(([name, messages]) => ({
-          name,
+      for (const [name, messages] of Object.entries(externalErrors)) {
+        setError(name, {
           type: "manual",
           message: messages.join("\n"),
-        }))
-      );
+        });
+      }
     }
   }, [externalErrors, setError]);
 

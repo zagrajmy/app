@@ -1,7 +1,8 @@
+import { ErrorMessage } from "@hookform/error-message";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { ErrorMessage, OnSubmit, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 import {
@@ -76,7 +77,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
     {}
   );
 
-  const onSubmit: OnSubmit<Meeting> = (values) => {
+  const onSubmit: SubmitHandler<Meeting> = (values) => {
     const formAction = document.activeElement?.getAttribute("formAction");
     if (formAction !== "publish" && formAction !== "save-draft") {
       throw new Error("Unexpected formAction");
