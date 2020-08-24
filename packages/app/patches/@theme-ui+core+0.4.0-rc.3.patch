@@ -1,0 +1,27 @@
+diff --git a/node_modules/@theme-ui/core/dist/index.js b/node_modules/@theme-ui/core/dist/index.js
+index 4efa3fa..9e12cdc 100644
+--- a/node_modules/@theme-ui/core/dist/index.js
++++ b/node_modules/@theme-ui/core/dist/index.js
+@@ -5,7 +5,6 @@ var css = require('@theme-ui/css');
+ var React = require('react');
+ var deepmerge = _interopDefault(require('deepmerge'));
+ var package_json = require('@emotion/core/package.json');
+-var types = require('@theme-ui/css/dist/types');
+ 
+ function _extends() {
+   _extends = Object.assign || function (target) {
+@@ -122,14 +121,6 @@ function ThemeProvider(_ref2) {
+   }, children);
+ }
+ 
+-Object.keys(types).forEach(function (k) {
+-  if (k !== 'default') Object.defineProperty(exports, k, {
+-    enumerable: true,
+-    get: function () {
+-      return types[k];
+-    }
+-  });
+-});
+ exports.Context = Context;
+ exports.ThemeProvider = ThemeProvider;
+ exports.jsx = jsx;
