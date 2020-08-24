@@ -166,25 +166,24 @@ const Label = ({
   );
 };
 
-// todo: uncomment this and use after new Theme UI version is published
-// const YesOrNoText = () => {
-//   const { t } = useTranslation();
+const YesOrNoText = () => {
+  const { t } = useTranslation();
 
-//   return (
-//     <span
-//       sx={{
-//         color: "text",
-//         fontWeight: "normal",
-//         ":before": {
-//           content: `"${t("no")}"`,
-//         },
-//         "input:checked ~ &:before": {
-//           content: `"${t("yes")}"`,
-//         },
-//       }}
-//     />
-//   );
-// };
+  return (
+    <span
+      sx={{
+        color: "text",
+        fontWeight: "normal",
+        ":before": {
+          content: `"${t("no")}"`,
+        },
+        "input:checked ~ &:before": {
+          content: `"${t("yes")}"`,
+        },
+      }}
+    />
+  );
+};
 
 const errorMessageProps = {
   as: Message,
@@ -296,7 +295,7 @@ const FieldControl = forwardRef<any, FieldControlProps>(
                 aria-invalid={ariaInvalid}
                 ref={ref}
               >
-                {/* <YesOrNoText /> uncomment it after Theme UI update */}
+                <YesOrNoText />
               </Checkbox>
             </div>
           </Label>

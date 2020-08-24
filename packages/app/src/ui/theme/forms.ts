@@ -64,6 +64,7 @@ export const forms: Variants = {
   choiceGroup: {
     ...borderStyles,
     "> legend": boldMutedFont,
+    // @ts-expect-error TODO fix it in Theme UI, label can also be a nested object
     label: {
       fontWeight: "normal",
       color: "text",

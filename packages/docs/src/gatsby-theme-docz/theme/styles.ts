@@ -1,5 +1,5 @@
 import type { ExactTheme } from "@zagrajmy/docs";
-import type { ThemeUIStyleObject, UseThemeFunction } from "theme-ui";
+import type { ThemeUIStyleObject } from "theme-ui";
 
 const styles: ThemeUIStyleObject = {
   root: {
@@ -34,7 +34,7 @@ const styles: ThemeUIStyleObject = {
     py: 3,
     px: 4,
     bg: "blockquote.bg",
-    borderLeft: (t: any) =>
+    borderLeft: (t) =>
       `5px solid ${(t as ExactTheme).colors.blockquote.border}`,
     color: "blockquote.color",
     fontStyle: "italic",
@@ -80,8 +80,7 @@ const styles: ThemeUIStyleObject = {
   },
   hr: {
     border: 0,
-    borderBottom: ((t: ExactTheme) =>
-      `1px solid ${t.colors.border}`) as UseThemeFunction,
+    borderBottom: (t) => `1px solid ${t.colors?.border}`,
   },
   p: {
     width: "70ch",
