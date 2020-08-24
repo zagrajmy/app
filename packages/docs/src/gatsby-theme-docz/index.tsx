@@ -1,19 +1,19 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable import/no-extraneous-dependencies */
-import { theme as appTheme } from "@zagrajmy/app";
+import { ExactTheme, theme as appTheme } from "@zagrajmy/app";
 import {
   ComponentsProvider,
   theme as makeThemeProvider,
   useConfig,
 } from "docz";
 import baseComponents from "gatsby-theme-docz/src/components";
-import * as modes from "gatsby-theme-docz/src/theme/modes";
 import prism from "gatsby-theme-docz/src/theme/prism";
-import styles from "gatsby-theme-docz/src/theme/styles";
-import { Styled, ThemeProvider } from "theme-ui";
+import { Styled, ThemeProvider, ThemeUIStyleObject } from "theme-ui";
 
 import { MockedNextRouter } from "../../../app/test/MockedNextRouter";
 import { PropDoc } from "../components/PropDoc";
+import * as modes from "./theme/modes";
+import styles from "./theme/styles";
 
 const componentsMap = { ...baseComponents, PropDoc };
 
@@ -58,6 +58,10 @@ const theme = {
   },
   prism,
 };
+
+declare module "@zagrajmy/docs" {
+  export type ExactTheme = typeof theme;
+}
 
 const Theme = ({ children }: { children?: React.ReactNode }) => {
   const config = useConfig();

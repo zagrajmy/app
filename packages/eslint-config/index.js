@@ -7,8 +7,12 @@ module.exports = {
     "jsx-a11y/anchor-is-valid": "off",
     "no-restricted-syntax": "off",
     "no-nested-ternary": "off",
+
     "react/prop-types": "off",
     "react/no-array-index-key": "off",
+    // false positives on `user?: never;`
+    "react/no-unused-prop-types": "off",
+
     "no-undef-init": "off",
     // TypeScript checks this
     "no-undef": "off",

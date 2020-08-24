@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { version as __EMOTION_VERSION__ } from "@emotion/core/package.json";
 import { Context as ThemeContext } from "@theme-ui/core";
+import type { Theme } from "@theme-ui/css";
 import {
   ColorPalette,
   FontFamily,
@@ -15,7 +16,7 @@ import { Code } from "gatsby-theme-docz/src/components/Code";
 import { Heading } from "theme-ui";
 
 const ActualThemeProvider: React.FC = ({ children }) => (
-  <ThemeContext.Provider value={{ __EMOTION_VERSION__, theme }}>
+  <ThemeContext.Provider value={{ __EMOTION_VERSION__, theme: theme as Theme }}>
     {children}
   </ThemeContext.Provider>
 );

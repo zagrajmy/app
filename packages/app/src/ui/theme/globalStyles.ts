@@ -2,7 +2,7 @@ import "focus-visible";
 
 import { ThemeUIStyleObject } from "theme-ui";
 
-export const focusStyles = {
+export const focusStyles: ThemeUIStyleObject = {
   "*:focus:not(.focus-visible)": {
     outline: "none",
   },
@@ -12,7 +12,7 @@ export const focusStyles = {
   },
 };
 
-const scrollbarStyles = {
+const scrollbarStyles: ThemeUIStyleObject = {
   "*": {
     "::-webkit-scrollbar": {
       width: "13px",
@@ -33,7 +33,7 @@ const scrollbarStyles = {
   },
 };
 
-export const globalStyles: ThemeUIStyleObject = {
+export const globalStyles = {
   body: {
     margin: 0,
     overflowY: "overlay" as any,
@@ -42,4 +42,4 @@ export const globalStyles: ThemeUIStyleObject = {
   },
   ...focusStyles,
   ...scrollbarStyles,
-};
+} as const;

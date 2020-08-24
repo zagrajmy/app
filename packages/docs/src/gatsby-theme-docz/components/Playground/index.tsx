@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import type { ExactTheme } from "@zagrajmy/docs";
 import copy from "copy-text-to-clipboard";
 import { useConfig } from "docz";
 import * as Icons from "gatsby-theme-docz/src/components/Icons";
-import { IframeWrapper } from "gatsby-theme-docz/src/components/Playground/IframeWrapper";
 import { Language } from "prism-react-renderer";
 import { Resizable } from "re-resizable";
 import * as React from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
-import ReactResizeDetector from "react-resize-detector";
 
+// import ReactResizeDetector from "react-resize-detector";
 import { syntaxStyles } from "../../theme/syntax";
 import { usePrismTheme } from "../../utils/theme";
 import * as styles from "./styles";
@@ -76,7 +76,7 @@ export const Playground = ({ code, scope, language }: PlaygroundProps) => {
       data-testid="playground"
       sx={{
         ...syntaxStyles,
-        border: (t) => `2px solid ${t.colors.border}`,
+        border: (t: any) => `2px solid ${(t as ExactTheme).colors.border}`,
       }}
     >
       <LiveProvider
