@@ -1,5 +1,6 @@
 import { IncomingMessage } from "http";
 
+// can this be replaced with VERCEL_URL env var?
 export const getUrl = ({
   headers: { referer, host } = {},
 }: Pick<IncomingMessage, "headers">) => {

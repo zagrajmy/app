@@ -1,35 +1,24 @@
 import { GetServerSideProps, NextPageContext } from "next";
-import { useMemo, useRef, useState } from "react";
+import { forwardRef, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { Box, Button, Flex, Heading, Input, Text, Textarea } from "theme-ui";
+import { Box, Flex, Heading, Text, Textarea } from "theme-ui";
 
 import { hasura } from "../../../data";
-import { AsyncReturnType } from "../../../src";
-import { MeetingDetailsImage, Page } from "../../../src/app/components";
+import { MeetingDetailsImage } from "../../../src/app/components/MeetingDetailsImage";
+import { Page } from "../../../src/app/components/Page";
 import { getAvatarUrl } from "../../../src/app/getAvatarUrl";
+import { AsyncReturnType } from "../../../src/lib/utilityTypes";
 import { Avatar } from "../../../src/ui/Avatar";
+import { Button } from "../../../src/ui/Button";
 import { Container } from "../../../src/ui/Container";
 import { FormDatepicker } from "../../../src/ui/FormDatepicker";
-import { Link, LinkProps } from "../../../src/ui/Link";
-
+import { Input, InputProps } from "../../../src/ui/Input";
+import {
+  MeetingParticipants,
+  Participant,
+} from "../../../src/ui/organisms/MeetingParticipants";
+// import { Link, LinkProps } from "../../../src/ui/Link";
 // import { CheckSquare, Edit } from "../../../src/ui/icons";
-
-/**
- * @deprecated
- */
-type OldMeeting = {
-  id: number;
-  start_time: string | Date;
-  end_time: string | Date;
-  name: string;
-  image: string;
-  description: string;
-  organizer: {
-    username: string;
-    email: string;
-  };
-};
 
 function queryMeeting(ctx: {
   req?: NextPageContext["req"];
@@ -43,7 +32,10 @@ function queryMeeting(ctx: {
         {
           id: true,
           organizer: { username: true, email: true },
-          participants: [{}, { cr_user: { username: true, email: true } }],
+          participants: [
+            {},
+            { cr_user: { uuid: true, username: true, email: true } },
+          ],
           name: true,
           description: true,
           image: true,
@@ -57,18 +49,49 @@ function queryMeeting(ctx: {
     .then((x) => ({ meeting: x.nb_meeting_by_pk }));
 }
 
-interface LinkToAuthorProps extends Omit<LinkProps, "href" | "as"> {
-  meeting: { organizer: { username: string } };
-}
-const LinkToAuthor = ({ children, meeting, ...rest }: LinkToAuthorProps) => (
-  <Link
-    href="/u/[username_slug]"
-    as={`/u/${meeting.organizer.username}`}
-    sx={{ display: "inline-flex" }}
-    {...rest}
-  >
-    {children}
-  </Link>
+// interface LinkToAuthorProps extends Omit<LinkProps, "href" | "as"> {
+//   meeting: { organizer: { username: string } };
+// }
+// const LinkToAuthor = ({ children, meeting, ...rest }: LinkToAuthorProps) => (
+//   <Link
+//     href="/u/[username_slug]"
+//     as={`/u/${meeting.organizer.username}`}
+//     sx={{ display: "inline-flex" }}
+//     {...rest}
+//   >
+//     {children}
+//   </Link>
+// );
+
+interface HeadingInputProps extends Omit<InputProps, "ref"> {}
+const HeadingInput = forwardRef<HTMLInputElement, HeadingInputProps>(
+  function HeadingInput(props, ref) {
+    return (
+      <Input
+        mt={1}
+        mb={3}
+        sx={{
+          boxSizing: "border-box",
+          margin: 0,
+          padding: 0,
+          minWidth: 0,
+          fontSize: 7,
+          letterSpacing: "-0.049375rem",
+          border: "none",
+          fontFamily: "inherit",
+          fontWeight: "heading",
+          lineHeight: "heading",
+          marginTop: "4px",
+          marginBottom: "16px",
+          backgroundColor: "background",
+          borderRadius: "rounded",
+        }}
+        name="title"
+        ref={ref}
+        {...props}
+      />
+    );
+  }
 );
 
 // interface EditMeetingButtonProps {
@@ -106,15 +129,28 @@ const LinkToAuthor = ({ children, meeting, ...rest }: LinkToAuthorProps) => (
 //   );
 // };
 
-type QueriedData = AsyncReturnType<typeof queryMeeting>;
+function useMeetingParticipants(meeting: Meeting | undefined) {
+  return useMemo<Participant[] | undefined>(() => {
+    return meeting?.participants.map((participant) => {
+      const { cr_user } = participant;
+      return {
+        username: cr_user.username,
+        uuid: cr_user.uuid,
+        avatarUrl: getAvatarUrl(cr_user),
+        profilePath: `/u/${cr_user.uuid}`,
+      };
+    });
+  }, [meeting]);
+}
+
+interface QueryMeetingResult extends AsyncReturnType<typeof queryMeeting> {}
+type Meeting = Exclude<QueryMeetingResult["meeting"], undefined>;
 interface InitialProps {
-  initialData?: QueriedData;
+  initialData?: QueryMeetingResult;
 }
 
 export function MeetingDetailsPage({ initialData }: InitialProps) {
   // const { query } = useRouter();
-  const { t } = useTranslation();
-
   // TODO: https://trello.com/c/4L5vkkSI/38-zapisywanie-si%C4%99-na-sesje
   // const { data } = useSWR([{ query }], queryMeeting, { initialData });
   const data = initialData;
@@ -122,18 +158,19 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<OldMeeting>({ defaultValues: data?.meeting || {} });
+  const form = useForm<Partial<Meeting>>({
+    defaultValues: data?.meeting || {},
+  });
 
   const onSubmit = form.handleSubmit((value) => {
     // eslint-disable-next-line no-console
     console.log("Meeting edited", { value, errors: form.errors });
 
-    // AWAIT DB CHANGE HERE
-
     setIsEditing(false);
   });
 
   const meeting = useMemo(() => data?.meeting, [data]);
+  const participants = useMeetingParticipants(meeting);
 
   if (!data) {
     return null; // TODO skeleton UI
@@ -216,28 +253,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
             </div>
           </Flex>
           {isEditing ? (
-            <Input
-              mt={1}
-              mb={3}
-              sx={{
-                boxSizing: "border-box",
-                margin: 0,
-                padding: 0,
-                minWidth: 0,
-                fontSize: 7,
-                letterSpacing: "-0.049375rem",
-                border: "none",
-                fontFamily: "inherit",
-                fontWeight: "heading",
-                lineHeight: "heading",
-                marginTop: "4px",
-                marginBottom: "16px",
-                backgroundColor: "background",
-                borderRadius: "rounded",
-              }}
-              name="title"
-              ref={form.register({ minLength: 4 })}
-            />
+            <HeadingInput ref={form.register({ minLength: 4 })} />
           ) : (
             <Heading mt={1} mb={3}>
               {name}
@@ -289,6 +305,15 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
             <p sx={{ mt: 0, whiteSpace: "pre-line" }}>{description}</p>
           )}
         </section>
+        {participants && (
+          <MeetingParticipants
+            participants={participants}
+            limit={
+              // TODO: Use the new backend when it's ready
+              Math.random() > 0.5 ? Math.floor(Math.random() * 6) : undefined
+            }
+          />
+        )}
       </Container>
     </Page>
   );

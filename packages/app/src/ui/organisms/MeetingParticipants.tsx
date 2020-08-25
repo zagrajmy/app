@@ -27,7 +27,7 @@ const avatarsStackItemStyles: ThemeUIStyleObject = {
   },
 };
 
-interface Participant {
+export interface Participant {
   uuid: string;
   username: string;
   avatarUrl: string;
