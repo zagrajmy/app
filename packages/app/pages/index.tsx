@@ -97,6 +97,9 @@ function fetchSphereData(
                         organizer: {
                           username: true,
                         },
+                        proposal: {
+                          speaker_name: true,
+                        },
                       },
                     },
                   ],
@@ -212,6 +215,7 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
                     description,
                     // slug, // todo: meeting detail
                     organizer,
+                    proposal,
                     start_time,
                     end_time,
                   } = nb_meeting;
@@ -223,7 +227,9 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
                         end_time,
                         lang
                       )}`}
-                      organizer={{ name: organizer.username }}
+                      organizer={{
+                        name: proposal?.speaker_name || organizer.username,
+                      }}
                       title={title}
                       description={description}
                     />

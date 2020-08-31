@@ -95,7 +95,10 @@ export const timeFromNow = (time: Date | string, language: SupportedLanguage) =>
   formatRelative(new Date(time), new Date(), { locale: pickLocale(language) });
 
 export const formatHour = (time: Date | string, language: SupportedLanguage) =>
-  format(new Date(time), "hh:mm", { locale: pickLocale(language) });
+  Intl.DateTimeFormat(language === "pl" ? "pl-PL" : "en-GB", {
+    hour: "numeric",
+    minute: "numeric",
+  }).format(new Date(time));
 
 export const formatDate = (time: Date | string, language: SupportedLanguage) =>
   new Date(time).toLocaleDateString(language);

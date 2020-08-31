@@ -1110,6 +1110,7 @@ export type ValueTypes = {
     other_contact?: [{ path?: string }, true];
     other_data?: [{ path?: string }, true];
     phone?: true;
+    speaker?: ValueTypes["cr_user"];
     speaker_name?: true;
     speaker_user_id?: true;
     status?: true;
@@ -1195,6 +1196,7 @@ export type ValueTypes = {
     other_contact?: ValueTypes["jsonb_comparison_exp"];
     other_data?: ValueTypes["jsonb_comparison_exp"];
     phone?: ValueTypes["String_comparison_exp"];
+    speaker?: ValueTypes["cr_user_bool_exp"];
     speaker_name?: ValueTypes["String_comparison_exp"];
     speaker_user_id?: ValueTypes["uuid_comparison_exp"];
     status?: ValueTypes["String_comparison_exp"];
@@ -1236,6 +1238,7 @@ export type ValueTypes = {
     other_contact?: ValueTypes["jsonb"];
     other_data?: ValueTypes["jsonb"];
     phone?: string;
+    speaker?: ValueTypes["cr_user_obj_rel_insert_input"];
     speaker_name?: string;
     speaker_user_id?: ValueTypes["uuid"];
     status?: string;
@@ -1342,6 +1345,7 @@ export type ValueTypes = {
     other_contact?: ValueTypes["order_by"];
     other_data?: ValueTypes["order_by"];
     phone?: ValueTypes["order_by"];
+    speaker?: ValueTypes["cr_user_order_by"];
     speaker_name?: ValueTypes["order_by"];
     speaker_user_id?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
@@ -3996,6 +4000,7 @@ export type ValueTypes = {
       },
       ValueTypes["nb_meeting_participants_aggregate"]
     ];
+    proposal?: ValueTypes["ch_proposal"];
     publication_time?: true;
     slug?: true;
     sphere?: ValueTypes["nb_sphere"];
@@ -4076,6 +4081,7 @@ export type ValueTypes = {
     organizer?: ValueTypes["cr_user_bool_exp"];
     organizer_id?: ValueTypes["uuid_comparison_exp"];
     participants?: ValueTypes["nb_meeting_participants_bool_exp"];
+    proposal?: ValueTypes["ch_proposal_bool_exp"];
     publication_time?: ValueTypes["timestamptz_comparison_exp"];
     slug?: ValueTypes["String_comparison_exp"];
     sphere?: ValueTypes["nb_sphere_bool_exp"];
@@ -4105,6 +4111,7 @@ export type ValueTypes = {
     organizer?: ValueTypes["cr_user_obj_rel_insert_input"];
     organizer_id?: ValueTypes["uuid"];
     participants?: ValueTypes["nb_meeting_participants_arr_rel_insert_input"];
+    proposal?: ValueTypes["ch_proposal_obj_rel_insert_input"];
     publication_time?: ValueTypes["timestamptz"];
     slug?: string;
     sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
@@ -4216,6 +4223,7 @@ export type ValueTypes = {
     organizer?: ValueTypes["cr_user_order_by"];
     organizer_id?: ValueTypes["order_by"];
     participants_aggregate?: ValueTypes["nb_meeting_participants_aggregate_order_by"];
+    proposal?: ValueTypes["ch_proposal_order_by"];
     publication_time?: ValueTypes["order_by"];
     slug?: ValueTypes["order_by"];
     sphere?: ValueTypes["nb_sphere_order_by"];
@@ -6772,6 +6780,7 @@ export type PartialObjects = {
     other_contact?: PartialObjects["jsonb"];
     other_data?: PartialObjects["jsonb"];
     phone?: string;
+    speaker?: PartialObjects["cr_user"];
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
@@ -6850,6 +6859,7 @@ export type PartialObjects = {
     other_contact?: PartialObjects["jsonb_comparison_exp"];
     other_data?: PartialObjects["jsonb_comparison_exp"];
     phone?: PartialObjects["String_comparison_exp"];
+    speaker?: PartialObjects["cr_user_bool_exp"];
     speaker_name?: PartialObjects["String_comparison_exp"];
     speaker_user_id?: PartialObjects["uuid_comparison_exp"];
     status?: PartialObjects["String_comparison_exp"];
@@ -6891,6 +6901,7 @@ export type PartialObjects = {
     other_contact?: PartialObjects["jsonb"];
     other_data?: PartialObjects["jsonb"];
     phone?: string;
+    speaker?: PartialObjects["cr_user_obj_rel_insert_input"];
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
@@ -6997,6 +7008,7 @@ export type PartialObjects = {
     other_contact?: PartialObjects["order_by"];
     other_data?: PartialObjects["order_by"];
     phone?: PartialObjects["order_by"];
+    speaker?: PartialObjects["cr_user_order_by"];
     speaker_name?: PartialObjects["order_by"];
     speaker_user_id?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
@@ -8855,6 +8867,7 @@ export type PartialObjects = {
     organizer_id?: PartialObjects["uuid"];
     participants?: PartialObjects["nb_meeting_participants"][];
     participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
+    proposal?: PartialObjects["ch_proposal"];
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere?: PartialObjects["nb_sphere"];
@@ -8928,6 +8941,7 @@ export type PartialObjects = {
     organizer?: PartialObjects["cr_user_bool_exp"];
     organizer_id?: PartialObjects["uuid_comparison_exp"];
     participants?: PartialObjects["nb_meeting_participants_bool_exp"];
+    proposal?: PartialObjects["ch_proposal_bool_exp"];
     publication_time?: PartialObjects["timestamptz_comparison_exp"];
     slug?: PartialObjects["String_comparison_exp"];
     sphere?: PartialObjects["nb_sphere_bool_exp"];
@@ -8957,6 +8971,7 @@ export type PartialObjects = {
     organizer?: PartialObjects["cr_user_obj_rel_insert_input"];
     organizer_id?: PartialObjects["uuid"];
     participants?: PartialObjects["nb_meeting_participants_arr_rel_insert_input"];
+    proposal?: PartialObjects["ch_proposal_obj_rel_insert_input"];
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
@@ -9068,6 +9083,7 @@ export type PartialObjects = {
     organizer?: PartialObjects["cr_user_order_by"];
     organizer_id?: PartialObjects["order_by"];
     participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate_order_by"];
+    proposal?: PartialObjects["ch_proposal_order_by"];
     publication_time?: PartialObjects["order_by"];
     slug?: PartialObjects["order_by"];
     sphere?: PartialObjects["nb_sphere_order_by"];
@@ -12420,6 +12436,7 @@ export type ch_proposal = {
   other_contact: jsonb;
   other_data: jsonb;
   phone: string;
+  speaker?: cr_user;
   speaker_name: string;
   speaker_user_id?: uuid;
   status: string;
@@ -12506,6 +12523,7 @@ export type ch_proposal_bool_exp = {
   other_contact?: jsonb_comparison_exp;
   other_data?: jsonb_comparison_exp;
   phone?: String_comparison_exp;
+  speaker?: cr_user_bool_exp;
   speaker_name?: String_comparison_exp;
   speaker_user_id?: uuid_comparison_exp;
   status?: String_comparison_exp;
@@ -12556,6 +12574,7 @@ export type ch_proposal_insert_input = {
   other_contact?: jsonb;
   other_data?: jsonb;
   phone?: string;
+  speaker?: cr_user_obj_rel_insert_input;
   speaker_name?: string;
   speaker_user_id?: uuid;
   status?: string;
@@ -12670,6 +12689,7 @@ export type ch_proposal_order_by = {
   other_contact?: order_by;
   other_data?: order_by;
   phone?: order_by;
+  speaker?: cr_user_order_by;
   speaker_name?: order_by;
   speaker_user_id?: order_by;
   status?: order_by;
@@ -14990,6 +15010,7 @@ export type nb_meeting = {
   organizer_id: uuid;
   participants: nb_meeting_participants[];
   participants_aggregate: nb_meeting_participants_aggregate;
+  proposal?: ch_proposal;
   publication_time?: timestamptz;
   slug: string;
   sphere: nb_sphere;
@@ -15070,6 +15091,7 @@ export type nb_meeting_bool_exp = {
   organizer?: cr_user_bool_exp;
   organizer_id?: uuid_comparison_exp;
   participants?: nb_meeting_participants_bool_exp;
+  proposal?: ch_proposal_bool_exp;
   publication_time?: timestamptz_comparison_exp;
   slug?: String_comparison_exp;
   sphere?: nb_sphere_bool_exp;
@@ -15104,6 +15126,7 @@ export type nb_meeting_insert_input = {
   organizer?: cr_user_obj_rel_insert_input;
   organizer_id?: uuid;
   participants?: nb_meeting_participants_arr_rel_insert_input;
+  proposal?: ch_proposal_obj_rel_insert_input;
   publication_time?: timestamptz;
   slug?: string;
   sphere?: nb_sphere_obj_rel_insert_input;
@@ -15223,6 +15246,7 @@ export type nb_meeting_order_by = {
   organizer?: cr_user_order_by;
   organizer_id?: order_by;
   participants_aggregate?: nb_meeting_participants_aggregate_order_by;
+  proposal?: ch_proposal_order_by;
   publication_time?: order_by;
   slug?: order_by;
   sphere?: nb_sphere_order_by;
@@ -19490,6 +19514,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    speaker: {
+      type: "cr_user_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     speaker_name: {
       type: "String_comparison_exp",
       array: false,
@@ -19677,6 +19707,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     phone: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker: {
+      type: "cr_user_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -20017,6 +20053,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     phone: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    speaker: {
+      type: "cr_user_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27050,6 +27092,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    proposal: {
+      type: "ch_proposal_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     publication_time: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -27195,6 +27243,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     participants: {
       type: "nb_meeting_participants_arr_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposal: {
+      type: "ch_proposal_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27553,6 +27607,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     participants_aggregate: {
       type: "nb_meeting_participants_aggregate_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposal: {
+      type: "ch_proposal_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -32532,6 +32592,7 @@ export const ReturnTypes: Record<string, any> = {
     other_contact: "jsonb",
     other_data: "jsonb",
     phone: "String",
+    speaker: "cr_user",
     speaker_name: "String",
     speaker_user_id: "uuid",
     status: "String",
@@ -33331,6 +33392,7 @@ export const ReturnTypes: Record<string, any> = {
     organizer_id: "uuid",
     participants: "nb_meeting_participants",
     participants_aggregate: "nb_meeting_participants_aggregate",
+    proposal: "ch_proposal",
     publication_time: "timestamptz",
     slug: "String",
     sphere: "nb_sphere",
