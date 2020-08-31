@@ -1,9 +1,20 @@
+import { absurd } from "fp-ts/lib/function";
 import { GetServerSideProps, NextPageContext } from "next";
-import { forwardRef, useMemo, useRef, useState } from "react";
+import {
+  forwardRef,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+  Dispatch,
+} from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Box, Flex, Heading, Text, Textarea } from "theme-ui";
+import { assert } from "ts-essentials";
 
 import { hasura } from "../../../data";
+import { makeError } from "../../../src";
 import { MeetingDetailsImage } from "../../../src/app/components/MeetingDetailsImage";
 import { Page } from "../../../src/app/components/Page";
 import { getAvatarUrl } from "../../../src/app/getAvatarUrl";
@@ -17,6 +28,7 @@ import {
   MeetingParticipants,
   Participant,
 } from "../../../src/ui/organisms/MeetingParticipants";
+import { Dialog, DialogFooter, DialogTitle } from "../../../src/ui/Dialog";
 // import { Link, LinkProps } from "../../../src/ui/Link";
 // import { CheckSquare, Edit } from "../../../src/ui/icons";
 
@@ -137,10 +149,134 @@ function useMeetingParticipants(meeting: Meeting | undefined) {
         username: cr_user.username,
         uuid: cr_user.uuid,
         avatarUrl: getAvatarUrl(cr_user),
-        profilePath: `/u/${cr_user.uuid}`,
+        profilePath: `/u/${cr_user.username}`,
       };
     });
   }, [meeting]);
+}
+
+/**
+ * @param mutation an async side effect which can fail and be manually retried
+ */
+function useMutation<TResult, TArgs extends any[]>(
+  mutation: (...args: TArgs) => Promise<TResult>
+) {
+  const [state, dispatch] = useReducer<
+    useMutation.UseMutationReducer<TResult, TArgs>
+  >(useMutation.reducer, {
+    type: "standby",
+  }) as [
+    // this shouldn't be required
+    useMutation.State<TResult, TArgs>,
+    Dispatch<useMutation.Action<TResult, TArgs>>
+  ];
+
+  const stateRef = useRef(state);
+  const mutationRef = useRef(mutation);
+  stateRef.current = state;
+  mutationRef.current = mutation;
+
+  const functions = useMemo(() => {
+    const run = (args: TArgs) => {
+      return mutationRef
+        .current(...args)
+        .then((res) => {
+          dispatch({ type: "success", payload: res });
+          return res;
+        })
+        .catch((err: unknown) => {
+          const error = makeError(err);
+          dispatch({ type: "failure", payload: error });
+          return error;
+        });
+    };
+
+    const start = (...args: TArgs) => {
+      const promise = run(args);
+      dispatch({ type: "start", payload: { promise, args } });
+
+      return promise;
+    };
+
+    const tryAgain = () => {
+      const s = stateRef.current;
+      assert(s.type === "failed");
+
+      const promise = run(s.lastArgs);
+      dispatch({ type: "try-again", payload: { promise } });
+
+      return promise;
+    };
+
+    return {
+      start,
+      tryAgain,
+    };
+  }, []);
+
+  return { state, ...functions };
+}
+
+namespace useMutation {
+  export type Action<R, A> =
+    | { type: "start"; payload: { promise: Promise<R | Error>; args: A } }
+    | { type: "failure"; payload: Error }
+    | { type: "success"; payload: R }
+    | { type: "confirm-success" }
+    | { type: "try-again"; payload: { promise: Promise<R | Error> } };
+  export type State<R, A> =
+    | { type: "standby" }
+    | { type: "in-progress"; promise: Promise<R | Error>; lastArgs: A }
+    | { type: "failed"; error: Error; lastArgs: A }
+    | { type: "succeeded"; result: R; lastArgs: A };
+
+  export type UseMutationReducer<R, A> = <R, A>(
+    s: State<R, A>,
+    a: Action<R, A>
+  ) => State<R, A>;
+
+  export const reducer = <R, A>(
+    s: State<R, A>,
+    a: Action<R, A>
+  ): State<R, A> => {
+    switch (a.type) {
+      case "start":
+        assert(s.type === "standby");
+        return {
+          type: "in-progress",
+          promise: a.payload.promise,
+          lastArgs: a.payload.args,
+        };
+      case "success":
+        assert(s.type === "in-progress");
+        return {
+          type: "succeeded",
+          result: a.payload,
+          lastArgs: s.lastArgs,
+        };
+      case "failure":
+        assert(s.type === "in-progress");
+        return {
+          type: "failed",
+          error: a.payload,
+          lastArgs: s.lastArgs,
+        };
+      case "confirm-success":
+        assert(s.type === "succeeded");
+        return {
+          type: "standby",
+        };
+      case "try-again":
+        assert(s.type === "failed");
+        return {
+          type: "in-progress",
+          promise: a.payload.promise,
+          lastArgs: s.lastArgs,
+        };
+      default:
+        throw absurd(a);
+    }
+  };
 }
 
 interface QueryMeetingResult extends AsyncReturnType<typeof queryMeeting> {}
@@ -155,7 +291,12 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
   // const { data } = useSWR([{ query }], queryMeeting, { initialData });
   const data = initialData;
 
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
+  const signUpForMeeting = useMutation(async () => {
+    console.log("sign up for meeting!");
+    return "ok";
+  });
 
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<Partial<Meeting>>({
@@ -183,6 +324,7 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
 
   const { start_time, description, name } = form.watch();
 
+  const status = signUpForMeeting.state.type;
   return (
     <Page>
       {meeting.image ? (
@@ -313,6 +455,21 @@ export function MeetingDetailsPage({ initialData }: InitialProps) {
               Math.random() > 0.5 ? Math.floor(Math.random() * 6) : undefined
             }
           />
+        )}
+        <Button
+          sx={{ ml: "auto", mt: 2 }}
+          disabled={status === "in-progress" || status === "succeeded"}
+          onClick={signUpForMeeting.start}
+        >
+          {t("sign-up-for-meeting")}
+        </Button>
+        {status === "failed" && (
+          <Dialog renderTitle={t("failed-to-sign-up-for-meeting")}>
+            <DialogFooter variant="centered">
+              {/* variant = centered | alignedRight */}
+              <Button onClick={signUpForMeeting.tryAgain}></Button>
+            </DialogFooter>
+          </Dialog>
         )}
       </Container>
     </Page>

@@ -1,8 +1,8 @@
 import { fold, map } from "fp-ts/lib/Either";
+import { absurd } from "fp-ts/lib/function";
 import { pipe } from "fp-ts/lib/pipeable";
 import * as t from "io-ts";
 import { NextApiRequest, NextApiResponse } from "next";
-import { UnreachableCaseError } from "ts-essentials";
 
 import * as g from "../../../data/graphql-zeus";
 import { Db, hasura } from "../../../data/hasura";
@@ -40,7 +40,7 @@ const addPublicationTime = ({ command, meeting }: InsertMeetingBody) => {
     case "save-draft":
       break;
     default:
-      throw new UnreachableCaseError(command);
+      throw absurd(command);
   }
 
   return {

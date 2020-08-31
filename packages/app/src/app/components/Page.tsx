@@ -1,3 +1,4 @@
+import { OverlayProvider } from "@react-aria/overlays";
 import React, { ComponentPropsWithoutRef } from "react";
 import { Flex } from "theme-ui";
 
@@ -20,6 +21,6 @@ export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
         letter-spacing: -0.049375rem;
       }
     `}</style>
-    {children}
+    <OverlayProvider>{children}</OverlayProvider>
   </Flex>
 );

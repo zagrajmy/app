@@ -349,6 +349,26 @@ export type ValueTypes = {
     start_publication?: true;
     start_time?: true;
     status?: true;
+    time_slots?: [
+      {
+        distinct_on?: ValueTypes["ch_time_slot_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_time_slot_order_by"][];
+        where?: ValueTypes["ch_time_slot_bool_exp"];
+      },
+      ValueTypes["ch_time_slot"]
+    ];
+    time_slots_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_time_slot_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_time_slot_order_by"][];
+        where?: ValueTypes["ch_time_slot_bool_exp"];
+      },
+      ValueTypes["ch_time_slot_aggregate"]
+    ];
     __typename?: true;
   }>;
   ["ch_festival_aggregate"]: AliasType<{
@@ -424,6 +444,7 @@ export type ValueTypes = {
     start_publication?: ValueTypes["timestamptz_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
     status?: ValueTypes["String_comparison_exp"];
+    time_slots?: ValueTypes["ch_time_slot_bool_exp"];
   };
   ["ch_festival_constraint"]: ch_festival_constraint;
   ["ch_festival_delete_at_path_input"]: {
@@ -455,6 +476,7 @@ export type ValueTypes = {
     start_publication?: ValueTypes["timestamptz"];
     start_time?: ValueTypes["timestamptz"];
     status?: string;
+    time_slots?: ValueTypes["ch_time_slot_arr_rel_insert_input"];
   };
   ["ch_festival_max_fields"]: AliasType<{
     end_proposal?: true;
@@ -536,6 +558,7 @@ export type ValueTypes = {
     start_publication?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
+    time_slots_aggregate?: ValueTypes["ch_time_slot_aggregate_order_by"];
   };
   ["ch_festival_pk_columns_input"]: {
     id: number;
@@ -1949,6 +1972,7 @@ export type ValueTypes = {
       ValueTypes["ch_proposal_time_slots_aggregate"]
     ];
     end_time?: true;
+    festival?: ValueTypes["ch_festival"];
     festival_id?: true;
     id?: true;
     start_time?: true;
@@ -2012,6 +2036,7 @@ export type ValueTypes = {
     ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_bool_exp"];
     ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_bool_exp"];
     end_time?: ValueTypes["timestamptz_comparison_exp"];
+    festival?: ValueTypes["ch_festival_bool_exp"];
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
@@ -2025,6 +2050,7 @@ export type ValueTypes = {
     ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_arr_rel_insert_input"];
     ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_arr_rel_insert_input"];
     end_time?: ValueTypes["timestamptz"];
+    festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
     start_time?: ValueTypes["timestamptz"];
@@ -2073,6 +2099,7 @@ export type ValueTypes = {
     ch_helper_time_slots_aggregate?: ValueTypes["ch_helper_time_slots_aggregate_order_by"];
     ch_proposal_time_slots_aggregate?: ValueTypes["ch_proposal_time_slots_aggregate_order_by"];
     end_time?: ValueTypes["order_by"];
+    festival?: ValueTypes["ch_festival_order_by"];
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
@@ -2449,23 +2476,23 @@ export type ValueTypes = {
     ];
     meetings?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
     meetings_aggregate?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants_aggregate"]
+      ValueTypes["nb_meeting_participant_aggregate"]
     ];
     organized_meetings?: [
       {
@@ -2488,6 +2515,26 @@ export type ValueTypes = {
       ValueTypes["nb_meeting_aggregate"]
     ];
     password?: true;
+    proposals?: [
+      {
+        distinct_on?: ValueTypes["ch_proposal_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_proposal_order_by"][];
+        where?: ValueTypes["ch_proposal_bool_exp"];
+      },
+      ValueTypes["ch_proposal"]
+    ];
+    proposals_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_proposal_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_proposal_order_by"][];
+        where?: ValueTypes["ch_proposal_bool_exp"];
+      },
+      ValueTypes["ch_proposal_aggregate"]
+    ];
     username?: true;
     uuid?: true;
     __typename?: true;
@@ -2532,9 +2579,10 @@ export type ValueTypes = {
     last_name?: ValueTypes["String_comparison_exp"];
     locale?: ValueTypes["String_comparison_exp"];
     managed_spheres?: ValueTypes["nb_sphere_managers_bool_exp"];
-    meetings?: ValueTypes["nb_meeting_participants_bool_exp"];
+    meetings?: ValueTypes["nb_meeting_participant_bool_exp"];
     organized_meetings?: ValueTypes["nb_meeting_bool_exp"];
     password?: ValueTypes["String_comparison_exp"];
+    proposals?: ValueTypes["ch_proposal_bool_exp"];
     username?: ValueTypes["String_comparison_exp"];
     uuid?: ValueTypes["uuid_comparison_exp"];
   };
@@ -2553,9 +2601,10 @@ export type ValueTypes = {
     last_name?: string;
     locale?: string;
     managed_spheres?: ValueTypes["nb_sphere_managers_arr_rel_insert_input"];
-    meetings?: ValueTypes["nb_meeting_participants_arr_rel_insert_input"];
+    meetings?: ValueTypes["nb_meeting_participant_arr_rel_insert_input"];
     organized_meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
     password?: string;
+    proposals?: ValueTypes["ch_proposal_arr_rel_insert_input"];
     username?: string;
     uuid?: ValueTypes["uuid"];
   };
@@ -2637,9 +2686,10 @@ export type ValueTypes = {
     last_name?: ValueTypes["order_by"];
     locale?: ValueTypes["order_by"];
     managed_spheres_aggregate?: ValueTypes["nb_sphere_managers_aggregate_order_by"];
-    meetings_aggregate?: ValueTypes["nb_meeting_participants_aggregate_order_by"];
+    meetings_aggregate?: ValueTypes["nb_meeting_participant_aggregate_order_by"];
     organized_meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
     password?: ValueTypes["order_by"];
+    proposals_aggregate?: ValueTypes["ch_proposal_aggregate_order_by"];
     username?: ValueTypes["order_by"];
     uuid?: ValueTypes["order_by"];
   };
@@ -2953,13 +3003,13 @@ export type ValueTypes = {
       ValueTypes["nb_meeting_mutation_response"]
     ];
     delete_nb_meeting_by_pk?: [{ id: number }, ValueTypes["nb_meeting"]];
-    delete_nb_meeting_participants?: [
-      { where: ValueTypes["nb_meeting_participants_bool_exp"] },
-      ValueTypes["nb_meeting_participants_mutation_response"]
+    delete_nb_meeting_participant?: [
+      { where: ValueTypes["nb_meeting_participant_bool_exp"] },
+      ValueTypes["nb_meeting_participant_mutation_response"]
     ];
-    delete_nb_meeting_participants_by_pk?: [
+    delete_nb_meeting_participant_by_pk?: [
       { id: number },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
     delete_nb_sphere?: [
       { where: ValueTypes["nb_sphere_bool_exp"] },
@@ -3170,19 +3220,19 @@ export type ValueTypes = {
       },
       ValueTypes["nb_meeting"]
     ];
-    insert_nb_meeting_participants?: [
+    insert_nb_meeting_participant?: [
       {
-        objects: ValueTypes["nb_meeting_participants_insert_input"][];
-        on_conflict?: ValueTypes["nb_meeting_participants_on_conflict"];
+        objects: ValueTypes["nb_meeting_participant_insert_input"][];
+        on_conflict?: ValueTypes["nb_meeting_participant_on_conflict"];
       },
-      ValueTypes["nb_meeting_participants_mutation_response"]
+      ValueTypes["nb_meeting_participant_mutation_response"]
     ];
-    insert_nb_meeting_participants_one?: [
+    insert_nb_meeting_participant_one?: [
       {
-        object: ValueTypes["nb_meeting_participants_insert_input"];
-        on_conflict?: ValueTypes["nb_meeting_participants_on_conflict"];
+        object: ValueTypes["nb_meeting_participant_insert_input"];
+        on_conflict?: ValueTypes["nb_meeting_participant_on_conflict"];
       },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
     insert_nb_sphere?: [
       {
@@ -3454,21 +3504,21 @@ export type ValueTypes = {
       },
       ValueTypes["nb_meeting"]
     ];
-    update_nb_meeting_participants?: [
+    update_nb_meeting_participant?: [
       {
-        _inc?: ValueTypes["nb_meeting_participants_inc_input"];
-        _set?: ValueTypes["nb_meeting_participants_set_input"];
-        where: ValueTypes["nb_meeting_participants_bool_exp"];
+        _inc?: ValueTypes["nb_meeting_participant_inc_input"];
+        _set?: ValueTypes["nb_meeting_participant_set_input"];
+        where: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants_mutation_response"]
+      ValueTypes["nb_meeting_participant_mutation_response"]
     ];
-    update_nb_meeting_participants_by_pk?: [
+    update_nb_meeting_participant_by_pk?: [
       {
-        _inc?: ValueTypes["nb_meeting_participants_inc_input"];
-        _set?: ValueTypes["nb_meeting_participants_set_input"];
-        pk_columns: ValueTypes["nb_meeting_participants_pk_columns_input"];
+        _inc?: ValueTypes["nb_meeting_participant_inc_input"];
+        _set?: ValueTypes["nb_meeting_participant_set_input"];
+        pk_columns: ValueTypes["nb_meeting_participant_pk_columns_input"];
       },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
     update_nb_sphere?: [
       {
@@ -3982,25 +4032,25 @@ export type ValueTypes = {
     organizer_id?: true;
     participants?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
     participants_aggregate?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants_aggregate"]
+      ValueTypes["nb_meeting_participant_aggregate"]
     ];
-    proposal?: ValueTypes["ch_proposal"];
+    participants_limit?: true;
     publication_time?: true;
     slug?: true;
     sphere?: ValueTypes["nb_sphere"];
@@ -4056,12 +4106,14 @@ export type ValueTypes = {
   ["nb_meeting_avg_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_avg_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_meeting_bool_exp"]: {
@@ -4080,8 +4132,8 @@ export type ValueTypes = {
     name?: ValueTypes["String_comparison_exp"];
     organizer?: ValueTypes["cr_user_bool_exp"];
     organizer_id?: ValueTypes["uuid_comparison_exp"];
-    participants?: ValueTypes["nb_meeting_participants_bool_exp"];
-    proposal?: ValueTypes["ch_proposal_bool_exp"];
+    participants?: ValueTypes["nb_meeting_participant_bool_exp"];
+    participants_limit?: ValueTypes["Int_comparison_exp"];
     publication_time?: ValueTypes["timestamptz_comparison_exp"];
     slug?: ValueTypes["String_comparison_exp"];
     sphere?: ValueTypes["nb_sphere_bool_exp"];
@@ -4095,6 +4147,7 @@ export type ValueTypes = {
   ["nb_meeting_inc_input"]: {
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_insert_input"]: {
@@ -4110,8 +4163,8 @@ export type ValueTypes = {
     name?: string;
     organizer?: ValueTypes["cr_user_obj_rel_insert_input"];
     organizer_id?: ValueTypes["uuid"];
-    participants?: ValueTypes["nb_meeting_participants_arr_rel_insert_input"];
-    proposal?: ValueTypes["ch_proposal_obj_rel_insert_input"];
+    participants?: ValueTypes["nb_meeting_participant_arr_rel_insert_input"];
+    participants_limit?: number;
     publication_time?: ValueTypes["timestamptz"];
     slug?: string;
     sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
@@ -4132,6 +4185,7 @@ export type ValueTypes = {
     meeting_url?: true;
     name?: true;
     organizer_id?: true;
+    participants_limit?: true;
     publication_time?: true;
     slug?: true;
     sphere_id?: true;
@@ -4151,6 +4205,7 @@ export type ValueTypes = {
     meeting_url?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
     organizer_id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     publication_time?: ValueTypes["order_by"];
     slug?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
@@ -4169,6 +4224,7 @@ export type ValueTypes = {
     meeting_url?: true;
     name?: true;
     organizer_id?: true;
+    participants_limit?: true;
     publication_time?: true;
     slug?: true;
     sphere_id?: true;
@@ -4188,6 +4244,7 @@ export type ValueTypes = {
     meeting_url?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
     organizer_id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     publication_time?: ValueTypes["order_by"];
     slug?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
@@ -4222,8 +4279,8 @@ export type ValueTypes = {
     name?: ValueTypes["order_by"];
     organizer?: ValueTypes["cr_user_order_by"];
     organizer_id?: ValueTypes["order_by"];
-    participants_aggregate?: ValueTypes["nb_meeting_participants_aggregate_order_by"];
-    proposal?: ValueTypes["ch_proposal_order_by"];
+    participants_aggregate?: ValueTypes["nb_meeting_participant_aggregate_order_by"];
+    participants_limit?: ValueTypes["order_by"];
     publication_time?: ValueTypes["order_by"];
     slug?: ValueTypes["order_by"];
     sphere?: ValueTypes["nb_sphere_order_by"];
@@ -4233,200 +4290,227 @@ export type ValueTypes = {
     time_table?: ValueTypes["ch_agenda_item_order_by"];
     updated_at?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants"]: AliasType<{
-    cr_user?: ValueTypes["cr_user"];
+  ["nb_meeting_participant"]: AliasType<{
+    created_at?: true;
     id?: true;
+    meeting?: ValueTypes["nb_meeting"];
     meeting_id?: true;
-    nb_meeting?: ValueTypes["nb_meeting"];
+    status?: true;
+    updated_at?: true;
+    user?: ValueTypes["cr_user"];
     user_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_aggregate"]: AliasType<{
-    aggregate?: ValueTypes["nb_meeting_participants_aggregate_fields"];
-    nodes?: ValueTypes["nb_meeting_participants"];
+  ["nb_meeting_participant_aggregate"]: AliasType<{
+    aggregate?: ValueTypes["nb_meeting_participant_aggregate_fields"];
+    nodes?: ValueTypes["nb_meeting_participant"];
     __typename?: true;
   }>;
-  ["nb_meeting_participants_aggregate_fields"]: AliasType<{
-    avg?: ValueTypes["nb_meeting_participants_avg_fields"];
+  ["nb_meeting_participant_aggregate_fields"]: AliasType<{
+    avg?: ValueTypes["nb_meeting_participant_avg_fields"];
     count?: [
       {
-        columns?: ValueTypes["nb_meeting_participants_select_column"][];
+        columns?: ValueTypes["nb_meeting_participant_select_column"][];
         distinct?: boolean;
       },
       true
     ];
-    max?: ValueTypes["nb_meeting_participants_max_fields"];
-    min?: ValueTypes["nb_meeting_participants_min_fields"];
-    stddev?: ValueTypes["nb_meeting_participants_stddev_fields"];
-    stddev_pop?: ValueTypes["nb_meeting_participants_stddev_pop_fields"];
-    stddev_samp?: ValueTypes["nb_meeting_participants_stddev_samp_fields"];
-    sum?: ValueTypes["nb_meeting_participants_sum_fields"];
-    var_pop?: ValueTypes["nb_meeting_participants_var_pop_fields"];
-    var_samp?: ValueTypes["nb_meeting_participants_var_samp_fields"];
-    variance?: ValueTypes["nb_meeting_participants_variance_fields"];
+    max?: ValueTypes["nb_meeting_participant_max_fields"];
+    min?: ValueTypes["nb_meeting_participant_min_fields"];
+    stddev?: ValueTypes["nb_meeting_participant_stddev_fields"];
+    stddev_pop?: ValueTypes["nb_meeting_participant_stddev_pop_fields"];
+    stddev_samp?: ValueTypes["nb_meeting_participant_stddev_samp_fields"];
+    sum?: ValueTypes["nb_meeting_participant_sum_fields"];
+    var_pop?: ValueTypes["nb_meeting_participant_var_pop_fields"];
+    var_samp?: ValueTypes["nb_meeting_participant_var_samp_fields"];
+    variance?: ValueTypes["nb_meeting_participant_variance_fields"];
     __typename?: true;
   }>;
-  ["nb_meeting_participants_aggregate_order_by"]: {
-    avg?: ValueTypes["nb_meeting_participants_avg_order_by"];
+  ["nb_meeting_participant_aggregate_order_by"]: {
+    avg?: ValueTypes["nb_meeting_participant_avg_order_by"];
     count?: ValueTypes["order_by"];
-    max?: ValueTypes["nb_meeting_participants_max_order_by"];
-    min?: ValueTypes["nb_meeting_participants_min_order_by"];
-    stddev?: ValueTypes["nb_meeting_participants_stddev_order_by"];
-    stddev_pop?: ValueTypes["nb_meeting_participants_stddev_pop_order_by"];
-    stddev_samp?: ValueTypes["nb_meeting_participants_stddev_samp_order_by"];
-    sum?: ValueTypes["nb_meeting_participants_sum_order_by"];
-    var_pop?: ValueTypes["nb_meeting_participants_var_pop_order_by"];
-    var_samp?: ValueTypes["nb_meeting_participants_var_samp_order_by"];
-    variance?: ValueTypes["nb_meeting_participants_variance_order_by"];
+    max?: ValueTypes["nb_meeting_participant_max_order_by"];
+    min?: ValueTypes["nb_meeting_participant_min_order_by"];
+    stddev?: ValueTypes["nb_meeting_participant_stddev_order_by"];
+    stddev_pop?: ValueTypes["nb_meeting_participant_stddev_pop_order_by"];
+    stddev_samp?: ValueTypes["nb_meeting_participant_stddev_samp_order_by"];
+    sum?: ValueTypes["nb_meeting_participant_sum_order_by"];
+    var_pop?: ValueTypes["nb_meeting_participant_var_pop_order_by"];
+    var_samp?: ValueTypes["nb_meeting_participant_var_samp_order_by"];
+    variance?: ValueTypes["nb_meeting_participant_variance_order_by"];
   };
-  ["nb_meeting_participants_arr_rel_insert_input"]: {
-    data: ValueTypes["nb_meeting_participants_insert_input"][];
-    on_conflict?: ValueTypes["nb_meeting_participants_on_conflict"];
+  ["nb_meeting_participant_arr_rel_insert_input"]: {
+    data: ValueTypes["nb_meeting_participant_insert_input"][];
+    on_conflict?: ValueTypes["nb_meeting_participant_on_conflict"];
   };
-  ["nb_meeting_participants_avg_fields"]: AliasType<{
+  ["nb_meeting_participant_avg_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_avg_order_by"]: {
+  ["nb_meeting_participant_avg_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_bool_exp"]: {
-    _and?: (ValueTypes["nb_meeting_participants_bool_exp"] | undefined)[];
-    _not?: ValueTypes["nb_meeting_participants_bool_exp"];
-    _or?: (ValueTypes["nb_meeting_participants_bool_exp"] | undefined)[];
-    cr_user?: ValueTypes["cr_user_bool_exp"];
+  ["nb_meeting_participant_bool_exp"]: {
+    _and?: (ValueTypes["nb_meeting_participant_bool_exp"] | undefined)[];
+    _not?: ValueTypes["nb_meeting_participant_bool_exp"];
+    _or?: (ValueTypes["nb_meeting_participant_bool_exp"] | undefined)[];
+    created_at?: ValueTypes["timestamptz_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
+    meeting?: ValueTypes["nb_meeting_bool_exp"];
     meeting_id?: ValueTypes["Int_comparison_exp"];
-    nb_meeting?: ValueTypes["nb_meeting_bool_exp"];
+    status?: ValueTypes["String_comparison_exp"];
+    updated_at?: ValueTypes["timestamptz_comparison_exp"];
+    user?: ValueTypes["cr_user_bool_exp"];
     user_id?: ValueTypes["uuid_comparison_exp"];
   };
-  ["nb_meeting_participants_constraint"]: nb_meeting_participants_constraint;
-  ["nb_meeting_participants_inc_input"]: {
+  ["nb_meeting_participant_constraint"]: nb_meeting_participant_constraint;
+  ["nb_meeting_participant_inc_input"]: {
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_insert_input"]: {
-    cr_user?: ValueTypes["cr_user_obj_rel_insert_input"];
+  ["nb_meeting_participant_insert_input"]: {
+    created_at?: ValueTypes["timestamptz"];
     id?: number;
+    meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
     meeting_id?: number;
-    nb_meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
+    status?: string;
+    updated_at?: ValueTypes["timestamptz"];
+    user?: ValueTypes["cr_user_obj_rel_insert_input"];
     user_id?: ValueTypes["uuid"];
   };
-  ["nb_meeting_participants_max_fields"]: AliasType<{
+  ["nb_meeting_participant_max_fields"]: AliasType<{
+    created_at?: true;
     id?: true;
     meeting_id?: true;
+    status?: true;
+    updated_at?: true;
     user_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_max_order_by"]: {
+  ["nb_meeting_participant_max_order_by"]: {
+    created_at?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
+    updated_at?: ValueTypes["order_by"];
     user_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_min_fields"]: AliasType<{
+  ["nb_meeting_participant_min_fields"]: AliasType<{
+    created_at?: true;
     id?: true;
     meeting_id?: true;
+    status?: true;
+    updated_at?: true;
     user_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_min_order_by"]: {
+  ["nb_meeting_participant_min_order_by"]: {
+    created_at?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
+    status?: ValueTypes["order_by"];
+    updated_at?: ValueTypes["order_by"];
     user_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_mutation_response"]: AliasType<{
+  ["nb_meeting_participant_mutation_response"]: AliasType<{
     affected_rows?: true;
-    returning?: ValueTypes["nb_meeting_participants"];
+    returning?: ValueTypes["nb_meeting_participant"];
     __typename?: true;
   }>;
-  ["nb_meeting_participants_obj_rel_insert_input"]: {
-    data: ValueTypes["nb_meeting_participants_insert_input"];
-    on_conflict?: ValueTypes["nb_meeting_participants_on_conflict"];
+  ["nb_meeting_participant_obj_rel_insert_input"]: {
+    data: ValueTypes["nb_meeting_participant_insert_input"];
+    on_conflict?: ValueTypes["nb_meeting_participant_on_conflict"];
   };
-  ["nb_meeting_participants_on_conflict"]: {
-    constraint: ValueTypes["nb_meeting_participants_constraint"];
-    update_columns: ValueTypes["nb_meeting_participants_update_column"][];
-    where?: ValueTypes["nb_meeting_participants_bool_exp"];
+  ["nb_meeting_participant_on_conflict"]: {
+    constraint: ValueTypes["nb_meeting_participant_constraint"];
+    update_columns: ValueTypes["nb_meeting_participant_update_column"][];
+    where?: ValueTypes["nb_meeting_participant_bool_exp"];
   };
-  ["nb_meeting_participants_order_by"]: {
-    cr_user?: ValueTypes["cr_user_order_by"];
+  ["nb_meeting_participant_order_by"]: {
+    created_at?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    meeting?: ValueTypes["nb_meeting_order_by"];
     meeting_id?: ValueTypes["order_by"];
-    nb_meeting?: ValueTypes["nb_meeting_order_by"];
+    status?: ValueTypes["order_by"];
+    updated_at?: ValueTypes["order_by"];
+    user?: ValueTypes["cr_user_order_by"];
     user_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_pk_columns_input"]: {
+  ["nb_meeting_participant_pk_columns_input"]: {
     id: number;
   };
-  ["nb_meeting_participants_select_column"]: nb_meeting_participants_select_column;
-  ["nb_meeting_participants_set_input"]: {
+  ["nb_meeting_participant_select_column"]: nb_meeting_participant_select_column;
+  ["nb_meeting_participant_set_input"]: {
+    created_at?: ValueTypes["timestamptz"];
     id?: number;
     meeting_id?: number;
+    status?: string;
+    updated_at?: ValueTypes["timestamptz"];
     user_id?: ValueTypes["uuid"];
   };
-  ["nb_meeting_participants_stddev_fields"]: AliasType<{
+  ["nb_meeting_participant_stddev_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_stddev_order_by"]: {
+  ["nb_meeting_participant_stddev_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_stddev_pop_fields"]: AliasType<{
+  ["nb_meeting_participant_stddev_pop_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_stddev_pop_order_by"]: {
+  ["nb_meeting_participant_stddev_pop_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_stddev_samp_fields"]: AliasType<{
+  ["nb_meeting_participant_stddev_samp_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_stddev_samp_order_by"]: {
+  ["nb_meeting_participant_stddev_samp_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_sum_fields"]: AliasType<{
+  ["nb_meeting_participant_sum_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_sum_order_by"]: {
+  ["nb_meeting_participant_sum_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_update_column"]: nb_meeting_participants_update_column;
-  ["nb_meeting_participants_var_pop_fields"]: AliasType<{
+  ["nb_meeting_participant_update_column"]: nb_meeting_participant_update_column;
+  ["nb_meeting_participant_var_pop_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_var_pop_order_by"]: {
+  ["nb_meeting_participant_var_pop_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_var_samp_fields"]: AliasType<{
+  ["nb_meeting_participant_var_samp_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_var_samp_order_by"]: {
+  ["nb_meeting_participant_var_samp_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
-  ["nb_meeting_participants_variance_fields"]: AliasType<{
+  ["nb_meeting_participant_variance_fields"]: AliasType<{
     id?: true;
     meeting_id?: true;
     __typename?: true;
   }>;
-  ["nb_meeting_participants_variance_order_by"]: {
+  ["nb_meeting_participant_variance_order_by"]: {
     id?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
   };
@@ -4445,6 +4529,7 @@ export type ValueTypes = {
     meeting_url?: string;
     name?: string;
     organizer_id?: ValueTypes["uuid"];
+    participants_limit?: number;
     publication_time?: ValueTypes["timestamptz"];
     slug?: string;
     sphere_id?: number;
@@ -4455,79 +4540,93 @@ export type ValueTypes = {
   ["nb_meeting_stddev_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_stddev_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_meeting_stddev_pop_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_stddev_pop_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_meeting_stddev_samp_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_stddev_samp_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_meeting_sum_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_sum_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_meeting_update_column"]: nb_meeting_update_column;
   ["nb_meeting_var_pop_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_var_pop_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_meeting_var_samp_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_var_samp_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_meeting_variance_fields"]: AliasType<{
     guild_id?: true;
     id?: true;
+    participants_limit?: true;
     sphere_id?: true;
     __typename?: true;
   }>;
   ["nb_meeting_variance_order_by"]: {
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    participants_limit?: ValueTypes["order_by"];
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_sphere"]: AliasType<{
@@ -5313,29 +5412,29 @@ export type ValueTypes = {
       ValueTypes["nb_meeting_aggregate"]
     ];
     nb_meeting_by_pk?: [{ id: number }, ValueTypes["nb_meeting"]];
-    nb_meeting_participants?: [
+    nb_meeting_participant?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
-    nb_meeting_participants_aggregate?: [
+    nb_meeting_participant_aggregate?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants_aggregate"]
+      ValueTypes["nb_meeting_participant_aggregate"]
     ];
-    nb_meeting_participants_by_pk?: [
+    nb_meeting_participant_by_pk?: [
       { id: number },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
     nb_sphere?: [
       {
@@ -5702,29 +5801,29 @@ export type ValueTypes = {
       ValueTypes["nb_meeting_aggregate"]
     ];
     nb_meeting_by_pk?: [{ id: number }, ValueTypes["nb_meeting"]];
-    nb_meeting_participants?: [
+    nb_meeting_participant?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
-    nb_meeting_participants_aggregate?: [
+    nb_meeting_participant_aggregate?: [
       {
-        distinct_on?: ValueTypes["nb_meeting_participants_select_column"][];
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
         limit?: number;
         offset?: number;
-        order_by?: ValueTypes["nb_meeting_participants_order_by"][];
-        where?: ValueTypes["nb_meeting_participants_bool_exp"];
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
       },
-      ValueTypes["nb_meeting_participants_aggregate"]
+      ValueTypes["nb_meeting_participant_aggregate"]
     ];
-    nb_meeting_participants_by_pk?: [
+    nb_meeting_participant_by_pk?: [
       { id: number },
-      ValueTypes["nb_meeting_participants"]
+      ValueTypes["nb_meeting_participant"]
     ];
     nb_sphere?: [
       {
@@ -6088,6 +6187,8 @@ export type PartialObjects = {
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
     status?: string;
+    time_slots?: PartialObjects["ch_time_slot"][];
+    time_slots_aggregate?: PartialObjects["ch_time_slot_aggregate"];
   };
   ["ch_festival_aggregate"]: {
     __typename?: "ch_festival_aggregate";
@@ -6156,6 +6257,7 @@ export type PartialObjects = {
     start_publication?: PartialObjects["timestamptz_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
     status?: PartialObjects["String_comparison_exp"];
+    time_slots?: PartialObjects["ch_time_slot_bool_exp"];
   };
   ["ch_festival_constraint"]: ch_festival_constraint;
   ["ch_festival_delete_at_path_input"]: {
@@ -6187,6 +6289,7 @@ export type PartialObjects = {
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
     status?: string;
+    time_slots?: PartialObjects["ch_time_slot_arr_rel_insert_input"];
   };
   ["ch_festival_max_fields"]: {
     __typename?: "ch_festival_max_fields";
@@ -6268,6 +6371,7 @@ export type PartialObjects = {
     start_publication?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
+    time_slots_aggregate?: PartialObjects["ch_time_slot_aggregate_order_by"];
   };
   ["ch_festival_pk_columns_input"]: {
     id: number;
@@ -7550,6 +7654,7 @@ export type PartialObjects = {
     ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots"][];
     ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate"];
     end_time?: PartialObjects["timestamptz"];
+    festival?: PartialObjects["ch_festival"];
     festival_id?: number;
     id?: number;
     start_time?: PartialObjects["timestamptz"];
@@ -7606,6 +7711,7 @@ export type PartialObjects = {
     ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_bool_exp"];
     ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_bool_exp"];
     end_time?: PartialObjects["timestamptz_comparison_exp"];
+    festival?: PartialObjects["ch_festival_bool_exp"];
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
@@ -7619,6 +7725,7 @@ export type PartialObjects = {
     ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_arr_rel_insert_input"];
     ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_arr_rel_insert_input"];
     end_time?: PartialObjects["timestamptz"];
+    festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
     start_time?: PartialObjects["timestamptz"];
@@ -7667,6 +7774,7 @@ export type PartialObjects = {
     ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate_order_by"];
     ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate_order_by"];
     end_time?: PartialObjects["order_by"];
+    festival?: PartialObjects["ch_festival_order_by"];
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
@@ -7964,11 +8072,13 @@ export type PartialObjects = {
     locale?: string;
     managed_spheres?: PartialObjects["nb_sphere_managers"][];
     managed_spheres_aggregate?: PartialObjects["nb_sphere_managers_aggregate"];
-    meetings?: PartialObjects["nb_meeting_participants"][];
-    meetings_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
+    meetings?: PartialObjects["nb_meeting_participant"][];
+    meetings_aggregate?: PartialObjects["nb_meeting_participant_aggregate"];
     organized_meetings?: PartialObjects["nb_meeting"][];
     organized_meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
     password?: string;
+    proposals?: PartialObjects["ch_proposal"][];
+    proposals_aggregate?: PartialObjects["ch_proposal_aggregate"];
     username?: string;
     uuid?: PartialObjects["uuid"];
   };
@@ -8009,9 +8119,10 @@ export type PartialObjects = {
     last_name?: PartialObjects["String_comparison_exp"];
     locale?: PartialObjects["String_comparison_exp"];
     managed_spheres?: PartialObjects["nb_sphere_managers_bool_exp"];
-    meetings?: PartialObjects["nb_meeting_participants_bool_exp"];
+    meetings?: PartialObjects["nb_meeting_participant_bool_exp"];
     organized_meetings?: PartialObjects["nb_meeting_bool_exp"];
     password?: PartialObjects["String_comparison_exp"];
+    proposals?: PartialObjects["ch_proposal_bool_exp"];
     username?: PartialObjects["String_comparison_exp"];
     uuid?: PartialObjects["uuid_comparison_exp"];
   };
@@ -8030,9 +8141,10 @@ export type PartialObjects = {
     last_name?: string;
     locale?: string;
     managed_spheres?: PartialObjects["nb_sphere_managers_arr_rel_insert_input"];
-    meetings?: PartialObjects["nb_meeting_participants_arr_rel_insert_input"];
+    meetings?: PartialObjects["nb_meeting_participant_arr_rel_insert_input"];
     organized_meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
     password?: string;
+    proposals?: PartialObjects["ch_proposal_arr_rel_insert_input"];
     username?: string;
     uuid?: PartialObjects["uuid"];
   };
@@ -8114,9 +8226,10 @@ export type PartialObjects = {
     last_name?: PartialObjects["order_by"];
     locale?: PartialObjects["order_by"];
     managed_spheres_aggregate?: PartialObjects["nb_sphere_managers_aggregate_order_by"];
-    meetings_aggregate?: PartialObjects["nb_meeting_participants_aggregate_order_by"];
+    meetings_aggregate?: PartialObjects["nb_meeting_participant_aggregate_order_by"];
     organized_meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
     password?: PartialObjects["order_by"];
+    proposals_aggregate?: PartialObjects["ch_proposal_aggregate_order_by"];
     username?: PartialObjects["order_by"];
     uuid?: PartialObjects["order_by"];
   };
@@ -8368,8 +8481,8 @@ export type PartialObjects = {
     delete_nb_guild_member_by_pk?: PartialObjects["nb_guild_member"];
     delete_nb_meeting?: PartialObjects["nb_meeting_mutation_response"];
     delete_nb_meeting_by_pk?: PartialObjects["nb_meeting"];
-    delete_nb_meeting_participants?: PartialObjects["nb_meeting_participants_mutation_response"];
-    delete_nb_meeting_participants_by_pk?: PartialObjects["nb_meeting_participants"];
+    delete_nb_meeting_participant?: PartialObjects["nb_meeting_participant_mutation_response"];
+    delete_nb_meeting_participant_by_pk?: PartialObjects["nb_meeting_participant"];
     delete_nb_sphere?: PartialObjects["nb_sphere_mutation_response"];
     delete_nb_sphere_by_pk?: PartialObjects["nb_sphere"];
     delete_nb_sphere_managers?: PartialObjects["nb_sphere_managers_mutation_response"];
@@ -8402,8 +8515,8 @@ export type PartialObjects = {
     insert_nb_guild_one?: PartialObjects["nb_guild"];
     insert_nb_meeting?: PartialObjects["nb_meeting_mutation_response"];
     insert_nb_meeting_one?: PartialObjects["nb_meeting"];
-    insert_nb_meeting_participants?: PartialObjects["nb_meeting_participants_mutation_response"];
-    insert_nb_meeting_participants_one?: PartialObjects["nb_meeting_participants"];
+    insert_nb_meeting_participant?: PartialObjects["nb_meeting_participant_mutation_response"];
+    insert_nb_meeting_participant_one?: PartialObjects["nb_meeting_participant"];
     insert_nb_sphere?: PartialObjects["nb_sphere_mutation_response"];
     insert_nb_sphere_managers?: PartialObjects["nb_sphere_managers_mutation_response"];
     insert_nb_sphere_managers_one?: PartialObjects["nb_sphere_managers"];
@@ -8436,8 +8549,8 @@ export type PartialObjects = {
     update_nb_guild_member_by_pk?: PartialObjects["nb_guild_member"];
     update_nb_meeting?: PartialObjects["nb_meeting_mutation_response"];
     update_nb_meeting_by_pk?: PartialObjects["nb_meeting"];
-    update_nb_meeting_participants?: PartialObjects["nb_meeting_participants_mutation_response"];
-    update_nb_meeting_participants_by_pk?: PartialObjects["nb_meeting_participants"];
+    update_nb_meeting_participant?: PartialObjects["nb_meeting_participant_mutation_response"];
+    update_nb_meeting_participant_by_pk?: PartialObjects["nb_meeting_participant"];
     update_nb_sphere?: PartialObjects["nb_sphere_mutation_response"];
     update_nb_sphere_by_pk?: PartialObjects["nb_sphere"];
     update_nb_sphere_managers?: PartialObjects["nb_sphere_managers_mutation_response"];
@@ -8865,9 +8978,9 @@ export type PartialObjects = {
     name?: string;
     organizer?: PartialObjects["cr_user"];
     organizer_id?: PartialObjects["uuid"];
-    participants?: PartialObjects["nb_meeting_participants"][];
-    participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
-    proposal?: PartialObjects["ch_proposal"];
+    participants?: PartialObjects["nb_meeting_participant"][];
+    participants_aggregate?: PartialObjects["nb_meeting_participant_aggregate"];
+    participants_limit?: number;
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere?: PartialObjects["nb_sphere"];
@@ -8917,11 +9030,13 @@ export type PartialObjects = {
     __typename?: "nb_meeting_avg_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_avg_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_meeting_bool_exp"]: {
@@ -8940,8 +9055,8 @@ export type PartialObjects = {
     name?: PartialObjects["String_comparison_exp"];
     organizer?: PartialObjects["cr_user_bool_exp"];
     organizer_id?: PartialObjects["uuid_comparison_exp"];
-    participants?: PartialObjects["nb_meeting_participants_bool_exp"];
-    proposal?: PartialObjects["ch_proposal_bool_exp"];
+    participants?: PartialObjects["nb_meeting_participant_bool_exp"];
+    participants_limit?: PartialObjects["Int_comparison_exp"];
     publication_time?: PartialObjects["timestamptz_comparison_exp"];
     slug?: PartialObjects["String_comparison_exp"];
     sphere?: PartialObjects["nb_sphere_bool_exp"];
@@ -8955,6 +9070,7 @@ export type PartialObjects = {
   ["nb_meeting_inc_input"]: {
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_insert_input"]: {
@@ -8970,8 +9086,8 @@ export type PartialObjects = {
     name?: string;
     organizer?: PartialObjects["cr_user_obj_rel_insert_input"];
     organizer_id?: PartialObjects["uuid"];
-    participants?: PartialObjects["nb_meeting_participants_arr_rel_insert_input"];
-    proposal?: PartialObjects["ch_proposal_obj_rel_insert_input"];
+    participants?: PartialObjects["nb_meeting_participant_arr_rel_insert_input"];
+    participants_limit?: number;
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
@@ -8993,6 +9109,7 @@ export type PartialObjects = {
     meeting_url?: string;
     name?: string;
     organizer_id?: PartialObjects["uuid"];
+    participants_limit?: number;
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere_id?: number;
@@ -9011,6 +9128,7 @@ export type PartialObjects = {
     meeting_url?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
     organizer_id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     publication_time?: PartialObjects["order_by"];
     slug?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
@@ -9030,6 +9148,7 @@ export type PartialObjects = {
     meeting_url?: string;
     name?: string;
     organizer_id?: PartialObjects["uuid"];
+    participants_limit?: number;
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere_id?: number;
@@ -9048,6 +9167,7 @@ export type PartialObjects = {
     meeting_url?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
     organizer_id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     publication_time?: PartialObjects["order_by"];
     slug?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
@@ -9082,8 +9202,8 @@ export type PartialObjects = {
     name?: PartialObjects["order_by"];
     organizer?: PartialObjects["cr_user_order_by"];
     organizer_id?: PartialObjects["order_by"];
-    participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate_order_by"];
-    proposal?: PartialObjects["ch_proposal_order_by"];
+    participants_aggregate?: PartialObjects["nb_meeting_participant_aggregate_order_by"];
+    participants_limit?: PartialObjects["order_by"];
     publication_time?: PartialObjects["order_by"];
     slug?: PartialObjects["order_by"];
     sphere?: PartialObjects["nb_sphere_order_by"];
@@ -9093,194 +9213,221 @@ export type PartialObjects = {
     time_table?: PartialObjects["ch_agenda_item_order_by"];
     updated_at?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants"]: {
-    __typename?: "nb_meeting_participants";
-    cr_user?: PartialObjects["cr_user"];
+  ["nb_meeting_participant"]: {
+    __typename?: "nb_meeting_participant";
+    created_at?: PartialObjects["timestamptz"];
     id?: number;
+    meeting?: PartialObjects["nb_meeting"];
     meeting_id?: number;
-    nb_meeting?: PartialObjects["nb_meeting"];
+    status?: string;
+    updated_at?: PartialObjects["timestamptz"];
+    user?: PartialObjects["cr_user"];
     user_id?: PartialObjects["uuid"];
   };
-  ["nb_meeting_participants_aggregate"]: {
-    __typename?: "nb_meeting_participants_aggregate";
-    aggregate?: PartialObjects["nb_meeting_participants_aggregate_fields"];
-    nodes?: PartialObjects["nb_meeting_participants"][];
+  ["nb_meeting_participant_aggregate"]: {
+    __typename?: "nb_meeting_participant_aggregate";
+    aggregate?: PartialObjects["nb_meeting_participant_aggregate_fields"];
+    nodes?: PartialObjects["nb_meeting_participant"][];
   };
-  ["nb_meeting_participants_aggregate_fields"]: {
-    __typename?: "nb_meeting_participants_aggregate_fields";
-    avg?: PartialObjects["nb_meeting_participants_avg_fields"];
+  ["nb_meeting_participant_aggregate_fields"]: {
+    __typename?: "nb_meeting_participant_aggregate_fields";
+    avg?: PartialObjects["nb_meeting_participant_avg_fields"];
     count?: number;
-    max?: PartialObjects["nb_meeting_participants_max_fields"];
-    min?: PartialObjects["nb_meeting_participants_min_fields"];
-    stddev?: PartialObjects["nb_meeting_participants_stddev_fields"];
-    stddev_pop?: PartialObjects["nb_meeting_participants_stddev_pop_fields"];
-    stddev_samp?: PartialObjects["nb_meeting_participants_stddev_samp_fields"];
-    sum?: PartialObjects["nb_meeting_participants_sum_fields"];
-    var_pop?: PartialObjects["nb_meeting_participants_var_pop_fields"];
-    var_samp?: PartialObjects["nb_meeting_participants_var_samp_fields"];
-    variance?: PartialObjects["nb_meeting_participants_variance_fields"];
+    max?: PartialObjects["nb_meeting_participant_max_fields"];
+    min?: PartialObjects["nb_meeting_participant_min_fields"];
+    stddev?: PartialObjects["nb_meeting_participant_stddev_fields"];
+    stddev_pop?: PartialObjects["nb_meeting_participant_stddev_pop_fields"];
+    stddev_samp?: PartialObjects["nb_meeting_participant_stddev_samp_fields"];
+    sum?: PartialObjects["nb_meeting_participant_sum_fields"];
+    var_pop?: PartialObjects["nb_meeting_participant_var_pop_fields"];
+    var_samp?: PartialObjects["nb_meeting_participant_var_samp_fields"];
+    variance?: PartialObjects["nb_meeting_participant_variance_fields"];
   };
-  ["nb_meeting_participants_aggregate_order_by"]: {
-    avg?: PartialObjects["nb_meeting_participants_avg_order_by"];
+  ["nb_meeting_participant_aggregate_order_by"]: {
+    avg?: PartialObjects["nb_meeting_participant_avg_order_by"];
     count?: PartialObjects["order_by"];
-    max?: PartialObjects["nb_meeting_participants_max_order_by"];
-    min?: PartialObjects["nb_meeting_participants_min_order_by"];
-    stddev?: PartialObjects["nb_meeting_participants_stddev_order_by"];
-    stddev_pop?: PartialObjects["nb_meeting_participants_stddev_pop_order_by"];
-    stddev_samp?: PartialObjects["nb_meeting_participants_stddev_samp_order_by"];
-    sum?: PartialObjects["nb_meeting_participants_sum_order_by"];
-    var_pop?: PartialObjects["nb_meeting_participants_var_pop_order_by"];
-    var_samp?: PartialObjects["nb_meeting_participants_var_samp_order_by"];
-    variance?: PartialObjects["nb_meeting_participants_variance_order_by"];
+    max?: PartialObjects["nb_meeting_participant_max_order_by"];
+    min?: PartialObjects["nb_meeting_participant_min_order_by"];
+    stddev?: PartialObjects["nb_meeting_participant_stddev_order_by"];
+    stddev_pop?: PartialObjects["nb_meeting_participant_stddev_pop_order_by"];
+    stddev_samp?: PartialObjects["nb_meeting_participant_stddev_samp_order_by"];
+    sum?: PartialObjects["nb_meeting_participant_sum_order_by"];
+    var_pop?: PartialObjects["nb_meeting_participant_var_pop_order_by"];
+    var_samp?: PartialObjects["nb_meeting_participant_var_samp_order_by"];
+    variance?: PartialObjects["nb_meeting_participant_variance_order_by"];
   };
-  ["nb_meeting_participants_arr_rel_insert_input"]: {
-    data: PartialObjects["nb_meeting_participants_insert_input"][];
-    on_conflict?: PartialObjects["nb_meeting_participants_on_conflict"];
+  ["nb_meeting_participant_arr_rel_insert_input"]: {
+    data: PartialObjects["nb_meeting_participant_insert_input"][];
+    on_conflict?: PartialObjects["nb_meeting_participant_on_conflict"];
   };
-  ["nb_meeting_participants_avg_fields"]: {
-    __typename?: "nb_meeting_participants_avg_fields";
+  ["nb_meeting_participant_avg_fields"]: {
+    __typename?: "nb_meeting_participant_avg_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_avg_order_by"]: {
+  ["nb_meeting_participant_avg_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_bool_exp"]: {
-    _and?: (PartialObjects["nb_meeting_participants_bool_exp"] | undefined)[];
-    _not?: PartialObjects["nb_meeting_participants_bool_exp"];
-    _or?: (PartialObjects["nb_meeting_participants_bool_exp"] | undefined)[];
-    cr_user?: PartialObjects["cr_user_bool_exp"];
+  ["nb_meeting_participant_bool_exp"]: {
+    _and?: (PartialObjects["nb_meeting_participant_bool_exp"] | undefined)[];
+    _not?: PartialObjects["nb_meeting_participant_bool_exp"];
+    _or?: (PartialObjects["nb_meeting_participant_bool_exp"] | undefined)[];
+    created_at?: PartialObjects["timestamptz_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
+    meeting?: PartialObjects["nb_meeting_bool_exp"];
     meeting_id?: PartialObjects["Int_comparison_exp"];
-    nb_meeting?: PartialObjects["nb_meeting_bool_exp"];
+    status?: PartialObjects["String_comparison_exp"];
+    updated_at?: PartialObjects["timestamptz_comparison_exp"];
+    user?: PartialObjects["cr_user_bool_exp"];
     user_id?: PartialObjects["uuid_comparison_exp"];
   };
-  ["nb_meeting_participants_constraint"]: nb_meeting_participants_constraint;
-  ["nb_meeting_participants_inc_input"]: {
+  ["nb_meeting_participant_constraint"]: nb_meeting_participant_constraint;
+  ["nb_meeting_participant_inc_input"]: {
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_insert_input"]: {
-    cr_user?: PartialObjects["cr_user_obj_rel_insert_input"];
+  ["nb_meeting_participant_insert_input"]: {
+    created_at?: PartialObjects["timestamptz"];
     id?: number;
+    meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
     meeting_id?: number;
-    nb_meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
+    status?: string;
+    updated_at?: PartialObjects["timestamptz"];
+    user?: PartialObjects["cr_user_obj_rel_insert_input"];
     user_id?: PartialObjects["uuid"];
   };
-  ["nb_meeting_participants_max_fields"]: {
-    __typename?: "nb_meeting_participants_max_fields";
+  ["nb_meeting_participant_max_fields"]: {
+    __typename?: "nb_meeting_participant_max_fields";
+    created_at?: PartialObjects["timestamptz"];
     id?: number;
     meeting_id?: number;
+    status?: string;
+    updated_at?: PartialObjects["timestamptz"];
     user_id?: PartialObjects["uuid"];
   };
-  ["nb_meeting_participants_max_order_by"]: {
+  ["nb_meeting_participant_max_order_by"]: {
+    created_at?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
+    updated_at?: PartialObjects["order_by"];
     user_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_min_fields"]: {
-    __typename?: "nb_meeting_participants_min_fields";
+  ["nb_meeting_participant_min_fields"]: {
+    __typename?: "nb_meeting_participant_min_fields";
+    created_at?: PartialObjects["timestamptz"];
     id?: number;
     meeting_id?: number;
+    status?: string;
+    updated_at?: PartialObjects["timestamptz"];
     user_id?: PartialObjects["uuid"];
   };
-  ["nb_meeting_participants_min_order_by"]: {
+  ["nb_meeting_participant_min_order_by"]: {
+    created_at?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
+    status?: PartialObjects["order_by"];
+    updated_at?: PartialObjects["order_by"];
     user_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_mutation_response"]: {
-    __typename?: "nb_meeting_participants_mutation_response";
+  ["nb_meeting_participant_mutation_response"]: {
+    __typename?: "nb_meeting_participant_mutation_response";
     affected_rows?: number;
-    returning?: PartialObjects["nb_meeting_participants"][];
+    returning?: PartialObjects["nb_meeting_participant"][];
   };
-  ["nb_meeting_participants_obj_rel_insert_input"]: {
-    data: PartialObjects["nb_meeting_participants_insert_input"];
-    on_conflict?: PartialObjects["nb_meeting_participants_on_conflict"];
+  ["nb_meeting_participant_obj_rel_insert_input"]: {
+    data: PartialObjects["nb_meeting_participant_insert_input"];
+    on_conflict?: PartialObjects["nb_meeting_participant_on_conflict"];
   };
-  ["nb_meeting_participants_on_conflict"]: {
-    constraint: PartialObjects["nb_meeting_participants_constraint"];
-    update_columns: PartialObjects["nb_meeting_participants_update_column"][];
-    where?: PartialObjects["nb_meeting_participants_bool_exp"];
+  ["nb_meeting_participant_on_conflict"]: {
+    constraint: PartialObjects["nb_meeting_participant_constraint"];
+    update_columns: PartialObjects["nb_meeting_participant_update_column"][];
+    where?: PartialObjects["nb_meeting_participant_bool_exp"];
   };
-  ["nb_meeting_participants_order_by"]: {
-    cr_user?: PartialObjects["cr_user_order_by"];
+  ["nb_meeting_participant_order_by"]: {
+    created_at?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    meeting?: PartialObjects["nb_meeting_order_by"];
     meeting_id?: PartialObjects["order_by"];
-    nb_meeting?: PartialObjects["nb_meeting_order_by"];
+    status?: PartialObjects["order_by"];
+    updated_at?: PartialObjects["order_by"];
+    user?: PartialObjects["cr_user_order_by"];
     user_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_pk_columns_input"]: {
+  ["nb_meeting_participant_pk_columns_input"]: {
     id: number;
   };
-  ["nb_meeting_participants_select_column"]: nb_meeting_participants_select_column;
-  ["nb_meeting_participants_set_input"]: {
+  ["nb_meeting_participant_select_column"]: nb_meeting_participant_select_column;
+  ["nb_meeting_participant_set_input"]: {
+    created_at?: PartialObjects["timestamptz"];
     id?: number;
     meeting_id?: number;
+    status?: string;
+    updated_at?: PartialObjects["timestamptz"];
     user_id?: PartialObjects["uuid"];
   };
-  ["nb_meeting_participants_stddev_fields"]: {
-    __typename?: "nb_meeting_participants_stddev_fields";
+  ["nb_meeting_participant_stddev_fields"]: {
+    __typename?: "nb_meeting_participant_stddev_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_stddev_order_by"]: {
+  ["nb_meeting_participant_stddev_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_stddev_pop_fields"]: {
-    __typename?: "nb_meeting_participants_stddev_pop_fields";
+  ["nb_meeting_participant_stddev_pop_fields"]: {
+    __typename?: "nb_meeting_participant_stddev_pop_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_stddev_pop_order_by"]: {
+  ["nb_meeting_participant_stddev_pop_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_stddev_samp_fields"]: {
-    __typename?: "nb_meeting_participants_stddev_samp_fields";
+  ["nb_meeting_participant_stddev_samp_fields"]: {
+    __typename?: "nb_meeting_participant_stddev_samp_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_stddev_samp_order_by"]: {
+  ["nb_meeting_participant_stddev_samp_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_sum_fields"]: {
-    __typename?: "nb_meeting_participants_sum_fields";
+  ["nb_meeting_participant_sum_fields"]: {
+    __typename?: "nb_meeting_participant_sum_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_sum_order_by"]: {
+  ["nb_meeting_participant_sum_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_update_column"]: nb_meeting_participants_update_column;
-  ["nb_meeting_participants_var_pop_fields"]: {
-    __typename?: "nb_meeting_participants_var_pop_fields";
+  ["nb_meeting_participant_update_column"]: nb_meeting_participant_update_column;
+  ["nb_meeting_participant_var_pop_fields"]: {
+    __typename?: "nb_meeting_participant_var_pop_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_var_pop_order_by"]: {
+  ["nb_meeting_participant_var_pop_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_var_samp_fields"]: {
-    __typename?: "nb_meeting_participants_var_samp_fields";
+  ["nb_meeting_participant_var_samp_fields"]: {
+    __typename?: "nb_meeting_participant_var_samp_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_var_samp_order_by"]: {
+  ["nb_meeting_participant_var_samp_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
-  ["nb_meeting_participants_variance_fields"]: {
-    __typename?: "nb_meeting_participants_variance_fields";
+  ["nb_meeting_participant_variance_fields"]: {
+    __typename?: "nb_meeting_participant_variance_fields";
     id?: number;
     meeting_id?: number;
   };
-  ["nb_meeting_participants_variance_order_by"]: {
+  ["nb_meeting_participant_variance_order_by"]: {
     id?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
   };
@@ -9299,6 +9446,7 @@ export type PartialObjects = {
     meeting_url?: string;
     name?: string;
     organizer_id?: PartialObjects["uuid"];
+    participants_limit?: number;
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere_id?: number;
@@ -9310,44 +9458,52 @@ export type PartialObjects = {
     __typename?: "nb_meeting_stddev_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_stddev_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_meeting_stddev_pop_fields"]: {
     __typename?: "nb_meeting_stddev_pop_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_stddev_pop_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_meeting_stddev_samp_fields"]: {
     __typename?: "nb_meeting_stddev_samp_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_stddev_samp_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_meeting_sum_fields"]: {
     __typename?: "nb_meeting_sum_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_sum_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_meeting_update_column"]: nb_meeting_update_column;
@@ -9355,33 +9511,39 @@ export type PartialObjects = {
     __typename?: "nb_meeting_var_pop_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_var_pop_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_meeting_var_samp_fields"]: {
     __typename?: "nb_meeting_var_samp_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_var_samp_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_meeting_variance_fields"]: {
     __typename?: "nb_meeting_variance_fields";
     guild_id?: number;
     id?: number;
+    participants_limit?: number;
     sphere_id?: number;
   };
   ["nb_meeting_variance_order_by"]: {
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    participants_limit?: PartialObjects["order_by"];
     sphere_id?: PartialObjects["order_by"];
   };
   ["nb_sphere"]: {
@@ -9847,9 +10009,9 @@ export type PartialObjects = {
     nb_meeting?: PartialObjects["nb_meeting"][];
     nb_meeting_aggregate?: PartialObjects["nb_meeting_aggregate"];
     nb_meeting_by_pk?: PartialObjects["nb_meeting"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants"][];
-    nb_meeting_participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
-    nb_meeting_participants_by_pk?: PartialObjects["nb_meeting_participants"];
+    nb_meeting_participant?: PartialObjects["nb_meeting_participant"][];
+    nb_meeting_participant_aggregate?: PartialObjects["nb_meeting_participant_aggregate"];
+    nb_meeting_participant_by_pk?: PartialObjects["nb_meeting_participant"];
     nb_sphere?: PartialObjects["nb_sphere"][];
     nb_sphere_aggregate?: PartialObjects["nb_sphere_aggregate"];
     nb_sphere_by_pk?: PartialObjects["nb_sphere"];
@@ -9918,9 +10080,9 @@ export type PartialObjects = {
     nb_meeting?: PartialObjects["nb_meeting"][];
     nb_meeting_aggregate?: PartialObjects["nb_meeting_aggregate"];
     nb_meeting_by_pk?: PartialObjects["nb_meeting"];
-    nb_meeting_participants?: PartialObjects["nb_meeting_participants"][];
-    nb_meeting_participants_aggregate?: PartialObjects["nb_meeting_participants_aggregate"];
-    nb_meeting_participants_by_pk?: PartialObjects["nb_meeting_participants"];
+    nb_meeting_participant?: PartialObjects["nb_meeting_participant"][];
+    nb_meeting_participant_aggregate?: PartialObjects["nb_meeting_participant_aggregate"];
+    nb_meeting_participant_by_pk?: PartialObjects["nb_meeting_participant"];
     nb_sphere?: PartialObjects["nb_sphere"][];
     nb_sphere_aggregate?: PartialObjects["nb_sphere_aggregate"];
     nb_sphere_by_pk?: PartialObjects["nb_sphere"];
@@ -10952,79 +11114,79 @@ export type PartialObjects = {
 
 // ordering options when selecting data from "nb_meeting"
 
-// columns and relationships of "nb_meeting_participants"
+// columns and relationships of "nb_meeting_participant"
 
-// aggregated selection of "nb_meeting_participants"
+// aggregated selection of "nb_meeting_participant"
 
-// aggregate fields of "nb_meeting_participants"
+// aggregate fields of "nb_meeting_participant"
 
-// order by aggregate values of table "nb_meeting_participants"
+// order by aggregate values of table "nb_meeting_participant"
 
-// input type for inserting array relation for remote table "nb_meeting_participants"
+// input type for inserting array relation for remote table "nb_meeting_participant"
 
 // aggregate avg on columns
 
-// order by avg() on columns of table "nb_meeting_participants"
+// order by avg() on columns of table "nb_meeting_participant"
 
-// Boolean expression to filter rows from the table "nb_meeting_participants". All fields are combined with a logical 'AND'.
+// Boolean expression to filter rows from the table "nb_meeting_participant". All fields are combined with a logical 'AND'.
 
-// unique or primary key constraints on table "nb_meeting_participants"
+// unique or primary key constraints on table "nb_meeting_participant"
 
-// input type for incrementing integer column in table "nb_meeting_participants"
+// input type for incrementing integer column in table "nb_meeting_participant"
 
-// input type for inserting data into table "nb_meeting_participants"
+// input type for inserting data into table "nb_meeting_participant"
 
 // aggregate max on columns
 
-// order by max() on columns of table "nb_meeting_participants"
+// order by max() on columns of table "nb_meeting_participant"
 
 // aggregate min on columns
 
-// order by min() on columns of table "nb_meeting_participants"
+// order by min() on columns of table "nb_meeting_participant"
 
-// response of any mutation on the table "nb_meeting_participants"
+// response of any mutation on the table "nb_meeting_participant"
 
-// input type for inserting object relation for remote table "nb_meeting_participants"
+// input type for inserting object relation for remote table "nb_meeting_participant"
 
-// on conflict condition type for table "nb_meeting_participants"
+// on conflict condition type for table "nb_meeting_participant"
 
-// ordering options when selecting data from "nb_meeting_participants"
+// ordering options when selecting data from "nb_meeting_participant"
 
-// primary key columns input for table: "nb_meeting_participants"
+// primary key columns input for table: "nb_meeting_participant"
 
-// select columns of table "nb_meeting_participants"
+// select columns of table "nb_meeting_participant"
 
-// input type for updating data in table "nb_meeting_participants"
+// input type for updating data in table "nb_meeting_participant"
 
 // aggregate stddev on columns
 
-// order by stddev() on columns of table "nb_meeting_participants"
+// order by stddev() on columns of table "nb_meeting_participant"
 
 // aggregate stddev_pop on columns
 
-// order by stddev_pop() on columns of table "nb_meeting_participants"
+// order by stddev_pop() on columns of table "nb_meeting_participant"
 
 // aggregate stddev_samp on columns
 
-// order by stddev_samp() on columns of table "nb_meeting_participants"
+// order by stddev_samp() on columns of table "nb_meeting_participant"
 
 // aggregate sum on columns
 
-// order by sum() on columns of table "nb_meeting_participants"
+// order by sum() on columns of table "nb_meeting_participant"
 
-// update columns of table "nb_meeting_participants"
+// update columns of table "nb_meeting_participant"
 
 // aggregate var_pop on columns
 
-// order by var_pop() on columns of table "nb_meeting_participants"
+// order by var_pop() on columns of table "nb_meeting_participant"
 
 // aggregate var_samp on columns
 
-// order by var_samp() on columns of table "nb_meeting_participants"
+// order by var_samp() on columns of table "nb_meeting_participant"
 
 // aggregate variance on columns
 
-// order by variance() on columns of table "nb_meeting_participants"
+// order by variance() on columns of table "nb_meeting_participant"
 
 // primary key columns input for table: "nb_meeting"
 
@@ -11249,14 +11411,14 @@ export type Boolean_comparison_exp = {
 export type ch_agenda_item = {
   __typename?: "ch_agenda_item";
   ch_helper?: ch_helper;
-  ch_room?: ch_room;
+  ch_room: ch_room;
   helper_confirmed: boolean;
   helper_id?: number;
   id: number;
   meeting_confirmed: boolean;
-  meeting_id?: number;
-  nb_meeting?: nb_meeting;
-  room_id?: number;
+  meeting_id: number;
+  nb_meeting: nb_meeting;
+  room_id: number;
   status: string;
 };
 
@@ -11579,6 +11741,8 @@ export type ch_festival = {
   start_publication?: timestamptz;
   start_time?: timestamptz;
   status: string;
+  time_slots: ch_time_slot[];
+  time_slots_aggregate: ch_time_slot_aggregate;
 };
 
 export type ch_festival_aggregate = {
@@ -11655,6 +11819,7 @@ export type ch_festival_bool_exp = {
   start_publication?: timestamptz_comparison_exp;
   start_time?: timestamptz_comparison_exp;
   status?: String_comparison_exp;
+  time_slots?: ch_time_slot_bool_exp;
 };
 
 export enum ch_festival_constraint {
@@ -11695,6 +11860,7 @@ export type ch_festival_insert_input = {
   start_publication?: timestamptz;
   start_time?: timestamptz;
   status?: string;
+  time_slots?: ch_time_slot_arr_rel_insert_input;
 };
 
 export type ch_festival_max_fields = {
@@ -11784,6 +11950,7 @@ export type ch_festival_order_by = {
   start_publication?: order_by;
   start_time?: order_by;
   status?: order_by;
+  time_slots_aggregate?: ch_time_slot_aggregate_order_by;
 };
 
 export type ch_festival_pk_columns_input = {
@@ -13385,6 +13552,7 @@ export type ch_time_slot = {
   ch_proposal_time_slots: ch_proposal_time_slots[];
   ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate;
   end_time: timestamptz;
+  festival: ch_festival;
   festival_id: number;
   id: number;
   start_time: timestamptz;
@@ -13448,6 +13616,7 @@ export type ch_time_slot_bool_exp = {
   ch_helper_time_slots?: ch_helper_time_slots_bool_exp;
   ch_proposal_time_slots?: ch_proposal_time_slots_bool_exp;
   end_time?: timestamptz_comparison_exp;
+  festival?: ch_festival_bool_exp;
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   start_time?: timestamptz_comparison_exp;
@@ -13467,6 +13636,7 @@ export type ch_time_slot_insert_input = {
   ch_helper_time_slots?: ch_helper_time_slots_arr_rel_insert_input;
   ch_proposal_time_slots?: ch_proposal_time_slots_arr_rel_insert_input;
   end_time?: timestamptz;
+  festival?: ch_festival_obj_rel_insert_input;
   festival_id?: number;
   id?: number;
   start_time?: timestamptz;
@@ -13523,6 +13693,7 @@ export type ch_time_slot_order_by = {
   ch_helper_time_slots_aggregate?: ch_helper_time_slots_aggregate_order_by;
   ch_proposal_time_slots_aggregate?: ch_proposal_time_slots_aggregate_order_by;
   end_time?: order_by;
+  festival?: ch_festival_order_by;
   festival_id?: order_by;
   id?: order_by;
   start_time?: order_by;
@@ -13899,11 +14070,13 @@ export type cr_user = {
   locale: string;
   managed_spheres: nb_sphere_managers[];
   managed_spheres_aggregate: nb_sphere_managers_aggregate;
-  meetings: nb_meeting_participants[];
-  meetings_aggregate: nb_meeting_participants_aggregate;
+  meetings: nb_meeting_participant[];
+  meetings_aggregate: nb_meeting_participant_aggregate;
   organized_meetings: nb_meeting[];
   organized_meetings_aggregate: nb_meeting_aggregate;
   password: string;
+  proposals: ch_proposal[];
+  proposals_aggregate: ch_proposal_aggregate;
   username: string;
   uuid: uuid;
 };
@@ -13949,9 +14122,10 @@ export type cr_user_bool_exp = {
   last_name?: String_comparison_exp;
   locale?: String_comparison_exp;
   managed_spheres?: nb_sphere_managers_bool_exp;
-  meetings?: nb_meeting_participants_bool_exp;
+  meetings?: nb_meeting_participant_bool_exp;
   organized_meetings?: nb_meeting_bool_exp;
   password?: String_comparison_exp;
+  proposals?: ch_proposal_bool_exp;
   username?: String_comparison_exp;
   uuid?: uuid_comparison_exp;
 };
@@ -13976,9 +14150,10 @@ export type cr_user_insert_input = {
   last_name?: string;
   locale?: string;
   managed_spheres?: nb_sphere_managers_arr_rel_insert_input;
-  meetings?: nb_meeting_participants_arr_rel_insert_input;
+  meetings?: nb_meeting_participant_arr_rel_insert_input;
   organized_meetings?: nb_meeting_arr_rel_insert_input;
   password?: string;
+  proposals?: ch_proposal_arr_rel_insert_input;
   username?: string;
   uuid?: uuid;
 };
@@ -14068,9 +14243,10 @@ export type cr_user_order_by = {
   last_name?: order_by;
   locale?: order_by;
   managed_spheres_aggregate?: nb_sphere_managers_aggregate_order_by;
-  meetings_aggregate?: nb_meeting_participants_aggregate_order_by;
+  meetings_aggregate?: nb_meeting_participant_aggregate_order_by;
   organized_meetings_aggregate?: nb_meeting_aggregate_order_by;
   password?: order_by;
+  proposals_aggregate?: ch_proposal_aggregate_order_by;
   username?: order_by;
   uuid?: order_by;
 };
@@ -14406,8 +14582,8 @@ export type mutation_root = {
   delete_nb_guild_member_by_pk?: nb_guild_member;
   delete_nb_meeting?: nb_meeting_mutation_response;
   delete_nb_meeting_by_pk?: nb_meeting;
-  delete_nb_meeting_participants?: nb_meeting_participants_mutation_response;
-  delete_nb_meeting_participants_by_pk?: nb_meeting_participants;
+  delete_nb_meeting_participant?: nb_meeting_participant_mutation_response;
+  delete_nb_meeting_participant_by_pk?: nb_meeting_participant;
   delete_nb_sphere?: nb_sphere_mutation_response;
   delete_nb_sphere_by_pk?: nb_sphere;
   delete_nb_sphere_managers?: nb_sphere_managers_mutation_response;
@@ -14440,8 +14616,8 @@ export type mutation_root = {
   insert_nb_guild_one?: nb_guild;
   insert_nb_meeting?: nb_meeting_mutation_response;
   insert_nb_meeting_one?: nb_meeting;
-  insert_nb_meeting_participants?: nb_meeting_participants_mutation_response;
-  insert_nb_meeting_participants_one?: nb_meeting_participants;
+  insert_nb_meeting_participant?: nb_meeting_participant_mutation_response;
+  insert_nb_meeting_participant_one?: nb_meeting_participant;
   insert_nb_sphere?: nb_sphere_mutation_response;
   insert_nb_sphere_managers?: nb_sphere_managers_mutation_response;
   insert_nb_sphere_managers_one?: nb_sphere_managers;
@@ -14474,8 +14650,8 @@ export type mutation_root = {
   update_nb_guild_member_by_pk?: nb_guild_member;
   update_nb_meeting?: nb_meeting_mutation_response;
   update_nb_meeting_by_pk?: nb_meeting;
-  update_nb_meeting_participants?: nb_meeting_participants_mutation_response;
-  update_nb_meeting_participants_by_pk?: nb_meeting_participants;
+  update_nb_meeting_participant?: nb_meeting_participant_mutation_response;
+  update_nb_meeting_participant_by_pk?: nb_meeting_participant;
   update_nb_sphere?: nb_sphere_mutation_response;
   update_nb_sphere_by_pk?: nb_sphere;
   update_nb_sphere_managers?: nb_sphere_managers_mutation_response;
@@ -14562,6 +14738,7 @@ export type nb_guild_bool_exp = {
 };
 
 export enum nb_guild_constraint {
+  guild_unique_slug = "guild_unique_slug",
   nb_guild_pkey = "nb_guild_pkey",
 }
 
@@ -14674,6 +14851,7 @@ export type nb_guild_member_bool_exp = {
 };
 
 export enum nb_guild_member_constraint {
+  guildmember_unique_guild_and_user = "guildmember_unique_guild_and_user",
   nb_guild_member_pkey = "nb_guild_member_pkey",
 }
 
@@ -15008,9 +15186,9 @@ export type nb_meeting = {
   name: string;
   organizer: cr_user;
   organizer_id: uuid;
-  participants: nb_meeting_participants[];
-  participants_aggregate: nb_meeting_participants_aggregate;
-  proposal?: ch_proposal;
+  participants: nb_meeting_participant[];
+  participants_aggregate: nb_meeting_participant_aggregate;
+  participants_limit: number;
   publication_time?: timestamptz;
   slug: string;
   sphere: nb_sphere;
@@ -15065,12 +15243,14 @@ export type nb_meeting_avg_fields = {
   __typename?: "nb_meeting_avg_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_avg_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -15090,8 +15270,8 @@ export type nb_meeting_bool_exp = {
   name?: String_comparison_exp;
   organizer?: cr_user_bool_exp;
   organizer_id?: uuid_comparison_exp;
-  participants?: nb_meeting_participants_bool_exp;
-  proposal?: ch_proposal_bool_exp;
+  participants?: nb_meeting_participant_bool_exp;
+  participants_limit?: Int_comparison_exp;
   publication_time?: timestamptz_comparison_exp;
   slug?: String_comparison_exp;
   sphere?: nb_sphere_bool_exp;
@@ -15103,12 +15283,14 @@ export type nb_meeting_bool_exp = {
 };
 
 export enum nb_meeting_constraint {
+  meeting_unique_slug_in_sphere = "meeting_unique_slug_in_sphere",
   nb_meeting_pkey = "nb_meeting_pkey",
 }
 
 export type nb_meeting_inc_input = {
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
@@ -15125,8 +15307,8 @@ export type nb_meeting_insert_input = {
   name?: string;
   organizer?: cr_user_obj_rel_insert_input;
   organizer_id?: uuid;
-  participants?: nb_meeting_participants_arr_rel_insert_input;
-  proposal?: ch_proposal_obj_rel_insert_input;
+  participants?: nb_meeting_participant_arr_rel_insert_input;
+  participants_limit?: number;
   publication_time?: timestamptz;
   slug?: string;
   sphere?: nb_sphere_obj_rel_insert_input;
@@ -15149,6 +15331,7 @@ export type nb_meeting_max_fields = {
   meeting_url?: string;
   name?: string;
   organizer_id?: uuid;
+  participants_limit?: number;
   publication_time?: timestamptz;
   slug?: string;
   sphere_id?: number;
@@ -15168,6 +15351,7 @@ export type nb_meeting_max_order_by = {
   meeting_url?: order_by;
   name?: order_by;
   organizer_id?: order_by;
+  participants_limit?: order_by;
   publication_time?: order_by;
   slug?: order_by;
   sphere_id?: order_by;
@@ -15188,6 +15372,7 @@ export type nb_meeting_min_fields = {
   meeting_url?: string;
   name?: string;
   organizer_id?: uuid;
+  participants_limit?: number;
   publication_time?: timestamptz;
   slug?: string;
   sphere_id?: number;
@@ -15207,6 +15392,7 @@ export type nb_meeting_min_order_by = {
   meeting_url?: order_by;
   name?: order_by;
   organizer_id?: order_by;
+  participants_limit?: order_by;
   publication_time?: order_by;
   slug?: order_by;
   sphere_id?: order_by;
@@ -15245,8 +15431,8 @@ export type nb_meeting_order_by = {
   name?: order_by;
   organizer?: cr_user_order_by;
   organizer_id?: order_by;
-  participants_aggregate?: nb_meeting_participants_aggregate_order_by;
-  proposal?: ch_proposal_order_by;
+  participants_aggregate?: nb_meeting_participant_aggregate_order_by;
+  participants_limit?: order_by;
   publication_time?: order_by;
   slug?: order_by;
   sphere?: nb_sphere_order_by;
@@ -15257,241 +15443,274 @@ export type nb_meeting_order_by = {
   updated_at?: order_by;
 };
 
-export type nb_meeting_participants = {
-  __typename?: "nb_meeting_participants";
-  cr_user: cr_user;
+export type nb_meeting_participant = {
+  __typename?: "nb_meeting_participant";
+  created_at: timestamptz;
   id: number;
+  meeting: nb_meeting;
   meeting_id: number;
-  nb_meeting: nb_meeting;
+  status: string;
+  updated_at: timestamptz;
+  user: cr_user;
   user_id: uuid;
 };
 
-export type nb_meeting_participants_aggregate = {
-  __typename?: "nb_meeting_participants_aggregate";
-  aggregate?: nb_meeting_participants_aggregate_fields;
-  nodes: nb_meeting_participants[];
+export type nb_meeting_participant_aggregate = {
+  __typename?: "nb_meeting_participant_aggregate";
+  aggregate?: nb_meeting_participant_aggregate_fields;
+  nodes: nb_meeting_participant[];
 };
 
-export type nb_meeting_participants_aggregate_fields = {
-  __typename?: "nb_meeting_participants_aggregate_fields";
-  avg?: nb_meeting_participants_avg_fields;
+export type nb_meeting_participant_aggregate_fields = {
+  __typename?: "nb_meeting_participant_aggregate_fields";
+  avg?: nb_meeting_participant_avg_fields;
   count?: number;
-  max?: nb_meeting_participants_max_fields;
-  min?: nb_meeting_participants_min_fields;
-  stddev?: nb_meeting_participants_stddev_fields;
-  stddev_pop?: nb_meeting_participants_stddev_pop_fields;
-  stddev_samp?: nb_meeting_participants_stddev_samp_fields;
-  sum?: nb_meeting_participants_sum_fields;
-  var_pop?: nb_meeting_participants_var_pop_fields;
-  var_samp?: nb_meeting_participants_var_samp_fields;
-  variance?: nb_meeting_participants_variance_fields;
+  max?: nb_meeting_participant_max_fields;
+  min?: nb_meeting_participant_min_fields;
+  stddev?: nb_meeting_participant_stddev_fields;
+  stddev_pop?: nb_meeting_participant_stddev_pop_fields;
+  stddev_samp?: nb_meeting_participant_stddev_samp_fields;
+  sum?: nb_meeting_participant_sum_fields;
+  var_pop?: nb_meeting_participant_var_pop_fields;
+  var_samp?: nb_meeting_participant_var_samp_fields;
+  variance?: nb_meeting_participant_variance_fields;
 };
 
-export type nb_meeting_participants_aggregate_order_by = {
-  avg?: nb_meeting_participants_avg_order_by;
+export type nb_meeting_participant_aggregate_order_by = {
+  avg?: nb_meeting_participant_avg_order_by;
   count?: order_by;
-  max?: nb_meeting_participants_max_order_by;
-  min?: nb_meeting_participants_min_order_by;
-  stddev?: nb_meeting_participants_stddev_order_by;
-  stddev_pop?: nb_meeting_participants_stddev_pop_order_by;
-  stddev_samp?: nb_meeting_participants_stddev_samp_order_by;
-  sum?: nb_meeting_participants_sum_order_by;
-  var_pop?: nb_meeting_participants_var_pop_order_by;
-  var_samp?: nb_meeting_participants_var_samp_order_by;
-  variance?: nb_meeting_participants_variance_order_by;
+  max?: nb_meeting_participant_max_order_by;
+  min?: nb_meeting_participant_min_order_by;
+  stddev?: nb_meeting_participant_stddev_order_by;
+  stddev_pop?: nb_meeting_participant_stddev_pop_order_by;
+  stddev_samp?: nb_meeting_participant_stddev_samp_order_by;
+  sum?: nb_meeting_participant_sum_order_by;
+  var_pop?: nb_meeting_participant_var_pop_order_by;
+  var_samp?: nb_meeting_participant_var_samp_order_by;
+  variance?: nb_meeting_participant_variance_order_by;
 };
 
-export type nb_meeting_participants_arr_rel_insert_input = {
-  data: nb_meeting_participants_insert_input[];
-  on_conflict?: nb_meeting_participants_on_conflict;
+export type nb_meeting_participant_arr_rel_insert_input = {
+  data: nb_meeting_participant_insert_input[];
+  on_conflict?: nb_meeting_participant_on_conflict;
 };
 
-export type nb_meeting_participants_avg_fields = {
-  __typename?: "nb_meeting_participants_avg_fields";
+export type nb_meeting_participant_avg_fields = {
+  __typename?: "nb_meeting_participant_avg_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_avg_order_by = {
+export type nb_meeting_participant_avg_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
 
-export type nb_meeting_participants_bool_exp = {
-  _and?: (nb_meeting_participants_bool_exp | undefined)[];
-  _not?: nb_meeting_participants_bool_exp;
-  _or?: (nb_meeting_participants_bool_exp | undefined)[];
-  cr_user?: cr_user_bool_exp;
+export type nb_meeting_participant_bool_exp = {
+  _and?: (nb_meeting_participant_bool_exp | undefined)[];
+  _not?: nb_meeting_participant_bool_exp;
+  _or?: (nb_meeting_participant_bool_exp | undefined)[];
+  created_at?: timestamptz_comparison_exp;
   id?: Int_comparison_exp;
+  meeting?: nb_meeting_bool_exp;
   meeting_id?: Int_comparison_exp;
-  nb_meeting?: nb_meeting_bool_exp;
+  status?: String_comparison_exp;
+  updated_at?: timestamptz_comparison_exp;
+  user?: cr_user_bool_exp;
   user_id?: uuid_comparison_exp;
 };
 
-export enum nb_meeting_participants_constraint {
-  nb_meeting_participants_meeting_id_user_id_5e7feeb9_uniq = "nb_meeting_participants_meeting_id_user_id_5e7feeb9_uniq",
-  nb_meeting_participants_pkey = "nb_meeting_participants_pkey",
+export enum nb_meeting_participant_constraint {
+  nb_meeting_participant_meeting_id_user_id_ff7f6bc4_uniq = "nb_meeting_participant_meeting_id_user_id_ff7f6bc4_uniq",
+  nb_meeting_participant_pkey = "nb_meeting_participant_pkey",
 }
 
-export type nb_meeting_participants_inc_input = {
+export type nb_meeting_participant_inc_input = {
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_insert_input = {
-  cr_user?: cr_user_obj_rel_insert_input;
+export type nb_meeting_participant_insert_input = {
+  created_at?: timestamptz;
   id?: number;
+  meeting?: nb_meeting_obj_rel_insert_input;
   meeting_id?: number;
-  nb_meeting?: nb_meeting_obj_rel_insert_input;
+  status?: string;
+  updated_at?: timestamptz;
+  user?: cr_user_obj_rel_insert_input;
   user_id?: uuid;
 };
 
-export type nb_meeting_participants_max_fields = {
-  __typename?: "nb_meeting_participants_max_fields";
+export type nb_meeting_participant_max_fields = {
+  __typename?: "nb_meeting_participant_max_fields";
+  created_at?: timestamptz;
   id?: number;
   meeting_id?: number;
+  status?: string;
+  updated_at?: timestamptz;
   user_id?: uuid;
 };
 
-export type nb_meeting_participants_max_order_by = {
+export type nb_meeting_participant_max_order_by = {
+  created_at?: order_by;
   id?: order_by;
   meeting_id?: order_by;
+  status?: order_by;
+  updated_at?: order_by;
   user_id?: order_by;
 };
 
-export type nb_meeting_participants_min_fields = {
-  __typename?: "nb_meeting_participants_min_fields";
+export type nb_meeting_participant_min_fields = {
+  __typename?: "nb_meeting_participant_min_fields";
+  created_at?: timestamptz;
   id?: number;
   meeting_id?: number;
+  status?: string;
+  updated_at?: timestamptz;
   user_id?: uuid;
 };
 
-export type nb_meeting_participants_min_order_by = {
+export type nb_meeting_participant_min_order_by = {
+  created_at?: order_by;
   id?: order_by;
   meeting_id?: order_by;
+  status?: order_by;
+  updated_at?: order_by;
   user_id?: order_by;
 };
 
-export type nb_meeting_participants_mutation_response = {
-  __typename?: "nb_meeting_participants_mutation_response";
+export type nb_meeting_participant_mutation_response = {
+  __typename?: "nb_meeting_participant_mutation_response";
   affected_rows: number;
-  returning: nb_meeting_participants[];
+  returning: nb_meeting_participant[];
 };
 
-export type nb_meeting_participants_obj_rel_insert_input = {
-  data: nb_meeting_participants_insert_input;
-  on_conflict?: nb_meeting_participants_on_conflict;
+export type nb_meeting_participant_obj_rel_insert_input = {
+  data: nb_meeting_participant_insert_input;
+  on_conflict?: nb_meeting_participant_on_conflict;
 };
 
-export type nb_meeting_participants_on_conflict = {
-  constraint: nb_meeting_participants_constraint;
-  update_columns: nb_meeting_participants_update_column[];
-  where?: nb_meeting_participants_bool_exp;
+export type nb_meeting_participant_on_conflict = {
+  constraint: nb_meeting_participant_constraint;
+  update_columns: nb_meeting_participant_update_column[];
+  where?: nb_meeting_participant_bool_exp;
 };
 
-export type nb_meeting_participants_order_by = {
-  cr_user?: cr_user_order_by;
+export type nb_meeting_participant_order_by = {
+  created_at?: order_by;
   id?: order_by;
+  meeting?: nb_meeting_order_by;
   meeting_id?: order_by;
-  nb_meeting?: nb_meeting_order_by;
+  status?: order_by;
+  updated_at?: order_by;
+  user?: cr_user_order_by;
   user_id?: order_by;
 };
 
-export type nb_meeting_participants_pk_columns_input = {
+export type nb_meeting_participant_pk_columns_input = {
   id: number;
 };
 
-export enum nb_meeting_participants_select_column {
+export enum nb_meeting_participant_select_column {
+  created_at = "created_at",
   id = "id",
   meeting_id = "meeting_id",
+  status = "status",
+  updated_at = "updated_at",
   user_id = "user_id",
 }
 
-export type nb_meeting_participants_set_input = {
+export type nb_meeting_participant_set_input = {
+  created_at?: timestamptz;
   id?: number;
   meeting_id?: number;
+  status?: string;
+  updated_at?: timestamptz;
   user_id?: uuid;
 };
 
-export type nb_meeting_participants_stddev_fields = {
-  __typename?: "nb_meeting_participants_stddev_fields";
+export type nb_meeting_participant_stddev_fields = {
+  __typename?: "nb_meeting_participant_stddev_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_stddev_order_by = {
+export type nb_meeting_participant_stddev_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
 
-export type nb_meeting_participants_stddev_pop_fields = {
-  __typename?: "nb_meeting_participants_stddev_pop_fields";
+export type nb_meeting_participant_stddev_pop_fields = {
+  __typename?: "nb_meeting_participant_stddev_pop_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_stddev_pop_order_by = {
+export type nb_meeting_participant_stddev_pop_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
 
-export type nb_meeting_participants_stddev_samp_fields = {
-  __typename?: "nb_meeting_participants_stddev_samp_fields";
+export type nb_meeting_participant_stddev_samp_fields = {
+  __typename?: "nb_meeting_participant_stddev_samp_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_stddev_samp_order_by = {
+export type nb_meeting_participant_stddev_samp_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
 
-export type nb_meeting_participants_sum_fields = {
-  __typename?: "nb_meeting_participants_sum_fields";
+export type nb_meeting_participant_sum_fields = {
+  __typename?: "nb_meeting_participant_sum_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_sum_order_by = {
+export type nb_meeting_participant_sum_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
 
-export enum nb_meeting_participants_update_column {
+export enum nb_meeting_participant_update_column {
+  created_at = "created_at",
   id = "id",
   meeting_id = "meeting_id",
+  status = "status",
+  updated_at = "updated_at",
   user_id = "user_id",
 }
 
-export type nb_meeting_participants_var_pop_fields = {
-  __typename?: "nb_meeting_participants_var_pop_fields";
+export type nb_meeting_participant_var_pop_fields = {
+  __typename?: "nb_meeting_participant_var_pop_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_var_pop_order_by = {
+export type nb_meeting_participant_var_pop_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
 
-export type nb_meeting_participants_var_samp_fields = {
-  __typename?: "nb_meeting_participants_var_samp_fields";
+export type nb_meeting_participant_var_samp_fields = {
+  __typename?: "nb_meeting_participant_var_samp_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_var_samp_order_by = {
+export type nb_meeting_participant_var_samp_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
 
-export type nb_meeting_participants_variance_fields = {
-  __typename?: "nb_meeting_participants_variance_fields";
+export type nb_meeting_participant_variance_fields = {
+  __typename?: "nb_meeting_participant_variance_fields";
   id?: number;
   meeting_id?: number;
 };
 
-export type nb_meeting_participants_variance_order_by = {
+export type nb_meeting_participant_variance_order_by = {
   id?: order_by;
   meeting_id?: order_by;
 };
@@ -15511,6 +15730,7 @@ export enum nb_meeting_select_column {
   meeting_url = "meeting_url",
   name = "name",
   organizer_id = "organizer_id",
+  participants_limit = "participants_limit",
   publication_time = "publication_time",
   slug = "slug",
   sphere_id = "sphere_id",
@@ -15530,6 +15750,7 @@ export type nb_meeting_set_input = {
   meeting_url?: string;
   name?: string;
   organizer_id?: uuid;
+  participants_limit?: number;
   publication_time?: timestamptz;
   slug?: string;
   sphere_id?: number;
@@ -15542,12 +15763,14 @@ export type nb_meeting_stddev_fields = {
   __typename?: "nb_meeting_stddev_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_stddev_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -15555,12 +15778,14 @@ export type nb_meeting_stddev_pop_fields = {
   __typename?: "nb_meeting_stddev_pop_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_stddev_pop_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -15568,12 +15793,14 @@ export type nb_meeting_stddev_samp_fields = {
   __typename?: "nb_meeting_stddev_samp_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_stddev_samp_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -15581,12 +15808,14 @@ export type nb_meeting_sum_fields = {
   __typename?: "nb_meeting_sum_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_sum_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -15601,6 +15830,7 @@ export enum nb_meeting_update_column {
   meeting_url = "meeting_url",
   name = "name",
   organizer_id = "organizer_id",
+  participants_limit = "participants_limit",
   publication_time = "publication_time",
   slug = "slug",
   sphere_id = "sphere_id",
@@ -15613,12 +15843,14 @@ export type nb_meeting_var_pop_fields = {
   __typename?: "nb_meeting_var_pop_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_var_pop_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -15626,12 +15858,14 @@ export type nb_meeting_var_samp_fields = {
   __typename?: "nb_meeting_var_samp_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_var_samp_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -15639,12 +15873,14 @@ export type nb_meeting_variance_fields = {
   __typename?: "nb_meeting_variance_fields";
   guild_id?: number;
   id?: number;
+  participants_limit?: number;
   sphere_id?: number;
 };
 
 export type nb_meeting_variance_order_by = {
   guild_id?: order_by;
   id?: order_by;
+  participants_limit?: order_by;
   sphere_id?: order_by;
 };
 
@@ -16224,9 +16460,9 @@ export type query_root = {
   nb_meeting: nb_meeting[];
   nb_meeting_aggregate: nb_meeting_aggregate;
   nb_meeting_by_pk?: nb_meeting;
-  nb_meeting_participants: nb_meeting_participants[];
-  nb_meeting_participants_aggregate: nb_meeting_participants_aggregate;
-  nb_meeting_participants_by_pk?: nb_meeting_participants;
+  nb_meeting_participant: nb_meeting_participant[];
+  nb_meeting_participant_aggregate: nb_meeting_participant_aggregate;
+  nb_meeting_participant_by_pk?: nb_meeting_participant;
   nb_sphere: nb_sphere[];
   nb_sphere_aggregate: nb_sphere_aggregate;
   nb_sphere_by_pk?: nb_sphere;
@@ -16297,9 +16533,9 @@ export type subscription_root = {
   nb_meeting: nb_meeting[];
   nb_meeting_aggregate: nb_meeting_aggregate;
   nb_meeting_by_pk?: nb_meeting;
-  nb_meeting_participants: nb_meeting_participants[];
-  nb_meeting_participants_aggregate: nb_meeting_participants_aggregate;
-  nb_meeting_participants_by_pk?: nb_meeting_participants;
+  nb_meeting_participant: nb_meeting_participant[];
+  nb_meeting_participant_aggregate: nb_meeting_participant_aggregate;
+  nb_meeting_participant_by_pk?: nb_meeting_participant;
   nb_sphere: nb_sphere[];
   nb_sphere_aggregate: nb_sphere_aggregate;
   nb_sphere_by_pk?: nb_sphere;
@@ -17283,6 +17519,70 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
+    time_slots: {
+      distinct_on: {
+        type: "ch_time_slot_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_time_slot_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_time_slot_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    time_slots_aggregate: {
+      distinct_on: {
+        type: "ch_time_slot_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_time_slot_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_time_slot_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
   },
   ch_festival_aggregate_fields: {
     count: {
@@ -17513,6 +17813,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    time_slots: {
+      type: "ch_time_slot_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
   },
   ch_festival_constraint: "enum",
   ch_festival_delete_at_path_input: {
@@ -17640,6 +17946,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     status: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slots: {
+      type: "ch_time_slot_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17890,6 +18202,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     status: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slots_aggregate: {
+      type: "ch_time_slot_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -21725,6 +22043,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    festival: {
+      type: "ch_festival_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     festival_id: {
       type: "Int_comparison_exp",
       array: false,
@@ -21774,6 +22098,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    festival: {
+      type: "ch_festival_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -21898,6 +22228,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    festival: {
+      type: "ch_festival_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22795,7 +23131,7 @@ export const AllTypesProps: Record<string, any> = {
     },
     meetings: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -22813,13 +23149,13 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -22827,7 +23163,7 @@ export const AllTypesProps: Record<string, any> = {
     },
     meetings_aggregate: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -22845,13 +23181,13 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -22916,6 +23252,70 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "nb_meeting_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    proposals: {
+      distinct_on: {
+        type: "ch_proposal_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_proposal_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_proposal_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    proposals_aggregate: {
+      distinct_on: {
+        type: "ch_proposal_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_proposal_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_proposal_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -23070,7 +23470,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     meetings: {
-      type: "nb_meeting_participants_bool_exp",
+      type: "nb_meeting_participant_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23083,6 +23483,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     password: {
       type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23181,7 +23587,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     meetings: {
-      type: "nb_meeting_participants_arr_rel_insert_input",
+      type: "nb_meeting_participant_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23194,6 +23600,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     password: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23449,7 +23861,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     meetings_aggregate: {
-      type: "nb_meeting_participants_aggregate_order_by",
+      type: "nb_meeting_participant_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23462,6 +23874,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     password: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals_aggregate: {
+      type: "ch_proposal_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -24308,15 +24726,15 @@ export const AllTypesProps: Record<string, any> = {
         required: true,
       },
     },
-    delete_nb_meeting_participants: {
+    delete_nb_meeting_participant: {
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: true,
       },
     },
-    delete_nb_meeting_participants_by_pk: {
+    delete_nb_meeting_participant_by_pk: {
       id: {
         type: "Int",
         array: false,
@@ -24748,29 +25166,29 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    insert_nb_meeting_participants: {
+    insert_nb_meeting_participant: {
       objects: {
-        type: "nb_meeting_participants_insert_input",
+        type: "nb_meeting_participant_insert_input",
         array: true,
         arrayRequired: true,
         required: true,
       },
       on_conflict: {
-        type: "nb_meeting_participants_on_conflict",
+        type: "nb_meeting_participant_on_conflict",
         array: false,
         arrayRequired: false,
         required: false,
       },
     },
-    insert_nb_meeting_participants_one: {
+    insert_nb_meeting_participant_one: {
       object: {
-        type: "nb_meeting_participants_insert_input",
+        type: "nb_meeting_participant_insert_input",
         array: false,
         arrayRequired: false,
         required: true,
       },
       on_conflict: {
-        type: "nb_meeting_participants_on_conflict",
+        type: "nb_meeting_participant_on_conflict",
         array: false,
         arrayRequired: false,
         required: false,
@@ -25500,41 +25918,41 @@ export const AllTypesProps: Record<string, any> = {
         required: true,
       },
     },
-    update_nb_meeting_participants: {
+    update_nb_meeting_participant: {
       _inc: {
-        type: "nb_meeting_participants_inc_input",
+        type: "nb_meeting_participant_inc_input",
         array: false,
         arrayRequired: false,
         required: false,
       },
       _set: {
-        type: "nb_meeting_participants_set_input",
+        type: "nb_meeting_participant_set_input",
         array: false,
         arrayRequired: false,
         required: false,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: true,
       },
     },
-    update_nb_meeting_participants_by_pk: {
+    update_nb_meeting_participant_by_pk: {
       _inc: {
-        type: "nb_meeting_participants_inc_input",
+        type: "nb_meeting_participant_inc_input",
         array: false,
         arrayRequired: false,
         required: false,
       },
       _set: {
-        type: "nb_meeting_participants_set_input",
+        type: "nb_meeting_participant_set_input",
         array: false,
         arrayRequired: false,
         required: false,
       },
       pk_columns: {
-        type: "nb_meeting_participants_pk_columns_input",
+        type: "nb_meeting_participant_pk_columns_input",
         array: false,
         arrayRequired: false,
         required: true,
@@ -26814,7 +27232,7 @@ export const AllTypesProps: Record<string, any> = {
   nb_meeting: {
     participants: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -26832,13 +27250,13 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -26846,7 +27264,7 @@ export const AllTypesProps: Record<string, any> = {
     },
     participants_aggregate: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -26864,13 +27282,13 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -26988,6 +27406,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    participants_limit: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "order_by",
       array: false,
@@ -27087,13 +27511,13 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     participants: {
-      type: "nb_meeting_participants_bool_exp",
+      type: "nb_meeting_participant_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    proposal: {
-      type: "ch_proposal_bool_exp",
+    participants_limit: {
+      type: "Int_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27156,6 +27580,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants_limit: {
       type: "Int",
       array: false,
       arrayRequired: false,
@@ -27242,13 +27672,13 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     participants: {
-      type: "nb_meeting_participants_arr_rel_insert_input",
+      type: "nb_meeting_participant_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    proposal: {
-      type: "ch_proposal_obj_rel_insert_input",
+    participants_limit: {
+      type: "Int",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27363,6 +27793,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    participants_limit: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     publication_time: {
       type: "order_by",
       array: false,
@@ -27456,6 +27892,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     organizer_id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants_limit: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -27606,13 +28048,13 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     participants_aggregate: {
-      type: "nb_meeting_participants_aggregate_order_by",
+      type: "nb_meeting_participant_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    proposal: {
-      type: "ch_proposal_order_by",
+    participants_limit: {
+      type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27666,10 +28108,10 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_aggregate_fields: {
+  nb_meeting_participant_aggregate_fields: {
     count: {
       columns: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -27682,9 +28124,9 @@ export const AllTypesProps: Record<string, any> = {
       },
     },
   },
-  nb_meeting_participants_aggregate_order_by: {
+  nb_meeting_participant_aggregate_order_by: {
     avg: {
-      type: "nb_meeting_participants_avg_order_by",
+      type: "nb_meeting_participant_avg_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27696,75 +28138,75 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     max: {
-      type: "nb_meeting_participants_max_order_by",
+      type: "nb_meeting_participant_max_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     min: {
-      type: "nb_meeting_participants_min_order_by",
+      type: "nb_meeting_participant_min_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     stddev: {
-      type: "nb_meeting_participants_stddev_order_by",
+      type: "nb_meeting_participant_stddev_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     stddev_pop: {
-      type: "nb_meeting_participants_stddev_pop_order_by",
+      type: "nb_meeting_participant_stddev_pop_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     stddev_samp: {
-      type: "nb_meeting_participants_stddev_samp_order_by",
+      type: "nb_meeting_participant_stddev_samp_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     sum: {
-      type: "nb_meeting_participants_sum_order_by",
+      type: "nb_meeting_participant_sum_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     var_pop: {
-      type: "nb_meeting_participants_var_pop_order_by",
+      type: "nb_meeting_participant_var_pop_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     var_samp: {
-      type: "nb_meeting_participants_var_samp_order_by",
+      type: "nb_meeting_participant_var_samp_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
     variance: {
-      type: "nb_meeting_participants_variance_order_by",
+      type: "nb_meeting_participant_variance_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
   },
-  nb_meeting_participants_arr_rel_insert_input: {
+  nb_meeting_participant_arr_rel_insert_input: {
     data: {
-      type: "nb_meeting_participants_insert_input",
+      type: "nb_meeting_participant_insert_input",
       array: true,
       arrayRequired: true,
       required: true,
     },
     on_conflict: {
-      type: "nb_meeting_participants_on_conflict",
+      type: "nb_meeting_participant_on_conflict",
       array: false,
       arrayRequired: false,
       required: false,
     },
   },
-  nb_meeting_participants_avg_order_by: {
+  nb_meeting_participant_avg_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -27778,27 +28220,27 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_bool_exp: {
+  nb_meeting_participant_bool_exp: {
     _and: {
-      type: "nb_meeting_participants_bool_exp",
+      type: "nb_meeting_participant_bool_exp",
       array: true,
       arrayRequired: false,
       required: false,
     },
     _not: {
-      type: "nb_meeting_participants_bool_exp",
+      type: "nb_meeting_participant_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
     _or: {
-      type: "nb_meeting_participants_bool_exp",
+      type: "nb_meeting_participant_bool_exp",
       array: true,
       arrayRequired: false,
       required: false,
     },
-    cr_user: {
-      type: "cr_user_bool_exp",
+    created_at: {
+      type: "timestamptz_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27809,14 +28251,32 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    meeting: {
+      type: "nb_meeting_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     meeting_id: {
       type: "Int_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meeting: {
-      type: "nb_meeting_bool_exp",
+    status: {
+      type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    updated_at: {
+      type: "timestamptz_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27828,8 +28288,8 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_constraint: "enum",
-  nb_meeting_participants_inc_input: {
+  nb_meeting_participant_constraint: "enum",
+  nb_meeting_participant_inc_input: {
     id: {
       type: "Int",
       array: false,
@@ -27843,9 +28303,9 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_insert_input: {
-    cr_user: {
-      type: "cr_user_obj_rel_insert_input",
+  nb_meeting_participant_insert_input: {
+    created_at: {
+      type: "timestamptz",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27856,18 +28316,36 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    meeting_id: {
-      type: "Int",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    nb_meeting: {
+    meeting: {
       type: "nb_meeting_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
+    meeting_id: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    updated_at: {
+      type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_obj_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     user_id: {
       type: "uuid",
       array: false,
@@ -27875,7 +28353,13 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_max_order_by: {
+  nb_meeting_participant_max_order_by: {
+    created_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -27888,6 +28372,18 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    updated_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     user_id: {
       type: "order_by",
       array: false,
@@ -27895,7 +28391,13 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_min_order_by: {
+  nb_meeting_participant_min_order_by: {
+    created_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
       array: false,
@@ -27908,6 +28410,18 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    updated_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     user_id: {
       type: "order_by",
       array: false,
@@ -27915,43 +28429,43 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_obj_rel_insert_input: {
+  nb_meeting_participant_obj_rel_insert_input: {
     data: {
-      type: "nb_meeting_participants_insert_input",
+      type: "nb_meeting_participant_insert_input",
       array: false,
       arrayRequired: false,
       required: true,
     },
     on_conflict: {
-      type: "nb_meeting_participants_on_conflict",
+      type: "nb_meeting_participant_on_conflict",
       array: false,
       arrayRequired: false,
       required: false,
     },
   },
-  nb_meeting_participants_on_conflict: {
+  nb_meeting_participant_on_conflict: {
     constraint: {
-      type: "nb_meeting_participants_constraint",
+      type: "nb_meeting_participant_constraint",
       array: false,
       arrayRequired: false,
       required: true,
     },
     update_columns: {
-      type: "nb_meeting_participants_update_column",
+      type: "nb_meeting_participant_update_column",
       array: true,
       arrayRequired: true,
       required: true,
     },
     where: {
-      type: "nb_meeting_participants_bool_exp",
+      type: "nb_meeting_participant_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
   },
-  nb_meeting_participants_order_by: {
-    cr_user: {
-      type: "cr_user_order_by",
+  nb_meeting_participant_order_by: {
+    created_at: {
+      type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27962,14 +28476,32 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    meeting: {
+      type: "nb_meeting_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     meeting_id: {
       type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meeting: {
-      type: "nb_meeting_order_by",
+    status: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    updated_at: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27981,7 +28513,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_pk_columns_input: {
+  nb_meeting_participant_pk_columns_input: {
     id: {
       type: "Int",
       array: false,
@@ -27989,8 +28521,14 @@ export const AllTypesProps: Record<string, any> = {
       required: true,
     },
   },
-  nb_meeting_participants_select_column: "enum",
-  nb_meeting_participants_set_input: {
+  nb_meeting_participant_select_column: "enum",
+  nb_meeting_participant_set_input: {
+    created_at: {
+      type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int",
       array: false,
@@ -27999,6 +28537,18 @@ export const AllTypesProps: Record<string, any> = {
     },
     meeting_id: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    status: {
+      type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    updated_at: {
+      type: "timestamptz",
       array: false,
       arrayRequired: false,
       required: false,
@@ -28010,7 +28560,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_stddev_order_by: {
+  nb_meeting_participant_stddev_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -28024,7 +28574,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_stddev_pop_order_by: {
+  nb_meeting_participant_stddev_pop_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -28038,7 +28588,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_stddev_samp_order_by: {
+  nb_meeting_participant_stddev_samp_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -28052,7 +28602,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_sum_order_by: {
+  nb_meeting_participant_sum_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -28066,8 +28616,8 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_update_column: "enum",
-  nb_meeting_participants_var_pop_order_by: {
+  nb_meeting_participant_update_column: "enum",
+  nb_meeting_participant_var_pop_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -28081,7 +28631,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_var_samp_order_by: {
+  nb_meeting_participant_var_samp_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -28095,7 +28645,7 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
   },
-  nb_meeting_participants_variance_order_by: {
+  nb_meeting_participant_variance_order_by: {
     id: {
       type: "order_by",
       array: false,
@@ -28179,6 +28729,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    participants_limit: {
+      type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     publication_time: {
       type: "timestamptz",
       array: false,
@@ -28229,6 +28785,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    participants_limit: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "order_by",
       array: false,
@@ -28244,6 +28806,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants_limit: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -28269,6 +28837,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    participants_limit: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "order_by",
       array: false,
@@ -28284,6 +28858,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants_limit: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -28310,6 +28890,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    participants_limit: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "order_by",
       array: false,
@@ -28330,6 +28916,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    participants_limit: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     sphere_id: {
       type: "order_by",
       array: false,
@@ -28345,6 +28937,12 @@ export const AllTypesProps: Record<string, any> = {
       required: false,
     },
     id: {
+      type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    participants_limit: {
       type: "order_by",
       array: false,
       arrayRequired: false,
@@ -30579,9 +31177,9 @@ export const AllTypesProps: Record<string, any> = {
         required: true,
       },
     },
-    nb_meeting_participants: {
+    nb_meeting_participant: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -30599,21 +31197,21 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
       },
     },
-    nb_meeting_participants_aggregate: {
+    nb_meeting_participant_aggregate: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -30631,19 +31229,19 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
       },
     },
-    nb_meeting_participants_by_pk: {
+    nb_meeting_participant_by_pk: {
       id: {
         type: "Int",
         array: false,
@@ -31897,9 +32495,9 @@ export const AllTypesProps: Record<string, any> = {
         required: true,
       },
     },
-    nb_meeting_participants: {
+    nb_meeting_participant: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -31917,21 +32515,21 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
       },
     },
-    nb_meeting_participants_aggregate: {
+    nb_meeting_participant_aggregate: {
       distinct_on: {
-        type: "nb_meeting_participants_select_column",
+        type: "nb_meeting_participant_select_column",
         array: true,
         arrayRequired: false,
         required: true,
@@ -31949,19 +32547,19 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
       order_by: {
-        type: "nb_meeting_participants_order_by",
+        type: "nb_meeting_participant_order_by",
         array: true,
         arrayRequired: false,
         required: true,
       },
       where: {
-        type: "nb_meeting_participants_bool_exp",
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
       },
     },
-    nb_meeting_participants_by_pk: {
+    nb_meeting_participant_by_pk: {
       id: {
         type: "Int",
         array: false,
@@ -32345,6 +32943,8 @@ export const ReturnTypes: Record<string, any> = {
     start_publication: "timestamptz",
     start_time: "timestamptz",
     status: "String",
+    time_slots: "ch_time_slot",
+    time_slots_aggregate: "ch_time_slot_aggregate",
   },
   ch_festival_aggregate: {
     aggregate: "ch_festival_aggregate_fields",
@@ -32860,6 +33460,7 @@ export const ReturnTypes: Record<string, any> = {
     ch_proposal_time_slots: "ch_proposal_time_slots",
     ch_proposal_time_slots_aggregate: "ch_proposal_time_slots_aggregate",
     end_time: "timestamptz",
+    festival: "ch_festival",
     festival_id: "Int",
     id: "Int",
     start_time: "timestamptz",
@@ -33020,11 +33621,13 @@ export const ReturnTypes: Record<string, any> = {
     locale: "String",
     managed_spheres: "nb_sphere_managers",
     managed_spheres_aggregate: "nb_sphere_managers_aggregate",
-    meetings: "nb_meeting_participants",
-    meetings_aggregate: "nb_meeting_participants_aggregate",
+    meetings: "nb_meeting_participant",
+    meetings_aggregate: "nb_meeting_participant_aggregate",
     organized_meetings: "nb_meeting",
     organized_meetings_aggregate: "nb_meeting_aggregate",
     password: "String",
+    proposals: "ch_proposal",
+    proposals_aggregate: "ch_proposal_aggregate",
     username: "String",
     uuid: "uuid",
   },
@@ -33155,8 +33758,8 @@ export const ReturnTypes: Record<string, any> = {
     delete_nb_guild_member_by_pk: "nb_guild_member",
     delete_nb_meeting: "nb_meeting_mutation_response",
     delete_nb_meeting_by_pk: "nb_meeting",
-    delete_nb_meeting_participants: "nb_meeting_participants_mutation_response",
-    delete_nb_meeting_participants_by_pk: "nb_meeting_participants",
+    delete_nb_meeting_participant: "nb_meeting_participant_mutation_response",
+    delete_nb_meeting_participant_by_pk: "nb_meeting_participant",
     delete_nb_sphere: "nb_sphere_mutation_response",
     delete_nb_sphere_by_pk: "nb_sphere",
     delete_nb_sphere_managers: "nb_sphere_managers_mutation_response",
@@ -33189,8 +33792,8 @@ export const ReturnTypes: Record<string, any> = {
     insert_nb_guild_one: "nb_guild",
     insert_nb_meeting: "nb_meeting_mutation_response",
     insert_nb_meeting_one: "nb_meeting",
-    insert_nb_meeting_participants: "nb_meeting_participants_mutation_response",
-    insert_nb_meeting_participants_one: "nb_meeting_participants",
+    insert_nb_meeting_participant: "nb_meeting_participant_mutation_response",
+    insert_nb_meeting_participant_one: "nb_meeting_participant",
     insert_nb_sphere: "nb_sphere_mutation_response",
     insert_nb_sphere_managers: "nb_sphere_managers_mutation_response",
     insert_nb_sphere_managers_one: "nb_sphere_managers",
@@ -33223,8 +33826,8 @@ export const ReturnTypes: Record<string, any> = {
     update_nb_guild_member_by_pk: "nb_guild_member",
     update_nb_meeting: "nb_meeting_mutation_response",
     update_nb_meeting_by_pk: "nb_meeting",
-    update_nb_meeting_participants: "nb_meeting_participants_mutation_response",
-    update_nb_meeting_participants_by_pk: "nb_meeting_participants",
+    update_nb_meeting_participant: "nb_meeting_participant_mutation_response",
+    update_nb_meeting_participant_by_pk: "nb_meeting_participant",
     update_nb_sphere: "nb_sphere_mutation_response",
     update_nb_sphere_by_pk: "nb_sphere",
     update_nb_sphere_managers: "nb_sphere_managers_mutation_response",
@@ -33390,9 +33993,9 @@ export const ReturnTypes: Record<string, any> = {
     name: "String",
     organizer: "cr_user",
     organizer_id: "uuid",
-    participants: "nb_meeting_participants",
-    participants_aggregate: "nb_meeting_participants_aggregate",
-    proposal: "ch_proposal",
+    participants: "nb_meeting_participant",
+    participants_aggregate: "nb_meeting_participant_aggregate",
+    participants_limit: "Int",
     publication_time: "timestamptz",
     slug: "String",
     sphere: "nb_sphere",
@@ -33422,6 +34025,7 @@ export const ReturnTypes: Record<string, any> = {
   nb_meeting_avg_fields: {
     guild_id: "Float",
     id: "Float",
+    participants_limit: "Float",
     sphere_id: "Float",
   },
   nb_meeting_max_fields: {
@@ -33435,6 +34039,7 @@ export const ReturnTypes: Record<string, any> = {
     meeting_url: "String",
     name: "String",
     organizer_id: "uuid",
+    participants_limit: "Int",
     publication_time: "timestamptz",
     slug: "String",
     sphere_id: "Int",
@@ -33453,6 +34058,7 @@ export const ReturnTypes: Record<string, any> = {
     meeting_url: "String",
     name: "String",
     organizer_id: "uuid",
+    participants_limit: "Int",
     publication_time: "timestamptz",
     slug: "String",
     sphere_id: "Int",
@@ -33464,109 +34070,125 @@ export const ReturnTypes: Record<string, any> = {
     affected_rows: "Int",
     returning: "nb_meeting",
   },
-  nb_meeting_participants: {
-    cr_user: "cr_user",
+  nb_meeting_participant: {
+    created_at: "timestamptz",
     id: "Int",
+    meeting: "nb_meeting",
     meeting_id: "Int",
-    nb_meeting: "nb_meeting",
+    status: "String",
+    updated_at: "timestamptz",
+    user: "cr_user",
     user_id: "uuid",
   },
-  nb_meeting_participants_aggregate: {
-    aggregate: "nb_meeting_participants_aggregate_fields",
-    nodes: "nb_meeting_participants",
+  nb_meeting_participant_aggregate: {
+    aggregate: "nb_meeting_participant_aggregate_fields",
+    nodes: "nb_meeting_participant",
   },
-  nb_meeting_participants_aggregate_fields: {
-    avg: "nb_meeting_participants_avg_fields",
+  nb_meeting_participant_aggregate_fields: {
+    avg: "nb_meeting_participant_avg_fields",
     count: "Int",
-    max: "nb_meeting_participants_max_fields",
-    min: "nb_meeting_participants_min_fields",
-    stddev: "nb_meeting_participants_stddev_fields",
-    stddev_pop: "nb_meeting_participants_stddev_pop_fields",
-    stddev_samp: "nb_meeting_participants_stddev_samp_fields",
-    sum: "nb_meeting_participants_sum_fields",
-    var_pop: "nb_meeting_participants_var_pop_fields",
-    var_samp: "nb_meeting_participants_var_samp_fields",
-    variance: "nb_meeting_participants_variance_fields",
+    max: "nb_meeting_participant_max_fields",
+    min: "nb_meeting_participant_min_fields",
+    stddev: "nb_meeting_participant_stddev_fields",
+    stddev_pop: "nb_meeting_participant_stddev_pop_fields",
+    stddev_samp: "nb_meeting_participant_stddev_samp_fields",
+    sum: "nb_meeting_participant_sum_fields",
+    var_pop: "nb_meeting_participant_var_pop_fields",
+    var_samp: "nb_meeting_participant_var_samp_fields",
+    variance: "nb_meeting_participant_variance_fields",
   },
-  nb_meeting_participants_avg_fields: {
+  nb_meeting_participant_avg_fields: {
     id: "Float",
     meeting_id: "Float",
   },
-  nb_meeting_participants_max_fields: {
+  nb_meeting_participant_max_fields: {
+    created_at: "timestamptz",
     id: "Int",
     meeting_id: "Int",
+    status: "String",
+    updated_at: "timestamptz",
     user_id: "uuid",
   },
-  nb_meeting_participants_min_fields: {
+  nb_meeting_participant_min_fields: {
+    created_at: "timestamptz",
     id: "Int",
     meeting_id: "Int",
+    status: "String",
+    updated_at: "timestamptz",
     user_id: "uuid",
   },
-  nb_meeting_participants_mutation_response: {
+  nb_meeting_participant_mutation_response: {
     affected_rows: "Int",
-    returning: "nb_meeting_participants",
+    returning: "nb_meeting_participant",
   },
-  nb_meeting_participants_stddev_fields: {
+  nb_meeting_participant_stddev_fields: {
     id: "Float",
     meeting_id: "Float",
   },
-  nb_meeting_participants_stddev_pop_fields: {
+  nb_meeting_participant_stddev_pop_fields: {
     id: "Float",
     meeting_id: "Float",
   },
-  nb_meeting_participants_stddev_samp_fields: {
+  nb_meeting_participant_stddev_samp_fields: {
     id: "Float",
     meeting_id: "Float",
   },
-  nb_meeting_participants_sum_fields: {
+  nb_meeting_participant_sum_fields: {
     id: "Int",
     meeting_id: "Int",
   },
-  nb_meeting_participants_var_pop_fields: {
+  nb_meeting_participant_var_pop_fields: {
     id: "Float",
     meeting_id: "Float",
   },
-  nb_meeting_participants_var_samp_fields: {
+  nb_meeting_participant_var_samp_fields: {
     id: "Float",
     meeting_id: "Float",
   },
-  nb_meeting_participants_variance_fields: {
+  nb_meeting_participant_variance_fields: {
     id: "Float",
     meeting_id: "Float",
   },
   nb_meeting_stddev_fields: {
     guild_id: "Float",
     id: "Float",
+    participants_limit: "Float",
     sphere_id: "Float",
   },
   nb_meeting_stddev_pop_fields: {
     guild_id: "Float",
     id: "Float",
+    participants_limit: "Float",
     sphere_id: "Float",
   },
   nb_meeting_stddev_samp_fields: {
     guild_id: "Float",
     id: "Float",
+    participants_limit: "Float",
     sphere_id: "Float",
   },
   nb_meeting_sum_fields: {
     guild_id: "Int",
     id: "Int",
+    participants_limit: "Int",
     sphere_id: "Int",
   },
   nb_meeting_var_pop_fields: {
     guild_id: "Float",
     id: "Float",
+    participants_limit: "Float",
     sphere_id: "Float",
   },
   nb_meeting_var_samp_fields: {
     guild_id: "Float",
     id: "Float",
+    participants_limit: "Float",
     sphere_id: "Float",
   },
   nb_meeting_variance_fields: {
     guild_id: "Float",
     id: "Float",
+    participants_limit: "Float",
     sphere_id: "Float",
   },
   nb_sphere: {
@@ -33759,9 +34381,9 @@ export const ReturnTypes: Record<string, any> = {
     nb_meeting: "nb_meeting",
     nb_meeting_aggregate: "nb_meeting_aggregate",
     nb_meeting_by_pk: "nb_meeting",
-    nb_meeting_participants: "nb_meeting_participants",
-    nb_meeting_participants_aggregate: "nb_meeting_participants_aggregate",
-    nb_meeting_participants_by_pk: "nb_meeting_participants",
+    nb_meeting_participant: "nb_meeting_participant",
+    nb_meeting_participant_aggregate: "nb_meeting_participant_aggregate",
+    nb_meeting_participant_by_pk: "nb_meeting_participant",
     nb_sphere: "nb_sphere",
     nb_sphere_aggregate: "nb_sphere_aggregate",
     nb_sphere_by_pk: "nb_sphere",
@@ -33812,9 +34434,9 @@ export const ReturnTypes: Record<string, any> = {
     nb_meeting: "nb_meeting",
     nb_meeting_aggregate: "nb_meeting_aggregate",
     nb_meeting_by_pk: "nb_meeting",
-    nb_meeting_participants: "nb_meeting_participants",
-    nb_meeting_participants_aggregate: "nb_meeting_participants_aggregate",
-    nb_meeting_participants_by_pk: "nb_meeting_participants",
+    nb_meeting_participant: "nb_meeting_participant",
+    nb_meeting_participant_aggregate: "nb_meeting_participant_aggregate",
+    nb_meeting_participant_by_pk: "nb_meeting_participant",
     nb_sphere: "nb_sphere",
     nb_sphere_aggregate: "nb_sphere_aggregate",
     nb_sphere_by_pk: "nb_sphere",

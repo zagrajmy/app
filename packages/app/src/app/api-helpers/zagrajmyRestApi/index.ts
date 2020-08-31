@@ -1,4 +1,4 @@
-import { makeSummon } from "../../lib/summon";
+import { makeSummon } from "../../../lib/summon";
 
 export const zagrajmyRestApi = makeSummon(
   process.env.NODE_ENV === "production"

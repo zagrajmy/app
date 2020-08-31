@@ -25,5 +25,7 @@ module.exports = {
     "react/jsx-pascal-case": "off",
 
     "prefer-destructuring": ["warn", { object: true, array: false }],
+
+    camelcase: "off",
   },
 };

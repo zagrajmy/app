@@ -81,7 +81,8 @@ export function MeetingParticipants({
     <>
       <Text variant="bold" my={2}>
         {count}
-        {limit ? `/${limit}` : null} {t("meeting-participant", { count })}
+        {limit ? `/${limit}` : null}{" "}
+        {t("meeting-participant", { count: limit || count })}
       </Text>
       <Stack row wrapChildren gap={-3}>
         {shownParticipants.map((p) => (
