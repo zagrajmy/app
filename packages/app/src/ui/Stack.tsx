@@ -1,6 +1,11 @@
 import { Children, ComponentPropsWithoutRef } from "react";
-import { ThemeUICSSProperties, ThemeUIStyleObject } from "theme-ui";
+import { ThemeUICSSObject, ThemeUICSSProperties } from "theme-ui";
 import { FunctionKeys } from "utility-types";
+
+const listStyles: ThemeUICSSObject = {
+  listStyle: "none",
+  pl: 0,
+};
 
 type OmitFunctions<T extends object> = Omit<T, FunctionKeys<T>>;
 
@@ -27,16 +32,19 @@ export const Stack = ({
 }: StackProps) => {
   const marginOrientation = isRow ? "marginInlineStart" : "marginBlockStart";
 
-  const childMargin: ThemeUIStyleObject = {
+  const childMargin: ThemeUICSSObject = {
     [marginOrientation]: gap,
   };
 
-  const containerStyle: ThemeUIStyleObject = {
-    display: "flex",
-    flexDirection: isRow ? "row" : "column",
-    justifyContent,
-    alignItems,
-  };
+  const containerStyle: ThemeUICSSObject = Object.assign(
+    {
+      display: "flex",
+      flexDirection: isRow ? "row" : "column",
+      justifyContent,
+      alignItems,
+    },
+    Root === "ul" || Root === "ol" ? listStyles : null
+  );
 
   if (wrapChildren) {
     return (
