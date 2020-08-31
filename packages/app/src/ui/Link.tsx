@@ -74,7 +74,10 @@ export const Link = ({ variant, sx, ...rest }: LinkProps) => {
   );
 
   // external URLs are mapped to `a` instead of Next `Link`
-  if (typeof rest.href === "string" && rest.href.match(/^https?:\/\//)) {
+  if (
+    typeof rest.href === "string" &&
+    rest.href.match(/^(https?:|\/\/|#|mailto:|javascript:)/)
+  ) {
     return <a sx={styles} {...rest} href={rest.href as string} />;
   }
 

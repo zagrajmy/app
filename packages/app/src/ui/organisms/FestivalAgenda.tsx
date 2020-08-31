@@ -57,15 +57,25 @@ export function FestivalAgenda({
 }
 
 export interface FestivalAgendaRoomProps {
+  id: string;
   name: string;
   children: React.ReactNode;
 }
-FestivalAgenda.Room = ({ name, children }: FestivalAgendaRoomProps) => {
+FestivalAgenda.Room = ({ id, name, children }: FestivalAgendaRoomProps) => {
   return (
-    <li id={slugify(name)}>
-      <Heading as="h3" sx={{ mb: 3, color: "gray.6" }}>
-        {name}
-      </Heading>
+    <li id={id}>
+      <a
+        href={`#${id}`}
+        sx={{
+          textDecoration: "none",
+          "&:hover": { textDecoration: "underline" },
+          color: "gray.6",
+        }}
+      >
+        <Heading as="h3" sx={{ mb: 3 }}>
+          {name}
+        </Heading>
+      </a>
       <ol
         sx={{
           ...listStyles,

@@ -20,6 +20,7 @@ import {
   useLanguage,
 } from "../src/i18n";
 import { head } from "../src/lib/head";
+import { slugify } from "../src/lib/slugify";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
 import {
   Code,
@@ -165,6 +166,8 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
   const canSeeAgenda = isPast(publicationStart);
   const agendaIsBeingPrepared = isPast(proposalEnd) && !canSeeAgenda;
 
+  const roomNames = festival.ch_rooms.map((room) => room.name);
+
   return (
     <>
       <Heading as="h1">{festival.name}</Heading>
@@ -201,42 +204,58 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
           <Heading as="h2" sx={{ my: 4 }}>
             {t("agenda")}
           </Heading>
-          <FestivalAgenda id="agenda">
-            {festival.ch_rooms.map((room, i) => (
-              <FestivalAgenda.Room name={room.name} key={i}>
-                {room.ch_agenda_items.map(({ nb_meeting }) => {
-                  if (!nb_meeting) {
-                    return null;
-                  }
-
-                  const {
-                    id,
-                    name: title,
-                    description,
-                    // slug, // todo: meeting detail
-                    organizer,
-                    proposal,
-                    start_time,
-                    end_time,
-                  } = nb_meeting;
-
-                  return (
-                    <FestivalAgenda.Item
-                      key={id}
-                      time={`${formatHour(start_time, lang)} - ${formatHour(
-                        end_time,
-                        lang
-                      )}`}
-                      organizer={{
-                        name: proposal?.speaker_name || organizer.username,
-                      }}
-                      title={title}
-                      description={description}
-                    />
-                  );
-                })}
-              </FestivalAgenda.Room>
+          <Stack as="ul" row gap={3} sx={{ mb: 4 }}>
+            {roomNames.map((name) => (
+              <li key={name}>
+                <Link
+                  href={`#${slugify(name)}`}
+                  variant="underlined"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {name}
+                </Link>
+              </li>
             ))}
+          </Stack>
+          <FestivalAgenda id="agenda">
+            {festival.ch_rooms.map((room, i) => {
+              const roomSlug = slugify(room.name);
+              return (
+                <FestivalAgenda.Room id={roomSlug} name={room.name} key={i}>
+                  {room.ch_agenda_items.map(({ nb_meeting }) => {
+                    if (!nb_meeting) {
+                      return null;
+                    }
+
+                    const {
+                      id,
+                      name: title,
+                      description,
+                      // slug, // todo: meeting detail
+                      organizer,
+                      proposal,
+                      start_time,
+                      end_time,
+                    } = nb_meeting;
+
+                    return (
+                      <FestivalAgenda.Item
+                        key={id}
+                        time={`${formatHour(start_time, lang)} - ${formatHour(
+                          end_time,
+                          lang
+                        )}`}
+                        organizer={{
+                          name: proposal?.speaker_name || organizer.username,
+                        }}
+                        title={title}
+                        description={description}
+                      />
+                    );
+                  })}
+                </FestivalAgenda.Room>
+              );
+            })}
           </FestivalAgenda>
         </>
       )}

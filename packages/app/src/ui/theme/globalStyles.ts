@@ -34,11 +34,13 @@ const scrollbarStyles: ThemeUIStyleObject = {
 };
 
 export const globalStyles = {
+  html: {
+    scrollBehavior: "smooth",
+  },
   body: {
     margin: 0,
     overflowY: "overlay" as any,
     overflowX: "hidden",
-    scrollBehavior: "smooth",
   },
   ...focusStyles,
   ...scrollbarStyles,
