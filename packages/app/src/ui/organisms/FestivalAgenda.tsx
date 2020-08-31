@@ -25,7 +25,7 @@ function FestivalAgendaItemTime({ children }: { children: string }) {
         fontWeight: "bold",
         color: ["gray.4", "gray.5"],
         mb: 1,
-        lineHeight: 1,
+        lineHeight: "heading",
       }}
     >
       {children}
