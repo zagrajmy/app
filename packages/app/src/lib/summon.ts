@@ -8,10 +8,10 @@ import { Assign, JsonWithUndefined } from "./utilityTypes";
 export const globals =
   typeof window === "undefined"
     ? {
-        /* eslint-disable global-require */
+        /* eslint-disable @typescript-eslint/no-var-requires */
         Request: require("node-fetch").Request as typeof Request,
         fetch: require("node-fetch").default,
-        /* eslint-enable global-require */
+        /* eslint-enable @typescript-eslint/no-var-requires */
       }
     : window;
 

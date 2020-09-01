@@ -18,6 +18,6 @@
     "noErrorTruncation": true,
     "noEmitOnError": false // <- remove this later
   },
-  "exclude": ["node_modules", "./dist", "./dist-ts", "./test", "**/*.docs.tsx"],
+  "exclude": ["node_modules", "./dist", "./dist-ts", "./test", "**/*.docs.tsx", "./scripts"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

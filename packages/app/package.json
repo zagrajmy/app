@@ -19,7 +19,7 @@
     "get-schema": "yarn ts-node scripts/getSchema",
     "codegen:zeus": "zeus data/schema.graphql --ts ./data",
     "codegen": "yarn get-schema && yarn codegen:zeus && yarn format",
-    "deploy:app": "now",
+    "deploy:app": "vercel",
     "hasura:console": "cd data/throwaway/hasura && hasura console",
     "format": "prettier {pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql} --write",
     "madge:circular": "npx madge --circular --ts-config ./tsconfig.json .",
@@ -131,6 +131,8 @@
     "@theme-ui/mdx": "0.4.0-rc.1",
     "@theme-ui/color": "0.4.0-rc.1",
     "@theme-ui/components": "0.4.0-rc.1",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
     "cypress": "5.0.0"
   },
   "snyk": true

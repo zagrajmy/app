@@ -49,6 +49,8 @@
     "@theme-ui/mdx": "0.4.0-rc.1",
     "@theme-ui/color": "0.4.0-rc.1",
     "@theme-ui/components": "0.4.0-rc.1",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
     "**/openid-client": "3.15.1",
     "cypress": "5.0.0"
   }

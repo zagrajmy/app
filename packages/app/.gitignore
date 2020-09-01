@@ -20,3 +20,5 @@ build
 
 dist
 dist-ts
+
+.vercel

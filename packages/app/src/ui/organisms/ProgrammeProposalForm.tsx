@@ -35,7 +35,11 @@ import { Spacer } from "../Spacer";
  * need to do this on submit. As we don't know the shape of the form value and
  * it can be deeply nested, we use this dirty piece of code.
  */
-function unsafeMod(obj: object, path: string, f: (x: unknown) => unknown) {
+function unsafeMod(
+  obj: Record<string, unknown>,
+  path: string,
+  f: (x: unknown) => unknown
+) {
   let cur = obj as any;
   const p = path.split(".");
   for (const key of p.slice(0, -1)) {
@@ -44,7 +48,7 @@ function unsafeMod(obj: object, path: string, f: (x: unknown) => unknown) {
 
   cur[p[p.length - 1]] = f(cur[p[p.length - 1]]);
 }
-function unsafeGet(obj: object, path: string) {
+function unsafeGet(obj: Record<string, unknown>, path: string) {
   let cur = obj as any;
   for (const key of path.split(".")) {
     if (!cur) {
@@ -54,6 +58,11 @@ function unsafeGet(obj: object, path: string) {
   }
   return cur;
 }
+
+type FieldName = string;
+export type ProgrammeProposalFormResult = {
+  [K in FieldName]: string | number;
+};
 
 function coerceNumberFieldValuesToNumber(
   fieldsets: settings.Fieldset[],
@@ -121,11 +130,6 @@ function fieldRef(
 }
 
 const rowStyles = { display: "flex", alignItems: "center" };
-
-type FieldName = string;
-export type ProgrammeProposalFormResult = {
-  [K in FieldName]: string | number;
-};
 
 const FieldDescription = ({ children }: { children?: string }) =>
   children ? (

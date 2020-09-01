@@ -11,16 +11,15 @@ const OptionalMark = ({ value }: { value?: boolean }) => {
   ) : null;
 };
 
-export type FormLabel<Name extends string> = (
-  props: LabelProps<Name>
-) => JSX.Element;
-
 export interface LabelProps<Name extends string>
   extends Omit<BaseLabelProps, "ref" | "htmlFor"> {
   optional?: boolean;
   htmlFor?: Name;
 }
 
+export type FormLabel<Name extends string> = (
+  props: LabelProps<Name>
+) => JSX.Element;
 export const Label = <Name extends string = string>({
   children,
   optional,

@@ -64,7 +64,7 @@ export const forms: Variants = {
   choiceGroup: {
     ...borderStyles,
     "> legend": boldMutedFont,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore TODO fix it in Theme UI, label can also be a nested object
     label: {
       fontWeight: "normal",

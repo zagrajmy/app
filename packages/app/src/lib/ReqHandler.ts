@@ -31,7 +31,7 @@ export namespace ReqHandler {
   export function Err(
     status: number,
     reason?: NonEmpty
-  ): Err | ((reason?: unknown) => Err) {
+  ): Err | ((rsn?: unknown) => Err) {
     return reason !== undefined
       ? { status, error: makeError(reason) }
       : (rsn?: unknown) => ({

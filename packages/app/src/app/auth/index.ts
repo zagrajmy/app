@@ -80,7 +80,7 @@ export const makeAuth = (nextReq?: IncomingMessage) => {
   type ManagementClient = import("auth0").ManagementClient;
   const createManagementClient = () => {
     if (typeof window === "undefined") {
-      // eslint-disable-next-line global-require
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { ManagementClient } = require("auth0") as typeof import("auth0");
 
       return new ManagementClient({

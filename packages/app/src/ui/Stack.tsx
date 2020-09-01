@@ -1,5 +1,5 @@
 import { Children, ComponentPropsWithoutRef } from "react";
-import { ThemeUIStyleObject, ThemeUICSSProperties } from "theme-ui";
+import { ThemeUICSSProperties,ThemeUIStyleObject } from "theme-ui";
 import { FunctionKeys } from "utility-types";
 
 const listStyles: ThemeUIStyleObject = {

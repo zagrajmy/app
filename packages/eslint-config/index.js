@@ -25,5 +25,16 @@ module.exports = {
     "react/jsx-pascal-case": "off",
 
     "prefer-destructuring": ["warn", { object: true, array: false }],
+
+    // great rule for libraries, not that useful for apps
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "prefer-object-spread": "off",
+    camelcase: "off",
+    "@typescript-eslint/ban-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error", { typedefs: false }],
+    "global-require": "off",
+    // false positives
+    "no-shadow": "off",
   },
 };
