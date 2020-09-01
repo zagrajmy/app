@@ -77,4 +77,8 @@ const Theme = ({ children }: { children?: React.ReactNode }) => {
   );
 };
 
-export default makeThemeProvider(theme)(Theme);
+export default makeThemeProvider(theme)(Theme) as React.FC<{
+  db: import("docz/dist/state").Database;
+  currentEntry?: import("docz").Entry;
+  children: React.ReactNode;
+}>;

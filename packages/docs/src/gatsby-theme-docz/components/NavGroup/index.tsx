@@ -65,7 +65,7 @@ export const NavGroup = ({ item, sidebarRef }: NavGroupProps) => {
         {menu &&
           subheadingsVisible &&
           menu.map((x) => {
-            if (currentDoc.route === x.route) {
+            if (currentDoc?.route === x.route) {
               return (
                 <NavLink key={x.id} item={x} ref={currentDocRef}>
                   {x.name}

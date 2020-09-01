@@ -1,13 +1,14 @@
 // @ts-check
 
-const rootConfig = require("../../.eslintrc.js");
+const config = require("../../.eslintrc");
+const {
+  replacePackagePaths,
+} = require("@zagrajmy/eslint-config/replacePackagePaths");
 
+/**
+ * @type {import("eslint").Linter.Config}
+ */
 module.exports = {
-  ...rootConfig,
-  overrides: rootConfig.overrides.map((o) => ({
-    files: o.files.map((f) => {
-      return f.replace("packages/app/", "");
-    }),
-    rules: o.rules,
-  })),
+  ...config,
+  overrides: replacePackagePaths(config, "app"),
 };

@@ -18,12 +18,14 @@ export const Header = (props: { onOpen: () => void }) => {
     repository,
     themeConfig: { showDarkModeSwitch, showMarkdownEditButton },
   } = useConfig();
-  const { edit = true, ...doc } = useCurrentDoc();
+  const currentDoc = useCurrentDoc();
   const [colorMode, setColorMode] = useColorMode();
 
   const toggleColorMode = () => {
     setColorMode(colorMode === "light" ? "dark" : "light");
   };
+
+  const edit = currentDoc === undefined ? false : currentDoc.edit ?? true;
 
   return (
     <div sx={styles.wrapper} data-testid="header">
@@ -71,10 +73,10 @@ export const Header = (props: { onOpen: () => void }) => {
             </button>
           )}
         </Flex>
-        {showMarkdownEditButton && edit && doc.link && (
+        {showMarkdownEditButton && currentDoc && edit && currentDoc.doc?.link && (
           <a
             sx={styles.editButton}
-            href={doc.link}
+            href={currentDoc.doc.link}
             target="_blank"
             rel="noopener noreferrer"
           >

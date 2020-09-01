@@ -73,7 +73,7 @@ export const Sidebar = React.forwardRef(
                     <NavGroup key={menu.id} item={menu} sidebarRef={ref} />
                   );
 
-                if (menu.route === currentDoc.route) {
+                if (menu.route === currentDoc?.route) {
                   return (
                     <NavLink key={menu.id} item={menu} ref={currentDocRef}>
                       {menu.name}

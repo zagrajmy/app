@@ -1,4 +1,9 @@
-module.exports = {
+// @ts-check
+
+/**
+ * @type {import("eslint").Linter.Config}
+ */
+const config = {
   extends: "@zagrajmy/eslint-config",
   overrides: [
     {
@@ -12,6 +17,8 @@ module.exports = {
         "packages/app/pages/**",
         // allow default exports in shadowed files
         "**/gatsby-theme-*/**",
+        // Gatsby pages are exported as default
+        "packages/docs/src/pages/**",
       ],
       rules: { "import/no-default-export": "off" },
     },
@@ -53,3 +60,5 @@ module.exports = {
     },
   ],
 };
+
+module.exports = config;

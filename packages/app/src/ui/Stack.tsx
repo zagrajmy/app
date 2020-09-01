@@ -1,8 +1,8 @@
 import { Children, ComponentPropsWithoutRef } from "react";
-import { ThemeUICSSObject, ThemeUICSSProperties } from "theme-ui";
+import { ThemeUIStyleObject, ThemeUICSSProperties } from "theme-ui";
 import { FunctionKeys } from "utility-types";
 
-const listStyles: ThemeUICSSObject = {
+const listStyles: ThemeUIStyleObject = {
   listStyle: "none",
   pl: 0,
 };
@@ -32,11 +32,11 @@ export const Stack = ({
 }: StackProps) => {
   const marginOrientation = isRow ? "marginInlineStart" : "marginBlockStart";
 
-  const childMargin: ThemeUICSSObject = {
+  const childMargin: ThemeUIStyleObject = {
     [marginOrientation]: gap,
   };
 
-  const containerStyle: ThemeUICSSObject = Object.assign(
+  const containerStyle: ThemeUIStyleObject = Object.assign(
     {
       display: "flex",
       flexDirection: isRow ? "row" : "column",

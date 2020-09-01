@@ -9,9 +9,9 @@ import { getCurrentHash } from "../../getCurrentHash";
 import * as styles from "./styles";
 
 const getHeadings = (route: string, docs: Entry[]) => {
-  const doc = docs.find(x => x.route === route);
+  const doc = docs.find((x) => x.route === route);
   const headings = get("headings", doc);
-  return headings ? headings.filter(x => x.depth === 2) : [];
+  return headings ? headings.filter((x) => x.depth === 2) : [];
 };
 
 export const NavLink = React.forwardRef(
@@ -23,7 +23,9 @@ export const NavLink = React.forwardRef(
     const to = item.route;
     const headings = docs && getHeadings(to, docs);
     const current = useCurrentDoc();
-    const isCurrent = item.route === current.route;
+    // TODO: needs fix for non-docz routes
+    console.log({ current, item });
+    const isCurrent = item.route === current?.route;
     const showHeadings = isCurrent && headings && headings.length > 0;
     const currentHash = getCurrentHash();
     return (
@@ -36,7 +38,7 @@ export const NavLink = React.forwardRef(
           ref={ref}
         />
         {showHeadings &&
-          headings!.map(heading => (
+          headings!.map((heading) => (
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               key={heading.slug}
