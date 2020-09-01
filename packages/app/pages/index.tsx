@@ -1,4 +1,4 @@
-import { isFuture, isPast } from "date-fns";
+import { isFuture, isPast, isSameDay } from "date-fns";
 import { TFunction } from "i18next";
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import dynamic from "next/dynamic";
@@ -151,6 +151,31 @@ const FestivalDateTime = ({ startTime, endTime }: FestivalDateTimeProps) => {
   );
 };
 
+function formatProgramTimeSpan(
+  start_time: Date | string,
+  end_time: Date | string,
+  lang: SupportedLanguage,
+  options: { showDay?: boolean } = {}
+): React.ReactNode {
+  const hours = `${formatHour(start_time, lang)} - ${formatHour(
+    end_time,
+    lang
+  )}`;
+
+  if (options.showDay) {
+    return (
+      <>
+        <div sx={{ display: ["inline", "block"] }}>{hours}</div>{" "}
+        <span sx={{ fontSize: 0, color: "gray.4" }}>
+          {formatDate(start_time, lang, { weekday: true })}
+        </span>
+      </>
+    );
+  }
+
+  return hours;
+}
+
 interface FestivalPageProps {
   festival: Festival;
   introText: React.ReactNode;
@@ -166,6 +191,13 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
   const canSeeAgenda = isPast(publicationStart);
   const agendaIsBeingPrepared = isPast(proposalEnd) && !canSeeAgenda;
 
+  const festivalStartTime = new Date(festival.start_time);
+  const festivalEndTime = new Date(festival.end_time);
+  const festivalSpansOverMultipleDays = !isSameDay(
+    festivalStartTime,
+    festivalEndTime
+  );
+
   const roomNames = festival.ch_rooms.map((room) => room.name);
 
   return (
@@ -173,8 +205,8 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
       <Heading as="h1">{festival.name}</Heading>
       <Spacer height={3} />
       <FestivalDateTime
-        startTime={festival.start_time}
-        endTime={festival.end_time}
+        startTime={festivalStartTime}
+        endTime={festivalEndTime}
       />
       {introText}
       {canProposeProgram && (
@@ -204,7 +236,17 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
           <Heading as="h2" sx={{ my: 4 }}>
             {t("agenda")}
           </Heading>
-          <Stack as="ul" row gap={3} sx={{ mb: 4 }}>
+          <Flex
+            as="ul"
+            sx={{
+              listStyle: "none",
+              pl: 0,
+              mb: 4,
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: 3,
+            }}
+          >
             {roomNames.map((name) => (
               <li key={name}>
                 <Link
@@ -216,7 +258,7 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
                 </Link>
               </li>
             ))}
-          </Stack>
+          </Flex>
           <FestivalAgenda id="agenda">
             {festival.ch_rooms.map((room, i) => {
               const roomSlug = slugify(room.name);
@@ -241,10 +283,12 @@ const FestivalPage = ({ festival, introText, t, lang }: FestivalPageProps) => {
                     return (
                       <FestivalAgenda.Item
                         key={id}
-                        time={`${formatHour(start_time, lang)} - ${formatHour(
+                        time={formatProgramTimeSpan(
+                          start_time,
                           end_time,
-                          lang
-                        )}`}
+                          lang,
+                          { showDay: festivalSpansOverMultipleDays }
+                        )}
                         organizer={{
                           name: proposal?.speaker_name || organizer.username,
                         }}

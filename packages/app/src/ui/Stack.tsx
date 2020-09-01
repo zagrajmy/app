@@ -1,19 +1,56 @@
 import { Children, ComponentPropsWithoutRef } from "react";
-import { ThemeUICSSObject, ThemeUICSSProperties } from "theme-ui";
+import { ThemeUIStyleObject, ThemeUICSSProperties } from "theme-ui";
 import { FunctionKeys } from "utility-types";
 
-const listStyles: ThemeUICSSObject = {
+const listStyles: ThemeUIStyleObject = {
   listStyle: "none",
   pl: 0,
 };
+
+function getStyles(
+  isRow: boolean | "only-desktop" | undefined,
+  gap:
+    | number
+    | [
+        number,
+        (number | undefined)?,
+        (number | undefined)?,
+        (number | undefined)?
+      ],
+  justifyContent: ThemeUICSSProperties["justifyContent"],
+  alignItems: ThemeUICSSProperties["alignItems"],
+  rootIsList: boolean
+) {
+  const childMargin: ThemeUIStyleObject =
+    isRow === "only-desktop"
+      ? {
+          marginBlockStart: [gap, null],
+          marginInlineStart: [null, gap],
+        }
+      : {
+          [isRow ? "marginInlineStart" : "marginBlockStart"]: gap,
+        };
+
+  const containerStyle: ThemeUIStyleObject = Object.assign(
+    {
+      display: "flex",
+      flexDirection:
+        isRow === "only-desktop" ? ["column", "row"] : isRow ? "row" : "column",
+      justifyContent,
+      alignItems,
+    },
+    rootIsList ? listStyles : null
+  );
+  return { containerStyle, childMargin };
+}
 
 type OmitFunctions<T extends object> = Omit<T, FunctionKeys<T>>;
 
 export interface StackProps
   extends OmitFunctions<ComponentPropsWithoutRef<"div">> {
   as?: "div" | "section" | "article" | "ol" | "ul" | "fieldset";
-  row?: boolean;
-  justify?: ThemeUICSSProperties["alignItems"];
+  row?: boolean | "only-desktop";
+  justify?: ThemeUICSSProperties["justifyContent"];
   align?: ThemeUICSSProperties["alignItems"];
   gap?: number | [number, number?, number?, number?];
   // use whenever children are heterogenous
@@ -30,20 +67,12 @@ export const Stack = ({
   sx,
   ...rest
 }: StackProps) => {
-  const marginOrientation = isRow ? "marginInlineStart" : "marginBlockStart";
-
-  const childMargin: ThemeUICSSObject = {
-    [marginOrientation]: gap,
-  };
-
-  const containerStyle: ThemeUICSSObject = Object.assign(
-    {
-      display: "flex",
-      flexDirection: isRow ? "row" : "column",
-      justifyContent,
-      alignItems,
-    },
-    Root === "ul" || Root === "ol" ? listStyles : null
+  const { containerStyle, childMargin } = getStyles(
+    isRow,
+    gap,
+    justifyContent,
+    alignItems,
+    Root === "ul" || Root === "ol"
   );
 
   if (wrapChildren) {

@@ -1,6 +1,5 @@
 import { ThemeUIStyleObject } from "theme-ui";
 
-import { slugify } from "../../lib/slugify";
 import { Heading } from "../Heading";
 
 const listStyles: ThemeUIStyleObject = {
@@ -8,7 +7,10 @@ const listStyles: ThemeUIStyleObject = {
   pl: 0,
 };
 
-function FestivalAgendaItemTime({ children }: { children: string }) {
+interface FestivalAgendaItemTimeProps {
+  children: React.ReactNode;
+}
+function FestivalAgendaItemTime({ children }: FestivalAgendaItemTimeProps) {
   return (
     <div
       sx={{
@@ -92,7 +94,7 @@ export interface FestivalAgendaItemProps {
   /**
    * Already formatted time.
    */
-  time: string;
+  time: React.ReactNode;
   title: string;
   organizer?: {
     name: string;

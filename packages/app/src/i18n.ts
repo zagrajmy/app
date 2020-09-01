@@ -100,5 +100,14 @@ export const formatHour = (time: Date | string, language: SupportedLanguage) =>
     minute: "numeric",
   }).format(new Date(time));
 
-export const formatDate = (time: Date | string, language: SupportedLanguage) =>
-  new Date(time).toLocaleDateString(language);
+export const formatDate = (
+  time: Date | string,
+  language: SupportedLanguage,
+  options: { weekday?: boolean } = {}
+) =>
+  new Date(time).toLocaleDateString(
+    language,
+    options.weekday
+      ? { weekday: "long", day: "numeric", month: "numeric", year: "numeric" }
+      : undefined
+  );
