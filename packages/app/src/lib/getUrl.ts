@@ -1,9 +1,11 @@
 import { IncomingMessage } from "http";
 
 // can this be replaced with VERCEL_URL env var?
-export const getUrl = ({
-  headers: { referer, host } = {},
-}: Pick<IncomingMessage, "headers">) => {
+export const getUrl = (arg: Pick<IncomingMessage, "headers"> | undefined) => {
+  console.log(">>>", process.env.VERCEL_URL);
+
+  const { headers: { referer = "", host = "" } = {} } = arg || {};
+
   if (typeof window !== "undefined") {
     return window.location.origin;
   }

@@ -54,3 +54,5 @@ export type Disjoint<TElements extends object[]> = {
       >]?: never;
     };
 }[number];
+
+export type Nil = null | undefined;

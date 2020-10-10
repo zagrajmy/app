@@ -1,8 +1,3 @@
-import { record } from "fp-ts/lib/Record";
-import { IncomingMessage } from "http";
-import { parseCookies } from "nookies";
-
-import { isDefined } from "../src/lib/isDefined";
 import { globals } from "../src/lib/summon";
 import { Chain } from "./graphql-zeus";
 
@@ -11,58 +6,10 @@ if (typeof fetch === "undefined") {
 }
 
 const HASURA_URL = process.env.NEXT_PUBLIC_HASURA_URL;
+const ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET;
 
-type Instance = "localhost" | "production";
+export const hasura = Chain(`${HASURA_URL}/v1/graphql`, {
+  headers: ADMIN_SECRET ? { "X-Hasura-Admin-Secret": ADMIN_SECRET! } : {},
+});
 
-/**
- * configured by `zm|db-env` cookie
- */
-const hasuraEnvs: Record<
-  Instance,
-  | {
-      url: string;
-      adminSecret?: string | undefined;
-    }
-  | undefined
-> = {
-  localhost: {
-    url: "http://localhost:8081",
-    adminSecret: "dev_only_password",
-  },
-  production: HASURA_URL
-    ? {
-        url: HASURA_URL,
-        adminSecret: process.env.HASURA_ADMIN_SECRET,
-      }
-    : undefined,
-};
-
-/**
- * creates a hasura graphql client for database env name
- */
-export const hasura = (instance: Instance) => {
-  const creds = hasuraEnvs[instance];
-
-  if (!creds) {
-    // I want this to fail fast and throw 500.
-    throw new Error("wrong database instance: credentails missing");
-  }
-
-  return Chain(`${creds.url}/v1/graphql`, {
-    headers: record.filter(
-      { "X-Hasura-Admin-Secret": creds.adminSecret },
-      isDefined
-    ),
-  });
-};
-
-/**
- * TODO: do zaorania
- */
-hasura.fromCookies = (req?: IncomingMessage) => {
-  return hasura(
-    (parseCookies({ req })["zm|db-env"] as Instance) || "production"
-  );
-};
-
-export interface Db extends ReturnType<typeof hasura> {}
+export type Db = typeof hasura;

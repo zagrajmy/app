@@ -2,24 +2,24 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { PromiseType } from "utility-types";
 
 import { order_by } from "../../../data/graphql-zeus";
-import { Db, hasura } from "../../../data/hasura";
+import { hasura } from "../../../data/hasura";
+import { commonlyRequestedMeetingFields } from "../../../data/model-utils/Meeting";
 import { auth, makeAuth } from "../../../src/app/auth";
-import { requestedMeetingFields } from "./__requestedMeetingFields";
 
-function queryMeetings(query: Db["query"], auth0Id: string) {
-  return query({
+function queryMeetings(auth0Id: string) {
+  return hasura.query({
     cr_user: [
       { where: { auth0_id: { _eq: auth0Id } } },
       {
         organized_meetings: [
           { order_by: [{ created_at: order_by.desc }] },
-          requestedMeetingFields,
+          commonlyRequestedMeetingFields,
         ],
         meetings: [
           // offset can wait now
           { limit: 20, order_by: [{ meeting: { created_at: order_by.desc } }] },
           {
-            meeting: requestedMeetingFields,
+            meeting: commonlyRequestedMeetingFields,
           },
         ],
       },
@@ -37,10 +37,9 @@ export default auth.requireAuthentication(async function myMeetings(
 ) {
   res.setHeader("Cache-Control", "no-store");
 
-  const { query } = hasura.fromCookies(req);
   const session = await makeAuth(req)!.getSession(req);
 
-  const data = await queryMeetings(query, session?.user.sub || "");
+  const data = await queryMeetings(session?.user.sub || "");
 
   return res.status(200).send(data.cr_user[0]);
 });

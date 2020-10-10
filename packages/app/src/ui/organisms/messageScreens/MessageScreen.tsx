@@ -20,15 +20,19 @@ export const MessageScreen = ({
     <Grid
       as="section"
       columns={[1, 2]}
-      sx={{ px: [4, 5], alignItems: "center", position: "relative" }}
+      sx={{
+        px: [4, 5],
+        alignItems: "center",
+        position: "relative",
+      }}
       {...rest}
     >
       <Picture
         sx={{
           flex: 1,
-          maxHeight: "100%",
+          maxHeight: 8,
           ".white": { fill: "transparent" },
-          ".black": { fill: "gray.9" },
+          ".black": { fill: "gray.8" },
           m: [1, 3],
         }}
       />

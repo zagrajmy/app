@@ -118,11 +118,11 @@ FestivalAgenda.Item = ({
     <li sx={{ display: "flex", flexDirection: ["column", "row"] }}>
       <FestivalAgendaItemTime>{time}</FestivalAgendaItemTime>
       <div sx={{ overflowX: "hidden" }}>
-        <Heading as="h4" size={3} sx={{ mb: 2, color: "gray.9" }}>
+        <Heading as="h4" size={3} sx={{ mb: 2, color: "gray.8" }}>
           {renderLink
             ? renderLink({
                 variant: "underlined",
-                sx: { color: "gray.9" },
+                sx: { color: "gray.8" },
                 children: title,
               })
             : title}

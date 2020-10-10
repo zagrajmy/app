@@ -26,6 +26,7 @@ export type ApplicationState = {
   sphere: {
     id?: string | number;
     name?: string;
+    is_open?: boolean;
     settings: settings.SphereAndFestivalSettings;
   };
 };

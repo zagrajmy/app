@@ -60,7 +60,6 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
     "user-guilds",
     () => {
       return hasura
-        .fromCookies()
         .query({
           nb_guild_member: [
             { where: { user_id: { _eq: props.user.uuid } } },
@@ -220,19 +219,19 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
 CreateMeetingPage.getInitialProps = async ({ req, res }) => {
   if (req) {
     const session = await makeAuth(req)!.getSessionOrLogIn(req, res);
-    const { query } = hasura.fromCookies(req);
 
     // When can this happen?
     if (!session.user) {
       return {};
     }
 
-    return query({
-      nb_guild_member: [
-        { where: { cr_user: { auth0_id: { _eq: session.user.sub } } } },
-        { nb_guild: { id: true, name: true } },
-      ],
-    })
+    return hasura
+      .query({
+        nb_guild_member: [
+          { where: { cr_user: { auth0_id: { _eq: session.user.sub } } } },
+          { nb_guild: { id: true, name: true } },
+        ],
+      })
       .then(extractGuilds)
       .then((initialData) => ({ initialData }));
   }

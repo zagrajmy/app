@@ -55,7 +55,7 @@ export const NoPublishedMeetingsScreen = ({
     <p>
       Null, zero, zilch, nada.
       <br />
-      Be the first, it ain't hard.
+      Be the first, create one.
     </p>
     <Center sx={{ pt: 4 }}>{children}</Center>
   </MessageScreen>

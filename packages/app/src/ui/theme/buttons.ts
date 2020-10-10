@@ -11,9 +11,15 @@ const primarySecondaryCommon = {
   textDecoration: "none",
 
   boxShadow: "sm",
-  transition: "box-shadow 150ms linear, background-color 150ms linear",
-  ":hover": {
+  transition:
+    "box-shadow 150ms linear, background-color 150ms linear, transform 150ms ease",
+  ":hover:enabled, :focus:enabled": {
     boxShadow: "md",
+    transform: "rotate(-5deg)",
+    ":active": {
+      boxShadow: "zero",
+      transform: "rotate(1deg)",
+    },
   },
 };
 
@@ -24,7 +30,7 @@ export const buttons: Variants = {
     borderColor: "primary",
     color: "white",
     ":hover:enabled, :focus:enabled": {
-      ...primarySecondaryCommon[":hover"],
+      ...primarySecondaryCommon[":hover:enabled, :focus:enabled"],
       bg: "primaryLight",
       borderColor: "primaryLight",
       boxShadow: "lg",
@@ -38,8 +44,8 @@ export const buttons: Variants = {
     ...primarySecondaryCommon,
     color: "text",
     bg: "gray.2",
-    ":hover": {
-      ...primarySecondaryCommon[":hover"],
+    ":hover:enabled, :focus:enabled": {
+      ...primarySecondaryCommon[":hover:enabled, :focus:enabled"],
       bg: "gray.1",
     },
   },
@@ -53,7 +59,7 @@ export const buttons: Variants = {
       height: "1.25em",
       color: "gray.8",
     },
-    ":hover, :focus": {
+    ":hover:enabled, :focus:enabled": {
       color: "text",
       ":before": {
         position: "absolute",

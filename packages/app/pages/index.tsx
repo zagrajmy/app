@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
     return { props };
   }
 
-  const sphereData = await fetchSphereData(ctx, sphere);
+  const sphereData = await fetchSphereData(sphere);
 
   if (sphereData) {
     // TODO Ask with url.

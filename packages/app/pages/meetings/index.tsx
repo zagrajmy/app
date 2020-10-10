@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { useMemo } from "react";
 import { Search } from "react-feather";
 import { useTranslation } from "react-i18next";
@@ -6,27 +6,27 @@ import useSWR from "swr";
 import { Heading } from "theme-ui";
 import { assert } from "ts-essentials";
 
+import { Nil } from "../../src";
 import {
   getMyMeetings,
   getRecentlyPublishedMeetings,
+  RecentlyPublishedMeetingsResult,
 } from "../../src/app/api-helpers";
-import { Claims, makeAuth } from "../../src/app/auth";
+import { makeAuth } from "../../src/app/auth";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { useAppState } from "../../src/app/store";
 import { Input, Link } from "../../src/ui";
 import { MyMeetingsResult } from "../api/meetings/my-meetings";
-import { RecentlyPublishedMeetingsResult } from "../api/meetings/recently-published";
 
-interface LoggedInUserMeetingsProps {
-  user: Claims;
-  initialData?: MyMeetingsResult;
-}
-function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
-  const { t } = useTranslation();
+const pageStyles = {
+  "& > *": { width: 800, maxWidth: "100%" },
+  alignItems: "center",
+};
 
-  const { data, error } = useSWR<MyMeetingsResult, unknown>(
+function useMyMeetings(initialData: MyMeetingsResult | Nil) {
+  const { data, error } = useSWR<MyMeetingsResult | Nil, unknown>(
     "/api/meetings/my-meetings",
-    () => getMyMeetings(),
+    () => initialData && getMyMeetings(),
     { initialData }
   );
 
@@ -37,29 +37,34 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
     };
   }, [data]);
 
-  if (error) {
-    throw error;
-  }
+  return {
+    meetings,
+    organizedMeetings,
+    error,
+  };
+}
+
+function useRecentMeetings(initialData: RecentlyPublishedMeetingsResult) {
+  return useSWR<RecentlyPublishedMeetingsResult, unknown>(
+    "/api/meetings/recent-meetings",
+    () => {
+      // TODO!
+      // getRecentlyPublishedMeetings(),
+      return initialData!;
+    },
+    { initialData }
+  );
+}
+
+interface LoggedInUserMeetingsProps {
+  initialData: MyMeetingsResult;
+}
+function LoggedInUserMeetingsList({ initialData }: LoggedInUserMeetingsProps) {
+  const { t } = useTranslation();
+  const { meetings, organizedMeetings } = useMyMeetings(initialData);
 
   return (
     <>
-      <header
-        sx={{
-          py: 3,
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-        }}
-      >
-        <Input
-          placeholder={t("search-meetings")}
-          sx={{ mr: 2, flexGrow: 1 }}
-          icon={<Search />}
-        />
-        <Link variant="button" href="/meetings/create">
-          {t("new-meeting")}
-        </Link>
-      </header>
       <section
         sx={{ mt: 2, mb: 3, p: 3, bg: "gray.3", borderRadius: "rounded-lg" }}
       >
@@ -107,26 +112,17 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
 }
 
 interface RecentMeetingsProps {
-  user?: never;
-  initialData?: RecentlyPublishedMeetingsResult;
+  initialData: RecentlyPublishedMeetingsResult;
 }
-
-// TODO: Display also on /meetings/recent
-function RecentMeetings({ initialData }: RecentMeetingsProps) {
+function RecentMeetingsList({ initialData }: RecentMeetingsProps) {
   const { t } = useTranslation();
-  const { data, error } = useSWR<RecentlyPublishedMeetingsResult, unknown>(
-    "/api/meetings/recent-meetings",
-    () => getRecentlyPublishedMeetings(),
-    { initialData }
-  );
+  const { data, error } = useRecentMeetings(initialData);
 
   if (error) {
     throw error;
   }
 
-  const meetings = useMemo(() => {
-    return data || [];
-  }, [data]);
+  const meetings = useMemo(() => data || [], [data]);
 
   return (
     <article sx={{ mt: 3 }}>
@@ -146,59 +142,83 @@ function RecentMeetings({ initialData }: RecentMeetingsProps) {
   );
 }
 
+type InitialData = {
+  recentMeetings: RecentlyPublishedMeetingsResult;
+  myMeetings?: MyMeetingsResult | Nil;
+};
+
 type MeetingsPageProps =
-  | Omit<LoggedInUserMeetingsProps, "user">
-  | RecentMeetingsProps
-  | { error?: Error; initialData?: never };
+  | {
+      error?: never;
+      initialData: InitialData;
+    }
+  | { error: Error; initialData: { [T in keyof InitialData]?: Nil } };
 
 const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
-  const { user } = useAppState();
+  const { t } = useTranslation();
+  const { user, sphere } = useAppState();
 
   if ("error" in props) {
     throw props.error;
   }
 
-  const pageStyles = {
-    "& > *": { width: 800, maxWidth: "100%" },
-    alignItems: "center",
-  };
+  const { initialData } = props;
+
+  // TODO: If sphere isn't open display meetings from the festival which are
+  // not far away in the past, but don't allow creating new even to logged users
+  const sphereIsOpen = sphere.is_open;
 
   if (user) {
     assert(!Array.isArray(props.initialData));
-    return (
-      <Page sx={pageStyles}>
-        <LoggedInUserMeetings user={user} initialData={props.initialData} />
-      </Page>
-    );
+    return <Page sx={pageStyles} />;
   }
 
   return (
     <Page sx={pageStyles}>
-      <RecentMeetings
-        initialData={
-          Array.isArray(props.initialData) ? props.initialData : undefined
-        }
-      />
+      <header
+        sx={{
+          py: 3,
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }}
+      >
+        {/* TODO: lift search up */}
+        <Input
+          placeholder={t("search-meetings")}
+          sx={{ mr: 2, flexGrow: 1 }}
+          icon={<Search />}
+        />
+        {sphereIsOpen && (
+          <Link variant="button" href="/meetings/create">
+            {t("new-meeting")}
+          </Link>
+        )}
+      </header>
+      {/* TODO: Tabs [Recent Meetings] [My Meetings] */}
+      <RecentMeetingsList initialData={initialData.recentMeetings} />
+      {initialData.myMeetings && (
+        <LoggedInUserMeetingsList initialData={initialData.myMeetings} />
+      )}
     </Page>
   );
 };
 
-MeetingsPage.getInitialProps = async (ctx): Promise<MeetingsPageProps> => {
+export const getServerSideProps: GetServerSideProps<MeetingsPageProps> = async (
+  ctx
+): Promise<{ props: MeetingsPageProps }> => {
   try {
-    if (ctx.req) {
-      const session = await makeAuth(ctx.req)?.getSession(ctx.req);
-      const user = session?.user;
-      if (user) {
-        const initialData = await getMyMeetings(ctx.req);
-        return { initialData };
-      }
-      const initialData = await getRecentlyPublishedMeetings(ctx.req);
-      return { initialData };
-    }
-    return {};
+    const session = await makeAuth(ctx.req)?.getSession(ctx.req);
+    const user = session?.user;
+
+    const myMeetings = user ? await getMyMeetings(ctx.req) : null;
+    const recentMeetings = await getRecentlyPublishedMeetings(ctx);
+
+    return { props: { initialData: { myMeetings, recentMeetings } } };
   } catch (error) {
     console.error(error);
-    return { error };
+
+    return { props: { error, initialData: {} } };
   }
 };
 

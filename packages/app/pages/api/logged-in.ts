@@ -81,15 +81,13 @@ export default async function loggedIn(
     throw new Error("zm|redirectTo cookie must be set");
   }
 
-  const db = hasura.fromCookies(req);
-
   if (session && session.user.email_verified) {
     const { email } = session.user;
 
     // TODO: get rid of awaits, use TaskEither
 
     const [existingUser, auth0UserId] = await Promise.all([
-      queryUserByEmail(db)(email),
+      queryUserByEmail(hasura)(email),
       auth.management
         .getUsersByEmail(email)
         .then((auth0Users) =>
@@ -107,7 +105,7 @@ export default async function loggedIn(
 
     if (!user) {
       const uuid = O.toNullable(
-        await createUser(db)({
+        await createUser(hasura)({
           auth0_id: auth0UserId,
           email,
           username:
@@ -122,7 +120,7 @@ export default async function loggedIn(
     } else if (!user.auth0_id) {
       // if the user exists, but his account is not linked with Auth0, we'll
       // save the Auth0 ID to our database.
-      await addAuth0Id(db, user, auth0UserId);
+      await addAuth0Id(hasura, user, auth0UserId);
     }
   }
 

@@ -37,7 +37,6 @@ function fetchFestival(ctx: GetServerSidePropsContext<Params>) {
   const sphere = detectSphere(ctx);
 
   return hasura
-    .fromCookies(ctx.req)
     .query({
       ch_festival: [
         {

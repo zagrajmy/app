@@ -1,4 +1,4 @@
-export const requestedMeetingFields = {
+export const commonlyRequestedMeetingFields = {
   id: true,
   name: true,
   description: true,

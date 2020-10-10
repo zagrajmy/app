@@ -1,15 +1,9 @@
-import { GetServerSidePropsContext } from "next";
-
 import { order_by } from "../../../../data/graphql-zeus";
 import { hasura } from "../../../../data/hasura";
 import { head } from "../../../lib/head";
 
-export function fetchSphereData(
-  ctx: GetServerSidePropsContext,
-  sphere: { domain: string }
-) {
+export function fetchSphereData(sphere: { domain: string }) {
   return hasura
-    .fromCookies(ctx.req)
     .query({
       nb_sphere: [
         { where: { django_site: { domain: { _eq: sphere.domain } } } },

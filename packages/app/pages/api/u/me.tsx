@@ -46,7 +46,6 @@ const patchLoggedInUser: ReqHandler<
   return TE.tryCatch(
     () => {
       return hasura
-        .fromCookies(req)
         .mutation({
           update_cr_user: [
             {

@@ -37,7 +37,6 @@ function queryMeeting(ctx: {
   query: NextPageContext["query"];
 }) {
   return hasura
-    .fromCookies(ctx.req)
     .query({
       nb_meeting_by_pk: [
         { id: Number(ctx.query.id) },

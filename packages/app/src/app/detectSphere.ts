@@ -1,4 +1,6 @@
+import { IncomingMessage } from "http";
 import { GetServerSidePropsContext } from "next";
+import { ParsedUrlQuery } from "querystring";
 
 import { getUrl } from "../lib/getUrl";
 import { DEV_SPHERE_DOMAIN_PARAM_NAME } from "../ui/Link";
@@ -10,13 +12,15 @@ function isHub(domain: string) {
   return HUBS.find((sphere) => domain === sphere.domain) !== undefined;
 }
 
+interface DetectSphereArgs {
+  query: ParsedUrlQuery;
+  req?: IncomingMessage;
+}
+
 /**
  * Detects current sphere from URL or query param DEV_SPHERE_DOMAIN_PARAM_NAME.
  */
-export function detectSphere({
-  query,
-  req,
-}: Pick<GetServerSidePropsContext, "query" | "req">) {
+export function detectSphere({ query, req }: DetectSphereArgs) {
   const url = getUrl(req);
 
   const domain = query[DEV_SPHERE_DOMAIN_PARAM_NAME]

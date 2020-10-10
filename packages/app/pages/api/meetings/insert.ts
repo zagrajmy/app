@@ -78,7 +78,7 @@ export default auth.requireAuthentication(async function insertMeeting(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { query, mutation } = hasura.fromCookies(req);
+  const { query, mutation } = hasura;
 
   return pipe(
     InsertMeetingBody.decode(JSON.parse(req.body)),

@@ -19,11 +19,9 @@ import {
 
 config();
 
-const ENV = "localhost";
-
 import("../hasura")
   .then(({ hasura }) => {
-    const { query, mutation } = hasura(ENV);
+    const { query, mutation } = hasura;
     const getUsers = TE.tryCatch(
       () =>
         query({

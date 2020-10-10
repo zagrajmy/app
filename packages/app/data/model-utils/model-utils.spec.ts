@@ -1,7 +1,6 @@
 import { expecter } from "ts-snippet";
 
-import { noop } from "../src";
-import { AgendaItem, Festival } from "./models-utils";
+import { AgendaItem } from "./AgendaItem";
 
 const expectSnippet = expecter(
   (code) => /* ts */ `

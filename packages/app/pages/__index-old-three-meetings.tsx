@@ -93,7 +93,10 @@ const IndexPage: NextPage<IndexPageProps> = ({ meetings }) => {
 export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
   ctx
 ) => {
-  const meetings = await getRecentlyPublishedMeetings(ctx.req, 3);
+  const meetings = await getRecentlyPublishedMeetings({
+    req: ctx.req,
+    query: { limit: "3", ...ctx.query },
+  });
 
   return { props: { meetings } };
 };

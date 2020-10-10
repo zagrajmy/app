@@ -190,7 +190,7 @@ MyApp.getInitialProps = async (
     if (req) {
       const sphere = detectSphere({ req, query });
 
-      const data = await hasura.fromCookies(req).query({
+      const data = await hasura.query({
         ...(session && {
           cr_user: [
             { where: { auth0_id: { _eq: session.user.sub } } },
@@ -202,8 +202,8 @@ MyApp.getInitialProps = async (
           {
             id: true,
             name: true,
-            settings: [{}, true],
             is_open: true,
+            settings: [{}, true],
           },
         ],
       });
