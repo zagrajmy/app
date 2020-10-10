@@ -22,7 +22,7 @@
     "codegen": "yarn get-schema && yarn codegen:zeus && yarn format",
     "deploy:app": "now",
     "hasura:console": "cd data/throwaway/hasura && hasura console",
-    "format": "prettier {pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql} --write",
+    "format": "prettier '{pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql}' --write",
     "madge:circular": "npx madge --circular --ts-config ./tsconfig.json .",
     "test:e2e": "yarn cypress open",
     "test:e2e:run": "concurrently --success first --kill-others --names \"app,cy\" \"yarn start\" \"yarn wait-on http://localhost:3000/ && yarn dotenv-load cypress run\"",
