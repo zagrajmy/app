@@ -84,7 +84,7 @@ export const Avatar = forwardRef(function Avatar(
   { className, src, placeholder, size = 32, bordered, ...rest }: AvatarProps,
   ref: Ref<HTMLElement>
 ) {
-  const [state, setState] = useState<"ok" | "error">("ok");
+  const [state, setState] = useState<"ok" | "error" | "loading">("loading");
   const avatarRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -131,7 +131,8 @@ export const Avatar = forwardRef(function Avatar(
         }}
         {...rest}
       />
-      {state === "error" && (
+
+      {state !== "ok" && (
         <AvatarCenteredText>{placeholder || rest.alt?.[0]}</AvatarCenteredText>
       )}
     </AvatarCircle>
