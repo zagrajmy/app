@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from "next";
 
 import { getUrl } from "../lib/getUrl";
+import { DEV_SPHERE_DOMAIN_PARAM_NAME } from "../ui/Link";
 
 // We should add `isHub` column to sphere probably.
 const HUBS = [{ domain: "zagrajmy.net" }, { domain: "zagrajmy.now.sh" }];
@@ -10,7 +11,7 @@ function isHub(domain: string) {
 }
 
 /**
- * Detects current sphere from URL or query parameter `__dev_sphere_domain`.
+ * Detects current sphere from URL or query param DEV_SPHERE_DOMAIN_PARAM_NAME.
  */
 export function detectSphere({
   query,
@@ -18,8 +19,8 @@ export function detectSphere({
 }: Pick<GetServerSidePropsContext, "query" | "req">) {
   const url = getUrl(req);
 
-  const domain = query.__dev_sphere_domain
-    ? String(query.__dev_sphere_domain)
+  const domain = query[DEV_SPHERE_DOMAIN_PARAM_NAME]
+    ? String(query[DEV_SPHERE_DOMAIN_PARAM_NAME])
     : new URL(url).hostname;
 
   return {

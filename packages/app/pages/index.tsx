@@ -23,13 +23,11 @@ import { head } from "../src/lib/head";
 import { slugify } from "../src/lib/slugify";
 import { AsyncReturnType } from "../src/lib/utilityTypes";
 import {
-  Code,
   Container,
   ContainerProps,
   Heading,
   Image,
   Link,
-  Message,
   Spacer,
   Stack,
   Text,
@@ -39,6 +37,9 @@ import { mdx } from "../src/ui/mdx";
 import { FestivalAgenda } from "../src/ui/organisms/FestivalAgenda";
 
 const HubHome = dynamic(() => import("../src/app/components/HubHome"));
+const DeveloperSphereNotFoundMessage = dynamic(() =>
+  import("../src/app/components/DeveloperSphereNotFoundMessage")
+);
 
 const HomepageBanner = ({
   settings: { content },
@@ -361,11 +362,7 @@ function ErrorPage({ error }: ErrorPageProps) {
             {/* todo: add a cute "oopsie" message screen */}
             <p>{t("sphere-home-not-found")}</p>
             {process.env.NODE_ENV === "development" && (
-              <Message>
-                Add <Code>__dev_sphere_domain</Code> query parameter to the URL.
-                <br />
-                <small>This message won't land in the production build.</small>
-              </Message>
+              <DeveloperSphereNotFoundMessage />
             )}
           </>
         ) : null}
