@@ -6,5 +6,4 @@
 
 ## Contributing
 
-Install dependencies with `yarn` or `npm install` and run the devserver with
-`npm run dev`.
+Install dependencies with `yarn` and run the devserver with `yarn app dev`.
