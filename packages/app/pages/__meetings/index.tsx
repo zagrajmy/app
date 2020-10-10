@@ -32,7 +32,7 @@ function LoggedInUserMeetings({ initialData }: LoggedInUserMeetingsProps) {
 
   const { meetings, organizedMeetings } = useMemo(() => {
     return {
-      meetings: data?.meetings.map((x) => x.nb_meeting) || [],
+      meetings: data?.meetings.map((x) => x.meeting) || [],
       organizedMeetings: data?.organized_meetings || [],
     };
   }, [data]);

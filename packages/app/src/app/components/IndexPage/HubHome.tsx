@@ -1,7 +1,19 @@
 import React from "react";
 
-import { HubHomeProps } from "../../../pages/index";
-import { Container } from "../../ui";
+import { Container } from "../../../ui";
+
+export interface HubHomeProps {
+  spheres: string[]; // TODO: Sphere[]
+  festivals: string[]; // TODO Festival[]
+
+}
+
+const Meeting = () => {
+    //TODO display meeting to show it on the hub it should include:
+    // name, date, information if u are not logged in
+    //possibility to sign -up/register for mettingfif you are signed in
+} 
+
 
 export function HubHome({ spheres: _1, festivals: _2 }: HubHomeProps) {
   return (

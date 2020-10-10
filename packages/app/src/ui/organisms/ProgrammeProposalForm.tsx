@@ -42,7 +42,7 @@ function unsafeMod(obj: object, path: string, f: (x: unknown) => unknown) {
     cur = cur[key];
   }
 
-  cur[p[p.length - 1]] = f(cur[p[p.length - 1]]);
+  cur[p[p.length - 1]!] = f(cur[p[p.length - 1]!]);
 }
 function unsafeGet(obj: object, path: string) {
   let cur = obj as any;

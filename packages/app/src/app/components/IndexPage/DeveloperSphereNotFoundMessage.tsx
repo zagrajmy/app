@@ -6,7 +6,7 @@ import {
   DEV_SPHERE_DOMAIN_PARAM_NAME,
   Input,
   Message,
-} from "../../ui";
+} from "../../../ui";
 
 /* eslint-disable import/no-default-export */
 export function DeveloperSphereNotFoundMessage() {

@@ -39,3 +39,18 @@ export const asMutable = <T>(x: T): Mutable<T> => x as Mutable<T>;
 export type AsyncReturnType<
   T extends (...args: any) => Promise<any>
 > = PromiseType<ReturnType<T>>;
+
+/**
+ * @see https://stackoverflow.com/a/49402091/6003547
+ */
+export type KeysOfUnion<T> = T extends any ? keyof T : never;
+
+export type Disjoint<TElements extends object[]> = {
+  [I in keyof TElements]: TElements[I] &
+    {
+      [K in Exclude<
+        KeysOfUnion<TElements[number]>,
+        keyof TElements[I]
+      >]?: never;
+    };
+}[number];

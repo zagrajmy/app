@@ -16,6 +16,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "noErrorTruncation": true,
+    // "noUncheckedIndexedAccess": true, -- cant use with graphql-zeus
     "noEmitOnError": false // <- remove this later
   },
   "exclude": ["node_modules", "./dist", "./dist-ts", "./test", "**/*.docs.tsx"],

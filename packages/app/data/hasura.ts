@@ -56,6 +56,9 @@ export const hasura = (instance: Instance) => {
   });
 };
 
+/**
+ * TODO: do zaorania
+ */
 hasura.fromCookies = (req?: IncomingMessage) => {
   return hasura(
     (parseCookies({ req })["zm|db-env"] as Instance) || "production"

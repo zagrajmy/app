@@ -46,7 +46,7 @@ function queryMeeting(ctx: {
           organizer: { username: true, email: true },
           participants: [
             {},
-            { cr_user: { uuid: true, username: true, email: true } },
+            { user: { uuid: true, username: true, email: true } },
           ],
           name: true,
           description: true,
@@ -144,12 +144,12 @@ const HeadingInput = forwardRef<HTMLInputElement, HeadingInputProps>(
 function useMeetingParticipants(meeting: Meeting | undefined) {
   return useMemo<Participant[] | undefined>(() => {
     return meeting?.participants.map((participant) => {
-      const { cr_user } = participant;
+      const { user } = participant;
       return {
-        username: cr_user.username,
-        uuid: cr_user.uuid,
-        avatarUrl: getAvatarUrl(cr_user),
-        profilePath: `/u/${cr_user.username}`,
+        username: user.username,
+        uuid: user.uuid,
+        avatarUrl: getAvatarUrl(user),
+        profilePath: `/u/${user.username}`,
       };
     });
   }, [meeting]);
