@@ -4,6 +4,10 @@ import type { UrlObject } from "url";
 
 import { ExactTheme, useTheme } from "./theme";
 
+// This is specific to the app, but it's not worth to keep this `Link`
+// clean and reusable yet.
+export const DEV_SPHERE_DOMAIN_PARAM_NAME = `__dev_sphere_domain`;
+
 function usePersistedQueryParameter(
   currentUrl: string | UrlObject,
   key: string
@@ -30,13 +34,13 @@ function usePersistedQueryParameter(
       }
 
       const searchParams = new URLSearchParams(search);
-      searchParams.append("__dev_sphere_domain", value);
+      searchParams.append(DEV_SPHERE_DOMAIN_PARAM_NAME, value);
 
       return `${path}?${searchParams.toString()}`;
     } else {
       const url = { ...currentUrl };
       const searchParams = new URLSearchParams(url.search || "");
-      searchParams.append("__dev_sphere_domain", value);
+      searchParams.append(DEV_SPHERE_DOMAIN_PARAM_NAME, value);
       url.search = searchParams.toString();
 
       return url;
@@ -52,6 +56,7 @@ export interface LinkProps extends BaseLinkProps {
 export const Link = ({ variant, sx, ...rest }: LinkProps) => {
   // links can use variants from `theme.links`, "button" and "buttons.secondary"
   const { theme } = useTheme();
+
   const variantStyles =
     variant === undefined
       ? {}
@@ -67,10 +72,10 @@ export const Link = ({ variant, sx, ...rest }: LinkProps) => {
       }
     : variantStyles;
 
-  // if query params contain `__dev_sphere_domain`, we pass it further
+  // if query params contain DEV_SPHERE_DOMAIN_PARAM_NAME, we pass it further
   const newUrl = usePersistedQueryParameter(
     rest.as ? rest.as : rest.href,
-    "__dev_sphere_domain"
+    DEV_SPHERE_DOMAIN_PARAM_NAME
   );
 
   // external URLs are mapped to `a` instead of Next `Link`
