@@ -26,6 +26,7 @@ module.exports = {
 
     "prefer-destructuring": ["warn", { object: true, array: false }],
 
+    "no-void": "off",
     camelcase: "off",
   },
 };
