@@ -190,7 +190,18 @@ const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
           icon={<Search />}
         />
         {sphereIsOpen && (
-          <Link variant="button" href="/meetings/create">
+          <Link
+            variant="button"
+            href="/meetings/create"
+            onClick={() => {
+              // TODO
+              if (!user) {
+                alert(
+                  "Hold up! First things first, hombre. Let's create an account for you first."
+                );
+              }
+            }}
+          >
             {t("new-meeting")}
           </Link>
         )}
