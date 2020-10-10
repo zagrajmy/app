@@ -19,7 +19,7 @@
     "get-schema": "yarn ts-node scripts/getSchema",
     "codegen:zeus": "zeus data/schema.graphql --ts ./data",
     "codegen:django-openapi": "this is totally useless -> openapi-generator generate -i http://localhost:8000/v1/openapi?format=openapi-json -g typescript-node -o ./data/zagrajmy-rest-api",
-    "codegen": "yarn get-schema && yarn codegen:zeus && yarn format",
+    "codegen": "yarn get-schema && yarn codegen:zeus && yarn format && yarn typecheck",
     "deploy:app": "now",
     "hasura:console": "cd data/throwaway/hasura && hasura console",
     "format": "prettier '{pages,src,data,scripts}/**/*.{ts,tsx,graphql,gql}' --write",
