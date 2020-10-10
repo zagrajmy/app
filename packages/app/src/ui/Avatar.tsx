@@ -90,13 +90,15 @@ export const Avatar = forwardRef(function Avatar(
   useEffect(() => {
     const img = avatarRef.current;
     if (img) {
-      const onError = () => {
-        setState("error");
-      };
+      const onError = () => setState("error");
+      const onLoad = () => setState("loading");
+
       img.addEventListener("error", onError);
+      img.addEventListener("load", onLoad);
 
       return () => {
         img.removeEventListener("error", onError);
+        img.removeEventListener("load", onLoad);
       };
     }
 
