@@ -221,16 +221,14 @@ export function SphereHome({ ch_festivals }: SphereHomeProps) {
   const festivalSettings = useSettings(festival);
 
   const introText = useMemo(() => {
-    return mdx(
-      festivalSettings.locale?.[lang]?.["sphere-home-intro-text"]?.replace(
-        "{{sphereName}}",
-        festivalSettings.sphereName || ""
-      ) ||
-        t("sphere-home-intro-text", {
-          sphereName: festivalSettings.sphereName,
-        })
-    );
-  }, [lang, festivalSettings.locale, festivalSettings.sphereName, t]);
+    const { sphereName } = festivalSettings;
+    const festivalIntroText =
+      festivalSettings.locale?.[lang]?.["sphere-home-intro-text"];
+
+    return festivalIntroText
+      ? mdx(festivalIntroText.replace("{{sphereName}}", sphereName || ""))
+      : t("sphere-home-intro-text", { sphereName });
+  }, [festivalSettings, lang, t]);
 
   const containerProps: ContainerProps = {
     mt: [0, festivalSettings.content?.homepageBanner ? -4 : 4],

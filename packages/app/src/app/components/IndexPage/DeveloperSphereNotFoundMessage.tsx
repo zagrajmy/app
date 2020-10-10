@@ -8,7 +8,6 @@ import {
   Message,
 } from "../../../ui";
 
-/* eslint-disable import/no-default-export */
 export function DeveloperSphereNotFoundMessage() {
   const { push } = useRouter();
 
