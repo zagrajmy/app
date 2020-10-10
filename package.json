@@ -21,6 +21,7 @@
     "fix": "wotan --fix && lerna run format && lerna run lint:fix",
     "release": "lerna publish && lerna run deploy",
     "test": "jest --runInBand",
+    "codegen": "lerna run codegen",
     "postinstall": "patch-package || true"
   },
   "dependencies": {

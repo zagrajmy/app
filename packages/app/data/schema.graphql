@@ -6040,7 +6040,10 @@ type nb_meeting {
     # filter the rows returned
     where: nb_meeting_participant_bool_exp
   ): nb_meeting_participant_aggregate!
-  participants_limit: Int!
+  participants_limit: Int
+
+  # An object relationship
+  proposal: ch_proposal
   publication_time: timestamptz
   slug: String!
 
@@ -6132,6 +6135,7 @@ input nb_meeting_bool_exp {
   organizer_id: uuid_comparison_exp
   participants: nb_meeting_participant_bool_exp
   participants_limit: Int_comparison_exp
+  proposal: ch_proposal_bool_exp
   publication_time: timestamptz_comparison_exp
   slug: String_comparison_exp
   sphere: nb_sphere_bool_exp
@@ -6175,6 +6179,7 @@ input nb_meeting_insert_input {
   organizer_id: uuid
   participants: nb_meeting_participant_arr_rel_insert_input
   participants_limit: Int
+  proposal: ch_proposal_obj_rel_insert_input
   publication_time: timestamptz
   slug: String
   sphere: nb_sphere_obj_rel_insert_input
@@ -6307,6 +6312,7 @@ input nb_meeting_order_by {
   organizer_id: order_by
   participants_aggregate: nb_meeting_participant_aggregate_order_by
   participants_limit: order_by
+  proposal: ch_proposal_order_by
   publication_time: order_by
   slug: order_by
   sphere: nb_sphere_order_by

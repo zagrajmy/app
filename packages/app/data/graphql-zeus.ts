@@ -4051,6 +4051,7 @@ export type ValueTypes = {
       ValueTypes["nb_meeting_participant_aggregate"]
     ];
     participants_limit?: true;
+    proposal?: ValueTypes["ch_proposal"];
     publication_time?: true;
     slug?: true;
     sphere?: ValueTypes["nb_sphere"];
@@ -4134,6 +4135,7 @@ export type ValueTypes = {
     organizer_id?: ValueTypes["uuid_comparison_exp"];
     participants?: ValueTypes["nb_meeting_participant_bool_exp"];
     participants_limit?: ValueTypes["Int_comparison_exp"];
+    proposal?: ValueTypes["ch_proposal_bool_exp"];
     publication_time?: ValueTypes["timestamptz_comparison_exp"];
     slug?: ValueTypes["String_comparison_exp"];
     sphere?: ValueTypes["nb_sphere_bool_exp"];
@@ -4165,6 +4167,7 @@ export type ValueTypes = {
     organizer_id?: ValueTypes["uuid"];
     participants?: ValueTypes["nb_meeting_participant_arr_rel_insert_input"];
     participants_limit?: number;
+    proposal?: ValueTypes["ch_proposal_obj_rel_insert_input"];
     publication_time?: ValueTypes["timestamptz"];
     slug?: string;
     sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
@@ -4281,6 +4284,7 @@ export type ValueTypes = {
     organizer_id?: ValueTypes["order_by"];
     participants_aggregate?: ValueTypes["nb_meeting_participant_aggregate_order_by"];
     participants_limit?: ValueTypes["order_by"];
+    proposal?: ValueTypes["ch_proposal_order_by"];
     publication_time?: ValueTypes["order_by"];
     slug?: ValueTypes["order_by"];
     sphere?: ValueTypes["nb_sphere_order_by"];
@@ -8981,6 +8985,7 @@ export type PartialObjects = {
     participants?: PartialObjects["nb_meeting_participant"][];
     participants_aggregate?: PartialObjects["nb_meeting_participant_aggregate"];
     participants_limit?: number;
+    proposal?: PartialObjects["ch_proposal"];
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere?: PartialObjects["nb_sphere"];
@@ -9057,6 +9062,7 @@ export type PartialObjects = {
     organizer_id?: PartialObjects["uuid_comparison_exp"];
     participants?: PartialObjects["nb_meeting_participant_bool_exp"];
     participants_limit?: PartialObjects["Int_comparison_exp"];
+    proposal?: PartialObjects["ch_proposal_bool_exp"];
     publication_time?: PartialObjects["timestamptz_comparison_exp"];
     slug?: PartialObjects["String_comparison_exp"];
     sphere?: PartialObjects["nb_sphere_bool_exp"];
@@ -9088,6 +9094,7 @@ export type PartialObjects = {
     organizer_id?: PartialObjects["uuid"];
     participants?: PartialObjects["nb_meeting_participant_arr_rel_insert_input"];
     participants_limit?: number;
+    proposal?: PartialObjects["ch_proposal_obj_rel_insert_input"];
     publication_time?: PartialObjects["timestamptz"];
     slug?: string;
     sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
@@ -9204,6 +9211,7 @@ export type PartialObjects = {
     organizer_id?: PartialObjects["order_by"];
     participants_aggregate?: PartialObjects["nb_meeting_participant_aggregate_order_by"];
     participants_limit?: PartialObjects["order_by"];
+    proposal?: PartialObjects["ch_proposal_order_by"];
     publication_time?: PartialObjects["order_by"];
     slug?: PartialObjects["order_by"];
     sphere?: PartialObjects["nb_sphere_order_by"];
@@ -15188,7 +15196,8 @@ export type nb_meeting = {
   organizer_id: uuid;
   participants: nb_meeting_participant[];
   participants_aggregate: nb_meeting_participant_aggregate;
-  participants_limit: number;
+  participants_limit?: number;
+  proposal?: ch_proposal;
   publication_time?: timestamptz;
   slug: string;
   sphere: nb_sphere;
@@ -15272,6 +15281,7 @@ export type nb_meeting_bool_exp = {
   organizer_id?: uuid_comparison_exp;
   participants?: nb_meeting_participant_bool_exp;
   participants_limit?: Int_comparison_exp;
+  proposal?: ch_proposal_bool_exp;
   publication_time?: timestamptz_comparison_exp;
   slug?: String_comparison_exp;
   sphere?: nb_sphere_bool_exp;
@@ -15309,6 +15319,7 @@ export type nb_meeting_insert_input = {
   organizer_id?: uuid;
   participants?: nb_meeting_participant_arr_rel_insert_input;
   participants_limit?: number;
+  proposal?: ch_proposal_obj_rel_insert_input;
   publication_time?: timestamptz;
   slug?: string;
   sphere?: nb_sphere_obj_rel_insert_input;
@@ -15433,6 +15444,7 @@ export type nb_meeting_order_by = {
   organizer_id?: order_by;
   participants_aggregate?: nb_meeting_participant_aggregate_order_by;
   participants_limit?: order_by;
+  proposal?: ch_proposal_order_by;
   publication_time?: order_by;
   slug?: order_by;
   sphere?: nb_sphere_order_by;
@@ -27522,6 +27534,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    proposal: {
+      type: "ch_proposal_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     publication_time: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -27679,6 +27697,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     participants_limit: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposal: {
+      type: "ch_proposal_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -28055,6 +28079,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     participants_limit: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposal: {
+      type: "ch_proposal_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -33996,6 +34026,7 @@ export const ReturnTypes: Record<string, any> = {
     participants: "nb_meeting_participant",
     participants_aggregate: "nb_meeting_participant_aggregate",
     participants_limit: "Int",
+    proposal: "ch_proposal",
     publication_time: "timestamptz",
     slug: "String",
     sphere: "nb_sphere",
