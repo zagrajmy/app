@@ -1,5 +1,7 @@
 import { makeSummon } from "../../../lib/summon";
 
+export type { ZagrajmyRestApi } from "../../../../data/rest-api";
+
 export const zagrajmyRestApi = makeSummon(
   process.env.NODE_ENV === "production"
     ? fetch
