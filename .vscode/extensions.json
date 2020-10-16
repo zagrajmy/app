@@ -4,7 +4,6 @@
 
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
-    "prisma.vscode-graphql",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "bierner.comment-tagged-templates"
