@@ -8,7 +8,7 @@ import {
 } from "docz";
 import baseComponents from "gatsby-theme-docz/src/components";
 import prism from "gatsby-theme-docz/src/theme/prism";
-import { Styled, ThemeProvider, ThemeUIStyleObject } from "theme-ui";
+import { Styled, ThemeProvider } from "theme-ui";
 
 import { MockedNextRouter } from "../../../app/test/MockedNextRouter";
 import { PropDoc } from "../components/PropDoc";
