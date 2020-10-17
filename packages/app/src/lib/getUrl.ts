@@ -2,7 +2,7 @@ import { IncomingMessage } from "http";
 
 // can this be replaced with VERCEL_URL env var?
 export const getUrl = (arg: Pick<IncomingMessage, "headers"> | undefined) => {
-  console.log(">>>", process.env.VERCEL_URL);
+  console.log(">>> getUrl", { vercelUrl: process.env.VERCEL_URL });
 
   const { headers: { referer = "", host = "" } = {} } = arg || {};
 

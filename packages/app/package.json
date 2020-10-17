@@ -55,9 +55,10 @@
     "@react-aria/visually-hidden": "^3.2.0",
     "@styled-system/css": "^5.1.5",
     "@testing-library/react": "^10.4.9",
-    "@theme-ui/color": "^0.4.0-rc.3",
-    "@theme-ui/core": "^0.4.0-rc.3",
-    "@theme-ui/css": "^0.4.0-rc.3",
+    "@theme-ui/color": "^0.4.0-rc.5",
+    "@theme-ui/core": "^0.4.0-rc.5",
+    "@theme-ui/css": "^0.4.0-rc.5",
+    "@theme-ui/components": "^0.4.0",
     "@types/auth0": "^2.20.5",
     "@types/cookie": "^0.4.0",
     "@types/next-nprogress": "^1.4.0",
@@ -141,11 +142,11 @@
   "resolutions": {
     "@auth0/nextjs-auth0/**/openid-client": "3.15.1",
     "cypress": "5.0.0",
-    "theme-ui": "0.4.0-rc.3",
-    "@theme-ui/css": "0.4.0-rc.3",
-    "@theme-ui/mdx": "0.4.0-rc.3",
-    "@theme-ui/core": "0.4.0-rc.3",
-    "@theme-ui/components": "0.4.0-rc.3"
+    "theme-ui": "0.4.0-rc.5",
+    "@theme-ui/css": "0.4.0-rc.5",
+    "@theme-ui/mdx": "0.4.0-rc.5",
+    "@theme-ui/core": "0.4.0-rc.5",
+    "@theme-ui/components": "0.4.0"
   },
   "snyk": true
 }
