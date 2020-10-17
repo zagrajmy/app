@@ -9,6 +9,7 @@ export const ProgressBar = () => {
   const {
     theme: { colors },
   } = useTheme();
+
   return (
     <NextJsProgressBar color={colors.primary} options={progressBarOptions} />
   );
