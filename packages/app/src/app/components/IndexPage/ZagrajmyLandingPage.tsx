@@ -74,7 +74,9 @@ const meetings: MeetingCardProps.Meeting[] = [
 const Jumbotron = () => {
   return (
     <section sx={{ p: [0, 0, 0, 3] }}>
-      <Heading>HUGE FUCKING TEXT</Heading>
+      {/* https://twitter.com/argyleink/status/1317450791163056128 */}
+      {/* TODO: use clamp(min from theme, Xvw, max from theme) */}
+      <Heading size={8}>HUGE FUCKING TEXT</Heading>
     </section>
   );
 };
