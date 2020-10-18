@@ -3905,19 +3905,17 @@
     "@theme-ui/css" "^0.4.0-rc.5"
     deepmerge "^4.2.2"
 
-"@theme-ui/css@^0.4.0-rc.3":
-  version "0.4.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@theme-ui/css/-/css-0.4.0-rc.3.tgz#02b66c43bfaedebbfb317433726ebb8f734d1fd0"
-  integrity sha512-nd8wGdardLlJm92IYYrJyLIQXi3ADk+TPBM83j7W08bsWVdwuv+J24G0v3qvxeBZdIofaXSnZoWC/YzViMSL0A==
-  dependencies:
-    csstype "^2.5.7"
-
-"@theme-ui/css@^0.4.0-rc.5":
+"@theme-ui/css@^0.4.0-rc.3", "@theme-ui/css@^0.4.0-rc.5":
   version "0.4.0-rc.5"
   resolved "https://registry.yarnpkg.com/@theme-ui/css/-/css-0.4.0-rc.5.tgz#0fa254f90eecf6d8df28b1e3b4677d7fc3338d82"
   integrity sha512-KJly9bIbfcMFwHiDB6WZ5bTMgjJSQssBFkyqETA1GpfK/M7AwpupPeyLzc65K8tYatMFXlUQmYo9JNPtLYawwg==
   dependencies:
     csstype "^2.5.7"
+
+"@theme-ui/match-media@^0.4.0-rc.6":
+  version "0.4.0-rc.6"
+  resolved "https://registry.yarnpkg.com/@theme-ui/match-media/-/match-media-0.4.0-rc.6.tgz#d83ea37c18a8bc44bf8fdbf62ef7f1737be51722"
+  integrity sha512-KfN1RlbCYp83vW63TCSvTinHNCvWCmTIlFYB2QF3mqb9681xOVAw+kKzweHLsdjYOs+T6J/G/lC7JfGiTiFUzw==
 
 "@theme-ui/mdx@^0.4.0-rc.5":
   version "0.4.0-rc.5"

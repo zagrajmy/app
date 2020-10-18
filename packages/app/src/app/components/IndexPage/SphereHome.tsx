@@ -10,7 +10,6 @@ import {
   SupportedLanguage,
   useLanguage,
 } from "../../../i18n";
-import { head } from "../../../lib/head";
 import { slugify } from "../../../lib/slugify";
 import { AsyncReturnType } from "../../../lib/utilityTypes";
 import {

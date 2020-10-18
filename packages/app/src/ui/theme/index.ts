@@ -95,25 +95,26 @@ export const theme = makeTheme({
       display: "flex",
       flexDirection: "column",
       textRendering: "optimizeLegibility",
-      h1: {
-        fontWeight: 800,
-        fontSize: 5,
-      },
-      h2: {
-        fontWeight: 700,
-        fontSize: 4,
-      },
-      h3: {
-        fontSize: 3,
-      },
-      "h4, h5, h6": {
-        fontSize: 2,
-      },
+
       p: { width: "70ch", maxWidth: "100%" },
 
       overflowWrap: "break-word",
       wordWrap: "break-word",
       hyphens: "auto",
+    },
+    h1: {
+      fontWeight: 800,
+      fontSize: 5,
+    },
+    h2: {
+      fontWeight: 700,
+      fontSize: 4,
+    },
+    h3: {
+      fontSize: 3,
+    },
+    "h4, h5, h6": {
+      fontSize: 2,
     },
     code: {
       fontFamily: "monospace",
@@ -146,10 +147,8 @@ export const theme = makeTheme({
       borderRadius: "rounded-lg",
       background: "rgba(255, 255, 255, 0.9)",
       minHeight: "200px",
-      width: "100%",
-      minWidth: "400px",
+      maxWidth: "100%",
       flexGrow: 1,
-      maxWidth: "80vw",
     },
   },
   links,

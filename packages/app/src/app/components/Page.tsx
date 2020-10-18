@@ -12,15 +12,6 @@ export const Page: React.FC<PageProps> = ({ children, ...rest }) => (
     }}
     {...rest}
   >
-    <style jsx>{`
-      :global(h1) {
-        font-weight: 800;
-      }
-      :global(h2) {
-        font-weight: 700;
-        letter-spacing: -0.049375rem;
-      }
-    `}</style>
     <OverlayProvider>{children}</OverlayProvider>
   </Flex>
 );

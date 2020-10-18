@@ -1,5 +1,4 @@
 import { IncomingMessage } from "http";
-import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 
 import { getUrl } from "../lib/getUrl";

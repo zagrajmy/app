@@ -14,7 +14,7 @@ export const MeetingCardsList: React.FC<MeetingCardsListProps> = (props) => {
         alignItems: "center",
 
         li: {
-          width: "100%",
+          maxWidth: "100%",
           my: 3,
         },
       }}
