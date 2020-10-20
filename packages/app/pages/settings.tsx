@@ -27,7 +27,7 @@ const Settings: NextPage<SettingsProps> = withUser(function Settings({ user }) {
 
   return (
     <Page>
-      <Container py={4}>
+      <Container py={4} px={3}>
         <p>
           Disclaimer: We show too much data and this page will certainly change
           in the future. In the meanwhile, it's useful for debugging.
