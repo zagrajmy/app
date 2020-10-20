@@ -18,7 +18,14 @@ export function DeveloperSphereNotFoundMessage() {
       <br />
       <small>This message won't land in the production build.</small>
       <form
-        sx={{ display: "flex", gap: 1, px: 2, py: 3, alignItems: "center" }}
+        sx={{
+          display: "flex",
+          gap: 1,
+          px: 2,
+          pt: 3,
+          pb: 1,
+          alignItems: "center",
+        }}
         onSubmit={(event) => {
           event.preventDefault();
           const { value } = event.currentTarget.domain as HTMLInputElement;
