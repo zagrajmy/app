@@ -6,7 +6,7 @@ export const Dl = (props: ComponentProps<"dl">) => (
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
-      width: "500px",
+      minWidth: 8,
       maxWidth: "100%",
       my: 2,
       p: 2,

@@ -1,29 +1,22 @@
 import { useRouter } from "next/router";
 
-import {
-  Button,
-  Code,
-  DEV_SPHERE_DOMAIN_PARAM_NAME,
-  Input,
-  Message,
-} from "../../../ui";
+import { Button, Code, DEV_SPHERE_DOMAIN_PARAM_NAME, Input } from "../../../ui";
+import { DevelopmentMessage } from "../DevelopmentMessage";
 
 export function DeveloperSphereNotFoundMessage() {
   const { push } = useRouter();
 
   return (
-    <Message>
+    <DevelopmentMessage>
       Add <Code>{DEV_SPHERE_DOMAIN_PARAM_NAME}</Code> query parameter to the
       URL.
       <br />
-      <small>This message won't land in the production build.</small>
       <form
         sx={{
           display: "flex",
           gap: 1,
           px: 2,
-          pt: 3,
-          pb: 1,
+          py: 3,
           alignItems: "center",
         }}
         onSubmit={(event) => {
@@ -36,7 +29,7 @@ export function DeveloperSphereNotFoundMessage() {
         <Input name="domain" autoComplete={DEV_SPHERE_DOMAIN_PARAM_NAME} />
         <Button>Go</Button>
       </form>
-    </Message>
+    </DevelopmentMessage>
   );
 }
 
