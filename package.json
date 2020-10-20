@@ -9,6 +9,7 @@
   "scripts": {
     "app": "yarn workspace @zagrajmy/app",
     "docs": "yarn workspace @zagrajmy/docs",
+    "dev": "yarn workspace @zagrajmy/app dev",
     "build": "lerna run build",
     "lint": "lerna run lint",
     "typecheck": "lerna run typecheck",
