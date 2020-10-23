@@ -15,6 +15,7 @@ import {
 import { makeAuth } from "../../src/app/auth";
 import { MeetingCard, MeetingCardsList, Page } from "../../src/app/components";
 import { useAppState } from "../../src/app/store";
+import { ErrorObject } from "../../src/lib/ErrorObject";
 import { Input, Link } from "../../src/ui";
 import { MyMeetingsResult } from "../api/meetings/my-meetings";
 
@@ -152,7 +153,7 @@ type MeetingsPageProps =
       error?: never;
       initialData: InitialData;
     }
-  | { error: Error; initialData: { [T in keyof InitialData]?: Nil } };
+  | { error: ErrorObject; initialData: { [T in keyof InitialData]?: Nil } };
 
 const MeetingsPage: NextPage<MeetingsPageProps> = (props) => {
   const { t } = useTranslation();
@@ -229,7 +230,7 @@ export const getServerSideProps: GetServerSideProps<MeetingsPageProps> = async (
   } catch (error) {
     console.error(error);
 
-    return { props: { error, initialData: {} } };
+    return { props: { error: ErrorObject.fromError(error), initialData: {} } };
   }
 };
 
