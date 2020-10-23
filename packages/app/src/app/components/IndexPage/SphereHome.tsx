@@ -31,7 +31,7 @@ import type { fetchSphereData } from "./fetchSphereData";
 
 type Sphere = Exclude<AsyncReturnType<typeof fetchSphereData>, undefined>;
 
-type Festival = Sphere["ch_festivals"][number];
+type Festival = Sphere["festivals"][number];
 
 interface FestivalDateTimeProps {
   startTime: Festival["start_time"];
@@ -88,7 +88,7 @@ const FestivalPage = ({
   const canSeeAgenda = isPast(publicationStart);
   const agendaIsBeingPrepared = isPast(proposalEnd) && !canSeeAgenda;
 
-  const roomNames = festival.ch_rooms.map((room) => room.name);
+  const roomNames = festival.rooms.map((room) => room.name);
 
   return (
     <Container {...rest} sx={{ width: "container" }}>
@@ -106,7 +106,7 @@ const FestivalPage = ({
           </Heading>
           {/* todo: if there are no waitlists and the user is sphere manager, prompt them to add a waitlist */}
           <ul>
-            {festival.ch_wait_lists.map((waitlist) => (
+            {festival.wait_lists.map((waitlist) => (
               <li key={waitlist.id}>
                 <Link
                   href="/festival/[slug]/[waitlist]"
@@ -140,12 +140,12 @@ const FestivalPage = ({
             ))}
           </Stack>
           <FestivalAgenda id="agenda">
-            {festival.ch_rooms.map((room, i) => {
+            {festival.rooms.map((room, i) => {
               const roomSlug = slugify(room.name);
               return (
                 <FestivalAgenda.Room id={roomSlug} name={room.name} key={i}>
-                  {room.ch_agenda_items.map(({ nb_meeting }) => {
-                    if (!nb_meeting) {
+                  {room.agenda_items.map(({ meeting }) => {
+                    if (!meeting) {
                       return null;
                     }
 
@@ -158,7 +158,7 @@ const FestivalPage = ({
                       proposal,
                       start_time,
                       end_time,
-                    } = nb_meeting;
+                    } = meeting;
 
                     return (
                       <FestivalAgenda.Item
@@ -213,11 +213,11 @@ const HomepageBanner = ({
 
 export interface SphereHomeProps extends Sphere {}
 
-export function SphereHome({ ch_festivals }: SphereHomeProps) {
+export function SphereHome({ festivals }: SphereHomeProps) {
   const { t } = useTranslation();
   const lang = useLanguage();
 
-  const festival = ch_festivals[0];
+  const festival = festivals[0];
   const festivalSettings = useSettings(festival);
 
   const introText = useMemo(() => {

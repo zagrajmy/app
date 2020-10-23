@@ -34,7 +34,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
       <CommonHead />
       {props.error ? (
         <IndexErrorPage {...props} />
-      ) : props.ch_festivals !== undefined ? (
+      ) : props.festivals !== undefined ? (
         <SphereHome {...props} />
       ) : (
         <HubHome {...props} />
@@ -51,8 +51,8 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
   if (sphere.isHub) {
     // TODO
     const props: HubHomeProps = {
-      festivals: [],
-      spheres: [],
+      featuredSpheres: [],
+      recentFestivals: [],
     };
 
     return { props };

@@ -35,9 +35,9 @@ import {
 } from "../api/meetings/insert";
 
 const extractGuilds = (data: {
-  nb_guild_member: { nb_guild: { id: number; name: string } }[];
+  nb_guild_member: { guild: { id: number; name: string } }[];
 }) => ({
-  guilds: data.nb_guild_member.map((gm) => gm.nb_guild),
+  guilds: data.nb_guild_member.map((gm) => gm.guild),
 });
 
 type MeetingProperty = keyof OmitByValue<Meeting, object>;
@@ -63,7 +63,7 @@ const CreateMeetingPage: NextPage<CreateMeetingPageProps> = withUser<
         .query({
           nb_guild_member: [
             { where: { user_id: { _eq: props.user.uuid } } },
-            { nb_guild: { id: true, name: true } },
+            { guild: { id: true, name: true } },
           ],
         })
         .then(extractGuilds);
@@ -228,8 +228,8 @@ CreateMeetingPage.getInitialProps = async ({ req, res }) => {
     return hasura
       .query({
         nb_guild_member: [
-          { where: { cr_user: { auth0_id: { _eq: session.user.sub } } } },
-          { nb_guild: { id: true, name: true } },
+          { where: { user: { auth0_id: { _eq: session.user.sub } } } },
+          { guild: { id: true, name: true } },
         ],
       })
       .then(extractGuilds)

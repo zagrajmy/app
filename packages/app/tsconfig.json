@@ -15,7 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "noErrorTruncation": true,
+    "noErrorTruncation": false,
     // "noUncheckedIndexedAccess": true, -- cant use with graphql-zeus
     "noEmitOnError": false // <- remove this later
   },

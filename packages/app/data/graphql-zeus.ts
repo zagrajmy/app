@@ -14,14 +14,14 @@ export type ValueTypes = {
     _nin?: boolean[];
   };
   ["ch_agenda_item"]: AliasType<{
-    ch_helper?: ValueTypes["ch_helper"];
-    ch_room?: ValueTypes["ch_room"];
+    helper?: ValueTypes["ch_helper"];
     helper_confirmed?: true;
     helper_id?: true;
     id?: true;
+    meeting?: ValueTypes["nb_meeting"];
     meeting_confirmed?: true;
     meeting_id?: true;
-    nb_meeting?: ValueTypes["nb_meeting"];
+    room?: ValueTypes["ch_room"];
     room_id?: true;
     status?: true;
     __typename?: true;
@@ -85,14 +85,14 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_agenda_item_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_agenda_item_bool_exp"];
     _or?: (ValueTypes["ch_agenda_item_bool_exp"] | undefined)[];
-    ch_helper?: ValueTypes["ch_helper_bool_exp"];
-    ch_room?: ValueTypes["ch_room_bool_exp"];
+    helper?: ValueTypes["ch_helper_bool_exp"];
     helper_confirmed?: ValueTypes["Boolean_comparison_exp"];
     helper_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
+    meeting?: ValueTypes["nb_meeting_bool_exp"];
     meeting_confirmed?: ValueTypes["Boolean_comparison_exp"];
     meeting_id?: ValueTypes["Int_comparison_exp"];
-    nb_meeting?: ValueTypes["nb_meeting_bool_exp"];
+    room?: ValueTypes["ch_room_bool_exp"];
     room_id?: ValueTypes["Int_comparison_exp"];
     status?: ValueTypes["String_comparison_exp"];
   };
@@ -104,14 +104,14 @@ export type ValueTypes = {
     room_id?: number;
   };
   ["ch_agenda_item_insert_input"]: {
-    ch_helper?: ValueTypes["ch_helper_obj_rel_insert_input"];
-    ch_room?: ValueTypes["ch_room_obj_rel_insert_input"];
+    helper?: ValueTypes["ch_helper_obj_rel_insert_input"];
     helper_confirmed?: boolean;
     helper_id?: number;
     id?: number;
+    meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
     meeting_confirmed?: boolean;
     meeting_id?: number;
-    nb_meeting?: ValueTypes["nb_meeting_obj_rel_insert_input"];
+    room?: ValueTypes["ch_room_obj_rel_insert_input"];
     room_id?: number;
     status?: string;
   };
@@ -160,14 +160,14 @@ export type ValueTypes = {
     where?: ValueTypes["ch_agenda_item_bool_exp"];
   };
   ["ch_agenda_item_order_by"]: {
-    ch_helper?: ValueTypes["ch_helper_order_by"];
-    ch_room?: ValueTypes["ch_room_order_by"];
+    helper?: ValueTypes["ch_helper_order_by"];
     helper_confirmed?: ValueTypes["order_by"];
     helper_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    meeting?: ValueTypes["nb_meeting_order_by"];
     meeting_confirmed?: ValueTypes["order_by"];
     meeting_id?: ValueTypes["order_by"];
-    nb_meeting?: ValueTypes["nb_meeting_order_by"];
+    room?: ValueTypes["ch_room_order_by"];
     room_id?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
   };
@@ -277,7 +277,9 @@ export type ValueTypes = {
     room_id?: ValueTypes["order_by"];
   };
   ["ch_festival"]: AliasType<{
-    ch_helpers?: [
+    end_proposal?: true;
+    end_time?: true;
+    helpers?: [
       {
         distinct_on?: ValueTypes["ch_helper_select_column"][];
         limit?: number;
@@ -287,7 +289,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_helper"]
     ];
-    ch_helpers_aggregate?: [
+    helpers_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_helper_select_column"][];
         limit?: number;
@@ -297,7 +299,9 @@ export type ValueTypes = {
       },
       ValueTypes["ch_helper_aggregate"]
     ];
-    ch_rooms?: [
+    id?: true;
+    name?: true;
+    rooms?: [
       {
         distinct_on?: ValueTypes["ch_room_select_column"][];
         limit?: number;
@@ -307,7 +311,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_room"]
     ];
-    ch_rooms_aggregate?: [
+    rooms_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_room_select_column"][];
         limit?: number;
@@ -317,33 +321,9 @@ export type ValueTypes = {
       },
       ValueTypes["ch_room_aggregate"]
     ];
-    ch_wait_lists?: [
-      {
-        distinct_on?: ValueTypes["ch_wait_list_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_wait_list_order_by"][];
-        where?: ValueTypes["ch_wait_list_bool_exp"];
-      },
-      ValueTypes["ch_wait_list"]
-    ];
-    ch_wait_lists_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_wait_list_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_wait_list_order_by"][];
-        where?: ValueTypes["ch_wait_list_bool_exp"];
-      },
-      ValueTypes["ch_wait_list_aggregate"]
-    ];
-    end_proposal?: true;
-    end_time?: true;
-    id?: true;
-    name?: true;
-    nb_sphere?: ValueTypes["nb_sphere"];
     settings?: [{ path?: string }, true];
     slug?: true;
+    sphere?: ValueTypes["nb_sphere"];
     sphere_id?: true;
     start_proposal?: true;
     start_publication?: true;
@@ -368,6 +348,26 @@ export type ValueTypes = {
         where?: ValueTypes["ch_time_slot_bool_exp"];
       },
       ValueTypes["ch_time_slot_aggregate"]
+    ];
+    wait_lists?: [
+      {
+        distinct_on?: ValueTypes["ch_wait_list_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_wait_list_order_by"][];
+        where?: ValueTypes["ch_wait_list_bool_exp"];
+      },
+      ValueTypes["ch_wait_list"]
+    ];
+    wait_lists_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_wait_list_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_wait_list_order_by"][];
+        where?: ValueTypes["ch_wait_list_bool_exp"];
+      },
+      ValueTypes["ch_wait_list_aggregate"]
     ];
     __typename?: true;
   }>;
@@ -429,22 +429,22 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_festival_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_festival_bool_exp"];
     _or?: (ValueTypes["ch_festival_bool_exp"] | undefined)[];
-    ch_helpers?: ValueTypes["ch_helper_bool_exp"];
-    ch_rooms?: ValueTypes["ch_room_bool_exp"];
-    ch_wait_lists?: ValueTypes["ch_wait_list_bool_exp"];
     end_proposal?: ValueTypes["timestamptz_comparison_exp"];
     end_time?: ValueTypes["timestamptz_comparison_exp"];
+    helpers?: ValueTypes["ch_helper_bool_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
-    nb_sphere?: ValueTypes["nb_sphere_bool_exp"];
+    rooms?: ValueTypes["ch_room_bool_exp"];
     settings?: ValueTypes["jsonb_comparison_exp"];
     slug?: ValueTypes["String_comparison_exp"];
+    sphere?: ValueTypes["nb_sphere_bool_exp"];
     sphere_id?: ValueTypes["Int_comparison_exp"];
     start_proposal?: ValueTypes["timestamptz_comparison_exp"];
     start_publication?: ValueTypes["timestamptz_comparison_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
     status?: ValueTypes["String_comparison_exp"];
     time_slots?: ValueTypes["ch_time_slot_bool_exp"];
+    wait_lists?: ValueTypes["ch_wait_list_bool_exp"];
   };
   ["ch_festival_constraint"]: ch_festival_constraint;
   ["ch_festival_delete_at_path_input"]: {
@@ -461,22 +461,22 @@ export type ValueTypes = {
     sphere_id?: number;
   };
   ["ch_festival_insert_input"]: {
-    ch_helpers?: ValueTypes["ch_helper_arr_rel_insert_input"];
-    ch_rooms?: ValueTypes["ch_room_arr_rel_insert_input"];
-    ch_wait_lists?: ValueTypes["ch_wait_list_arr_rel_insert_input"];
     end_proposal?: ValueTypes["timestamptz"];
     end_time?: ValueTypes["timestamptz"];
+    helpers?: ValueTypes["ch_helper_arr_rel_insert_input"];
     id?: number;
     name?: string;
-    nb_sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
+    rooms?: ValueTypes["ch_room_arr_rel_insert_input"];
     settings?: ValueTypes["jsonb"];
     slug?: string;
+    sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_proposal?: ValueTypes["timestamptz"];
     start_publication?: ValueTypes["timestamptz"];
     start_time?: ValueTypes["timestamptz"];
     status?: string;
     time_slots?: ValueTypes["ch_time_slot_arr_rel_insert_input"];
+    wait_lists?: ValueTypes["ch_wait_list_arr_rel_insert_input"];
   };
   ["ch_festival_max_fields"]: AliasType<{
     end_proposal?: true;
@@ -543,22 +543,22 @@ export type ValueTypes = {
     where?: ValueTypes["ch_festival_bool_exp"];
   };
   ["ch_festival_order_by"]: {
-    ch_helpers_aggregate?: ValueTypes["ch_helper_aggregate_order_by"];
-    ch_rooms_aggregate?: ValueTypes["ch_room_aggregate_order_by"];
-    ch_wait_lists_aggregate?: ValueTypes["ch_wait_list_aggregate_order_by"];
     end_proposal?: ValueTypes["order_by"];
     end_time?: ValueTypes["order_by"];
+    helpers_aggregate?: ValueTypes["ch_helper_aggregate_order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
-    nb_sphere?: ValueTypes["nb_sphere_order_by"];
+    rooms_aggregate?: ValueTypes["ch_room_aggregate_order_by"];
     settings?: ValueTypes["order_by"];
     slug?: ValueTypes["order_by"];
+    sphere?: ValueTypes["nb_sphere_order_by"];
     sphere_id?: ValueTypes["order_by"];
     start_proposal?: ValueTypes["order_by"];
     start_publication?: ValueTypes["order_by"];
     start_time?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
     time_slots_aggregate?: ValueTypes["ch_time_slot_aggregate_order_by"];
+    wait_lists_aggregate?: ValueTypes["ch_wait_list_aggregate_order_by"];
   };
   ["ch_festival_pk_columns_input"]: {
     id: number;
@@ -645,7 +645,7 @@ export type ValueTypes = {
     sphere_id?: ValueTypes["order_by"];
   };
   ["ch_helper"]: AliasType<{
-    ch_agenda_items?: [
+    agenda_items?: [
       {
         distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
         limit?: number;
@@ -655,7 +655,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_agenda_item"]
     ];
-    ch_agenda_items_aggregate?: [
+    agenda_items_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
         limit?: number;
@@ -665,8 +665,10 @@ export type ValueTypes = {
       },
       ValueTypes["ch_agenda_item_aggregate"]
     ];
-    ch_festival?: ValueTypes["ch_festival"];
-    ch_helper_time_slots?: [
+    festival?: ValueTypes["ch_festival"];
+    festival_id?: true;
+    id?: true;
+    time_slots?: [
       {
         distinct_on?: ValueTypes["ch_helper_time_slots_select_column"][];
         limit?: number;
@@ -676,7 +678,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_helper_time_slots"]
     ];
-    ch_helper_time_slots_aggregate?: [
+    time_slots_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_helper_time_slots_select_column"][];
         limit?: number;
@@ -686,9 +688,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_helper_time_slots_aggregate"]
     ];
-    cr_user?: ValueTypes["cr_user"];
-    festival_id?: true;
-    id?: true;
+    user?: ValueTypes["cr_user"];
     user_id?: true;
     __typename?: true;
   }>;
@@ -744,12 +744,12 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_helper_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_helper_bool_exp"];
     _or?: (ValueTypes["ch_helper_bool_exp"] | undefined)[];
-    ch_agenda_items?: ValueTypes["ch_agenda_item_bool_exp"];
-    ch_festival?: ValueTypes["ch_festival_bool_exp"];
-    ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_bool_exp"];
-    cr_user?: ValueTypes["cr_user_bool_exp"];
+    agenda_items?: ValueTypes["ch_agenda_item_bool_exp"];
+    festival?: ValueTypes["ch_festival_bool_exp"];
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
+    time_slots?: ValueTypes["ch_helper_time_slots_bool_exp"];
+    user?: ValueTypes["cr_user_bool_exp"];
     user_id?: ValueTypes["uuid_comparison_exp"];
   };
   ["ch_helper_constraint"]: ch_helper_constraint;
@@ -758,12 +758,12 @@ export type ValueTypes = {
     id?: number;
   };
   ["ch_helper_insert_input"]: {
-    ch_agenda_items?: ValueTypes["ch_agenda_item_arr_rel_insert_input"];
-    ch_festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
-    ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_arr_rel_insert_input"];
-    cr_user?: ValueTypes["cr_user_obj_rel_insert_input"];
+    agenda_items?: ValueTypes["ch_agenda_item_arr_rel_insert_input"];
+    festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
+    time_slots?: ValueTypes["ch_helper_time_slots_arr_rel_insert_input"];
+    user?: ValueTypes["cr_user_obj_rel_insert_input"];
     user_id?: ValueTypes["uuid"];
   };
   ["ch_helper_max_fields"]: AliasType<{
@@ -803,12 +803,12 @@ export type ValueTypes = {
     where?: ValueTypes["ch_helper_bool_exp"];
   };
   ["ch_helper_order_by"]: {
-    ch_agenda_items_aggregate?: ValueTypes["ch_agenda_item_aggregate_order_by"];
-    ch_festival?: ValueTypes["ch_festival_order_by"];
-    ch_helper_time_slots_aggregate?: ValueTypes["ch_helper_time_slots_aggregate_order_by"];
-    cr_user?: ValueTypes["cr_user_order_by"];
+    agenda_items_aggregate?: ValueTypes["ch_agenda_item_aggregate_order_by"];
+    festival?: ValueTypes["ch_festival_order_by"];
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    time_slots_aggregate?: ValueTypes["ch_helper_time_slots_aggregate_order_by"];
+    user?: ValueTypes["cr_user_order_by"];
     user_id?: ValueTypes["order_by"];
   };
   ["ch_helper_pk_columns_input"]: {
@@ -857,10 +857,10 @@ export type ValueTypes = {
     id?: ValueTypes["order_by"];
   };
   ["ch_helper_time_slots"]: AliasType<{
-    ch_helper?: ValueTypes["ch_helper"];
-    ch_time_slot?: ValueTypes["ch_time_slot"];
+    helper?: ValueTypes["ch_helper"];
     helper_id?: true;
     id?: true;
+    time_slot?: ValueTypes["ch_time_slot"];
     timeslot_id?: true;
     __typename?: true;
   }>;
@@ -921,10 +921,10 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_helper_time_slots_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_helper_time_slots_bool_exp"];
     _or?: (ValueTypes["ch_helper_time_slots_bool_exp"] | undefined)[];
-    ch_helper?: ValueTypes["ch_helper_bool_exp"];
-    ch_time_slot?: ValueTypes["ch_time_slot_bool_exp"];
+    helper?: ValueTypes["ch_helper_bool_exp"];
     helper_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
+    time_slot?: ValueTypes["ch_time_slot_bool_exp"];
     timeslot_id?: ValueTypes["Int_comparison_exp"];
   };
   ["ch_helper_time_slots_constraint"]: ch_helper_time_slots_constraint;
@@ -934,10 +934,10 @@ export type ValueTypes = {
     timeslot_id?: number;
   };
   ["ch_helper_time_slots_insert_input"]: {
-    ch_helper?: ValueTypes["ch_helper_obj_rel_insert_input"];
-    ch_time_slot?: ValueTypes["ch_time_slot_obj_rel_insert_input"];
+    helper?: ValueTypes["ch_helper_obj_rel_insert_input"];
     helper_id?: number;
     id?: number;
+    time_slot?: ValueTypes["ch_time_slot_obj_rel_insert_input"];
     timeslot_id?: number;
   };
   ["ch_helper_time_slots_max_fields"]: AliasType<{
@@ -977,10 +977,10 @@ export type ValueTypes = {
     where?: ValueTypes["ch_helper_time_slots_bool_exp"];
   };
   ["ch_helper_time_slots_order_by"]: {
-    ch_helper?: ValueTypes["ch_helper_order_by"];
-    ch_time_slot?: ValueTypes["ch_time_slot_order_by"];
+    helper?: ValueTypes["ch_helper_order_by"];
     helper_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
+    time_slot?: ValueTypes["ch_time_slot_order_by"];
     timeslot_id?: ValueTypes["order_by"];
   };
   ["ch_helper_time_slots_pk_columns_input"]: {
@@ -1099,27 +1099,6 @@ export type ValueTypes = {
     id?: ValueTypes["order_by"];
   };
   ["ch_proposal"]: AliasType<{
-    ch_proposal_time_slots?: [
-      {
-        distinct_on?: ValueTypes["ch_proposal_time_slots_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_proposal_time_slots_order_by"][];
-        where?: ValueTypes["ch_proposal_time_slots_bool_exp"];
-      },
-      ValueTypes["ch_proposal_time_slots"]
-    ];
-    ch_proposal_time_slots_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_proposal_time_slots_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_proposal_time_slots_order_by"][];
-        where?: ValueTypes["ch_proposal_time_slots_bool_exp"];
-      },
-      ValueTypes["ch_proposal_time_slots_aggregate"]
-    ];
-    ch_wait_list?: ValueTypes["ch_wait_list"];
     city?: true;
     club?: true;
     created_at?: true;
@@ -1137,7 +1116,28 @@ export type ValueTypes = {
     speaker_name?: true;
     speaker_user_id?: true;
     status?: true;
+    time_slots?: [
+      {
+        distinct_on?: ValueTypes["ch_proposal_time_slots_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_proposal_time_slots_order_by"][];
+        where?: ValueTypes["ch_proposal_time_slots_bool_exp"];
+      },
+      ValueTypes["ch_proposal_time_slots"]
+    ];
+    time_slots_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_proposal_time_slots_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_proposal_time_slots_order_by"][];
+        where?: ValueTypes["ch_proposal_time_slots_bool_exp"];
+      },
+      ValueTypes["ch_proposal_time_slots_aggregate"]
+    ];
     topic?: true;
+    wait_list?: ValueTypes["ch_wait_list"];
     waitlist_id?: true;
     __typename?: true;
   }>;
@@ -1204,8 +1204,6 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_proposal_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_proposal_bool_exp"];
     _or?: (ValueTypes["ch_proposal_bool_exp"] | undefined)[];
-    ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_bool_exp"];
-    ch_wait_list?: ValueTypes["ch_wait_list_bool_exp"];
     city?: ValueTypes["String_comparison_exp"];
     club?: ValueTypes["String_comparison_exp"];
     created_at?: ValueTypes["timestamptz_comparison_exp"];
@@ -1223,7 +1221,9 @@ export type ValueTypes = {
     speaker_name?: ValueTypes["String_comparison_exp"];
     speaker_user_id?: ValueTypes["uuid_comparison_exp"];
     status?: ValueTypes["String_comparison_exp"];
+    time_slots?: ValueTypes["ch_proposal_time_slots_bool_exp"];
     topic?: ValueTypes["String_comparison_exp"];
+    wait_list?: ValueTypes["ch_wait_list_bool_exp"];
     waitlist_id?: ValueTypes["Int_comparison_exp"];
   };
   ["ch_proposal_constraint"]: ch_proposal_constraint;
@@ -1246,8 +1246,6 @@ export type ValueTypes = {
     waitlist_id?: number;
   };
   ["ch_proposal_insert_input"]: {
-    ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_arr_rel_insert_input"];
-    ch_wait_list?: ValueTypes["ch_wait_list_obj_rel_insert_input"];
     city?: string;
     club?: string;
     created_at?: ValueTypes["timestamptz"];
@@ -1265,7 +1263,9 @@ export type ValueTypes = {
     speaker_name?: string;
     speaker_user_id?: ValueTypes["uuid"];
     status?: string;
+    time_slots?: ValueTypes["ch_proposal_time_slots_arr_rel_insert_input"];
     topic?: string;
+    wait_list?: ValueTypes["ch_wait_list_obj_rel_insert_input"];
     waitlist_id?: number;
   };
   ["ch_proposal_max_fields"]: AliasType<{
@@ -1353,8 +1353,6 @@ export type ValueTypes = {
     where?: ValueTypes["ch_proposal_bool_exp"];
   };
   ["ch_proposal_order_by"]: {
-    ch_proposal_time_slots_aggregate?: ValueTypes["ch_proposal_time_slots_aggregate_order_by"];
-    ch_wait_list?: ValueTypes["ch_wait_list_order_by"];
     city?: ValueTypes["order_by"];
     club?: ValueTypes["order_by"];
     created_at?: ValueTypes["order_by"];
@@ -1372,7 +1370,9 @@ export type ValueTypes = {
     speaker_name?: ValueTypes["order_by"];
     speaker_user_id?: ValueTypes["order_by"];
     status?: ValueTypes["order_by"];
+    time_slots_aggregate?: ValueTypes["ch_proposal_time_slots_aggregate_order_by"];
     topic?: ValueTypes["order_by"];
+    wait_list?: ValueTypes["ch_wait_list_order_by"];
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_pk_columns_input"]: {
@@ -1455,10 +1455,10 @@ export type ValueTypes = {
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_time_slots"]: AliasType<{
-    ch_proposal?: ValueTypes["ch_proposal"];
-    ch_time_slot?: ValueTypes["ch_time_slot"];
     id?: true;
+    proposal?: ValueTypes["ch_proposal"];
     proposal_id?: true;
+    time_slot?: ValueTypes["ch_time_slot"];
     timeslot_id?: true;
     __typename?: true;
   }>;
@@ -1519,10 +1519,10 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_proposal_time_slots_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_proposal_time_slots_bool_exp"];
     _or?: (ValueTypes["ch_proposal_time_slots_bool_exp"] | undefined)[];
-    ch_proposal?: ValueTypes["ch_proposal_bool_exp"];
-    ch_time_slot?: ValueTypes["ch_time_slot_bool_exp"];
     id?: ValueTypes["Int_comparison_exp"];
+    proposal?: ValueTypes["ch_proposal_bool_exp"];
     proposal_id?: ValueTypes["Int_comparison_exp"];
+    time_slot?: ValueTypes["ch_time_slot_bool_exp"];
     timeslot_id?: ValueTypes["Int_comparison_exp"];
   };
   ["ch_proposal_time_slots_constraint"]: ch_proposal_time_slots_constraint;
@@ -1532,10 +1532,10 @@ export type ValueTypes = {
     timeslot_id?: number;
   };
   ["ch_proposal_time_slots_insert_input"]: {
-    ch_proposal?: ValueTypes["ch_proposal_obj_rel_insert_input"];
-    ch_time_slot?: ValueTypes["ch_time_slot_obj_rel_insert_input"];
     id?: number;
+    proposal?: ValueTypes["ch_proposal_obj_rel_insert_input"];
     proposal_id?: number;
+    time_slot?: ValueTypes["ch_time_slot_obj_rel_insert_input"];
     timeslot_id?: number;
   };
   ["ch_proposal_time_slots_max_fields"]: AliasType<{
@@ -1575,10 +1575,10 @@ export type ValueTypes = {
     where?: ValueTypes["ch_proposal_time_slots_bool_exp"];
   };
   ["ch_proposal_time_slots_order_by"]: {
-    ch_proposal?: ValueTypes["ch_proposal_order_by"];
-    ch_time_slot?: ValueTypes["ch_time_slot_order_by"];
     id?: ValueTypes["order_by"];
+    proposal?: ValueTypes["ch_proposal_order_by"];
     proposal_id?: ValueTypes["order_by"];
+    time_slot?: ValueTypes["ch_time_slot_order_by"];
     timeslot_id?: ValueTypes["order_by"];
   };
   ["ch_proposal_time_slots_pk_columns_input"]: {
@@ -1709,7 +1709,7 @@ export type ValueTypes = {
     waitlist_id?: ValueTypes["order_by"];
   };
   ["ch_room"]: AliasType<{
-    ch_agenda_items?: [
+    agenda_items?: [
       {
         distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
         limit?: number;
@@ -1719,7 +1719,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_agenda_item"]
     ];
-    ch_agenda_items_aggregate?: [
+    agenda_items_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_agenda_item_select_column"][];
         limit?: number;
@@ -1729,7 +1729,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_agenda_item_aggregate"]
     ];
-    ch_festival?: ValueTypes["ch_festival"];
+    festival?: ValueTypes["ch_festival"];
     festival_id?: true;
     id?: true;
     name?: true;
@@ -1788,8 +1788,8 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_room_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_room_bool_exp"];
     _or?: (ValueTypes["ch_room_bool_exp"] | undefined)[];
-    ch_agenda_items?: ValueTypes["ch_agenda_item_bool_exp"];
-    ch_festival?: ValueTypes["ch_festival_bool_exp"];
+    agenda_items?: ValueTypes["ch_agenda_item_bool_exp"];
+    festival?: ValueTypes["ch_festival_bool_exp"];
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
@@ -1801,8 +1801,8 @@ export type ValueTypes = {
     id?: number;
   };
   ["ch_room_insert_input"]: {
-    ch_agenda_items?: ValueTypes["ch_agenda_item_arr_rel_insert_input"];
-    ch_festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
+    agenda_items?: ValueTypes["ch_agenda_item_arr_rel_insert_input"];
+    festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
     name?: string;
@@ -1849,8 +1849,8 @@ export type ValueTypes = {
     where?: ValueTypes["ch_room_bool_exp"];
   };
   ["ch_room_order_by"]: {
-    ch_agenda_items_aggregate?: ValueTypes["ch_agenda_item_aggregate_order_by"];
-    ch_festival?: ValueTypes["ch_festival_order_by"];
+    agenda_items_aggregate?: ValueTypes["ch_agenda_item_aggregate_order_by"];
+    festival?: ValueTypes["ch_festival_order_by"];
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
@@ -1931,7 +1931,10 @@ export type ValueTypes = {
     id?: ValueTypes["order_by"];
   };
   ["ch_time_slot"]: AliasType<{
-    ch_helper_time_slots?: [
+    end_time?: true;
+    festival?: ValueTypes["ch_festival"];
+    festival_id?: true;
+    helpers?: [
       {
         distinct_on?: ValueTypes["ch_helper_time_slots_select_column"][];
         limit?: number;
@@ -1941,7 +1944,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_helper_time_slots"]
     ];
-    ch_helper_time_slots_aggregate?: [
+    helpers_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_helper_time_slots_select_column"][];
         limit?: number;
@@ -1951,7 +1954,8 @@ export type ValueTypes = {
       },
       ValueTypes["ch_helper_time_slots_aggregate"]
     ];
-    ch_proposal_time_slots?: [
+    id?: true;
+    proposals?: [
       {
         distinct_on?: ValueTypes["ch_proposal_time_slots_select_column"][];
         limit?: number;
@@ -1961,7 +1965,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_proposal_time_slots"]
     ];
-    ch_proposal_time_slots_aggregate?: [
+    proposals_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_proposal_time_slots_select_column"][];
         limit?: number;
@@ -1971,10 +1975,6 @@ export type ValueTypes = {
       },
       ValueTypes["ch_proposal_time_slots_aggregate"]
     ];
-    end_time?: true;
-    festival?: ValueTypes["ch_festival"];
-    festival_id?: true;
-    id?: true;
     start_time?: true;
     __typename?: true;
   }>;
@@ -2033,12 +2033,12 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_time_slot_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_time_slot_bool_exp"];
     _or?: (ValueTypes["ch_time_slot_bool_exp"] | undefined)[];
-    ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_bool_exp"];
-    ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_bool_exp"];
     end_time?: ValueTypes["timestamptz_comparison_exp"];
     festival?: ValueTypes["ch_festival_bool_exp"];
     festival_id?: ValueTypes["Int_comparison_exp"];
+    helpers?: ValueTypes["ch_helper_time_slots_bool_exp"];
     id?: ValueTypes["Int_comparison_exp"];
+    proposals?: ValueTypes["ch_proposal_time_slots_bool_exp"];
     start_time?: ValueTypes["timestamptz_comparison_exp"];
   };
   ["ch_time_slot_constraint"]: ch_time_slot_constraint;
@@ -2047,12 +2047,12 @@ export type ValueTypes = {
     id?: number;
   };
   ["ch_time_slot_insert_input"]: {
-    ch_helper_time_slots?: ValueTypes["ch_helper_time_slots_arr_rel_insert_input"];
-    ch_proposal_time_slots?: ValueTypes["ch_proposal_time_slots_arr_rel_insert_input"];
     end_time?: ValueTypes["timestamptz"];
     festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
+    helpers?: ValueTypes["ch_helper_time_slots_arr_rel_insert_input"];
     id?: number;
+    proposals?: ValueTypes["ch_proposal_time_slots_arr_rel_insert_input"];
     start_time?: ValueTypes["timestamptz"];
   };
   ["ch_time_slot_max_fields"]: AliasType<{
@@ -2096,12 +2096,12 @@ export type ValueTypes = {
     where?: ValueTypes["ch_time_slot_bool_exp"];
   };
   ["ch_time_slot_order_by"]: {
-    ch_helper_time_slots_aggregate?: ValueTypes["ch_helper_time_slots_aggregate_order_by"];
-    ch_proposal_time_slots_aggregate?: ValueTypes["ch_proposal_time_slots_aggregate_order_by"];
     end_time?: ValueTypes["order_by"];
     festival?: ValueTypes["ch_festival_order_by"];
     festival_id?: ValueTypes["order_by"];
+    helpers_aggregate?: ValueTypes["ch_helper_time_slots_aggregate_order_by"];
     id?: ValueTypes["order_by"];
+    proposals_aggregate?: ValueTypes["ch_proposal_time_slots_aggregate_order_by"];
     start_time?: ValueTypes["order_by"];
   };
   ["ch_time_slot_pk_columns_input"]: {
@@ -2179,8 +2179,11 @@ export type ValueTypes = {
     id?: ValueTypes["order_by"];
   };
   ["ch_wait_list"]: AliasType<{
-    ch_festival?: ValueTypes["ch_festival"];
-    ch_proposals?: [
+    festival?: ValueTypes["ch_festival"];
+    festival_id?: true;
+    id?: true;
+    name?: true;
+    proposals?: [
       {
         distinct_on?: ValueTypes["ch_proposal_select_column"][];
         limit?: number;
@@ -2190,7 +2193,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_proposal"]
     ];
-    ch_proposals_aggregate?: [
+    proposals_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_proposal_select_column"][];
         limit?: number;
@@ -2200,9 +2203,6 @@ export type ValueTypes = {
       },
       ValueTypes["ch_proposal_aggregate"]
     ];
-    festival_id?: true;
-    id?: true;
-    name?: true;
     slug?: true;
     __typename?: true;
   }>;
@@ -2261,11 +2261,11 @@ export type ValueTypes = {
     _and?: (ValueTypes["ch_wait_list_bool_exp"] | undefined)[];
     _not?: ValueTypes["ch_wait_list_bool_exp"];
     _or?: (ValueTypes["ch_wait_list_bool_exp"] | undefined)[];
-    ch_festival?: ValueTypes["ch_festival_bool_exp"];
-    ch_proposals?: ValueTypes["ch_proposal_bool_exp"];
+    festival?: ValueTypes["ch_festival_bool_exp"];
     festival_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
+    proposals?: ValueTypes["ch_proposal_bool_exp"];
     slug?: ValueTypes["String_comparison_exp"];
   };
   ["ch_wait_list_constraint"]: ch_wait_list_constraint;
@@ -2274,11 +2274,11 @@ export type ValueTypes = {
     id?: number;
   };
   ["ch_wait_list_insert_input"]: {
-    ch_festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
-    ch_proposals?: ValueTypes["ch_proposal_arr_rel_insert_input"];
+    festival?: ValueTypes["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
     name?: string;
+    proposals?: ValueTypes["ch_proposal_arr_rel_insert_input"];
     slug?: string;
   };
   ["ch_wait_list_max_fields"]: AliasType<{
@@ -2322,11 +2322,11 @@ export type ValueTypes = {
     where?: ValueTypes["ch_wait_list_bool_exp"];
   };
   ["ch_wait_list_order_by"]: {
-    ch_festival?: ValueTypes["ch_festival_order_by"];
-    ch_proposals_aggregate?: ValueTypes["ch_proposal_aggregate_order_by"];
+    festival?: ValueTypes["ch_festival_order_by"];
     festival_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
+    proposals_aggregate?: ValueTypes["ch_proposal_aggregate_order_by"];
     slug?: ValueTypes["order_by"];
   };
   ["ch_wait_list_pk_columns_input"]: {
@@ -2405,26 +2405,6 @@ export type ValueTypes = {
   };
   ["cr_user"]: AliasType<{
     auth0_id?: true;
-    ch_helpers?: [
-      {
-        distinct_on?: ValueTypes["ch_helper_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_helper_order_by"][];
-        where?: ValueTypes["ch_helper_bool_exp"];
-      },
-      ValueTypes["ch_helper"]
-    ];
-    ch_helpers_aggregate?: [
-      {
-        distinct_on?: ValueTypes["ch_helper_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["ch_helper_order_by"][];
-        where?: ValueTypes["ch_helper_bool_exp"];
-      },
-      ValueTypes["ch_helper_aggregate"]
-    ];
     date_joined?: true;
     email?: true;
     first_name?: true;
@@ -2447,6 +2427,26 @@ export type ValueTypes = {
         where?: ValueTypes["nb_guild_member_bool_exp"];
       },
       ValueTypes["nb_guild_member_aggregate"]
+    ];
+    helpers?: [
+      {
+        distinct_on?: ValueTypes["ch_helper_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_helper_order_by"][];
+        where?: ValueTypes["ch_helper_bool_exp"];
+      },
+      ValueTypes["ch_helper"]
+    ];
+    helpers_aggregate?: [
+      {
+        distinct_on?: ValueTypes["ch_helper_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["ch_helper_order_by"][];
+        where?: ValueTypes["ch_helper_bool_exp"];
+      },
+      ValueTypes["ch_helper_aggregate"]
     ];
     is_active?: true;
     is_staff?: true;
@@ -2474,26 +2474,6 @@ export type ValueTypes = {
       },
       ValueTypes["nb_sphere_managers_aggregate"]
     ];
-    meetings?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
-        where?: ValueTypes["nb_meeting_participant_bool_exp"];
-      },
-      ValueTypes["nb_meeting_participant"]
-    ];
-    meetings_aggregate?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
-        where?: ValueTypes["nb_meeting_participant_bool_exp"];
-      },
-      ValueTypes["nb_meeting_participant_aggregate"]
-    ];
     organized_meetings?: [
       {
         distinct_on?: ValueTypes["nb_meeting_select_column"][];
@@ -2513,6 +2493,26 @@ export type ValueTypes = {
         where?: ValueTypes["nb_meeting_bool_exp"];
       },
       ValueTypes["nb_meeting_aggregate"]
+    ];
+    participated_meetings?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
+      },
+      ValueTypes["nb_meeting_participant"]
+    ];
+    participated_meetings_aggregate?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_participant_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_participant_order_by"][];
+        where?: ValueTypes["nb_meeting_participant_bool_exp"];
+      },
+      ValueTypes["nb_meeting_participant_aggregate"]
     ];
     password?: true;
     proposals?: [
@@ -2567,11 +2567,11 @@ export type ValueTypes = {
     _not?: ValueTypes["cr_user_bool_exp"];
     _or?: (ValueTypes["cr_user_bool_exp"] | undefined)[];
     auth0_id?: ValueTypes["String_comparison_exp"];
-    ch_helpers?: ValueTypes["ch_helper_bool_exp"];
     date_joined?: ValueTypes["timestamptz_comparison_exp"];
     email?: ValueTypes["String_comparison_exp"];
     first_name?: ValueTypes["String_comparison_exp"];
     guilds?: ValueTypes["nb_guild_member_bool_exp"];
+    helpers?: ValueTypes["ch_helper_bool_exp"];
     is_active?: ValueTypes["Boolean_comparison_exp"];
     is_staff?: ValueTypes["Boolean_comparison_exp"];
     is_superuser?: ValueTypes["Boolean_comparison_exp"];
@@ -2579,8 +2579,8 @@ export type ValueTypes = {
     last_name?: ValueTypes["String_comparison_exp"];
     locale?: ValueTypes["String_comparison_exp"];
     managed_spheres?: ValueTypes["nb_sphere_managers_bool_exp"];
-    meetings?: ValueTypes["nb_meeting_participant_bool_exp"];
     organized_meetings?: ValueTypes["nb_meeting_bool_exp"];
+    participated_meetings?: ValueTypes["nb_meeting_participant_bool_exp"];
     password?: ValueTypes["String_comparison_exp"];
     proposals?: ValueTypes["ch_proposal_bool_exp"];
     username?: ValueTypes["String_comparison_exp"];
@@ -2589,11 +2589,11 @@ export type ValueTypes = {
   ["cr_user_constraint"]: cr_user_constraint;
   ["cr_user_insert_input"]: {
     auth0_id?: string;
-    ch_helpers?: ValueTypes["ch_helper_arr_rel_insert_input"];
     date_joined?: ValueTypes["timestamptz"];
     email?: string;
     first_name?: string;
     guilds?: ValueTypes["nb_guild_member_arr_rel_insert_input"];
+    helpers?: ValueTypes["ch_helper_arr_rel_insert_input"];
     is_active?: boolean;
     is_staff?: boolean;
     is_superuser?: boolean;
@@ -2601,8 +2601,8 @@ export type ValueTypes = {
     last_name?: string;
     locale?: string;
     managed_spheres?: ValueTypes["nb_sphere_managers_arr_rel_insert_input"];
-    meetings?: ValueTypes["nb_meeting_participant_arr_rel_insert_input"];
     organized_meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
+    participated_meetings?: ValueTypes["nb_meeting_participant_arr_rel_insert_input"];
     password?: string;
     proposals?: ValueTypes["ch_proposal_arr_rel_insert_input"];
     username?: string;
@@ -2674,11 +2674,11 @@ export type ValueTypes = {
   };
   ["cr_user_order_by"]: {
     auth0_id?: ValueTypes["order_by"];
-    ch_helpers_aggregate?: ValueTypes["ch_helper_aggregate_order_by"];
     date_joined?: ValueTypes["order_by"];
     email?: ValueTypes["order_by"];
     first_name?: ValueTypes["order_by"];
     guilds_aggregate?: ValueTypes["nb_guild_member_aggregate_order_by"];
+    helpers_aggregate?: ValueTypes["ch_helper_aggregate_order_by"];
     is_active?: ValueTypes["order_by"];
     is_staff?: ValueTypes["order_by"];
     is_superuser?: ValueTypes["order_by"];
@@ -2686,8 +2686,8 @@ export type ValueTypes = {
     last_name?: ValueTypes["order_by"];
     locale?: ValueTypes["order_by"];
     managed_spheres_aggregate?: ValueTypes["nb_sphere_managers_aggregate_order_by"];
-    meetings_aggregate?: ValueTypes["nb_meeting_participant_aggregate_order_by"];
     organized_meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
+    participated_meetings_aggregate?: ValueTypes["nb_meeting_participant_aggregate_order_by"];
     password?: ValueTypes["order_by"];
     proposals_aggregate?: ValueTypes["ch_proposal_aggregate_order_by"];
     username?: ValueTypes["order_by"];
@@ -2717,7 +2717,7 @@ export type ValueTypes = {
     domain?: true;
     id?: true;
     name?: true;
-    nb_sphere?: ValueTypes["nb_sphere"];
+    sphere?: ValueTypes["nb_sphere"];
     __typename?: true;
   }>;
   ["django_site_aggregate"]: AliasType<{
@@ -2776,7 +2776,7 @@ export type ValueTypes = {
     domain?: ValueTypes["String_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     name?: ValueTypes["String_comparison_exp"];
-    nb_sphere?: ValueTypes["nb_sphere_bool_exp"];
+    sphere?: ValueTypes["nb_sphere_bool_exp"];
   };
   ["django_site_constraint"]: django_site_constraint;
   ["django_site_inc_input"]: {
@@ -2786,7 +2786,7 @@ export type ValueTypes = {
     domain?: string;
     id?: number;
     name?: string;
-    nb_sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
+    sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
   };
   ["django_site_max_fields"]: AliasType<{
     domain?: true;
@@ -2828,7 +2828,7 @@ export type ValueTypes = {
     domain?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     name?: ValueTypes["order_by"];
-    nb_sphere?: ValueTypes["nb_sphere_order_by"];
+    sphere?: ValueTypes["nb_sphere_order_by"];
   };
   ["django_site_pk_columns_input"]: {
     id: number;
@@ -3569,28 +3569,7 @@ export type ValueTypes = {
     description?: true;
     id?: true;
     is_public?: true;
-    name?: true;
-    nb_guild_members?: [
-      {
-        distinct_on?: ValueTypes["nb_guild_member_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_guild_member_order_by"][];
-        where?: ValueTypes["nb_guild_member_bool_exp"];
-      },
-      ValueTypes["nb_guild_member"]
-    ];
-    nb_guild_members_aggregate?: [
-      {
-        distinct_on?: ValueTypes["nb_guild_member_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_guild_member_order_by"][];
-        where?: ValueTypes["nb_guild_member_bool_exp"];
-      },
-      ValueTypes["nb_guild_member_aggregate"]
-    ];
-    nb_meetings?: [
+    meetings?: [
       {
         distinct_on?: ValueTypes["nb_meeting_select_column"][];
         limit?: number;
@@ -3600,7 +3579,7 @@ export type ValueTypes = {
       },
       ValueTypes["nb_meeting"]
     ];
-    nb_meetings_aggregate?: [
+    meetings_aggregate?: [
       {
         distinct_on?: ValueTypes["nb_meeting_select_column"][];
         limit?: number;
@@ -3610,6 +3589,27 @@ export type ValueTypes = {
       },
       ValueTypes["nb_meeting_aggregate"]
     ];
+    members?: [
+      {
+        distinct_on?: ValueTypes["nb_guild_member_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_guild_member_order_by"][];
+        where?: ValueTypes["nb_guild_member_bool_exp"];
+      },
+      ValueTypes["nb_guild_member"]
+    ];
+    members_aggregate?: [
+      {
+        distinct_on?: ValueTypes["nb_guild_member_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_guild_member_order_by"][];
+        where?: ValueTypes["nb_guild_member_bool_exp"];
+      },
+      ValueTypes["nb_guild_member_aggregate"]
+    ];
+    name?: true;
     slug?: true;
     updated_at?: true;
     __typename?: true;
@@ -3668,9 +3668,9 @@ export type ValueTypes = {
     description?: ValueTypes["String_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     is_public?: ValueTypes["Boolean_comparison_exp"];
+    meetings?: ValueTypes["nb_meeting_bool_exp"];
+    members?: ValueTypes["nb_guild_member_bool_exp"];
     name?: ValueTypes["String_comparison_exp"];
-    nb_guild_members?: ValueTypes["nb_guild_member_bool_exp"];
-    nb_meetings?: ValueTypes["nb_meeting_bool_exp"];
     slug?: ValueTypes["String_comparison_exp"];
     updated_at?: ValueTypes["timestamptz_comparison_exp"];
   };
@@ -3683,9 +3683,9 @@ export type ValueTypes = {
     description?: string;
     id?: number;
     is_public?: boolean;
+    meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
+    members?: ValueTypes["nb_guild_member_arr_rel_insert_input"];
     name?: string;
-    nb_guild_members?: ValueTypes["nb_guild_member_arr_rel_insert_input"];
-    nb_meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
     slug?: string;
     updated_at?: ValueTypes["timestamptz"];
   };
@@ -3707,11 +3707,11 @@ export type ValueTypes = {
     updated_at?: ValueTypes["order_by"];
   };
   ["nb_guild_member"]: AliasType<{
-    cr_user?: ValueTypes["cr_user"];
+    guild?: ValueTypes["nb_guild"];
     guild_id?: true;
     id?: true;
     membership_type?: true;
-    nb_guild?: ValueTypes["nb_guild"];
+    user?: ValueTypes["cr_user"];
     user_id?: true;
     __typename?: true;
   }>;
@@ -3770,11 +3770,11 @@ export type ValueTypes = {
     _and?: (ValueTypes["nb_guild_member_bool_exp"] | undefined)[];
     _not?: ValueTypes["nb_guild_member_bool_exp"];
     _or?: (ValueTypes["nb_guild_member_bool_exp"] | undefined)[];
-    cr_user?: ValueTypes["cr_user_bool_exp"];
+    guild?: ValueTypes["nb_guild_bool_exp"];
     guild_id?: ValueTypes["Int_comparison_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     membership_type?: ValueTypes["String_comparison_exp"];
-    nb_guild?: ValueTypes["nb_guild_bool_exp"];
+    user?: ValueTypes["cr_user_bool_exp"];
     user_id?: ValueTypes["uuid_comparison_exp"];
   };
   ["nb_guild_member_constraint"]: nb_guild_member_constraint;
@@ -3783,11 +3783,11 @@ export type ValueTypes = {
     id?: number;
   };
   ["nb_guild_member_insert_input"]: {
-    cr_user?: ValueTypes["cr_user_obj_rel_insert_input"];
+    guild?: ValueTypes["nb_guild_obj_rel_insert_input"];
     guild_id?: number;
     id?: number;
     membership_type?: string;
-    nb_guild?: ValueTypes["nb_guild_obj_rel_insert_input"];
+    user?: ValueTypes["cr_user_obj_rel_insert_input"];
     user_id?: ValueTypes["uuid"];
   };
   ["nb_guild_member_max_fields"]: AliasType<{
@@ -3831,11 +3831,11 @@ export type ValueTypes = {
     where?: ValueTypes["nb_guild_member_bool_exp"];
   };
   ["nb_guild_member_order_by"]: {
-    cr_user?: ValueTypes["cr_user_order_by"];
+    guild?: ValueTypes["nb_guild_order_by"];
     guild_id?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     membership_type?: ValueTypes["order_by"];
-    nb_guild?: ValueTypes["nb_guild_order_by"];
+    user?: ValueTypes["cr_user_order_by"];
     user_id?: ValueTypes["order_by"];
   };
   ["nb_guild_member_pk_columns_input"]: {
@@ -3948,9 +3948,9 @@ export type ValueTypes = {
     description?: ValueTypes["order_by"];
     id?: ValueTypes["order_by"];
     is_public?: ValueTypes["order_by"];
+    meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
+    members_aggregate?: ValueTypes["nb_guild_member_aggregate_order_by"];
     name?: ValueTypes["order_by"];
-    nb_guild_members_aggregate?: ValueTypes["nb_guild_member_aggregate_order_by"];
-    nb_meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
     slug?: ValueTypes["order_by"];
     updated_at?: ValueTypes["order_by"];
   };
@@ -4634,7 +4634,8 @@ export type ValueTypes = {
     sphere_id?: ValueTypes["order_by"];
   };
   ["nb_sphere"]: AliasType<{
-    ch_festivals?: [
+    django_site?: ValueTypes["django_site"];
+    festivals?: [
       {
         distinct_on?: ValueTypes["ch_festival_select_column"][];
         limit?: number;
@@ -4644,7 +4645,7 @@ export type ValueTypes = {
       },
       ValueTypes["ch_festival"]
     ];
-    ch_festivals_aggregate?: [
+    festivals_aggregate?: [
       {
         distinct_on?: ValueTypes["ch_festival_select_column"][];
         limit?: number;
@@ -4654,31 +4655,9 @@ export type ValueTypes = {
       },
       ValueTypes["ch_festival_aggregate"]
     ];
-    django_site?: ValueTypes["django_site"];
     id?: true;
     is_open?: true;
-    name?: true;
-    nb_meetings?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_order_by"][];
-        where?: ValueTypes["nb_meeting_bool_exp"];
-      },
-      ValueTypes["nb_meeting"]
-    ];
-    nb_meetings_aggregate?: [
-      {
-        distinct_on?: ValueTypes["nb_meeting_select_column"][];
-        limit?: number;
-        offset?: number;
-        order_by?: ValueTypes["nb_meeting_order_by"][];
-        where?: ValueTypes["nb_meeting_bool_exp"];
-      },
-      ValueTypes["nb_meeting_aggregate"]
-    ];
-    nb_sphere_managers?: [
+    managers?: [
       {
         distinct_on?: ValueTypes["nb_sphere_managers_select_column"][];
         limit?: number;
@@ -4688,7 +4667,7 @@ export type ValueTypes = {
       },
       ValueTypes["nb_sphere_managers"]
     ];
-    nb_sphere_managers_aggregate?: [
+    managers_aggregate?: [
       {
         distinct_on?: ValueTypes["nb_sphere_managers_select_column"][];
         limit?: number;
@@ -4698,6 +4677,27 @@ export type ValueTypes = {
       },
       ValueTypes["nb_sphere_managers_aggregate"]
     ];
+    meetings?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_order_by"][];
+        where?: ValueTypes["nb_meeting_bool_exp"];
+      },
+      ValueTypes["nb_meeting"]
+    ];
+    meetings_aggregate?: [
+      {
+        distinct_on?: ValueTypes["nb_meeting_select_column"][];
+        limit?: number;
+        offset?: number;
+        order_by?: ValueTypes["nb_meeting_order_by"][];
+        where?: ValueTypes["nb_meeting_bool_exp"];
+      },
+      ValueTypes["nb_meeting_aggregate"]
+    ];
+    name?: true;
     settings?: [{ path?: string }, true];
     site_id?: true;
     __typename?: true;
@@ -4757,13 +4757,13 @@ export type ValueTypes = {
     _and?: (ValueTypes["nb_sphere_bool_exp"] | undefined)[];
     _not?: ValueTypes["nb_sphere_bool_exp"];
     _or?: (ValueTypes["nb_sphere_bool_exp"] | undefined)[];
-    ch_festivals?: ValueTypes["ch_festival_bool_exp"];
     django_site?: ValueTypes["django_site_bool_exp"];
+    festivals?: ValueTypes["ch_festival_bool_exp"];
     id?: ValueTypes["Int_comparison_exp"];
     is_open?: ValueTypes["Boolean_comparison_exp"];
+    managers?: ValueTypes["nb_sphere_managers_bool_exp"];
+    meetings?: ValueTypes["nb_meeting_bool_exp"];
     name?: ValueTypes["String_comparison_exp"];
-    nb_meetings?: ValueTypes["nb_meeting_bool_exp"];
-    nb_sphere_managers?: ValueTypes["nb_sphere_managers_bool_exp"];
     settings?: ValueTypes["jsonb_comparison_exp"];
     site_id?: ValueTypes["Int_comparison_exp"];
   };
@@ -4782,21 +4782,21 @@ export type ValueTypes = {
     site_id?: number;
   };
   ["nb_sphere_insert_input"]: {
-    ch_festivals?: ValueTypes["ch_festival_arr_rel_insert_input"];
     django_site?: ValueTypes["django_site_obj_rel_insert_input"];
+    festivals?: ValueTypes["ch_festival_arr_rel_insert_input"];
     id?: number;
     is_open?: boolean;
+    managers?: ValueTypes["nb_sphere_managers_arr_rel_insert_input"];
+    meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
     name?: string;
-    nb_meetings?: ValueTypes["nb_meeting_arr_rel_insert_input"];
-    nb_sphere_managers?: ValueTypes["nb_sphere_managers_arr_rel_insert_input"];
     settings?: ValueTypes["jsonb"];
     site_id?: number;
   };
   ["nb_sphere_managers"]: AliasType<{
-    cr_user?: ValueTypes["cr_user"];
     id?: true;
-    nb_sphere?: ValueTypes["nb_sphere"];
+    sphere?: ValueTypes["nb_sphere"];
     sphere_id?: true;
+    user?: ValueTypes["cr_user"];
     user_id?: true;
     __typename?: true;
   }>;
@@ -4855,10 +4855,10 @@ export type ValueTypes = {
     _and?: (ValueTypes["nb_sphere_managers_bool_exp"] | undefined)[];
     _not?: ValueTypes["nb_sphere_managers_bool_exp"];
     _or?: (ValueTypes["nb_sphere_managers_bool_exp"] | undefined)[];
-    cr_user?: ValueTypes["cr_user_bool_exp"];
     id?: ValueTypes["Int_comparison_exp"];
-    nb_sphere?: ValueTypes["nb_sphere_bool_exp"];
+    sphere?: ValueTypes["nb_sphere_bool_exp"];
     sphere_id?: ValueTypes["Int_comparison_exp"];
+    user?: ValueTypes["cr_user_bool_exp"];
     user_id?: ValueTypes["uuid_comparison_exp"];
   };
   ["nb_sphere_managers_constraint"]: nb_sphere_managers_constraint;
@@ -4867,10 +4867,10 @@ export type ValueTypes = {
     sphere_id?: number;
   };
   ["nb_sphere_managers_insert_input"]: {
-    cr_user?: ValueTypes["cr_user_obj_rel_insert_input"];
     id?: number;
-    nb_sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
+    sphere?: ValueTypes["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
+    user?: ValueTypes["cr_user_obj_rel_insert_input"];
     user_id?: ValueTypes["uuid"];
   };
   ["nb_sphere_managers_max_fields"]: AliasType<{
@@ -4910,10 +4910,10 @@ export type ValueTypes = {
     where?: ValueTypes["nb_sphere_managers_bool_exp"];
   };
   ["nb_sphere_managers_order_by"]: {
-    cr_user?: ValueTypes["cr_user_order_by"];
     id?: ValueTypes["order_by"];
-    nb_sphere?: ValueTypes["nb_sphere_order_by"];
+    sphere?: ValueTypes["nb_sphere_order_by"];
     sphere_id?: ValueTypes["order_by"];
+    user?: ValueTypes["cr_user_order_by"];
     user_id?: ValueTypes["order_by"];
   };
   ["nb_sphere_managers_pk_columns_input"]: {
@@ -5026,13 +5026,13 @@ export type ValueTypes = {
     where?: ValueTypes["nb_sphere_bool_exp"];
   };
   ["nb_sphere_order_by"]: {
-    ch_festivals_aggregate?: ValueTypes["ch_festival_aggregate_order_by"];
     django_site?: ValueTypes["django_site_order_by"];
+    festivals_aggregate?: ValueTypes["ch_festival_aggregate_order_by"];
     id?: ValueTypes["order_by"];
     is_open?: ValueTypes["order_by"];
+    managers_aggregate?: ValueTypes["nb_sphere_managers_aggregate_order_by"];
+    meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
     name?: ValueTypes["order_by"];
-    nb_meetings_aggregate?: ValueTypes["nb_meeting_aggregate_order_by"];
-    nb_sphere_managers_aggregate?: ValueTypes["nb_sphere_managers_aggregate_order_by"];
     settings?: ValueTypes["order_by"];
     site_id?: ValueTypes["order_by"];
   };
@@ -5916,14 +5916,14 @@ export type PartialObjects = {
   };
   ["ch_agenda_item"]: {
     __typename?: "ch_agenda_item";
-    ch_helper?: PartialObjects["ch_helper"];
-    ch_room?: PartialObjects["ch_room"];
+    helper?: PartialObjects["ch_helper"];
     helper_confirmed?: boolean;
     helper_id?: number;
     id?: number;
+    meeting?: PartialObjects["nb_meeting"];
     meeting_confirmed?: boolean;
     meeting_id?: number;
-    nb_meeting?: PartialObjects["nb_meeting"];
+    room?: PartialObjects["ch_room"];
     room_id?: number;
     status?: string;
   };
@@ -5980,14 +5980,14 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_agenda_item_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_agenda_item_bool_exp"];
     _or?: (PartialObjects["ch_agenda_item_bool_exp"] | undefined)[];
-    ch_helper?: PartialObjects["ch_helper_bool_exp"];
-    ch_room?: PartialObjects["ch_room_bool_exp"];
+    helper?: PartialObjects["ch_helper_bool_exp"];
     helper_confirmed?: PartialObjects["Boolean_comparison_exp"];
     helper_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
+    meeting?: PartialObjects["nb_meeting_bool_exp"];
     meeting_confirmed?: PartialObjects["Boolean_comparison_exp"];
     meeting_id?: PartialObjects["Int_comparison_exp"];
-    nb_meeting?: PartialObjects["nb_meeting_bool_exp"];
+    room?: PartialObjects["ch_room_bool_exp"];
     room_id?: PartialObjects["Int_comparison_exp"];
     status?: PartialObjects["String_comparison_exp"];
   };
@@ -5999,14 +5999,14 @@ export type PartialObjects = {
     room_id?: number;
   };
   ["ch_agenda_item_insert_input"]: {
-    ch_helper?: PartialObjects["ch_helper_obj_rel_insert_input"];
-    ch_room?: PartialObjects["ch_room_obj_rel_insert_input"];
+    helper?: PartialObjects["ch_helper_obj_rel_insert_input"];
     helper_confirmed?: boolean;
     helper_id?: number;
     id?: number;
+    meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
     meeting_confirmed?: boolean;
     meeting_id?: number;
-    nb_meeting?: PartialObjects["nb_meeting_obj_rel_insert_input"];
+    room?: PartialObjects["ch_room_obj_rel_insert_input"];
     room_id?: number;
     status?: string;
   };
@@ -6055,14 +6055,14 @@ export type PartialObjects = {
     where?: PartialObjects["ch_agenda_item_bool_exp"];
   };
   ["ch_agenda_item_order_by"]: {
-    ch_helper?: PartialObjects["ch_helper_order_by"];
-    ch_room?: PartialObjects["ch_room_order_by"];
+    helper?: PartialObjects["ch_helper_order_by"];
     helper_confirmed?: PartialObjects["order_by"];
     helper_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    meeting?: PartialObjects["nb_meeting_order_by"];
     meeting_confirmed?: PartialObjects["order_by"];
     meeting_id?: PartialObjects["order_by"];
-    nb_meeting?: PartialObjects["nb_meeting_order_by"];
+    room?: PartialObjects["ch_room_order_by"];
     room_id?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
   };
@@ -6173,19 +6173,17 @@ export type PartialObjects = {
   };
   ["ch_festival"]: {
     __typename?: "ch_festival";
-    ch_helpers?: PartialObjects["ch_helper"][];
-    ch_helpers_aggregate?: PartialObjects["ch_helper_aggregate"];
-    ch_rooms?: PartialObjects["ch_room"][];
-    ch_rooms_aggregate?: PartialObjects["ch_room_aggregate"];
-    ch_wait_lists?: PartialObjects["ch_wait_list"][];
-    ch_wait_lists_aggregate?: PartialObjects["ch_wait_list_aggregate"];
     end_proposal?: PartialObjects["timestamptz"];
     end_time?: PartialObjects["timestamptz"];
+    helpers?: PartialObjects["ch_helper"][];
+    helpers_aggregate?: PartialObjects["ch_helper_aggregate"];
     id?: number;
     name?: string;
-    nb_sphere?: PartialObjects["nb_sphere"];
+    rooms?: PartialObjects["ch_room"][];
+    rooms_aggregate?: PartialObjects["ch_room_aggregate"];
     settings?: PartialObjects["jsonb"];
     slug?: string;
+    sphere?: PartialObjects["nb_sphere"];
     sphere_id?: number;
     start_proposal?: PartialObjects["timestamptz"];
     start_publication?: PartialObjects["timestamptz"];
@@ -6193,6 +6191,8 @@ export type PartialObjects = {
     status?: string;
     time_slots?: PartialObjects["ch_time_slot"][];
     time_slots_aggregate?: PartialObjects["ch_time_slot_aggregate"];
+    wait_lists?: PartialObjects["ch_wait_list"][];
+    wait_lists_aggregate?: PartialObjects["ch_wait_list_aggregate"];
   };
   ["ch_festival_aggregate"]: {
     __typename?: "ch_festival_aggregate";
@@ -6246,22 +6246,22 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_festival_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_festival_bool_exp"];
     _or?: (PartialObjects["ch_festival_bool_exp"] | undefined)[];
-    ch_helpers?: PartialObjects["ch_helper_bool_exp"];
-    ch_rooms?: PartialObjects["ch_room_bool_exp"];
-    ch_wait_lists?: PartialObjects["ch_wait_list_bool_exp"];
     end_proposal?: PartialObjects["timestamptz_comparison_exp"];
     end_time?: PartialObjects["timestamptz_comparison_exp"];
+    helpers?: PartialObjects["ch_helper_bool_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
-    nb_sphere?: PartialObjects["nb_sphere_bool_exp"];
+    rooms?: PartialObjects["ch_room_bool_exp"];
     settings?: PartialObjects["jsonb_comparison_exp"];
     slug?: PartialObjects["String_comparison_exp"];
+    sphere?: PartialObjects["nb_sphere_bool_exp"];
     sphere_id?: PartialObjects["Int_comparison_exp"];
     start_proposal?: PartialObjects["timestamptz_comparison_exp"];
     start_publication?: PartialObjects["timestamptz_comparison_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
     status?: PartialObjects["String_comparison_exp"];
     time_slots?: PartialObjects["ch_time_slot_bool_exp"];
+    wait_lists?: PartialObjects["ch_wait_list_bool_exp"];
   };
   ["ch_festival_constraint"]: ch_festival_constraint;
   ["ch_festival_delete_at_path_input"]: {
@@ -6278,22 +6278,22 @@ export type PartialObjects = {
     sphere_id?: number;
   };
   ["ch_festival_insert_input"]: {
-    ch_helpers?: PartialObjects["ch_helper_arr_rel_insert_input"];
-    ch_rooms?: PartialObjects["ch_room_arr_rel_insert_input"];
-    ch_wait_lists?: PartialObjects["ch_wait_list_arr_rel_insert_input"];
     end_proposal?: PartialObjects["timestamptz"];
     end_time?: PartialObjects["timestamptz"];
+    helpers?: PartialObjects["ch_helper_arr_rel_insert_input"];
     id?: number;
     name?: string;
-    nb_sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
+    rooms?: PartialObjects["ch_room_arr_rel_insert_input"];
     settings?: PartialObjects["jsonb"];
     slug?: string;
+    sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
     start_proposal?: PartialObjects["timestamptz"];
     start_publication?: PartialObjects["timestamptz"];
     start_time?: PartialObjects["timestamptz"];
     status?: string;
     time_slots?: PartialObjects["ch_time_slot_arr_rel_insert_input"];
+    wait_lists?: PartialObjects["ch_wait_list_arr_rel_insert_input"];
   };
   ["ch_festival_max_fields"]: {
     __typename?: "ch_festival_max_fields";
@@ -6360,22 +6360,22 @@ export type PartialObjects = {
     where?: PartialObjects["ch_festival_bool_exp"];
   };
   ["ch_festival_order_by"]: {
-    ch_helpers_aggregate?: PartialObjects["ch_helper_aggregate_order_by"];
-    ch_rooms_aggregate?: PartialObjects["ch_room_aggregate_order_by"];
-    ch_wait_lists_aggregate?: PartialObjects["ch_wait_list_aggregate_order_by"];
     end_proposal?: PartialObjects["order_by"];
     end_time?: PartialObjects["order_by"];
+    helpers_aggregate?: PartialObjects["ch_helper_aggregate_order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
-    nb_sphere?: PartialObjects["nb_sphere_order_by"];
+    rooms_aggregate?: PartialObjects["ch_room_aggregate_order_by"];
     settings?: PartialObjects["order_by"];
     slug?: PartialObjects["order_by"];
+    sphere?: PartialObjects["nb_sphere_order_by"];
     sphere_id?: PartialObjects["order_by"];
     start_proposal?: PartialObjects["order_by"];
     start_publication?: PartialObjects["order_by"];
     start_time?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
     time_slots_aggregate?: PartialObjects["ch_time_slot_aggregate_order_by"];
+    wait_lists_aggregate?: PartialObjects["ch_wait_list_aggregate_order_by"];
   };
   ["ch_festival_pk_columns_input"]: {
     id: number;
@@ -6463,14 +6463,14 @@ export type PartialObjects = {
   };
   ["ch_helper"]: {
     __typename?: "ch_helper";
-    ch_agenda_items?: PartialObjects["ch_agenda_item"][];
-    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
-    ch_festival?: PartialObjects["ch_festival"];
-    ch_helper_time_slots?: PartialObjects["ch_helper_time_slots"][];
-    ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate"];
-    cr_user?: PartialObjects["cr_user"];
+    agenda_items?: PartialObjects["ch_agenda_item"][];
+    agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
+    festival?: PartialObjects["ch_festival"];
     festival_id?: number;
     id?: number;
+    time_slots?: PartialObjects["ch_helper_time_slots"][];
+    time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate"];
+    user?: PartialObjects["cr_user"];
     user_id?: PartialObjects["uuid"];
   };
   ["ch_helper_aggregate"]: {
@@ -6522,12 +6522,12 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_helper_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_helper_bool_exp"];
     _or?: (PartialObjects["ch_helper_bool_exp"] | undefined)[];
-    ch_agenda_items?: PartialObjects["ch_agenda_item_bool_exp"];
-    ch_festival?: PartialObjects["ch_festival_bool_exp"];
-    ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_bool_exp"];
-    cr_user?: PartialObjects["cr_user_bool_exp"];
+    agenda_items?: PartialObjects["ch_agenda_item_bool_exp"];
+    festival?: PartialObjects["ch_festival_bool_exp"];
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
+    time_slots?: PartialObjects["ch_helper_time_slots_bool_exp"];
+    user?: PartialObjects["cr_user_bool_exp"];
     user_id?: PartialObjects["uuid_comparison_exp"];
   };
   ["ch_helper_constraint"]: ch_helper_constraint;
@@ -6536,12 +6536,12 @@ export type PartialObjects = {
     id?: number;
   };
   ["ch_helper_insert_input"]: {
-    ch_agenda_items?: PartialObjects["ch_agenda_item_arr_rel_insert_input"];
-    ch_festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
-    ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_arr_rel_insert_input"];
-    cr_user?: PartialObjects["cr_user_obj_rel_insert_input"];
+    agenda_items?: PartialObjects["ch_agenda_item_arr_rel_insert_input"];
+    festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
+    time_slots?: PartialObjects["ch_helper_time_slots_arr_rel_insert_input"];
+    user?: PartialObjects["cr_user_obj_rel_insert_input"];
     user_id?: PartialObjects["uuid"];
   };
   ["ch_helper_max_fields"]: {
@@ -6581,12 +6581,12 @@ export type PartialObjects = {
     where?: PartialObjects["ch_helper_bool_exp"];
   };
   ["ch_helper_order_by"]: {
-    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate_order_by"];
-    ch_festival?: PartialObjects["ch_festival_order_by"];
-    ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate_order_by"];
-    cr_user?: PartialObjects["cr_user_order_by"];
+    agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate_order_by"];
+    festival?: PartialObjects["ch_festival_order_by"];
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate_order_by"];
+    user?: PartialObjects["cr_user_order_by"];
     user_id?: PartialObjects["order_by"];
   };
   ["ch_helper_pk_columns_input"]: {
@@ -6636,10 +6636,10 @@ export type PartialObjects = {
   };
   ["ch_helper_time_slots"]: {
     __typename?: "ch_helper_time_slots";
-    ch_helper?: PartialObjects["ch_helper"];
-    ch_time_slot?: PartialObjects["ch_time_slot"];
+    helper?: PartialObjects["ch_helper"];
     helper_id?: number;
     id?: number;
+    time_slot?: PartialObjects["ch_time_slot"];
     timeslot_id?: number;
   };
   ["ch_helper_time_slots_aggregate"]: {
@@ -6693,10 +6693,10 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_helper_time_slots_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_helper_time_slots_bool_exp"];
     _or?: (PartialObjects["ch_helper_time_slots_bool_exp"] | undefined)[];
-    ch_helper?: PartialObjects["ch_helper_bool_exp"];
-    ch_time_slot?: PartialObjects["ch_time_slot_bool_exp"];
+    helper?: PartialObjects["ch_helper_bool_exp"];
     helper_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
+    time_slot?: PartialObjects["ch_time_slot_bool_exp"];
     timeslot_id?: PartialObjects["Int_comparison_exp"];
   };
   ["ch_helper_time_slots_constraint"]: ch_helper_time_slots_constraint;
@@ -6706,10 +6706,10 @@ export type PartialObjects = {
     timeslot_id?: number;
   };
   ["ch_helper_time_slots_insert_input"]: {
-    ch_helper?: PartialObjects["ch_helper_obj_rel_insert_input"];
-    ch_time_slot?: PartialObjects["ch_time_slot_obj_rel_insert_input"];
+    helper?: PartialObjects["ch_helper_obj_rel_insert_input"];
     helper_id?: number;
     id?: number;
+    time_slot?: PartialObjects["ch_time_slot_obj_rel_insert_input"];
     timeslot_id?: number;
   };
   ["ch_helper_time_slots_max_fields"]: {
@@ -6749,10 +6749,10 @@ export type PartialObjects = {
     where?: PartialObjects["ch_helper_time_slots_bool_exp"];
   };
   ["ch_helper_time_slots_order_by"]: {
-    ch_helper?: PartialObjects["ch_helper_order_by"];
-    ch_time_slot?: PartialObjects["ch_time_slot_order_by"];
+    helper?: PartialObjects["ch_helper_order_by"];
     helper_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
+    time_slot?: PartialObjects["ch_time_slot_order_by"];
     timeslot_id?: PartialObjects["order_by"];
   };
   ["ch_helper_time_slots_pk_columns_input"]: {
@@ -6872,9 +6872,6 @@ export type PartialObjects = {
   };
   ["ch_proposal"]: {
     __typename?: "ch_proposal";
-    ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots"][];
-    ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate"];
-    ch_wait_list?: PartialObjects["ch_wait_list"];
     city?: string;
     club?: string;
     created_at?: PartialObjects["timestamptz"];
@@ -6892,7 +6889,10 @@ export type PartialObjects = {
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
+    time_slots?: PartialObjects["ch_proposal_time_slots"][];
+    time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate"];
     topic?: string;
+    wait_list?: PartialObjects["ch_wait_list"];
     waitlist_id?: number;
   };
   ["ch_proposal_aggregate"]: {
@@ -6952,8 +6952,6 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_proposal_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_proposal_bool_exp"];
     _or?: (PartialObjects["ch_proposal_bool_exp"] | undefined)[];
-    ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_bool_exp"];
-    ch_wait_list?: PartialObjects["ch_wait_list_bool_exp"];
     city?: PartialObjects["String_comparison_exp"];
     club?: PartialObjects["String_comparison_exp"];
     created_at?: PartialObjects["timestamptz_comparison_exp"];
@@ -6971,7 +6969,9 @@ export type PartialObjects = {
     speaker_name?: PartialObjects["String_comparison_exp"];
     speaker_user_id?: PartialObjects["uuid_comparison_exp"];
     status?: PartialObjects["String_comparison_exp"];
+    time_slots?: PartialObjects["ch_proposal_time_slots_bool_exp"];
     topic?: PartialObjects["String_comparison_exp"];
+    wait_list?: PartialObjects["ch_wait_list_bool_exp"];
     waitlist_id?: PartialObjects["Int_comparison_exp"];
   };
   ["ch_proposal_constraint"]: ch_proposal_constraint;
@@ -6994,8 +6994,6 @@ export type PartialObjects = {
     waitlist_id?: number;
   };
   ["ch_proposal_insert_input"]: {
-    ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_arr_rel_insert_input"];
-    ch_wait_list?: PartialObjects["ch_wait_list_obj_rel_insert_input"];
     city?: string;
     club?: string;
     created_at?: PartialObjects["timestamptz"];
@@ -7013,7 +7011,9 @@ export type PartialObjects = {
     speaker_name?: string;
     speaker_user_id?: PartialObjects["uuid"];
     status?: string;
+    time_slots?: PartialObjects["ch_proposal_time_slots_arr_rel_insert_input"];
     topic?: string;
+    wait_list?: PartialObjects["ch_wait_list_obj_rel_insert_input"];
     waitlist_id?: number;
   };
   ["ch_proposal_max_fields"]: {
@@ -7101,8 +7101,6 @@ export type PartialObjects = {
     where?: PartialObjects["ch_proposal_bool_exp"];
   };
   ["ch_proposal_order_by"]: {
-    ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate_order_by"];
-    ch_wait_list?: PartialObjects["ch_wait_list_order_by"];
     city?: PartialObjects["order_by"];
     club?: PartialObjects["order_by"];
     created_at?: PartialObjects["order_by"];
@@ -7120,7 +7118,9 @@ export type PartialObjects = {
     speaker_name?: PartialObjects["order_by"];
     speaker_user_id?: PartialObjects["order_by"];
     status?: PartialObjects["order_by"];
+    time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate_order_by"];
     topic?: PartialObjects["order_by"];
+    wait_list?: PartialObjects["ch_wait_list_order_by"];
     waitlist_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_pk_columns_input"]: {
@@ -7204,10 +7204,10 @@ export type PartialObjects = {
   };
   ["ch_proposal_time_slots"]: {
     __typename?: "ch_proposal_time_slots";
-    ch_proposal?: PartialObjects["ch_proposal"];
-    ch_time_slot?: PartialObjects["ch_time_slot"];
     id?: number;
+    proposal?: PartialObjects["ch_proposal"];
     proposal_id?: number;
+    time_slot?: PartialObjects["ch_time_slot"];
     timeslot_id?: number;
   };
   ["ch_proposal_time_slots_aggregate"]: {
@@ -7261,10 +7261,10 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_proposal_time_slots_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_proposal_time_slots_bool_exp"];
     _or?: (PartialObjects["ch_proposal_time_slots_bool_exp"] | undefined)[];
-    ch_proposal?: PartialObjects["ch_proposal_bool_exp"];
-    ch_time_slot?: PartialObjects["ch_time_slot_bool_exp"];
     id?: PartialObjects["Int_comparison_exp"];
+    proposal?: PartialObjects["ch_proposal_bool_exp"];
     proposal_id?: PartialObjects["Int_comparison_exp"];
+    time_slot?: PartialObjects["ch_time_slot_bool_exp"];
     timeslot_id?: PartialObjects["Int_comparison_exp"];
   };
   ["ch_proposal_time_slots_constraint"]: ch_proposal_time_slots_constraint;
@@ -7274,10 +7274,10 @@ export type PartialObjects = {
     timeslot_id?: number;
   };
   ["ch_proposal_time_slots_insert_input"]: {
-    ch_proposal?: PartialObjects["ch_proposal_obj_rel_insert_input"];
-    ch_time_slot?: PartialObjects["ch_time_slot_obj_rel_insert_input"];
     id?: number;
+    proposal?: PartialObjects["ch_proposal_obj_rel_insert_input"];
     proposal_id?: number;
+    time_slot?: PartialObjects["ch_time_slot_obj_rel_insert_input"];
     timeslot_id?: number;
   };
   ["ch_proposal_time_slots_max_fields"]: {
@@ -7317,10 +7317,10 @@ export type PartialObjects = {
     where?: PartialObjects["ch_proposal_time_slots_bool_exp"];
   };
   ["ch_proposal_time_slots_order_by"]: {
-    ch_proposal?: PartialObjects["ch_proposal_order_by"];
-    ch_time_slot?: PartialObjects["ch_time_slot_order_by"];
     id?: PartialObjects["order_by"];
+    proposal?: PartialObjects["ch_proposal_order_by"];
     proposal_id?: PartialObjects["order_by"];
+    time_slot?: PartialObjects["ch_time_slot_order_by"];
     timeslot_id?: PartialObjects["order_by"];
   };
   ["ch_proposal_time_slots_pk_columns_input"]: {
@@ -7452,9 +7452,9 @@ export type PartialObjects = {
   };
   ["ch_room"]: {
     __typename?: "ch_room";
-    ch_agenda_items?: PartialObjects["ch_agenda_item"][];
-    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
-    ch_festival?: PartialObjects["ch_festival"];
+    agenda_items?: PartialObjects["ch_agenda_item"][];
+    agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate"];
+    festival?: PartialObjects["ch_festival"];
     festival_id?: number;
     id?: number;
     name?: string;
@@ -7509,8 +7509,8 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_room_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_room_bool_exp"];
     _or?: (PartialObjects["ch_room_bool_exp"] | undefined)[];
-    ch_agenda_items?: PartialObjects["ch_agenda_item_bool_exp"];
-    ch_festival?: PartialObjects["ch_festival_bool_exp"];
+    agenda_items?: PartialObjects["ch_agenda_item_bool_exp"];
+    festival?: PartialObjects["ch_festival_bool_exp"];
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
@@ -7522,8 +7522,8 @@ export type PartialObjects = {
     id?: number;
   };
   ["ch_room_insert_input"]: {
-    ch_agenda_items?: PartialObjects["ch_agenda_item_arr_rel_insert_input"];
-    ch_festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
+    agenda_items?: PartialObjects["ch_agenda_item_arr_rel_insert_input"];
+    festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
     name?: string;
@@ -7570,8 +7570,8 @@ export type PartialObjects = {
     where?: PartialObjects["ch_room_bool_exp"];
   };
   ["ch_room_order_by"]: {
-    ch_agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate_order_by"];
-    ch_festival?: PartialObjects["ch_festival_order_by"];
+    agenda_items_aggregate?: PartialObjects["ch_agenda_item_aggregate_order_by"];
+    festival?: PartialObjects["ch_festival_order_by"];
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
@@ -7653,14 +7653,14 @@ export type PartialObjects = {
   };
   ["ch_time_slot"]: {
     __typename?: "ch_time_slot";
-    ch_helper_time_slots?: PartialObjects["ch_helper_time_slots"][];
-    ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate"];
-    ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots"][];
-    ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate"];
     end_time?: PartialObjects["timestamptz"];
     festival?: PartialObjects["ch_festival"];
     festival_id?: number;
+    helpers?: PartialObjects["ch_helper_time_slots"][];
+    helpers_aggregate?: PartialObjects["ch_helper_time_slots_aggregate"];
     id?: number;
+    proposals?: PartialObjects["ch_proposal_time_slots"][];
+    proposals_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate"];
     start_time?: PartialObjects["timestamptz"];
   };
   ["ch_time_slot_aggregate"]: {
@@ -7712,12 +7712,12 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_time_slot_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_time_slot_bool_exp"];
     _or?: (PartialObjects["ch_time_slot_bool_exp"] | undefined)[];
-    ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_bool_exp"];
-    ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_bool_exp"];
     end_time?: PartialObjects["timestamptz_comparison_exp"];
     festival?: PartialObjects["ch_festival_bool_exp"];
     festival_id?: PartialObjects["Int_comparison_exp"];
+    helpers?: PartialObjects["ch_helper_time_slots_bool_exp"];
     id?: PartialObjects["Int_comparison_exp"];
+    proposals?: PartialObjects["ch_proposal_time_slots_bool_exp"];
     start_time?: PartialObjects["timestamptz_comparison_exp"];
   };
   ["ch_time_slot_constraint"]: ch_time_slot_constraint;
@@ -7726,12 +7726,12 @@ export type PartialObjects = {
     id?: number;
   };
   ["ch_time_slot_insert_input"]: {
-    ch_helper_time_slots?: PartialObjects["ch_helper_time_slots_arr_rel_insert_input"];
-    ch_proposal_time_slots?: PartialObjects["ch_proposal_time_slots_arr_rel_insert_input"];
     end_time?: PartialObjects["timestamptz"];
     festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
+    helpers?: PartialObjects["ch_helper_time_slots_arr_rel_insert_input"];
     id?: number;
+    proposals?: PartialObjects["ch_proposal_time_slots_arr_rel_insert_input"];
     start_time?: PartialObjects["timestamptz"];
   };
   ["ch_time_slot_max_fields"]: {
@@ -7775,12 +7775,12 @@ export type PartialObjects = {
     where?: PartialObjects["ch_time_slot_bool_exp"];
   };
   ["ch_time_slot_order_by"]: {
-    ch_helper_time_slots_aggregate?: PartialObjects["ch_helper_time_slots_aggregate_order_by"];
-    ch_proposal_time_slots_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate_order_by"];
     end_time?: PartialObjects["order_by"];
     festival?: PartialObjects["ch_festival_order_by"];
     festival_id?: PartialObjects["order_by"];
+    helpers_aggregate?: PartialObjects["ch_helper_time_slots_aggregate_order_by"];
     id?: PartialObjects["order_by"];
+    proposals_aggregate?: PartialObjects["ch_proposal_time_slots_aggregate_order_by"];
     start_time?: PartialObjects["order_by"];
   };
   ["ch_time_slot_pk_columns_input"]: {
@@ -7859,12 +7859,12 @@ export type PartialObjects = {
   };
   ["ch_wait_list"]: {
     __typename?: "ch_wait_list";
-    ch_festival?: PartialObjects["ch_festival"];
-    ch_proposals?: PartialObjects["ch_proposal"][];
-    ch_proposals_aggregate?: PartialObjects["ch_proposal_aggregate"];
+    festival?: PartialObjects["ch_festival"];
     festival_id?: number;
     id?: number;
     name?: string;
+    proposals?: PartialObjects["ch_proposal"][];
+    proposals_aggregate?: PartialObjects["ch_proposal_aggregate"];
     slug?: string;
   };
   ["ch_wait_list_aggregate"]: {
@@ -7916,11 +7916,11 @@ export type PartialObjects = {
     _and?: (PartialObjects["ch_wait_list_bool_exp"] | undefined)[];
     _not?: PartialObjects["ch_wait_list_bool_exp"];
     _or?: (PartialObjects["ch_wait_list_bool_exp"] | undefined)[];
-    ch_festival?: PartialObjects["ch_festival_bool_exp"];
-    ch_proposals?: PartialObjects["ch_proposal_bool_exp"];
+    festival?: PartialObjects["ch_festival_bool_exp"];
     festival_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
+    proposals?: PartialObjects["ch_proposal_bool_exp"];
     slug?: PartialObjects["String_comparison_exp"];
   };
   ["ch_wait_list_constraint"]: ch_wait_list_constraint;
@@ -7929,11 +7929,11 @@ export type PartialObjects = {
     id?: number;
   };
   ["ch_wait_list_insert_input"]: {
-    ch_festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
-    ch_proposals?: PartialObjects["ch_proposal_arr_rel_insert_input"];
+    festival?: PartialObjects["ch_festival_obj_rel_insert_input"];
     festival_id?: number;
     id?: number;
     name?: string;
+    proposals?: PartialObjects["ch_proposal_arr_rel_insert_input"];
     slug?: string;
   };
   ["ch_wait_list_max_fields"]: {
@@ -7977,11 +7977,11 @@ export type PartialObjects = {
     where?: PartialObjects["ch_wait_list_bool_exp"];
   };
   ["ch_wait_list_order_by"]: {
-    ch_festival?: PartialObjects["ch_festival_order_by"];
-    ch_proposals_aggregate?: PartialObjects["ch_proposal_aggregate_order_by"];
+    festival?: PartialObjects["ch_festival_order_by"];
     festival_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
+    proposals_aggregate?: PartialObjects["ch_proposal_aggregate_order_by"];
     slug?: PartialObjects["order_by"];
   };
   ["ch_wait_list_pk_columns_input"]: {
@@ -8061,13 +8061,13 @@ export type PartialObjects = {
   ["cr_user"]: {
     __typename?: "cr_user";
     auth0_id?: string;
-    ch_helpers?: PartialObjects["ch_helper"][];
-    ch_helpers_aggregate?: PartialObjects["ch_helper_aggregate"];
     date_joined?: PartialObjects["timestamptz"];
     email?: string;
     first_name?: string;
     guilds?: PartialObjects["nb_guild_member"][];
     guilds_aggregate?: PartialObjects["nb_guild_member_aggregate"];
+    helpers?: PartialObjects["ch_helper"][];
+    helpers_aggregate?: PartialObjects["ch_helper_aggregate"];
     is_active?: boolean;
     is_staff?: boolean;
     is_superuser?: boolean;
@@ -8076,10 +8076,10 @@ export type PartialObjects = {
     locale?: string;
     managed_spheres?: PartialObjects["nb_sphere_managers"][];
     managed_spheres_aggregate?: PartialObjects["nb_sphere_managers_aggregate"];
-    meetings?: PartialObjects["nb_meeting_participant"][];
-    meetings_aggregate?: PartialObjects["nb_meeting_participant_aggregate"];
     organized_meetings?: PartialObjects["nb_meeting"][];
     organized_meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
+    participated_meetings?: PartialObjects["nb_meeting_participant"][];
+    participated_meetings_aggregate?: PartialObjects["nb_meeting_participant_aggregate"];
     password?: string;
     proposals?: PartialObjects["ch_proposal"][];
     proposals_aggregate?: PartialObjects["ch_proposal_aggregate"];
@@ -8111,11 +8111,11 @@ export type PartialObjects = {
     _not?: PartialObjects["cr_user_bool_exp"];
     _or?: (PartialObjects["cr_user_bool_exp"] | undefined)[];
     auth0_id?: PartialObjects["String_comparison_exp"];
-    ch_helpers?: PartialObjects["ch_helper_bool_exp"];
     date_joined?: PartialObjects["timestamptz_comparison_exp"];
     email?: PartialObjects["String_comparison_exp"];
     first_name?: PartialObjects["String_comparison_exp"];
     guilds?: PartialObjects["nb_guild_member_bool_exp"];
+    helpers?: PartialObjects["ch_helper_bool_exp"];
     is_active?: PartialObjects["Boolean_comparison_exp"];
     is_staff?: PartialObjects["Boolean_comparison_exp"];
     is_superuser?: PartialObjects["Boolean_comparison_exp"];
@@ -8123,8 +8123,8 @@ export type PartialObjects = {
     last_name?: PartialObjects["String_comparison_exp"];
     locale?: PartialObjects["String_comparison_exp"];
     managed_spheres?: PartialObjects["nb_sphere_managers_bool_exp"];
-    meetings?: PartialObjects["nb_meeting_participant_bool_exp"];
     organized_meetings?: PartialObjects["nb_meeting_bool_exp"];
+    participated_meetings?: PartialObjects["nb_meeting_participant_bool_exp"];
     password?: PartialObjects["String_comparison_exp"];
     proposals?: PartialObjects["ch_proposal_bool_exp"];
     username?: PartialObjects["String_comparison_exp"];
@@ -8133,11 +8133,11 @@ export type PartialObjects = {
   ["cr_user_constraint"]: cr_user_constraint;
   ["cr_user_insert_input"]: {
     auth0_id?: string;
-    ch_helpers?: PartialObjects["ch_helper_arr_rel_insert_input"];
     date_joined?: PartialObjects["timestamptz"];
     email?: string;
     first_name?: string;
     guilds?: PartialObjects["nb_guild_member_arr_rel_insert_input"];
+    helpers?: PartialObjects["ch_helper_arr_rel_insert_input"];
     is_active?: boolean;
     is_staff?: boolean;
     is_superuser?: boolean;
@@ -8145,8 +8145,8 @@ export type PartialObjects = {
     last_name?: string;
     locale?: string;
     managed_spheres?: PartialObjects["nb_sphere_managers_arr_rel_insert_input"];
-    meetings?: PartialObjects["nb_meeting_participant_arr_rel_insert_input"];
     organized_meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
+    participated_meetings?: PartialObjects["nb_meeting_participant_arr_rel_insert_input"];
     password?: string;
     proposals?: PartialObjects["ch_proposal_arr_rel_insert_input"];
     username?: string;
@@ -8218,11 +8218,11 @@ export type PartialObjects = {
   };
   ["cr_user_order_by"]: {
     auth0_id?: PartialObjects["order_by"];
-    ch_helpers_aggregate?: PartialObjects["ch_helper_aggregate_order_by"];
     date_joined?: PartialObjects["order_by"];
     email?: PartialObjects["order_by"];
     first_name?: PartialObjects["order_by"];
     guilds_aggregate?: PartialObjects["nb_guild_member_aggregate_order_by"];
+    helpers_aggregate?: PartialObjects["ch_helper_aggregate_order_by"];
     is_active?: PartialObjects["order_by"];
     is_staff?: PartialObjects["order_by"];
     is_superuser?: PartialObjects["order_by"];
@@ -8230,8 +8230,8 @@ export type PartialObjects = {
     last_name?: PartialObjects["order_by"];
     locale?: PartialObjects["order_by"];
     managed_spheres_aggregate?: PartialObjects["nb_sphere_managers_aggregate_order_by"];
-    meetings_aggregate?: PartialObjects["nb_meeting_participant_aggregate_order_by"];
     organized_meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
+    participated_meetings_aggregate?: PartialObjects["nb_meeting_participant_aggregate_order_by"];
     password?: PartialObjects["order_by"];
     proposals_aggregate?: PartialObjects["ch_proposal_aggregate_order_by"];
     username?: PartialObjects["order_by"];
@@ -8262,7 +8262,7 @@ export type PartialObjects = {
     domain?: string;
     id?: number;
     name?: string;
-    nb_sphere?: PartialObjects["nb_sphere"];
+    sphere?: PartialObjects["nb_sphere"];
   };
   ["django_site_aggregate"]: {
     __typename?: "django_site_aggregate";
@@ -8314,7 +8314,7 @@ export type PartialObjects = {
     domain?: PartialObjects["String_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     name?: PartialObjects["String_comparison_exp"];
-    nb_sphere?: PartialObjects["nb_sphere_bool_exp"];
+    sphere?: PartialObjects["nb_sphere_bool_exp"];
   };
   ["django_site_constraint"]: django_site_constraint;
   ["django_site_inc_input"]: {
@@ -8324,7 +8324,7 @@ export type PartialObjects = {
     domain?: string;
     id?: number;
     name?: string;
-    nb_sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
+    sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
   };
   ["django_site_max_fields"]: {
     __typename?: "django_site_max_fields";
@@ -8366,7 +8366,7 @@ export type PartialObjects = {
     domain?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     name?: PartialObjects["order_by"];
-    nb_sphere?: PartialObjects["nb_sphere_order_by"];
+    sphere?: PartialObjects["nb_sphere_order_by"];
   };
   ["django_site_pk_columns_input"]: {
     id: number;
@@ -8566,11 +8566,11 @@ export type PartialObjects = {
     description?: string;
     id?: number;
     is_public?: boolean;
+    meetings?: PartialObjects["nb_meeting"][];
+    meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
+    members?: PartialObjects["nb_guild_member"][];
+    members_aggregate?: PartialObjects["nb_guild_member_aggregate"];
     name?: string;
-    nb_guild_members?: PartialObjects["nb_guild_member"][];
-    nb_guild_members_aggregate?: PartialObjects["nb_guild_member_aggregate"];
-    nb_meetings?: PartialObjects["nb_meeting"][];
-    nb_meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
     slug?: string;
     updated_at?: PartialObjects["timestamptz"];
   };
@@ -8625,9 +8625,9 @@ export type PartialObjects = {
     description?: PartialObjects["String_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     is_public?: PartialObjects["Boolean_comparison_exp"];
+    meetings?: PartialObjects["nb_meeting_bool_exp"];
+    members?: PartialObjects["nb_guild_member_bool_exp"];
     name?: PartialObjects["String_comparison_exp"];
-    nb_guild_members?: PartialObjects["nb_guild_member_bool_exp"];
-    nb_meetings?: PartialObjects["nb_meeting_bool_exp"];
     slug?: PartialObjects["String_comparison_exp"];
     updated_at?: PartialObjects["timestamptz_comparison_exp"];
   };
@@ -8640,9 +8640,9 @@ export type PartialObjects = {
     description?: string;
     id?: number;
     is_public?: boolean;
+    meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
+    members?: PartialObjects["nb_guild_member_arr_rel_insert_input"];
     name?: string;
-    nb_guild_members?: PartialObjects["nb_guild_member_arr_rel_insert_input"];
-    nb_meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
     slug?: string;
     updated_at?: PartialObjects["timestamptz"];
   };
@@ -8665,11 +8665,11 @@ export type PartialObjects = {
   };
   ["nb_guild_member"]: {
     __typename?: "nb_guild_member";
-    cr_user?: PartialObjects["cr_user"];
+    guild?: PartialObjects["nb_guild"];
     guild_id?: number;
     id?: number;
     membership_type?: string;
-    nb_guild?: PartialObjects["nb_guild"];
+    user?: PartialObjects["cr_user"];
     user_id?: PartialObjects["uuid"];
   };
   ["nb_guild_member_aggregate"]: {
@@ -8721,11 +8721,11 @@ export type PartialObjects = {
     _and?: (PartialObjects["nb_guild_member_bool_exp"] | undefined)[];
     _not?: PartialObjects["nb_guild_member_bool_exp"];
     _or?: (PartialObjects["nb_guild_member_bool_exp"] | undefined)[];
-    cr_user?: PartialObjects["cr_user_bool_exp"];
+    guild?: PartialObjects["nb_guild_bool_exp"];
     guild_id?: PartialObjects["Int_comparison_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     membership_type?: PartialObjects["String_comparison_exp"];
-    nb_guild?: PartialObjects["nb_guild_bool_exp"];
+    user?: PartialObjects["cr_user_bool_exp"];
     user_id?: PartialObjects["uuid_comparison_exp"];
   };
   ["nb_guild_member_constraint"]: nb_guild_member_constraint;
@@ -8734,11 +8734,11 @@ export type PartialObjects = {
     id?: number;
   };
   ["nb_guild_member_insert_input"]: {
-    cr_user?: PartialObjects["cr_user_obj_rel_insert_input"];
+    guild?: PartialObjects["nb_guild_obj_rel_insert_input"];
     guild_id?: number;
     id?: number;
     membership_type?: string;
-    nb_guild?: PartialObjects["nb_guild_obj_rel_insert_input"];
+    user?: PartialObjects["cr_user_obj_rel_insert_input"];
     user_id?: PartialObjects["uuid"];
   };
   ["nb_guild_member_max_fields"]: {
@@ -8782,11 +8782,11 @@ export type PartialObjects = {
     where?: PartialObjects["nb_guild_member_bool_exp"];
   };
   ["nb_guild_member_order_by"]: {
-    cr_user?: PartialObjects["cr_user_order_by"];
+    guild?: PartialObjects["nb_guild_order_by"];
     guild_id?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     membership_type?: PartialObjects["order_by"];
-    nb_guild?: PartialObjects["nb_guild_order_by"];
+    user?: PartialObjects["cr_user_order_by"];
     user_id?: PartialObjects["order_by"];
   };
   ["nb_guild_member_pk_columns_input"]: {
@@ -8899,9 +8899,9 @@ export type PartialObjects = {
     description?: PartialObjects["order_by"];
     id?: PartialObjects["order_by"];
     is_public?: PartialObjects["order_by"];
+    meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
+    members_aggregate?: PartialObjects["nb_guild_member_aggregate_order_by"];
     name?: PartialObjects["order_by"];
-    nb_guild_members_aggregate?: PartialObjects["nb_guild_member_aggregate_order_by"];
-    nb_meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
     slug?: PartialObjects["order_by"];
     updated_at?: PartialObjects["order_by"];
   };
@@ -9556,16 +9556,16 @@ export type PartialObjects = {
   };
   ["nb_sphere"]: {
     __typename?: "nb_sphere";
-    ch_festivals?: PartialObjects["ch_festival"][];
-    ch_festivals_aggregate?: PartialObjects["ch_festival_aggregate"];
     django_site?: PartialObjects["django_site"];
+    festivals?: PartialObjects["ch_festival"][];
+    festivals_aggregate?: PartialObjects["ch_festival_aggregate"];
     id?: number;
     is_open?: boolean;
+    managers?: PartialObjects["nb_sphere_managers"][];
+    managers_aggregate?: PartialObjects["nb_sphere_managers_aggregate"];
+    meetings?: PartialObjects["nb_meeting"][];
+    meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
     name?: string;
-    nb_meetings?: PartialObjects["nb_meeting"][];
-    nb_meetings_aggregate?: PartialObjects["nb_meeting_aggregate"];
-    nb_sphere_managers?: PartialObjects["nb_sphere_managers"][];
-    nb_sphere_managers_aggregate?: PartialObjects["nb_sphere_managers_aggregate"];
     settings?: PartialObjects["jsonb"];
     site_id?: number;
   };
@@ -9621,13 +9621,13 @@ export type PartialObjects = {
     _and?: (PartialObjects["nb_sphere_bool_exp"] | undefined)[];
     _not?: PartialObjects["nb_sphere_bool_exp"];
     _or?: (PartialObjects["nb_sphere_bool_exp"] | undefined)[];
-    ch_festivals?: PartialObjects["ch_festival_bool_exp"];
     django_site?: PartialObjects["django_site_bool_exp"];
+    festivals?: PartialObjects["ch_festival_bool_exp"];
     id?: PartialObjects["Int_comparison_exp"];
     is_open?: PartialObjects["Boolean_comparison_exp"];
+    managers?: PartialObjects["nb_sphere_managers_bool_exp"];
+    meetings?: PartialObjects["nb_meeting_bool_exp"];
     name?: PartialObjects["String_comparison_exp"];
-    nb_meetings?: PartialObjects["nb_meeting_bool_exp"];
-    nb_sphere_managers?: PartialObjects["nb_sphere_managers_bool_exp"];
     settings?: PartialObjects["jsonb_comparison_exp"];
     site_id?: PartialObjects["Int_comparison_exp"];
   };
@@ -9646,22 +9646,22 @@ export type PartialObjects = {
     site_id?: number;
   };
   ["nb_sphere_insert_input"]: {
-    ch_festivals?: PartialObjects["ch_festival_arr_rel_insert_input"];
     django_site?: PartialObjects["django_site_obj_rel_insert_input"];
+    festivals?: PartialObjects["ch_festival_arr_rel_insert_input"];
     id?: number;
     is_open?: boolean;
+    managers?: PartialObjects["nb_sphere_managers_arr_rel_insert_input"];
+    meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
     name?: string;
-    nb_meetings?: PartialObjects["nb_meeting_arr_rel_insert_input"];
-    nb_sphere_managers?: PartialObjects["nb_sphere_managers_arr_rel_insert_input"];
     settings?: PartialObjects["jsonb"];
     site_id?: number;
   };
   ["nb_sphere_managers"]: {
     __typename?: "nb_sphere_managers";
-    cr_user?: PartialObjects["cr_user"];
     id?: number;
-    nb_sphere?: PartialObjects["nb_sphere"];
+    sphere?: PartialObjects["nb_sphere"];
     sphere_id?: number;
+    user?: PartialObjects["cr_user"];
     user_id?: PartialObjects["uuid"];
   };
   ["nb_sphere_managers_aggregate"]: {
@@ -9713,10 +9713,10 @@ export type PartialObjects = {
     _and?: (PartialObjects["nb_sphere_managers_bool_exp"] | undefined)[];
     _not?: PartialObjects["nb_sphere_managers_bool_exp"];
     _or?: (PartialObjects["nb_sphere_managers_bool_exp"] | undefined)[];
-    cr_user?: PartialObjects["cr_user_bool_exp"];
     id?: PartialObjects["Int_comparison_exp"];
-    nb_sphere?: PartialObjects["nb_sphere_bool_exp"];
+    sphere?: PartialObjects["nb_sphere_bool_exp"];
     sphere_id?: PartialObjects["Int_comparison_exp"];
+    user?: PartialObjects["cr_user_bool_exp"];
     user_id?: PartialObjects["uuid_comparison_exp"];
   };
   ["nb_sphere_managers_constraint"]: nb_sphere_managers_constraint;
@@ -9725,10 +9725,10 @@ export type PartialObjects = {
     sphere_id?: number;
   };
   ["nb_sphere_managers_insert_input"]: {
-    cr_user?: PartialObjects["cr_user_obj_rel_insert_input"];
     id?: number;
-    nb_sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
+    sphere?: PartialObjects["nb_sphere_obj_rel_insert_input"];
     sphere_id?: number;
+    user?: PartialObjects["cr_user_obj_rel_insert_input"];
     user_id?: PartialObjects["uuid"];
   };
   ["nb_sphere_managers_max_fields"]: {
@@ -9768,10 +9768,10 @@ export type PartialObjects = {
     where?: PartialObjects["nb_sphere_managers_bool_exp"];
   };
   ["nb_sphere_managers_order_by"]: {
-    cr_user?: PartialObjects["cr_user_order_by"];
     id?: PartialObjects["order_by"];
-    nb_sphere?: PartialObjects["nb_sphere_order_by"];
+    sphere?: PartialObjects["nb_sphere_order_by"];
     sphere_id?: PartialObjects["order_by"];
+    user?: PartialObjects["cr_user_order_by"];
     user_id?: PartialObjects["order_by"];
   };
   ["nb_sphere_managers_pk_columns_input"]: {
@@ -9884,13 +9884,13 @@ export type PartialObjects = {
     where?: PartialObjects["nb_sphere_bool_exp"];
   };
   ["nb_sphere_order_by"]: {
-    ch_festivals_aggregate?: PartialObjects["ch_festival_aggregate_order_by"];
     django_site?: PartialObjects["django_site_order_by"];
+    festivals_aggregate?: PartialObjects["ch_festival_aggregate_order_by"];
     id?: PartialObjects["order_by"];
     is_open?: PartialObjects["order_by"];
+    managers_aggregate?: PartialObjects["nb_sphere_managers_aggregate_order_by"];
+    meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
     name?: PartialObjects["order_by"];
-    nb_meetings_aggregate?: PartialObjects["nb_meeting_aggregate_order_by"];
-    nb_sphere_managers_aggregate?: PartialObjects["nb_sphere_managers_aggregate_order_by"];
     settings?: PartialObjects["order_by"];
     site_id?: PartialObjects["order_by"];
   };
@@ -11418,14 +11418,14 @@ export type Boolean_comparison_exp = {
 
 export type ch_agenda_item = {
   __typename?: "ch_agenda_item";
-  ch_helper?: ch_helper;
-  ch_room: ch_room;
+  helper?: ch_helper;
   helper_confirmed: boolean;
   helper_id?: number;
   id: number;
+  meeting: nb_meeting;
   meeting_confirmed: boolean;
   meeting_id: number;
-  nb_meeting: nb_meeting;
+  room: ch_room;
   room_id: number;
   status: string;
 };
@@ -11489,14 +11489,14 @@ export type ch_agenda_item_bool_exp = {
   _and?: (ch_agenda_item_bool_exp | undefined)[];
   _not?: ch_agenda_item_bool_exp;
   _or?: (ch_agenda_item_bool_exp | undefined)[];
-  ch_helper?: ch_helper_bool_exp;
-  ch_room?: ch_room_bool_exp;
+  helper?: ch_helper_bool_exp;
   helper_confirmed?: Boolean_comparison_exp;
   helper_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
+  meeting?: nb_meeting_bool_exp;
   meeting_confirmed?: Boolean_comparison_exp;
   meeting_id?: Int_comparison_exp;
-  nb_meeting?: nb_meeting_bool_exp;
+  room?: ch_room_bool_exp;
   room_id?: Int_comparison_exp;
   status?: String_comparison_exp;
 };
@@ -11514,14 +11514,14 @@ export type ch_agenda_item_inc_input = {
 };
 
 export type ch_agenda_item_insert_input = {
-  ch_helper?: ch_helper_obj_rel_insert_input;
-  ch_room?: ch_room_obj_rel_insert_input;
+  helper?: ch_helper_obj_rel_insert_input;
   helper_confirmed?: boolean;
   helper_id?: number;
   id?: number;
+  meeting?: nb_meeting_obj_rel_insert_input;
   meeting_confirmed?: boolean;
   meeting_id?: number;
-  nb_meeting?: nb_meeting_obj_rel_insert_input;
+  room?: ch_room_obj_rel_insert_input;
   room_id?: number;
   status?: string;
 };
@@ -11578,14 +11578,14 @@ export type ch_agenda_item_on_conflict = {
 };
 
 export type ch_agenda_item_order_by = {
-  ch_helper?: ch_helper_order_by;
-  ch_room?: ch_room_order_by;
+  helper?: ch_helper_order_by;
   helper_confirmed?: order_by;
   helper_id?: order_by;
   id?: order_by;
+  meeting?: nb_meeting_order_by;
   meeting_confirmed?: order_by;
   meeting_id?: order_by;
-  nb_meeting?: nb_meeting_order_by;
+  room?: ch_room_order_by;
   room_id?: order_by;
   status?: order_by;
 };
@@ -11731,19 +11731,17 @@ export type ch_agenda_item_variance_order_by = {
 
 export type ch_festival = {
   __typename?: "ch_festival";
-  ch_helpers: ch_helper[];
-  ch_helpers_aggregate: ch_helper_aggregate;
-  ch_rooms: ch_room[];
-  ch_rooms_aggregate: ch_room_aggregate;
-  ch_wait_lists: ch_wait_list[];
-  ch_wait_lists_aggregate: ch_wait_list_aggregate;
   end_proposal?: timestamptz;
   end_time?: timestamptz;
+  helpers: ch_helper[];
+  helpers_aggregate: ch_helper_aggregate;
   id: number;
   name: string;
-  nb_sphere: nb_sphere;
+  rooms: ch_room[];
+  rooms_aggregate: ch_room_aggregate;
   settings: jsonb;
   slug: string;
+  sphere: nb_sphere;
   sphere_id: number;
   start_proposal?: timestamptz;
   start_publication?: timestamptz;
@@ -11751,6 +11749,8 @@ export type ch_festival = {
   status: string;
   time_slots: ch_time_slot[];
   time_slots_aggregate: ch_time_slot_aggregate;
+  wait_lists: ch_wait_list[];
+  wait_lists_aggregate: ch_wait_list_aggregate;
 };
 
 export type ch_festival_aggregate = {
@@ -11812,22 +11812,22 @@ export type ch_festival_bool_exp = {
   _and?: (ch_festival_bool_exp | undefined)[];
   _not?: ch_festival_bool_exp;
   _or?: (ch_festival_bool_exp | undefined)[];
-  ch_helpers?: ch_helper_bool_exp;
-  ch_rooms?: ch_room_bool_exp;
-  ch_wait_lists?: ch_wait_list_bool_exp;
   end_proposal?: timestamptz_comparison_exp;
   end_time?: timestamptz_comparison_exp;
+  helpers?: ch_helper_bool_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
-  nb_sphere?: nb_sphere_bool_exp;
+  rooms?: ch_room_bool_exp;
   settings?: jsonb_comparison_exp;
   slug?: String_comparison_exp;
+  sphere?: nb_sphere_bool_exp;
   sphere_id?: Int_comparison_exp;
   start_proposal?: timestamptz_comparison_exp;
   start_publication?: timestamptz_comparison_exp;
   start_time?: timestamptz_comparison_exp;
   status?: String_comparison_exp;
   time_slots?: ch_time_slot_bool_exp;
+  wait_lists?: ch_wait_list_bool_exp;
 };
 
 export enum ch_festival_constraint {
@@ -11853,22 +11853,22 @@ export type ch_festival_inc_input = {
 };
 
 export type ch_festival_insert_input = {
-  ch_helpers?: ch_helper_arr_rel_insert_input;
-  ch_rooms?: ch_room_arr_rel_insert_input;
-  ch_wait_lists?: ch_wait_list_arr_rel_insert_input;
   end_proposal?: timestamptz;
   end_time?: timestamptz;
+  helpers?: ch_helper_arr_rel_insert_input;
   id?: number;
   name?: string;
-  nb_sphere?: nb_sphere_obj_rel_insert_input;
+  rooms?: ch_room_arr_rel_insert_input;
   settings?: jsonb;
   slug?: string;
+  sphere?: nb_sphere_obj_rel_insert_input;
   sphere_id?: number;
   start_proposal?: timestamptz;
   start_publication?: timestamptz;
   start_time?: timestamptz;
   status?: string;
   time_slots?: ch_time_slot_arr_rel_insert_input;
+  wait_lists?: ch_wait_list_arr_rel_insert_input;
 };
 
 export type ch_festival_max_fields = {
@@ -11943,22 +11943,22 @@ export type ch_festival_on_conflict = {
 };
 
 export type ch_festival_order_by = {
-  ch_helpers_aggregate?: ch_helper_aggregate_order_by;
-  ch_rooms_aggregate?: ch_room_aggregate_order_by;
-  ch_wait_lists_aggregate?: ch_wait_list_aggregate_order_by;
   end_proposal?: order_by;
   end_time?: order_by;
+  helpers_aggregate?: ch_helper_aggregate_order_by;
   id?: order_by;
   name?: order_by;
-  nb_sphere?: nb_sphere_order_by;
+  rooms_aggregate?: ch_room_aggregate_order_by;
   settings?: order_by;
   slug?: order_by;
+  sphere?: nb_sphere_order_by;
   sphere_id?: order_by;
   start_proposal?: order_by;
   start_publication?: order_by;
   start_time?: order_by;
   status?: order_by;
   time_slots_aggregate?: ch_time_slot_aggregate_order_by;
+  wait_lists_aggregate?: ch_wait_list_aggregate_order_by;
 };
 
 export type ch_festival_pk_columns_input = {
@@ -12090,14 +12090,14 @@ export type ch_festival_variance_order_by = {
 
 export type ch_helper = {
   __typename?: "ch_helper";
-  ch_agenda_items: ch_agenda_item[];
-  ch_agenda_items_aggregate: ch_agenda_item_aggregate;
-  ch_festival: ch_festival;
-  ch_helper_time_slots: ch_helper_time_slots[];
-  ch_helper_time_slots_aggregate: ch_helper_time_slots_aggregate;
-  cr_user: cr_user;
+  agenda_items: ch_agenda_item[];
+  agenda_items_aggregate: ch_agenda_item_aggregate;
+  festival: ch_festival;
   festival_id: number;
   id: number;
+  time_slots: ch_helper_time_slots[];
+  time_slots_aggregate: ch_helper_time_slots_aggregate;
+  user: cr_user;
   user_id: uuid;
 };
 
@@ -12156,12 +12156,12 @@ export type ch_helper_bool_exp = {
   _and?: (ch_helper_bool_exp | undefined)[];
   _not?: ch_helper_bool_exp;
   _or?: (ch_helper_bool_exp | undefined)[];
-  ch_agenda_items?: ch_agenda_item_bool_exp;
-  ch_festival?: ch_festival_bool_exp;
-  ch_helper_time_slots?: ch_helper_time_slots_bool_exp;
-  cr_user?: cr_user_bool_exp;
+  agenda_items?: ch_agenda_item_bool_exp;
+  festival?: ch_festival_bool_exp;
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
+  time_slots?: ch_helper_time_slots_bool_exp;
+  user?: cr_user_bool_exp;
   user_id?: uuid_comparison_exp;
 };
 
@@ -12176,12 +12176,12 @@ export type ch_helper_inc_input = {
 };
 
 export type ch_helper_insert_input = {
-  ch_agenda_items?: ch_agenda_item_arr_rel_insert_input;
-  ch_festival?: ch_festival_obj_rel_insert_input;
-  ch_helper_time_slots?: ch_helper_time_slots_arr_rel_insert_input;
-  cr_user?: cr_user_obj_rel_insert_input;
+  agenda_items?: ch_agenda_item_arr_rel_insert_input;
+  festival?: ch_festival_obj_rel_insert_input;
   festival_id?: number;
   id?: number;
+  time_slots?: ch_helper_time_slots_arr_rel_insert_input;
+  user?: cr_user_obj_rel_insert_input;
   user_id?: uuid;
 };
 
@@ -12229,12 +12229,12 @@ export type ch_helper_on_conflict = {
 };
 
 export type ch_helper_order_by = {
-  ch_agenda_items_aggregate?: ch_agenda_item_aggregate_order_by;
-  ch_festival?: ch_festival_order_by;
-  ch_helper_time_slots_aggregate?: ch_helper_time_slots_aggregate_order_by;
-  cr_user?: cr_user_order_by;
+  agenda_items_aggregate?: ch_agenda_item_aggregate_order_by;
+  festival?: ch_festival_order_by;
   festival_id?: order_by;
   id?: order_by;
+  time_slots_aggregate?: ch_helper_time_slots_aggregate_order_by;
+  user?: cr_user_order_by;
   user_id?: order_by;
 };
 
@@ -12300,10 +12300,10 @@ export type ch_helper_sum_order_by = {
 
 export type ch_helper_time_slots = {
   __typename?: "ch_helper_time_slots";
-  ch_helper: ch_helper;
-  ch_time_slot: ch_time_slot;
+  helper: ch_helper;
   helper_id: number;
   id: number;
+  time_slot: ch_time_slot;
   timeslot_id: number;
 };
 
@@ -12364,10 +12364,10 @@ export type ch_helper_time_slots_bool_exp = {
   _and?: (ch_helper_time_slots_bool_exp | undefined)[];
   _not?: ch_helper_time_slots_bool_exp;
   _or?: (ch_helper_time_slots_bool_exp | undefined)[];
-  ch_helper?: ch_helper_bool_exp;
-  ch_time_slot?: ch_time_slot_bool_exp;
+  helper?: ch_helper_bool_exp;
   helper_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
+  time_slot?: ch_time_slot_bool_exp;
   timeslot_id?: Int_comparison_exp;
 };
 
@@ -12383,10 +12383,10 @@ export type ch_helper_time_slots_inc_input = {
 };
 
 export type ch_helper_time_slots_insert_input = {
-  ch_helper?: ch_helper_obj_rel_insert_input;
-  ch_time_slot?: ch_time_slot_obj_rel_insert_input;
+  helper?: ch_helper_obj_rel_insert_input;
   helper_id?: number;
   id?: number;
+  time_slot?: ch_time_slot_obj_rel_insert_input;
   timeslot_id?: number;
 };
 
@@ -12434,10 +12434,10 @@ export type ch_helper_time_slots_on_conflict = {
 };
 
 export type ch_helper_time_slots_order_by = {
-  ch_helper?: ch_helper_order_by;
-  ch_time_slot?: ch_time_slot_order_by;
+  helper?: ch_helper_order_by;
   helper_id?: order_by;
   id?: order_by;
+  time_slot?: ch_time_slot_order_by;
   timeslot_id?: order_by;
 };
 
@@ -12595,9 +12595,6 @@ export type ch_helper_variance_order_by = {
 
 export type ch_proposal = {
   __typename?: "ch_proposal";
-  ch_proposal_time_slots: ch_proposal_time_slots[];
-  ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate;
-  ch_wait_list: ch_wait_list;
   city: string;
   club: string;
   created_at: timestamptz;
@@ -12615,7 +12612,10 @@ export type ch_proposal = {
   speaker_name: string;
   speaker_user_id?: uuid;
   status: string;
+  time_slots: ch_proposal_time_slots[];
+  time_slots_aggregate: ch_proposal_time_slots_aggregate;
   topic: string;
+  wait_list: ch_wait_list;
   waitlist_id: number;
 };
 
@@ -12683,8 +12683,6 @@ export type ch_proposal_bool_exp = {
   _and?: (ch_proposal_bool_exp | undefined)[];
   _not?: ch_proposal_bool_exp;
   _or?: (ch_proposal_bool_exp | undefined)[];
-  ch_proposal_time_slots?: ch_proposal_time_slots_bool_exp;
-  ch_wait_list?: ch_wait_list_bool_exp;
   city?: String_comparison_exp;
   club?: String_comparison_exp;
   created_at?: timestamptz_comparison_exp;
@@ -12702,7 +12700,9 @@ export type ch_proposal_bool_exp = {
   speaker_name?: String_comparison_exp;
   speaker_user_id?: uuid_comparison_exp;
   status?: String_comparison_exp;
+  time_slots?: ch_proposal_time_slots_bool_exp;
   topic?: String_comparison_exp;
+  wait_list?: ch_wait_list_bool_exp;
   waitlist_id?: Int_comparison_exp;
 };
 
@@ -12734,8 +12734,6 @@ export type ch_proposal_inc_input = {
 };
 
 export type ch_proposal_insert_input = {
-  ch_proposal_time_slots?: ch_proposal_time_slots_arr_rel_insert_input;
-  ch_wait_list?: ch_wait_list_obj_rel_insert_input;
   city?: string;
   club?: string;
   created_at?: timestamptz;
@@ -12753,7 +12751,9 @@ export type ch_proposal_insert_input = {
   speaker_name?: string;
   speaker_user_id?: uuid;
   status?: string;
+  time_slots?: ch_proposal_time_slots_arr_rel_insert_input;
   topic?: string;
+  wait_list?: ch_wait_list_obj_rel_insert_input;
   waitlist_id?: number;
 };
 
@@ -12849,8 +12849,6 @@ export type ch_proposal_on_conflict = {
 };
 
 export type ch_proposal_order_by = {
-  ch_proposal_time_slots_aggregate?: ch_proposal_time_slots_aggregate_order_by;
-  ch_wait_list?: ch_wait_list_order_by;
   city?: order_by;
   club?: order_by;
   created_at?: order_by;
@@ -12868,7 +12866,9 @@ export type ch_proposal_order_by = {
   speaker_name?: order_by;
   speaker_user_id?: order_by;
   status?: order_by;
+  time_slots_aggregate?: ch_proposal_time_slots_aggregate_order_by;
   topic?: order_by;
+  wait_list?: ch_wait_list_order_by;
   waitlist_id?: order_by;
 };
 
@@ -12983,10 +12983,10 @@ export type ch_proposal_sum_order_by = {
 
 export type ch_proposal_time_slots = {
   __typename?: "ch_proposal_time_slots";
-  ch_proposal: ch_proposal;
-  ch_time_slot: ch_time_slot;
   id: number;
+  proposal: ch_proposal;
   proposal_id: number;
+  time_slot: ch_time_slot;
   timeslot_id: number;
 };
 
@@ -13047,10 +13047,10 @@ export type ch_proposal_time_slots_bool_exp = {
   _and?: (ch_proposal_time_slots_bool_exp | undefined)[];
   _not?: ch_proposal_time_slots_bool_exp;
   _or?: (ch_proposal_time_slots_bool_exp | undefined)[];
-  ch_proposal?: ch_proposal_bool_exp;
-  ch_time_slot?: ch_time_slot_bool_exp;
   id?: Int_comparison_exp;
+  proposal?: ch_proposal_bool_exp;
   proposal_id?: Int_comparison_exp;
+  time_slot?: ch_time_slot_bool_exp;
   timeslot_id?: Int_comparison_exp;
 };
 
@@ -13066,10 +13066,10 @@ export type ch_proposal_time_slots_inc_input = {
 };
 
 export type ch_proposal_time_slots_insert_input = {
-  ch_proposal?: ch_proposal_obj_rel_insert_input;
-  ch_time_slot?: ch_time_slot_obj_rel_insert_input;
   id?: number;
+  proposal?: ch_proposal_obj_rel_insert_input;
   proposal_id?: number;
+  time_slot?: ch_time_slot_obj_rel_insert_input;
   timeslot_id?: number;
 };
 
@@ -13117,10 +13117,10 @@ export type ch_proposal_time_slots_on_conflict = {
 };
 
 export type ch_proposal_time_slots_order_by = {
-  ch_proposal?: ch_proposal_order_by;
-  ch_time_slot?: ch_time_slot_order_by;
   id?: order_by;
+  proposal?: ch_proposal_order_by;
   proposal_id?: order_by;
+  time_slot?: ch_time_slot_order_by;
   timeslot_id?: order_by;
 };
 
@@ -13304,9 +13304,9 @@ export type ch_proposal_variance_order_by = {
 
 export type ch_room = {
   __typename?: "ch_room";
-  ch_agenda_items: ch_agenda_item[];
-  ch_agenda_items_aggregate: ch_agenda_item_aggregate;
-  ch_festival: ch_festival;
+  agenda_items: ch_agenda_item[];
+  agenda_items_aggregate: ch_agenda_item_aggregate;
+  festival: ch_festival;
   festival_id: number;
   id: number;
   name: string;
@@ -13368,8 +13368,8 @@ export type ch_room_bool_exp = {
   _and?: (ch_room_bool_exp | undefined)[];
   _not?: ch_room_bool_exp;
   _or?: (ch_room_bool_exp | undefined)[];
-  ch_agenda_items?: ch_agenda_item_bool_exp;
-  ch_festival?: ch_festival_bool_exp;
+  agenda_items?: ch_agenda_item_bool_exp;
+  festival?: ch_festival_bool_exp;
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
@@ -13387,8 +13387,8 @@ export type ch_room_inc_input = {
 };
 
 export type ch_room_insert_input = {
-  ch_agenda_items?: ch_agenda_item_arr_rel_insert_input;
-  ch_festival?: ch_festival_obj_rel_insert_input;
+  agenda_items?: ch_agenda_item_arr_rel_insert_input;
+  festival?: ch_festival_obj_rel_insert_input;
   festival_id?: number;
   id?: number;
   name?: string;
@@ -13443,8 +13443,8 @@ export type ch_room_on_conflict = {
 };
 
 export type ch_room_order_by = {
-  ch_agenda_items_aggregate?: ch_agenda_item_aggregate_order_by;
-  ch_festival?: ch_festival_order_by;
+  agenda_items_aggregate?: ch_agenda_item_aggregate_order_by;
+  festival?: ch_festival_order_by;
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
@@ -13555,14 +13555,14 @@ export type ch_room_variance_order_by = {
 
 export type ch_time_slot = {
   __typename?: "ch_time_slot";
-  ch_helper_time_slots: ch_helper_time_slots[];
-  ch_helper_time_slots_aggregate: ch_helper_time_slots_aggregate;
-  ch_proposal_time_slots: ch_proposal_time_slots[];
-  ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate;
   end_time: timestamptz;
   festival: ch_festival;
   festival_id: number;
+  helpers: ch_helper_time_slots[];
+  helpers_aggregate: ch_helper_time_slots_aggregate;
   id: number;
+  proposals: ch_proposal_time_slots[];
+  proposals_aggregate: ch_proposal_time_slots_aggregate;
   start_time: timestamptz;
 };
 
@@ -13621,12 +13621,12 @@ export type ch_time_slot_bool_exp = {
   _and?: (ch_time_slot_bool_exp | undefined)[];
   _not?: ch_time_slot_bool_exp;
   _or?: (ch_time_slot_bool_exp | undefined)[];
-  ch_helper_time_slots?: ch_helper_time_slots_bool_exp;
-  ch_proposal_time_slots?: ch_proposal_time_slots_bool_exp;
   end_time?: timestamptz_comparison_exp;
   festival?: ch_festival_bool_exp;
   festival_id?: Int_comparison_exp;
+  helpers?: ch_helper_time_slots_bool_exp;
   id?: Int_comparison_exp;
+  proposals?: ch_proposal_time_slots_bool_exp;
   start_time?: timestamptz_comparison_exp;
 };
 
@@ -13641,12 +13641,12 @@ export type ch_time_slot_inc_input = {
 };
 
 export type ch_time_slot_insert_input = {
-  ch_helper_time_slots?: ch_helper_time_slots_arr_rel_insert_input;
-  ch_proposal_time_slots?: ch_proposal_time_slots_arr_rel_insert_input;
   end_time?: timestamptz;
   festival?: ch_festival_obj_rel_insert_input;
   festival_id?: number;
+  helpers?: ch_helper_time_slots_arr_rel_insert_input;
   id?: number;
+  proposals?: ch_proposal_time_slots_arr_rel_insert_input;
   start_time?: timestamptz;
 };
 
@@ -13698,12 +13698,12 @@ export type ch_time_slot_on_conflict = {
 };
 
 export type ch_time_slot_order_by = {
-  ch_helper_time_slots_aggregate?: ch_helper_time_slots_aggregate_order_by;
-  ch_proposal_time_slots_aggregate?: ch_proposal_time_slots_aggregate_order_by;
   end_time?: order_by;
   festival?: ch_festival_order_by;
   festival_id?: order_by;
+  helpers_aggregate?: ch_helper_time_slots_aggregate_order_by;
   id?: order_by;
+  proposals_aggregate?: ch_proposal_time_slots_aggregate_order_by;
   start_time?: order_by;
 };
 
@@ -13811,12 +13811,12 @@ export type ch_time_slot_variance_order_by = {
 
 export type ch_wait_list = {
   __typename?: "ch_wait_list";
-  ch_festival: ch_festival;
-  ch_proposals: ch_proposal[];
-  ch_proposals_aggregate: ch_proposal_aggregate;
+  festival: ch_festival;
   festival_id: number;
   id: number;
   name: string;
+  proposals: ch_proposal[];
+  proposals_aggregate: ch_proposal_aggregate;
   slug: string;
 };
 
@@ -13875,11 +13875,11 @@ export type ch_wait_list_bool_exp = {
   _and?: (ch_wait_list_bool_exp | undefined)[];
   _not?: ch_wait_list_bool_exp;
   _or?: (ch_wait_list_bool_exp | undefined)[];
-  ch_festival?: ch_festival_bool_exp;
-  ch_proposals?: ch_proposal_bool_exp;
+  festival?: ch_festival_bool_exp;
   festival_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
+  proposals?: ch_proposal_bool_exp;
   slug?: String_comparison_exp;
 };
 
@@ -13894,11 +13894,11 @@ export type ch_wait_list_inc_input = {
 };
 
 export type ch_wait_list_insert_input = {
-  ch_festival?: ch_festival_obj_rel_insert_input;
-  ch_proposals?: ch_proposal_arr_rel_insert_input;
+  festival?: ch_festival_obj_rel_insert_input;
   festival_id?: number;
   id?: number;
   name?: string;
+  proposals?: ch_proposal_arr_rel_insert_input;
   slug?: string;
 };
 
@@ -13950,11 +13950,11 @@ export type ch_wait_list_on_conflict = {
 };
 
 export type ch_wait_list_order_by = {
-  ch_festival?: ch_festival_order_by;
-  ch_proposals_aggregate?: ch_proposal_aggregate_order_by;
+  festival?: ch_festival_order_by;
   festival_id?: order_by;
   id?: order_by;
   name?: order_by;
+  proposals_aggregate?: ch_proposal_aggregate_order_by;
   slug?: order_by;
 };
 
@@ -14063,13 +14063,13 @@ export type ch_wait_list_variance_order_by = {
 export type cr_user = {
   __typename?: "cr_user";
   auth0_id: string;
-  ch_helpers: ch_helper[];
-  ch_helpers_aggregate: ch_helper_aggregate;
   date_joined: timestamptz;
   email: string;
   first_name: string;
   guilds: nb_guild_member[];
   guilds_aggregate: nb_guild_member_aggregate;
+  helpers: ch_helper[];
+  helpers_aggregate: ch_helper_aggregate;
   is_active: boolean;
   is_staff: boolean;
   is_superuser: boolean;
@@ -14078,10 +14078,10 @@ export type cr_user = {
   locale: string;
   managed_spheres: nb_sphere_managers[];
   managed_spheres_aggregate: nb_sphere_managers_aggregate;
-  meetings: nb_meeting_participant[];
-  meetings_aggregate: nb_meeting_participant_aggregate;
   organized_meetings: nb_meeting[];
   organized_meetings_aggregate: nb_meeting_aggregate;
+  participated_meetings: nb_meeting_participant[];
+  participated_meetings_aggregate: nb_meeting_participant_aggregate;
   password: string;
   proposals: ch_proposal[];
   proposals_aggregate: ch_proposal_aggregate;
@@ -14118,11 +14118,11 @@ export type cr_user_bool_exp = {
   _not?: cr_user_bool_exp;
   _or?: (cr_user_bool_exp | undefined)[];
   auth0_id?: String_comparison_exp;
-  ch_helpers?: ch_helper_bool_exp;
   date_joined?: timestamptz_comparison_exp;
   email?: String_comparison_exp;
   first_name?: String_comparison_exp;
   guilds?: nb_guild_member_bool_exp;
+  helpers?: ch_helper_bool_exp;
   is_active?: Boolean_comparison_exp;
   is_staff?: Boolean_comparison_exp;
   is_superuser?: Boolean_comparison_exp;
@@ -14130,8 +14130,8 @@ export type cr_user_bool_exp = {
   last_name?: String_comparison_exp;
   locale?: String_comparison_exp;
   managed_spheres?: nb_sphere_managers_bool_exp;
-  meetings?: nb_meeting_participant_bool_exp;
   organized_meetings?: nb_meeting_bool_exp;
+  participated_meetings?: nb_meeting_participant_bool_exp;
   password?: String_comparison_exp;
   proposals?: ch_proposal_bool_exp;
   username?: String_comparison_exp;
@@ -14146,11 +14146,11 @@ export enum cr_user_constraint {
 
 export type cr_user_insert_input = {
   auth0_id?: string;
-  ch_helpers?: ch_helper_arr_rel_insert_input;
   date_joined?: timestamptz;
   email?: string;
   first_name?: string;
   guilds?: nb_guild_member_arr_rel_insert_input;
+  helpers?: ch_helper_arr_rel_insert_input;
   is_active?: boolean;
   is_staff?: boolean;
   is_superuser?: boolean;
@@ -14158,8 +14158,8 @@ export type cr_user_insert_input = {
   last_name?: string;
   locale?: string;
   managed_spheres?: nb_sphere_managers_arr_rel_insert_input;
-  meetings?: nb_meeting_participant_arr_rel_insert_input;
   organized_meetings?: nb_meeting_arr_rel_insert_input;
+  participated_meetings?: nb_meeting_participant_arr_rel_insert_input;
   password?: string;
   proposals?: ch_proposal_arr_rel_insert_input;
   username?: string;
@@ -14239,11 +14239,11 @@ export type cr_user_on_conflict = {
 
 export type cr_user_order_by = {
   auth0_id?: order_by;
-  ch_helpers_aggregate?: ch_helper_aggregate_order_by;
   date_joined?: order_by;
   email?: order_by;
   first_name?: order_by;
   guilds_aggregate?: nb_guild_member_aggregate_order_by;
+  helpers_aggregate?: ch_helper_aggregate_order_by;
   is_active?: order_by;
   is_staff?: order_by;
   is_superuser?: order_by;
@@ -14251,8 +14251,8 @@ export type cr_user_order_by = {
   last_name?: order_by;
   locale?: order_by;
   managed_spheres_aggregate?: nb_sphere_managers_aggregate_order_by;
-  meetings_aggregate?: nb_meeting_participant_aggregate_order_by;
   organized_meetings_aggregate?: nb_meeting_aggregate_order_by;
+  participated_meetings_aggregate?: nb_meeting_participant_aggregate_order_by;
   password?: order_by;
   proposals_aggregate?: ch_proposal_aggregate_order_by;
   username?: order_by;
@@ -14316,7 +14316,7 @@ export type django_site = {
   domain: string;
   id: number;
   name: string;
-  nb_sphere?: nb_sphere;
+  sphere?: nb_sphere;
 };
 
 export type django_site_aggregate = {
@@ -14375,7 +14375,7 @@ export type django_site_bool_exp = {
   domain?: String_comparison_exp;
   id?: Int_comparison_exp;
   name?: String_comparison_exp;
-  nb_sphere?: nb_sphere_bool_exp;
+  sphere?: nb_sphere_bool_exp;
 };
 
 export enum django_site_constraint {
@@ -14391,7 +14391,7 @@ export type django_site_insert_input = {
   domain?: string;
   id?: number;
   name?: string;
-  nb_sphere?: nb_sphere_obj_rel_insert_input;
+  sphere?: nb_sphere_obj_rel_insert_input;
 };
 
 export type django_site_max_fields = {
@@ -14441,7 +14441,7 @@ export type django_site_order_by = {
   domain?: order_by;
   id?: order_by;
   name?: order_by;
-  nb_sphere?: nb_sphere_order_by;
+  sphere?: nb_sphere_order_by;
 };
 
 export type django_site_pk_columns_input = {
@@ -14672,11 +14672,11 @@ export type nb_guild = {
   description: string;
   id: number;
   is_public: boolean;
+  meetings: nb_meeting[];
+  meetings_aggregate: nb_meeting_aggregate;
+  members: nb_guild_member[];
+  members_aggregate: nb_guild_member_aggregate;
   name: string;
-  nb_guild_members: nb_guild_member[];
-  nb_guild_members_aggregate: nb_guild_member_aggregate;
-  nb_meetings: nb_meeting[];
-  nb_meetings_aggregate: nb_meeting_aggregate;
   slug: string;
   updated_at: timestamptz;
 };
@@ -14738,9 +14738,9 @@ export type nb_guild_bool_exp = {
   description?: String_comparison_exp;
   id?: Int_comparison_exp;
   is_public?: Boolean_comparison_exp;
+  meetings?: nb_meeting_bool_exp;
+  members?: nb_guild_member_bool_exp;
   name?: String_comparison_exp;
-  nb_guild_members?: nb_guild_member_bool_exp;
-  nb_meetings?: nb_meeting_bool_exp;
   slug?: String_comparison_exp;
   updated_at?: timestamptz_comparison_exp;
 };
@@ -14759,9 +14759,9 @@ export type nb_guild_insert_input = {
   description?: string;
   id?: number;
   is_public?: boolean;
+  meetings?: nb_meeting_arr_rel_insert_input;
+  members?: nb_guild_member_arr_rel_insert_input;
   name?: string;
-  nb_guild_members?: nb_guild_member_arr_rel_insert_input;
-  nb_meetings?: nb_meeting_arr_rel_insert_input;
   slug?: string;
   updated_at?: timestamptz;
 };
@@ -14787,11 +14787,11 @@ export type nb_guild_max_order_by = {
 
 export type nb_guild_member = {
   __typename?: "nb_guild_member";
-  cr_user: cr_user;
+  guild: nb_guild;
   guild_id: number;
   id: number;
   membership_type: string;
-  nb_guild: nb_guild;
+  user: cr_user;
   user_id: uuid;
 };
 
@@ -14850,11 +14850,11 @@ export type nb_guild_member_bool_exp = {
   _and?: (nb_guild_member_bool_exp | undefined)[];
   _not?: nb_guild_member_bool_exp;
   _or?: (nb_guild_member_bool_exp | undefined)[];
-  cr_user?: cr_user_bool_exp;
+  guild?: nb_guild_bool_exp;
   guild_id?: Int_comparison_exp;
   id?: Int_comparison_exp;
   membership_type?: String_comparison_exp;
-  nb_guild?: nb_guild_bool_exp;
+  user?: cr_user_bool_exp;
   user_id?: uuid_comparison_exp;
 };
 
@@ -14869,11 +14869,11 @@ export type nb_guild_member_inc_input = {
 };
 
 export type nb_guild_member_insert_input = {
-  cr_user?: cr_user_obj_rel_insert_input;
+  guild?: nb_guild_obj_rel_insert_input;
   guild_id?: number;
   id?: number;
   membership_type?: string;
-  nb_guild?: nb_guild_obj_rel_insert_input;
+  user?: cr_user_obj_rel_insert_input;
   user_id?: uuid;
 };
 
@@ -14925,11 +14925,11 @@ export type nb_guild_member_on_conflict = {
 };
 
 export type nb_guild_member_order_by = {
-  cr_user?: cr_user_order_by;
+  guild?: nb_guild_order_by;
   guild_id?: order_by;
   id?: order_by;
   membership_type?: order_by;
-  nb_guild?: nb_guild_order_by;
+  user?: cr_user_order_by;
   user_id?: order_by;
 };
 
@@ -15076,9 +15076,9 @@ export type nb_guild_order_by = {
   description?: order_by;
   id?: order_by;
   is_public?: order_by;
+  meetings_aggregate?: nb_meeting_aggregate_order_by;
+  members_aggregate?: nb_guild_member_aggregate_order_by;
   name?: order_by;
-  nb_guild_members_aggregate?: nb_guild_member_aggregate_order_by;
-  nb_meetings_aggregate?: nb_meeting_aggregate_order_by;
   slug?: order_by;
   updated_at?: order_by;
 };
@@ -15898,16 +15898,16 @@ export type nb_meeting_variance_order_by = {
 
 export type nb_sphere = {
   __typename?: "nb_sphere";
-  ch_festivals: ch_festival[];
-  ch_festivals_aggregate: ch_festival_aggregate;
   django_site: django_site;
+  festivals: ch_festival[];
+  festivals_aggregate: ch_festival_aggregate;
   id: number;
   is_open: boolean;
+  managers: nb_sphere_managers[];
+  managers_aggregate: nb_sphere_managers_aggregate;
+  meetings: nb_meeting[];
+  meetings_aggregate: nb_meeting_aggregate;
   name: string;
-  nb_meetings: nb_meeting[];
-  nb_meetings_aggregate: nb_meeting_aggregate;
-  nb_sphere_managers: nb_sphere_managers[];
-  nb_sphere_managers_aggregate: nb_sphere_managers_aggregate;
   settings: jsonb;
   site_id: number;
 };
@@ -15971,13 +15971,13 @@ export type nb_sphere_bool_exp = {
   _and?: (nb_sphere_bool_exp | undefined)[];
   _not?: nb_sphere_bool_exp;
   _or?: (nb_sphere_bool_exp | undefined)[];
-  ch_festivals?: ch_festival_bool_exp;
   django_site?: django_site_bool_exp;
+  festivals?: ch_festival_bool_exp;
   id?: Int_comparison_exp;
   is_open?: Boolean_comparison_exp;
+  managers?: nb_sphere_managers_bool_exp;
+  meetings?: nb_meeting_bool_exp;
   name?: String_comparison_exp;
-  nb_meetings?: nb_meeting_bool_exp;
-  nb_sphere_managers?: nb_sphere_managers_bool_exp;
   settings?: jsonb_comparison_exp;
   site_id?: Int_comparison_exp;
 };
@@ -16005,23 +16005,23 @@ export type nb_sphere_inc_input = {
 };
 
 export type nb_sphere_insert_input = {
-  ch_festivals?: ch_festival_arr_rel_insert_input;
   django_site?: django_site_obj_rel_insert_input;
+  festivals?: ch_festival_arr_rel_insert_input;
   id?: number;
   is_open?: boolean;
+  managers?: nb_sphere_managers_arr_rel_insert_input;
+  meetings?: nb_meeting_arr_rel_insert_input;
   name?: string;
-  nb_meetings?: nb_meeting_arr_rel_insert_input;
-  nb_sphere_managers?: nb_sphere_managers_arr_rel_insert_input;
   settings?: jsonb;
   site_id?: number;
 };
 
 export type nb_sphere_managers = {
   __typename?: "nb_sphere_managers";
-  cr_user: cr_user;
   id: number;
-  nb_sphere: nb_sphere;
+  sphere: nb_sphere;
   sphere_id: number;
+  user: cr_user;
   user_id: uuid;
 };
 
@@ -16080,10 +16080,10 @@ export type nb_sphere_managers_bool_exp = {
   _and?: (nb_sphere_managers_bool_exp | undefined)[];
   _not?: nb_sphere_managers_bool_exp;
   _or?: (nb_sphere_managers_bool_exp | undefined)[];
-  cr_user?: cr_user_bool_exp;
   id?: Int_comparison_exp;
-  nb_sphere?: nb_sphere_bool_exp;
+  sphere?: nb_sphere_bool_exp;
   sphere_id?: Int_comparison_exp;
+  user?: cr_user_bool_exp;
   user_id?: uuid_comparison_exp;
 };
 
@@ -16098,10 +16098,10 @@ export type nb_sphere_managers_inc_input = {
 };
 
 export type nb_sphere_managers_insert_input = {
-  cr_user?: cr_user_obj_rel_insert_input;
   id?: number;
-  nb_sphere?: nb_sphere_obj_rel_insert_input;
+  sphere?: nb_sphere_obj_rel_insert_input;
   sphere_id?: number;
+  user?: cr_user_obj_rel_insert_input;
   user_id?: uuid;
 };
 
@@ -16149,10 +16149,10 @@ export type nb_sphere_managers_on_conflict = {
 };
 
 export type nb_sphere_managers_order_by = {
-  cr_user?: cr_user_order_by;
   id?: order_by;
-  nb_sphere?: nb_sphere_order_by;
+  sphere?: nb_sphere_order_by;
   sphere_id?: order_by;
+  user?: cr_user_order_by;
   user_id?: order_by;
 };
 
@@ -16299,13 +16299,13 @@ export type nb_sphere_on_conflict = {
 };
 
 export type nb_sphere_order_by = {
-  ch_festivals_aggregate?: ch_festival_aggregate_order_by;
   django_site?: django_site_order_by;
+  festivals_aggregate?: ch_festival_aggregate_order_by;
   id?: order_by;
   is_open?: order_by;
+  managers_aggregate?: nb_sphere_managers_aggregate_order_by;
+  meetings_aggregate?: nb_meeting_aggregate_order_by;
   name?: order_by;
-  nb_meetings_aggregate?: nb_meeting_aggregate_order_by;
-  nb_sphere_managers_aggregate?: nb_sphere_managers_aggregate_order_by;
   settings?: order_by;
   site_id?: order_by;
 };
@@ -16784,14 +16784,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_helper: {
+    helper: {
       type: "ch_helper_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_room: {
-      type: "ch_room_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -16814,6 +16808,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    meeting: {
+      type: "nb_meeting_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     meeting_confirmed: {
       type: "Boolean_comparison_exp",
       array: false,
@@ -16826,8 +16826,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_meeting: {
-      type: "nb_meeting_bool_exp",
+    room: {
+      type: "ch_room_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -16873,14 +16873,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_agenda_item_insert_input: {
-    ch_helper: {
+    helper: {
       type: "ch_helper_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_room: {
-      type: "ch_room_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -16903,6 +16897,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    meeting: {
+      type: "nb_meeting_obj_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     meeting_confirmed: {
       type: "Boolean",
       array: false,
@@ -16915,8 +16915,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_meeting: {
-      type: "nb_meeting_obj_rel_insert_input",
+    room: {
+      type: "ch_room_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17033,14 +17033,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_agenda_item_order_by: {
-    ch_helper: {
+    helper: {
       type: "ch_helper_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_room: {
-      type: "ch_room_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17063,6 +17057,12 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    meeting: {
+      type: "nb_meeting_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     meeting_confirmed: {
       type: "order_by",
       array: false,
@@ -17075,8 +17075,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_meeting: {
-      type: "nb_meeting_order_by",
+    room: {
+      type: "ch_room_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17331,7 +17331,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_festival: {
-    ch_helpers: {
+    helpers: {
       distinct_on: {
         type: "ch_helper_select_column",
         array: true,
@@ -17363,7 +17363,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_helpers_aggregate: {
+    helpers_aggregate: {
       distinct_on: {
         type: "ch_helper_select_column",
         array: true,
@@ -17395,7 +17395,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_rooms: {
+    rooms: {
       distinct_on: {
         type: "ch_room_select_column",
         array: true,
@@ -17427,7 +17427,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_rooms_aggregate: {
+    rooms_aggregate: {
       distinct_on: {
         type: "ch_room_select_column",
         array: true,
@@ -17454,70 +17454,6 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "ch_room_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_wait_lists: {
-      distinct_on: {
-        type: "ch_wait_list_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_wait_list_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_wait_list_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_wait_lists_aggregate: {
-      distinct_on: {
-        type: "ch_wait_list_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_wait_list_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_wait_list_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -17590,6 +17526,70 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "ch_time_slot_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    wait_lists: {
+      distinct_on: {
+        type: "ch_wait_list_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_wait_list_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_wait_list_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    wait_lists_aggregate: {
+      distinct_on: {
+        type: "ch_wait_list_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_wait_list_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_wait_list_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -17735,24 +17735,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_helpers: {
-      type: "ch_helper_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_rooms: {
-      type: "ch_room_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_wait_lists: {
-      type: "ch_wait_list_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     end_proposal: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -17761,6 +17743,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "timestamptz_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helpers: {
+      type: "ch_helper_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17777,8 +17765,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
-      type: "nb_sphere_bool_exp",
+    rooms: {
+      type: "ch_room_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17791,6 +17779,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     slug: {
       type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    sphere: {
+      type: "nb_sphere_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17827,6 +17821,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     time_slots: {
       type: "ch_time_slot_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    wait_lists: {
+      type: "ch_wait_list_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17872,24 +17872,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_festival_insert_input: {
-    ch_helpers: {
-      type: "ch_helper_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_rooms: {
-      type: "ch_room_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_wait_lists: {
-      type: "ch_wait_list_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     end_proposal: {
       type: "timestamptz",
       array: false,
@@ -17898,6 +17880,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "timestamptz",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helpers: {
+      type: "ch_helper_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17914,8 +17902,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
-      type: "nb_sphere_obj_rel_insert_input",
+    rooms: {
+      type: "ch_room_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17928,6 +17916,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     slug: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    sphere: {
+      type: "nb_sphere_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -17964,6 +17958,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     time_slots: {
       type: "ch_time_slot_arr_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    wait_lists: {
+      type: "ch_wait_list_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18128,24 +18128,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_festival_order_by: {
-    ch_helpers_aggregate: {
-      type: "ch_helper_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_rooms_aggregate: {
-      type: "ch_room_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_wait_lists_aggregate: {
-      type: "ch_wait_list_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     end_proposal: {
       type: "order_by",
       array: false,
@@ -18154,6 +18136,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     end_time: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helpers_aggregate: {
+      type: "ch_helper_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18170,8 +18158,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
-      type: "nb_sphere_order_by",
+    rooms_aggregate: {
+      type: "ch_room_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18184,6 +18172,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     slug: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    sphere: {
+      type: "nb_sphere_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18220,6 +18214,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     time_slots_aggregate: {
       type: "ch_time_slot_aggregate_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    wait_lists_aggregate: {
+      type: "ch_wait_list_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18410,7 +18410,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper: {
-    ch_agenda_items: {
+    agenda_items: {
       distinct_on: {
         type: "ch_agenda_item_select_column",
         array: true,
@@ -18442,7 +18442,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_agenda_items_aggregate: {
+    agenda_items_aggregate: {
       distinct_on: {
         type: "ch_agenda_item_select_column",
         array: true,
@@ -18474,7 +18474,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_helper_time_slots: {
+    time_slots: {
       distinct_on: {
         type: "ch_helper_time_slots_select_column",
         array: true,
@@ -18506,7 +18506,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_helper_time_slots_aggregate: {
+    time_slots_aggregate: {
       distinct_on: {
         type: "ch_helper_time_slots_select_column",
         array: true,
@@ -18670,26 +18670,14 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_agenda_items: {
+    agenda_items: {
       type: "ch_agenda_item_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
+    festival: {
       type: "ch_festival_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_helper_time_slots: {
-      type: "ch_helper_time_slots_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    cr_user: {
-      type: "cr_user_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18702,6 +18690,18 @@ export const AllTypesProps: Record<string, any> = {
     },
     id: {
       type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slots: {
+      type: "ch_helper_time_slots_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18729,26 +18729,14 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper_insert_input: {
-    ch_agenda_items: {
+    agenda_items: {
       type: "ch_agenda_item_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
+    festival: {
       type: "ch_festival_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_helper_time_slots: {
-      type: "ch_helper_time_slots_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    cr_user: {
-      type: "cr_user_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18761,6 +18749,18 @@ export const AllTypesProps: Record<string, any> = {
     },
     id: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slots: {
+      type: "ch_helper_time_slots_arr_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18847,26 +18847,14 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper_order_by: {
-    ch_agenda_items_aggregate: {
+    agenda_items_aggregate: {
       type: "ch_agenda_item_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
+    festival: {
       type: "ch_festival_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_helper_time_slots_aggregate: {
-      type: "ch_helper_time_slots_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    cr_user: {
-      type: "cr_user_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -18879,6 +18867,18 @@ export const AllTypesProps: Record<string, any> = {
     },
     id: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slots_aggregate: {
+      type: "ch_helper_time_slots_aggregate_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19112,14 +19112,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_helper: {
+    helper: {
       type: "ch_helper_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_slot: {
-      type: "ch_time_slot_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19132,6 +19126,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     id: {
       type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slot: {
+      type: "ch_time_slot_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19165,14 +19165,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper_time_slots_insert_input: {
-    ch_helper: {
+    helper: {
       type: "ch_helper_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_slot: {
-      type: "ch_time_slot_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19185,6 +19179,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     id: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slot: {
+      type: "ch_time_slot_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19271,14 +19271,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_helper_time_slots_order_by: {
-    ch_helper: {
+    helper: {
       type: "ch_helper_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_slot: {
-      type: "ch_time_slot_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19291,6 +19285,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     id: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slot: {
+      type: "ch_time_slot_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19516,70 +19516,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal: {
-    ch_proposal_time_slots: {
-      distinct_on: {
-        type: "ch_proposal_time_slots_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_proposal_time_slots_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_proposal_time_slots_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_proposal_time_slots_aggregate: {
-      distinct_on: {
-        type: "ch_proposal_time_slots_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_proposal_time_slots_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_proposal_time_slots_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
     other_contact: {
       path: {
         type: "String",
@@ -19591,6 +19527,70 @@ export const AllTypesProps: Record<string, any> = {
     other_data: {
       path: {
         type: "String",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    time_slots: {
+      distinct_on: {
+        type: "ch_proposal_time_slots_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_proposal_time_slots_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_proposal_time_slots_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    time_slots_aggregate: {
+      distinct_on: {
+        type: "ch_proposal_time_slots_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_proposal_time_slots_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_proposal_time_slots_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -19754,18 +19754,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_proposal_time_slots: {
-      type: "ch_proposal_time_slots_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_wait_list: {
-      type: "ch_wait_list_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     city: {
       type: "String_comparison_exp",
       array: false,
@@ -19868,8 +19856,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    time_slots: {
+      type: "ch_proposal_time_slots_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     topic: {
       type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    wait_list: {
+      type: "ch_wait_list_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -19951,18 +19951,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_insert_input: {
-    ch_proposal_time_slots: {
-      type: "ch_proposal_time_slots_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_wait_list: {
-      type: "ch_wait_list_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     city: {
       type: "String",
       array: false,
@@ -20065,8 +20053,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    time_slots: {
+      type: "ch_proposal_time_slots_arr_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     topic: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    wait_list: {
+      type: "ch_wait_list_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -20297,18 +20297,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_order_by: {
-    ch_proposal_time_slots_aggregate: {
-      type: "ch_proposal_time_slots_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_wait_list: {
-      type: "ch_wait_list_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     city: {
       type: "order_by",
       array: false,
@@ -20411,8 +20399,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    time_slots_aggregate: {
+      type: "ch_proposal_time_slots_aggregate_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     topic: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    wait_list: {
+      type: "ch_wait_list_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -20792,26 +20792,26 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_proposal: {
-      type: "ch_proposal_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_slot: {
-      type: "ch_time_slot_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     id: {
       type: "Int_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
+    proposal: {
+      type: "ch_proposal_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     proposal_id: {
       type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slot: {
+      type: "ch_time_slot_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -20845,26 +20845,26 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_time_slots_insert_input: {
-    ch_proposal: {
-      type: "ch_proposal_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_slot: {
-      type: "ch_time_slot_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     id: {
       type: "Int",
       array: false,
       arrayRequired: false,
       required: false,
     },
+    proposal: {
+      type: "ch_proposal_obj_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     proposal_id: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slot: {
+      type: "ch_time_slot_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -20951,26 +20951,26 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_proposal_time_slots_order_by: {
-    ch_proposal: {
-      type: "ch_proposal_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_time_slot: {
-      type: "ch_time_slot_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     id: {
       type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
+    proposal: {
+      type: "ch_proposal_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     proposal_id: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    time_slot: {
+      type: "ch_time_slot_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -21232,7 +21232,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_room: {
-    ch_agenda_items: {
+    agenda_items: {
       distinct_on: {
         type: "ch_agenda_item_select_column",
         array: true,
@@ -21264,7 +21264,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_agenda_items_aggregate: {
+    agenda_items_aggregate: {
       distinct_on: {
         type: "ch_agenda_item_select_column",
         array: true,
@@ -21428,13 +21428,13 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_agenda_items: {
+    agenda_items: {
       type: "ch_agenda_item_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
+    festival: {
       type: "ch_festival_bool_exp",
       array: false,
       arrayRequired: false,
@@ -21481,13 +21481,13 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_room_insert_input: {
-    ch_agenda_items: {
+    agenda_items: {
       type: "ch_agenda_item_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
+    festival: {
       type: "ch_festival_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
@@ -21605,13 +21605,13 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_room_order_by: {
-    ch_agenda_items_aggregate: {
+    agenda_items_aggregate: {
       type: "ch_agenda_item_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
+    festival: {
       type: "ch_festival_order_by",
       array: false,
       arrayRequired: false,
@@ -21777,7 +21777,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot: {
-    ch_helper_time_slots: {
+    helpers: {
       distinct_on: {
         type: "ch_helper_time_slots_select_column",
         array: true,
@@ -21809,7 +21809,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_helper_time_slots_aggregate: {
+    helpers_aggregate: {
       distinct_on: {
         type: "ch_helper_time_slots_select_column",
         array: true,
@@ -21841,7 +21841,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_proposal_time_slots: {
+    proposals: {
       distinct_on: {
         type: "ch_proposal_time_slots_select_column",
         array: true,
@@ -21873,7 +21873,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_proposal_time_slots_aggregate: {
+    proposals_aggregate: {
       distinct_on: {
         type: "ch_proposal_time_slots_select_column",
         array: true,
@@ -22037,18 +22037,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_helper_time_slots: {
-      type: "ch_helper_time_slots_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposal_time_slots: {
-      type: "ch_proposal_time_slots_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     end_time: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -22067,8 +22055,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    helpers: {
+      type: "ch_helper_time_slots_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_time_slots_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22096,18 +22096,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_insert_input: {
-    ch_helper_time_slots: {
-      type: "ch_helper_time_slots_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposal_time_slots: {
-      type: "ch_proposal_time_slots_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     end_time: {
       type: "timestamptz",
       array: false,
@@ -22126,8 +22114,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    helpers: {
+      type: "ch_helper_time_slots_arr_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_time_slots_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22226,18 +22226,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_time_slot_order_by: {
-    ch_helper_time_slots_aggregate: {
-      type: "ch_helper_time_slots_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposal_time_slots_aggregate: {
-      type: "ch_proposal_time_slots_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     end_time: {
       type: "order_by",
       array: false,
@@ -22256,8 +22244,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
+    helpers_aggregate: {
+      type: "ch_helper_time_slots_aggregate_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
     id: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals_aggregate: {
+      type: "ch_proposal_time_slots_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22404,7 +22404,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_wait_list: {
-    ch_proposals: {
+    proposals: {
       distinct_on: {
         type: "ch_proposal_select_column",
         array: true,
@@ -22436,7 +22436,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_proposals_aggregate: {
+    proposals_aggregate: {
       distinct_on: {
         type: "ch_proposal_select_column",
         array: true,
@@ -22600,14 +22600,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_festival: {
+    festival: {
       type: "ch_festival_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposals: {
-      type: "ch_proposal_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22626,6 +22620,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     name: {
       type: "String_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22653,14 +22653,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_wait_list_insert_input: {
-    ch_festival: {
+    festival: {
       type: "ch_festival_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposals: {
-      type: "ch_proposal_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22679,6 +22673,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     name: {
       type: "String",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals: {
+      type: "ch_proposal_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22777,14 +22777,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   ch_wait_list_order_by: {
-    ch_festival: {
+    festival: {
       type: "ch_festival_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
-    ch_proposals_aggregate: {
-      type: "ch_proposal_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22803,6 +22797,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     name: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    proposals_aggregate: {
+      type: "ch_proposal_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -22949,70 +22949,6 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   cr_user: {
-    ch_helpers: {
-      distinct_on: {
-        type: "ch_helper_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_helper_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_helper_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    ch_helpers_aggregate: {
-      distinct_on: {
-        type: "ch_helper_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "ch_helper_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "ch_helper_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
     guilds: {
       distinct_on: {
         type: "nb_guild_member_select_column",
@@ -23072,6 +23008,70 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "nb_guild_member_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    helpers: {
+      distinct_on: {
+        type: "ch_helper_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_helper_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_helper_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    helpers_aggregate: {
+      distinct_on: {
+        type: "ch_helper_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "ch_helper_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "ch_helper_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -23141,70 +23141,6 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    meetings: {
-      distinct_on: {
-        type: "nb_meeting_participant_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_participant_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_participant_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    meetings_aggregate: {
-      distinct_on: {
-        type: "nb_meeting_participant_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_participant_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_participant_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
     organized_meetings: {
       distinct_on: {
         type: "nb_meeting_select_column",
@@ -23264,6 +23200,70 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "nb_meeting_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    participated_meetings: {
+      distinct_on: {
+        type: "nb_meeting_participant_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_participant_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_participant_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    participated_meetings_aggregate: {
+      distinct_on: {
+        type: "nb_meeting_participant_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_participant_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_participant_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -23409,12 +23409,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_helpers: {
-      type: "ch_helper_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     date_joined: {
       type: "timestamptz_comparison_exp",
       array: false,
@@ -23435,6 +23429,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     guilds: {
       type: "nb_guild_member_bool_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helpers: {
+      type: "ch_helper_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23481,14 +23481,14 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    meetings: {
-      type: "nb_meeting_participant_bool_exp",
+    organized_meetings: {
+      type: "nb_meeting_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    organized_meetings: {
-      type: "nb_meeting_bool_exp",
+    participated_meetings: {
+      type: "nb_meeting_participant_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23526,12 +23526,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_helpers: {
-      type: "ch_helper_arr_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     date_joined: {
       type: "timestamptz",
       array: false,
@@ -23552,6 +23546,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     guilds: {
       type: "nb_guild_member_arr_rel_insert_input",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helpers: {
+      type: "ch_helper_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23598,14 +23598,14 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    meetings: {
-      type: "nb_meeting_participant_arr_rel_insert_input",
+    organized_meetings: {
+      type: "nb_meeting_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    organized_meetings: {
-      type: "nb_meeting_arr_rel_insert_input",
+    participated_meetings: {
+      type: "nb_meeting_participant_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23800,12 +23800,6 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_helpers_aggregate: {
-      type: "ch_helper_aggregate_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     date_joined: {
       type: "order_by",
       array: false,
@@ -23826,6 +23820,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     guilds_aggregate: {
       type: "nb_guild_member_aggregate_order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    helpers_aggregate: {
+      type: "ch_helper_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -23872,14 +23872,14 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    meetings_aggregate: {
-      type: "nb_meeting_participant_aggregate_order_by",
+    organized_meetings_aggregate: {
+      type: "nb_meeting_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    organized_meetings_aggregate: {
-      type: "nb_meeting_aggregate_order_by",
+    participated_meetings_aggregate: {
+      type: "nb_meeting_participant_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -24142,7 +24142,7 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
+    sphere: {
       type: "nb_sphere_bool_exp",
       array: false,
       arrayRequired: false,
@@ -24177,7 +24177,7 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
+    sphere: {
       type: "nb_sphere_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
@@ -24277,7 +24277,7 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
+    sphere: {
       type: "nb_sphere_order_by",
       array: false,
       arrayRequired: false,
@@ -26112,71 +26112,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_guild: {
-    nb_guild_members: {
-      distinct_on: {
-        type: "nb_guild_member_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_guild_member_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_guild_member_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_guild_members_aggregate: {
-      distinct_on: {
-        type: "nb_guild_member_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_guild_member_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_guild_member_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_meetings: {
+    meetings: {
       distinct_on: {
         type: "nb_meeting_select_column",
         array: true,
@@ -26208,7 +26144,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    nb_meetings_aggregate: {
+    meetings_aggregate: {
       distinct_on: {
         type: "nb_meeting_select_column",
         array: true,
@@ -26235,6 +26171,70 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "nb_meeting_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    members: {
+      distinct_on: {
+        type: "nb_guild_member_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_guild_member_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_guild_member_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    members_aggregate: {
+      distinct_on: {
+        type: "nb_guild_member_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_guild_member_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_guild_member_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -26390,20 +26390,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    name: {
-      type: "String_comparison_exp",
+    meetings: {
+      type: "nb_meeting_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_guild_members: {
+    members: {
       type: "nb_guild_member_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings: {
-      type: "nb_meeting_bool_exp",
+    name: {
+      type: "String_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26455,20 +26455,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    name: {
-      type: "String",
+    meetings: {
+      type: "nb_meeting_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_guild_members: {
+    members: {
       type: "nb_guild_member_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings: {
-      type: "nb_meeting_arr_rel_insert_input",
+    name: {
+      type: "String",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26655,8 +26655,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    cr_user: {
-      type: "cr_user_bool_exp",
+    guild: {
+      type: "nb_guild_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26679,8 +26679,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild: {
-      type: "nb_guild_bool_exp",
+    user: {
+      type: "cr_user_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26708,8 +26708,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_guild_member_insert_input: {
-    cr_user: {
-      type: "cr_user_obj_rel_insert_input",
+    guild: {
+      type: "nb_guild_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26732,8 +26732,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild: {
-      type: "nb_guild_obj_rel_insert_input",
+    user: {
+      type: "cr_user_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26832,8 +26832,8 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_guild_member_order_by: {
-    cr_user: {
-      type: "cr_user_order_by",
+    guild: {
+      type: "nb_guild_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -26856,8 +26856,8 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    nb_guild: {
-      type: "nb_guild_order_by",
+    user: {
+      type: "cr_user_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -27100,20 +27100,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    name: {
-      type: "order_by",
+    meetings_aggregate: {
+      type: "nb_meeting_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_guild_members_aggregate: {
+    members_aggregate: {
       type: "nb_guild_member_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings_aggregate: {
-      type: "nb_meeting_aggregate_order_by",
+    name: {
+      type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -28986,7 +28986,7 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_sphere: {
-    ch_festivals: {
+    festivals: {
       distinct_on: {
         type: "ch_festival_select_column",
         array: true,
@@ -29018,7 +29018,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    ch_festivals_aggregate: {
+    festivals_aggregate: {
       distinct_on: {
         type: "ch_festival_select_column",
         array: true,
@@ -29050,71 +29050,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    nb_meetings: {
-      distinct_on: {
-        type: "nb_meeting_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_meetings_aggregate: {
-      distinct_on: {
-        type: "nb_meeting_select_column",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      limit: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      offset: {
-        type: "Int",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-      order_by: {
-        type: "nb_meeting_order_by",
-        array: true,
-        arrayRequired: false,
-        required: true,
-      },
-      where: {
-        type: "nb_meeting_bool_exp",
-        array: false,
-        arrayRequired: false,
-        required: false,
-      },
-    },
-    nb_sphere_managers: {
+    managers: {
       distinct_on: {
         type: "nb_sphere_managers_select_column",
         array: true,
@@ -29146,7 +29082,7 @@ export const AllTypesProps: Record<string, any> = {
         required: false,
       },
     },
-    nb_sphere_managers_aggregate: {
+    managers_aggregate: {
       distinct_on: {
         type: "nb_sphere_managers_select_column",
         array: true,
@@ -29173,6 +29109,70 @@ export const AllTypesProps: Record<string, any> = {
       },
       where: {
         type: "nb_sphere_managers_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    meetings: {
+      distinct_on: {
+        type: "nb_meeting_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_bool_exp",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+    },
+    meetings_aggregate: {
+      distinct_on: {
+        type: "nb_meeting_select_column",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      limit: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      offset: {
+        type: "Int",
+        array: false,
+        arrayRequired: false,
+        required: false,
+      },
+      order_by: {
+        type: "nb_meeting_order_by",
+        array: true,
+        arrayRequired: false,
+        required: true,
+      },
+      where: {
+        type: "nb_meeting_bool_exp",
         array: false,
         arrayRequired: false,
         required: false,
@@ -29326,14 +29326,14 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    ch_festivals: {
-      type: "ch_festival_bool_exp",
+    django_site: {
+      type: "django_site_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    django_site: {
-      type: "django_site_bool_exp",
+    festivals: {
+      type: "ch_festival_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -29350,20 +29350,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    name: {
-      type: "String_comparison_exp",
+    managers: {
+      type: "nb_sphere_managers_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings: {
+    meetings: {
       type: "nb_meeting_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_sphere_managers: {
-      type: "nb_sphere_managers_bool_exp",
+    name: {
+      type: "String_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -29421,14 +29421,14 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_sphere_insert_input: {
-    ch_festivals: {
-      type: "ch_festival_arr_rel_insert_input",
+    django_site: {
+      type: "django_site_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    django_site: {
-      type: "django_site_obj_rel_insert_input",
+    festivals: {
+      type: "ch_festival_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -29445,20 +29445,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    name: {
-      type: "String",
+    managers: {
+      type: "nb_sphere_managers_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings: {
+    meetings: {
       type: "nb_meeting_arr_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_sphere_managers: {
-      type: "nb_sphere_managers_arr_rel_insert_input",
+    name: {
+      type: "String",
       array: false,
       arrayRequired: false,
       required: false,
@@ -29607,19 +29607,13 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    cr_user: {
-      type: "cr_user_bool_exp",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     id: {
       type: "Int_comparison_exp",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
+    sphere: {
       type: "nb_sphere_bool_exp",
       array: false,
       arrayRequired: false,
@@ -29627,6 +29621,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     sphere_id: {
       type: "Int_comparison_exp",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_bool_exp",
       array: false,
       arrayRequired: false,
       required: false,
@@ -29654,19 +29654,13 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_sphere_managers_insert_input: {
-    cr_user: {
-      type: "cr_user_obj_rel_insert_input",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     id: {
       type: "Int",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
+    sphere: {
       type: "nb_sphere_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
@@ -29674,6 +29668,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     sphere_id: {
       type: "Int",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_obj_rel_insert_input",
       array: false,
       arrayRequired: false,
       required: false,
@@ -29760,19 +29760,13 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_sphere_managers_order_by: {
-    cr_user: {
-      type: "cr_user_order_by",
-      array: false,
-      arrayRequired: false,
-      required: false,
-    },
     id: {
       type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_sphere: {
+    sphere: {
       type: "nb_sphere_order_by",
       array: false,
       arrayRequired: false,
@@ -29780,6 +29774,12 @@ export const AllTypesProps: Record<string, any> = {
     },
     sphere_id: {
       type: "order_by",
+      array: false,
+      arrayRequired: false,
+      required: false,
+    },
+    user: {
+      type: "cr_user_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -29994,14 +29994,14 @@ export const AllTypesProps: Record<string, any> = {
     },
   },
   nb_sphere_order_by: {
-    ch_festivals_aggregate: {
-      type: "ch_festival_aggregate_order_by",
+    django_site: {
+      type: "django_site_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    django_site: {
-      type: "django_site_order_by",
+    festivals_aggregate: {
+      type: "ch_festival_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -30018,20 +30018,20 @@ export const AllTypesProps: Record<string, any> = {
       arrayRequired: false,
       required: false,
     },
-    name: {
-      type: "order_by",
+    managers_aggregate: {
+      type: "nb_sphere_managers_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_meetings_aggregate: {
+    meetings_aggregate: {
       type: "nb_meeting_aggregate_order_by",
       array: false,
       arrayRequired: false,
       required: false,
     },
-    nb_sphere_managers_aggregate: {
-      type: "nb_sphere_managers_aggregate_order_by",
+    name: {
+      type: "order_by",
       array: false,
       arrayRequired: false,
       required: false,
@@ -32860,14 +32860,14 @@ export const AllTypesProps: Record<string, any> = {
 
 export const ReturnTypes: Record<string, any> = {
   ch_agenda_item: {
-    ch_helper: "ch_helper",
-    ch_room: "ch_room",
+    helper: "ch_helper",
     helper_confirmed: "Boolean",
     helper_id: "Int",
     id: "Int",
+    meeting: "nb_meeting",
     meeting_confirmed: "Boolean",
     meeting_id: "Int",
-    nb_meeting: "nb_meeting",
+    room: "ch_room",
     room_id: "Int",
     status: "String",
   },
@@ -32955,19 +32955,17 @@ export const ReturnTypes: Record<string, any> = {
     room_id: "Float",
   },
   ch_festival: {
-    ch_helpers: "ch_helper",
-    ch_helpers_aggregate: "ch_helper_aggregate",
-    ch_rooms: "ch_room",
-    ch_rooms_aggregate: "ch_room_aggregate",
-    ch_wait_lists: "ch_wait_list",
-    ch_wait_lists_aggregate: "ch_wait_list_aggregate",
     end_proposal: "timestamptz",
     end_time: "timestamptz",
+    helpers: "ch_helper",
+    helpers_aggregate: "ch_helper_aggregate",
     id: "Int",
     name: "String",
-    nb_sphere: "nb_sphere",
+    rooms: "ch_room",
+    rooms_aggregate: "ch_room_aggregate",
     settings: "jsonb",
     slug: "String",
+    sphere: "nb_sphere",
     sphere_id: "Int",
     start_proposal: "timestamptz",
     start_publication: "timestamptz",
@@ -32975,6 +32973,8 @@ export const ReturnTypes: Record<string, any> = {
     status: "String",
     time_slots: "ch_time_slot",
     time_slots_aggregate: "ch_time_slot_aggregate",
+    wait_lists: "ch_wait_list",
+    wait_lists_aggregate: "ch_wait_list_aggregate",
   },
   ch_festival_aggregate: {
     aggregate: "ch_festival_aggregate_fields",
@@ -33054,14 +33054,14 @@ export const ReturnTypes: Record<string, any> = {
     sphere_id: "Float",
   },
   ch_helper: {
-    ch_agenda_items: "ch_agenda_item",
-    ch_agenda_items_aggregate: "ch_agenda_item_aggregate",
-    ch_festival: "ch_festival",
-    ch_helper_time_slots: "ch_helper_time_slots",
-    ch_helper_time_slots_aggregate: "ch_helper_time_slots_aggregate",
-    cr_user: "cr_user",
+    agenda_items: "ch_agenda_item",
+    agenda_items_aggregate: "ch_agenda_item_aggregate",
+    festival: "ch_festival",
     festival_id: "Int",
     id: "Int",
+    time_slots: "ch_helper_time_slots",
+    time_slots_aggregate: "ch_helper_time_slots_aggregate",
+    user: "cr_user",
     user_id: "uuid",
   },
   ch_helper_aggregate: {
@@ -33116,10 +33116,10 @@ export const ReturnTypes: Record<string, any> = {
     id: "Int",
   },
   ch_helper_time_slots: {
-    ch_helper: "ch_helper",
-    ch_time_slot: "ch_time_slot",
+    helper: "ch_helper",
     helper_id: "Int",
     id: "Int",
+    time_slot: "ch_time_slot",
     timeslot_id: "Int",
   },
   ch_helper_time_slots_aggregate: {
@@ -33206,9 +33206,6 @@ export const ReturnTypes: Record<string, any> = {
     id: "Float",
   },
   ch_proposal: {
-    ch_proposal_time_slots: "ch_proposal_time_slots",
-    ch_proposal_time_slots_aggregate: "ch_proposal_time_slots_aggregate",
-    ch_wait_list: "ch_wait_list",
     city: "String",
     club: "String",
     created_at: "timestamptz",
@@ -33226,7 +33223,10 @@ export const ReturnTypes: Record<string, any> = {
     speaker_name: "String",
     speaker_user_id: "uuid",
     status: "String",
+    time_slots: "ch_proposal_time_slots",
+    time_slots_aggregate: "ch_proposal_time_slots_aggregate",
     topic: "String",
+    wait_list: "ch_wait_list",
     waitlist_id: "Int",
   },
   ch_proposal_aggregate: {
@@ -33315,10 +33315,10 @@ export const ReturnTypes: Record<string, any> = {
     waitlist_id: "Int",
   },
   ch_proposal_time_slots: {
-    ch_proposal: "ch_proposal",
-    ch_time_slot: "ch_time_slot",
     id: "Int",
+    proposal: "ch_proposal",
     proposal_id: "Int",
+    time_slot: "ch_time_slot",
     timeslot_id: "Int",
   },
   ch_proposal_time_slots_aggregate: {
@@ -33411,9 +33411,9 @@ export const ReturnTypes: Record<string, any> = {
     waitlist_id: "Float",
   },
   ch_room: {
-    ch_agenda_items: "ch_agenda_item",
-    ch_agenda_items_aggregate: "ch_agenda_item_aggregate",
-    ch_festival: "ch_festival",
+    agenda_items: "ch_agenda_item",
+    agenda_items_aggregate: "ch_agenda_item_aggregate",
+    festival: "ch_festival",
     festival_id: "Int",
     id: "Int",
     name: "String",
@@ -33485,14 +33485,14 @@ export const ReturnTypes: Record<string, any> = {
     id: "Float",
   },
   ch_time_slot: {
-    ch_helper_time_slots: "ch_helper_time_slots",
-    ch_helper_time_slots_aggregate: "ch_helper_time_slots_aggregate",
-    ch_proposal_time_slots: "ch_proposal_time_slots",
-    ch_proposal_time_slots_aggregate: "ch_proposal_time_slots_aggregate",
     end_time: "timestamptz",
     festival: "ch_festival",
     festival_id: "Int",
+    helpers: "ch_helper_time_slots",
+    helpers_aggregate: "ch_helper_time_slots_aggregate",
     id: "Int",
+    proposals: "ch_proposal_time_slots",
+    proposals_aggregate: "ch_proposal_time_slots_aggregate",
     start_time: "timestamptz",
   },
   ch_time_slot_aggregate: {
@@ -33561,12 +33561,12 @@ export const ReturnTypes: Record<string, any> = {
     id: "Float",
   },
   ch_wait_list: {
-    ch_festival: "ch_festival",
-    ch_proposals: "ch_proposal",
-    ch_proposals_aggregate: "ch_proposal_aggregate",
+    festival: "ch_festival",
     festival_id: "Int",
     id: "Int",
     name: "String",
+    proposals: "ch_proposal",
+    proposals_aggregate: "ch_proposal_aggregate",
     slug: "String",
   },
   ch_wait_list_aggregate: {
@@ -33636,13 +33636,13 @@ export const ReturnTypes: Record<string, any> = {
   },
   cr_user: {
     auth0_id: "String",
-    ch_helpers: "ch_helper",
-    ch_helpers_aggregate: "ch_helper_aggregate",
     date_joined: "timestamptz",
     email: "String",
     first_name: "String",
     guilds: "nb_guild_member",
     guilds_aggregate: "nb_guild_member_aggregate",
+    helpers: "ch_helper",
+    helpers_aggregate: "ch_helper_aggregate",
     is_active: "Boolean",
     is_staff: "Boolean",
     is_superuser: "Boolean",
@@ -33651,10 +33651,10 @@ export const ReturnTypes: Record<string, any> = {
     locale: "String",
     managed_spheres: "nb_sphere_managers",
     managed_spheres_aggregate: "nb_sphere_managers_aggregate",
-    meetings: "nb_meeting_participant",
-    meetings_aggregate: "nb_meeting_participant_aggregate",
     organized_meetings: "nb_meeting",
     organized_meetings_aggregate: "nb_meeting_aggregate",
+    participated_meetings: "nb_meeting_participant",
+    participated_meetings_aggregate: "nb_meeting_participant_aggregate",
     password: "String",
     proposals: "ch_proposal",
     proposals_aggregate: "ch_proposal_aggregate",
@@ -33702,7 +33702,7 @@ export const ReturnTypes: Record<string, any> = {
     domain: "String",
     id: "Int",
     name: "String",
-    nb_sphere: "nb_sphere",
+    sphere: "nb_sphere",
   },
   django_site_aggregate: {
     aggregate: "django_site_aggregate_fields",
@@ -33868,11 +33868,11 @@ export const ReturnTypes: Record<string, any> = {
     description: "String",
     id: "Int",
     is_public: "Boolean",
+    meetings: "nb_meeting",
+    meetings_aggregate: "nb_meeting_aggregate",
+    members: "nb_guild_member",
+    members_aggregate: "nb_guild_member_aggregate",
     name: "String",
-    nb_guild_members: "nb_guild_member",
-    nb_guild_members_aggregate: "nb_guild_member_aggregate",
-    nb_meetings: "nb_meeting",
-    nb_meetings_aggregate: "nb_meeting_aggregate",
     slug: "String",
     updated_at: "timestamptz",
   },
@@ -33905,11 +33905,11 @@ export const ReturnTypes: Record<string, any> = {
     updated_at: "timestamptz",
   },
   nb_guild_member: {
-    cr_user: "cr_user",
+    guild: "nb_guild",
     guild_id: "Int",
     id: "Int",
     membership_type: "String",
-    nb_guild: "nb_guild",
+    user: "cr_user",
     user_id: "uuid",
   },
   nb_guild_member_aggregate: {
@@ -34223,16 +34223,16 @@ export const ReturnTypes: Record<string, any> = {
     sphere_id: "Float",
   },
   nb_sphere: {
-    ch_festivals: "ch_festival",
-    ch_festivals_aggregate: "ch_festival_aggregate",
     django_site: "django_site",
+    festivals: "ch_festival",
+    festivals_aggregate: "ch_festival_aggregate",
     id: "Int",
     is_open: "Boolean",
+    managers: "nb_sphere_managers",
+    managers_aggregate: "nb_sphere_managers_aggregate",
+    meetings: "nb_meeting",
+    meetings_aggregate: "nb_meeting_aggregate",
     name: "String",
-    nb_meetings: "nb_meeting",
-    nb_meetings_aggregate: "nb_meeting_aggregate",
-    nb_sphere_managers: "nb_sphere_managers",
-    nb_sphere_managers_aggregate: "nb_sphere_managers_aggregate",
     settings: "jsonb",
     site_id: "Int",
   },
@@ -34258,10 +34258,10 @@ export const ReturnTypes: Record<string, any> = {
     site_id: "Float",
   },
   nb_sphere_managers: {
-    cr_user: "cr_user",
     id: "Int",
-    nb_sphere: "nb_sphere",
+    sphere: "nb_sphere",
     sphere_id: "Int",
+    user: "cr_user",
     user_id: "uuid",
   },
   nb_sphere_managers_aggregate: {

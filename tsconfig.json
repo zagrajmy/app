@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "noErrorTruncation": true,
+    "noErrorTruncation": false, // we actually exceed buffer size and crash 
     "incremental": true
     // "noUncheckedIndexedAccess": true -- cant use with graphql-zeus
   }

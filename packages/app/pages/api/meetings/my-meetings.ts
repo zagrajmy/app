@@ -15,7 +15,7 @@ function queryMeetings(auth0Id: string) {
           { order_by: [{ created_at: order_by.desc }] },
           commonlyRequestedMeetingFields,
         ],
-        meetings: [
+        participated_meetings: [
           // offset can wait now
           { limit: 20, order_by: [{ meeting: { created_at: order_by.desc } }] },
           {

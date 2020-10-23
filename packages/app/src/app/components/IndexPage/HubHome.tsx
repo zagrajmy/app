@@ -3,8 +3,8 @@ import React from "react";
 import { Container } from "../../../ui";
 
 export interface HubHomeProps {
-  spheres: string[]; // TODO: Sphere[]
-  festivals: string[]; // TODO Festival[]
+  featuredSpheres: string[]; // TODO: Sphere[]
+  recentFestivals: string[]; // TODO Festival[]
 }
 
 const Meeting = () => {
@@ -13,7 +13,7 @@ const Meeting = () => {
   //possibility to sign -up/register for mettingfif you are signed in
 };
 
-export function HubHome({ spheres: _1, festivals: _2 }: HubHomeProps) {
+export function HubHome({ featuredSpheres: _1, recentFestivals: _2 }: HubHomeProps) {
   return (
     <Container
       mt={4}

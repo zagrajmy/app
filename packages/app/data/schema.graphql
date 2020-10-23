@@ -20,18 +20,18 @@ input Boolean_comparison_exp {
 # columns and relationships of "ch_agenda_item"
 type ch_agenda_item {
   # An object relationship
-  ch_helper: ch_helper
-
-  # An object relationship
-  ch_room: ch_room!
+  helper: ch_helper
   helper_confirmed: Boolean!
   helper_id: Int
   id: Int!
+
+  # An object relationship
+  meeting: nb_meeting!
   meeting_confirmed: Boolean!
   meeting_id: Int!
 
   # An object relationship
-  nb_meeting: nb_meeting!
+  room: ch_room!
   room_id: Int!
   status: String!
 }
@@ -99,14 +99,14 @@ input ch_agenda_item_bool_exp {
   _and: [ch_agenda_item_bool_exp]
   _not: ch_agenda_item_bool_exp
   _or: [ch_agenda_item_bool_exp]
-  ch_helper: ch_helper_bool_exp
-  ch_room: ch_room_bool_exp
+  helper: ch_helper_bool_exp
   helper_confirmed: Boolean_comparison_exp
   helper_id: Int_comparison_exp
   id: Int_comparison_exp
+  meeting: nb_meeting_bool_exp
   meeting_confirmed: Boolean_comparison_exp
   meeting_id: Int_comparison_exp
-  nb_meeting: nb_meeting_bool_exp
+  room: ch_room_bool_exp
   room_id: Int_comparison_exp
   status: String_comparison_exp
 }
@@ -130,14 +130,14 @@ input ch_agenda_item_inc_input {
 
 # input type for inserting data into table "ch_agenda_item"
 input ch_agenda_item_insert_input {
-  ch_helper: ch_helper_obj_rel_insert_input
-  ch_room: ch_room_obj_rel_insert_input
+  helper: ch_helper_obj_rel_insert_input
   helper_confirmed: Boolean
   helper_id: Int
   id: Int
+  meeting: nb_meeting_obj_rel_insert_input
   meeting_confirmed: Boolean
   meeting_id: Int
-  nb_meeting: nb_meeting_obj_rel_insert_input
+  room: ch_room_obj_rel_insert_input
   room_id: Int
   status: String
 }
@@ -202,14 +202,14 @@ input ch_agenda_item_on_conflict {
 
 # ordering options when selecting data from "ch_agenda_item"
 input ch_agenda_item_order_by {
-  ch_helper: ch_helper_order_by
-  ch_room: ch_room_order_by
+  helper: ch_helper_order_by
   helper_confirmed: order_by
   helper_id: order_by
   id: order_by
+  meeting: nb_meeting_order_by
   meeting_confirmed: order_by
   meeting_id: order_by
-  nb_meeting: nb_meeting_order_by
+  room: ch_room_order_by
   room_id: order_by
   status: order_by
 }
@@ -392,8 +392,11 @@ input ch_agenda_item_variance_order_by {
 
 # columns and relationships of "ch_festival"
 type ch_festival {
+  end_proposal: timestamptz
+  end_time: timestamptz
+
   # An array relationship
-  ch_helpers(
+  helpers(
     # distinct select on columns
     distinct_on: [ch_helper_select_column!]
 
@@ -411,7 +414,7 @@ type ch_festival {
   ): [ch_helper!]!
 
   # An aggregated array relationship
-  ch_helpers_aggregate(
+  helpers_aggregate(
     # distinct select on columns
     distinct_on: [ch_helper_select_column!]
 
@@ -427,9 +430,11 @@ type ch_festival {
     # filter the rows returned
     where: ch_helper_bool_exp
   ): ch_helper_aggregate!
+  id: Int!
+  name: String!
 
   # An array relationship
-  ch_rooms(
+  rooms(
     # distinct select on columns
     distinct_on: [ch_room_select_column!]
 
@@ -447,7 +452,7 @@ type ch_festival {
   ): [ch_room!]!
 
   # An aggregated array relationship
-  ch_rooms_aggregate(
+  rooms_aggregate(
     # distinct select on columns
     distinct_on: [ch_room_select_column!]
 
@@ -463,54 +468,14 @@ type ch_festival {
     # filter the rows returned
     where: ch_room_bool_exp
   ): ch_room_aggregate!
-
-  # An array relationship
-  ch_wait_lists(
-    # distinct select on columns
-    distinct_on: [ch_wait_list_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_wait_list_order_by!]
-
-    # filter the rows returned
-    where: ch_wait_list_bool_exp
-  ): [ch_wait_list!]!
-
-  # An aggregated array relationship
-  ch_wait_lists_aggregate(
-    # distinct select on columns
-    distinct_on: [ch_wait_list_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_wait_list_order_by!]
-
-    # filter the rows returned
-    where: ch_wait_list_bool_exp
-  ): ch_wait_list_aggregate!
-  end_proposal: timestamptz
-  end_time: timestamptz
-  id: Int!
-  name: String!
-
-  # An object relationship
-  nb_sphere: nb_sphere!
   settings(
     # JSON select path
     path: String
   ): jsonb!
   slug: String!
+
+  # An object relationship
+  sphere: nb_sphere!
   sphere_id: Int!
   start_proposal: timestamptz
   start_publication: timestamptz
@@ -552,6 +517,42 @@ type ch_festival {
     # filter the rows returned
     where: ch_time_slot_bool_exp
   ): ch_time_slot_aggregate!
+
+  # An array relationship
+  wait_lists(
+    # distinct select on columns
+    distinct_on: [ch_wait_list_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_wait_list_order_by!]
+
+    # filter the rows returned
+    where: ch_wait_list_bool_exp
+  ): [ch_wait_list!]!
+
+  # An aggregated array relationship
+  wait_lists_aggregate(
+    # distinct select on columns
+    distinct_on: [ch_wait_list_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_wait_list_order_by!]
+
+    # filter the rows returned
+    where: ch_wait_list_bool_exp
+  ): ch_wait_list_aggregate!
 }
 
 # aggregated selection of "ch_festival"
@@ -618,22 +619,22 @@ input ch_festival_bool_exp {
   _and: [ch_festival_bool_exp]
   _not: ch_festival_bool_exp
   _or: [ch_festival_bool_exp]
-  ch_helpers: ch_helper_bool_exp
-  ch_rooms: ch_room_bool_exp
-  ch_wait_lists: ch_wait_list_bool_exp
   end_proposal: timestamptz_comparison_exp
   end_time: timestamptz_comparison_exp
+  helpers: ch_helper_bool_exp
   id: Int_comparison_exp
   name: String_comparison_exp
-  nb_sphere: nb_sphere_bool_exp
+  rooms: ch_room_bool_exp
   settings: jsonb_comparison_exp
   slug: String_comparison_exp
+  sphere: nb_sphere_bool_exp
   sphere_id: Int_comparison_exp
   start_proposal: timestamptz_comparison_exp
   start_publication: timestamptz_comparison_exp
   start_time: timestamptz_comparison_exp
   status: String_comparison_exp
   time_slots: ch_time_slot_bool_exp
+  wait_lists: ch_wait_list_bool_exp
 }
 
 # unique or primary key constraints on table "ch_festival"
@@ -669,22 +670,22 @@ input ch_festival_inc_input {
 
 # input type for inserting data into table "ch_festival"
 input ch_festival_insert_input {
-  ch_helpers: ch_helper_arr_rel_insert_input
-  ch_rooms: ch_room_arr_rel_insert_input
-  ch_wait_lists: ch_wait_list_arr_rel_insert_input
   end_proposal: timestamptz
   end_time: timestamptz
+  helpers: ch_helper_arr_rel_insert_input
   id: Int
   name: String
-  nb_sphere: nb_sphere_obj_rel_insert_input
+  rooms: ch_room_arr_rel_insert_input
   settings: jsonb
   slug: String
+  sphere: nb_sphere_obj_rel_insert_input
   sphere_id: Int
   start_proposal: timestamptz
   start_publication: timestamptz
   start_time: timestamptz
   status: String
   time_slots: ch_time_slot_arr_rel_insert_input
+  wait_lists: ch_wait_list_arr_rel_insert_input
 }
 
 # aggregate max on columns
@@ -767,22 +768,22 @@ input ch_festival_on_conflict {
 
 # ordering options when selecting data from "ch_festival"
 input ch_festival_order_by {
-  ch_helpers_aggregate: ch_helper_aggregate_order_by
-  ch_rooms_aggregate: ch_room_aggregate_order_by
-  ch_wait_lists_aggregate: ch_wait_list_aggregate_order_by
   end_proposal: order_by
   end_time: order_by
+  helpers_aggregate: ch_helper_aggregate_order_by
   id: order_by
   name: order_by
-  nb_sphere: nb_sphere_order_by
+  rooms_aggregate: ch_room_aggregate_order_by
   settings: order_by
   slug: order_by
+  sphere: nb_sphere_order_by
   sphere_id: order_by
   start_proposal: order_by
   start_publication: order_by
   start_time: order_by
   status: order_by
   time_slots_aggregate: ch_time_slot_aggregate_order_by
+  wait_lists_aggregate: ch_wait_list_aggregate_order_by
 }
 
 # primary key columns input for table: "ch_festival"
@@ -969,7 +970,7 @@ input ch_festival_variance_order_by {
 # columns and relationships of "ch_helper"
 type ch_helper {
   # An array relationship
-  ch_agenda_items(
+  agenda_items(
     # distinct select on columns
     distinct_on: [ch_agenda_item_select_column!]
 
@@ -987,7 +988,7 @@ type ch_helper {
   ): [ch_agenda_item!]!
 
   # An aggregated array relationship
-  ch_agenda_items_aggregate(
+  agenda_items_aggregate(
     # distinct select on columns
     distinct_on: [ch_agenda_item_select_column!]
 
@@ -1005,10 +1006,12 @@ type ch_helper {
   ): ch_agenda_item_aggregate!
 
   # An object relationship
-  ch_festival: ch_festival!
+  festival: ch_festival!
+  festival_id: Int!
+  id: Int!
 
   # An array relationship
-  ch_helper_time_slots(
+  time_slots(
     # distinct select on columns
     distinct_on: [ch_helper_time_slots_select_column!]
 
@@ -1026,7 +1029,7 @@ type ch_helper {
   ): [ch_helper_time_slots!]!
 
   # An aggregated array relationship
-  ch_helper_time_slots_aggregate(
+  time_slots_aggregate(
     # distinct select on columns
     distinct_on: [ch_helper_time_slots_select_column!]
 
@@ -1044,9 +1047,7 @@ type ch_helper {
   ): ch_helper_time_slots_aggregate!
 
   # An object relationship
-  cr_user: cr_user!
-  festival_id: Int!
-  id: Int!
+  user: cr_user!
   user_id: uuid!
 }
 
@@ -1109,12 +1110,12 @@ input ch_helper_bool_exp {
   _and: [ch_helper_bool_exp]
   _not: ch_helper_bool_exp
   _or: [ch_helper_bool_exp]
-  ch_agenda_items: ch_agenda_item_bool_exp
-  ch_festival: ch_festival_bool_exp
-  ch_helper_time_slots: ch_helper_time_slots_bool_exp
-  cr_user: cr_user_bool_exp
+  agenda_items: ch_agenda_item_bool_exp
+  festival: ch_festival_bool_exp
   festival_id: Int_comparison_exp
   id: Int_comparison_exp
+  time_slots: ch_helper_time_slots_bool_exp
+  user: cr_user_bool_exp
   user_id: uuid_comparison_exp
 }
 
@@ -1135,12 +1136,12 @@ input ch_helper_inc_input {
 
 # input type for inserting data into table "ch_helper"
 input ch_helper_insert_input {
-  ch_agenda_items: ch_agenda_item_arr_rel_insert_input
-  ch_festival: ch_festival_obj_rel_insert_input
-  ch_helper_time_slots: ch_helper_time_slots_arr_rel_insert_input
-  cr_user: cr_user_obj_rel_insert_input
+  agenda_items: ch_agenda_item_arr_rel_insert_input
+  festival: ch_festival_obj_rel_insert_input
   festival_id: Int
   id: Int
+  time_slots: ch_helper_time_slots_arr_rel_insert_input
+  user: cr_user_obj_rel_insert_input
   user_id: uuid
 }
 
@@ -1196,12 +1197,12 @@ input ch_helper_on_conflict {
 
 # ordering options when selecting data from "ch_helper"
 input ch_helper_order_by {
-  ch_agenda_items_aggregate: ch_agenda_item_aggregate_order_by
-  ch_festival: ch_festival_order_by
-  ch_helper_time_slots_aggregate: ch_helper_time_slots_aggregate_order_by
-  cr_user: cr_user_order_by
+  agenda_items_aggregate: ch_agenda_item_aggregate_order_by
+  festival: ch_festival_order_by
   festival_id: order_by
   id: order_by
+  time_slots_aggregate: ch_helper_time_slots_aggregate_order_by
+  user: cr_user_order_by
   user_id: order_by
 }
 
@@ -1280,12 +1281,12 @@ input ch_helper_sum_order_by {
 # columns and relationships of "ch_helper_time_slots"
 type ch_helper_time_slots {
   # An object relationship
-  ch_helper: ch_helper!
-
-  # An object relationship
-  ch_time_slot: ch_time_slot!
+  helper: ch_helper!
   helper_id: Int!
   id: Int!
+
+  # An object relationship
+  time_slot: ch_time_slot!
   timeslot_id: Int!
 }
 
@@ -1350,10 +1351,10 @@ input ch_helper_time_slots_bool_exp {
   _and: [ch_helper_time_slots_bool_exp]
   _not: ch_helper_time_slots_bool_exp
   _or: [ch_helper_time_slots_bool_exp]
-  ch_helper: ch_helper_bool_exp
-  ch_time_slot: ch_time_slot_bool_exp
+  helper: ch_helper_bool_exp
   helper_id: Int_comparison_exp
   id: Int_comparison_exp
+  time_slot: ch_time_slot_bool_exp
   timeslot_id: Int_comparison_exp
 }
 
@@ -1375,10 +1376,10 @@ input ch_helper_time_slots_inc_input {
 
 # input type for inserting data into table "ch_helper_time_slots"
 input ch_helper_time_slots_insert_input {
-  ch_helper: ch_helper_obj_rel_insert_input
-  ch_time_slot: ch_time_slot_obj_rel_insert_input
+  helper: ch_helper_obj_rel_insert_input
   helper_id: Int
   id: Int
+  time_slot: ch_time_slot_obj_rel_insert_input
   timeslot_id: Int
 }
 
@@ -1434,10 +1435,10 @@ input ch_helper_time_slots_on_conflict {
 
 # ordering options when selecting data from "ch_helper_time_slots"
 input ch_helper_time_slots_order_by {
-  ch_helper: ch_helper_order_by
-  ch_time_slot: ch_time_slot_order_by
+  helper: ch_helper_order_by
   helper_id: order_by
   id: order_by
+  time_slot: ch_time_slot_order_by
   timeslot_id: order_by
 }
 
@@ -1625,44 +1626,6 @@ input ch_helper_variance_order_by {
 
 # columns and relationships of "ch_proposal"
 type ch_proposal {
-  # An array relationship
-  ch_proposal_time_slots(
-    # distinct select on columns
-    distinct_on: [ch_proposal_time_slots_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_proposal_time_slots_order_by!]
-
-    # filter the rows returned
-    where: ch_proposal_time_slots_bool_exp
-  ): [ch_proposal_time_slots!]!
-
-  # An aggregated array relationship
-  ch_proposal_time_slots_aggregate(
-    # distinct select on columns
-    distinct_on: [ch_proposal_time_slots_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_proposal_time_slots_order_by!]
-
-    # filter the rows returned
-    where: ch_proposal_time_slots_bool_exp
-  ): ch_proposal_time_slots_aggregate!
-
-  # An object relationship
-  ch_wait_list: ch_wait_list!
   city: String!
   club: String!
   created_at: timestamptz!
@@ -1690,7 +1653,46 @@ type ch_proposal {
   speaker_name: String!
   speaker_user_id: uuid
   status: String!
+
+  # An array relationship
+  time_slots(
+    # distinct select on columns
+    distinct_on: [ch_proposal_time_slots_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_proposal_time_slots_order_by!]
+
+    # filter the rows returned
+    where: ch_proposal_time_slots_bool_exp
+  ): [ch_proposal_time_slots!]!
+
+  # An aggregated array relationship
+  time_slots_aggregate(
+    # distinct select on columns
+    distinct_on: [ch_proposal_time_slots_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_proposal_time_slots_order_by!]
+
+    # filter the rows returned
+    where: ch_proposal_time_slots_bool_exp
+  ): ch_proposal_time_slots_aggregate!
   topic: String!
+
+  # An object relationship
+  wait_list: ch_wait_list!
   waitlist_id: Int!
 }
 
@@ -1763,8 +1765,6 @@ input ch_proposal_bool_exp {
   _and: [ch_proposal_bool_exp]
   _not: ch_proposal_bool_exp
   _or: [ch_proposal_bool_exp]
-  ch_proposal_time_slots: ch_proposal_time_slots_bool_exp
-  ch_wait_list: ch_wait_list_bool_exp
   city: String_comparison_exp
   club: String_comparison_exp
   created_at: timestamptz_comparison_exp
@@ -1782,7 +1782,9 @@ input ch_proposal_bool_exp {
   speaker_name: String_comparison_exp
   speaker_user_id: uuid_comparison_exp
   status: String_comparison_exp
+  time_slots: ch_proposal_time_slots_bool_exp
   topic: String_comparison_exp
+  wait_list: ch_wait_list_bool_exp
   waitlist_id: Int_comparison_exp
 }
 
@@ -1824,8 +1826,6 @@ input ch_proposal_inc_input {
 
 # input type for inserting data into table "ch_proposal"
 input ch_proposal_insert_input {
-  ch_proposal_time_slots: ch_proposal_time_slots_arr_rel_insert_input
-  ch_wait_list: ch_wait_list_obj_rel_insert_input
   city: String
   club: String
   created_at: timestamptz
@@ -1843,7 +1843,9 @@ input ch_proposal_insert_input {
   speaker_name: String
   speaker_user_id: uuid
   status: String
+  time_slots: ch_proposal_time_slots_arr_rel_insert_input
   topic: String
+  wait_list: ch_wait_list_obj_rel_insert_input
   waitlist_id: Int
 }
 
@@ -1947,8 +1949,6 @@ input ch_proposal_on_conflict {
 
 # ordering options when selecting data from "ch_proposal"
 input ch_proposal_order_by {
-  ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate_order_by
-  ch_wait_list: ch_wait_list_order_by
   city: order_by
   club: order_by
   created_at: order_by
@@ -1966,7 +1966,9 @@ input ch_proposal_order_by {
   speaker_name: order_by
   speaker_user_id: order_by
   status: order_by
+  time_slots_aggregate: ch_proposal_time_slots_aggregate_order_by
   topic: order_by
+  wait_list: ch_wait_list_order_by
   waitlist_id: order_by
 }
 
@@ -2122,13 +2124,14 @@ input ch_proposal_sum_order_by {
 
 # columns and relationships of "ch_proposal_time_slots"
 type ch_proposal_time_slots {
-  # An object relationship
-  ch_proposal: ch_proposal!
+  id: Int!
 
   # An object relationship
-  ch_time_slot: ch_time_slot!
-  id: Int!
+  proposal: ch_proposal!
   proposal_id: Int!
+
+  # An object relationship
+  time_slot: ch_time_slot!
   timeslot_id: Int!
 }
 
@@ -2196,10 +2199,10 @@ input ch_proposal_time_slots_bool_exp {
   _and: [ch_proposal_time_slots_bool_exp]
   _not: ch_proposal_time_slots_bool_exp
   _or: [ch_proposal_time_slots_bool_exp]
-  ch_proposal: ch_proposal_bool_exp
-  ch_time_slot: ch_time_slot_bool_exp
   id: Int_comparison_exp
+  proposal: ch_proposal_bool_exp
   proposal_id: Int_comparison_exp
+  time_slot: ch_time_slot_bool_exp
   timeslot_id: Int_comparison_exp
 }
 
@@ -2221,10 +2224,10 @@ input ch_proposal_time_slots_inc_input {
 
 # input type for inserting data into table "ch_proposal_time_slots"
 input ch_proposal_time_slots_insert_input {
-  ch_proposal: ch_proposal_obj_rel_insert_input
-  ch_time_slot: ch_time_slot_obj_rel_insert_input
   id: Int
+  proposal: ch_proposal_obj_rel_insert_input
   proposal_id: Int
+  time_slot: ch_time_slot_obj_rel_insert_input
   timeslot_id: Int
 }
 
@@ -2280,10 +2283,10 @@ input ch_proposal_time_slots_on_conflict {
 
 # ordering options when selecting data from "ch_proposal_time_slots"
 input ch_proposal_time_slots_order_by {
-  ch_proposal: ch_proposal_order_by
-  ch_time_slot: ch_time_slot_order_by
   id: order_by
+  proposal: ch_proposal_order_by
   proposal_id: order_by
+  time_slot: ch_time_slot_order_by
   timeslot_id: order_by
 }
 
@@ -2526,7 +2529,7 @@ input ch_proposal_variance_order_by {
 # columns and relationships of "ch_room"
 type ch_room {
   # An array relationship
-  ch_agenda_items(
+  agenda_items(
     # distinct select on columns
     distinct_on: [ch_agenda_item_select_column!]
 
@@ -2544,7 +2547,7 @@ type ch_room {
   ): [ch_agenda_item!]!
 
   # An aggregated array relationship
-  ch_agenda_items_aggregate(
+  agenda_items_aggregate(
     # distinct select on columns
     distinct_on: [ch_agenda_item_select_column!]
 
@@ -2562,7 +2565,7 @@ type ch_room {
   ): ch_agenda_item_aggregate!
 
   # An object relationship
-  ch_festival: ch_festival!
+  festival: ch_festival!
   festival_id: Int!
   id: Int!
   name: String!
@@ -2628,8 +2631,8 @@ input ch_room_bool_exp {
   _and: [ch_room_bool_exp]
   _not: ch_room_bool_exp
   _or: [ch_room_bool_exp]
-  ch_agenda_items: ch_agenda_item_bool_exp
-  ch_festival: ch_festival_bool_exp
+  agenda_items: ch_agenda_item_bool_exp
+  festival: ch_festival_bool_exp
   festival_id: Int_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
@@ -2653,8 +2656,8 @@ input ch_room_inc_input {
 
 # input type for inserting data into table "ch_room"
 input ch_room_insert_input {
-  ch_agenda_items: ch_agenda_item_arr_rel_insert_input
-  ch_festival: ch_festival_obj_rel_insert_input
+  agenda_items: ch_agenda_item_arr_rel_insert_input
+  festival: ch_festival_obj_rel_insert_input
   festival_id: Int
   id: Int
   name: String
@@ -2717,8 +2720,8 @@ input ch_room_on_conflict {
 
 # ordering options when selecting data from "ch_room"
 input ch_room_order_by {
-  ch_agenda_items_aggregate: ch_agenda_item_aggregate_order_by
-  ch_festival: ch_festival_order_by
+  agenda_items_aggregate: ch_agenda_item_aggregate_order_by
+  festival: ch_festival_order_by
   festival_id: order_by
   id: order_by
   name: order_by
@@ -2854,8 +2857,14 @@ input ch_room_variance_order_by {
 
 # columns and relationships of "ch_time_slot"
 type ch_time_slot {
+  end_time: timestamptz!
+
+  # An object relationship
+  festival: ch_festival!
+  festival_id: Int!
+
   # An array relationship
-  ch_helper_time_slots(
+  helpers(
     # distinct select on columns
     distinct_on: [ch_helper_time_slots_select_column!]
 
@@ -2873,7 +2882,7 @@ type ch_time_slot {
   ): [ch_helper_time_slots!]!
 
   # An aggregated array relationship
-  ch_helper_time_slots_aggregate(
+  helpers_aggregate(
     # distinct select on columns
     distinct_on: [ch_helper_time_slots_select_column!]
 
@@ -2889,9 +2898,10 @@ type ch_time_slot {
     # filter the rows returned
     where: ch_helper_time_slots_bool_exp
   ): ch_helper_time_slots_aggregate!
+  id: Int!
 
   # An array relationship
-  ch_proposal_time_slots(
+  proposals(
     # distinct select on columns
     distinct_on: [ch_proposal_time_slots_select_column!]
 
@@ -2909,7 +2919,7 @@ type ch_time_slot {
   ): [ch_proposal_time_slots!]!
 
   # An aggregated array relationship
-  ch_proposal_time_slots_aggregate(
+  proposals_aggregate(
     # distinct select on columns
     distinct_on: [ch_proposal_time_slots_select_column!]
 
@@ -2925,12 +2935,6 @@ type ch_time_slot {
     # filter the rows returned
     where: ch_proposal_time_slots_bool_exp
   ): ch_proposal_time_slots_aggregate!
-  end_time: timestamptz!
-
-  # An object relationship
-  festival: ch_festival!
-  festival_id: Int!
-  id: Int!
   start_time: timestamptz!
 }
 
@@ -2993,12 +2997,12 @@ input ch_time_slot_bool_exp {
   _and: [ch_time_slot_bool_exp]
   _not: ch_time_slot_bool_exp
   _or: [ch_time_slot_bool_exp]
-  ch_helper_time_slots: ch_helper_time_slots_bool_exp
-  ch_proposal_time_slots: ch_proposal_time_slots_bool_exp
   end_time: timestamptz_comparison_exp
   festival: ch_festival_bool_exp
   festival_id: Int_comparison_exp
+  helpers: ch_helper_time_slots_bool_exp
   id: Int_comparison_exp
+  proposals: ch_proposal_time_slots_bool_exp
   start_time: timestamptz_comparison_exp
 }
 
@@ -3019,12 +3023,12 @@ input ch_time_slot_inc_input {
 
 # input type for inserting data into table "ch_time_slot"
 input ch_time_slot_insert_input {
-  ch_helper_time_slots: ch_helper_time_slots_arr_rel_insert_input
-  ch_proposal_time_slots: ch_proposal_time_slots_arr_rel_insert_input
   end_time: timestamptz
   festival: ch_festival_obj_rel_insert_input
   festival_id: Int
+  helpers: ch_helper_time_slots_arr_rel_insert_input
   id: Int
+  proposals: ch_proposal_time_slots_arr_rel_insert_input
   start_time: timestamptz
 }
 
@@ -3084,12 +3088,12 @@ input ch_time_slot_on_conflict {
 
 # ordering options when selecting data from "ch_time_slot"
 input ch_time_slot_order_by {
-  ch_helper_time_slots_aggregate: ch_helper_time_slots_aggregate_order_by
-  ch_proposal_time_slots_aggregate: ch_proposal_time_slots_aggregate_order_by
   end_time: order_by
   festival: ch_festival_order_by
   festival_id: order_by
+  helpers_aggregate: ch_helper_time_slots_aggregate_order_by
   id: order_by
+  proposals_aggregate: ch_proposal_time_slots_aggregate_order_by
   start_time: order_by
 }
 
@@ -3223,10 +3227,13 @@ input ch_time_slot_variance_order_by {
 # columns and relationships of "ch_wait_list"
 type ch_wait_list {
   # An object relationship
-  ch_festival: ch_festival!
+  festival: ch_festival!
+  festival_id: Int!
+  id: Int!
+  name: String!
 
   # An array relationship
-  ch_proposals(
+  proposals(
     # distinct select on columns
     distinct_on: [ch_proposal_select_column!]
 
@@ -3244,7 +3251,7 @@ type ch_wait_list {
   ): [ch_proposal!]!
 
   # An aggregated array relationship
-  ch_proposals_aggregate(
+  proposals_aggregate(
     # distinct select on columns
     distinct_on: [ch_proposal_select_column!]
 
@@ -3260,9 +3267,6 @@ type ch_wait_list {
     # filter the rows returned
     where: ch_proposal_bool_exp
   ): ch_proposal_aggregate!
-  festival_id: Int!
-  id: Int!
-  name: String!
   slug: String!
 }
 
@@ -3325,11 +3329,11 @@ input ch_wait_list_bool_exp {
   _and: [ch_wait_list_bool_exp]
   _not: ch_wait_list_bool_exp
   _or: [ch_wait_list_bool_exp]
-  ch_festival: ch_festival_bool_exp
-  ch_proposals: ch_proposal_bool_exp
+  festival: ch_festival_bool_exp
   festival_id: Int_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
+  proposals: ch_proposal_bool_exp
   slug: String_comparison_exp
 }
 
@@ -3350,11 +3354,11 @@ input ch_wait_list_inc_input {
 
 # input type for inserting data into table "ch_wait_list"
 input ch_wait_list_insert_input {
-  ch_festival: ch_festival_obj_rel_insert_input
-  ch_proposals: ch_proposal_arr_rel_insert_input
+  festival: ch_festival_obj_rel_insert_input
   festival_id: Int
   id: Int
   name: String
+  proposals: ch_proposal_arr_rel_insert_input
   slug: String
 }
 
@@ -3414,11 +3418,11 @@ input ch_wait_list_on_conflict {
 
 # ordering options when selecting data from "ch_wait_list"
 input ch_wait_list_order_by {
-  ch_festival: ch_festival_order_by
-  ch_proposals_aggregate: ch_proposal_aggregate_order_by
+  festival: ch_festival_order_by
   festival_id: order_by
   id: order_by
   name: order_by
+  proposals_aggregate: ch_proposal_aggregate_order_by
   slug: order_by
 }
 
@@ -3552,42 +3556,6 @@ input ch_wait_list_variance_order_by {
 # columns and relationships of "cr_user"
 type cr_user {
   auth0_id: String!
-
-  # An array relationship
-  ch_helpers(
-    # distinct select on columns
-    distinct_on: [ch_helper_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_helper_order_by!]
-
-    # filter the rows returned
-    where: ch_helper_bool_exp
-  ): [ch_helper!]!
-
-  # An aggregated array relationship
-  ch_helpers_aggregate(
-    # distinct select on columns
-    distinct_on: [ch_helper_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [ch_helper_order_by!]
-
-    # filter the rows returned
-    where: ch_helper_bool_exp
-  ): ch_helper_aggregate!
   date_joined: timestamptz!
   email: String!
   first_name: String!
@@ -3627,6 +3595,42 @@ type cr_user {
     # filter the rows returned
     where: nb_guild_member_bool_exp
   ): nb_guild_member_aggregate!
+
+  # An array relationship
+  helpers(
+    # distinct select on columns
+    distinct_on: [ch_helper_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_helper_order_by!]
+
+    # filter the rows returned
+    where: ch_helper_bool_exp
+  ): [ch_helper!]!
+
+  # An aggregated array relationship
+  helpers_aggregate(
+    # distinct select on columns
+    distinct_on: [ch_helper_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ch_helper_order_by!]
+
+    # filter the rows returned
+    where: ch_helper_bool_exp
+  ): ch_helper_aggregate!
   is_active: Boolean!
   is_staff: Boolean!
   is_superuser: Boolean!
@@ -3671,42 +3675,6 @@ type cr_user {
   ): nb_sphere_managers_aggregate!
 
   # An array relationship
-  meetings(
-    # distinct select on columns
-    distinct_on: [nb_meeting_participant_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_meeting_participant_order_by!]
-
-    # filter the rows returned
-    where: nb_meeting_participant_bool_exp
-  ): [nb_meeting_participant!]!
-
-  # An aggregated array relationship
-  meetings_aggregate(
-    # distinct select on columns
-    distinct_on: [nb_meeting_participant_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_meeting_participant_order_by!]
-
-    # filter the rows returned
-    where: nb_meeting_participant_bool_exp
-  ): nb_meeting_participant_aggregate!
-
-  # An array relationship
   organized_meetings(
     # distinct select on columns
     distinct_on: [nb_meeting_select_column!]
@@ -3741,6 +3709,42 @@ type cr_user {
     # filter the rows returned
     where: nb_meeting_bool_exp
   ): nb_meeting_aggregate!
+
+  # An array relationship
+  participated_meetings(
+    # distinct select on columns
+    distinct_on: [nb_meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [nb_meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: nb_meeting_participant_bool_exp
+  ): [nb_meeting_participant!]!
+
+  # An aggregated array relationship
+  participated_meetings_aggregate(
+    # distinct select on columns
+    distinct_on: [nb_meeting_participant_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [nb_meeting_participant_order_by!]
+
+    # filter the rows returned
+    where: nb_meeting_participant_bool_exp
+  ): nb_meeting_participant_aggregate!
   password: String!
 
   # An array relationship
@@ -3814,11 +3818,11 @@ input cr_user_bool_exp {
   _not: cr_user_bool_exp
   _or: [cr_user_bool_exp]
   auth0_id: String_comparison_exp
-  ch_helpers: ch_helper_bool_exp
   date_joined: timestamptz_comparison_exp
   email: String_comparison_exp
   first_name: String_comparison_exp
   guilds: nb_guild_member_bool_exp
+  helpers: ch_helper_bool_exp
   is_active: Boolean_comparison_exp
   is_staff: Boolean_comparison_exp
   is_superuser: Boolean_comparison_exp
@@ -3826,8 +3830,8 @@ input cr_user_bool_exp {
   last_name: String_comparison_exp
   locale: String_comparison_exp
   managed_spheres: nb_sphere_managers_bool_exp
-  meetings: nb_meeting_participant_bool_exp
   organized_meetings: nb_meeting_bool_exp
+  participated_meetings: nb_meeting_participant_bool_exp
   password: String_comparison_exp
   proposals: ch_proposal_bool_exp
   username: String_comparison_exp
@@ -3849,11 +3853,11 @@ enum cr_user_constraint {
 # input type for inserting data into table "cr_user"
 input cr_user_insert_input {
   auth0_id: String
-  ch_helpers: ch_helper_arr_rel_insert_input
   date_joined: timestamptz
   email: String
   first_name: String
   guilds: nb_guild_member_arr_rel_insert_input
+  helpers: ch_helper_arr_rel_insert_input
   is_active: Boolean
   is_staff: Boolean
   is_superuser: Boolean
@@ -3861,8 +3865,8 @@ input cr_user_insert_input {
   last_name: String
   locale: String
   managed_spheres: nb_sphere_managers_arr_rel_insert_input
-  meetings: nb_meeting_participant_arr_rel_insert_input
   organized_meetings: nb_meeting_arr_rel_insert_input
+  participated_meetings: nb_meeting_participant_arr_rel_insert_input
   password: String
   proposals: ch_proposal_arr_rel_insert_input
   username: String
@@ -3950,11 +3954,11 @@ input cr_user_on_conflict {
 # ordering options when selecting data from "cr_user"
 input cr_user_order_by {
   auth0_id: order_by
-  ch_helpers_aggregate: ch_helper_aggregate_order_by
   date_joined: order_by
   email: order_by
   first_name: order_by
   guilds_aggregate: nb_guild_member_aggregate_order_by
+  helpers_aggregate: ch_helper_aggregate_order_by
   is_active: order_by
   is_staff: order_by
   is_superuser: order_by
@@ -3962,8 +3966,8 @@ input cr_user_order_by {
   last_name: order_by
   locale: order_by
   managed_spheres_aggregate: nb_sphere_managers_aggregate_order_by
-  meetings_aggregate: nb_meeting_participant_aggregate_order_by
   organized_meetings_aggregate: nb_meeting_aggregate_order_by
+  participated_meetings_aggregate: nb_meeting_participant_aggregate_order_by
   password: order_by
   proposals_aggregate: ch_proposal_aggregate_order_by
   username: order_by
@@ -4083,7 +4087,7 @@ type django_site {
   name: String!
 
   # An object relationship
-  nb_sphere: nb_sphere
+  sphere: nb_sphere
 }
 
 # aggregated selection of "django_site"
@@ -4146,7 +4150,7 @@ input django_site_bool_exp {
   domain: String_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
-  nb_sphere: nb_sphere_bool_exp
+  sphere: nb_sphere_bool_exp
 }
 
 # unique or primary key constraints on table "django_site"
@@ -4168,7 +4172,7 @@ input django_site_insert_input {
   domain: String
   id: Int
   name: String
-  nb_sphere: nb_sphere_obj_rel_insert_input
+  sphere: nb_sphere_obj_rel_insert_input
 }
 
 # aggregate max on columns
@@ -4226,7 +4230,7 @@ input django_site_order_by {
   domain: order_by
   id: order_by
   name: order_by
-  nb_sphere: nb_sphere_order_by
+  sphere: nb_sphere_order_by
 }
 
 # primary key columns input for table: "django_site"
@@ -5309,46 +5313,9 @@ type nb_guild {
   description: String!
   id: Int!
   is_public: Boolean!
-  name: String!
 
   # An array relationship
-  nb_guild_members(
-    # distinct select on columns
-    distinct_on: [nb_guild_member_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_guild_member_order_by!]
-
-    # filter the rows returned
-    where: nb_guild_member_bool_exp
-  ): [nb_guild_member!]!
-
-  # An aggregated array relationship
-  nb_guild_members_aggregate(
-    # distinct select on columns
-    distinct_on: [nb_guild_member_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_guild_member_order_by!]
-
-    # filter the rows returned
-    where: nb_guild_member_bool_exp
-  ): nb_guild_member_aggregate!
-
-  # An array relationship
-  nb_meetings(
+  meetings(
     # distinct select on columns
     distinct_on: [nb_meeting_select_column!]
 
@@ -5366,7 +5333,7 @@ type nb_guild {
   ): [nb_meeting!]!
 
   # An aggregated array relationship
-  nb_meetings_aggregate(
+  meetings_aggregate(
     # distinct select on columns
     distinct_on: [nb_meeting_select_column!]
 
@@ -5382,6 +5349,43 @@ type nb_guild {
     # filter the rows returned
     where: nb_meeting_bool_exp
   ): nb_meeting_aggregate!
+
+  # An array relationship
+  members(
+    # distinct select on columns
+    distinct_on: [nb_guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [nb_guild_member_order_by!]
+
+    # filter the rows returned
+    where: nb_guild_member_bool_exp
+  ): [nb_guild_member!]!
+
+  # An aggregated array relationship
+  members_aggregate(
+    # distinct select on columns
+    distinct_on: [nb_guild_member_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [nb_guild_member_order_by!]
+
+    # filter the rows returned
+    where: nb_guild_member_bool_exp
+  ): nb_guild_member_aggregate!
+  name: String!
   slug: String!
   updated_at: timestamptz!
 }
@@ -5447,9 +5451,9 @@ input nb_guild_bool_exp {
   description: String_comparison_exp
   id: Int_comparison_exp
   is_public: Boolean_comparison_exp
+  meetings: nb_meeting_bool_exp
+  members: nb_guild_member_bool_exp
   name: String_comparison_exp
-  nb_guild_members: nb_guild_member_bool_exp
-  nb_meetings: nb_meeting_bool_exp
   slug: String_comparison_exp
   updated_at: timestamptz_comparison_exp
 }
@@ -5474,9 +5478,9 @@ input nb_guild_insert_input {
   description: String
   id: Int
   is_public: Boolean
+  meetings: nb_meeting_arr_rel_insert_input
+  members: nb_guild_member_arr_rel_insert_input
   name: String
-  nb_guild_members: nb_guild_member_arr_rel_insert_input
-  nb_meetings: nb_meeting_arr_rel_insert_input
   slug: String
   updated_at: timestamptz
 }
@@ -5504,13 +5508,13 @@ input nb_guild_max_order_by {
 # columns and relationships of "nb_guild_member"
 type nb_guild_member {
   # An object relationship
-  cr_user: cr_user!
+  guild: nb_guild!
   guild_id: Int!
   id: Int!
   membership_type: String!
 
   # An object relationship
-  nb_guild: nb_guild!
+  user: cr_user!
   user_id: uuid!
 }
 
@@ -5573,11 +5577,11 @@ input nb_guild_member_bool_exp {
   _and: [nb_guild_member_bool_exp]
   _not: nb_guild_member_bool_exp
   _or: [nb_guild_member_bool_exp]
-  cr_user: cr_user_bool_exp
+  guild: nb_guild_bool_exp
   guild_id: Int_comparison_exp
   id: Int_comparison_exp
   membership_type: String_comparison_exp
-  nb_guild: nb_guild_bool_exp
+  user: cr_user_bool_exp
   user_id: uuid_comparison_exp
 }
 
@@ -5598,11 +5602,11 @@ input nb_guild_member_inc_input {
 
 # input type for inserting data into table "nb_guild_member"
 input nb_guild_member_insert_input {
-  cr_user: cr_user_obj_rel_insert_input
+  guild: nb_guild_obj_rel_insert_input
   guild_id: Int
   id: Int
   membership_type: String
-  nb_guild: nb_guild_obj_rel_insert_input
+  user: cr_user_obj_rel_insert_input
   user_id: uuid
 }
 
@@ -5662,11 +5666,11 @@ input nb_guild_member_on_conflict {
 
 # ordering options when selecting data from "nb_guild_member"
 input nb_guild_member_order_by {
-  cr_user: cr_user_order_by
+  guild: nb_guild_order_by
   guild_id: order_by
   id: order_by
   membership_type: order_by
-  nb_guild: nb_guild_order_by
+  user: cr_user_order_by
   user_id: order_by
 }
 
@@ -5845,9 +5849,9 @@ input nb_guild_order_by {
   description: order_by
   id: order_by
   is_public: order_by
+  meetings_aggregate: nb_meeting_aggregate_order_by
+  members_aggregate: nb_guild_member_aggregate_order_by
   name: order_by
-  nb_guild_members_aggregate: nb_guild_member_aggregate_order_by
-  nb_meetings_aggregate: nb_meeting_aggregate_order_by
   slug: order_by
   updated_at: order_by
 }
@@ -6901,8 +6905,11 @@ input nb_meeting_variance_order_by {
 
 # columns and relationships of "nb_sphere"
 type nb_sphere {
+  # An object relationship
+  django_site: django_site!
+
   # An array relationship
-  ch_festivals(
+  festivals(
     # distinct select on columns
     distinct_on: [ch_festival_select_column!]
 
@@ -6920,7 +6927,7 @@ type nb_sphere {
   ): [ch_festival!]!
 
   # An aggregated array relationship
-  ch_festivals_aggregate(
+  festivals_aggregate(
     # distinct select on columns
     distinct_on: [ch_festival_select_column!]
 
@@ -6936,51 +6943,11 @@ type nb_sphere {
     # filter the rows returned
     where: ch_festival_bool_exp
   ): ch_festival_aggregate!
-
-  # An object relationship
-  django_site: django_site!
   id: Int!
   is_open: Boolean!
-  name: String!
 
   # An array relationship
-  nb_meetings(
-    # distinct select on columns
-    distinct_on: [nb_meeting_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_meeting_order_by!]
-
-    # filter the rows returned
-    where: nb_meeting_bool_exp
-  ): [nb_meeting!]!
-
-  # An aggregated array relationship
-  nb_meetings_aggregate(
-    # distinct select on columns
-    distinct_on: [nb_meeting_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [nb_meeting_order_by!]
-
-    # filter the rows returned
-    where: nb_meeting_bool_exp
-  ): nb_meeting_aggregate!
-
-  # An array relationship
-  nb_sphere_managers(
+  managers(
     # distinct select on columns
     distinct_on: [nb_sphere_managers_select_column!]
 
@@ -6998,7 +6965,7 @@ type nb_sphere {
   ): [nb_sphere_managers!]!
 
   # An aggregated array relationship
-  nb_sphere_managers_aggregate(
+  managers_aggregate(
     # distinct select on columns
     distinct_on: [nb_sphere_managers_select_column!]
 
@@ -7014,6 +6981,43 @@ type nb_sphere {
     # filter the rows returned
     where: nb_sphere_managers_bool_exp
   ): nb_sphere_managers_aggregate!
+
+  # An array relationship
+  meetings(
+    # distinct select on columns
+    distinct_on: [nb_meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [nb_meeting_order_by!]
+
+    # filter the rows returned
+    where: nb_meeting_bool_exp
+  ): [nb_meeting!]!
+
+  # An aggregated array relationship
+  meetings_aggregate(
+    # distinct select on columns
+    distinct_on: [nb_meeting_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [nb_meeting_order_by!]
+
+    # filter the rows returned
+    where: nb_meeting_bool_exp
+  ): nb_meeting_aggregate!
+  name: String!
   settings(
     # JSON select path
     path: String
@@ -7085,13 +7089,13 @@ input nb_sphere_bool_exp {
   _and: [nb_sphere_bool_exp]
   _not: nb_sphere_bool_exp
   _or: [nb_sphere_bool_exp]
-  ch_festivals: ch_festival_bool_exp
   django_site: django_site_bool_exp
+  festivals: ch_festival_bool_exp
   id: Int_comparison_exp
   is_open: Boolean_comparison_exp
+  managers: nb_sphere_managers_bool_exp
+  meetings: nb_meeting_bool_exp
   name: String_comparison_exp
-  nb_meetings: nb_meeting_bool_exp
-  nb_sphere_managers: nb_sphere_managers_bool_exp
   settings: jsonb_comparison_exp
   site_id: Int_comparison_exp
 }
@@ -7129,26 +7133,27 @@ input nb_sphere_inc_input {
 
 # input type for inserting data into table "nb_sphere"
 input nb_sphere_insert_input {
-  ch_festivals: ch_festival_arr_rel_insert_input
   django_site: django_site_obj_rel_insert_input
+  festivals: ch_festival_arr_rel_insert_input
   id: Int
   is_open: Boolean
+  managers: nb_sphere_managers_arr_rel_insert_input
+  meetings: nb_meeting_arr_rel_insert_input
   name: String
-  nb_meetings: nb_meeting_arr_rel_insert_input
-  nb_sphere_managers: nb_sphere_managers_arr_rel_insert_input
   settings: jsonb
   site_id: Int
 }
 
 # columns and relationships of "nb_sphere_managers"
 type nb_sphere_managers {
-  # An object relationship
-  cr_user: cr_user!
   id: Int!
 
   # An object relationship
-  nb_sphere: nb_sphere!
+  sphere: nb_sphere!
   sphere_id: Int!
+
+  # An object relationship
+  user: cr_user!
   user_id: uuid!
 }
 
@@ -7211,10 +7216,10 @@ input nb_sphere_managers_bool_exp {
   _and: [nb_sphere_managers_bool_exp]
   _not: nb_sphere_managers_bool_exp
   _or: [nb_sphere_managers_bool_exp]
-  cr_user: cr_user_bool_exp
   id: Int_comparison_exp
-  nb_sphere: nb_sphere_bool_exp
+  sphere: nb_sphere_bool_exp
   sphere_id: Int_comparison_exp
+  user: cr_user_bool_exp
   user_id: uuid_comparison_exp
 }
 
@@ -7235,10 +7240,10 @@ input nb_sphere_managers_inc_input {
 
 # input type for inserting data into table "nb_sphere_managers"
 input nb_sphere_managers_insert_input {
-  cr_user: cr_user_obj_rel_insert_input
   id: Int
-  nb_sphere: nb_sphere_obj_rel_insert_input
+  sphere: nb_sphere_obj_rel_insert_input
   sphere_id: Int
+  user: cr_user_obj_rel_insert_input
   user_id: uuid
 }
 
@@ -7294,10 +7299,10 @@ input nb_sphere_managers_on_conflict {
 
 # ordering options when selecting data from "nb_sphere_managers"
 input nb_sphere_managers_order_by {
-  cr_user: cr_user_order_by
   id: order_by
-  nb_sphere: nb_sphere_order_by
+  sphere: nb_sphere_order_by
   sphere_id: order_by
+  user: cr_user_order_by
   user_id: order_by
 }
 
@@ -7473,13 +7478,13 @@ input nb_sphere_on_conflict {
 
 # ordering options when selecting data from "nb_sphere"
 input nb_sphere_order_by {
-  ch_festivals_aggregate: ch_festival_aggregate_order_by
   django_site: django_site_order_by
+  festivals_aggregate: ch_festival_aggregate_order_by
   id: order_by
   is_open: order_by
+  managers_aggregate: nb_sphere_managers_aggregate_order_by
+  meetings_aggregate: nb_meeting_aggregate_order_by
   name: order_by
-  nb_meetings_aggregate: nb_meeting_aggregate_order_by
-  nb_sphere_managers_aggregate: nb_sphere_managers_aggregate_order_by
   settings: order_by
   site_id: order_by
 }

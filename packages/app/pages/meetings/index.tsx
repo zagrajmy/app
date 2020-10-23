@@ -31,15 +31,16 @@ function useMyMeetings(initialData: MyMeetingsResult | Nil) {
     { initialData }
   );
 
-  const { meetings, organizedMeetings } = useMemo(() => {
+  const { participatedMeetings, organizedMeetings } = useMemo(() => {
     return {
-      meetings: data?.meetings.map((x) => x.meeting) || [],
+      participatedMeetings:
+        data?.participated_meetings.map((x) => x.meeting) || [],
       organizedMeetings: data?.organized_meetings || [],
     };
   }, [data]);
 
   return {
-    meetings,
+    participatedMeetings,
     organizedMeetings,
     error,
   };
@@ -62,7 +63,9 @@ interface LoggedInUserMeetingsProps {
 }
 function LoggedInUserMeetingsList({ initialData }: LoggedInUserMeetingsProps) {
   const { t } = useTranslation();
-  const { meetings, organizedMeetings } = useMyMeetings(initialData);
+  const { participatedMeetings, organizedMeetings } = useMyMeetings(
+    initialData
+  );
 
   return (
     <>
@@ -92,15 +95,15 @@ function LoggedInUserMeetingsList({ initialData }: LoggedInUserMeetingsProps) {
           </section>
           <section>
             <Heading as="h3">{t("meetings-you-participate-in")}</Heading>
-            {meetings && (
+            {participatedMeetings && (
               <MeetingCardsList>
                 {/* eslint-disable-next-line sonarjs/no-identical-functions */}
-                {meetings?.map((meeting) => (
+                {participatedMeetings?.map((meeting) => (
                   <li key={meeting.id}>
                     <MeetingCard meeting={meeting} />
                   </li>
                 ))}
-                {meetings.length === 0 && (
+                {participatedMeetings.length === 0 && (
                   <p>{t("not-participating-in-any-meeting")}</p>
                 )}
               </MeetingCardsList>
