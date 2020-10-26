@@ -4,6 +4,7 @@ import { merge as mergeTheme, Theme } from "theme-ui";
 
 import { mergeLocale } from "../../i18n";
 import { settings } from "../../types";
+
 import { useAppState } from "./index";
 
 // todo: json schema validator or io-ts

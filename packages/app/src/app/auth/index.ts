@@ -1,13 +1,15 @@
+import { IncomingMessage, ServerResponse } from "http";
+
 import { initAuth0 } from "@auth0/nextjs-auth0";
 import IAuth0Settings from "@auth0/nextjs-auth0/dist/settings";
 import * as dotenv from "dotenv";
-import { IncomingMessage, ServerResponse } from "http";
 
 // TODO: Eject nextjs-auth0 to refactor this into lightweight functional API
 // I'm not sure this is currently serverless friendly
 // TODO: but write tests first
 // TODO: We'd like to keep zagrajmy user id in session
 import { getUrl } from "../../lib/getUrl";
+
 import { Claims, Session } from "./types";
 
 export * from "./types";

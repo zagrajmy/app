@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Center } from "../../Center";
 import { mdx } from "../../mdx";
+
 import { MacbookGuy } from "./ItWasntSupposedToHappen";
 import { MessageScreen } from "./MessageScreen";
 

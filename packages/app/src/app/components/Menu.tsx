@@ -5,6 +5,7 @@ import { Theme } from "theme-ui";
 import useOnClickOutside from "use-onclickoutside";
 
 import { Claims } from "../auth";
+
 import { UserAvatar } from "./UserAvatar";
 
 const Tip = () => (

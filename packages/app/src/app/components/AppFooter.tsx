@@ -1,6 +1,7 @@
 import { Link } from "next-next-link";
 
 import { useAppName } from "../store/useAppName";
+
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 
 export const AppFooter = () => {

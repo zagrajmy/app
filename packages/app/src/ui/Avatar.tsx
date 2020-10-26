@@ -8,6 +8,7 @@ import {
 } from "theme-ui";
 
 import { noop } from "../lib";
+
 import { Center } from "./Center";
 import { Text } from "./Text";
 

@@ -1,6 +1,7 @@
 import { testUtils } from "../../../test/testUtils";
 import { getAvatarUrl } from "../../app/getAvatarUrl";
 import { Stack } from "../Stack";
+
 import { MeetingParticipants } from "./MeetingParticipants";
 
 const users = {

@@ -1,6 +1,7 @@
+import type { UrlObject } from "url";
+
 import { Link as BaseLink, LinkProps as BaseLinkProps } from "next-next-link";
 import { useRouter } from "next/router";
-import type { UrlObject } from "url";
 
 import { ExactTheme, useTheme } from "./theme";
 

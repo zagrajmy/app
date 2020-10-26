@@ -13,8 +13,6 @@ import ReactDatePicker, {
   ReactDatePickerProps,
   registerLocale,
 } from "react-datepicker";
-import { Controller } from "react-hook-form";
-import { ControllerProps } from "react-hook-form/dist/types/props";
 import { ThemeUIStyleObject } from "theme-ui";
 
 import { Calendar } from "./icons";

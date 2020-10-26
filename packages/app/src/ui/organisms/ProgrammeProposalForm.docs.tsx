@@ -8,6 +8,7 @@ import { dedent } from "ts-dedent";
 import { forms } from "../../../../schemas/src/FormsSettings/example.json";
 import { i18n } from "../../i18n";
 import { settings } from "../../types";
+
 import {
   ProgrammeProposalForm,
   ProgrammeProposalFormProps,

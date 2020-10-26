@@ -10,7 +10,6 @@ import {
   SupportedLanguage,
   useLanguage,
 } from "../../../i18n";
-import { head } from "../../../lib/head";
 import { slugify } from "../../../lib/slugify";
 import { AsyncReturnType } from "../../../lib/utilityTypes";
 import {
@@ -27,6 +26,7 @@ import { mdx } from "../../../ui/mdx";
 import { FestivalAgenda } from "../../../ui/organisms/FestivalAgenda";
 import { Text } from "../../../ui/Text";
 import { MergedSettings, useSettings } from "../../store/useSettings";
+
 import type { fetchSphereData } from "./fetchSphereData";
 
 type Sphere = Exclude<AsyncReturnType<typeof fetchSphereData>, undefined>;

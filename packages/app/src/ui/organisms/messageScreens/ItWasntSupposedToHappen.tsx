@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Center } from "../../Center";
 import { mdx } from "../../mdx";
+
 import { MessageScreen } from "./MessageScreen";
 
 export const MacbookGuy = (props: ComponentPropsWithoutRef<"svg">) => (

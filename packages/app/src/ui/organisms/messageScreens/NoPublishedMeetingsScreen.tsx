@@ -1,6 +1,7 @@
 import React, { ComponentPropsWithoutRef } from "react";
 
 import { Center } from "../../Center";
+
 import { MessageScreen } from "./MessageScreen";
 
 const CrossedArmsGuy = (props: ComponentPropsWithoutRef<"svg">) => (

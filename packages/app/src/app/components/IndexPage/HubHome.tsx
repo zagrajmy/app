@@ -13,7 +13,10 @@ const Meeting = () => {
   //possibility to sign -up/register for mettingfif you are signed in
 };
 
-export function HubHome({ featuredSpheres: _1, recentFestivals: _2 }: HubHomeProps) {
+export function HubHome({
+  featuredSpheres: _1,
+  recentFestivals: _2,
+}: HubHomeProps) {
   return (
     <Container
       mt={4}

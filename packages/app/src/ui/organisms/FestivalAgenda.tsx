@@ -1,8 +1,7 @@
 import { ThemeUIStyleObject } from "theme-ui";
 
-import { slugify } from "../../lib/slugify";
 import { Heading } from "../Heading";
-import { Link, LinkProps } from "../Link";
+import { LinkProps } from "../Link";
 
 type LinkStylingProps = Pick<
   LinkProps,

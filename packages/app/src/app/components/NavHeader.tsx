@@ -14,6 +14,7 @@ import { useTheme } from "../../ui/theme";
 import type { Claims } from "../auth";
 import { useAppState } from "../store";
 import { useAppName } from "../store/useAppName";
+
 import { HeaderFooterListItem } from "./HeaderFooterListItem";
 import { Menu } from "./Menu";
 import { NavLink } from "./NavLink";

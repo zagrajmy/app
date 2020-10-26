@@ -1,12 +1,12 @@
 import { absurd } from "fp-ts/lib/function";
 import { GetServerSideProps, NextPageContext } from "next";
 import {
+  Dispatch,
   forwardRef,
   useMemo,
   useReducer,
   useRef,
   useState,
-  Dispatch,
 } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -22,13 +22,13 @@ import { AsyncReturnType } from "../../../src/lib/utilityTypes";
 import { Avatar } from "../../../src/ui/Avatar";
 import { Button } from "../../../src/ui/Button";
 import { Container } from "../../../src/ui/Container";
+import { Dialog, DialogFooter, DialogTitle } from "../../../src/ui/Dialog";
 import { FormDatepicker } from "../../../src/ui/FormDatepicker";
 import { Input, InputProps } from "../../../src/ui/Input";
 import {
   MeetingParticipants,
   Participant,
 } from "../../../src/ui/organisms/MeetingParticipants";
-import { Dialog, DialogFooter, DialogTitle } from "../../../src/ui/Dialog";
 // import { Link, LinkProps } from "../../../src/ui/Link";
 // import { CheckSquare, Edit } from "../../../src/ui/icons";
 
@@ -153,7 +153,6 @@ function useMeetingParticipants(meeting: Meeting | undefined) {
     });
   }, [meeting]);
 }
-
 
 interface QueryMeetingResult extends AsyncReturnType<typeof queryMeeting> {}
 type Meeting = Exclude<QueryMeetingResult["meeting"], undefined>;

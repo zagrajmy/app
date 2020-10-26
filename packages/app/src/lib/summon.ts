@@ -1,5 +1,6 @@
-import { record } from "fp-ts/lib/Record";
 import { IncomingHttpHeaders, IncomingMessage } from "http";
+
+import { record } from "fp-ts/lib/Record";
 
 import { getUrl } from "./getUrl";
 import { HttpError } from "./HttpError";

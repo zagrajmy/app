@@ -10,6 +10,7 @@ import { dedent } from "ts-dedent";
 import { i18n } from "../../i18n";
 import { noop } from "../../lib";
 import { settings } from "../../types";
+
 import { ProgrammeProposalForm } from "./ProgrammeProposalForm";
 
 // todo: move this to a test setup file?

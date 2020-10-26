@@ -1,6 +1,6 @@
-import "focus-visible";
-
 import { ThemeUIStyleObject } from "theme-ui";
+
+import "focus-visible";
 
 export const focusStyles: ThemeUIStyleObject = {
   "*:focus:not(.focus-visible)": {

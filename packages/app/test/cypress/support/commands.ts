@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 // https://on.cypress.io/custom-commands
 
-import "@testing-library/cypress/add-commands";
-
 import { getOrPanic } from "../../../src/lib/validationErrorToError";
+
 import { decodeTestAccount } from "./util";
+
+import "@testing-library/cypress/add-commands";
 
 const env =
   process.env ?? new Proxy({}, { get: (_, key) => Cypress.env(String(key)) });

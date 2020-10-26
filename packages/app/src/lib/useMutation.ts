@@ -1,6 +1,5 @@
 import { absurd } from "fp-ts/lib/function";
-import { useReducer, useMemo, useRef, Dispatch } from "react";
-
+import { Dispatch, useMemo, useReducer, useRef } from "react";
 import { assert } from "ts-essentials";
 
 import { makeError } from "./makeError";
@@ -80,7 +79,7 @@ export namespace useMutation {
     | { type: "failed"; error: Error; lastArgs: A }
     | { type: "succeeded"; result: R; lastArgs: A };
 
-  export type UseMutationReducer<R, A> = <R, A>(
+  export type UseMutationReducer<R, A> = (
     s: State<R, A>,
     a: Action<R, A>
   ) => State<R, A>;
