@@ -1,5 +1,3 @@
-import "react-datepicker/dist/react-datepicker.css";
-
 // We depend on @emotion/core version theme-ui is using.
 // Should theme-ui reexport Global?
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -45,6 +43,10 @@ import {
   globalStyles,
   theme as defaultTheme,
 } from "../src/ui/theme";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+const navHeaderLinks = ["meetings"];
 
 const ProgressBar = dynamic(() => import("../src/app/components/ProgressBar"), {
   // ssr: false <- can't be there.
@@ -139,10 +141,7 @@ export default function MyApp({
   } else {
     root = (
       <Styled.root sx={theme.styles.root}>
-        <NavHeader
-          claims={appState.user}
-          // links={["meetings"]}
-        />
+        <NavHeader claims={appState.user} links={navHeaderLinks} />
         <Component {...pageProps} />
         <AppFooter />
       </Styled.root>

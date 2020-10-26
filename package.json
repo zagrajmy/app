@@ -14,15 +14,13 @@
     "lint": "lerna run lint",
     "typecheck": "lerna run typecheck",
     "ci": "lerna run ci && yarn test",
-    "fix": "wotan --fix && lerna run format && lerna run lint:fix",
+    "fix": "lerna run format && lerna run lint:fix",
     "release": "lerna publish && lerna run deploy",
     "test": "jest --runInBand",
     "codegen": "lerna run codegen",
     "postinstall": "patch-package || true"
   },
   "dependencies": {
-    "@fimbul/heimdall": "^0.21.0",
-    "@fimbul/wotan": "^0.21.1",
     "@types/jest": "^26.0.15",
     "babel-jest": "^26.6.1",
     "concurrently": "^5.3.0",
