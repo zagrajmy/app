@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+
 // https://on.cypress.io/custom-commands
 
 import { getOrPanic } from "../../../src/lib/validationErrorToError";
@@ -8,7 +9,9 @@ import { decodeTestAccount } from "./util";
 import "@testing-library/cypress/add-commands";
 
 const env =
-  process.env ?? new Proxy({}, { get: (_, key) => Cypress.env(String(key)) });
+  process.env ??
+  new Proxy({}, { get: (_, key) => Cypress.env(String(key)) as string });
+
 const {
   AUTH0_DOMAIN: TEST_AUTH_DOMAIN,
   AUTH0_CLIENT_ID,
@@ -28,18 +31,22 @@ Cypress.Commands.add(
 
     cy.request({
       method: "POST",
-      url: `https://${TEST_AUTH_DOMAIN}/oauth/token`,
+      url: `https://${TEST_AUTH_DOMAIN!}/oauth/token`,
       body: {
         grant_type: "password",
         username: testAccount.username,
         password: testAccount.password,
-        audience: `https://${TEST_AUTH_DOMAIN}/userinfo`,
+        audience: `https://${TEST_AUTH_DOMAIN!}/userinfo`,
         scope: "openid profile email",
         client_id: AUTH0_CLIENT_ID,
         client_secret: AUTH0_CLIENT_SECRET,
       },
     }).then((res) => {
-      const { access_token, expires_in, id_token } = res.body;
+      const { access_token, expires_in, id_token } = res.body as Record<
+        string,
+        string
+      >;
+
       const auth0State = "some-random-state";
       const callbackUrl = `/api/login-callback?access_token=${access_token}&scope=openid&id_token=${id_token}&expires_in=${expires_in}&token_type=Bearer&state=${auth0State}`;
       const redirectTo = "/";
