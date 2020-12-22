@@ -66,7 +66,7 @@ function coerceNumberFieldValuesToNumber(
         try {
           unsafeMod(result, field.name, Number);
         } catch (err) {
-            e.error(err);
+          console.error(err);
         }
       } else if (
         field.type === "multiple-choice" ||

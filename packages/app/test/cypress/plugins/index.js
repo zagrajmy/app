@@ -1,4 +1,5 @@
 const webpackPreprocessor = require("@cypress/webpack-preprocessor");
+const percyHealthCheck = require("@percy/cypress/task");
 
 /**
  * @type {Cypress.PluginConfig}
@@ -9,6 +10,7 @@ module.exports = (on, config) => {
   };
 
   on("file:preprocessor", webpackPreprocessor(options));
+  on("task", percyHealthCheck);
 
   return config;
 };
